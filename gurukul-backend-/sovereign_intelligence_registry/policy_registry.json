@@ -1,0 +1,117 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PolicyRegistry",
+  "description": "Structured registry of national and state educational/digital policies impacting deployment.",
+  "policies": {
+    "NEP": {
+      "name": "National Education Policy 2020",
+      "policy_purpose": "Complete overhaul of the Indian school and higher education structure to promote holistic, multi-disciplinary, and digital learning.",
+      "authority_owner": "Ministry of Education (India)",
+      "implementation_pathway": "Translates to National Curriculum Frameworks (NCF), which are then adapted by individual State Councils (SCERT) into State Curriculum Frameworks (SCF).",
+      "enforcement_posture": "Advisory / Collaborative. States are encouraged to adopt the principles, but exact implementation models are left to local state departments.",
+      "known_operational_gap": "Significant variation in state-level adoption rates and budgetary allocations for digital infrastructure.",
+      "known_political_sensitivity": "Concerns over federal autonomy in education; linguistic policies regarding mother tongue instruction in early school grades.",
+      "known_deployment_dependencies": "Dependent on the formulation of local SCFs and the state-level willingness to replace existing systems."
+    },
+    "NCF": {
+      "name": "National Curriculum Framework (2023)",
+      "policy_purpose": "Provides detailed academic guidelines, pedagogical standards, and curriculum structures mapping to NEP objectives.",
+      "authority_owner": "NCERT",
+      "implementation_pathway": "Published as model textbooks, teacher handbooks, and classroom pacing outlines to guide standard content creators.",
+      "enforcement_posture": "Standard-setting / Voluntary. Actively enforced inside CBSE schools but functions as a model reference for state boards.",
+      "known_operational_gap": "Delay in textbook translations and publishing across regional languages, causing teacher confusion.",
+      "known_political_sensitivity": "Curriculum revisions, history textbook topics alterations, and inclusion of indigenous knowledge systems.",
+      "known_deployment_dependencies": "Dependent on state governments and publishing bureaus (like Balbharati) to align their printed materials with the new guidelines."
+    },
+    "Samagra_Shiksha": {
+      "name": "Samagra Shiksha Abhiyan",
+      "policy_purpose": "Integrated state school education scheme spanning pre-school to class 12, focusing on improving school infrastructure and teacher standards.",
+      "authority_owner": "MoE (Union) and State School Education Departments",
+      "implementation_pathway": "Union distributes budgets directly to state-level implementation societies (e.g., MPSP in Maharashtra), who execute works.",
+      "enforcement_posture": "Highly Enforced (Financial). Funding releases are strictly bound to meeting specific operational KPIs and infrastructure reporting.",
+      "known_operational_gap": "Discrepancy in fund utilization at local school committees; delayed infrastructure audits.",
+      "known_political_sensitivity": "Matching grant structures (60:40 split between Union and State) frequently causing bureaucratic friction.",
+      "known_deployment_dependencies": "Dependent on state audit submission timelines and physical vendor deployment capacities."
+    },
+    "NIPUN_Bharat": {
+      "name": "National Initiative for Proficiency in Reading with Understanding and Numeracy",
+      "policy_purpose": "Ensures every child in the country attains foundational literacy and numeracy (FLN) by the end of Grade 3.",
+      "authority_owner": "Ministry of Education (India)",
+      "implementation_pathway": "State-level FLN missions run teacher training, distribute learning aids, and conduct routine child assessments.",
+      "enforcement_posture": "Enforced (KPI-Targeted). Monitored via centralized dashboards and dynamic child-level assessments.",
+      "known_operational_gap": "Teacher shortage in rural public schools leading to classroom overcrowding and poor individual student focus.",
+      "known_political_sensitivity": "High visibility. Poor performance scores can trigger political debates regarding regional primary school qualities.",
+      "known_deployment_dependencies": "Dependent on teacher availability for customized FLN tracking and local assessment compliance."
+    },
+    "PM_SHRI": {
+      "name": "PM Schools for Rising India",
+      "policy_purpose": "Upgrades selected existing public schools into showcase 'green schools' showcasing modern pedagogy and smart technology.",
+      "authority_owner": "Ministry of Education (India) in partnership with State Departments",
+      "implementation_pathway": "Direct central funding allocated to designated schools to construct smart classrooms, solar panels, and scientific labs.",
+      "enforcement_posture": "Strict Compliance. Recipient schools must maintain defined pedagogical standards and transparent infrastructure metrics.",
+      "known_operational_gap": "Uneven selection of schools across districts, leading to local quality imbalances.",
+      "known_political_sensitivity": "Certain opposition-led states initially rejected the scheme due to branding and central naming conventions.",
+      "known_deployment_dependencies": "Dependent on state governments signing MoU agreements with the central ministry."
+    },
+    "PM_eVIDYA": {
+      "name": "PM eVIDYA (Digital Education Programme)",
+      "policy_purpose": "Unifies all digital, television, and radio efforts for educational continuity, ensuring multi-mode learning access.",
+      "authority_owner": "Ministry of Education (India)",
+      "implementation_pathway": "Broadcasts educational TV channels (Swayam Prabha), operates Swayam LMS, and updates the DIKSHA platform.",
+      "enforcement_posture": "Voluntary / Enabling. Provides digital learning resources freely, leaving consumption tracking to regional schools.",
+      "known_operational_gap": "Limited television and high-speed internet access in remote tribal villages, restricting digital benefit delivery.",
+      "known_political_sensitivity": "Low, though disputes arise over the proportion of regional language broadcasts compared to Hindi/English.",
+      "known_deployment_dependencies": "Dependent on state-level infrastructure (like regional DTH networks) and digital literacy levels among parents."
+    },
+    "DPDP": {
+      "name": "Digital Personal Data Protection Act (2023)",
+      "policy_purpose": "Establishes legal framework for processing personal data, demanding strict consent, validation, and child data protection.",
+      "authority_owner": "Data Protection Board of India (DPBI)",
+      "implementation_pathway": "Enforces technical system-level rules regarding how student data is hosted, verified, and audited by digital platforms.",
+      "enforcement_posture": "Statutory / Non-Negotiable. Large financial penalties are active for unauthorized profiling of minor children (students).",
+      "known_operational_gap": "Absence of standard, friction-free mechanism for digital parental consent verification in schools.",
+      "known_political_sensitivity": "Friction between tech providers, educational departments, and private operators regarding student data access.",
+      "known_deployment_dependencies": "Dependent on the framing of final DPDP rules and availability of verified identity infrastructure."
+    },
+    "AI_Policy_2026": {
+      "name": "National Strategy and Policy for Artificial Intelligence in Education (2026)",
+      "policy_purpose": "Regulates the integration of generative AI tutors, LLM-based RAG engines, and automated assessments in school environments.",
+      "authority_owner": "Ministry of Education (India) & MeitY",
+      "implementation_pathway": "Establishes standard guidelines for AI model safety, content filters, and mandatory offline fallbacks in case of cloud outage.",
+      "enforcement_posture": "Mandatory Guidelines. System developers must certify their educational AI models before deploying to public school systems.",
+      "known_operational_gap": "Lack of local computing hardware to host sovereign AI models offline in rural schools, causing high reliance on cloud vendors.",
+      "known_political_sensitivity": "Fears of automated AI bias, replacement of rural teachers, and leak of minor voice biometric data.",
+      "known_deployment_dependencies": "Dependent on clean model certifications and local school network uptime stability."
+    },
+    "SCF": {
+      "name": "Maharashtra State Curriculum Framework (2025)",
+      "policy_purpose": "Adapts the national NCF 2023 to Maharashtra's local cultural, linguistic, and historical context.",
+      "authority_owner": "MSCERT (Maharashtra)",
+      "implementation_pathway": "Authors curriculum outlines which are handed over to Balbharati for physical textbook publishing.",
+      "enforcement_posture": "Mandatory for all state board schools in Maharashtra.",
+      "known_operational_gap": "Delays in translating guidelines into all 8 active regional mediums of the state.",
+      "known_political_sensitivity": "Syllabus details regarding Maharashtra history, regional languages credit weightages, and local cultural references.",
+      "known_deployment_dependencies": "Dependent on MSCERT committee approvals and School Education Department publishing orders."
+    },
+    "GR_Ecosystem": {
+      "name": "Maharashtra Government Resolutions (GR) Framework",
+      "policy_purpose": "Authoritative administrative decrees governing school schedules, teacher recruitments, technology procurement models, and board rules.",
+      "authority_owner": "School Education & Sports Department (Maharashtra)",
+      "implementation_pathway": "Published as formal GR documents on the state portal, requiring immediate execution by school principals.",
+      "enforcement_posture": "Statutory / Strictly Enforced. Non-compliance results in immediate salary blocks or disciplinary action against school staff.",
+      "known_operational_gap": "Complex, highly bureaucratized text leading to delays in field comprehension and execution.",
+      "known_political_sensitivity": "Very High. GRs regarding teacher transfers, reservation policies, and school funding models frequently spark local debates.",
+      "known_deployment_dependencies": "Dependent on smooth bureaucratic coordination and local officer stability."
+    },
+    "AI_Curriculum_Mandate": {
+      "name": "Maharashtra Smart Schools AI Curriculum Integration Mandate",
+      "policy_purpose": "Introduces basic AI coding and computational logic in Standard 6 to 10 textbooks across all public state schools.",
+      "authority_owner": "School Education Department & MSCERT (Maharashtra)",
+      "implementation_pathway": "Balbharati publishes specialized AI modules; schools utilize computer labs for hands-on pilot training.",
+      "enforcement_posture": "Phased Enforcement. Progressing from urban model schools to rural primary setups over three academic years.",
+      "known_operational_gap": "Severe shortage of trained computer teachers; dilapidated computer lab systems in rural primary centers.",
+      "known_political_sensitivity": "Disparities between urban and rural student outcomes due to differences in computer access.",
+      "known_deployment_dependencies": "Dependent on physical computer lab setups and active state budget allocations for trainer salaries."
+    }
+  }
+}

@@ -1,0 +1,87 @@
+# Virtual Environment
+venv_new/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+ENV/
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+logistics_agent.db
+
+# Log files
+*.log
+logs/
+api.log
+dashboard.log
+api_server.log
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+coverage.json
+*.cover
+
+# Test results
+.pytest_cache/
+test_results.xml
+
+# Build files
+build/
+dist/
+*.egg-info/
+
+# Uploaded files and static content
+static/images/products/
+static/images/thumbnails/
+uploads/
+
+# Data files (keep structure but ignore actual data)
+data/*.xlsx
+data/*.xls
+data/*.csv
+!data/README.md
+
+# Backup files
+*.bak
+*.backup
+
+# Railway deployment
+.railway/

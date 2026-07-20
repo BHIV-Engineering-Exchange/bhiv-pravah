@@ -1,0 +1,5 @@
+{
+    "basket_name": "gurukul_practice",
+    "agents": ["vedic_quiz_agent", "sanskrit_parser"],
+    "execution_strategy": "sequential"
+}

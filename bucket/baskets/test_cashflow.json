@@ -1,0 +1,8 @@
+{
+  "basket_name": "test_cashflow",
+  "agents": [
+    "cashflow_analyzer"
+  ],
+  "execution_strategy": "sequential",
+  "description": "Test cashflow analysis"
+}

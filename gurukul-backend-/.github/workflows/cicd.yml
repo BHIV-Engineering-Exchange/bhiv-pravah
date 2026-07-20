@@ -1,0 +1,394 @@
+name: Gurukul Production Infrastructure CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate:
+    name: Validate production deployment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set GitHub SHA
+        run: echo "short_sha=${GITHUB_SHA::7}" >> $GITHUB_ENV
+
+      - name: Generate Compose file for validation
+        run: |
+          sed "s|IMG_TAG|$short_sha|g" docker-compose.production.template.yml > docker-compose.production.yml
+
+      - name: Create stub .env for compose validation
+        run: |
+          # Docker Compose config requires the env_files to exist to validate schema.
+          mkdir -p backend EMS-System
+          touch backend/.env EMS-System/.env
+
+      - name: Validate Docker Compose files
+        env:
+          GURUKUL_DATABASE_URL: ${{ secrets.GURUKUL_DATABASE_URL }}
+          EMS_DATABASE_URL: ${{ secrets.EMS_DATABASE_URL }}
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          REDIS_URL: ${{ secrets.REDIS_URL }}
+          VM_IP: ${{ secrets.VM_IP }}
+        run: |
+          docker compose -f docker-compose.production.yml config
+
+      - name: Upload deployment artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-artifacts
+          path: |
+            docker-compose.production.template.yml
+
+  build:
+    name: Build production images
+    runs-on: ubuntu-latest
+    needs: validate
+    outputs:
+      sha_short: ${{ steps.vars.outputs.sha_short }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set short git commit SHA
+        id: vars
+        run: echo "sha_short=$(git rev-parse --short=7 HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Create frontend env files for build
+        run: |
+          mkdir -p Frontend EMS-System/frontend
+          cat <<'EOF' > Frontend/.env
+          ${{ secrets.GURUKUL_FRONTEND_ENV_FILE }}
+          EOF
+          cat <<'EOF' > EMS-System/frontend/.env
+          ${{ secrets.EMS_FRONTEND_ENV_FILE }}
+          EOF
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push gurukul-backend image
+        run: |
+          docker buildx build --push \
+            --tag bhiv/gurukul-backend:${{ steps.vars.outputs.sha_short }} \
+            --tag bhiv/gurukul-backend:latest \
+            -f backend/Dockerfile backend
+
+      - name: Build and push gurukul-frontend image
+        run: |
+          # Parse VITE_API_URL from the secret-created .env file
+          VITE_API_URL_GURUKUL=$(grep VITE_API_URL Frontend/.env | cut -d'=' -f2)
+          docker buildx build --push \
+            --tag bhiv/gurukul-frontend:${{ steps.vars.outputs.sha_short }} \
+            --tag bhiv/gurukul-frontend:latest \
+            --build-arg VITE_API_URL=$VITE_API_URL_GURUKUL \
+            -f Frontend/Dockerfile .
+
+      - name: Build and push ems-backend image
+        run: |
+          docker buildx build --push \
+            --tag bhiv/ems-backend:${{ steps.vars.outputs.sha_short }} \
+            --tag bhiv/ems-backend:latest \
+            -f EMS-System/Dockerfile EMS-System
+
+      - name: Build and push ems-frontend image
+        run: |
+          # Parse VITE_API_URL from the secret-created .env file
+          VITE_API_URL_EMS=$(grep VITE_API_URL EMS-System/frontend/.env | cut -d'=' -f2)
+          docker buildx build --push \
+            --tag bhiv/ems-frontend:${{ steps.vars.outputs.sha_short }} \
+            --tag bhiv/ems-frontend:latest \
+            --build-arg VITE_API_URL=$VITE_API_URL_EMS \
+            -f EMS-System/frontend/Dockerfile .
+
+
+  deploy:
+    name: Deploy to remote production VM via SSH
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download deployment artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: deployment-artifacts
+
+      - name: Create env files from secrets
+        run: |
+          mkdir -p backend EMS-System
+          cat <<'EOF' > backend/.env
+          ${{ secrets.GURUKUL_BACKEND_ENV_FILE }}
+          EOF
+          cat <<'EOF' > EMS-System/.env
+          ${{ secrets.EMS_BACKEND_ENV_FILE }}
+          EOF
+
+      - name: Tar deployment files
+        run: |
+          tar -czf deployment.tar.gz docker-compose.production.template.yml backend EMS-System
+
+      - name: Install sshpass
+        run: |
+          sudo apt-get update && sudo apt-get install -y sshpass
+
+      - name: Create GURUKUL directory on VM
+        run: |
+          sshpass -p "${{ secrets.VM_PASSWORD }}" ssh -p ${{ secrets.VM_PORT }} -o StrictHostKeyChecking=no ${{ secrets.VM_USERNAME }}@${{ secrets.VM_IP }} "mkdir -p ~/GURUKUL"
+
+      - name: Copy deployment tarball to VM
+        run: |
+          sshpass -p "${{ secrets.VM_PASSWORD }}" scp -P ${{ secrets.VM_PORT }} -o StrictHostKeyChecking=no deployment.tar.gz ${{ secrets.VM_USERNAME }}@${{ secrets.VM_IP }}:~/GURUKUL/deployment.tar.gz
+
+      - name: Deploy production stack on VM
+        run: |
+          sshpass -p "${{ secrets.VM_PASSWORD }}" ssh -p ${{ secrets.VM_PORT }} -o StrictHostKeyChecking=no ${{ secrets.VM_USERNAME }}@${{ secrets.VM_IP }} "bash -s" << 'EOF'
+            set -euo pipefail
+            cd ~/GURUKUL
+            
+            # Clean directory first, keeping docs folder (Release History) and the tarball we just copied
+            find . -mindepth 1 ! -name docs ! -path './docs/*' ! -name deployment.tar.gz -exec rm -rf {} +
+            
+            # Extract deployment archive and clean up tarball
+            tar -xzf deployment.tar.gz
+            rm -f deployment.tar.gz
+            
+            # Confirm Docker availability
+            docker version
+            docker compose version
+            
+            # Log in to Docker Hub on the VM to authenticate for private pulls
+            echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+            
+            # Restore persistent Release History
+            mkdir -p docs
+            if [ -f /var/tmp/GURUKUL/RELEASE_HISTORY.md ]; then
+              cp /var/tmp/GURUKUL/RELEASE_HISTORY.md docs/RELEASE_HISTORY.md
+            fi
+            
+            # Generate target compose file from template by substituting the image tag
+            sed "s|IMG_TAG|${{ needs.build.outputs.sha_short }}|g" docker-compose.production.template.yml > docker-compose.production.yml
+            
+            # Runtime environment variables injection
+            export GURUKUL_DATABASE_URL='${{ secrets.GURUKUL_DATABASE_URL }}'
+            export EMS_DATABASE_URL='${{ secrets.EMS_DATABASE_URL }}'
+            export MONGODB_URI='${{ secrets.MONGODB_URI }}'
+            export REDIS_URL='${{ secrets.REDIS_URL }}'
+            export VM_IP='${{ secrets.VM_IP }}'
+
+            # Validate compose config before deploy
+            docker compose -f docker-compose.production.yml config
+            
+            # Deploy production stack
+            docker compose -f docker-compose.production.yml pull
+            
+            # Log out from Docker Hub to secure credentials on the VM
+            docker logout
+
+            docker compose -f docker-compose.production.yml up -d --remove-orphans
+            
+            # Verify deployment status
+            docker compose -f docker-compose.production.yml ps
+            
+            # Health Check - Check docker status and query frontend + backend endpoints
+            echo "Waiting for services to be healthy..."
+            for i in {1..12}; do
+              if docker compose -f docker-compose.production.yml ps --filter "status=running" --filter "health=unhealthy" -q >/dev/null 2>&1; then
+                UNHEALTHY_COUNT=$(docker compose -f docker-compose.production.yml ps --filter "status=running" --filter "health=unhealthy" -q | wc -l)
+                STARTING_COUNT=$(docker compose -f docker-compose.production.yml ps --filter "status=running" --filter "health=starting" -q | wc -l)
+              else
+                UNHEALTHY_COUNT=0
+                STARTING_COUNT=0
+              fi
+              
+              # Gurukul Backend Health Check
+              GURUKUL_API_HEALTH=0
+              GURUKUL_STATUS=$(docker inspect --format='{{.State.Health.Status}}' gurukul_backend 2>/dev/null || echo "missing")
+              [ "$GURUKUL_STATUS" = "healthy" ] && GURUKUL_API_HEALTH=1
+
+              # EMS Backend Health Check
+              EMS_API_HEALTH=0
+              EMS_STATUS=$(docker inspect --format='{{.State.Health.Status}}' ems_backend 2>/dev/null || echo "missing")
+              [ "$EMS_STATUS" = "healthy" ] && EMS_API_HEALTH=1
+
+              # Gurukul Frontend (port 5174) health check
+              GURUKUL_FE_HEALTH=0
+              curl -sf http://localhost:5174 > /dev/null && GURUKUL_FE_HEALTH=1
+
+              # EMS Frontend (port 3001) health check
+              EMS_FE_HEALTH=0
+              curl -sf http://localhost:3001 > /dev/null && EMS_FE_HEALTH=1
+              
+              if [ "$UNHEALTHY_COUNT" -eq 0 ] && [ "$STARTING_COUNT" -eq 0 ] && [ "$GURUKUL_API_HEALTH" -eq 1 ] && [ "$EMS_API_HEALTH" -eq 1 ] && [ "$GURUKUL_FE_HEALTH" -eq 1 ] && [ "$EMS_FE_HEALTH" -eq 1 ]; then
+                echo "All containers, backends, and frontends are healthy!"
+                break
+              fi
+              
+              if [ "$i" -eq 12 ]; then
+                echo "Health check failed!"
+                docker compose -f docker-compose.production.yml ps
+                docker compose -f docker-compose.production.yml logs --tail=50
+                exit 1
+              fi
+              
+              echo "Status: $STARTING_COUNT starting, $UNHEALTHY_COUNT unhealthy, gurukul_be=$GURUKUL_API_HEALTH, ems_be=$EMS_API_HEALTH, gurukul_fe=$GURUKUL_FE_HEALTH, ems_fe=$EMS_FE_HEALTH. Retrying in 10s..."
+              sleep 10
+            done
+            
+            # Prune old images while preserving recently built ones (last 7 days / 168 hours)
+            docker image prune -af --filter "until=168h"
+          EOF
+
+      - name: Update Release Documentation on Success
+        if: success()
+        run: |
+          sshpass -p "${{ secrets.VM_PASSWORD }}" ssh -p ${{ secrets.VM_PORT }} -o StrictHostKeyChecking=no ${{ secrets.VM_USERNAME }}@${{ secrets.VM_IP }} "bash -s" << 'EOF'
+            set -euo pipefail
+            cd ~/GURUKUL
+            if [ ! -f docs/RELEASE_HISTORY.md ]; then
+              mkdir -p docs
+              echo "# Release History and Deployment Registry" > docs/RELEASE_HISTORY.md
+              echo "" >> docs/RELEASE_HISTORY.md
+              echo "| Timestamp | Image Tag (Git SHA) | Status | Description |" >> docs/RELEASE_HISTORY.md
+              echo "|---|---|---|---|" >> docs/RELEASE_HISTORY.md
+            fi
+            echo "| $(date -u +'%Y-%m-%d %H:%M:%S UTC') | ${{ needs.build.outputs.sha_short }} | SUCCESS | Stable deployment |" >> docs/RELEASE_HISTORY.md
+          EOF
+
+      - name: Save persistent Release History
+        if: always()
+        run: |
+          sshpass -p "${{ secrets.VM_PASSWORD }}" ssh -p ${{ secrets.VM_PORT }} -o StrictHostKeyChecking=no ${{ secrets.VM_USERNAME }}@${{ secrets.VM_IP }} "bash -s" << 'EOF'
+            set -euo pipefail
+            cd ~/GURUKUL
+            if [ -f docs/RELEASE_HISTORY.md ]; then
+              mkdir -p /var/tmp/GURUKUL
+              cp docs/RELEASE_HISTORY.md /var/tmp/GURUKUL/RELEASE_HISTORY.md
+            fi
+          EOF
+
+  rollback:
+    name: Rollback on deployment failure
+    needs: [build, deploy]
+    if: always() && needs.deploy.result == 'failure'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install sshpass
+        run: |
+          sudo apt-get update && sudo apt-get install -y sshpass
+
+      - name: Automatic Rollback on Failure
+        run: |
+          sshpass -p "${{ secrets.VM_PASSWORD }}" ssh -p ${{ secrets.VM_PORT }} -o StrictHostKeyChecking=no ${{ secrets.VM_USERNAME }}@${{ secrets.VM_IP }} "bash -s" << 'EOF'
+            set -euo pipefail
+            cd ~/GURUKUL
+            
+            # Robust parsing of Release History to extract the last healthy 7-character hexadecimal SHA
+            if [ -f docs/RELEASE_HISTORY.md ] && grep -qE "SUCCESS|ROLLBACK_SUCCESS" docs/RELEASE_HISTORY.md; then
+              LAST_HEALTHY_TAG=$(grep -E "SUCCESS|ROLLBACK_SUCCESS" docs/RELEASE_HISTORY.md | tail -n 1 | awk -F '|' '{
+                for(i=1; i<=NF; i++) {
+                  gsub(/[[:space:]]/, "", $i);
+                  if ($i ~ /^[0-9a-f]{7}$/) {
+                    print $i;
+                    exit;
+                  }
+                }
+              }')
+              
+              if [ -z "$LAST_HEALTHY_TAG" ]; then
+                echo "⚠️ No last healthy tag extracted from Release History. Cannot perform automatic rollback."
+                exit 1
+              fi
+              
+              echo "🚨 Deployment failed! Rolling back to last healthy tag: $LAST_HEALTHY_TAG"
+              
+              sed "s|IMG_TAG|$LAST_HEALTHY_TAG|g" docker-compose.production.template.yml > docker-compose.production.yml
+              
+              echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+              docker compose -f docker-compose.production.yml pull
+              docker logout
+              
+              export GURUKUL_DATABASE_URL='${{ secrets.GURUKUL_DATABASE_URL }}'
+              export EMS_DATABASE_URL='${{ secrets.EMS_DATABASE_URL }}'
+              export MONGODB_URI='${{ secrets.MONGODB_URI }}'
+              export REDIS_URL='${{ secrets.REDIS_URL }}'
+              export VM_IP='${{ secrets.VM_IP }}'
+
+              docker compose -f docker-compose.production.yml up -d --remove-orphans
+              docker compose -f docker-compose.production.yml ps
+              
+              echo "Waiting for rollback services to be healthy..."
+              for i in {1..12}; do
+                if docker compose -f docker-compose.production.yml ps --filter "status=running" --filter "health=unhealthy" -q >/dev/null 2>&1; then
+                  UNHEALTHY_COUNT=$(docker compose -f docker-compose.production.yml ps --filter "status=running" --filter "health=unhealthy" -q | wc -l)
+                  STARTING_COUNT=$(docker compose -f docker-compose.production.yml ps --filter "status=running" --filter "health=starting" -q | wc -l)
+                else
+                  UNHEALTHY_COUNT=0
+                  STARTING_COUNT=0
+                fi
+                
+                # Gurukul Backend Health Check
+                GURUKUL_API_HEALTH=0
+                GURUKUL_STATUS=$(docker inspect --format='{{.State.Health.Status}}' gurukul_backend 2>/dev/null || echo "missing")
+                [ "$GURUKUL_STATUS" = "healthy" ] && GURUKUL_API_HEALTH=1
+
+                # EMS Backend Health Check
+                EMS_API_HEALTH=0
+                EMS_STATUS=$(docker inspect --format='{{.State.Health.Status}}' ems_backend 2>/dev/null || echo "missing")
+                [ "$EMS_STATUS" = "healthy" ] && EMS_API_HEALTH=1
+
+                # Gurukul Frontend (port 5174) health check
+                GURUKUL_FE_HEALTH=0
+                curl -sf http://localhost:5174 > /dev/null && GURUKUL_FE_HEALTH=1
+
+                # EMS Frontend (port 3001) health check
+                EMS_FE_HEALTH=0
+                curl -sf http://localhost:3001 > /dev/null && EMS_FE_HEALTH=1
+                
+                if [ "$UNHEALTHY_COUNT" -eq 0 ] && [ "$STARTING_COUNT" -eq 0 ] && [ "$GURUKUL_API_HEALTH" -eq 1 ] && [ "$EMS_API_HEALTH" -eq 1 ] && [ "$GURUKUL_FE_HEALTH" -eq 1 ] && [ "$EMS_FE_HEALTH" -eq 1 ]; then
+                  echo "Rollback deployment is healthy!"
+                  echo "| $(date -u +'%Y-%m-%d %H:%M:%S UTC') | $LAST_HEALTHY_TAG | ROLLBACK_SUCCESS | Rollback from failed ${{ needs.build.outputs.sha_short }} is healthy |" >> docs/RELEASE_HISTORY.md
+                  exit 0
+                fi
+                
+                if [ "$i" -eq 12 ]; then
+                  echo "Rollback health check failed!"
+                  echo "| $(date -u +'%Y-%m-%d %H:%M:%S UTC') | $LAST_HEALTHY_TAG | ROLLBACK_FAILED | Rollback from failed ${{ needs.build.outputs.sha_short }} failed health check |" >> docs/RELEASE_HISTORY.md
+                  exit 1
+                fi
+                
+                echo "Status: $STARTING_COUNT starting, $UNHEALTHY_COUNT unhealthy, gurukul_be=$GURUKUL_API_HEALTH, ems_be=$EMS_API_HEALTH, gurukul_fe=$GURUKUL_FE_HEALTH, ems_fe=$EMS_FE_HEALTH. Retrying in 10s..."
+                sleep 10
+              done
+            else
+              echo "⚠️ No last healthy tag found in Release History. Cannot perform automatic rollback."
+              if [ ! -f docs/RELEASE_HISTORY.md ]; then
+                mkdir -p docs
+                echo "# Release History and Deployment Registry" > docs/RELEASE_HISTORY.md
+                echo "" >> docs/RELEASE_HISTORY.md
+                echo "| Timestamp | Image Tag (Git SHA) | Status | Description |" >> docs/RELEASE_HISTORY.md
+                echo "|---|---|---|---|" >> docs/RELEASE_HISTORY.md
+              fi
+              echo "| $(date -u +'%Y-%m-%d %H:%M:%S UTC') | ${{ needs.build.outputs.sha_short }} | FAILED | Deployment failed and no rollback tag was available |" >> docs/RELEASE_HISTORY.md
+              exit 1
+            fi
+          EOF
+
+      - name: Save persistent Release History
+        if: always()
+        run: |
+          sshpass -p "${{ secrets.VM_PASSWORD }}" ssh -p ${{ secrets.VM_PORT }} -o StrictHostKeyChecking=no ${{ secrets.VM_USERNAME }}@${{ secrets.VM_IP }} "bash -s" << 'EOF'
+            set -euo pipefail
+            cd ~/GURUKUL
+            if [ -f docs/RELEASE_HISTORY.md ]; then
+              mkdir -p /var/tmp/GURUKUL
+              cp docs/RELEASE_HISTORY.md /var/tmp/GURUKUL/RELEASE_HISTORY.md
+            fi
+          EOF

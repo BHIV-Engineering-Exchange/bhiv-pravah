@@ -1,0 +1,131 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 1,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "title": "API Request Throughput (RPS)",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "rate(gurukul_requests_total[1m])",
+          "legendFormat": "HTTP Request Rate",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 2,
+      "title": "API Latency (Average & p95)",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "gurukul_voice_latency_seconds_avg * 1000",
+          "legendFormat": "Voice Latency Avg (ms)",
+          "refId": "A"
+        },
+        {
+          "expr": "gurukul_voice_latency_seconds_p95 * 1000",
+          "legendFormat": "Voice Latency p95 (ms)",
+          "refId": "B"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 8
+      },
+      "id": 3,
+      "title": "System CPU Usage",
+      "type": "gauge",
+      "targets": [
+        {
+          "expr": "gurukul_cpu_usage_ratio",
+          "legendFormat": "CPU Usage Ratio",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 8
+      },
+      "id": 4,
+      "title": "System Memory Usage",
+      "type": "gauge",
+      "targets": [
+        {
+          "expr": "gurukul_memory_usage_ratio",
+          "legendFormat": "Memory Usage Ratio",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 8
+      },
+      "id": 5,
+      "title": "HTTP 5xx Error Counts",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "gurukul_errors_total",
+          "legendFormat": "Errors Total",
+          "refId": "A"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 36,
+  "style": "dark",
+  "tags": ["gurukul", "production"],
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "title": "Gurukul Production Hardening Dashboard",
+  "version": 1
+}

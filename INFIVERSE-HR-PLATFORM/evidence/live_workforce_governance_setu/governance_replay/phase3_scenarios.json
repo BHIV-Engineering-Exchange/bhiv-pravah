@@ -1,0 +1,1371 @@
+{
+  "scenarios": [
+    {
+      "domain": "Leave",
+      "calls": [
+        {
+          "note": "[Leave] policy definition create",
+          "method": "POST",
+          "path": "/v1/policies/definitions",
+          "request_correlation_id_header": null,
+          "request_body": {
+            "policy_key": "leave_policy",
+            "name": "Leave Policy",
+            "description": "Leave governance scenario",
+            "version": "1.0.0",
+            "rules": {
+              "min_tenure_days": 90,
+              "effect": "observe"
+            },
+            "scope_type": "tenant"
+          },
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "cda52f3e-5b1b-46ba-a29a-75fd07a2caa4",
+          "timestamp_utc": "2026-07-01T08:11:23.896930+00:00",
+          "response_body": {
+            "policy_key": "leave_policy",
+            "name": "Leave Policy",
+            "description": "Leave governance scenario",
+            "version": "1.0.0",
+            "rules": {
+              "min_tenure_days": 90,
+              "effect": "observe"
+            },
+            "scope_type": "tenant",
+            "tenant_id": "platform",
+            "status": "active",
+            "created_at": "2026-07-01T08:11:23.903965+00:00",
+            "updated_at": "2026-07-01T08:11:23.903965+00:00",
+            "id": "6a44cbabf5b43a528e6ee59a"
+          }
+        },
+        {
+          "note": "[Leave] policy evaluate (expect deny -> motivates challenge)",
+          "method": "POST",
+          "path": "/v1/policies/evaluate",
+          "request_correlation_id_header": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "request_body": {
+            "policy_key": "leave_policy",
+            "context": {
+              "tenure_days": 10
+            }
+          },
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "timestamp_utc": "2026-07-01T08:11:23.906999+00:00",
+          "response_body": {
+            "evaluation_id": "peval-2f18f04aae1c",
+            "policy_key": "leave_policy",
+            "result": {
+              "decision": "deny",
+              "effect": "observe",
+              "rationale": "Tenure below minimum"
+            },
+            "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c"
+          }
+        },
+        {
+          "note": "[Leave] challenge raise",
+          "method": "POST",
+          "path": "/v1/governance/challenges",
+          "request_correlation_id_header": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "request_body": {
+            "policy_key": "leave_policy",
+            "evaluation_id": "peval-2f18f04aae1c",
+            "subject_type": "policy_evaluation",
+            "subject_id": "peval-2f18f04aae1c",
+            "reason": "Challenge Leave denial for review"
+          },
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "timestamp_utc": "2026-07-01T08:11:23.914594+00:00",
+          "response_body": {
+            "challenge_id": "chl-69a0fb4eb9e6",
+            "policy_key": "leave_policy",
+            "evaluation_id": "peval-2f18f04aae1c",
+            "subject_type": "policy_evaluation",
+            "subject_id": "peval-2f18f04aae1c",
+            "reason": "Challenge Leave denial for review",
+            "status": "open",
+            "tenant_id": "platform",
+            "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+              "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:23.921554+00:00",
+            "updated_at": "2026-07-01T08:11:23.921554+00:00",
+            "id": "6a44cbabf5b43a528e6ee59d"
+          }
+        },
+        {
+          "note": "[Leave] review assign",
+          "method": "POST",
+          "path": "/v1/governance/reviews",
+          "request_correlation_id_header": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "request_body": {
+            "challenge_id": "chl-69a0fb4eb9e6",
+            "reviewer_role": "admin",
+            "notes": "Assigned for governance review"
+          },
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "timestamp_utc": "2026-07-01T08:11:23.923899+00:00",
+          "response_body": {
+            "review_id": "rev-86949c3e8382",
+            "challenge_id": "chl-69a0fb4eb9e6",
+            "reviewer_role": "admin",
+            "notes": "Assigned for governance review",
+            "status": "assigned",
+            "tenant_id": "platform",
+            "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+              "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:23.927010+00:00",
+            "updated_at": "2026-07-01T08:11:23.927010+00:00",
+            "id": "6a44cbabf5b43a528e6ee59f"
+          }
+        },
+        {
+          "note": "[Leave] review complete (upheld)",
+          "method": "POST",
+          "path": "/v1/governance/reviews/rev-86949c3e8382/complete",
+          "request_correlation_id_header": null,
+          "request_body": {
+            "outcome": "upheld",
+            "notes": "Review upheld; override warranted"
+          },
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "c79b3963-a94d-459c-a3c4-ef320418e982",
+          "timestamp_utc": "2026-07-01T08:11:23.928830+00:00",
+          "response_body": {
+            "review_id": "rev-86949c3e8382",
+            "challenge_id": "chl-69a0fb4eb9e6",
+            "reviewer_role": "admin",
+            "notes": "Review upheld; override warranted",
+            "status": "completed",
+            "tenant_id": "platform",
+            "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+              "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:23.927000",
+            "updated_at": "2026-07-01T08:11:23.932000",
+            "outcome": "upheld",
+            "id": "6a44cbabf5b43a528e6ee59f"
+          }
+        },
+        {
+          "note": "[Leave] workflow override propose",
+          "method": "POST",
+          "path": "/v1/governance/overrides",
+          "request_correlation_id_header": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "request_body": {
+            "challenge_id": "chl-69a0fb4eb9e6",
+            "policy_key": "leave_policy",
+            "reason": "Override Leave outcome per review",
+            "override_effect": "allow"
+          },
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "timestamp_utc": "2026-07-01T08:11:23.935968+00:00",
+          "response_body": {
+            "override_id": "wovr-330551d24267",
+            "challenge_id": "chl-69a0fb4eb9e6",
+            "policy_key": "leave_policy",
+            "reason": "Override Leave outcome per review",
+            "override_effect": "allow",
+            "status": "proposed",
+            "tenant_id": "platform",
+            "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+              "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:23.940162+00:00",
+            "updated_at": "2026-07-01T08:11:23.940162+00:00",
+            "id": "6a44cbabf5b43a528e6ee5a1"
+          }
+        },
+        {
+          "note": "[Leave] workflow override apply",
+          "method": "POST",
+          "path": "/v1/governance/overrides/wovr-330551d24267/apply",
+          "request_correlation_id_header": null,
+          "request_body": null,
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "f68cdbc1-b328-4f7b-b2d7-5179c66a5449",
+          "timestamp_utc": "2026-07-01T08:11:23.941788+00:00",
+          "response_body": {
+            "override_id": "wovr-330551d24267",
+            "challenge_id": "chl-69a0fb4eb9e6",
+            "policy_key": "leave_policy",
+            "reason": "Override Leave outcome per review",
+            "override_effect": "allow",
+            "status": "applied",
+            "tenant_id": "platform",
+            "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+              "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:23.940000",
+            "updated_at": "2026-07-01T08:11:23.944000",
+            "id": "6a44cbabf5b43a528e6ee5a1"
+          }
+        },
+        {
+          "note": "[Leave] decision record",
+          "method": "POST",
+          "path": "/v1/decisions",
+          "request_correlation_id_header": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "request_body": {
+            "owner": "Rishabh Yadav",
+            "scope": "tenant",
+            "rationale": "Recorded decision for Leave challenge chl-69a0fb4eb9e6",
+            "inputs": {
+              "evaluation_id": "peval-2f18f04aae1c",
+              "override_id": "wovr-330551d24267"
+            },
+            "challenge_id": "chl-69a0fb4eb9e6",
+            "review_id": "rev-86949c3e8382",
+            "trace_references": [
+              "44ce7789-cd5e-4fb1-bf12-b0ace199e93c"
+            ]
+          },
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "timestamp_utc": "2026-07-01T08:11:23.945735+00:00",
+          "response_body": {
+            "decision_id": "dec-865d0fb11014",
+            "owner": "Rishabh Yadav",
+            "scope": "tenant",
+            "rationale": "Recorded decision for Leave challenge chl-69a0fb4eb9e6",
+            "inputs": {
+              "evaluation_id": "peval-2f18f04aae1c",
+              "override_id": "wovr-330551d24267"
+            },
+            "timestamp": "2026-07-01T08:11:23.952426+00:00",
+            "dependencies": [],
+            "status": "active",
+            "supersedes": null,
+            "trace_references": [
+              "44ce7789-cd5e-4fb1-bf12-b0ace199e93c"
+            ],
+            "challenge_id": "chl-69a0fb4eb9e6",
+            "review_id": "rev-86949c3e8382",
+            "tenant_id": "platform",
+            "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+              "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:23.952426+00:00",
+            "updated_at": "2026-07-01T08:11:23.952426+00:00",
+            "id": "6a44cbabf5b43a528e6ee5a3"
+          }
+        },
+        {
+          "note": "[Leave] superseding decision (supersedes prior) for replay chain",
+          "method": "POST",
+          "path": "/v1/decisions",
+          "request_correlation_id_header": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "request_body": {
+            "owner": "Rishabh Yadav",
+            "scope": "tenant",
+            "rationale": "Corrected leave decision superseding prior",
+            "inputs": {
+              "correction": true
+            },
+            "supersedes": "dec-865d0fb11014",
+            "trace_references": [
+              "44ce7789-cd5e-4fb1-bf12-b0ace199e93c"
+            ]
+          },
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "timestamp_utc": "2026-07-01T08:11:23.954941+00:00",
+          "response_body": {
+            "decision_id": "dec-d3484e954a24",
+            "owner": "Rishabh Yadav",
+            "scope": "tenant",
+            "rationale": "Corrected leave decision superseding prior",
+            "inputs": {
+              "correction": true
+            },
+            "timestamp": "2026-07-01T08:11:23.957959+00:00",
+            "dependencies": [],
+            "status": "active",
+            "supersedes": "dec-865d0fb11014",
+            "trace_references": [
+              "44ce7789-cd5e-4fb1-bf12-b0ace199e93c"
+            ],
+            "challenge_id": null,
+            "review_id": null,
+            "tenant_id": "platform",
+            "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+              "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:23.957959+00:00",
+            "updated_at": "2026-07-01T08:11:23.957959+00:00",
+            "id": "6a44cbabf5b43a528e6ee5a5"
+          }
+        },
+        {
+          "note": "[Leave] decision replay (supersedes chain)",
+          "method": "GET",
+          "path": "/v1/decisions/replay?decision_id=dec-d3484e954a24",
+          "request_correlation_id_header": null,
+          "request_body": null,
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "dbd78e7d-dec2-4ff6-93ea-3eda568f7a88",
+          "timestamp_utc": "2026-07-01T08:11:23.960372+00:00",
+          "response_body": {
+            "replay_type": "supersedes_chain",
+            "root_decision_id": "dec-d3484e954a24",
+            "chain": [
+              {
+                "decision_id": "dec-865d0fb11014",
+                "owner": "Rishabh Yadav",
+                "scope": "tenant",
+                "rationale": "Recorded decision for Leave challenge chl-69a0fb4eb9e6",
+                "inputs": {
+                  "evaluation_id": "peval-2f18f04aae1c",
+                  "override_id": "wovr-330551d24267"
+                },
+                "timestamp": "2026-07-01T08:11:23.952000",
+                "dependencies": [],
+                "status": "superseded",
+                "supersedes": null,
+                "trace_references": [
+                  "44ce7789-cd5e-4fb1-bf12-b0ace199e93c"
+                ],
+                "challenge_id": "chl-69a0fb4eb9e6",
+                "review_id": "rev-86949c3e8382",
+                "tenant_id": "platform",
+                "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+                "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+                "lineage": {
+                  "origin_system": "gateway",
+                  "owning_system": "sampada",
+                  "schema_version": "1.0.0",
+                  "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+                  "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+                  "trust_classification": "canonical",
+                  "visibility_scope": "tenant"
+                },
+                "created_at": "2026-07-01T08:11:23.952000",
+                "updated_at": "2026-07-01T08:11:23.957000",
+                "id": "6a44cbabf5b43a528e6ee5a3"
+              },
+              {
+                "decision_id": "dec-d3484e954a24",
+                "owner": "Rishabh Yadav",
+                "scope": "tenant",
+                "rationale": "Corrected leave decision superseding prior",
+                "inputs": {
+                  "correction": true
+                },
+                "timestamp": "2026-07-01T08:11:23.957000",
+                "dependencies": [],
+                "status": "active",
+                "supersedes": "dec-865d0fb11014",
+                "trace_references": [
+                  "44ce7789-cd5e-4fb1-bf12-b0ace199e93c"
+                ],
+                "challenge_id": null,
+                "review_id": null,
+                "tenant_id": "platform",
+                "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+                "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+                "lineage": {
+                  "origin_system": "gateway",
+                  "owning_system": "sampada",
+                  "schema_version": "1.0.0",
+                  "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+                  "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+                  "trust_classification": "canonical",
+                  "visibility_scope": "tenant"
+                },
+                "created_at": "2026-07-01T08:11:23.957000",
+                "updated_at": "2026-07-01T08:11:23.957000",
+                "id": "6a44cbabf5b43a528e6ee5a5"
+              }
+            ]
+          }
+        }
+      ],
+      "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+      "policy_id": "6a44cbabf5b43a528e6ee59a",
+      "evaluation_id": "peval-2f18f04aae1c",
+      "evaluation_result": {
+        "decision": "deny",
+        "effect": "observe",
+        "rationale": "Tenure below minimum"
+      },
+      "challenge_id": "chl-69a0fb4eb9e6",
+      "review_id": "rev-86949c3e8382",
+      "review_outcome": "upheld",
+      "override_id": "wovr-330551d24267",
+      "override_status": "applied",
+      "decision_id": "dec-865d0fb11014",
+      "superseding_decision_id": "dec-d3484e954a24",
+      "replay": {
+        "replay_type": "supersedes_chain",
+        "root_decision_id": "dec-d3484e954a24",
+        "chain": [
+          {
+            "decision_id": "dec-865d0fb11014",
+            "owner": "Rishabh Yadav",
+            "scope": "tenant",
+            "rationale": "Recorded decision for Leave challenge chl-69a0fb4eb9e6",
+            "inputs": {
+              "evaluation_id": "peval-2f18f04aae1c",
+              "override_id": "wovr-330551d24267"
+            },
+            "timestamp": "2026-07-01T08:11:23.952000",
+            "dependencies": [],
+            "status": "superseded",
+            "supersedes": null,
+            "trace_references": [
+              "44ce7789-cd5e-4fb1-bf12-b0ace199e93c"
+            ],
+            "challenge_id": "chl-69a0fb4eb9e6",
+            "review_id": "rev-86949c3e8382",
+            "tenant_id": "platform",
+            "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+              "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:23.952000",
+            "updated_at": "2026-07-01T08:11:23.957000",
+            "id": "6a44cbabf5b43a528e6ee5a3"
+          },
+          {
+            "decision_id": "dec-d3484e954a24",
+            "owner": "Rishabh Yadav",
+            "scope": "tenant",
+            "rationale": "Corrected leave decision superseding prior",
+            "inputs": {
+              "correction": true
+            },
+            "timestamp": "2026-07-01T08:11:23.957000",
+            "dependencies": [],
+            "status": "active",
+            "supersedes": "dec-865d0fb11014",
+            "trace_references": [
+              "44ce7789-cd5e-4fb1-bf12-b0ace199e93c"
+            ],
+            "challenge_id": null,
+            "review_id": null,
+            "tenant_id": "platform",
+            "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+              "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:23.957000",
+            "updated_at": "2026-07-01T08:11:23.957000",
+            "id": "6a44cbabf5b43a528e6ee5a5"
+          }
+        ]
+      },
+      "replay_chain_len": 2
+    },
+    {
+      "domain": "Visibility",
+      "calls": [
+        {
+          "note": "[Visibility] policy definition create",
+          "method": "POST",
+          "path": "/v1/policies/definitions",
+          "request_correlation_id_header": null,
+          "request_body": {
+            "policy_key": "visibility_policy",
+            "name": "Visibility Policy",
+            "description": "Visibility governance scenario",
+            "version": "1.0.0",
+            "rules": {
+              "require_scope_match": true,
+              "effect": "allow"
+            },
+            "scope_type": "tenant"
+          },
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "cf31a3f3-295b-4c53-b71e-d1cc20d0b35c",
+          "timestamp_utc": "2026-07-01T08:11:23.965515+00:00",
+          "response_body": {
+            "policy_key": "visibility_policy",
+            "name": "Visibility Policy",
+            "description": "Visibility governance scenario",
+            "version": "1.0.0",
+            "rules": {
+              "require_scope_match": true,
+              "effect": "allow"
+            },
+            "scope_type": "tenant",
+            "tenant_id": "platform",
+            "status": "active",
+            "created_at": "2026-07-01T08:11:23.970881+00:00",
+            "updated_at": "2026-07-01T08:11:23.970881+00:00",
+            "id": "6a44cbabf5b43a528e6ee5a7"
+          }
+        },
+        {
+          "note": "[Visibility] policy evaluate (expect deny -> motivates challenge)",
+          "method": "POST",
+          "path": "/v1/policies/evaluate",
+          "request_correlation_id_header": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+          "request_body": {
+            "policy_key": "visibility_policy",
+            "context": {
+              "scope_match": false
+            }
+          },
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+          "timestamp_utc": "2026-07-01T08:11:23.972371+00:00",
+          "response_body": {
+            "evaluation_id": "peval-fd13389d6278",
+            "policy_key": "visibility_policy",
+            "result": {
+              "decision": "deny",
+              "effect": "deny",
+              "rationale": "Scope mismatch"
+            },
+            "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5"
+          }
+        },
+        {
+          "note": "[Visibility] challenge raise",
+          "method": "POST",
+          "path": "/v1/governance/challenges",
+          "request_correlation_id_header": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+          "request_body": {
+            "policy_key": "visibility_policy",
+            "evaluation_id": "peval-fd13389d6278",
+            "subject_type": "policy_evaluation",
+            "subject_id": "peval-fd13389d6278",
+            "reason": "Challenge Visibility denial for review"
+          },
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+          "timestamp_utc": "2026-07-01T08:11:23.977418+00:00",
+          "response_body": {
+            "challenge_id": "chl-d7be45556404",
+            "policy_key": "visibility_policy",
+            "evaluation_id": "peval-fd13389d6278",
+            "subject_type": "policy_evaluation",
+            "subject_id": "peval-fd13389d6278",
+            "reason": "Challenge Visibility denial for review",
+            "status": "open",
+            "tenant_id": "platform",
+            "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+              "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:23.979961+00:00",
+            "updated_at": "2026-07-01T08:11:23.979961+00:00",
+            "id": "6a44cbabf5b43a528e6ee5aa"
+          }
+        },
+        {
+          "note": "[Visibility] review assign",
+          "method": "POST",
+          "path": "/v1/governance/reviews",
+          "request_correlation_id_header": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+          "request_body": {
+            "challenge_id": "chl-d7be45556404",
+            "reviewer_role": "admin",
+            "notes": "Assigned for governance review"
+          },
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+          "timestamp_utc": "2026-07-01T08:11:23.981622+00:00",
+          "response_body": {
+            "review_id": "rev-5071f2e15d72",
+            "challenge_id": "chl-d7be45556404",
+            "reviewer_role": "admin",
+            "notes": "Assigned for governance review",
+            "status": "assigned",
+            "tenant_id": "platform",
+            "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+              "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:23.985180+00:00",
+            "updated_at": "2026-07-01T08:11:23.985180+00:00",
+            "id": "6a44cbabf5b43a528e6ee5ac"
+          }
+        },
+        {
+          "note": "[Visibility] review complete (upheld)",
+          "method": "POST",
+          "path": "/v1/governance/reviews/rev-5071f2e15d72/complete",
+          "request_correlation_id_header": null,
+          "request_body": {
+            "outcome": "upheld",
+            "notes": "Review upheld; override warranted"
+          },
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "2bb0234f-6fe3-4832-84ad-7652550c11b3",
+          "timestamp_utc": "2026-07-01T08:11:23.986678+00:00",
+          "response_body": {
+            "review_id": "rev-5071f2e15d72",
+            "challenge_id": "chl-d7be45556404",
+            "reviewer_role": "admin",
+            "notes": "Review upheld; override warranted",
+            "status": "completed",
+            "tenant_id": "platform",
+            "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+              "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:23.985000",
+            "updated_at": "2026-07-01T08:11:23.989000",
+            "outcome": "upheld",
+            "id": "6a44cbabf5b43a528e6ee5ac"
+          }
+        },
+        {
+          "note": "[Visibility] workflow override propose",
+          "method": "POST",
+          "path": "/v1/governance/overrides",
+          "request_correlation_id_header": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+          "request_body": {
+            "challenge_id": "chl-d7be45556404",
+            "policy_key": "visibility_policy",
+            "reason": "Override Visibility outcome per review",
+            "override_effect": "allow"
+          },
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+          "timestamp_utc": "2026-07-01T08:11:23.990761+00:00",
+          "response_body": {
+            "override_id": "wovr-ed42abb0693e",
+            "challenge_id": "chl-d7be45556404",
+            "policy_key": "visibility_policy",
+            "reason": "Override Visibility outcome per review",
+            "override_effect": "allow",
+            "status": "proposed",
+            "tenant_id": "platform",
+            "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+              "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:23.993542+00:00",
+            "updated_at": "2026-07-01T08:11:23.993542+00:00",
+            "id": "6a44cbabf5b43a528e6ee5ae"
+          }
+        },
+        {
+          "note": "[Visibility] workflow override apply",
+          "method": "POST",
+          "path": "/v1/governance/overrides/wovr-ed42abb0693e/apply",
+          "request_correlation_id_header": null,
+          "request_body": null,
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "7ec41e67-17d2-49af-92a4-f718202ac4a0",
+          "timestamp_utc": "2026-07-01T08:11:23.994861+00:00",
+          "response_body": {
+            "override_id": "wovr-ed42abb0693e",
+            "challenge_id": "chl-d7be45556404",
+            "policy_key": "visibility_policy",
+            "reason": "Override Visibility outcome per review",
+            "override_effect": "allow",
+            "status": "applied",
+            "tenant_id": "platform",
+            "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+              "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:23.993000",
+            "updated_at": "2026-07-01T08:11:23.997000",
+            "id": "6a44cbabf5b43a528e6ee5ae"
+          }
+        },
+        {
+          "note": "[Visibility] decision record",
+          "method": "POST",
+          "path": "/v1/decisions",
+          "request_correlation_id_header": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+          "request_body": {
+            "owner": "Rishabh Yadav",
+            "scope": "tenant",
+            "rationale": "Recorded decision for Visibility challenge chl-d7be45556404",
+            "inputs": {
+              "evaluation_id": "peval-fd13389d6278",
+              "override_id": "wovr-ed42abb0693e"
+            },
+            "challenge_id": "chl-d7be45556404",
+            "review_id": "rev-5071f2e15d72",
+            "trace_references": [
+              "d89f8086-7560-4b77-a934-d4d7b62e1cf5"
+            ]
+          },
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+          "timestamp_utc": "2026-07-01T08:11:23.998815+00:00",
+          "response_body": {
+            "decision_id": "dec-595d5dd2e58a",
+            "owner": "Rishabh Yadav",
+            "scope": "tenant",
+            "rationale": "Recorded decision for Visibility challenge chl-d7be45556404",
+            "inputs": {
+              "evaluation_id": "peval-fd13389d6278",
+              "override_id": "wovr-ed42abb0693e"
+            },
+            "timestamp": "2026-07-01T08:11:24.002311+00:00",
+            "dependencies": [],
+            "status": "active",
+            "supersedes": null,
+            "trace_references": [
+              "d89f8086-7560-4b77-a934-d4d7b62e1cf5"
+            ],
+            "challenge_id": "chl-d7be45556404",
+            "review_id": "rev-5071f2e15d72",
+            "tenant_id": "platform",
+            "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+            "trace_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+              "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:24.002311+00:00",
+            "updated_at": "2026-07-01T08:11:24.002311+00:00",
+            "id": "6a44cbacf5b43a528e6ee5b0"
+          }
+        },
+        {
+          "note": "[Visibility] decision replay (supersedes chain)",
+          "method": "GET",
+          "path": "/v1/decisions/replay?decision_id=dec-595d5dd2e58a",
+          "request_correlation_id_header": null,
+          "request_body": null,
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "eb4fcf7d-dae2-4de2-aa2f-1c5b67a4bd71",
+          "timestamp_utc": "2026-07-01T08:11:24.003835+00:00",
+          "response_body": {
+            "replay_type": "supersedes_chain",
+            "root_decision_id": "dec-595d5dd2e58a",
+            "chain": [
+              {
+                "decision_id": "dec-595d5dd2e58a",
+                "owner": "Rishabh Yadav",
+                "scope": "tenant",
+                "rationale": "Recorded decision for Visibility challenge chl-d7be45556404",
+                "inputs": {
+                  "evaluation_id": "peval-fd13389d6278",
+                  "override_id": "wovr-ed42abb0693e"
+                },
+                "timestamp": "2026-07-01T08:11:24.002000",
+                "dependencies": [],
+                "status": "active",
+                "supersedes": null,
+                "trace_references": [
+                  "d89f8086-7560-4b77-a934-d4d7b62e1cf5"
+                ],
+                "challenge_id": "chl-d7be45556404",
+                "review_id": "rev-5071f2e15d72",
+                "tenant_id": "platform",
+                "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+                "trace_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+                "lineage": {
+                  "origin_system": "gateway",
+                  "owning_system": "sampada",
+                  "schema_version": "1.0.0",
+                  "trace_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+                  "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+                  "trust_classification": "canonical",
+                  "visibility_scope": "tenant"
+                },
+                "created_at": "2026-07-01T08:11:24.002000",
+                "updated_at": "2026-07-01T08:11:24.002000",
+                "id": "6a44cbacf5b43a528e6ee5b0"
+              }
+            ]
+          }
+        }
+      ],
+      "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+      "policy_id": "6a44cbabf5b43a528e6ee5a7",
+      "evaluation_id": "peval-fd13389d6278",
+      "evaluation_result": {
+        "decision": "deny",
+        "effect": "deny",
+        "rationale": "Scope mismatch"
+      },
+      "challenge_id": "chl-d7be45556404",
+      "review_id": "rev-5071f2e15d72",
+      "review_outcome": "upheld",
+      "override_id": "wovr-ed42abb0693e",
+      "override_status": "applied",
+      "decision_id": "dec-595d5dd2e58a",
+      "replay": {
+        "replay_type": "supersedes_chain",
+        "root_decision_id": "dec-595d5dd2e58a",
+        "chain": [
+          {
+            "decision_id": "dec-595d5dd2e58a",
+            "owner": "Rishabh Yadav",
+            "scope": "tenant",
+            "rationale": "Recorded decision for Visibility challenge chl-d7be45556404",
+            "inputs": {
+              "evaluation_id": "peval-fd13389d6278",
+              "override_id": "wovr-ed42abb0693e"
+            },
+            "timestamp": "2026-07-01T08:11:24.002000",
+            "dependencies": [],
+            "status": "active",
+            "supersedes": null,
+            "trace_references": [
+              "d89f8086-7560-4b77-a934-d4d7b62e1cf5"
+            ],
+            "challenge_id": "chl-d7be45556404",
+            "review_id": "rev-5071f2e15d72",
+            "tenant_id": "platform",
+            "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+            "trace_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+              "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:24.002000",
+            "updated_at": "2026-07-01T08:11:24.002000",
+            "id": "6a44cbacf5b43a528e6ee5b0"
+          }
+        ]
+      },
+      "replay_chain_len": 1
+    },
+    {
+      "domain": "Approval",
+      "calls": [
+        {
+          "note": "[Approval] policy definition create",
+          "method": "POST",
+          "path": "/v1/policies/definitions",
+          "request_correlation_id_header": null,
+          "request_body": {
+            "policy_key": "approval_policy",
+            "name": "Approval Policy",
+            "description": "Approval governance scenario",
+            "version": "1.0.0",
+            "rules": {
+              "require_explicit_approval": true,
+              "effect": "deny_until_approved"
+            },
+            "scope_type": "tenant"
+          },
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "daf14545-5bed-4382-8190-459826392e2d",
+          "timestamp_utc": "2026-07-01T08:11:24.007282+00:00",
+          "response_body": {
+            "policy_key": "approval_policy",
+            "name": "Approval Policy",
+            "description": "Approval governance scenario",
+            "version": "1.0.0",
+            "rules": {
+              "require_explicit_approval": true,
+              "effect": "deny_until_approved"
+            },
+            "scope_type": "tenant",
+            "tenant_id": "platform",
+            "status": "active",
+            "created_at": "2026-07-01T08:11:24.009695+00:00",
+            "updated_at": "2026-07-01T08:11:24.009695+00:00",
+            "id": "6a44cbacf5b43a528e6ee5b2"
+          }
+        },
+        {
+          "note": "[Approval] policy evaluate (expect deny -> motivates challenge)",
+          "method": "POST",
+          "path": "/v1/policies/evaluate",
+          "request_correlation_id_header": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+          "request_body": {
+            "policy_key": "approval_policy",
+            "context": {
+              "approved": false
+            }
+          },
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+          "timestamp_utc": "2026-07-01T08:11:24.010931+00:00",
+          "response_body": {
+            "evaluation_id": "peval-98b647f20f36",
+            "policy_key": "approval_policy",
+            "result": {
+              "decision": "deny",
+              "effect": "deny_until_approved",
+              "rationale": "Explicit approval required"
+            },
+            "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029"
+          }
+        },
+        {
+          "note": "[Approval] challenge raise",
+          "method": "POST",
+          "path": "/v1/governance/challenges",
+          "request_correlation_id_header": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+          "request_body": {
+            "policy_key": "approval_policy",
+            "evaluation_id": "peval-98b647f20f36",
+            "subject_type": "policy_evaluation",
+            "subject_id": "peval-98b647f20f36",
+            "reason": "Challenge Approval denial for review"
+          },
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+          "timestamp_utc": "2026-07-01T08:11:24.014718+00:00",
+          "response_body": {
+            "challenge_id": "chl-5e3c63b0c676",
+            "policy_key": "approval_policy",
+            "evaluation_id": "peval-98b647f20f36",
+            "subject_type": "policy_evaluation",
+            "subject_id": "peval-98b647f20f36",
+            "reason": "Challenge Approval denial for review",
+            "status": "open",
+            "tenant_id": "platform",
+            "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+              "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:24.017897+00:00",
+            "updated_at": "2026-07-01T08:11:24.017897+00:00",
+            "id": "6a44cbacf5b43a528e6ee5b5"
+          }
+        },
+        {
+          "note": "[Approval] review assign",
+          "method": "POST",
+          "path": "/v1/governance/reviews",
+          "request_correlation_id_header": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+          "request_body": {
+            "challenge_id": "chl-5e3c63b0c676",
+            "reviewer_role": "admin",
+            "notes": "Assigned for governance review"
+          },
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+          "timestamp_utc": "2026-07-01T08:11:24.019550+00:00",
+          "response_body": {
+            "review_id": "rev-5b221d53f847",
+            "challenge_id": "chl-5e3c63b0c676",
+            "reviewer_role": "admin",
+            "notes": "Assigned for governance review",
+            "status": "assigned",
+            "tenant_id": "platform",
+            "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+              "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:24.022099+00:00",
+            "updated_at": "2026-07-01T08:11:24.022099+00:00",
+            "id": "6a44cbacf5b43a528e6ee5b7"
+          }
+        },
+        {
+          "note": "[Approval] review complete (upheld)",
+          "method": "POST",
+          "path": "/v1/governance/reviews/rev-5b221d53f847/complete",
+          "request_correlation_id_header": null,
+          "request_body": {
+            "outcome": "upheld",
+            "notes": "Review upheld; override warranted"
+          },
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "9889921e-d343-43e6-bfd1-bcfd64f74b46",
+          "timestamp_utc": "2026-07-01T08:11:24.023482+00:00",
+          "response_body": {
+            "review_id": "rev-5b221d53f847",
+            "challenge_id": "chl-5e3c63b0c676",
+            "reviewer_role": "admin",
+            "notes": "Review upheld; override warranted",
+            "status": "completed",
+            "tenant_id": "platform",
+            "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+              "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:24.022000",
+            "updated_at": "2026-07-01T08:11:24.026000",
+            "outcome": "upheld",
+            "id": "6a44cbacf5b43a528e6ee5b7"
+          }
+        },
+        {
+          "note": "[Approval] workflow override propose",
+          "method": "POST",
+          "path": "/v1/governance/overrides",
+          "request_correlation_id_header": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+          "request_body": {
+            "challenge_id": "chl-5e3c63b0c676",
+            "policy_key": "approval_policy",
+            "reason": "Override Approval outcome per review",
+            "override_effect": "allow"
+          },
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+          "timestamp_utc": "2026-07-01T08:11:24.028120+00:00",
+          "response_body": {
+            "override_id": "wovr-9203038691f0",
+            "challenge_id": "chl-5e3c63b0c676",
+            "policy_key": "approval_policy",
+            "reason": "Override Approval outcome per review",
+            "override_effect": "allow",
+            "status": "proposed",
+            "tenant_id": "platform",
+            "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+              "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:24.030925+00:00",
+            "updated_at": "2026-07-01T08:11:24.030925+00:00",
+            "id": "6a44cbacf5b43a528e6ee5b9"
+          }
+        },
+        {
+          "note": "[Approval] workflow override apply",
+          "method": "POST",
+          "path": "/v1/governance/overrides/wovr-9203038691f0/apply",
+          "request_correlation_id_header": null,
+          "request_body": null,
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "1bf4bd51-98cb-4a00-b6da-e4669248491a",
+          "timestamp_utc": "2026-07-01T08:11:24.032982+00:00",
+          "response_body": {
+            "override_id": "wovr-9203038691f0",
+            "challenge_id": "chl-5e3c63b0c676",
+            "policy_key": "approval_policy",
+            "reason": "Override Approval outcome per review",
+            "override_effect": "allow",
+            "status": "applied",
+            "tenant_id": "platform",
+            "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+              "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:24.030000",
+            "updated_at": "2026-07-01T08:11:24.037000",
+            "id": "6a44cbacf5b43a528e6ee5b9"
+          }
+        },
+        {
+          "note": "[Approval] decision record",
+          "method": "POST",
+          "path": "/v1/decisions",
+          "request_correlation_id_header": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+          "request_body": {
+            "owner": "Rishabh Yadav",
+            "scope": "tenant",
+            "rationale": "Recorded decision for Approval challenge chl-5e3c63b0c676",
+            "inputs": {
+              "evaluation_id": "peval-98b647f20f36",
+              "override_id": "wovr-9203038691f0"
+            },
+            "challenge_id": "chl-5e3c63b0c676",
+            "review_id": "rev-5b221d53f847",
+            "trace_references": [
+              "4d08bd17-b100-4bf9-a99f-abdcb3eb9029"
+            ]
+          },
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+          "timestamp_utc": "2026-07-01T08:11:24.038474+00:00",
+          "response_body": {
+            "decision_id": "dec-6e31988ba178",
+            "owner": "Rishabh Yadav",
+            "scope": "tenant",
+            "rationale": "Recorded decision for Approval challenge chl-5e3c63b0c676",
+            "inputs": {
+              "evaluation_id": "peval-98b647f20f36",
+              "override_id": "wovr-9203038691f0"
+            },
+            "timestamp": "2026-07-01T08:11:24.041056+00:00",
+            "dependencies": [],
+            "status": "active",
+            "supersedes": null,
+            "trace_references": [
+              "4d08bd17-b100-4bf9-a99f-abdcb3eb9029"
+            ],
+            "challenge_id": "chl-5e3c63b0c676",
+            "review_id": "rev-5b221d53f847",
+            "tenant_id": "platform",
+            "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+            "trace_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+              "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:24.041056+00:00",
+            "updated_at": "2026-07-01T08:11:24.041056+00:00",
+            "id": "6a44cbacf5b43a528e6ee5bb"
+          }
+        },
+        {
+          "note": "[Approval] decision replay (supersedes chain)",
+          "method": "GET",
+          "path": "/v1/decisions/replay?decision_id=dec-6e31988ba178",
+          "request_correlation_id_header": null,
+          "request_body": null,
+          "auth": "api_key:admin",
+          "http_status": 200,
+          "response_correlation_id_header": "fa6fb1ac-abbb-40d6-b61f-4f9c51b6331c",
+          "timestamp_utc": "2026-07-01T08:11:24.042406+00:00",
+          "response_body": {
+            "replay_type": "supersedes_chain",
+            "root_decision_id": "dec-6e31988ba178",
+            "chain": [
+              {
+                "decision_id": "dec-6e31988ba178",
+                "owner": "Rishabh Yadav",
+                "scope": "tenant",
+                "rationale": "Recorded decision for Approval challenge chl-5e3c63b0c676",
+                "inputs": {
+                  "evaluation_id": "peval-98b647f20f36",
+                  "override_id": "wovr-9203038691f0"
+                },
+                "timestamp": "2026-07-01T08:11:24.041000",
+                "dependencies": [],
+                "status": "active",
+                "supersedes": null,
+                "trace_references": [
+                  "4d08bd17-b100-4bf9-a99f-abdcb3eb9029"
+                ],
+                "challenge_id": "chl-5e3c63b0c676",
+                "review_id": "rev-5b221d53f847",
+                "tenant_id": "platform",
+                "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+                "trace_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+                "lineage": {
+                  "origin_system": "gateway",
+                  "owning_system": "sampada",
+                  "schema_version": "1.0.0",
+                  "trace_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+                  "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+                  "trust_classification": "canonical",
+                  "visibility_scope": "tenant"
+                },
+                "created_at": "2026-07-01T08:11:24.041000",
+                "updated_at": "2026-07-01T08:11:24.041000",
+                "id": "6a44cbacf5b43a528e6ee5bb"
+              }
+            ]
+          }
+        }
+      ],
+      "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+      "policy_id": "6a44cbacf5b43a528e6ee5b2",
+      "evaluation_id": "peval-98b647f20f36",
+      "evaluation_result": {
+        "decision": "deny",
+        "effect": "deny_until_approved",
+        "rationale": "Explicit approval required"
+      },
+      "challenge_id": "chl-5e3c63b0c676",
+      "review_id": "rev-5b221d53f847",
+      "review_outcome": "upheld",
+      "override_id": "wovr-9203038691f0",
+      "override_status": "applied",
+      "decision_id": "dec-6e31988ba178",
+      "replay": {
+        "replay_type": "supersedes_chain",
+        "root_decision_id": "dec-6e31988ba178",
+        "chain": [
+          {
+            "decision_id": "dec-6e31988ba178",
+            "owner": "Rishabh Yadav",
+            "scope": "tenant",
+            "rationale": "Recorded decision for Approval challenge chl-5e3c63b0c676",
+            "inputs": {
+              "evaluation_id": "peval-98b647f20f36",
+              "override_id": "wovr-9203038691f0"
+            },
+            "timestamp": "2026-07-01T08:11:24.041000",
+            "dependencies": [],
+            "status": "active",
+            "supersedes": null,
+            "trace_references": [
+              "4d08bd17-b100-4bf9-a99f-abdcb3eb9029"
+            ],
+            "challenge_id": "chl-5e3c63b0c676",
+            "review_id": "rev-5b221d53f847",
+            "tenant_id": "platform",
+            "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+            "trace_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+              "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:24.041000",
+            "updated_at": "2026-07-01T08:11:24.041000",
+            "id": "6a44cbacf5b43a528e6ee5bb"
+          }
+        ]
+      },
+      "replay_chain_len": 1
+    }
+  ]
+}

@@ -1,0 +1,799 @@
+{
+  "answer": "In Puranic literature, rivers, lakes, and water conservation hold significant importance as they are considered holy and are believed to have the power to fulfill desires and grant salvation. According to the Brahma Purana , taking a bath in these holy waters, performing Japa, Homa, and Pitrtarpana can fulfill all cherished desires of men and grant enjoyment and salvation. The text mentions twenty-five divine rivers, including the Ganga, which are considered sacred and are worshipped by devotees. Similarly, in the Mahabharata , various sacred rivers such as the Bhagirathi, Kalindi, and Saraswati are mentioned, which are personified and worship the Lord Varuna. These references highlight the importance of preserving and respecting these water bodies.",
+  "confidence": 0.5332,
+  "confidence_breakdown": {
+    "accepted_count": 1,
+    "accepted_derivations": [
+      {
+        "content_overlap": 0.5,
+        "derived_confidence": 0.5332,
+        "domain_consistency": 1.0,
+        "entity_overlap": 1.0,
+        "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+        "retrieval_confidence": 0.7075,
+        "semantic_score": 0.8544,
+        "tag_match_score": 0.0
+      }
+    ],
+    "overall": 0.5332,
+    "rejected_count": 11
+  },
+  "detected_domain": "ecology",
+  "domain_resolution": {
+    "confidence": 1.0,
+    "domain": "ecology",
+    "entities": [
+      {
+        "canonical": "Ganga",
+        "concepts": [
+          "sacred river",
+          "water"
+        ],
+        "domain": "ecology",
+        "entity_type": "river",
+        "matched_alias": "ganga"
+      }
+    ],
+    "method": "canonical_entity_majority"
+  },
+  "enforcement_stats": {
+    "rejected_entries": 19,
+    "total_entries": 37,
+    "valid_entries": 18
+  },
+  "fallback_to_llm": false,
+  "generated_at": "2026-06-25T05:10:43.611393Z",
+  "knowledge_ids_used": [
+    "KOSHA_7c7d25934225"
+  ],
+  "matched_signals": [
+    {
+      "acceptance_reasoning": {
+        "confidence_derivation": {
+          "content_overlap": 0.5,
+          "derived_confidence": 0.5332,
+          "domain_consistency": 1.0,
+          "entity_overlap": 1.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.7075,
+          "semantic_score": 0.8544,
+          "tag_match_score": 0.0
+        },
+        "overlap_percent": {
+          "concept": 66.67,
+          "content": 50.0,
+          "entity": 100.0
+        },
+        "signal_id": "signal_d7c3b84b41af",
+        "what_matched": {
+          "candidate_entities": [
+            {
+              "canonical": "Brahma",
+              "concepts": [
+                "creation",
+                "cosmology"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "brahma"
+            },
+            {
+              "canonical": "Brahma Purana",
+              "concepts": [
+                "purana",
+                "creation"
+              ],
+              "domain": "puranas",
+              "entity_type": "text",
+              "matched_alias": "brahma purana"
+            },
+            {
+              "canonical": "Ganga",
+              "concepts": [
+                "sacred river",
+                "water"
+              ],
+              "domain": "ecology",
+              "entity_type": "river",
+              "matched_alias": "ganga"
+            },
+            {
+              "canonical": "Mahabharata",
+              "concepts": [
+                "dharma",
+                "Kurukshetra",
+                "Pandavas"
+              ],
+              "domain": "itihasa",
+              "entity_type": "text",
+              "matched_alias": "mahabharata"
+            },
+            {
+              "canonical": "Sarasvati",
+              "concepts": [
+                "river",
+                "knowledge"
+              ],
+              "domain": "ecology",
+              "entity_type": "river",
+              "matched_alias": "saraswati"
+            },
+            {
+              "canonical": "Water Conservation",
+              "concepts": [
+                "rivers",
+                "lakes",
+                "sustainability"
+              ],
+              "domain": "ecology",
+              "entity_type": "concept",
+              "matched_alias": "water conservation"
+            }
+          ],
+          "query_entities": [
+            {
+              "canonical": "Ganga",
+              "concepts": [
+                "sacred river",
+                "water"
+              ],
+              "domain": "ecology",
+              "entity_type": "river",
+              "matched_alias": "ganga"
+            }
+          ],
+          "tags": []
+        },
+        "why_accepted": "Accepted after deterministic entity, concept, domain, contextual, tag, content, and confidence checks."
+      },
+      "confidence": 0.5332,
+      "content": "In Puranic literature, rivers, lakes, and water conservation hold significant importance as they are considered holy and are believed to have the power to fulfill desires and grant salvation. According to the Brahma Purana [1], taking a bath in these holy waters, performing Japa, Homa, and Pitrtarpana can fulfill all cherished desires of men and grant enjoyment and salvation. The text mentions twenty-five divine rivers, including the Ganga, which are considered sacred and are worshipped by devotees. Similarly, in the Mahabharata [2], various sacred rivers such as the Bhagirathi, Kalindi, and Saraswati are mentioned, which are personified and worship the Lord Varuna. These references highlight the importance of preserving and respecting these water bodies.",
+      "domain": "water / rivers",
+      "knowledge_id": "KOSHA_7c7d25934225",
+      "signal_id": "signal_d7c3b84b41af",
+      "source": "Brahma Purana - Parts I-IV_ocred.pdf",
+      "tags": [
+        "conservation",
+        "importance",
+        "lakes"
+      ]
+    }
+  ],
+  "query": "How are rivers like Ganga described in Puranic texts?",
+  "reasoning": "Accepted signal because tags [], content overlap 0.50, entity overlap 1.00, domain consistency 1.00, and derived confidence 0.533 met deterministic thresholds.",
+  "reasoning_path": [
+    "query_received",
+    "kosha_schema_enforced",
+    "canonical_entities_extracted",
+    "ontology_aware_retrieval",
+    "signal_validation",
+    "structured_signal_emission",
+    "deterministic_synthesis"
+  ],
+  "rejected_signals": [
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Bhagavad Gita",
+            "concepts": [
+              "dharma",
+              "karma yoga",
+              "jnana yoga",
+              "bhakti yoga"
+            ],
+            "domain": "gitas",
+            "entity_type": "text",
+            "matched_alias": "gita"
+          },
+          {
+            "canonical": "Bhagavata Purana",
+            "concepts": [
+              "Krishna",
+              "devotion",
+              "purana"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "srimad bhagavata"
+          },
+          {
+            "canonical": "City",
+            "concepts": [
+              "planning",
+              "society"
+            ],
+            "domain": "governance",
+            "entity_type": "structure",
+            "matched_alias": "city"
+          },
+          {
+            "canonical": "Smriti",
+            "concepts": [
+              "law",
+              "conduct"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "text_group",
+            "matched_alias": "smritis"
+          }
+        ],
+        "concept_overlap": 0.3333,
+        "confidence": 0.4166666666666667,
+        "confidence_derivation": {
+          "content_overlap": 0.5,
+          "derived_confidence": 0.2692,
+          "domain_consistency": 0.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.4167,
+          "semantic_score": 0.2167,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.5,
+        "contextual_proximity": 1.0,
+        "domain_consistency": 0.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "ecology",
+          "entities": [
+            {
+              "canonical": "Ganga",
+              "concepts": [
+                "sacred river",
+                "water"
+              ],
+              "domain": "ecology",
+              "entity_type": "river",
+              "matched_alias": "ganga"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Ganga"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Ganga",
+            "concepts": [
+              "sacred river",
+              "water"
+            ],
+            "domain": "ecology",
+            "entity_type": "river",
+            "matched_alias": "ganga"
+          }
+        ],
+        "semantic_score": 0.2167,
+        "signal_id": "signal_64bf346303c9",
+        "source": "Srimad Bhagavata Maha Purana With Sanskrit Text And English Trans. By C.L. Goswami, Part 1 (Book 1 To 8) - Gita Press, Gorakhpur_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "entity_conflict",
+      "signal_id": "signal_64bf346303c9",
+      "source": "Srimad Bhagavata Maha Purana With Sanskrit Text And English Trans. By C.L. Goswami, Part 1 (Book 1 To 8) - Gita Press, Gorakhpur_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Brahmanda Purana",
+            "concepts": [
+              "cosmology",
+              "purana"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "brahmanda purana"
+          },
+          {
+            "canonical": "Ramayana",
+            "concepts": [
+              "Rama",
+              "dharma",
+              "forest exile"
+            ],
+            "domain": "itihasa",
+            "entity_type": "text",
+            "matched_alias": "valmiki ramayana"
+          }
+        ],
+        "concept_overlap": 0.1667,
+        "confidence": 0.16666666666666666,
+        "confidence_derivation": {
+          "content_overlap": 0.1667,
+          "derived_confidence": 0.1225,
+          "domain_consistency": 0.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.1667,
+          "semantic_score": 0.1583,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.1667,
+        "contextual_proximity": 1.0,
+        "domain_consistency": 0.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "ecology",
+          "entities": [
+            {
+              "canonical": "Ganga",
+              "concepts": [
+                "sacred river",
+                "water"
+              ],
+              "domain": "ecology",
+              "entity_type": "river",
+              "matched_alias": "ganga"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Ganga"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Ganga",
+            "concepts": [
+              "sacred river",
+              "water"
+            ],
+            "domain": "ecology",
+            "entity_type": "river",
+            "matched_alias": "ganga"
+          }
+        ],
+        "semantic_score": 0.1583,
+        "signal_id": "signal_5a684aa44a1d",
+        "source": "Valmiki-Ramayana-Eng-Translation-Griffith_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "entity_conflict",
+      "signal_id": "signal_5a684aa44a1d",
+      "source": "Valmiki-Ramayana-Eng-Translation-Griffith_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Manusmriti",
+            "concepts": [
+              "law",
+              "social duty"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "text",
+            "matched_alias": "manusmriti"
+          },
+          {
+            "canonical": "Smriti",
+            "concepts": [
+              "law",
+              "conduct"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "text_group",
+            "matched_alias": "smriti"
+          },
+          {
+            "canonical": "Yajnavalkya Smriti",
+            "concepts": [
+              "law",
+              "governance"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "text",
+            "matched_alias": "yajnavalkya"
+          }
+        ],
+        "concept_overlap": 0.0833,
+        "confidence": 0.16666666666666666,
+        "confidence_derivation": {
+          "content_overlap": 0.1667,
+          "derived_confidence": 0.0988,
+          "domain_consistency": 0.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.1667,
+          "semantic_score": 0.0792,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.1667,
+        "contextual_proximity": 0.5,
+        "domain_consistency": 0.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "ecology",
+          "entities": [
+            {
+              "canonical": "Ganga",
+              "concepts": [
+                "sacred river",
+                "water"
+              ],
+              "domain": "ecology",
+              "entity_type": "river",
+              "matched_alias": "ganga"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Ganga"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Ganga",
+            "concepts": [
+              "sacred river",
+              "water"
+            ],
+            "domain": "ecology",
+            "entity_type": "river",
+            "matched_alias": "ganga"
+          }
+        ],
+        "semantic_score": 0.0792,
+        "signal_id": "signal_45cec39e37e9",
+        "source": "Brihaspati Smriti (Reconstructed) - Rangaswami Aiyangar 1941 (GOS)_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "entity_conflict",
+      "signal_id": "signal_45cec39e37e9",
+      "source": "Brihaspati Smriti (Reconstructed) - Rangaswami Aiyangar 1941 (GOS)_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Agni",
+            "concepts": [
+              "fire",
+              "yajna"
+            ],
+            "domain": "vedas",
+            "entity_type": "deity",
+            "matched_alias": "agni"
+          },
+          {
+            "canonical": "Agni Purana",
+            "concepts": [
+              "purana",
+              "ritual",
+              "architecture"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "agni purana"
+          },
+          {
+            "canonical": "Temple",
+            "concepts": [
+              "ritual",
+              "architecture"
+            ],
+            "domain": "governance",
+            "entity_type": "structure",
+            "matched_alias": "temple"
+          }
+        ],
+        "concept_overlap": 0.0833,
+        "confidence": 0.16666666666666666,
+        "confidence_derivation": {
+          "content_overlap": 0.1667,
+          "derived_confidence": 0.0988,
+          "domain_consistency": 0.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.1667,
+          "semantic_score": 0.0792,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.1667,
+        "contextual_proximity": 0.5,
+        "domain_consistency": 0.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "ecology",
+          "entities": [
+            {
+              "canonical": "Ganga",
+              "concepts": [
+                "sacred river",
+                "water"
+              ],
+              "domain": "ecology",
+              "entity_type": "river",
+              "matched_alias": "ganga"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Ganga"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Ganga",
+            "concepts": [
+              "sacred river",
+              "water"
+            ],
+            "domain": "ecology",
+            "entity_type": "river",
+            "matched_alias": "ganga"
+          }
+        ],
+        "semantic_score": 0.0792,
+        "signal_id": "signal_b4273bc376c9",
+        "source": "Agni Purana Unabridged English Motilal.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "entity_conflict",
+      "signal_id": "signal_b4273bc376c9",
+      "source": "Agni Purana Unabridged English Motilal.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Dharma",
+            "concepts": [
+              "ethics",
+              "order",
+              "responsibility"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "dharma"
+          },
+          {
+            "canonical": "Narada Purana",
+            "concepts": [
+              "purana",
+              "devotion",
+              "pilgrimage"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "narada purana"
+          },
+          {
+            "canonical": "Narayana",
+            "concepts": [
+              "preservation",
+              "cosmic person"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "narayana"
+          },
+          {
+            "canonical": "Vayu Purana",
+            "concepts": [
+              "purana",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "vayu purana"
+          },
+          {
+            "canonical": "Yuga",
+            "concepts": [
+              "time",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "concept",
+            "matched_alias": "yugas"
+          }
+        ],
+        "concept_overlap": 0.1667,
+        "confidence": 0.1336,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.0809,
+          "domain_consistency": 0.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.1336,
+          "semantic_score": 0.1583,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 1.0,
+        "domain_consistency": 0.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "ecology",
+          "entities": [
+            {
+              "canonical": "Ganga",
+              "concepts": [
+                "sacred river",
+                "water"
+              ],
+              "domain": "ecology",
+              "entity_type": "river",
+              "matched_alias": "ganga"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Ganga"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Ganga",
+            "concepts": [
+              "sacred river",
+              "water"
+            ],
+            "domain": "ecology",
+            "entity_type": "river",
+            "matched_alias": "ganga"
+          }
+        ],
+        "semantic_score": 0.1583,
+        "signal_id": "signal_0f89f75e5e06",
+        "source": "Vayu Purana Part 1_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "no_query_relevance:tags_content_semantic_miss",
+      "signal_id": "signal_0f89f75e5e06",
+      "source": "Vayu Purana Part 1_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.08333333333333333,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_60b38e626344",
+        "source": "The Narada-Purana, Part 1_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "low_contextual_overlap",
+      "signal_id": "signal_60b38e626344",
+      "source": "The Narada-Purana, Part 1_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.08333333333333333,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_d2db6cb0b70f",
+        "source": "Yoga_Upanishad_[Sanskrit_English]_OCR.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "confidence_below_threshold:0.083",
+      "signal_id": "signal_d2db6cb0b70f",
+      "source": "Yoga_Upanishad_[Sanskrit_English]_OCR.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.08333333333333333,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_9e648122f652",
+        "source": "Svetasvatara Upanishad - sanskrit and English.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "confidence_below_threshold:0.083",
+      "signal_id": "signal_9e648122f652",
+      "source": "Svetasvatara Upanishad - sanskrit and English.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.08333333333333333,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_92b0139bffff",
+        "source": "vigyan-bhairava-tantra_ocr.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "confidence_below_threshold:0.083",
+      "signal_id": "signal_92b0139bffff",
+      "source": "vigyan-bhairava-tantra_ocr.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.08333333333333333,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_40ec1534866f",
+        "source": "The Complete Mahabharata_English_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "confidence_below_threshold:0.083",
+      "signal_id": "signal_40ec1534866f",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.0063,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_c440233b1a39",
+        "source": "The Complete Mahabharata_English_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "confidence_below_threshold:0.006",
+      "signal_id": "signal_c440233b1a39",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    }
+  ],
+  "signals_found": 1,
+  "signals_rejected": 11,
+  "synthesis_mode": "DETERMINISTIC_FROM_ACCEPTED_SIGNALS",
+  "trace_id": "trace_eb13faac2f1e5017",
+  "verification_status": "VERIFIED"
+}

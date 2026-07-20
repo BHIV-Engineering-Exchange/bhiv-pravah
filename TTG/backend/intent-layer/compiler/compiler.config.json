@@ -1,0 +1,113 @@
+{
+  "defaults": {
+    "game_mode": "runner",
+    "speed": 5,
+    "jump_height": 5,
+    "camera_distance": 10,
+    "spawn_frequency": 2,
+    "obstacles": 0,
+    "gravity": -9.8,
+    "friction": 0.5,
+    "bounce": 0.3,
+    "air_resistance": 0.1,
+    "collision_force": 1.0,
+    "health": 3,
+    "theme": "default"
+  },
+  "keywords": {
+    "game_modes": {
+      "runner": ["run", "runner", "endless", "chase", "temple", "sprint"],
+      "sidescroller": ["side", "platform", "jump", "scroll", "mario", "platformer"],
+      "open_scene": ["open", "sandbox", "explore", "free", "roam", "world"]
+    },
+    "abilities": {
+      "jump": ["jump", "leap", "hop"],
+      "jetpack": ["jetpack", "jet pack", "fly", "flying", "flight", "boost"],
+      "dash": ["dash", "sprint", "boost"],
+      "swim": ["swim", "swimming", "underwater"]
+    },
+    "difficulty": {
+      "easy": ["easy", "simple", "beginner", "casual", "peaceful"],
+      "medium": ["medium", "moderate", "balanced", "normal"],
+      "hard": ["hard", "difficult", "challenging", "complex", "expert", "hardcore"]
+    },
+    "speed": {
+      "fast": ["fast", "quick", "rapid", "speedy", "intense"],
+      "slow": ["slow", "sluggish", "careful", "relaxed"]
+    },
+    "physics": {
+      "low_gravity": ["low gravity", "float"],
+      "high_gravity": ["high gravity", "heavy", "strong gravity"],
+      "slippery": ["slippery", "ice", "slide", "smooth"],
+      "sticky": ["sticky", "grip", "rough"],
+      "bouncy": ["bouncy", "bounce", "trampoline", "elastic"],
+      "solid": ["no bounce", "solid"]
+    },
+    "scoring": {
+      "collectibles": ["collect", "gather", "find", "coin", "pickup", "gem", "retrieve"],
+      "score": ["score", "point"]
+    },
+    "obstacles": ["obstacle", "avoid", "dodge", "block"],
+    "end_conditions": {
+      "time_limit": ["time", "timer", "duration"],
+      "distance_goal": ["distance", "reach", "goal"]
+    }
+  },
+  "limits": {
+    "speed": { "min": 1, "max": 15 },
+    "jump_height": { "min": 0, "max": 10 },
+    "camera_distance": { "min": 5, "max": 20 },
+    "obstacles": { "min": 0, "max": 10 },
+    "frequency": { "min": 0.5, "max": 10 },
+    "health": { "min": 1, "max": 100 },
+    "gravity": { "min": -20, "max": 0 },
+    "friction": { "min": 0, "max": 1 },
+    "bounce": { "min": 0, "max": 1 },
+    "air_resistance": { "min": 0, "max": 1 },
+    "collision_force": { "min": 0.1, "max": 2 }
+  },
+  "enums": {
+    "game_modes": ["runner", "sidescroller", "open_scene"],
+    "camera_types": ["third_person", "side_view", "top_down"],
+    "end_conditions": ["collision", "time_limit", "distance_goal", "score_goal"],
+    "themes": ["default"]
+  },
+  "mappings": {
+    "camera": {
+      "runner": "third_person",
+      "sidescroller": "side_view",
+      "open_scene": "top_down"
+    },
+    "difficulty_spawn_rate": {
+      "easy": 3,
+      "medium": 2,
+      "hard": 1.5
+    },
+    "difficulty_health": {
+      "easy": 5,
+      "medium": 3,
+      "hard": 1
+    },
+    "speed_values": {
+      "fast": 8,
+      "slow": 3
+    },
+    "physics_values": {
+      "low_gravity": -3.0,
+      "high_gravity": -15.0,
+      "slippery": 0.1,
+      "sticky": 0.9,
+      "bouncy": 0.8,
+      "solid": 0.1
+    },
+    "scoring_values": {
+      "distance": 1,
+      "collectibles": 10
+    }
+  },
+  "validation": {
+    "min_input_length": 10,
+    "unsupported_genres": ["shooter", "multiplayer", "racing", "car", "puzzle", "matching", "combat", "space", "flying"],
+    "unsupported_features": ["weapon", "gun", "shoot", "enemy", "enemies", "kill", "death", "blood", "violence"]
+  }
+}

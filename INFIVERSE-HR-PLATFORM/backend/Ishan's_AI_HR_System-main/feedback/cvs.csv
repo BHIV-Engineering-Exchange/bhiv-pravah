@@ -1,0 +1,6 @@
+id,name,email,phone,skills,experience,education,location,status
+1,John Doe,john.doe@email.com,+91-9876543210,"Python,FastAPI,SQL",3,B.Tech Computer Science,Mumbai,active
+2,Jane Smith,jane.smith@email.com,+91-9876543211,"JavaScript,React,Node.js",2,B.E. Information Technology,Delhi,active
+3,Mike Johnson,mike.johnson@email.com,+91-9876543212,"Java,Spring Boot,MySQL",4,MCA,Bangalore,active
+4,Sarah Wilson,sarah.wilson@email.com,+91-9876543213,"Python,Django,PostgreSQL",5,M.Tech Software Engineering,Pune,active
+5,David Brown,david.brown@email.com,+91-9876543214,"C#,.NET,Azure",3,B.Tech Electronics,Chennai,active

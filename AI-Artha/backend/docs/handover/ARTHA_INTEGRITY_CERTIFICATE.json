@@ -1,0 +1,56 @@
+{
+  "certificate_id": "CERT-INT-1781695896228",
+  "certificate_type": "ARTHA_INTEGRITY_CERTIFICATE",
+  "issued_at": "2026-06-17T11:31:36.228Z",
+  "valid_until": "2027-06-17T11:31:36.229Z",
+  "issuer": "ARTHA Certification System",
+  "subject": {
+    "system": "ARTHA v0.1",
+    "description": "India-Compliant Double-Entry Accounting System",
+    "repository": "AI-Artha-main"
+  },
+  "integrity_status": {
+    "deterministic_replay": {
+      "status": "VERIFIED",
+      "evidence_file": "docs/evidence/phase4/replay_verification_results.json",
+      "details": "DETERMINISTIC REPLAY PROVEN — All outputs match, structure identical, chain intact",
+      "original_entry": "JE-20260617-0026",
+      "replay_entry": "JE-20260617-0027",
+      "outputs_match": true,
+      "structure_match": true,
+      "chain_intact": true
+    },
+    "compliance_continuity": {
+      "status": "VERIFIED",
+      "evidence_file": "docs/evidence/phase4/full_compliance_trace_evidence.json",
+      "details": "COMPLIANCE CONTINUITY PROVEN — All stages captured, trace continuous",
+      "stages_captured": [
+        "TRANSACTION_CREATED",
+        "JOURNAL_POSTED",
+        "SIGNAL_GENERATED",
+        "FILING_CREATED",
+        "FILING_VALIDATED",
+        "SETU_DISPATCHED",
+        "JOURNAL_CREATED",
+        "JOURNAL_VALIDATED"
+      ],
+      "missing_stages": [],
+      "trace_continuous": true
+    },
+    "ledger_integrity": {
+      "status": "VERIFIED",
+      "double_entry_balanced": true,
+      "hash_chain_valid": true,
+      "account_balances_consistent": true
+    }
+  },
+  "overall_integrity": true,
+  "score": {
+    "replay": 100,
+    "compliance": 100,
+    "audit": 96,
+    "overall": 99
+  },
+  "failed_checks": [],
+  "verdict": "ARTHA INTEGRITY CERTIFIED — Deterministic replay proven, compliance continuity verified, ledger integrity confirmed"
+}

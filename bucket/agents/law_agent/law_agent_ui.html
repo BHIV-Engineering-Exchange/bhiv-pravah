@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Law Agent - AI Legal Assistant</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            min-height: 600px;
+        }
+
+        .input-section {
+            padding: 40px;
+            background: #f8f9fa;
+            border-right: 1px solid #e9ecef;
+        }
+
+        .output-section {
+            padding: 40px;
+            background: white;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 0.95rem;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .agent-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .agent-option {
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .agent-option:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .agent-option.selected {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+
+        .agent-option h3 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .agent-option p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .result {
+            display: none;
+        }
+
+        .result-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        .result-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .result-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .confidence-badge {
+            background: #28a745;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .result-content {
+            line-height: 1.6;
+            color: #495057;
+        }
+
+        .result-section {
+            margin-bottom: 20px;
+        }
+
+        .result-section h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .steps-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .steps-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .steps-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .glossary-term {
+            background: #e9ecef;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .glossary-term strong {
+            color: #2c3e50;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #f5c6cb;
+            margin-top: 20px;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #c3e6cb;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .agent-selector {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>
+                ⚖️ Law Agent
+                <span style="font-size: 1.5rem;">AI Legal Assistant</span>
+            </h1>
+            <p>Get instant legal guidance powered by AI - Choose your agent type and describe your legal issue</p>
+        </div>
+
+        <div class="main-content">
+            <div class="input-section">
+                <form id="lawForm">
+                    <div class="form-group">
+                        <label>Select Agent Type</label>
+                        <div class="agent-selector">
+                            <div class="agent-option" data-agent="basic">
+                                <h3>🔍 Basic</h3>
+                                <p>Quick guidance</p>
+                            </div>
+                            <div class="agent-option selected" data-agent="adaptive">
+                                <h3>🧠 Adaptive</h3>
+                                <p>Learning agent</p>
+                            </div>
+                            <div class="agent-option" data-agent="enhanced">
+                                <h3>⚡ Enhanced</h3>
+                                <p>Full analysis</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userInput">Describe Your Legal Issue</label>
+                        <textarea 
+                            id="userInput" 
+                            name="userInput" 
+                            placeholder="Example: I was wrongfully terminated from my job. My employer fired me without cause and I believe it was discriminatory. What are my rights and what steps should I take?"
+                            required
+                        ></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Location (Optional)</label>
+                        <input 
+                            type="text" 
+                            id="location" 
+                            name="location" 
+                            placeholder="e.g., California, USA or Mumbai, India"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sessionId">Session ID (Optional)</label>
+                        <input 
+                            type="text" 
+                            id="sessionId" 
+                            name="sessionId" 
+                            placeholder="Leave blank for auto-generation"
+                        >
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        Get Legal Guidance
+                    </button>
+                </form>
+            </div>
+
+            <div class="output-section">
+                <div id="loading" class="loading">
+                    <div class="spinner"></div>
+                    <p>Analyzing your legal issue...</p>
+                </div>
+
+                <div id="result" class="result">
+                    <!-- Results will be populated here -->
+                </div>
+
+                <div id="welcome" class="result-card">
+                    <h3>Welcome to Law Agent! 👋</h3>
+                    <p>This AI-powered legal assistant can help you with:</p>
+                    <ul style="margin: 15px 0; padding-left: 20px;">
+                        <li>Employment law issues</li>
+                        <li>Tenant rights and landlord disputes</li>
+                        <li>Family law matters</li>
+                        <li>Consumer protection</li>
+                        <li>Criminal law guidance</li>
+                        <li>Civil rights questions</li>
+                        <li>And much more...</li>
+                    </ul>
+                    <p><strong>Choose an agent type and describe your legal issue to get started!</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Agent selection
+        document.querySelectorAll('.agent-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.agent-option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        // Form submission
+        document.getElementById('lawForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const selectedAgent = document.querySelector('.agent-option.selected').dataset.agent;
+            const userInput = formData.get('userInput');
+            const location = formData.get('location');
+            const sessionId = formData.get('sessionId');
+
+            // Show loading
+            document.getElementById('welcome').style.display = 'none';
+            document.getElementById('result').style.display = 'none';
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('submitBtn').disabled = true;
+
+            try {
+                const endpoint = `http://localhost:8000/${selectedAgent}-query`;
+                const requestBody = {
+                    user_input: userInput,
+                    ...(location && { location }),
+                    ...(sessionId && { session_id: sessionId }),
+                    ...(selectedAgent === 'adaptive' && { enable_learning: true })
+                };
+
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                displayResult(result, selectedAgent);
+
+            } catch (error) {
+                console.error('Error:', error);
+                displayError(error.message);
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('submitBtn').disabled = false;
+            }
+        });
+
+        function displayResult(data, agentType) {
+            const resultDiv = document.getElementById('result');
+            
+            let html = `
+                <div class="result-card">
+                    <div class="result-header">
+                        <div class="result-title">Legal Analysis Results</div>
+                        <div class="confidence-badge">${Math.round(data.confidence * 100)}% Confidence</div>
+                    </div>
+                    <div class="result-content">
+                        <div class="result-section">
+                            <h4>📋 Legal Domain</h4>
+                            <p><strong>${data.domain.replace('_', ' ').toUpperCase()}</strong></p>
+                        </div>
+                        
+                        <div class="result-section">
+                            <h4>🛤️ Recommended Legal Route</h4>
+                            <p>${data.legal_route}</p>
+                        </div>
+                        
+                        <div class="result-section">
+                            <h4>⏰ Expected Timeline</h4>
+                            <p>${data.timeline}</p>
+                        </div>
+                        
+                        <div class="result-section">
+                            <h4>🎯 Likely Outcome</h4>
+                            <p>${data.outcome}</p>
+                        </div>
+                        
+                        <div class="result-section">
+                            <h4>📝 Process Steps</h4>
+                            <ul class="steps-list">
+                                ${data.process_steps.map(step => `<li>${step}</li>`).join('')}
+                            </ul>
+                        </div>
+            `;
+
+            // Enhanced agent specific fields
+            if (agentType === 'enhanced') {
+                html += `
+                    <div class="result-section">
+                        <h4>🏛️ Constitutional Backing</h4>
+                        <p>${data.constitutional_backing.join(', ') || 'Not applicable'}</p>
+                    </div>
+                    
+                    <div class="result-section">
+                        <h4>💰 Estimated Cost</h4>
+                        <p>${data.estimated_cost}</p>
+                    </div>
+                    
+                    <div class="result-section">
+                        <h4>📊 Success Rate</h4>
+                        <p>${Math.round(data.success_rate * 100)}%</p>
+                    </div>
+                    
+                    <div class="result-section">
+                        <h4>🔄 Alternative Routes</h4>
+                        <ul class="steps-list">
+                            ${data.alternative_routes.map(route => `<li>${route}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            // Glossary
+            if (data.glossary && Object.keys(data.glossary).length > 0) {
+                html += `
+                    <div class="result-section">
+                        <h4>📚 Legal Terms Glossary</h4>
+                        ${Object.entries(data.glossary).map(([term, definition]) => `
+                            <div class="glossary-term">
+                                <strong>${term.replace('_', ' ')}:</strong> ${definition}
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
+            html += `
+                        <div class="result-section">
+                            <h4>🆔 Session ID</h4>
+                            <p><code>${data.session_id}</code></p>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            resultDiv.innerHTML = html;
+            resultDiv.style.display = 'block';
+        }
+
+        function displayError(message) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <div class="error">
+                    <h4>❌ Error</h4>
+                    <p>Failed to get legal guidance: ${message}</p>
+                    <p>Please make sure the Law Agent server is running on http://localhost:8000</p>
+                </div>
+            `;
+            resultDiv.style.display = 'block';
+        }
+
+        // Auto-generate session ID if not provided
+        document.getElementById('lawForm').addEventListener('submit', function() {
+            const sessionIdInput = document.getElementById('sessionId');
+            if (!sessionIdInput.value.trim()) {
+                sessionIdInput.value = 'ui_' + Math.random().toString(36).substr(2, 9);
+            }
+        });
+    </script>
+</body>
+</html>

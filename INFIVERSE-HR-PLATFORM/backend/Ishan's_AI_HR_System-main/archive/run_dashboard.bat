@@ -1,0 +1,3 @@
+@echo off
+echo Starting HR-AI Dashboard...
+streamlit run dashboard/app.py

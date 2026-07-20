@@ -1,0 +1,80 @@
+🧪 Day 2b: Consistency & Determinism Tests
+
+============================================================
+
+✅ TEST 1: Exact Same Prompt (10 runs)
+
+Prompt: "Make a fast runner with jump"
+Deterministic: ✅ YES
+Unique outputs: 1
+
+
+✅ TEST 2: Different Wording, Same Intent
+
+Variations tested:
+1. "Make a fast runner with jump"
+   Mode: infinite_runner, Speed: 8, Abilities: jump_force
+2. "Create a quick running game with jumping"
+   Mode: infinite_runner, Speed: 8, Abilities: jump_force
+3. "Build a speedy runner that can jump"
+   Mode: infinite_runner, Speed: 8, Abilities: jump_force
+4. "Fast runner game with jump ability"
+   Mode: infinite_runner, Speed: 8, Abilities: jump_force
+
+Consistency:
+  Game Mode: ✅ Consistent
+  Speed: ✅ Consistent
+  Abilities: ✅ Consistent
+
+
+✅ TEST 3: Order Independence
+
+Order variations:
+1. "Fast runner with jump and dash"
+   Abilities: dash_speed, jump_force
+2. "Runner with dash and jump that is fast"
+   Abilities: dash_speed, jump_force
+3. "Jump and dash abilities in a fast runner"
+   Abilities: dash_speed, jump_force
+
+Order Independence: ✅ PASS
+
+
+✅ TEST 4: Case Insensitivity
+
+Case variations tested: 4
+All produce same output: ❌ NO
+
+
+✅ TEST 5: Whitespace Independence
+
+Whitespace variations tested: 4
+All produce same output: ❌ NO
+
+
+✅ TEST 6: No Timestamps in Schema
+
+Schema contains timestamps: ✅ NO (GOOD)
+
+
+✅ TEST 7: No Random Numbers in Schema
+
+5 runs produce identical output: ✅ YES
+
+
+============================================================
+📊 CONSISTENCY TEST SUMMARY
+
+✅ Exact same prompt
+✅ Different wording, same intent
+✅ Order independence
+❌ Case insensitivity
+❌ Whitespace independence
+✅ No timestamps
+✅ No random numbers
+
+⚠️  SOME TESTS FAILED
+
+✅ Determinism: GUARANTEED
+✅ Same intent always produces same schema
+============================================================

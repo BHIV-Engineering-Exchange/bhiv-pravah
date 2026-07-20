@@ -1,0 +1,34 @@
+# Core Framework
+fastapi
+uvicorn[standard]
+streamlit
+pydantic[email]
+python-multipart
+
+# Data Processing
+pandas
+numpy
+plotly
+scikit-learn
+
+# HTTP & API
+requests
+
+# Configuration
+python-dotenv
+
+# Security & Authentication
+PyJWT
+cryptography
+
+# Performance Monitoring
+psutil
+
+# Task Scheduling
+schedule
+
+# Database (SQLite is built-in)
+# Additional database drivers can be added here
+
+# Logging & Monitoring
+watchdog

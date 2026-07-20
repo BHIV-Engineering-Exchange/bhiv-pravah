@@ -1,0 +1,38 @@
+{
+  "trace_id": "TRC-20260608-cc9c43f7",
+  "source": "EXPENSE",
+  "source_id": "6a2289623f3ec80aa42cf536",
+  "initiated_by": "6a22895f3f3ec80aa42cf3f5",
+  "initiated_at": "2026-06-08T10:56:07.030Z",
+  "stages": [
+    {
+      "stage": "TRANSACTION_CREATED",
+      "entity_type": "Expense",
+      "entity_id": "6a2289623f3ec80aa42cf536",
+      "status": "SUCCESS",
+      "timestamp": "2026-06-08T10:56:07.030Z",
+      "metadata": {
+        "expenseNumber": "EXP-2025-001",
+        "totalAmount": "5000",
+        "vendor": "Office Depot"
+      },
+      "_id": "6a269fc78c07b66812ae1480"
+    }
+  ],
+  "current_stage": "TRANSACTION_CREATED",
+  "status": "IN_PROGRESS",
+  "linked_entities": {
+    "journal_entries": [],
+    "signals": [],
+    "filings": [],
+    "validation_logs": [],
+    "setu_dispatches": []
+  },
+  "replay_available": true,
+  "replay_count": 0,
+  "triggers": [],
+  "_id": "6a269fc78c07b66812ae147f",
+  "createdAt": "2026-06-08T10:56:07.049Z",
+  "updatedAt": "2026-06-08T10:56:07.049Z",
+  "__v": 0
+}

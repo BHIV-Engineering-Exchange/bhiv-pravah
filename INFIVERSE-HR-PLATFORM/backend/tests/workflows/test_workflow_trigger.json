@@ -1,0 +1,9 @@
+{
+  "candidate_id": 1,
+  "job_id": 1,
+  "candidate_name": "John Doe",
+  "candidate_email": "john@example.com",
+  "candidate_phone": "+1234567890",
+  "job_title": "Software Engineer",
+  "trigger_type": "candidate_applied"
+}

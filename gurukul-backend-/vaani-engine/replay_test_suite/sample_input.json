@@ -1,0 +1,28 @@
+{
+    "signals": [
+        {
+            "signal_id": "sig-001",
+            "source_id": "observer-alpha",
+            "topic_id": "topic-weather-01",
+            "statement": "The temperature is rising rapidly.",
+            "confidence_level": 0.9,
+            "registry_reference": "bhiv://registry/s1"
+        },
+        {
+            "signal_id": "sig-002",
+            "source_id": "observer-beta",
+            "topic_id": "topic-weather-01",
+            "statement": "The temperature is steady.",
+            "confidence_level": 0.85,
+            "registry_reference": "bhiv://registry/s2"
+        },
+        {
+            "signal_id": "sig-003",
+            "source_id": "observer-gamma",
+            "topic_id": "topic-market-05",
+            "statement": "Stock prices are falling.",
+            "confidence_level": 0.7,
+            "registry_reference": "bhiv://registry/s3"
+        }
+    ]
+}

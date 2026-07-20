@@ -1,0 +1,32 @@
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Node dependencies (recursive)
+node_modules/
+
+# Large Archives
+AI-Artha.zip
+*.zip
+*.tar
+*.tgz
+*.gz
+*.rar
+
+# Logs
+logs/
+*.log
+
+# IDE files
+.vscode/
+.idea/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/

@@ -1,0 +1,78 @@
+{
+  "info": {
+    "name": "SAMPADA Phase2 - Signal Contract Tests",
+    "_postman_id": "b6a1f8d0-1111-4000-8000-000000000001",
+    "description": "Importable Postman collection for Phase 2 signal contract tests (placeholders).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "API_BASE", "value": "http://localhost:8000" },
+    { "key": "API_KEY", "value": "REPLACE_WITH_API_KEY" },
+    { "key": "CORRELATION_ID", "value": "3fa85f64-5717-4562-b3fc-2c963f66afa6" }
+  ],
+  "item": [
+    {
+      "name": "GET Top Matches",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{API_KEY}}" },
+          { "key": "X-Correlation-Id", "value": "{{CORRELATION_ID}}" }
+        ],
+        "url": { "raw": "{{API_BASE}}/v1/match/679a1b2c3d4e5f6789012345/top?limit=5", "host": ["{{API_BASE}}"], "path": ["v1","match","679a1b2c3d4e5f6789012345","top"], "query": [{"key":"limit","value":"5"}] }
+      }
+    },
+    {
+      "name": "POST Batch Match",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{API_KEY}}" },
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-Correlation-Id", "value": "{{CORRELATION_ID}}" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"job_ids\": [\"679a1b2c3d4e5f6789012345\", \"679a1b2c3d4e5f6789012346\"]\n}" },
+        "url": { "raw": "{{API_BASE}}/v1/match/batch", "host": ["{{API_BASE}}"], "path": ["v1","match","batch"] }
+      }
+    },
+    {
+      "name": "POST LangGraph Trigger",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{API_KEY}}" },
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-Correlation-Id", "value": "{{CORRELATION_ID}}" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"workflow_id\": \"wf_abc123\",\n  \"workflow_type\": \"candidate_application\",\n  \"input_data\": {\n    \"candidate_id\": \"60a7c2e5f1e4a2b3c4d5e6f7\",\n    \"job_id\": \"679a1b2c3d4e5f6789012345\",\n    \"candidate_email\": \"alice@example.com\"\n  }\n}" },
+        "url": { "raw": "{{API_BASE}}/v1/langgraph/trigger", "host": ["{{API_BASE}}"], "path": ["v1","langgraph","trigger"] }
+      }
+    },
+    {
+      "name": "POST RL Feedback",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{API_KEY}}" },
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-Correlation-Id", "value": "{{CORRELATION_ID}}" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"candidate_id\": \"60a7c2e5f1e4a2b3c4d5e6f7\",\n  \"job_id\": \"679a1b2c3d4e5f6789012345\",\n  \"feedback\": { \"quality\": 5, \"comments\": \"Good fit.\" }\n}" },
+        "url": { "raw": "{{API_BASE}}/rl/feedback", "host": ["{{API_BASE}}"], "path": ["rl","feedback"] }
+      }
+    },
+    {
+      "name": "POST Payroll Visibility (placeholder)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{API_KEY}}" },
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-Correlation-Id", "value": "{{CORRELATION_ID}}" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"employee_id_hashed\": \"sha256:ab12cd...\",\n  \"payroll_period\": \"2026-05\",\n  \"gross_amount\": 2543.75,\n  \"payroll_state\": \"calculated\"\n}" },
+        "url": { "raw": "{{API_BASE}}/external/artha/payroll_visibility", "host": ["{{API_BASE}}"], "path": ["external","artha","payroll_visibility"] }
+      }
+    }
+  ]
+}

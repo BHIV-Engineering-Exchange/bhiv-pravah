@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PayrollVisibility",
+  "description": "Minimal payroll visibility schema to be consumed by Sampada for non-authoritative payroll cues. Must avoid PII and be explicitly permissioned.",
+  "type": "object",
+  "properties": {
+    "employee_id_hashed": { "type": "string", "description": "Hashed or tokenized employee identifier (no raw PII)." },
+    "payroll_period": { "type": "string", "description": "Payroll period identifier (e.g., 2026-05)." },
+    "gross_amount": { "type": "number", "minimum": 0 },
+    "payroll_state": { "type": "string", "enum": ["calculated","processed","error"], "description": "High-level payroll state; Sampada must not treat this as authoritative." },
+    "correlation_id": { "type": "string", "format": "uuid" },
+    "timestamp": { "type": "string", "format": "date-time" }
+  },
+  "required": ["employee_id_hashed","payroll_period","payroll_state"],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "employee_id_hashed": "sha256:ab12cd34...",
+      "payroll_period": "2026-05",
+      "gross_amount": 2543.75,
+      "payroll_state": "calculated",
+      "correlation_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "timestamp": "2026-05-30T11:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "dispatched": true,
+  "request": {
+    "method": "POST",
+    "url": "https://bhiv-hr-gateway-l0xp.onrender.com/v1/setu/signals/crm_participation",
+    "body": {
+      "signal_type": "crm_participation",
+      "payload": {
+        "execution_id": "exec-crm-closeout-20260702",
+        "trace_id": "crm-trace-3d0a7d1a",
+        "tenant_id": "tenant-crm-closeout",
+        "timestamp": "2026-07-02T07:35:45.549494+00:00",
+        "event_type": "execution_completed",
+        "details": {
+          "source": "partner_closeout_harness",
+          "module": "crm"
+        }
+      },
+      "workforce_ref_id": null,
+      "source_declaration": "crm participation",
+      "origin_system": "crm",
+      "owning_system": "crm",
+      "trace_id": "crm-trace-3d0a7d1a",
+      "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "trust_classification": "observed",
+      "visibility_scope": "tenant"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "signal_id": "sig-93a24fb7c8fa",
+      "signal_type": "crm_participation",
+      "payload": {
+        "execution_id": "exec-crm-closeout-20260702",
+        "trace_id": "crm-trace-3d0a7d1a",
+        "tenant_id": "tenant-crm-closeout",
+        "timestamp": "2026-07-02T07:35:45.549494+00:00",
+        "event_type": "execution_completed",
+        "details": {
+          "source": "partner_closeout_harness",
+          "module": "crm"
+        }
+      },
+      "workforce_ref_id": null,
+      "source_declaration": "crm participation",
+      "tenant_id": "platform",
+      "created_at": "2026-07-02T07:36:00.565522+00:00",
+      "lineage": {
+        "origin_system": "crm",
+        "owning_system": "crm",
+        "schema_version": "1.0.0",
+        "trace_id": "crm-trace-3d0a7d1a",
+        "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+        "trust_classification": "observed",
+        "visibility_scope": "tenant"
+      },
+      "updated_at": "2026-07-02T07:36:00.565544+00:00",
+      "id": "6a4614e07c009f69a56f8a1b"
+    }
+  }
+}

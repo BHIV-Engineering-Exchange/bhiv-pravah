@@ -1,0 +1,53 @@
+{
+  "timestamp": "2025-12-18T14:34:10.713100",
+  "total_tests": 9,
+  "passed_tests": 0,
+  "success_rate": 0.0,
+  "detailed_results": [
+    {
+      "test_name": "GW RL Analytics",
+      "passed": false,
+      "data": "{\"detail\":\"Not Found\"}"
+    },
+    {
+      "test_name": "GW RL Performance",
+      "passed": false,
+      "data": "{\"detail\":\"Not Found\"}"
+    },
+    {
+      "test_name": "GW RL Prediction",
+      "passed": false,
+      "data": "{\"detail\":\"Not Found\"}"
+    },
+    {
+      "test_name": "GW RL Feedback",
+      "passed": false,
+      "data": "{\"detail\":\"Not Found\"}"
+    },
+    {
+      "test_name": "LG RL Analytics",
+      "passed": false,
+      "data": "HTTPSConnectionPool(host='bhiv-hr-langgraph.onrender.com', port=443): Read timed out. (read timeout=30)"
+    },
+    {
+      "test_name": "LG RL History",
+      "passed": false,
+      "data": "HTTPSConnectionPool(host='bhiv-hr-langgraph.onrender.com', port=443): Read timed out. (read timeout=30)"
+    },
+    {
+      "test_name": "LG RL Retrain",
+      "passed": false,
+      "data": "HTTPSConnectionPool(host='bhiv-hr-langgraph.onrender.com', port=443): Read timed out. (read timeout=30)"
+    },
+    {
+      "test_name": "LG RL Prediction",
+      "passed": false,
+      "data": "HTTPSConnectionPool(host='bhiv-hr-langgraph.onrender.com', port=443): Read timed out. (read timeout=30)"
+    },
+    {
+      "test_name": "Database RL Schema",
+      "passed": false,
+      "data": "{\"detail\":\"Not Found\"}"
+    }
+  ]
+}

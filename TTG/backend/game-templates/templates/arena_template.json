@@ -1,0 +1,30 @@
+{
+  "template_id": "arena_v1",
+  "entities": [
+    "player",
+    "enemy",
+    "ground",
+    "pickup",
+    "spawner"
+  ],
+  "components": {
+    "player": ["arena_controller", "collider", "health"],
+    "enemy": ["ai_controller", "collider", "health"],
+    "pickup": ["collider", "trigger"]
+  },
+  "jobs": [
+    "BUILD_SCENE",
+    "SPAWN_PLAYER",
+    "SPAWN_ENEMIES",
+    "SPAWN_PICKUPS",
+    "START_LOOP"
+  ],
+  "defaults": {
+    "movement_speed": 5,
+    "enemy_count": 5,
+    "spawn_frequency": 4,
+    "arena_size": 20,
+    "player_health": 100,
+    "enemy_health": 50
+  }
+}

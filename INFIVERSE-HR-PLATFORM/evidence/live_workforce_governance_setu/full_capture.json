@@ -1,0 +1,4026 @@
+{
+  "captures": [
+    {
+      "note": "create organization",
+      "method": "POST",
+      "path": "/v1/workforce/organizations",
+      "request_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "request_body": {
+        "name": "Sampada National Operations",
+        "code": "SNO-T21",
+        "default_roles": [
+          "org_member"
+        ],
+        "status": "active"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "timestamp_utc": "2026-07-01T08:11:23.798848+00:00",
+      "response_body": {
+        "name": "Sampada National Operations",
+        "code": "SNO-T21",
+        "parent_organization_id": null,
+        "default_roles": [
+          "org_member"
+        ],
+        "status": "active",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.810320+00:00",
+        "updated_at": "2026-07-01T08:11:23.810320+00:00",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a44cbabf5b43a528e6ee582"
+      }
+    },
+    {
+      "note": "create division",
+      "method": "POST",
+      "path": "/v1/workforce/divisions",
+      "request_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "request_body": {
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "name": "Field Operations Division",
+        "code": "FOD-T21",
+        "status": "active"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "timestamp_utc": "2026-07-01T08:11:23.812235+00:00",
+      "response_body": {
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "name": "Field Operations Division",
+        "code": "FOD-T21",
+        "status": "active",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.815247+00:00",
+        "updated_at": "2026-07-01T08:11:23.815247+00:00",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a44cbabf5b43a528e6ee584"
+      }
+    },
+    {
+      "note": "create unit",
+      "method": "POST",
+      "path": "/v1/workforce/units",
+      "request_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "request_body": {
+        "division_id": "6a44cbabf5b43a528e6ee584",
+        "name": "Northern Unit",
+        "code": "NU-T21",
+        "status": "active"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "timestamp_utc": "2026-07-01T08:11:23.816750+00:00",
+      "response_body": {
+        "division_id": "6a44cbabf5b43a528e6ee584",
+        "name": "Northern Unit",
+        "code": "NU-T21",
+        "status": "active",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.819722+00:00",
+        "updated_at": "2026-07-01T08:11:23.819722+00:00",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a44cbabf5b43a528e6ee586"
+      }
+    },
+    {
+      "note": "create department A (with team)",
+      "method": "POST",
+      "path": "/v1/workforce/departments",
+      "request_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "request_body": {
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "unit_id": "6a44cbabf5b43a528e6ee586",
+        "name": "Onboarding Desk",
+        "code": "DEPT-A-T21",
+        "default_roles": [
+          "analyst"
+        ],
+        "teams": [
+          {
+            "team_id": "tm-a1",
+            "name": "Intake Team",
+            "lead_role": "lead"
+          }
+        ],
+        "status": "active"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "timestamp_utc": "2026-07-01T08:11:23.821496+00:00",
+      "response_body": {
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "unit_id": "6a44cbabf5b43a528e6ee586",
+        "name": "Onboarding Desk",
+        "code": "DEPT-A-T21",
+        "teams": [
+          {
+            "team_id": "tm-a1",
+            "name": "Intake Team",
+            "lead_role": "lead"
+          }
+        ],
+        "default_roles": [
+          "analyst"
+        ],
+        "status": "active",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.825182+00:00",
+        "updated_at": "2026-07-01T08:11:23.825182+00:00",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a44cbabf5b43a528e6ee588"
+      }
+    },
+    {
+      "note": "create department B",
+      "method": "POST",
+      "path": "/v1/workforce/departments",
+      "request_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "request_body": {
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "unit_id": "6a44cbabf5b43a528e6ee586",
+        "name": "Regional Operations",
+        "code": "DEPT-B-T21",
+        "default_roles": [
+          "operations_specialist"
+        ],
+        "status": "active"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "timestamp_utc": "2026-07-01T08:11:23.826703+00:00",
+      "response_body": {
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "unit_id": "6a44cbabf5b43a528e6ee586",
+        "name": "Regional Operations",
+        "code": "DEPT-B-T21",
+        "teams": [],
+        "default_roles": [
+          "operations_specialist"
+        ],
+        "status": "active",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.829276+00:00",
+        "updated_at": "2026-07-01T08:11:23.829276+00:00",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a44cbabf5b43a528e6ee58a"
+      }
+    },
+    {
+      "note": "create department C",
+      "method": "POST",
+      "path": "/v1/workforce/departments",
+      "request_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "request_body": {
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "unit_id": "6a44cbabf5b43a528e6ee586",
+        "name": "Strategic Programs",
+        "code": "DEPT-C-T21",
+        "default_roles": [
+          "program_lead"
+        ],
+        "status": "active"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "timestamp_utc": "2026-07-01T08:11:23.830640+00:00",
+      "response_body": {
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "unit_id": "6a44cbabf5b43a528e6ee586",
+        "name": "Strategic Programs",
+        "code": "DEPT-C-T21",
+        "teams": [],
+        "default_roles": [
+          "program_lead"
+        ],
+        "status": "active",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.833030+00:00",
+        "updated_at": "2026-07-01T08:11:23.833030+00:00",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a44cbabf5b43a528e6ee58c"
+      }
+    },
+    {
+      "note": "create employee (draft)",
+      "method": "POST",
+      "path": "/v1/workforce/employees",
+      "request_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "request_body": {
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "department_id": "6a44cbabf5b43a528e6ee588",
+        "workforce_type": "employee",
+        "role": "analyst",
+        "display_name": "R. Mehta",
+        "email": "r.mehta@tenant-client-01.local",
+        "lifecycle_state": "draft",
+        "source_system": "sampada"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "timestamp_utc": "2026-07-01T08:11:23.834347+00:00",
+      "response_body": {
+        "workforce_ref_id": "wf-704dedc80d02",
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "department_id": "6a44cbabf5b43a528e6ee588",
+        "unit_id": null,
+        "workforce_type": "employee",
+        "role": "analyst",
+        "inherited_roles": [
+          "org_member",
+          "analyst"
+        ],
+        "display_name": "R. Mehta",
+        "email": "r.mehta@tenant-client-01.local",
+        "lifecycle_state": "draft",
+        "local_system_id": null,
+        "source_system": "sampada",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.837866+00:00",
+        "updated_at": "2026-07-01T08:11:23.837866+00:00",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a44cbabf5b43a528e6ee58e"
+      }
+    },
+    {
+      "note": "lifecycle: onboard (draft->onboarding)",
+      "method": "POST",
+      "path": "/v1/workforce/employees/6a44cbabf5b43a528e6ee58e/lifecycle/onboard",
+      "request_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "request_body": {
+        "reason": "Start onboarding"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "timestamp_utc": "2026-07-01T08:11:23.839219+00:00",
+      "response_body": {
+        "workforce_ref_id": "wf-704dedc80d02",
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "department_id": "6a44cbabf5b43a528e6ee588",
+        "unit_id": null,
+        "workforce_type": "employee",
+        "role": "analyst",
+        "inherited_roles": [
+          "org_member",
+          "analyst"
+        ],
+        "display_name": "R. Mehta",
+        "email": "r.mehta@tenant-client-01.local",
+        "lifecycle_state": "onboarding",
+        "local_system_id": null,
+        "source_system": "sampada",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.837000",
+        "updated_at": "2026-07-01T08:11:23.842000",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a44cbabf5b43a528e6ee58e"
+      }
+    },
+    {
+      "note": "lifecycle: onboard-complete (onboarding->active) = ASSIGNED",
+      "method": "POST",
+      "path": "/v1/workforce/employees/6a44cbabf5b43a528e6ee58e/lifecycle/onboard-complete",
+      "request_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "request_body": {
+        "reason": "Onboarding complete; assigned active"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "timestamp_utc": "2026-07-01T08:11:23.843887+00:00",
+      "response_body": {
+        "workforce_ref_id": "wf-704dedc80d02",
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "department_id": "6a44cbabf5b43a528e6ee588",
+        "unit_id": null,
+        "workforce_type": "employee",
+        "role": "analyst",
+        "inherited_roles": [
+          "org_member",
+          "analyst"
+        ],
+        "display_name": "R. Mehta",
+        "email": "r.mehta@tenant-client-01.local",
+        "lifecycle_state": "active",
+        "local_system_id": null,
+        "source_system": "sampada",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.837000",
+        "updated_at": "2026-07-01T08:11:23.846000",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a44cbabf5b43a528e6ee58e"
+      }
+    },
+    {
+      "note": "lifecycle: department-transfer -> dept B = TRANSFERRED",
+      "method": "POST",
+      "path": "/v1/workforce/employees/6a44cbabf5b43a528e6ee58e/lifecycle/department-transfer",
+      "request_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "request_body": {
+        "new_department_id": "6a44cbabf5b43a528e6ee58a",
+        "reason": "Transfer to Regional Operations"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "timestamp_utc": "2026-07-01T08:11:23.847663+00:00",
+      "response_body": {
+        "workforce_ref_id": "wf-704dedc80d02",
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "department_id": "6a44cbabf5b43a528e6ee58a",
+        "unit_id": null,
+        "workforce_type": "employee",
+        "role": "analyst",
+        "inherited_roles": [
+          "org_member",
+          "analyst"
+        ],
+        "display_name": "R. Mehta",
+        "email": "r.mehta@tenant-client-01.local",
+        "lifecycle_state": "active",
+        "local_system_id": null,
+        "source_system": "sampada",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.837000",
+        "updated_at": "2026-07-01T08:11:23.850000",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a44cbabf5b43a528e6ee58e"
+      }
+    },
+    {
+      "note": "lifecycle: role-move transition_type=promotion = PROMOTED (Gap Fix #1)",
+      "method": "POST",
+      "path": "/v1/workforce/employees/6a44cbabf5b43a528e6ee58e/lifecycle/role-move",
+      "request_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "request_body": {
+        "new_role": "operations_manager",
+        "transition_type": "promotion",
+        "reason": "Promotion to operations_manager"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "timestamp_utc": "2026-07-01T08:11:23.852117+00:00",
+      "response_body": {
+        "workforce_ref_id": "wf-704dedc80d02",
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "department_id": "6a44cbabf5b43a528e6ee58a",
+        "unit_id": null,
+        "workforce_type": "employee",
+        "role": "operations_manager",
+        "inherited_roles": [
+          "operations_manager"
+        ],
+        "display_name": "R. Mehta",
+        "email": "r.mehta@tenant-client-01.local",
+        "lifecycle_state": "active",
+        "local_system_id": null,
+        "source_system": "sampada",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.837000",
+        "updated_at": "2026-07-01T08:11:23.854000",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "transition_type": "promotion",
+        "id": "6a44cbabf5b43a528e6ee58e"
+      }
+    },
+    {
+      "note": "lifecycle: department-transfer -> dept C = MOVED (Gap Resolution #3)",
+      "method": "POST",
+      "path": "/v1/workforce/employees/6a44cbabf5b43a528e6ee58e/lifecycle/department-transfer",
+      "request_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "request_body": {
+        "new_department_id": "6a44cbabf5b43a528e6ee58c",
+        "reason": "Move to Strategic Programs"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "timestamp_utc": "2026-07-01T08:11:23.855793+00:00",
+      "response_body": {
+        "workforce_ref_id": "wf-704dedc80d02",
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "department_id": "6a44cbabf5b43a528e6ee58c",
+        "unit_id": null,
+        "workforce_type": "employee",
+        "role": "operations_manager",
+        "inherited_roles": [
+          "operations_manager"
+        ],
+        "display_name": "R. Mehta",
+        "email": "r.mehta@tenant-client-01.local",
+        "lifecycle_state": "active",
+        "local_system_id": null,
+        "source_system": "sampada",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.837000",
+        "updated_at": "2026-07-01T08:11:23.858000",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "transition_type": "promotion",
+        "id": "6a44cbabf5b43a528e6ee58e"
+      }
+    },
+    {
+      "note": "lifecycle: offboard-prepare = OFFBOARDING INITIATED",
+      "method": "POST",
+      "path": "/v1/workforce/employees/6a44cbabf5b43a528e6ee58e/lifecycle/offboard-prepare",
+      "request_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "request_body": {
+        "reason": "Begin offboarding preparation"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "timestamp_utc": "2026-07-01T08:11:23.859376+00:00",
+      "response_body": {
+        "workforce_ref_id": "wf-704dedc80d02",
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "department_id": "6a44cbabf5b43a528e6ee58c",
+        "unit_id": null,
+        "workforce_type": "employee",
+        "role": "operations_manager",
+        "inherited_roles": [
+          "operations_manager"
+        ],
+        "display_name": "R. Mehta",
+        "email": "r.mehta@tenant-client-01.local",
+        "lifecycle_state": "offboarding_prep",
+        "local_system_id": null,
+        "source_system": "sampada",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.837000",
+        "updated_at": "2026-07-01T08:11:23.861000",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "transition_type": "promotion",
+        "id": "6a44cbabf5b43a528e6ee58e"
+      }
+    },
+    {
+      "note": "REPLAY RECONSTRUCTION (workforce trace-replay by correlation_id)",
+      "method": "GET",
+      "path": "/v1/workforce/trace-replay?correlation_id=0749c563-471a-49a2-8a74-74023b4526c5",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "8517d8f2-e41c-46e6-83b7-97e847b3342b",
+      "timestamp_utc": "2026-07-01T08:11:23.863120+00:00",
+      "response_body": {
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+        "event_count": 13,
+        "events": [
+          {
+            "action": "organization_create",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "created_at": "2026-07-01 08:11:23.810000"
+          },
+          {
+            "action": "division_create",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "created_at": "2026-07-01 08:11:23.815000"
+          },
+          {
+            "action": "unit_create",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "created_at": "2026-07-01 08:11:23.820000"
+          },
+          {
+            "action": "department_create",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "created_at": "2026-07-01 08:11:23.825000"
+          },
+          {
+            "action": "department_create",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "created_at": "2026-07-01 08:11:23.829000"
+          },
+          {
+            "action": "department_create",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "created_at": "2026-07-01 08:11:23.833000"
+          },
+          {
+            "action": "employee_create",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "created_at": "2026-07-01 08:11:23.838000"
+          },
+          {
+            "action": "employee_onboard",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "created_at": "2026-07-01 08:11:23.842000"
+          },
+          {
+            "action": "employee_onboard_complete",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "created_at": "2026-07-01 08:11:23.846000"
+          },
+          {
+            "action": "employee_department_transfer",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "created_at": "2026-07-01 08:11:23.851000"
+          },
+          {
+            "action": "employee_promotion",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "created_at": "2026-07-01 08:11:23.854000"
+          },
+          {
+            "action": "employee_department_transfer",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "created_at": "2026-07-01 08:11:23.858000"
+          },
+          {
+            "action": "employee_offboard_prepare",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "created_at": "2026-07-01 08:11:23.862000"
+          }
+        ],
+        "policy_scope": {
+          "scope": "platform",
+          "scope_label": "platform_admin",
+          "role": "admin",
+          "user_id": null,
+          "tenant_id": null,
+          "org_id": null,
+          "workforce_category": "all"
+        }
+      }
+    },
+    {
+      "note": "create employee in dept A to demonstrate inherited_roles (org+dept defaults)",
+      "method": "POST",
+      "path": "/v1/workforce/employees",
+      "request_correlation_id_header": null,
+      "request_body": {
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "department_id": "6a44cbabf5b43a528e6ee588",
+        "workforce_type": "consultant",
+        "role": "analyst",
+        "display_name": "S. Iyer",
+        "email": "s.iyer@tenant-client-01.local",
+        "lifecycle_state": "draft",
+        "source_system": "sampada"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "d782aa8f-392d-45c5-a713-33655ecc7b5d",
+      "timestamp_utc": "2026-07-01T08:11:23.869825+00:00",
+      "response_body": {
+        "workforce_ref_id": "wf-9ff66f9a66d9",
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "department_id": "6a44cbabf5b43a528e6ee588",
+        "unit_id": null,
+        "workforce_type": "consultant",
+        "role": "analyst",
+        "inherited_roles": [
+          "org_member",
+          "analyst"
+        ],
+        "display_name": "S. Iyer",
+        "email": "s.iyer@tenant-client-01.local",
+        "lifecycle_state": "draft",
+        "local_system_id": null,
+        "source_system": "sampada",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.873473+00:00",
+        "updated_at": "2026-07-01T08:11:23.873473+00:00",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "d782aa8f-392d-45c5-a713-33655ecc7b5d",
+          "correlation_id": "d782aa8f-392d-45c5-a713-33655ecc7b5d",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a44cbabf5b43a528e6ee596"
+      }
+    },
+    {
+      "note": "create employee in dept B (different role)",
+      "method": "POST",
+      "path": "/v1/workforce/employees",
+      "request_correlation_id_header": null,
+      "request_body": {
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "department_id": "6a44cbabf5b43a528e6ee58a",
+        "workforce_type": "employee",
+        "role": "operations_specialist",
+        "display_name": "K. Rao",
+        "email": "k.rao@tenant-client-01.local",
+        "lifecycle_state": "draft",
+        "source_system": "sampada"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "82b8ed75-2a23-4b01-8317-57883dc7e783",
+      "timestamp_utc": "2026-07-01T08:11:23.874943+00:00",
+      "response_body": {
+        "workforce_ref_id": "wf-7e12c94e1e96",
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "department_id": "6a44cbabf5b43a528e6ee58a",
+        "unit_id": null,
+        "workforce_type": "employee",
+        "role": "operations_specialist",
+        "inherited_roles": [
+          "org_member",
+          "operations_specialist"
+        ],
+        "display_name": "K. Rao",
+        "email": "k.rao@tenant-client-01.local",
+        "lifecycle_state": "draft",
+        "local_system_id": null,
+        "source_system": "sampada",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.878142+00:00",
+        "updated_at": "2026-07-01T08:11:23.878142+00:00",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "82b8ed75-2a23-4b01-8317-57883dc7e783",
+          "correlation_id": "82b8ed75-2a23-4b01-8317-57883dc7e783",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a44cbabf5b43a528e6ee598"
+      }
+    },
+    {
+      "note": "org hierarchy traversal (full nested tree)",
+      "method": "GET",
+      "path": "/v1/workforce/organizations/6a44cbabf5b43a528e6ee582/hierarchy",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "a75bf999-8c4e-4973-adc1-4b695bdac1f6",
+      "timestamp_utc": "2026-07-01T08:11:23.879965+00:00",
+      "response_body": {
+        "organization": {
+          "name": "Sampada National Operations",
+          "code": "SNO-T21",
+          "parent_organization_id": null,
+          "default_roles": [
+            "org_member"
+          ],
+          "status": "active",
+          "tenant_id": "platform",
+          "created_at": "2026-07-01T08:11:23.810000",
+          "updated_at": "2026-07-01T08:11:23.810000",
+          "lineage": {
+            "origin_system": "gateway",
+            "owning_system": "sampada",
+            "schema_version": "1.0.0",
+            "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "trust_classification": "canonical",
+            "visibility_scope": "tenant"
+          },
+          "id": "6a44cbabf5b43a528e6ee582"
+        },
+        "divisions": [
+          {
+            "organization_id": "6a44cbabf5b43a528e6ee582",
+            "name": "Field Operations Division",
+            "code": "FOD-T21",
+            "status": "active",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:23.815000",
+            "updated_at": "2026-07-01T08:11:23.815000",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "id": "6a44cbabf5b43a528e6ee584"
+          }
+        ],
+        "units": [
+          {
+            "division_id": "6a44cbabf5b43a528e6ee584",
+            "name": "Northern Unit",
+            "code": "NU-T21",
+            "status": "active",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:23.819000",
+            "updated_at": "2026-07-01T08:11:23.819000",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "id": "6a44cbabf5b43a528e6ee586"
+          }
+        ],
+        "departments": [
+          {
+            "organization_id": "6a44cbabf5b43a528e6ee582",
+            "unit_id": "6a44cbabf5b43a528e6ee586",
+            "name": "Strategic Programs",
+            "code": "DEPT-C-T21",
+            "teams": [],
+            "default_roles": [
+              "program_lead"
+            ],
+            "status": "active",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:23.833000",
+            "updated_at": "2026-07-01T08:11:23.833000",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "id": "6a44cbabf5b43a528e6ee58c"
+          },
+          {
+            "organization_id": "6a44cbabf5b43a528e6ee582",
+            "unit_id": "6a44cbabf5b43a528e6ee586",
+            "name": "Regional Operations",
+            "code": "DEPT-B-T21",
+            "teams": [],
+            "default_roles": [
+              "operations_specialist"
+            ],
+            "status": "active",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:23.829000",
+            "updated_at": "2026-07-01T08:11:23.829000",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "id": "6a44cbabf5b43a528e6ee58a"
+          },
+          {
+            "organization_id": "6a44cbabf5b43a528e6ee582",
+            "unit_id": "6a44cbabf5b43a528e6ee586",
+            "name": "Onboarding Desk",
+            "code": "DEPT-A-T21",
+            "teams": [
+              {
+                "team_id": "tm-a1",
+                "name": "Intake Team",
+                "lead_role": "lead"
+              }
+            ],
+            "default_roles": [
+              "analyst"
+            ],
+            "status": "active",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:23.825000",
+            "updated_at": "2026-07-01T08:11:23.825000",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "id": "6a44cbabf5b43a528e6ee588"
+          }
+        ],
+        "employees": [
+          {
+            "workforce_ref_id": "wf-7e12c94e1e96",
+            "organization_id": "6a44cbabf5b43a528e6ee582",
+            "department_id": "6a44cbabf5b43a528e6ee58a",
+            "unit_id": null,
+            "workforce_type": "employee",
+            "role": "operations_specialist",
+            "inherited_roles": [
+              "org_member",
+              "operations_specialist"
+            ],
+            "display_name": "K. Rao",
+            "email": "k.rao@tenant-client-01.local",
+            "lifecycle_state": "draft",
+            "local_system_id": null,
+            "source_system": "sampada",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:23.878000",
+            "updated_at": "2026-07-01T08:11:23.878000",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "82b8ed75-2a23-4b01-8317-57883dc7e783",
+              "correlation_id": "82b8ed75-2a23-4b01-8317-57883dc7e783",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "id": "6a44cbabf5b43a528e6ee598"
+          },
+          {
+            "workforce_ref_id": "wf-9ff66f9a66d9",
+            "organization_id": "6a44cbabf5b43a528e6ee582",
+            "department_id": "6a44cbabf5b43a528e6ee588",
+            "unit_id": null,
+            "workforce_type": "consultant",
+            "role": "analyst",
+            "inherited_roles": [
+              "org_member",
+              "analyst"
+            ],
+            "display_name": "S. Iyer",
+            "email": "s.iyer@tenant-client-01.local",
+            "lifecycle_state": "draft",
+            "local_system_id": null,
+            "source_system": "sampada",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:23.873000",
+            "updated_at": "2026-07-01T08:11:23.873000",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "d782aa8f-392d-45c5-a713-33655ecc7b5d",
+              "correlation_id": "d782aa8f-392d-45c5-a713-33655ecc7b5d",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "id": "6a44cbabf5b43a528e6ee596"
+          },
+          {
+            "workforce_ref_id": "wf-704dedc80d02",
+            "organization_id": "6a44cbabf5b43a528e6ee582",
+            "department_id": "6a44cbabf5b43a528e6ee58c",
+            "unit_id": null,
+            "workforce_type": "employee",
+            "role": "operations_manager",
+            "inherited_roles": [
+              "operations_manager"
+            ],
+            "display_name": "R. Mehta",
+            "email": "r.mehta@tenant-client-01.local",
+            "lifecycle_state": "offboarding_prep",
+            "local_system_id": null,
+            "source_system": "sampada",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:23.837000",
+            "updated_at": "2026-07-01T08:11:23.861000",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "transition_type": "promotion",
+            "id": "6a44cbabf5b43a528e6ee58e"
+          }
+        ],
+        "policy_scope": {
+          "scope": "platform",
+          "scope_label": "platform_admin",
+          "role": "admin",
+          "user_id": null,
+          "tenant_id": null,
+          "org_id": null,
+          "workforce_category": "all"
+        }
+      }
+    },
+    {
+      "note": "employee list under ADMIN/platform scope",
+      "method": "GET",
+      "path": "/v1/workforce/employees?organization_id=6a44cbabf5b43a528e6ee582",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "3f889820-bd1f-4073-bdf9-1efd44054e05",
+      "timestamp_utc": "2026-07-01T08:11:23.884494+00:00",
+      "response_body": {
+        "items": [
+          {
+            "workforce_ref_id": "wf-7e12c94e1e96",
+            "organization_id": "6a44cbabf5b43a528e6ee582",
+            "department_id": "6a44cbabf5b43a528e6ee58a",
+            "unit_id": null,
+            "workforce_type": "employee",
+            "role": "operations_specialist",
+            "inherited_roles": [
+              "org_member",
+              "operations_specialist"
+            ],
+            "display_name": "K. Rao",
+            "email": "k.rao@tenant-client-01.local",
+            "lifecycle_state": "draft",
+            "local_system_id": null,
+            "source_system": "sampada",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:23.878000",
+            "updated_at": "2026-07-01T08:11:23.878000",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "82b8ed75-2a23-4b01-8317-57883dc7e783",
+              "correlation_id": "82b8ed75-2a23-4b01-8317-57883dc7e783",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "id": "6a44cbabf5b43a528e6ee598"
+          },
+          {
+            "workforce_ref_id": "wf-9ff66f9a66d9",
+            "organization_id": "6a44cbabf5b43a528e6ee582",
+            "department_id": "6a44cbabf5b43a528e6ee588",
+            "unit_id": null,
+            "workforce_type": "consultant",
+            "role": "analyst",
+            "inherited_roles": [
+              "org_member",
+              "analyst"
+            ],
+            "display_name": "S. Iyer",
+            "email": "s.iyer@tenant-client-01.local",
+            "lifecycle_state": "draft",
+            "local_system_id": null,
+            "source_system": "sampada",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:23.873000",
+            "updated_at": "2026-07-01T08:11:23.873000",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "d782aa8f-392d-45c5-a713-33655ecc7b5d",
+              "correlation_id": "d782aa8f-392d-45c5-a713-33655ecc7b5d",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "id": "6a44cbabf5b43a528e6ee596"
+          },
+          {
+            "workforce_ref_id": "wf-704dedc80d02",
+            "organization_id": "6a44cbabf5b43a528e6ee582",
+            "department_id": "6a44cbabf5b43a528e6ee58c",
+            "unit_id": null,
+            "workforce_type": "employee",
+            "role": "operations_manager",
+            "inherited_roles": [
+              "operations_manager"
+            ],
+            "display_name": "R. Mehta",
+            "email": "r.mehta@tenant-client-01.local",
+            "lifecycle_state": "offboarding_prep",
+            "local_system_id": null,
+            "source_system": "sampada",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:23.837000",
+            "updated_at": "2026-07-01T08:11:23.861000",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "transition_type": "promotion",
+            "id": "6a44cbabf5b43a528e6ee58e"
+          }
+        ],
+        "policy_scope": {
+          "scope": "platform",
+          "scope_label": "platform_admin",
+          "role": "admin",
+          "user_id": null,
+          "tenant_id": null,
+          "org_id": null,
+          "workforce_category": "all"
+        }
+      }
+    },
+    {
+      "note": "employee list under CLIENT/tenant scope (boundary check)",
+      "method": "GET",
+      "path": "/v1/workforce/employees",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "jwt:client",
+      "http_status": 200,
+      "response_correlation_id_header": "31cc1518-f3e5-4c41-8666-ba9d888bab2d",
+      "timestamp_utc": "2026-07-01T08:11:23.888393+00:00",
+      "response_body": {
+        "items": [],
+        "policy_scope": {
+          "scope": "client",
+          "scope_label": "client:TENANT-CLIENT-01",
+          "role": "client",
+          "user_id": "TENANT-CLIENT-01",
+          "tenant_id": "TENANT-CLIENT-01",
+          "org_id": "TENANT-CLIENT-01",
+          "workforce_category": "client_workforce"
+        }
+      }
+    },
+    {
+      "note": "negative-path: unknown organization_id (expect 404)",
+      "method": "GET",
+      "path": "/v1/workforce/organizations/000000000000000000000000/hierarchy",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 404,
+      "response_correlation_id_header": "c94614e9-07f7-4b46-8abc-87a7572807f8",
+      "timestamp_utc": "2026-07-01T08:11:23.892614+00:00",
+      "response_body": {
+        "detail": "Organization not found"
+      }
+    },
+    {
+      "note": "[Leave] policy definition create",
+      "method": "POST",
+      "path": "/v1/policies/definitions",
+      "request_correlation_id_header": null,
+      "request_body": {
+        "policy_key": "leave_policy",
+        "name": "Leave Policy",
+        "description": "Leave governance scenario",
+        "version": "1.0.0",
+        "rules": {
+          "min_tenure_days": 90,
+          "effect": "observe"
+        },
+        "scope_type": "tenant"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "cda52f3e-5b1b-46ba-a29a-75fd07a2caa4",
+      "timestamp_utc": "2026-07-01T08:11:23.896930+00:00",
+      "response_body": {
+        "policy_key": "leave_policy",
+        "name": "Leave Policy",
+        "description": "Leave governance scenario",
+        "version": "1.0.0",
+        "rules": {
+          "min_tenure_days": 90,
+          "effect": "observe"
+        },
+        "scope_type": "tenant",
+        "tenant_id": "platform",
+        "status": "active",
+        "created_at": "2026-07-01T08:11:23.903965+00:00",
+        "updated_at": "2026-07-01T08:11:23.903965+00:00",
+        "id": "6a44cbabf5b43a528e6ee59a"
+      }
+    },
+    {
+      "note": "[Leave] policy evaluate (expect deny -> motivates challenge)",
+      "method": "POST",
+      "path": "/v1/policies/evaluate",
+      "request_correlation_id_header": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+      "request_body": {
+        "policy_key": "leave_policy",
+        "context": {
+          "tenure_days": 10
+        }
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+      "timestamp_utc": "2026-07-01T08:11:23.906999+00:00",
+      "response_body": {
+        "evaluation_id": "peval-2f18f04aae1c",
+        "policy_key": "leave_policy",
+        "result": {
+          "decision": "deny",
+          "effect": "observe",
+          "rationale": "Tenure below minimum"
+        },
+        "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c"
+      }
+    },
+    {
+      "note": "[Leave] challenge raise",
+      "method": "POST",
+      "path": "/v1/governance/challenges",
+      "request_correlation_id_header": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+      "request_body": {
+        "policy_key": "leave_policy",
+        "evaluation_id": "peval-2f18f04aae1c",
+        "subject_type": "policy_evaluation",
+        "subject_id": "peval-2f18f04aae1c",
+        "reason": "Challenge Leave denial for review"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+      "timestamp_utc": "2026-07-01T08:11:23.914594+00:00",
+      "response_body": {
+        "challenge_id": "chl-69a0fb4eb9e6",
+        "policy_key": "leave_policy",
+        "evaluation_id": "peval-2f18f04aae1c",
+        "subject_type": "policy_evaluation",
+        "subject_id": "peval-2f18f04aae1c",
+        "reason": "Challenge Leave denial for review",
+        "status": "open",
+        "tenant_id": "platform",
+        "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-01T08:11:23.921554+00:00",
+        "updated_at": "2026-07-01T08:11:23.921554+00:00",
+        "id": "6a44cbabf5b43a528e6ee59d"
+      }
+    },
+    {
+      "note": "[Leave] review assign",
+      "method": "POST",
+      "path": "/v1/governance/reviews",
+      "request_correlation_id_header": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+      "request_body": {
+        "challenge_id": "chl-69a0fb4eb9e6",
+        "reviewer_role": "admin",
+        "notes": "Assigned for governance review"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+      "timestamp_utc": "2026-07-01T08:11:23.923899+00:00",
+      "response_body": {
+        "review_id": "rev-86949c3e8382",
+        "challenge_id": "chl-69a0fb4eb9e6",
+        "reviewer_role": "admin",
+        "notes": "Assigned for governance review",
+        "status": "assigned",
+        "tenant_id": "platform",
+        "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-01T08:11:23.927010+00:00",
+        "updated_at": "2026-07-01T08:11:23.927010+00:00",
+        "id": "6a44cbabf5b43a528e6ee59f"
+      }
+    },
+    {
+      "note": "[Leave] review complete (upheld)",
+      "method": "POST",
+      "path": "/v1/governance/reviews/rev-86949c3e8382/complete",
+      "request_correlation_id_header": null,
+      "request_body": {
+        "outcome": "upheld",
+        "notes": "Review upheld; override warranted"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "c79b3963-a94d-459c-a3c4-ef320418e982",
+      "timestamp_utc": "2026-07-01T08:11:23.928830+00:00",
+      "response_body": {
+        "review_id": "rev-86949c3e8382",
+        "challenge_id": "chl-69a0fb4eb9e6",
+        "reviewer_role": "admin",
+        "notes": "Review upheld; override warranted",
+        "status": "completed",
+        "tenant_id": "platform",
+        "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-01T08:11:23.927000",
+        "updated_at": "2026-07-01T08:11:23.932000",
+        "outcome": "upheld",
+        "id": "6a44cbabf5b43a528e6ee59f"
+      }
+    },
+    {
+      "note": "[Leave] workflow override propose",
+      "method": "POST",
+      "path": "/v1/governance/overrides",
+      "request_correlation_id_header": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+      "request_body": {
+        "challenge_id": "chl-69a0fb4eb9e6",
+        "policy_key": "leave_policy",
+        "reason": "Override Leave outcome per review",
+        "override_effect": "allow"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+      "timestamp_utc": "2026-07-01T08:11:23.935968+00:00",
+      "response_body": {
+        "override_id": "wovr-330551d24267",
+        "challenge_id": "chl-69a0fb4eb9e6",
+        "policy_key": "leave_policy",
+        "reason": "Override Leave outcome per review",
+        "override_effect": "allow",
+        "status": "proposed",
+        "tenant_id": "platform",
+        "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-01T08:11:23.940162+00:00",
+        "updated_at": "2026-07-01T08:11:23.940162+00:00",
+        "id": "6a44cbabf5b43a528e6ee5a1"
+      }
+    },
+    {
+      "note": "[Leave] workflow override apply",
+      "method": "POST",
+      "path": "/v1/governance/overrides/wovr-330551d24267/apply",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "f68cdbc1-b328-4f7b-b2d7-5179c66a5449",
+      "timestamp_utc": "2026-07-01T08:11:23.941788+00:00",
+      "response_body": {
+        "override_id": "wovr-330551d24267",
+        "challenge_id": "chl-69a0fb4eb9e6",
+        "policy_key": "leave_policy",
+        "reason": "Override Leave outcome per review",
+        "override_effect": "allow",
+        "status": "applied",
+        "tenant_id": "platform",
+        "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-01T08:11:23.940000",
+        "updated_at": "2026-07-01T08:11:23.944000",
+        "id": "6a44cbabf5b43a528e6ee5a1"
+      }
+    },
+    {
+      "note": "[Leave] decision record",
+      "method": "POST",
+      "path": "/v1/decisions",
+      "request_correlation_id_header": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+      "request_body": {
+        "owner": "Rishabh Yadav",
+        "scope": "tenant",
+        "rationale": "Recorded decision for Leave challenge chl-69a0fb4eb9e6",
+        "inputs": {
+          "evaluation_id": "peval-2f18f04aae1c",
+          "override_id": "wovr-330551d24267"
+        },
+        "challenge_id": "chl-69a0fb4eb9e6",
+        "review_id": "rev-86949c3e8382",
+        "trace_references": [
+          "44ce7789-cd5e-4fb1-bf12-b0ace199e93c"
+        ]
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+      "timestamp_utc": "2026-07-01T08:11:23.945735+00:00",
+      "response_body": {
+        "decision_id": "dec-865d0fb11014",
+        "owner": "Rishabh Yadav",
+        "scope": "tenant",
+        "rationale": "Recorded decision for Leave challenge chl-69a0fb4eb9e6",
+        "inputs": {
+          "evaluation_id": "peval-2f18f04aae1c",
+          "override_id": "wovr-330551d24267"
+        },
+        "timestamp": "2026-07-01T08:11:23.952426+00:00",
+        "dependencies": [],
+        "status": "active",
+        "supersedes": null,
+        "trace_references": [
+          "44ce7789-cd5e-4fb1-bf12-b0ace199e93c"
+        ],
+        "challenge_id": "chl-69a0fb4eb9e6",
+        "review_id": "rev-86949c3e8382",
+        "tenant_id": "platform",
+        "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+        "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-01T08:11:23.952426+00:00",
+        "updated_at": "2026-07-01T08:11:23.952426+00:00",
+        "id": "6a44cbabf5b43a528e6ee5a3"
+      }
+    },
+    {
+      "note": "[Leave] superseding decision (supersedes prior) for replay chain",
+      "method": "POST",
+      "path": "/v1/decisions",
+      "request_correlation_id_header": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+      "request_body": {
+        "owner": "Rishabh Yadav",
+        "scope": "tenant",
+        "rationale": "Corrected leave decision superseding prior",
+        "inputs": {
+          "correction": true
+        },
+        "supersedes": "dec-865d0fb11014",
+        "trace_references": [
+          "44ce7789-cd5e-4fb1-bf12-b0ace199e93c"
+        ]
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+      "timestamp_utc": "2026-07-01T08:11:23.954941+00:00",
+      "response_body": {
+        "decision_id": "dec-d3484e954a24",
+        "owner": "Rishabh Yadav",
+        "scope": "tenant",
+        "rationale": "Corrected leave decision superseding prior",
+        "inputs": {
+          "correction": true
+        },
+        "timestamp": "2026-07-01T08:11:23.957959+00:00",
+        "dependencies": [],
+        "status": "active",
+        "supersedes": "dec-865d0fb11014",
+        "trace_references": [
+          "44ce7789-cd5e-4fb1-bf12-b0ace199e93c"
+        ],
+        "challenge_id": null,
+        "review_id": null,
+        "tenant_id": "platform",
+        "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+        "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-01T08:11:23.957959+00:00",
+        "updated_at": "2026-07-01T08:11:23.957959+00:00",
+        "id": "6a44cbabf5b43a528e6ee5a5"
+      }
+    },
+    {
+      "note": "[Leave] decision replay (supersedes chain)",
+      "method": "GET",
+      "path": "/v1/decisions/replay?decision_id=dec-d3484e954a24",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "dbd78e7d-dec2-4ff6-93ea-3eda568f7a88",
+      "timestamp_utc": "2026-07-01T08:11:23.960372+00:00",
+      "response_body": {
+        "replay_type": "supersedes_chain",
+        "root_decision_id": "dec-d3484e954a24",
+        "chain": [
+          {
+            "decision_id": "dec-865d0fb11014",
+            "owner": "Rishabh Yadav",
+            "scope": "tenant",
+            "rationale": "Recorded decision for Leave challenge chl-69a0fb4eb9e6",
+            "inputs": {
+              "evaluation_id": "peval-2f18f04aae1c",
+              "override_id": "wovr-330551d24267"
+            },
+            "timestamp": "2026-07-01T08:11:23.952000",
+            "dependencies": [],
+            "status": "superseded",
+            "supersedes": null,
+            "trace_references": [
+              "44ce7789-cd5e-4fb1-bf12-b0ace199e93c"
+            ],
+            "challenge_id": "chl-69a0fb4eb9e6",
+            "review_id": "rev-86949c3e8382",
+            "tenant_id": "platform",
+            "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+              "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:23.952000",
+            "updated_at": "2026-07-01T08:11:23.957000",
+            "id": "6a44cbabf5b43a528e6ee5a3"
+          },
+          {
+            "decision_id": "dec-d3484e954a24",
+            "owner": "Rishabh Yadav",
+            "scope": "tenant",
+            "rationale": "Corrected leave decision superseding prior",
+            "inputs": {
+              "correction": true
+            },
+            "timestamp": "2026-07-01T08:11:23.957000",
+            "dependencies": [],
+            "status": "active",
+            "supersedes": "dec-865d0fb11014",
+            "trace_references": [
+              "44ce7789-cd5e-4fb1-bf12-b0ace199e93c"
+            ],
+            "challenge_id": null,
+            "review_id": null,
+            "tenant_id": "platform",
+            "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+              "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:23.957000",
+            "updated_at": "2026-07-01T08:11:23.957000",
+            "id": "6a44cbabf5b43a528e6ee5a5"
+          }
+        ]
+      }
+    },
+    {
+      "note": "[Visibility] policy definition create",
+      "method": "POST",
+      "path": "/v1/policies/definitions",
+      "request_correlation_id_header": null,
+      "request_body": {
+        "policy_key": "visibility_policy",
+        "name": "Visibility Policy",
+        "description": "Visibility governance scenario",
+        "version": "1.0.0",
+        "rules": {
+          "require_scope_match": true,
+          "effect": "allow"
+        },
+        "scope_type": "tenant"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "cf31a3f3-295b-4c53-b71e-d1cc20d0b35c",
+      "timestamp_utc": "2026-07-01T08:11:23.965515+00:00",
+      "response_body": {
+        "policy_key": "visibility_policy",
+        "name": "Visibility Policy",
+        "description": "Visibility governance scenario",
+        "version": "1.0.0",
+        "rules": {
+          "require_scope_match": true,
+          "effect": "allow"
+        },
+        "scope_type": "tenant",
+        "tenant_id": "platform",
+        "status": "active",
+        "created_at": "2026-07-01T08:11:23.970881+00:00",
+        "updated_at": "2026-07-01T08:11:23.970881+00:00",
+        "id": "6a44cbabf5b43a528e6ee5a7"
+      }
+    },
+    {
+      "note": "[Visibility] policy evaluate (expect deny -> motivates challenge)",
+      "method": "POST",
+      "path": "/v1/policies/evaluate",
+      "request_correlation_id_header": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+      "request_body": {
+        "policy_key": "visibility_policy",
+        "context": {
+          "scope_match": false
+        }
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+      "timestamp_utc": "2026-07-01T08:11:23.972371+00:00",
+      "response_body": {
+        "evaluation_id": "peval-fd13389d6278",
+        "policy_key": "visibility_policy",
+        "result": {
+          "decision": "deny",
+          "effect": "deny",
+          "rationale": "Scope mismatch"
+        },
+        "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5"
+      }
+    },
+    {
+      "note": "[Visibility] challenge raise",
+      "method": "POST",
+      "path": "/v1/governance/challenges",
+      "request_correlation_id_header": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+      "request_body": {
+        "policy_key": "visibility_policy",
+        "evaluation_id": "peval-fd13389d6278",
+        "subject_type": "policy_evaluation",
+        "subject_id": "peval-fd13389d6278",
+        "reason": "Challenge Visibility denial for review"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+      "timestamp_utc": "2026-07-01T08:11:23.977418+00:00",
+      "response_body": {
+        "challenge_id": "chl-d7be45556404",
+        "policy_key": "visibility_policy",
+        "evaluation_id": "peval-fd13389d6278",
+        "subject_type": "policy_evaluation",
+        "subject_id": "peval-fd13389d6278",
+        "reason": "Challenge Visibility denial for review",
+        "status": "open",
+        "tenant_id": "platform",
+        "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+          "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-01T08:11:23.979961+00:00",
+        "updated_at": "2026-07-01T08:11:23.979961+00:00",
+        "id": "6a44cbabf5b43a528e6ee5aa"
+      }
+    },
+    {
+      "note": "[Visibility] review assign",
+      "method": "POST",
+      "path": "/v1/governance/reviews",
+      "request_correlation_id_header": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+      "request_body": {
+        "challenge_id": "chl-d7be45556404",
+        "reviewer_role": "admin",
+        "notes": "Assigned for governance review"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+      "timestamp_utc": "2026-07-01T08:11:23.981622+00:00",
+      "response_body": {
+        "review_id": "rev-5071f2e15d72",
+        "challenge_id": "chl-d7be45556404",
+        "reviewer_role": "admin",
+        "notes": "Assigned for governance review",
+        "status": "assigned",
+        "tenant_id": "platform",
+        "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+          "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-01T08:11:23.985180+00:00",
+        "updated_at": "2026-07-01T08:11:23.985180+00:00",
+        "id": "6a44cbabf5b43a528e6ee5ac"
+      }
+    },
+    {
+      "note": "[Visibility] review complete (upheld)",
+      "method": "POST",
+      "path": "/v1/governance/reviews/rev-5071f2e15d72/complete",
+      "request_correlation_id_header": null,
+      "request_body": {
+        "outcome": "upheld",
+        "notes": "Review upheld; override warranted"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "2bb0234f-6fe3-4832-84ad-7652550c11b3",
+      "timestamp_utc": "2026-07-01T08:11:23.986678+00:00",
+      "response_body": {
+        "review_id": "rev-5071f2e15d72",
+        "challenge_id": "chl-d7be45556404",
+        "reviewer_role": "admin",
+        "notes": "Review upheld; override warranted",
+        "status": "completed",
+        "tenant_id": "platform",
+        "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+          "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-01T08:11:23.985000",
+        "updated_at": "2026-07-01T08:11:23.989000",
+        "outcome": "upheld",
+        "id": "6a44cbabf5b43a528e6ee5ac"
+      }
+    },
+    {
+      "note": "[Visibility] workflow override propose",
+      "method": "POST",
+      "path": "/v1/governance/overrides",
+      "request_correlation_id_header": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+      "request_body": {
+        "challenge_id": "chl-d7be45556404",
+        "policy_key": "visibility_policy",
+        "reason": "Override Visibility outcome per review",
+        "override_effect": "allow"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+      "timestamp_utc": "2026-07-01T08:11:23.990761+00:00",
+      "response_body": {
+        "override_id": "wovr-ed42abb0693e",
+        "challenge_id": "chl-d7be45556404",
+        "policy_key": "visibility_policy",
+        "reason": "Override Visibility outcome per review",
+        "override_effect": "allow",
+        "status": "proposed",
+        "tenant_id": "platform",
+        "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+          "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-01T08:11:23.993542+00:00",
+        "updated_at": "2026-07-01T08:11:23.993542+00:00",
+        "id": "6a44cbabf5b43a528e6ee5ae"
+      }
+    },
+    {
+      "note": "[Visibility] workflow override apply",
+      "method": "POST",
+      "path": "/v1/governance/overrides/wovr-ed42abb0693e/apply",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "7ec41e67-17d2-49af-92a4-f718202ac4a0",
+      "timestamp_utc": "2026-07-01T08:11:23.994861+00:00",
+      "response_body": {
+        "override_id": "wovr-ed42abb0693e",
+        "challenge_id": "chl-d7be45556404",
+        "policy_key": "visibility_policy",
+        "reason": "Override Visibility outcome per review",
+        "override_effect": "allow",
+        "status": "applied",
+        "tenant_id": "platform",
+        "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+          "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-01T08:11:23.993000",
+        "updated_at": "2026-07-01T08:11:23.997000",
+        "id": "6a44cbabf5b43a528e6ee5ae"
+      }
+    },
+    {
+      "note": "[Visibility] decision record",
+      "method": "POST",
+      "path": "/v1/decisions",
+      "request_correlation_id_header": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+      "request_body": {
+        "owner": "Rishabh Yadav",
+        "scope": "tenant",
+        "rationale": "Recorded decision for Visibility challenge chl-d7be45556404",
+        "inputs": {
+          "evaluation_id": "peval-fd13389d6278",
+          "override_id": "wovr-ed42abb0693e"
+        },
+        "challenge_id": "chl-d7be45556404",
+        "review_id": "rev-5071f2e15d72",
+        "trace_references": [
+          "d89f8086-7560-4b77-a934-d4d7b62e1cf5"
+        ]
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+      "timestamp_utc": "2026-07-01T08:11:23.998815+00:00",
+      "response_body": {
+        "decision_id": "dec-595d5dd2e58a",
+        "owner": "Rishabh Yadav",
+        "scope": "tenant",
+        "rationale": "Recorded decision for Visibility challenge chl-d7be45556404",
+        "inputs": {
+          "evaluation_id": "peval-fd13389d6278",
+          "override_id": "wovr-ed42abb0693e"
+        },
+        "timestamp": "2026-07-01T08:11:24.002311+00:00",
+        "dependencies": [],
+        "status": "active",
+        "supersedes": null,
+        "trace_references": [
+          "d89f8086-7560-4b77-a934-d4d7b62e1cf5"
+        ],
+        "challenge_id": "chl-d7be45556404",
+        "review_id": "rev-5071f2e15d72",
+        "tenant_id": "platform",
+        "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+        "trace_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+          "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-01T08:11:24.002311+00:00",
+        "updated_at": "2026-07-01T08:11:24.002311+00:00",
+        "id": "6a44cbacf5b43a528e6ee5b0"
+      }
+    },
+    {
+      "note": "[Visibility] decision replay (supersedes chain)",
+      "method": "GET",
+      "path": "/v1/decisions/replay?decision_id=dec-595d5dd2e58a",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "eb4fcf7d-dae2-4de2-aa2f-1c5b67a4bd71",
+      "timestamp_utc": "2026-07-01T08:11:24.003835+00:00",
+      "response_body": {
+        "replay_type": "supersedes_chain",
+        "root_decision_id": "dec-595d5dd2e58a",
+        "chain": [
+          {
+            "decision_id": "dec-595d5dd2e58a",
+            "owner": "Rishabh Yadav",
+            "scope": "tenant",
+            "rationale": "Recorded decision for Visibility challenge chl-d7be45556404",
+            "inputs": {
+              "evaluation_id": "peval-fd13389d6278",
+              "override_id": "wovr-ed42abb0693e"
+            },
+            "timestamp": "2026-07-01T08:11:24.002000",
+            "dependencies": [],
+            "status": "active",
+            "supersedes": null,
+            "trace_references": [
+              "d89f8086-7560-4b77-a934-d4d7b62e1cf5"
+            ],
+            "challenge_id": "chl-d7be45556404",
+            "review_id": "rev-5071f2e15d72",
+            "tenant_id": "platform",
+            "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+            "trace_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+              "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:24.002000",
+            "updated_at": "2026-07-01T08:11:24.002000",
+            "id": "6a44cbacf5b43a528e6ee5b0"
+          }
+        ]
+      }
+    },
+    {
+      "note": "[Approval] policy definition create",
+      "method": "POST",
+      "path": "/v1/policies/definitions",
+      "request_correlation_id_header": null,
+      "request_body": {
+        "policy_key": "approval_policy",
+        "name": "Approval Policy",
+        "description": "Approval governance scenario",
+        "version": "1.0.0",
+        "rules": {
+          "require_explicit_approval": true,
+          "effect": "deny_until_approved"
+        },
+        "scope_type": "tenant"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "daf14545-5bed-4382-8190-459826392e2d",
+      "timestamp_utc": "2026-07-01T08:11:24.007282+00:00",
+      "response_body": {
+        "policy_key": "approval_policy",
+        "name": "Approval Policy",
+        "description": "Approval governance scenario",
+        "version": "1.0.0",
+        "rules": {
+          "require_explicit_approval": true,
+          "effect": "deny_until_approved"
+        },
+        "scope_type": "tenant",
+        "tenant_id": "platform",
+        "status": "active",
+        "created_at": "2026-07-01T08:11:24.009695+00:00",
+        "updated_at": "2026-07-01T08:11:24.009695+00:00",
+        "id": "6a44cbacf5b43a528e6ee5b2"
+      }
+    },
+    {
+      "note": "[Approval] policy evaluate (expect deny -> motivates challenge)",
+      "method": "POST",
+      "path": "/v1/policies/evaluate",
+      "request_correlation_id_header": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+      "request_body": {
+        "policy_key": "approval_policy",
+        "context": {
+          "approved": false
+        }
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+      "timestamp_utc": "2026-07-01T08:11:24.010931+00:00",
+      "response_body": {
+        "evaluation_id": "peval-98b647f20f36",
+        "policy_key": "approval_policy",
+        "result": {
+          "decision": "deny",
+          "effect": "deny_until_approved",
+          "rationale": "Explicit approval required"
+        },
+        "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029"
+      }
+    },
+    {
+      "note": "[Approval] challenge raise",
+      "method": "POST",
+      "path": "/v1/governance/challenges",
+      "request_correlation_id_header": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+      "request_body": {
+        "policy_key": "approval_policy",
+        "evaluation_id": "peval-98b647f20f36",
+        "subject_type": "policy_evaluation",
+        "subject_id": "peval-98b647f20f36",
+        "reason": "Challenge Approval denial for review"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+      "timestamp_utc": "2026-07-01T08:11:24.014718+00:00",
+      "response_body": {
+        "challenge_id": "chl-5e3c63b0c676",
+        "policy_key": "approval_policy",
+        "evaluation_id": "peval-98b647f20f36",
+        "subject_type": "policy_evaluation",
+        "subject_id": "peval-98b647f20f36",
+        "reason": "Challenge Approval denial for review",
+        "status": "open",
+        "tenant_id": "platform",
+        "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+          "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-01T08:11:24.017897+00:00",
+        "updated_at": "2026-07-01T08:11:24.017897+00:00",
+        "id": "6a44cbacf5b43a528e6ee5b5"
+      }
+    },
+    {
+      "note": "[Approval] review assign",
+      "method": "POST",
+      "path": "/v1/governance/reviews",
+      "request_correlation_id_header": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+      "request_body": {
+        "challenge_id": "chl-5e3c63b0c676",
+        "reviewer_role": "admin",
+        "notes": "Assigned for governance review"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+      "timestamp_utc": "2026-07-01T08:11:24.019550+00:00",
+      "response_body": {
+        "review_id": "rev-5b221d53f847",
+        "challenge_id": "chl-5e3c63b0c676",
+        "reviewer_role": "admin",
+        "notes": "Assigned for governance review",
+        "status": "assigned",
+        "tenant_id": "platform",
+        "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+          "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-01T08:11:24.022099+00:00",
+        "updated_at": "2026-07-01T08:11:24.022099+00:00",
+        "id": "6a44cbacf5b43a528e6ee5b7"
+      }
+    },
+    {
+      "note": "[Approval] review complete (upheld)",
+      "method": "POST",
+      "path": "/v1/governance/reviews/rev-5b221d53f847/complete",
+      "request_correlation_id_header": null,
+      "request_body": {
+        "outcome": "upheld",
+        "notes": "Review upheld; override warranted"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "9889921e-d343-43e6-bfd1-bcfd64f74b46",
+      "timestamp_utc": "2026-07-01T08:11:24.023482+00:00",
+      "response_body": {
+        "review_id": "rev-5b221d53f847",
+        "challenge_id": "chl-5e3c63b0c676",
+        "reviewer_role": "admin",
+        "notes": "Review upheld; override warranted",
+        "status": "completed",
+        "tenant_id": "platform",
+        "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+          "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-01T08:11:24.022000",
+        "updated_at": "2026-07-01T08:11:24.026000",
+        "outcome": "upheld",
+        "id": "6a44cbacf5b43a528e6ee5b7"
+      }
+    },
+    {
+      "note": "[Approval] workflow override propose",
+      "method": "POST",
+      "path": "/v1/governance/overrides",
+      "request_correlation_id_header": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+      "request_body": {
+        "challenge_id": "chl-5e3c63b0c676",
+        "policy_key": "approval_policy",
+        "reason": "Override Approval outcome per review",
+        "override_effect": "allow"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+      "timestamp_utc": "2026-07-01T08:11:24.028120+00:00",
+      "response_body": {
+        "override_id": "wovr-9203038691f0",
+        "challenge_id": "chl-5e3c63b0c676",
+        "policy_key": "approval_policy",
+        "reason": "Override Approval outcome per review",
+        "override_effect": "allow",
+        "status": "proposed",
+        "tenant_id": "platform",
+        "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+          "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-01T08:11:24.030925+00:00",
+        "updated_at": "2026-07-01T08:11:24.030925+00:00",
+        "id": "6a44cbacf5b43a528e6ee5b9"
+      }
+    },
+    {
+      "note": "[Approval] workflow override apply",
+      "method": "POST",
+      "path": "/v1/governance/overrides/wovr-9203038691f0/apply",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "1bf4bd51-98cb-4a00-b6da-e4669248491a",
+      "timestamp_utc": "2026-07-01T08:11:24.032982+00:00",
+      "response_body": {
+        "override_id": "wovr-9203038691f0",
+        "challenge_id": "chl-5e3c63b0c676",
+        "policy_key": "approval_policy",
+        "reason": "Override Approval outcome per review",
+        "override_effect": "allow",
+        "status": "applied",
+        "tenant_id": "platform",
+        "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+          "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-01T08:11:24.030000",
+        "updated_at": "2026-07-01T08:11:24.037000",
+        "id": "6a44cbacf5b43a528e6ee5b9"
+      }
+    },
+    {
+      "note": "[Approval] decision record",
+      "method": "POST",
+      "path": "/v1/decisions",
+      "request_correlation_id_header": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+      "request_body": {
+        "owner": "Rishabh Yadav",
+        "scope": "tenant",
+        "rationale": "Recorded decision for Approval challenge chl-5e3c63b0c676",
+        "inputs": {
+          "evaluation_id": "peval-98b647f20f36",
+          "override_id": "wovr-9203038691f0"
+        },
+        "challenge_id": "chl-5e3c63b0c676",
+        "review_id": "rev-5b221d53f847",
+        "trace_references": [
+          "4d08bd17-b100-4bf9-a99f-abdcb3eb9029"
+        ]
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+      "timestamp_utc": "2026-07-01T08:11:24.038474+00:00",
+      "response_body": {
+        "decision_id": "dec-6e31988ba178",
+        "owner": "Rishabh Yadav",
+        "scope": "tenant",
+        "rationale": "Recorded decision for Approval challenge chl-5e3c63b0c676",
+        "inputs": {
+          "evaluation_id": "peval-98b647f20f36",
+          "override_id": "wovr-9203038691f0"
+        },
+        "timestamp": "2026-07-01T08:11:24.041056+00:00",
+        "dependencies": [],
+        "status": "active",
+        "supersedes": null,
+        "trace_references": [
+          "4d08bd17-b100-4bf9-a99f-abdcb3eb9029"
+        ],
+        "challenge_id": "chl-5e3c63b0c676",
+        "review_id": "rev-5b221d53f847",
+        "tenant_id": "platform",
+        "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+        "trace_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+          "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-01T08:11:24.041056+00:00",
+        "updated_at": "2026-07-01T08:11:24.041056+00:00",
+        "id": "6a44cbacf5b43a528e6ee5bb"
+      }
+    },
+    {
+      "note": "[Approval] decision replay (supersedes chain)",
+      "method": "GET",
+      "path": "/v1/decisions/replay?decision_id=dec-6e31988ba178",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "fa6fb1ac-abbb-40d6-b61f-4f9c51b6331c",
+      "timestamp_utc": "2026-07-01T08:11:24.042406+00:00",
+      "response_body": {
+        "replay_type": "supersedes_chain",
+        "root_decision_id": "dec-6e31988ba178",
+        "chain": [
+          {
+            "decision_id": "dec-6e31988ba178",
+            "owner": "Rishabh Yadav",
+            "scope": "tenant",
+            "rationale": "Recorded decision for Approval challenge chl-5e3c63b0c676",
+            "inputs": {
+              "evaluation_id": "peval-98b647f20f36",
+              "override_id": "wovr-9203038691f0"
+            },
+            "timestamp": "2026-07-01T08:11:24.041000",
+            "dependencies": [],
+            "status": "active",
+            "supersedes": null,
+            "trace_references": [
+              "4d08bd17-b100-4bf9-a99f-abdcb3eb9029"
+            ],
+            "challenge_id": "chl-5e3c63b0c676",
+            "review_id": "rev-5b221d53f847",
+            "tenant_id": "platform",
+            "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+            "trace_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+              "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-01T08:11:24.041000",
+            "updated_at": "2026-07-01T08:11:24.041000",
+            "id": "6a44cbacf5b43a528e6ee5bb"
+          }
+        ]
+      }
+    },
+    {
+      "note": "list policy definitions (post-scenario state)",
+      "method": "GET",
+      "path": "/v1/policies/definitions?limit=50",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "9d188027-2eb0-4b9e-9768-a7d8cdbac5f8",
+      "timestamp_utc": "2026-07-01T08:11:24.047014+00:00",
+      "response_body": {
+        "items": [
+          {
+            "policy_key": "approval_policy",
+            "name": "Approval Policy",
+            "description": "Approval governance scenario",
+            "version": "1.0.0",
+            "rules": {
+              "require_explicit_approval": true,
+              "effect": "deny_until_approved"
+            },
+            "scope_type": "tenant",
+            "tenant_id": "platform",
+            "status": "active",
+            "created_at": "2026-07-01T08:11:24.009000",
+            "updated_at": "2026-07-01T08:11:24.009000",
+            "id": "6a44cbacf5b43a528e6ee5b2"
+          },
+          {
+            "policy_key": "leave_policy",
+            "name": "Leave Policy",
+            "description": "Leave governance scenario",
+            "version": "1.0.0",
+            "rules": {
+              "min_tenure_days": 90,
+              "effect": "observe"
+            },
+            "scope_type": "tenant",
+            "tenant_id": "platform",
+            "status": "active",
+            "created_at": "2026-07-01T08:11:23.903000",
+            "updated_at": "2026-07-01T08:11:23.903000",
+            "id": "6a44cbabf5b43a528e6ee59a"
+          },
+          {
+            "policy_key": "visibility_policy",
+            "name": "Visibility Policy",
+            "description": "Visibility governance scenario",
+            "version": "1.0.0",
+            "rules": {
+              "require_scope_match": true,
+              "effect": "allow"
+            },
+            "scope_type": "tenant",
+            "tenant_id": "platform",
+            "status": "active",
+            "created_at": "2026-07-01T08:11:23.970000",
+            "updated_at": "2026-07-01T08:11:23.970000",
+            "id": "6a44cbabf5b43a528e6ee5a7"
+          }
+        ],
+        "policy_scope": {
+          "scope": "platform",
+          "scope_label": "platform_admin",
+          "role": "admin",
+          "user_id": null,
+          "tenant_id": null,
+          "org_id": null,
+          "workforce_category": "all"
+        }
+      }
+    },
+    {
+      "note": "re-evaluate leave_policy with compliant context (state comparison vs Phase 3 deny)",
+      "method": "POST",
+      "path": "/v1/policies/evaluate",
+      "request_correlation_id_header": null,
+      "request_body": {
+        "policy_key": "leave_policy",
+        "context": {
+          "tenure_days": 200
+        }
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "64070707-efff-41dd-ae4d-4e0385da5881",
+      "timestamp_utc": "2026-07-01T08:11:24.051510+00:00",
+      "response_body": {
+        "evaluation_id": "peval-71af6bd1579c",
+        "policy_key": "leave_policy",
+        "result": {
+          "decision": "allow",
+          "effect": "observe",
+          "rationale": "policy=leave_policy"
+        },
+        "correlation_id": "64070707-efff-41dd-ae4d-4e0385da5881"
+      }
+    },
+    {
+      "note": "re-evaluate visibility_policy with compliant context (state comparison vs Phase 3 deny)",
+      "method": "POST",
+      "path": "/v1/policies/evaluate",
+      "request_correlation_id_header": null,
+      "request_body": {
+        "policy_key": "visibility_policy",
+        "context": {
+          "scope_match": true
+        }
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "e9a9deff-4ce9-4df2-8068-d128f994bbd3",
+      "timestamp_utc": "2026-07-01T08:11:24.056072+00:00",
+      "response_body": {
+        "evaluation_id": "peval-3e5e2af0d247",
+        "policy_key": "visibility_policy",
+        "result": {
+          "decision": "allow",
+          "effect": "allow",
+          "rationale": "policy=visibility_policy"
+        },
+        "correlation_id": "e9a9deff-4ce9-4df2-8068-d128f994bbd3"
+      }
+    },
+    {
+      "note": "re-evaluate approval_policy with compliant context (state comparison vs Phase 3 deny)",
+      "method": "POST",
+      "path": "/v1/policies/evaluate",
+      "request_correlation_id_header": null,
+      "request_body": {
+        "policy_key": "approval_policy",
+        "context": {
+          "approved": true
+        }
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "029102a2-cab4-44aa-9e7f-11f1d3fcaabb",
+      "timestamp_utc": "2026-07-01T08:11:24.060307+00:00",
+      "response_body": {
+        "evaluation_id": "peval-1b292a0d880a",
+        "policy_key": "approval_policy",
+        "result": {
+          "decision": "observe",
+          "effect": "deny_until_approved",
+          "rationale": "policy=approval_policy"
+        },
+        "correlation_id": "029102a2-cab4-44aa-9e7f-11f1d3fcaabb"
+      }
+    },
+    {
+      "note": "SETU ingest niyantran_telemetry (linked to lifecycle trace)",
+      "method": "POST",
+      "path": "/v1/setu/signals/niyantran_telemetry",
+      "request_correlation_id_header": null,
+      "request_body": {
+        "payload": {
+          "event": "task_completed",
+          "task_id": "exec-7781",
+          "workforce_ref": "wf-704dedc80d02"
+        },
+        "workforce_ref_id": "wf-704dedc80d02",
+        "source_declaration": "niyantran_telemetry participation",
+        "trust_classification": "observed",
+        "visibility_scope": "tenant",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+        "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "44a91b28-607e-4c65-89e5-ebce0bfcea10",
+      "timestamp_utc": "2026-07-01T08:11:24.065474+00:00",
+      "response_body": {
+        "signal_id": "sig-9746f00e65f0",
+        "signal_type": "niyantran_telemetry",
+        "payload": {
+          "event": "task_completed",
+          "task_id": "exec-7781",
+          "workforce_ref": "wf-704dedc80d02"
+        },
+        "workforce_ref_id": "wf-704dedc80d02",
+        "source_declaration": "niyantran_telemetry participation",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:24.071673+00:00",
+        "lineage": {
+          "origin_system": "niyantran",
+          "owning_system": "niyantran",
+          "schema_version": "1.0.0",
+          "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "trust_classification": "observed",
+          "visibility_scope": "tenant"
+        },
+        "updated_at": "2026-07-01T08:11:24.071686+00:00",
+        "id": "6a44cbacf5b43a528e6ee5c3"
+      }
+    },
+    {
+      "note": "SETU list niyantran_telemetry by correlation_id",
+      "method": "GET",
+      "path": "/v1/setu/signals?signal_type=niyantran_telemetry&correlation_id=0749c563-471a-49a2-8a74-74023b4526c5",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "f5de2309-af44-485e-b81a-883f3fdf21ab",
+      "timestamp_utc": "2026-07-01T08:11:24.073216+00:00",
+      "response_body": {
+        "items": [
+          {
+            "signal_id": "sig-9746f00e65f0",
+            "signal_type": "niyantran_telemetry",
+            "payload": {
+              "event": "task_completed",
+              "task_id": "exec-7781",
+              "workforce_ref": "wf-704dedc80d02"
+            },
+            "workforce_ref_id": "wf-704dedc80d02",
+            "source_declaration": "niyantran_telemetry participation",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:24.071000",
+            "lineage": {
+              "origin_system": "niyantran",
+              "owning_system": "niyantran",
+              "schema_version": "1.0.0",
+              "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "trust_classification": "observed",
+              "visibility_scope": "tenant"
+            },
+            "updated_at": "2026-07-01T08:11:24.071000",
+            "id": "6a44cbacf5b43a528e6ee5c3"
+          }
+        ]
+      }
+    },
+    {
+      "note": "SETU trace continuity for niyantran_telemetry",
+      "method": "GET",
+      "path": "/v1/setu/trace/0749c563-471a-49a2-8a74-74023b4526c5",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "74ec643c-ac63-433a-b318-8be419e15533",
+      "timestamp_utc": "2026-07-01T08:11:24.076743+00:00",
+      "response_body": {
+        "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+        "signal_count": 1,
+        "audit_count": 14,
+        "signals": [
+          {
+            "signal_id": "sig-9746f00e65f0",
+            "signal_type": "niyantran_telemetry",
+            "payload": {
+              "event": "task_completed",
+              "task_id": "exec-7781",
+              "workforce_ref": "wf-704dedc80d02"
+            },
+            "workforce_ref_id": "wf-704dedc80d02",
+            "source_declaration": "niyantran_telemetry participation",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:24.071000",
+            "lineage": {
+              "origin_system": "niyantran",
+              "owning_system": "niyantran",
+              "schema_version": "1.0.0",
+              "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "trust_classification": "observed",
+              "visibility_scope": "tenant"
+            },
+            "updated_at": "2026-07-01T08:11:24.071000",
+            "id": "6a44cbacf5b43a528e6ee5c3"
+          }
+        ],
+        "audit_events": [
+          {
+            "action": "organization_create",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "division_create",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "unit_create",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "department_create",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "department_create",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "department_create",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "employee_create",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "employee_onboard",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "employee_onboard_complete",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "employee_department_transfer",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "employee_promotion",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "employee_department_transfer",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "employee_offboard_prepare",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "setu_signal_niyantran_telemetry",
+            "outcome": "ingested",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          }
+        ]
+      }
+    },
+    {
+      "note": "SETU ingest artha_payroll_visibility",
+      "method": "POST",
+      "path": "/v1/setu/signals/artha_payroll_visibility",
+      "request_correlation_id_header": null,
+      "request_body": {
+        "payload": {
+          "period": "2026-06",
+          "visibility": "summary_only",
+          "workforce_ref": "wf-704dedc80d02"
+        },
+        "workforce_ref_id": "wf-704dedc80d02",
+        "source_declaration": "artha_payroll_visibility participation",
+        "trust_classification": "observed",
+        "visibility_scope": "tenant"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "b63b8e35-e440-4280-8cb8-5d6ef1b3c927",
+      "timestamp_utc": "2026-07-01T08:11:24.080963+00:00",
+      "response_body": {
+        "signal_id": "sig-680230213813",
+        "signal_type": "artha_payroll_visibility",
+        "payload": {
+          "period": "2026-06",
+          "visibility": "summary_only",
+          "workforce_ref": "wf-704dedc80d02"
+        },
+        "workforce_ref_id": "wf-704dedc80d02",
+        "source_declaration": "artha_payroll_visibility participation",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:24.083623+00:00",
+        "lineage": {
+          "origin_system": "artha",
+          "owning_system": "artha",
+          "schema_version": "1.0.0",
+          "trace_id": "45e5789f-9b3b-4c1e-83df-78c85cf554d6",
+          "correlation_id": "45e5789f-9b3b-4c1e-83df-78c85cf554d6",
+          "trust_classification": "observed",
+          "visibility_scope": "tenant"
+        },
+        "updated_at": "2026-07-01T08:11:24.083642+00:00",
+        "id": "6a44cbacf5b43a528e6ee5c5"
+      }
+    },
+    {
+      "note": "SETU list artha_payroll_visibility by correlation_id",
+      "method": "GET",
+      "path": "/v1/setu/signals?signal_type=artha_payroll_visibility&correlation_id=45e5789f-9b3b-4c1e-83df-78c85cf554d6",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "3470d81a-e342-4f3f-b9c6-b622d2f52478",
+      "timestamp_utc": "2026-07-01T08:11:24.085348+00:00",
+      "response_body": {
+        "items": [
+          {
+            "signal_id": "sig-680230213813",
+            "signal_type": "artha_payroll_visibility",
+            "payload": {
+              "period": "2026-06",
+              "visibility": "summary_only",
+              "workforce_ref": "wf-704dedc80d02"
+            },
+            "workforce_ref_id": "wf-704dedc80d02",
+            "source_declaration": "artha_payroll_visibility participation",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:24.083000",
+            "lineage": {
+              "origin_system": "artha",
+              "owning_system": "artha",
+              "schema_version": "1.0.0",
+              "trace_id": "45e5789f-9b3b-4c1e-83df-78c85cf554d6",
+              "correlation_id": "45e5789f-9b3b-4c1e-83df-78c85cf554d6",
+              "trust_classification": "observed",
+              "visibility_scope": "tenant"
+            },
+            "updated_at": "2026-07-01T08:11:24.083000",
+            "id": "6a44cbacf5b43a528e6ee5c5"
+          }
+        ]
+      }
+    },
+    {
+      "note": "SETU trace continuity for artha_payroll_visibility",
+      "method": "GET",
+      "path": "/v1/setu/trace/45e5789f-9b3b-4c1e-83df-78c85cf554d6",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "9868addb-2ad4-4138-8e1d-f8ae4dd57eed",
+      "timestamp_utc": "2026-07-01T08:11:24.089289+00:00",
+      "response_body": {
+        "trace_id": "45e5789f-9b3b-4c1e-83df-78c85cf554d6",
+        "signal_count": 1,
+        "audit_count": 1,
+        "signals": [
+          {
+            "signal_id": "sig-680230213813",
+            "signal_type": "artha_payroll_visibility",
+            "payload": {
+              "period": "2026-06",
+              "visibility": "summary_only",
+              "workforce_ref": "wf-704dedc80d02"
+            },
+            "workforce_ref_id": "wf-704dedc80d02",
+            "source_declaration": "artha_payroll_visibility participation",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:24.083000",
+            "lineage": {
+              "origin_system": "artha",
+              "owning_system": "artha",
+              "schema_version": "1.0.0",
+              "trace_id": "45e5789f-9b3b-4c1e-83df-78c85cf554d6",
+              "correlation_id": "45e5789f-9b3b-4c1e-83df-78c85cf554d6",
+              "trust_classification": "observed",
+              "visibility_scope": "tenant"
+            },
+            "updated_at": "2026-07-01T08:11:24.083000",
+            "id": "6a44cbacf5b43a528e6ee5c5"
+          }
+        ],
+        "audit_events": [
+          {
+            "action": "setu_signal_artha_payroll_visibility",
+            "outcome": "ingested",
+            "correlation_id": "45e5789f-9b3b-4c1e-83df-78c85cf554d6"
+          }
+        ]
+      }
+    },
+    {
+      "note": "SETU ingest crm_participation",
+      "method": "POST",
+      "path": "/v1/setu/signals/crm_participation",
+      "request_correlation_id_header": null,
+      "request_body": {
+        "payload": {
+          "interaction": "client_touchpoint",
+          "account": "TENANT-CLIENT-01"
+        },
+        "workforce_ref_id": "wf-704dedc80d02",
+        "source_declaration": "crm_participation participation",
+        "trust_classification": "observed",
+        "visibility_scope": "tenant"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "74b9bcf5-a4d7-40e7-82c6-5a5c2caec2af",
+      "timestamp_utc": "2026-07-01T08:11:24.092794+00:00",
+      "response_body": {
+        "signal_id": "sig-35aff75373cf",
+        "signal_type": "crm_participation",
+        "payload": {
+          "interaction": "client_touchpoint",
+          "account": "TENANT-CLIENT-01"
+        },
+        "workforce_ref_id": "wf-704dedc80d02",
+        "source_declaration": "crm_participation participation",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:24.095784+00:00",
+        "lineage": {
+          "origin_system": "crm",
+          "owning_system": "crm",
+          "schema_version": "1.0.0",
+          "trace_id": "2ee7500e-f60c-45a6-8940-6c60cd075fc2",
+          "correlation_id": "2ee7500e-f60c-45a6-8940-6c60cd075fc2",
+          "trust_classification": "observed",
+          "visibility_scope": "tenant"
+        },
+        "updated_at": "2026-07-01T08:11:24.095804+00:00",
+        "id": "6a44cbacf5b43a528e6ee5c7"
+      }
+    },
+    {
+      "note": "SETU list crm_participation by correlation_id",
+      "method": "GET",
+      "path": "/v1/setu/signals?signal_type=crm_participation&correlation_id=2ee7500e-f60c-45a6-8940-6c60cd075fc2",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "d50d5ba6-ab11-4aeb-bf1c-1a32df2d8039",
+      "timestamp_utc": "2026-07-01T08:11:24.097525+00:00",
+      "response_body": {
+        "items": [
+          {
+            "signal_id": "sig-35aff75373cf",
+            "signal_type": "crm_participation",
+            "payload": {
+              "interaction": "client_touchpoint",
+              "account": "TENANT-CLIENT-01"
+            },
+            "workforce_ref_id": "wf-704dedc80d02",
+            "source_declaration": "crm_participation participation",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:24.095000",
+            "lineage": {
+              "origin_system": "crm",
+              "owning_system": "crm",
+              "schema_version": "1.0.0",
+              "trace_id": "2ee7500e-f60c-45a6-8940-6c60cd075fc2",
+              "correlation_id": "2ee7500e-f60c-45a6-8940-6c60cd075fc2",
+              "trust_classification": "observed",
+              "visibility_scope": "tenant"
+            },
+            "updated_at": "2026-07-01T08:11:24.095000",
+            "id": "6a44cbacf5b43a528e6ee5c7"
+          }
+        ]
+      }
+    },
+    {
+      "note": "SETU trace continuity for crm_participation",
+      "method": "GET",
+      "path": "/v1/setu/trace/2ee7500e-f60c-45a6-8940-6c60cd075fc2",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "7e17441e-443b-402d-beef-822fb7405c88",
+      "timestamp_utc": "2026-07-01T08:11:24.101616+00:00",
+      "response_body": {
+        "trace_id": "2ee7500e-f60c-45a6-8940-6c60cd075fc2",
+        "signal_count": 1,
+        "audit_count": 1,
+        "signals": [
+          {
+            "signal_id": "sig-35aff75373cf",
+            "signal_type": "crm_participation",
+            "payload": {
+              "interaction": "client_touchpoint",
+              "account": "TENANT-CLIENT-01"
+            },
+            "workforce_ref_id": "wf-704dedc80d02",
+            "source_declaration": "crm_participation participation",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:24.095000",
+            "lineage": {
+              "origin_system": "crm",
+              "owning_system": "crm",
+              "schema_version": "1.0.0",
+              "trace_id": "2ee7500e-f60c-45a6-8940-6c60cd075fc2",
+              "correlation_id": "2ee7500e-f60c-45a6-8940-6c60cd075fc2",
+              "trust_classification": "observed",
+              "visibility_scope": "tenant"
+            },
+            "updated_at": "2026-07-01T08:11:24.095000",
+            "id": "6a44cbacf5b43a528e6ee5c7"
+          }
+        ],
+        "audit_events": [
+          {
+            "action": "setu_signal_crm_participation",
+            "outcome": "ingested",
+            "correlation_id": "2ee7500e-f60c-45a6-8940-6c60cd075fc2"
+          }
+        ]
+      }
+    },
+    {
+      "note": "SETU ingest setu_aggregation",
+      "method": "POST",
+      "path": "/v1/setu/signals/setu_aggregation",
+      "request_correlation_id_header": null,
+      "request_body": {
+        "payload": {
+          "aggregate": "cross_system_rollup",
+          "sources": [
+            "niyantran",
+            "artha",
+            "crm"
+          ]
+        },
+        "workforce_ref_id": "wf-704dedc80d02",
+        "source_declaration": "setu_aggregation participation",
+        "trust_classification": "derived",
+        "visibility_scope": "tenant"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "8478008e-106d-4ca4-921f-b9998b3e6223",
+      "timestamp_utc": "2026-07-01T08:11:24.105867+00:00",
+      "response_body": {
+        "signal_id": "sig-b6506b9eab8c",
+        "signal_type": "setu_aggregation",
+        "payload": {
+          "aggregate": "cross_system_rollup",
+          "sources": [
+            "niyantran",
+            "artha",
+            "crm"
+          ]
+        },
+        "workforce_ref_id": "wf-704dedc80d02",
+        "source_declaration": "setu_aggregation participation",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:24.108465+00:00",
+        "lineage": {
+          "origin_system": "setu",
+          "owning_system": "setu",
+          "schema_version": "1.0.0",
+          "trace_id": "d9acb10a-41bc-4bb6-8765-c5152cb7b802",
+          "correlation_id": "d9acb10a-41bc-4bb6-8765-c5152cb7b802",
+          "trust_classification": "derived",
+          "visibility_scope": "tenant"
+        },
+        "updated_at": "2026-07-01T08:11:24.108478+00:00",
+        "id": "6a44cbacf5b43a528e6ee5c9"
+      }
+    },
+    {
+      "note": "SETU list setu_aggregation by correlation_id",
+      "method": "GET",
+      "path": "/v1/setu/signals?signal_type=setu_aggregation&correlation_id=d9acb10a-41bc-4bb6-8765-c5152cb7b802",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "a218d6c5-59f0-4a88-8beb-08fbf6e6a098",
+      "timestamp_utc": "2026-07-01T08:11:24.109762+00:00",
+      "response_body": {
+        "items": [
+          {
+            "signal_id": "sig-b6506b9eab8c",
+            "signal_type": "setu_aggregation",
+            "payload": {
+              "aggregate": "cross_system_rollup",
+              "sources": [
+                "niyantran",
+                "artha",
+                "crm"
+              ]
+            },
+            "workforce_ref_id": "wf-704dedc80d02",
+            "source_declaration": "setu_aggregation participation",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:24.108000",
+            "lineage": {
+              "origin_system": "setu",
+              "owning_system": "setu",
+              "schema_version": "1.0.0",
+              "trace_id": "d9acb10a-41bc-4bb6-8765-c5152cb7b802",
+              "correlation_id": "d9acb10a-41bc-4bb6-8765-c5152cb7b802",
+              "trust_classification": "derived",
+              "visibility_scope": "tenant"
+            },
+            "updated_at": "2026-07-01T08:11:24.108000",
+            "id": "6a44cbacf5b43a528e6ee5c9"
+          }
+        ]
+      }
+    },
+    {
+      "note": "SETU trace continuity for setu_aggregation",
+      "method": "GET",
+      "path": "/v1/setu/trace/d9acb10a-41bc-4bb6-8765-c5152cb7b802",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "5165a0be-c4bd-48e1-9efb-f9957b6550f5",
+      "timestamp_utc": "2026-07-01T08:11:24.113687+00:00",
+      "response_body": {
+        "trace_id": "d9acb10a-41bc-4bb6-8765-c5152cb7b802",
+        "signal_count": 1,
+        "audit_count": 1,
+        "signals": [
+          {
+            "signal_id": "sig-b6506b9eab8c",
+            "signal_type": "setu_aggregation",
+            "payload": {
+              "aggregate": "cross_system_rollup",
+              "sources": [
+                "niyantran",
+                "artha",
+                "crm"
+              ]
+            },
+            "workforce_ref_id": "wf-704dedc80d02",
+            "source_declaration": "setu_aggregation participation",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:24.108000",
+            "lineage": {
+              "origin_system": "setu",
+              "owning_system": "setu",
+              "schema_version": "1.0.0",
+              "trace_id": "d9acb10a-41bc-4bb6-8765-c5152cb7b802",
+              "correlation_id": "d9acb10a-41bc-4bb6-8765-c5152cb7b802",
+              "trust_classification": "derived",
+              "visibility_scope": "tenant"
+            },
+            "updated_at": "2026-07-01T08:11:24.108000",
+            "id": "6a44cbacf5b43a528e6ee5c9"
+          }
+        ],
+        "audit_events": [
+          {
+            "action": "setu_signal_setu_aggregation",
+            "outcome": "ingested",
+            "correlation_id": "d9acb10a-41bc-4bb6-8765-c5152cb7b802"
+          }
+        ]
+      }
+    },
+    {
+      "note": "Phase6 cross-system trace continuity on lifecycle correlation id",
+      "method": "GET",
+      "path": "/v1/setu/trace/0749c563-471a-49a2-8a74-74023b4526c5",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "a990b091-997b-4c41-9d31-56153d1cebf3",
+      "timestamp_utc": "2026-07-01T08:11:24.118674+00:00",
+      "response_body": {
+        "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+        "signal_count": 1,
+        "audit_count": 14,
+        "signals": [
+          {
+            "signal_id": "sig-9746f00e65f0",
+            "signal_type": "niyantran_telemetry",
+            "payload": {
+              "event": "task_completed",
+              "task_id": "exec-7781",
+              "workforce_ref": "wf-704dedc80d02"
+            },
+            "workforce_ref_id": "wf-704dedc80d02",
+            "source_declaration": "niyantran_telemetry participation",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:24.071000",
+            "lineage": {
+              "origin_system": "niyantran",
+              "owning_system": "niyantran",
+              "schema_version": "1.0.0",
+              "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "trust_classification": "observed",
+              "visibility_scope": "tenant"
+            },
+            "updated_at": "2026-07-01T08:11:24.071000",
+            "id": "6a44cbacf5b43a528e6ee5c3"
+          }
+        ],
+        "audit_events": [
+          {
+            "action": "organization_create",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "division_create",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "unit_create",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "department_create",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "department_create",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "department_create",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "employee_create",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "employee_onboard",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "employee_onboard_complete",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "employee_department_transfer",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "employee_promotion",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "employee_department_transfer",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "employee_offboard_prepare",
+            "outcome": "success",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          },
+          {
+            "action": "setu_signal_niyantran_telemetry",
+            "outcome": "ingested",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+          }
+        ]
+      }
+    },
+    {
+      "note": "Control Center: scoped audit-events (admin/platform)",
+      "method": "GET",
+      "path": "/v1/control-center/audit-events?limit=50",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "550e9758-8a27-4b86-8611-93ad39f6dfca",
+      "timestamp_utc": "2026-07-01T08:11:24.124312+00:00",
+      "response_body": {
+        "events": [
+          {
+            "ts": "2026-07-01T08:11:24.108000",
+            "service": "Gateway",
+            "op": "setu_signal_setu_aggregation",
+            "correlation_id": "d9acb10a-41bc-4bb6-8765-c5152cb7b802",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:24.096000",
+            "service": "Gateway",
+            "op": "setu_signal_crm_participation",
+            "correlation_id": "2ee7500e-f60c-45a6-8940-6c60cd075fc2",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:24.083000",
+            "service": "Gateway",
+            "op": "setu_signal_artha_payroll_visibility",
+            "correlation_id": "45e5789f-9b3b-4c1e-83df-78c85cf554d6",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:24.071000",
+            "service": "Gateway",
+            "op": "setu_signal_niyantran_telemetry",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:24.063000",
+            "service": "Gateway",
+            "op": "policy_evaluate",
+            "correlation_id": "029102a2-cab4-44aa-9e7f-11f1d3fcaabb",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:24.059000",
+            "service": "Gateway",
+            "op": "policy_evaluate",
+            "correlation_id": "e9a9deff-4ce9-4df2-8068-d128f994bbd3",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:24.054000",
+            "service": "Gateway",
+            "op": "policy_evaluate",
+            "correlation_id": "64070707-efff-41dd-ae4d-4e0385da5881",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:24.041000",
+            "service": "Gateway",
+            "op": "decision_record",
+            "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:24.031000",
+            "service": "Gateway",
+            "op": "workflow_override_record",
+            "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:24.022000",
+            "service": "Gateway",
+            "op": "review_assign",
+            "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:24.018000",
+            "service": "Gateway",
+            "op": "challenge_create",
+            "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:24.013000",
+            "service": "Gateway",
+            "op": "policy_evaluate",
+            "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:24.002000",
+            "service": "Gateway",
+            "op": "decision_record",
+            "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.993000",
+            "service": "Gateway",
+            "op": "workflow_override_record",
+            "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.985000",
+            "service": "Gateway",
+            "op": "review_assign",
+            "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.980000",
+            "service": "Gateway",
+            "op": "challenge_create",
+            "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.976000",
+            "service": "Gateway",
+            "op": "policy_evaluate",
+            "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.958000",
+            "service": "Gateway",
+            "op": "decision_record",
+            "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.952000",
+            "service": "Gateway",
+            "op": "decision_record",
+            "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.940000",
+            "service": "Gateway",
+            "op": "workflow_override_record",
+            "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.927000",
+            "service": "Gateway",
+            "op": "review_assign",
+            "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.921000",
+            "service": "Gateway",
+            "op": "challenge_create",
+            "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.913000",
+            "service": "Gateway",
+            "op": "policy_evaluate",
+            "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.878000",
+            "service": "Gateway",
+            "op": "employee_create",
+            "correlation_id": "82b8ed75-2a23-4b01-8317-57883dc7e783",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.873000",
+            "service": "Gateway",
+            "op": "employee_create",
+            "correlation_id": "d782aa8f-392d-45c5-a713-33655ecc7b5d",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.862000",
+            "service": "Gateway",
+            "op": "employee_offboard_prepare",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.858000",
+            "service": "Gateway",
+            "op": "employee_department_transfer",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.854000",
+            "service": "Gateway",
+            "op": "employee_promotion",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.851000",
+            "service": "Gateway",
+            "op": "employee_department_transfer",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.846000",
+            "service": "Gateway",
+            "op": "employee_onboard_complete",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.842000",
+            "service": "Gateway",
+            "op": "employee_onboard",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.838000",
+            "service": "Gateway",
+            "op": "employee_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.833000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.829000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.825000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.820000",
+            "service": "Gateway",
+            "op": "unit_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.815000",
+            "service": "Gateway",
+            "op": "division_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.810000",
+            "service": "Gateway",
+            "op": "organization_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          }
+        ],
+        "count": 38,
+        "source": "audit_logs",
+        "policy_scope": {
+          "scope": "platform",
+          "scope_label": "platform_admin",
+          "role": "admin",
+          "user_id": null,
+          "tenant_id": null,
+          "org_id": null,
+          "workforce_category": "all"
+        }
+      }
+    },
+    {
+      "note": "Control Center: audit-events filtered by lifecycle correlation_id",
+      "method": "GET",
+      "path": "/v1/control-center/audit-events?correlation_id=0749c563-471a-49a2-8a74-74023b4526c5",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "2fcc15d9-3df4-4b79-92fb-feec08fb16ed",
+      "timestamp_utc": "2026-07-01T08:11:24.130682+00:00",
+      "response_body": {
+        "events": [
+          {
+            "ts": "2026-07-01T08:11:24.071000",
+            "service": "Gateway",
+            "op": "setu_signal_niyantran_telemetry",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.862000",
+            "service": "Gateway",
+            "op": "employee_offboard_prepare",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.858000",
+            "service": "Gateway",
+            "op": "employee_department_transfer",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.854000",
+            "service": "Gateway",
+            "op": "employee_promotion",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.851000",
+            "service": "Gateway",
+            "op": "employee_department_transfer",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.846000",
+            "service": "Gateway",
+            "op": "employee_onboard_complete",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.842000",
+            "service": "Gateway",
+            "op": "employee_onboard",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.838000",
+            "service": "Gateway",
+            "op": "employee_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.833000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.829000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.825000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.820000",
+            "service": "Gateway",
+            "op": "unit_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.815000",
+            "service": "Gateway",
+            "op": "division_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.810000",
+            "service": "Gateway",
+            "op": "organization_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          }
+        ],
+        "count": 14,
+        "source": "audit_logs",
+        "policy_scope": {
+          "scope": "platform",
+          "scope_label": "platform_admin",
+          "role": "admin",
+          "user_id": null,
+          "tenant_id": null,
+          "org_id": null,
+          "workforce_category": "all"
+        }
+      }
+    },
+    {
+      "note": "Control Center: audit-replay for lifecycle correlation_id",
+      "method": "GET",
+      "path": "/v1/control-center/audit-replay?correlation_id=0749c563-471a-49a2-8a74-74023b4526c5",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "f6632d2f-137f-450c-9f34-134eda65815e",
+      "timestamp_utc": "2026-07-01T08:11:24.135409+00:00",
+      "response_body": {
+        "events": [
+          {
+            "ts": "2026-07-01T08:11:24.071000",
+            "service": "Gateway",
+            "op": "setu_signal_niyantran_telemetry",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.862000",
+            "service": "Gateway",
+            "op": "employee_offboard_prepare",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.858000",
+            "service": "Gateway",
+            "op": "employee_department_transfer",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.854000",
+            "service": "Gateway",
+            "op": "employee_promotion",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.851000",
+            "service": "Gateway",
+            "op": "employee_department_transfer",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.846000",
+            "service": "Gateway",
+            "op": "employee_onboard_complete",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.842000",
+            "service": "Gateway",
+            "op": "employee_onboard",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.838000",
+            "service": "Gateway",
+            "op": "employee_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.833000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.829000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.825000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.820000",
+            "service": "Gateway",
+            "op": "unit_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.815000",
+            "service": "Gateway",
+            "op": "division_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.810000",
+            "service": "Gateway",
+            "op": "organization_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          }
+        ],
+        "count": 14,
+        "source": "audit_logs",
+        "policy_scope": {
+          "scope": "platform",
+          "scope_label": "platform_admin",
+          "role": "admin",
+          "user_id": null,
+          "tenant_id": null,
+          "org_id": null,
+          "workforce_category": "all"
+        },
+        "replay_mode": "single_correlation"
+      }
+    }
+  ]
+}

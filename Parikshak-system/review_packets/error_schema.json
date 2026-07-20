@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "APIErrorResponse",
+  "type": "object",
+  "properties": {
+    "detail": {
+      "type": "string"
+    },
+    "error_code": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "detail",
+    "error_code",
+    "timestamp"
+  ]
+}

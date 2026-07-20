@@ -1,0 +1,1451 @@
+{
+  "config": {
+    "configFile": "C:\\Users\\pc45\\Desktop\\Gurukul\\tests\\e2e\\playwright.config.js",
+    "rootDir": "C:/Users/pc45/Desktop/Gurukul/tests/e2e/tests",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 6
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/pc45/Desktop/Gurukul/tests/e2e/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 6
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Users/pc45/Desktop/Gurukul/tests/e2e/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "playwright-report"
+        }
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.1",
+    "workers": 6,
+    "webServer": {
+      "command": "echo \"Make sure frontend is running on http://localhost:5173\"",
+      "url": "http://localhost:5173",
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
+  },
+  "suites": [
+    {
+      "title": "full-system-test.spec.js",
+      "file": "full-system-test.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Gurukul Full System Test Suite",
+          "file": "full-system-test.spec.js",
+          "line": 50,
+          "column": 6,
+          "specs": [
+            {
+              "title": "1. Home Page - Verify all elements load",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2655,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-31T07:58:50.777Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3d1d68bcad61ced4810c-d04817b6e1e40cf9bc6f",
+              "file": "full-system-test.spec.js",
+              "line": 58,
+              "column": 7
+            },
+            {
+              "title": "2. Authentication - Sign Up Flow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 5687,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✓ Sign Up page loaded\n"
+                        },
+                        {
+                          "text": "✓ Sign Up form submitted\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-31T07:58:50.775Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3d1d68bcad61ced4810c-1b5406054ce7ee239ba4",
+              "file": "full-system-test.spec.js",
+              "line": 65,
+              "column": 7
+            },
+            {
+              "title": "3. Authentication - Sign In Flow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 5917,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Sign in attempted - URL: http://localhost:5173/signin\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-31T07:58:50.837Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3d1d68bcad61ced4810c-37a444e2500f0f178620",
+              "file": "full-system-test.spec.js",
+              "line": 96,
+              "column": 7
+            },
+            {
+              "title": "21. Navigation - Test all sidebar links",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 5336,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Found 4 links to test\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-31T07:59:11.737Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3d1d68bcad61ced4810c-6cc3316e98ef542523ad",
+              "file": "full-system-test.spec.js",
+              "line": 341,
+              "column": 7
+            },
+            {
+              "title": "22. API Health Check",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 2102,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✗ /api/v1/health: Failed - apiRequestContext.get: connect ECONNREFUSED ::1:3000\nCall log:\n\u001b[2m  - → GET http://localhost:3000/api/v1/health\u001b[22m\n\u001b[2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\n"
+                        },
+                        {
+                          "text": "✗ /api/v1/bucket/prana/status: Failed - apiRequestContext.get: connect ECONNREFUSED ::1:3000\nCall log:\n\u001b[2m  - → GET http://localhost:3000/api/v1/bucket/prana/status\u001b[22m\n\u001b[2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-31T07:59:12.995Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3d1d68bcad61ced4810c-20a74a813e9d28b5f8e5",
+              "file": "full-system-test.spec.js",
+              "line": 377,
+              "column": 7
+            }
+          ],
+          "suites": [
+            {
+              "title": "Student Features",
+              "file": "full-system-test.spec.js",
+              "line": 124,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "4. Student - Dashboard Page",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 3,
+                          "status": "passed",
+                          "duration": 7544,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✓ Dashboard page loaded\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:58:50.783Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-97cd80fe26a5fcae39d5",
+                  "file": "full-system-test.spec.js",
+                  "line": 145,
+                  "column": 9
+                },
+                {
+                  "title": "5. Student - Subjects Page",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 4,
+                          "parallelIndex": 4,
+                          "status": "passed",
+                          "duration": 8319,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✓ Subjects page loaded\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:58:50.774Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-ace5f3cb185841be09aa",
+                  "file": "full-system-test.spec.js",
+                  "line": 155,
+                  "column": 9
+                },
+                {
+                  "title": "6. Student - Chatbot Page",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 5,
+                          "parallelIndex": 5,
+                          "status": "passed",
+                          "duration": 8253,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✓ Chatbot page loaded\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:58:50.823Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-c6fba6e18605c2fe9ac9",
+                  "file": "full-system-test.spec.js",
+                  "line": 162,
+                  "column": 9
+                },
+                {
+                  "title": "7. Student - Summarizer Page",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 7249,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✓ Summarizer page loaded\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:58:53.626Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-3a8fe66a4bd4b1637f89",
+                  "file": "full-system-test.spec.js",
+                  "line": 176,
+                  "column": 9
+                },
+                {
+                  "title": "8. Student - Test/Quiz Page",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 7207,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✓ Test page loaded\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:58:56.686Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-3e45332ce54e005e3aa0",
+                  "file": "full-system-test.spec.js",
+                  "line": 183,
+                  "column": 9
+                },
+                {
+                  "title": "9. Student - Lectures Page",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 2,
+                          "status": "passed",
+                          "duration": 7322,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✓ Lectures page loaded\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:58:57.173Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-d3558bff970d0052c173",
+                  "file": "full-system-test.spec.js",
+                  "line": 190,
+                  "column": 9
+                },
+                {
+                  "title": "10. Student - Flashcards Page",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 3,
+                          "status": "passed",
+                          "duration": 7239,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✓ Flashcards page loaded\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:58:58.534Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-24bfe4ceae9f6f2aad36",
+                  "file": "full-system-test.spec.js",
+                  "line": 197,
+                  "column": 9
+                },
+                {
+                  "title": "11. Student - Settings Page",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 4,
+                          "parallelIndex": 4,
+                          "status": "passed",
+                          "duration": 7569,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✓ Settings page loaded\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:58:59.314Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-aa308b6702d2b7230527",
+                  "file": "full-system-test.spec.js",
+                  "line": 204,
+                  "column": 9
+                },
+                {
+                  "title": "12. Student - Avatar Page",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 5,
+                          "parallelIndex": 5,
+                          "status": "passed",
+                          "duration": 7258,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✓ Avatar page loaded\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:58:59.343Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-646e6221100428983281",
+                  "file": "full-system-test.spec.js",
+                  "line": 211,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "EMS Features",
+              "file": "full-system-test.spec.js",
+              "line": 219,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "13. EMS - My Classes",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 7216,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✓ My Classes page loaded\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:59:00.894Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-e39d510e4f95cda5fccc",
+                  "file": "full-system-test.spec.js",
+                  "line": 240,
+                  "column": 9
+                },
+                {
+                  "title": "14. EMS - My Schedule",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 7090,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✓ My Schedule page loaded\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:59:03.912Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-8cb682f24bdd32da81e2",
+                  "file": "full-system-test.spec.js",
+                  "line": 247,
+                  "column": 9
+                },
+                {
+                  "title": "15. EMS - My Announcements",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 2,
+                          "status": "passed",
+                          "duration": 7215,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✓ My Announcements page loaded\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:59:04.510Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-e1ee62399a7b4328153a",
+                  "file": "full-system-test.spec.js",
+                  "line": 254,
+                  "column": 9
+                },
+                {
+                  "title": "16. EMS - My Attendance",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 3,
+                          "status": "passed",
+                          "duration": 7192,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✓ My Attendance page loaded\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:59:05.789Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-528a1f5400d4bf260cf1",
+                  "file": "full-system-test.spec.js",
+                  "line": 261,
+                  "column": 9
+                },
+                {
+                  "title": "17. EMS - My Teachers",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 5,
+                          "parallelIndex": 5,
+                          "status": "passed",
+                          "duration": 7269,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✓ My Teachers page loaded\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:59:06.617Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-de9b5c4f9ef942f6c351",
+                  "file": "full-system-test.spec.js",
+                  "line": 268,
+                  "column": 9
+                },
+                {
+                  "title": "18. EMS - My Grades",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 4,
+                          "parallelIndex": 4,
+                          "status": "passed",
+                          "duration": 7249,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✓ My Grades page loaded\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:59:06.898Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-09ff688bf69cbcd398ff",
+                  "file": "full-system-test.spec.js",
+                  "line": 275,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Teacher Features",
+              "file": "full-system-test.spec.js",
+              "line": 283,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "19. Teacher - Teacher Dashboard",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 7121,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✓ Teacher Dashboard loaded\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:59:08.126Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-d932525f567b04cf1c49",
+                  "file": "full-system-test.spec.js",
+                  "line": 304,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Admin Features",
+              "file": "full-system-test.spec.js",
+              "line": 312,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "20. Admin - Admin Dashboard",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 7445,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✓ Admin Dashboard loaded\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:59:11.023Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-1caa636730f410293e89",
+                  "file": "full-system-test.spec.js",
+                  "line": 333,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Karma Tracker Integration (Integrated into Backend)",
+              "file": "full-system-test.spec.js",
+              "line": 394,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "23. Karma Tracker - MongoDB Connection",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 5,
+                          "parallelIndex": 5,
+                          "status": "passed",
+                          "duration": 1773,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✗ Karma Tracker MongoDB: Connection failed - apiRequestContext.post: connect ECONNREFUSED ::1:3000\nCall log:\n\u001b[2m  - → POST http://localhost:3000/api/v1/karma/log-action/\u001b[22m\n\u001b[2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\u001b[2m    - content-type: application/json\u001b[22m\n\u001b[2m    - content-length: 99\u001b[22m\n\n"
+                            },
+                            {
+                              "text": "   Note: MongoDB may not be configured. Karma features require MongoDB.\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:59:13.899Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-5298ba11a730b7bf063b",
+                  "file": "full-system-test.spec.js",
+                  "line": 395,
+                  "column": 9
+                },
+                {
+                  "title": "24. Karma Tracker - Get Karma Profile",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 4,
+                          "parallelIndex": 4,
+                          "status": "passed",
+                          "duration": 1772,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✗ Get Karma Profile: Failed - apiRequestContext.get: connect ECONNREFUSED ::1:3000\nCall log:\n\u001b[2m  - → GET http://localhost:3000/api/v1/karma/test.student\u001b[22m\n\u001b[2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:59:14.161Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-a7c3d3263e1484f96a5f",
+                  "file": "full-system-test.spec.js",
+                  "line": 419,
+                  "column": 9
+                },
+                {
+                  "title": "25. Karma Tracker - Log Karma Action",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 3,
+                          "status": "passed",
+                          "duration": 1772,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✗ Log Karma Action: Failed - apiRequestContext.post: connect ECONNREFUSED ::1:3000\nCall log:\n\u001b[2m  - → POST http://localhost:3000/api/v1/karma/log-action/\u001b[22m\n\u001b[2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\u001b[2m    - content-type: application/json\u001b[22m\n\u001b[2m    - content-length: 131\u001b[22m\n\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:59:15.112Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-f8dbe90d51538833f455",
+                  "file": "full-system-test.spec.js",
+                  "line": 441,
+                  "column": 9
+                },
+                {
+                  "title": "26. Karma Tracker - Get Karma Balance",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 1810,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✗ Get Karma Balance: Failed - apiRequestContext.get: connect ECONNREFUSED ::1:3000\nCall log:\n\u001b[2m  - → GET http://localhost:3000/api/v1/karma/balance/test.student\u001b[22m\n\u001b[2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:59:15.261Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-7d8f4a156fa1d981426e",
+                  "file": "full-system-test.spec.js",
+                  "line": 472,
+                  "column": 9
+                },
+                {
+                  "title": "27. Karma Tracker - Analytics Endpoints",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 5,
+                          "parallelIndex": 5,
+                          "status": "passed",
+                          "duration": 2272,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✗ /api/v1/analytics/karma_trends: Failed - apiRequestContext.get: connect ECONNREFUSED ::1:3000\nCall log:\n\u001b[2m  - → GET http://localhost:3000/api/v1/analytics/karma_trends\u001b[22m\n\u001b[2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\n"
+                            },
+                            {
+                              "text": "✗ /api/v1/analytics/user_stats/test_user: Failed - apiRequestContext.get: connect ECONNREFUSED ::1:3000\nCall log:\n\u001b[2m  - → GET http://localhost:3000/api/v1/analytics/user_stats/test_user\u001b[22m\n\u001b[2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:59:15.693Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-78af538d4c1ec2839495",
+                  "file": "full-system-test.spec.js",
+                  "line": 494,
+                  "column": 9
+                },
+                {
+                  "title": "28. Karma Tracker - Lifecycle Endpoints",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 4,
+                          "parallelIndex": 4,
+                          "status": "passed",
+                          "duration": 1894,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✗ Lifecycle Prarabdha: Failed - apiRequestContext.get: connect ECONNREFUSED ::1:3000\nCall log:\n\u001b[2m  - → GET http://localhost:3000/api/v1/karma/lifecycle/prarabdha/test.student\u001b[22m\n\u001b[2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:59:15.952Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-e63c0eadd80179c3dbdc",
+                  "file": "full-system-test.spec.js",
+                  "line": 515,
+                  "column": 9
+                },
+                {
+                  "title": "29. Karma Tracker - API Documentation",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 3,
+                          "status": "failed",
+                          "duration": 3540,
+                          "error": {
+                            "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/docs\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/docs\", waiting until \"load\"\u001b[22m\n",
+                            "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/docs\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/docs\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\pc45\\Desktop\\Gurukul\\tests\\e2e\\tests\\full-system-test.spec.js:538:18",
+                            "location": {
+                              "file": "C:\\Users\\pc45\\Desktop\\Gurukul\\tests\\e2e\\tests\\full-system-test.spec.js",
+                              "column": 18,
+                              "line": 538
+                            },
+                            "snippet": "\u001b[0m \u001b[90m 536 |\u001b[39m     test(\u001b[32m'29. Karma Tracker - API Documentation'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m 537 |\u001b[39m       \u001b[90m// Test that karma endpoints appear in API docs\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 538 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m`${BASE_URL.replace(':5173', ':3000')}/docs`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 539 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 540 |\u001b[39m       \n \u001b[90m 541 |\u001b[39m       \u001b[90m// Check if Karma Tracker section exists\u001b[39m\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "C:\\Users\\pc45\\Desktop\\Gurukul\\tests\\e2e\\tests\\full-system-test.spec.js",
+                                "column": 18,
+                                "line": 538
+                              },
+                              "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3000/docs\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3000/docs\", waiting until \"load\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 536 |\u001b[39m     test(\u001b[32m'29. Karma Tracker - API Documentation'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m 537 |\u001b[39m       \u001b[90m// Test that karma endpoints appear in API docs\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 538 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m`${BASE_URL.replace(':5173', ':3000')}/docs`\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 539 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 540 |\u001b[39m       \n \u001b[90m 541 |\u001b[39m       \u001b[90m// Check if Karma Tracker section exists\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\pc45\\Desktop\\Gurukul\\tests\\e2e\\tests\\full-system-test.spec.js:538:18\u001b[22m"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:59:16.903Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "C:\\Users\\pc45\\Desktop\\Gurukul\\tests\\e2e\\test-results\\full-system-test-Gurukul-F-22d7a-Tracker---API-Documentation-chromium\\test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "C:\\Users\\pc45\\Desktop\\Gurukul\\tests\\e2e\\test-results\\full-system-test-Gurukul-F-22d7a-Tracker---API-Documentation-chromium\\video.webm"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "C:\\Users\\pc45\\Desktop\\Gurukul\\tests\\e2e\\tests\\full-system-test.spec.js",
+                            "column": 18,
+                            "line": 538
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-66367ab85dc10843bd4c",
+                  "file": "full-system-test.spec.js",
+                  "line": 536,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Bucket + Karma Integration",
+              "file": "full-system-test.spec.js",
+              "line": 551,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "30. Bucket - Karma Integration Flow",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 1745,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✗ Bucket-Karma Integration: Failed - apiRequestContext.post: connect ECONNREFUSED ::1:3000\nCall log:\n\u001b[2m  - → POST http://localhost:3000/api/v1/bucket/prana/ingest\u001b[22m\n\u001b[2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\u001b[2m    - content-type: application/json\u001b[22m\n\u001b[2m    - content-length: 272\u001b[22m\n\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:59:17.090Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-347d755c81b8843c5751",
+                  "file": "full-system-test.spec.js",
+                  "line": 552,
+                  "column": 9
+                },
+                {
+                  "title": "31. Bucket Consumer - Integrated Mode",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 2,
+                          "status": "passed",
+                          "duration": 1795,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "✗ Bucket Consumer Integration: Failed - apiRequestContext.get: connect ECONNREFUSED ::1:3000\nCall log:\n\u001b[2m  - → GET http://localhost:3000/api/v1/bucket/prana/status\u001b[22m\n\u001b[2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:59:17.090Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-0b0d3fbb86b87a5b027e",
+                  "file": "full-system-test.spec.js",
+                  "line": 615,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Frontend Karma Integration",
+              "file": "full-system-test.spec.js",
+              "line": 637,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "32. Frontend - Karma Context Integration",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 4,
+                          "parallelIndex": 4,
+                          "status": "passed",
+                          "duration": 8394,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "⚠️  Frontend Karma Integration: No karma calls detected (may be normal if user not logged in)\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:59:17.871Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-55a198d57b80c88af38c",
+                  "file": "full-system-test.spec.js",
+                  "line": 658,
+                  "column": 9
+                },
+                {
+                  "title": "33. Frontend - Karma URL Configuration",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 5,
+                          "parallelIndex": 5,
+                          "status": "passed",
+                          "duration": 8132,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "⚠️  Frontend Karma URL: No karma requests detected\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-01-31T07:59:17.993Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3d1d68bcad61ced4810c-734d4f94680159abbbd0",
+                  "file": "full-system-test.spec.js",
+                  "line": 685,
+                  "column": 9
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-01-31T07:58:49.157Z",
+    "duration": 37188.445,
+    "expected": 32,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

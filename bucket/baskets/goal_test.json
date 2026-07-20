@@ -1,0 +1,8 @@
+{
+  "basket_name": "goal_test",
+  "agents": [
+    "goal_recommender"
+  ],
+  "execution_strategy": "sequential",
+  "description": "Test goal recommender"
+}

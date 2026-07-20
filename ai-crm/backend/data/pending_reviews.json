@@ -1,0 +1,56 @@
+[
+  {
+    "review_id": "chatbot_response_20250811_221103",
+    "timestamp": "2025-08-11T22:11:03.975158",
+    "action_type": "chatbot_response",
+    "confidence": 0.6,
+    "data": {
+      "query": "This is urgent! My order is missing!"
+    },
+    "agent_decision": "Handle complex customer query",
+    "status": "pending",
+    "human_decision": null,
+    "human_notes": null
+  },
+  {
+    "review_id": "restock_20250811_221106",
+    "timestamp": "2025-08-11T22:11:06.008404",
+    "action_type": "restock",
+    "confidence": 0.49999999999999994,
+    "data": {
+      "product_id": "X999",
+      "quantity": 50
+    },
+    "agent_decision": "Restock X999 with 50 units",
+    "status": "pending",
+    "human_decision": null,
+    "human_notes": null
+  },
+  {
+    "review_id": "chatbot_response_20250902_150745",
+    "timestamp": "2025-09-02T15:07:45.454825",
+    "action_type": "chatbot_response",
+    "confidence": 0.6,
+    "data": {
+      "query": "This is urgent! My order is missing!"
+    },
+    "agent_decision": "Handle complex customer query",
+    "status": "pending",
+    "human_decision": null,
+    "human_notes": null
+  },
+  {
+    "review_id": "restock_20250902_150747",
+    "timestamp": "2025-09-02T15:07:47.476326",
+    "action_type": "restock",
+    "confidence": 0.49999999999999994,
+    "data": {
+      "product_id": "X999",
+      "quantity": 50
+    },
+    "agent_decision": "Restock X999 with 50 units",
+    "status": "pending",
+    "human_decision": null,
+    "human_notes": null
+  }
+]

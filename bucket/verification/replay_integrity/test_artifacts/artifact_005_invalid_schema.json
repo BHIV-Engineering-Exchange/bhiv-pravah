@@ -1,0 +1,12 @@
+{
+  "artifact_id": "invalid_schema_001",
+  "source_module_id": "legacy_system",
+  "schema_version": "0.9.0",
+  "artifact_hash": "computed_hash_value",
+  "timestamp_utc": "2025-01-19T10:20:00Z",
+  "artifact_type": "truth_event",
+  "payload": {
+    "data": "test"
+  },
+  "_note": "This artifact will be REJECTED because schema_version 0.9.0 is not in ALLOWED_SCHEMA_VERSIONS"
+}

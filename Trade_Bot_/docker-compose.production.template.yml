@@ -1,0 +1,77 @@
+services:
+
+  # mongo:
+  #   image: mongo:7
+  #   container_name: samruddhi_mongo
+  #   # PORT OMITTED FOR SECURITY PURPOSE
+  #   env_file:
+  #   - .env
+  #   networks:
+  #     - HR_network
+  #   healthcheck:
+  #     test: ["CMD", "mongosh", "--quiet", "--eval", "db.runCommand({ ping: 1 })"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #   volumes:
+  #   - mongo_data:/data/db
+  #   restart: unless-stopped
+
+  backend:
+    image: bhiv/samruddhi-backend:IMG_TAG
+    container_name: samruddhi_backend
+    # PORT EXPOSED FOR PUBLIC FRONTEND ACCESS
+    ports:
+    - "8000:8000"
+    env_file:
+    - ./backend/.env
+    environment:
+      - MONGODB_URI=${MONGODB_URI}
+    networks:
+      - HR_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/tools/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+  
+  backend-2:
+    image: bhiv/samruddhi-backend-2:IMG_TAG
+    container_name: samruddhi_backend_2
+    # PORT EXPOSED FOR PUBLIC FRONTEND ACCESS
+    ports:
+    - "5001:5000"
+    env_file:
+    - ./backend/.env
+    environment:
+      - MONGODB_URI=${MONGODB_URI}
+    networks:
+      - HR_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  frontend:
+    image: bhiv/samruddhi-frontend:IMG_TAG
+    container_name: samruddhi_frontend
+    ports:
+    - "5173:5173"
+    env_file:
+    - ./frontend/.env
+    networks:
+      - HR_network
+    depends_on:
+      - backend
+      - backend-2
+    restart: unless-stopped
+
+volumes:
+  mongo_data:
+
+networks:
+  HR_network:
+    driver: bridge

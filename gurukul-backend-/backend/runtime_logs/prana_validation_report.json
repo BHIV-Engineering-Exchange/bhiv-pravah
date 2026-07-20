@@ -1,0 +1,307 @@
+{
+  "run_id": "20260328-100052-PRANA",
+  "executed_at": "2026-03-28T10:01:25.559630+05:30",
+  "user_email": "prana.integration@example.com",
+  "trigger_validation": {
+    "all_triggers": [],
+    "prana_integrity_log_triggers": []
+  },
+  "gurukul_integration": {
+    "summary_submission": {
+      "message": "Summary saved successfully",
+      "id": "ac7e09d8-7861-4c65-9fa2-f39478185d35"
+    },
+    "flashcard_review": {
+      "message": "Review logged",
+      "next_review_days": 3
+    },
+    "summary_id": "ac7e09d8-7861-4c65-9fa2-f39478185d35",
+    "flashcard_id": "02dc352b-9a9c-408b-ad1d-1021aa1fb7ab",
+    "run_event_ids": [
+      "44949c02-7315-4d2c-a8ae-aaa7a2dc3750",
+      "ee9e4707-2975-4b3a-ba91-423596f1de62"
+    ],
+    "verify_run": {
+      "source_system": "gurukul",
+      "status": "VALID",
+      "events_verified": 2,
+      "matches": 2,
+      "mismatches": [],
+      "validation_ids": [
+        "c929a1d8-e881-430f-9064-4fa483487d56",
+        "e1dc2237-6777-4bf1-bb21-d89905624ed2"
+      ]
+    }
+  },
+  "runtime_validation": {
+    "stream_id": "probe-20260328-100052-prana",
+    "burst_stream_id": "burst-20260328-100052-prana",
+    "events_sent": 32,
+    "run_event_ids": [
+      "0707f028-bc6b-4546-801e-9124a04f76e4",
+      "259fd510-9fac-4972-9218-60de68435575",
+      "3b808d9a-e808-4749-abd5-07d250291b1b",
+      "7b56577e-dae4-4ade-a93c-6ca463f00f2c",
+      "94f6cf96-708e-4308-bf44-8c0bf01c3f17",
+      "bb8104dc-e053-47a0-97f8-8c96de0d2491",
+      "ccabd425-4bff-432a-8a05-4b7791c80311",
+      "e97d9170-e870-4fd0-86c2-e28017fb350a",
+      "01e4c762-0cdf-4211-8614-9a69fe0d4daa",
+      "0c946cd9-e31b-4aee-aed1-ab6c70644742",
+      "2400475a-9d66-4380-9279-4b3a47134b90",
+      "299d1a40-c578-4cfc-9cfd-a3d0a3d7ce26",
+      "2f5cb4ee-8f2f-44e2-a120-fe003752443a",
+      "304a35d5-06f6-4c04-92eb-1dd8b9eb55bb",
+      "358c1ef1-01c4-4fc8-b516-3fbdb693fe4a",
+      "4d958488-ab2c-4035-82b1-9f18f54d0042",
+      "5afba77a-18e7-4656-b8ac-9e405563efb2",
+      "5e3b17ff-7482-44bb-a539-38cedce08993",
+      "702123dc-65a6-4a70-8675-9109af2b238f",
+      "94c2f330-e45e-4b35-9099-f0fcb65a72d8",
+      "952083aa-d21d-4253-b0b9-5ff2437083f8",
+      "9a6895d4-7527-4bec-bd4e-8208b88a74af",
+      "9a9a2f55-b789-4da7-920e-afe8e6be9d4e",
+      "d7504b15-aef2-42b8-8bf1-608d71e019fc",
+      "e1c51f62-55e3-4352-a8f2-7d51a50ce861",
+      "fad45737-90ce-4f46-964f-bf25781a2ed7",
+      "5e2f5d2b-7958-4095-9fbb-5a22fa737307",
+      "755b78ae-a59d-44e0-bdcd-10452be1ad7c",
+      "829b6623-14a5-4a4f-a48c-b12ba278b9f7",
+      "cd2dade3-4753-4dc9-8e60-4594883cf429",
+      "ec4c6611-0390-4815-a559-d7abfa4382bf",
+      "faca2451-d088-42fc-bbb2-130b9901e69e"
+    ],
+    "verify_run": {
+      "source_system": "gurukul",
+      "status": "VALID",
+      "events_verified": 32,
+      "matches": 32,
+      "mismatches": [],
+      "validation_ids": [
+        "d6674908-33e8-4a4b-b906-60ec6fc36af4",
+        "91e75771-1ac4-4a23-996c-59b0d2a95ca4",
+        "00a38855-2a19-483d-b8a2-1c8e2102bc8a",
+        "1cfb171c-0551-4dcd-9216-722f1349b2d9",
+        "9c01fb56-21c5-44b2-a7c3-0da6889cde49",
+        "9c0ef6ab-20c7-4d40-ac20-185f49abb169",
+        "13ae33b7-5c2f-4d79-9a7c-98bf56061a5c",
+        "6542bd59-cc83-4624-92da-4f96f481298e",
+        "126332a2-a2f0-479e-b74e-0ef0437ade12",
+        "c913355c-eaa9-4991-82d3-018760c7cff1",
+        "a8e26287-23ac-47a2-a227-f87785922904",
+        "ad869d48-63cc-4230-b2b0-8dedee69936f",
+        "f2de1986-07ce-47cd-b730-f5b9b1b34b86",
+        "7147b3ee-5cea-4b14-bad7-63b8b5c7c545",
+        "2cfbba40-90b8-4932-a54e-9787b8cc69c3",
+        "644a7ebe-4910-46c3-a68e-a2fd797d4e90",
+        "eea0cc1e-7ba8-41f7-a01f-a109772f6c0f",
+        "310d9dd1-1d44-4de6-b3db-d51a4b193bdd",
+        "6b7939eb-c302-4ed2-986c-83807c46aae4",
+        "cee1fe05-d6bf-4864-a565-f539158e4177",
+        "c9d63e87-6d14-4906-9adb-1a02a571d013",
+        "61eca371-bae1-44c5-b39e-3f35ce5104d5",
+        "9ae377f9-b8fd-49c2-85c2-77dc745f5cca",
+        "41830ec0-6eb3-4a27-92f1-d5a56e6c8e98",
+        "b95db861-40df-44ee-a9b0-115e290b2d65",
+        "bff2040f-9096-46d9-93b1-c278a1277379",
+        "683ba4da-5fcc-48bf-ad4d-f3c5e5f365ee",
+        "a90ee1da-6e3e-49cb-846c-da35162f3d8e",
+        "b4a9e430-c3ce-4b4a-a308-6e855fc6cd21",
+        "dd6cc377-eaf9-43fa-a480-8424c25bccc6",
+        "03d2321a-b456-4526-b63d-1ab6cc9e6362",
+        "612dc473-cb7a-47ef-b05c-e9b15ab5cdb8"
+      ]
+    },
+    "probe_event": {
+      "event_id": "304a35d5-06f6-4c04-92eb-1dd8b9eb55bb",
+      "submission_id": "probe-20260328-100052-prana",
+      "event_type": "task_submit_failed",
+      "source_system": "gurukul",
+      "payload_hash": "88a8abc35186084e2c97d7ea591cc36c27db099ea0595b2863d931ce3fe391b7",
+      "expected_sequence": 26,
+      "actual_sequence": 26,
+      "gap_detected": false,
+      "out_of_order": false,
+      "anomaly_count": 1,
+      "freshness_status": "fresh",
+      "replay_status": "MATCH",
+      "logged_at": "2026-03-28T04:31:24.460887"
+    },
+    "anomalies": [
+      {
+        "submission_id": "probe-20260328-100052-prana",
+        "anomaly_type": "burst_events",
+        "details": {
+          "window_seconds": 10,
+          "events_in_window": 5
+        }
+      },
+      {
+        "submission_id": "probe-20260328-100052-prana",
+        "anomaly_type": "sequence_gap",
+        "details": {
+          "expected_sequence": 21,
+          "actual_sequence": 22
+        }
+      },
+      {
+        "submission_id": "probe-20260328-100052-prana",
+        "anomaly_type": "out_of_order_timestamp",
+        "details": {
+          "previous_timestamp": "2026-03-28T04:31:46.764273+00:00",
+          "event_timestamp": "2026-03-28T04:30:53.764273+00:00"
+        }
+      },
+      {
+        "submission_id": "probe-20260328-100052-prana",
+        "anomaly_type": "repeated_failures",
+        "details": {
+          "failure_events": 3,
+          "threshold": 3
+        }
+      },
+      {
+        "submission_id": "burst-20260328-100052-prana",
+        "anomaly_type": "burst_events",
+        "details": {
+          "window_seconds": 10,
+          "events_in_window": 5
+        }
+      }
+    ]
+  },
+  "bucket_validation": {
+    "packet_id": "d312b255-c4a4-4398-af3b-c2ccbb1c955a",
+    "count": 1,
+    "run_event_ids": [
+      "29266d3f-e7f2-46b8-ac40-c4168d9faeb9"
+    ],
+    "verify_run": {
+      "source_system": "Bucket",
+      "status": "VALID",
+      "events_verified": 1,
+      "matches": 1,
+      "mismatches": [],
+      "validation_ids": [
+        "d5dde145-043e-41e0-b21c-cf560911a00d"
+      ]
+    }
+  },
+  "karma_validation": {
+    "submission_id": "d2a6b914-e64c-4591-b00e-ca7cd816b47f",
+    "gateway_status": "success",
+    "gateway_event_type": "life_event",
+    "classification_input": "Learning completed successfully",
+    "classification_action": "cheat",
+    "classification_result": "medium",
+    "count": 1,
+    "run_event_ids": [
+      "5cec299e-756c-4f11-a212-29aa7c6d4aa3"
+    ],
+    "verify_run": {
+      "source_system": "Karma",
+      "status": "VALID",
+      "events_verified": 1,
+      "matches": 1,
+      "mismatches": [],
+      "validation_ids": [
+        "558195c9-3cdb-4828-be42-e5b095408d29"
+      ]
+    }
+  },
+  "append_only_validation": {
+    "seed_event_id": "ff34535a-bfba-4ca8-a7c2-8b4cbb95ee7f",
+    "operations": [
+      "DELETE",
+      "UPDATE"
+    ],
+    "violation_event_ids": [
+      "dbd751c0-2641-4d88-83cd-e29e55c18d6d",
+      "426e5147-2dcf-4c90-a318-c0af2dda8756"
+    ],
+    "verify_run": {
+      "source_system": "PRANA_AUDIT",
+      "status": "VALID",
+      "events_verified": 2,
+      "matches": 2,
+      "mismatches": [],
+      "validation_ids": [
+        "8b478a39-7b6d-4a7e-9259-b7bf3082f664",
+        "e0c544b8-f5d6-4168-b732-74e17103d3b3"
+      ]
+    }
+  },
+  "deterministic_hashing": {
+    "status": "PASS",
+    "events_checked": 38,
+    "samples": [
+      {
+        "event_id": "0707f028-bc6b-4546-801e-9124a04f76e4",
+        "stored_hash": "ddb70a7eddc14920d8cf35963898bc38494338f248bc6482ce7ad588c27d1767",
+        "hash_first": "ddb70a7eddc14920d8cf35963898bc38494338f248bc6482ce7ad588c27d1767",
+        "hash_second": "ddb70a7eddc14920d8cf35963898bc38494338f248bc6482ce7ad588c27d1767",
+        "deterministic": true
+      },
+      {
+        "event_id": "259fd510-9fac-4972-9218-60de68435575",
+        "stored_hash": "c4ee31210e1ab3aa65ae18a0548cf0dce822780582afbd20db9c231a007308df",
+        "hash_first": "c4ee31210e1ab3aa65ae18a0548cf0dce822780582afbd20db9c231a007308df",
+        "hash_second": "c4ee31210e1ab3aa65ae18a0548cf0dce822780582afbd20db9c231a007308df",
+        "deterministic": true
+      },
+      {
+        "event_id": "3b808d9a-e808-4749-abd5-07d250291b1b",
+        "stored_hash": "28bfcbea884547a1f6391e4f8cdad22b4a79fe4502de26005842e6062658fa2e",
+        "hash_first": "28bfcbea884547a1f6391e4f8cdad22b4a79fe4502de26005842e6062658fa2e",
+        "hash_second": "28bfcbea884547a1f6391e4f8cdad22b4a79fe4502de26005842e6062658fa2e",
+        "deterministic": true
+      },
+      {
+        "event_id": "7b56577e-dae4-4ade-a93c-6ca463f00f2c",
+        "stored_hash": "5b45765c7a7640357c3a09ac401d14b0089eb34fd3e0ef28afe98fed0d5565f5",
+        "hash_first": "5b45765c7a7640357c3a09ac401d14b0089eb34fd3e0ef28afe98fed0d5565f5",
+        "hash_second": "5b45765c7a7640357c3a09ac401d14b0089eb34fd3e0ef28afe98fed0d5565f5",
+        "deterministic": true
+      },
+      {
+        "event_id": "94f6cf96-708e-4308-bf44-8c0bf01c3f17",
+        "stored_hash": "3770610eeb4d88f1059dcf8e279c52bc169395fec5cd15557f6e829212df2cfb",
+        "hash_first": "3770610eeb4d88f1059dcf8e279c52bc169395fec5cd15557f6e829212df2cfb",
+        "hash_second": "3770610eeb4d88f1059dcf8e279c52bc169395fec5cd15557f6e829212df2cfb",
+        "deterministic": true
+      }
+    ]
+  },
+  "checks": {
+    "ingestion_working": "PASS",
+    "hashing_working": "PASS",
+    "gap_detection_working": "PASS",
+    "anomaly_emission_working": "PASS",
+    "replay_validation_working": "PASS",
+    "gurukul_integration_validated": "PASS",
+    "bucket_integration_validated": "PASS",
+    "karma_integration_validated": "PASS",
+    "no_enforcement_triggers": "PASS",
+    "artifacts_generated_today": "PASS",
+    "single_run_artifacts_only": "PASS",
+    "deterministic_results_confirmed": "PASS",
+    "append_only_violation_observed": "PASS"
+  },
+  "artifacts": {
+    "run_log": "C:\\Users\\PC\\Desktop\\gurukul-backend-\\run-logs\\prana_validation_20260328-100052-PRANA.log",
+    "json_report": "C:\\Users\\PC\\Desktop\\gurukul-backend-\\run-logs\\prana_validation_report_20260328-100052-PRANA.json",
+    "testing_report": "C:\\Users\\PC\\Desktop\\gurukul-backend-\\run-logs\\prana_testing_report_20260328-100052-PRANA.md",
+    "review_packet": "C:\\Users\\PC\\Desktop\\gurukul-backend-\\run-logs\\REVIEW_PACKET_20260328-100052-PRANA.md"
+  },
+  "artifact_validation": {
+    "all_exist": true,
+    "generated_today": true,
+    "single_run_only": true,
+    "run_scoped_counts": {
+      "logs": 1,
+      "json_reports": 1,
+      "testing_reports": 1,
+      "review_packets": 1
+    }
+  }
+}

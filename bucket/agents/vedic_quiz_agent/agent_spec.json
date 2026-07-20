@@ -1,0 +1,26 @@
+{
+    "name": "vedic_quiz_agent",
+    "domains": ["education", "gurukul"],
+    "module_path": "agents.vedic_quiz_agent.vedic_quiz_agent",
+    "capabilities": {
+        "chainable": true,
+        "memory_access": true
+    },
+    "input_schema": {
+        "required": ["question"],
+        "properties": {
+            "question": { "type": "string" }
+        }
+    },
+    "output_schema": {
+        "properties": {
+            "answer": { "type": "string" }
+        }
+    },
+    "sample_input": {
+        "question": "What is the capital of India?"
+    },
+    "sample_output": {
+        "answer": "Delhi"
+    }
+}

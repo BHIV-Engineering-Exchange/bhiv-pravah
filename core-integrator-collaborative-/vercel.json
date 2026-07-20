@@ -1,0 +1,62 @@
+{
+  "version": 2,
+  "framework": "fastapi",
+  "buildCommand": "pip install -r requirements.txt",
+  "functions": {
+    "api/creator-core.py": {
+      "runtime": "python3.11",
+      "maxDuration": 60,
+      "memory": 1024
+    },
+    "api/bhiv-core.py": {
+      "runtime": "python3.11",
+      "maxDuration": 60,
+      "memory": 1024
+    },
+    "api/bucket.py": {
+      "runtime": "python3.11",
+      "maxDuration": 60,
+      "memory": 512
+    },
+    "api/prompt-runner.py": {
+      "runtime": "python3.11",
+      "maxDuration": 60,
+      "memory": 1024
+    },
+    "api/cet.py": {
+      "runtime": "python3.11",
+      "maxDuration": 60,
+      "memory": 512
+    },
+    "api/sarathi.py": {
+      "runtime": "python3.11",
+      "maxDuration": 60,
+      "memory": 512
+    },
+    "api/gate.py": {
+      "runtime": "python3.11",
+      "maxDuration": 60,
+      "memory": 512
+    },
+    "api/integration-bridge.py": {
+      "runtime": "python3.11",
+      "maxDuration": 60,
+      "memory": 1024
+    }
+  },
+  "env": {
+    "GROQ_API_KEY": "@groq_api_key",
+    "MONGODB_CONNECTION_STRING": "@mongodb_connection_string",
+    "MONGODB_DATABASE_NAME": "bhiv_production",
+    "AWS_S3_BUCKET": "@aws_s3_bucket",
+    "AWS_ACCESS_KEY_ID": "@aws_access_key_id",
+    "AWS_SECRET_ACCESS_KEY": "@aws_secret_access_key",
+    "LOG_LEVEL": "INFO"
+  },
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api/:path*"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+    "trace_id": "test-trace-rejected-gov",
+    "chain": [
+        "test-trace-rejected-gov",
+        "trace-parent-999",
+        "trace-grandparent-888"
+    ],
+    "valid_chain": true
+}

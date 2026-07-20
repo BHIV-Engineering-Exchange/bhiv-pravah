@@ -1,0 +1,17 @@
+# Client Portal - Streamlit & Auth - Python 3.12.7 Compatible
+streamlit>=1.28.0,<2.0.0
+requests>=2.31.0,<3.0.0
+httpx>=0.25.2,<0.28.0
+pandas>=2.1.4,<3.0.0
+python-dotenv>=1.0.0,<2.0.0
+
+# Authentication Dependencies - Compatible versions
+bcrypt>=4.0.1,<5.0.0
+PyJWT>=2.8.0,<3.0.0
+# PostgreSQL dependencies - REMOVED (portal uses Gateway API, not direct DB)
+# sqlalchemy>=2.0.23,<2.1.0
+# psycopg2-binary>=2.9.7,<3.0.0
+
+# 2FA Dependencies
+pillow>=10.0.1,<11.0.0
+qrcode[pil]>=7.4.2,<8.0.0

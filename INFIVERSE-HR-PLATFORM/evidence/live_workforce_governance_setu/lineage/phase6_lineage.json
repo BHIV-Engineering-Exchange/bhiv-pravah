@@ -1,0 +1,135 @@
+{
+  "lifecycle_correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+  "cross_system_trace": {
+    "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+    "signal_count": 1,
+    "audit_count": 14,
+    "signals": [
+      {
+        "signal_id": "sig-9746f00e65f0",
+        "signal_type": "niyantran_telemetry",
+        "payload": {
+          "event": "task_completed",
+          "task_id": "exec-7781",
+          "workforce_ref": "wf-704dedc80d02"
+        },
+        "workforce_ref_id": "wf-704dedc80d02",
+        "source_declaration": "niyantran_telemetry participation",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:24.071000",
+        "lineage": {
+          "origin_system": "niyantran",
+          "owning_system": "niyantran",
+          "schema_version": "1.0.0",
+          "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "trust_classification": "observed",
+          "visibility_scope": "tenant"
+        },
+        "updated_at": "2026-07-01T08:11:24.071000",
+        "id": "6a44cbacf5b43a528e6ee5c3"
+      }
+    ],
+    "audit_events": [
+      {
+        "action": "organization_create",
+        "outcome": "success",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+      },
+      {
+        "action": "division_create",
+        "outcome": "success",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+      },
+      {
+        "action": "unit_create",
+        "outcome": "success",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+      },
+      {
+        "action": "department_create",
+        "outcome": "success",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+      },
+      {
+        "action": "department_create",
+        "outcome": "success",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+      },
+      {
+        "action": "department_create",
+        "outcome": "success",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+      },
+      {
+        "action": "employee_create",
+        "outcome": "success",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+      },
+      {
+        "action": "employee_onboard",
+        "outcome": "success",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+      },
+      {
+        "action": "employee_onboard_complete",
+        "outcome": "success",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+      },
+      {
+        "action": "employee_department_transfer",
+        "outcome": "success",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+      },
+      {
+        "action": "employee_promotion",
+        "outcome": "success",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+      },
+      {
+        "action": "employee_department_transfer",
+        "outcome": "success",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+      },
+      {
+        "action": "employee_offboard_prepare",
+        "outcome": "success",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+      },
+      {
+        "action": "setu_signal_niyantran_telemetry",
+        "outcome": "ingested",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+      }
+    ]
+  },
+  "samples": {
+    "workforce_employee_lineage": {
+      "origin_system": "gateway",
+      "owning_system": "sampada",
+      "schema_version": "1.0.0",
+      "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "trust_classification": "canonical",
+      "visibility_scope": "tenant"
+    },
+    "governance_decision_lineage": {
+      "origin_system": "gateway",
+      "owning_system": "sampada",
+      "schema_version": "1.0.0",
+      "trace_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+      "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+      "trust_classification": "canonical",
+      "visibility_scope": "tenant"
+    },
+    "setu_signal_lineage": {
+      "origin_system": "niyantran",
+      "owning_system": "niyantran",
+      "schema_version": "1.0.0",
+      "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "trust_classification": "observed",
+      "visibility_scope": "tenant"
+    }
+  }
+}

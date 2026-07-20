@@ -1,0 +1,152 @@
+{
+  "answer": "I do not have verified knowledge to answer this question.",
+  "confidence": 0.0,
+  "confidence_breakdown": {
+    "accepted_count": 0,
+    "accepted_derivations": [],
+    "overall": 0.0,
+    "rejected_count": 18
+  },
+  "detected_domain": null,
+  "domain_resolution": {
+    "confidence": 0.0,
+    "domain": "general",
+    "entities": [],
+    "method": "no_canonical_entity"
+  },
+  "enforcement_stats": {
+    "rejected_entries": 19,
+    "total_entries": 37,
+    "valid_entries": 18
+  },
+  "fallback_to_llm": false,
+  "generated_at": "2026-06-25T05:10:10.033302Z",
+  "knowledge_ids_used": [],
+  "matched_signals": [],
+  "query": "Who won the cricket match yesterday?",
+  "reasoning": "No signals passed domain+tag+query validation.",
+  "reasoning_path": [
+    "query_received",
+    "kosha_schema_enforced",
+    "canonical_entities_extracted",
+    "ontology_aware_retrieval",
+    "signal_validation",
+    "structured_signal_emission",
+    "deterministic_rejection"
+  ],
+  "rejected_signals": [
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_e5c4debb7542",
+      "source": "Shakti and Shakta_ocr.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_cd3dd47d4021",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_91047be9626d",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_3bf02d1647b2",
+      "source": "Vayu Purana Part 1_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_16aa42bee099",
+      "source": "The Narada-Purana, Part 3_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_4d3ceb769d0f",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_60b38e626344",
+      "source": "The Narada-Purana, Part 1_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_847a097d63b7",
+      "source": "Valmiki-Ramayana-Eng-Translation-Griffith_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_248ccce0b0a5",
+      "source": "Taittiriya_Upanishad_Swami_Sarvanand[Sanskrit-English]_OCR.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_cab73d94ce1c",
+      "source": "Svetasvatara Upanishad - sanskrit and English.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_c64a60428a65",
+      "source": "Brihaspati Smriti (Reconstructed) - Rangaswami Aiyangar 1941 (GOS)_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_ddf4d169c2d0",
+      "source": "The Uddhava-g\u012bt\u0101_sanskrit_English_Hindi_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_8159f85f8a89",
+      "source": "Agni Purana Unabridged English Motilal.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_c7a5b3eadd82",
+      "source": "Yoga_Upanishad_[Sanskrit_English]_OCR.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_717b220e056d",
+      "source": "Srimad Bhagavata Maha Purana With Sanskrit Text And English Trans. By C.L. Goswami, Part 1 (Book 1 To 8) - Gita Press, Gorakhpur_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_92256d8eff77",
+      "source": "vigyan-bhairava-tantra_ocr.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_8c4aaf037168",
+      "source": "Brahma Purana - Parts I-IV_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_efdf1ac19afb",
+      "source": "The Narada-Purana, Part 4_ocred.pdf"
+    }
+  ],
+  "signals_found": 0,
+  "signals_rejected": 18,
+  "synthesis_mode": "REJECTED_NO_SYNTHESIS",
+  "trace_id": "trace_c028c742e4f85348",
+  "verification_status": "NO_VERIFIED_KNOWLEDGE"
+}

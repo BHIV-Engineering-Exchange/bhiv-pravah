@@ -1,0 +1,59 @@
+{
+    "name": "financial_coordinator",
+    "domains": ["finance", "transactions"],
+    "module_path": "agents.financial_coordinator.financial_coordinator",
+    "capabilities": {
+        "chainable": true,
+        "memory_access": false
+    },
+    "input_schema": {
+        "required": [],
+        "properties": {
+            "action": {
+                "type": "string",
+                "enum": ["get_transactions", "add_transaction", "get_report"],
+                "description": "Action to perform. If not provided, defaults to 'get_transactions'."
+            },
+            "transaction": {
+                "type": "object",
+                "properties": {
+                    "amount": { "type": "number" },
+                    "description": { "type": "string" },
+                    "type": { "type": "string", "enum": ["income", "expense"] }
+                },
+                "required": ["amount", "description", "type"]
+            }
+        }
+    },
+    "output_schema": {
+        "properties": {
+            "success": { "type": "boolean" },
+            "transactions": { "type": "array" },
+            "transaction": { "type": "object" },
+            "report": { "type": "string" },
+            "error": { "type": "string" }
+        }
+    },
+    "sample_input": {
+        "action": "get_transactions"
+    },
+    "sample_output": {
+        "success": true,
+        "transactions": [
+            {
+                "id": "1",
+                "amount": 100.50,
+                "description": "Salary",
+                "type": "income",
+                "date": "2023-06-01T12:00:00Z"
+            },
+            {
+                "id": "2",
+                "amount": 50.25,
+                "description": "Groceries",
+                "type": "expense",
+                "date": "2023-06-02T15:30:00Z"
+            }
+        ]
+    }
+}

@@ -1,0 +1,152 @@
+{
+  "domain": "finance",
+  "version": "1.0.0",
+  "description": "Finance domain plugin for investment analysis, risk assessment, budget planning, and financial reporting.",
+
+  "detection_keywords": [
+    "investment", "roi", "portfolio", "budget", "finance", "revenue",
+    "profit", "loss", "stock", "bond", "loan", "interest", "tax",
+    "return", "capital", "dividend", "equity", "asset", "valuation",
+    "cash flow", "balance sheet", "income statement", "p&l"
+  ],
+
+  "detection_patterns": [
+    "financial\\s+(?:analysis|report|planning|projection|forecast)",
+    "investment\\s+(?:analysis|return|portfolio|strategy)",
+    "(?:roi|return\\s+on\\s+investment|rate\\s+of\\s+return)",
+    "(?:budget|cost)\\s+(?:planning|forecast|analysis|allocation)"
+  ],
+
+  "intents": {
+    "analyze_investment": {
+      "patterns": [
+        "analyze\\s+(?:the\\s+)?investment",
+        "investment\\s+(?:analysis|evaluation|assessment)",
+        "calculate\\s+(?:the\\s+)?(?:roi|return|yield)",
+        "evaluate\\s+(?:the\\s+)?(?:investment|portfolio|asset)"
+      ],
+      "module": "investment_analyzer",
+      "task": "analyze_investment_return",
+      "required_entities": [],
+      "optional_entities": ["amount", "period", "asset_type", "currency", "risk_profile"],
+      "tasks": ["market analysis", "return calculation", "risk assessment", "portfolio review", "recommendations"],
+      "output_format": "investment_analysis"
+    },
+
+    "assess_risk": {
+      "patterns": [
+        "(?:assess|evaluate|analyze)\\s+(?:the\\s+)?(?:financial\\s+)?risk",
+        "risk\\s+(?:assessment|analysis|evaluation)",
+        "(?:credit|market|liquidity|operational)\\s+risk",
+        "risk\\s+(?:profile|rating|score)"
+      ],
+      "module": "risk_assessor",
+      "task": "perform_risk_assessment",
+      "required_entities": [],
+      "optional_entities": ["risk_type", "amount", "sector", "period"],
+      "tasks": ["risk identification", "risk quantification", "impact assessment", "mitigation strategies"],
+      "output_format": "risk_report"
+    },
+
+    "budget_planning": {
+      "patterns": [
+        "(?:create|prepare|develop)\\s+(?:a\\s+)?budget",
+        "budget\\s+(?:planning|allocation|forecast|review)",
+        "financial\\s+(?:planning|forecast|projection)",
+        "(?:allocate|plan)\\s+(?:the\\s+)?(?:budget|funds|resources)"
+      ],
+      "module": "budget_planner",
+      "task": "create_budget_plan",
+      "required_entities": [],
+      "optional_entities": ["amount", "period", "department", "currency"],
+      "tasks": ["requirement analysis", "budget allocation", "forecast modeling", "variance analysis"],
+      "output_format": "budget_plan"
+    },
+
+    "calculate_estimate": {
+      "patterns": [
+        "calculate\\s+(?:the\\s+)?(?:financial\\s+)?(?:cost|estimate|projection)",
+        "estimate\\s+(?:the\\s+)?(?:cost|revenue|profit|loss)",
+        "financial\\s+(?:estimate|projection|forecast)"
+      ],
+      "module": "financial_calculator",
+      "task": "calculate_financial_estimate",
+      "required_entities": [],
+      "optional_entities": ["amount", "period", "rate", "currency"],
+      "tasks": ["data collection", "financial calculation", "projection modeling", "sensitivity analysis"],
+      "output_format": "financial_estimate"
+    },
+
+    "generate_report": {
+      "patterns": [
+        "generate\\s+(?:a\\s+)?(?:financial|investment|portfolio)?\\s*report",
+        "create\\s+(?:a\\s+)?(?:financial|portfolio)?\\s*report",
+        "(?:financial\\s+)?(?:statement|report|summary)"
+      ],
+      "module": "financial_reporter",
+      "task": "generate_financial_report",
+      "required_entities": [],
+      "optional_entities": ["report_type", "period", "currency"],
+      "tasks": ["data compilation", "financial analysis", "visualization preparation", "report drafting"],
+      "output_format": "financial_report"
+    }
+  },
+
+  "extractors": {
+    "amount": {
+      "type": "regex",
+      "pattern": "(?:Rs\\.?|INR|₹|\\$|€|£|USD)?\\s*(\\d+(?:,\\d+)*(?:\\.\\d+)?)\\s*(?:lakhs?|crores?|k|million|billion)?",
+      "group": 0,
+      "case_insensitive": true
+    },
+    "period": {
+      "type": "regex",
+      "pattern": "(?:over|for|in)\\s+(\\d+\\s*(?:months?|years?|quarters?))",
+      "group": 1,
+      "case_insensitive": true
+    },
+    "currency": {
+      "type": "keyword",
+      "keywords": ["USD", "INR", "EUR", "GBP", "rupees", "dollars", "euros", "pounds"]
+    },
+    "asset_type": {
+      "type": "keyword",
+      "keywords": ["stocks", "bonds", "mutual funds", "real estate", "gold", "cryptocurrency", "equity", "fixed deposit", "property"]
+    },
+    "risk_profile": {
+      "type": "keyword",
+      "keywords": ["low risk", "medium risk", "high risk", "aggressive", "conservative", "moderate", "balanced"]
+    },
+    "rate": {
+      "type": "regex",
+      "pattern": "(\\d+(?:\\.\\d+)?)\\s*%\\s*(?:per\\s+(?:annum|year|month))?",
+      "group": 0,
+      "case_insensitive": true
+    }
+  },
+
+  "constraint_rules": {
+    "regulatory": {
+      "type": "keyword",
+      "keywords": ["SEBI", "RBI", "SEC", "IFRS", "GAAP", "regulatory", "compliant", "taxable"]
+    },
+    "timeline": {
+      "type": "regex",
+      "pattern": "(?:by|before|within)\\s+(\\d+\\s*(?:months?|years?|quarters?))",
+      "group": 1,
+      "case_insensitive": true
+    },
+    "output_format": {
+      "type": "keyword",
+      "keywords": ["detailed", "summary", "dashboard", "chart", "spreadsheet"]
+    }
+  },
+
+  "clarification_questions": {
+    "amount": "What is the investment or transaction amount?",
+    "period": "What is the investment or planning period (e.g., 5 years)?",
+    "currency": "What currency should be used for calculations?",
+    "asset_type": "What type of asset or investment instrument is this?",
+    "risk_profile": "What is the risk tolerance (low, medium, or high)?"
+  }
+}

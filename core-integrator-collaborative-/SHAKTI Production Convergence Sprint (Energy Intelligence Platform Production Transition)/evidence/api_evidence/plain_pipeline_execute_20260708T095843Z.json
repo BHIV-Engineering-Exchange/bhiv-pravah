@@ -1,0 +1,179 @@
+{
+  "status_code": 200,
+  "body": {
+    "status": "success",
+    "trace_id": "d688643497934795be3591478673b000",
+    "workflow_id": "wf_7b60de5fceaf",
+    "artifact_chain": {
+      "trace_id": "d688643497934795be3591478673b000",
+      "workflow_id": "wf_7b60de5fceaf",
+      "A1_instruction": "instruction_829a2f86",
+      "A2_blueprint": "blueprint_99bffa5e",
+      "A2b_contract": "contract_a3945192",
+      "A2c_authority": "authority_87281d7d",
+      "A2d_gate": "gate_6e71dd4f",
+      "A3_execution": "execution_bbee2675",
+      "A4_result": "result_c74f2065"
+    },
+    "pipeline_result": {
+      "original_prompt": "Create a short educational outline for algebra basics",
+      "generated_instruction": {
+        "prompt": "Create a short educational outline for algebra basics",
+        "module": "education",
+        "intent": "generate",
+        "topic": "general",
+        "tasks": [
+          "create_blueprint"
+        ],
+        "output_format": "json",
+        "product_context": "gurukul",
+        "trace_id": "d688643497934795be3591478673b000",
+        "workflow_id": "wf_7b60de5fceaf",
+        "instruction_id": "d688643497934795be3591478673b000"
+      },
+      "blueprint_envelope": {
+        "blueprint": {
+          "instruction_id": "a012c01f-c3ee-493f-8c14-45e2a3fad2f9",
+          "origin": "creator_core",
+          "intent_type": "generate",
+          "target_product": "education",
+          "payload": {
+            "blueprint_type": "content_blueprint",
+            "product_target": "education",
+            "content_type": "json",
+            "title": "General",
+            "outline": [
+              "create_blueprint"
+            ]
+          },
+          "schema_version": "1.0",
+          "timestamp": "2026-07-08T09:58:43.832402+00:00"
+        },
+        "trace_id": "d688643497934795be3591478673b000",
+        "workflow_id": "wf_7b60de5fceaf"
+      },
+      "contract": {
+        "contract_id": "contract_1be7a65d1803",
+        "instruction_id": "d688643497934795be3591478673b000",
+        "trace_id": "d688643497934795be3591478673b000",
+        "execution_plan": {
+          "target_module": "education",
+          "execution_intent": "generate",
+          "execution_data": {
+            "blueprint_type": "content_blueprint",
+            "product_target": "education",
+            "content_type": "json",
+            "title": "General",
+            "outline": [
+              "create_blueprint"
+            ]
+          }
+        },
+        "constraints": {
+          "schema_version": "1.0.0",
+          "origin": "creator_core",
+          "intent_type": null,
+          "deterministic": true,
+          "replay_safe": true
+        },
+        "contract_hash": "e88d112020d980866272756fa27bcbba6668810e6c82c47adebc024fe523b3fe",
+        "timestamp": "2026-07-08T09:58:43.864462+00:00",
+        "schema_version": "1.0.0"
+      },
+      "authority_decision": {
+        "allowed": true,
+        "reason": "valid_contract",
+        "contract_id": "contract_1be7a65d1803",
+        "trace_id": "d688643497934795be3591478673b000",
+        "decision_id": "decision_contract_1be7a65d1803",
+        "timestamp": "2026-07-08T09:58:43.890820+00:00",
+        "validation_checks": {
+          "has_contract_id": "contract_1be7a65d1803",
+          "has_trace_id": "d688643497934795be3591478673b000",
+          "has_execution_plan": true,
+          "has_valid_module": "education",
+          "has_constraints": true,
+          "has_contract_hash": "e88d112020d980866272756fa27bcbba6668810e6c82c47adebc024fe523b3fe"
+        }
+      },
+      "gate_decision": {
+        "status": "allowed",
+        "message": "Execution approved by gate",
+        "result": {},
+        "contract_id": "contract_1be7a65d1803",
+        "trace_id": "d688643497934795be3591478673b000",
+        "gate_status": "ALLOWED",
+        "authority_decision": {
+          "allowed": true,
+          "reason": "valid_contract",
+          "contract_id": "contract_1be7a65d1803",
+          "trace_id": "d688643497934795be3591478673b000",
+          "decision_id": "decision_contract_1be7a65d1803",
+          "timestamp": "2026-07-08T09:58:43.890820+00:00",
+          "validation_checks": {
+            "has_contract_id": "contract_1be7a65d1803",
+            "has_trace_id": "d688643497934795be3591478673b000",
+            "has_execution_plan": true,
+            "has_valid_module": "education",
+            "has_constraints": true,
+            "has_contract_hash": "e88d112020d980866272756fa27bcbba6668810e6c82c47adebc024fe523b3fe"
+          }
+        },
+        "timestamp": "2026-07-08T09:58:43.915914+00:00"
+      },
+      "execution_result": {
+        "status": "success",
+        "message": "Creative content generated with context",
+        "result": {
+          "content": "Generated content for: unknown topic",
+          "related_context": [],
+          "enhanced_data": {
+            "blueprint": {
+              "blueprint_type": "content_blueprint",
+              "product_target": "education",
+              "content_type": "json",
+              "title": "General",
+              "outline": [
+                "create_blueprint"
+              ]
+            },
+            "target_product": "education",
+            "trace_id": "d688643497934795be3591478673b000",
+            "workflow_id": "wf_7b60de5fceaf"
+          }
+        },
+        "trace_id": "d688643497934795be3591478673b000",
+        "workflow_id": "wf_7b60de5fceaf"
+      },
+      "pipeline_status": "completed",
+      "deterministic_hash": "bbb17c348c03952a",
+      "product_output": {
+        "lesson_plan": {
+          "content": "Generated content for: unknown topic",
+          "related_context": [],
+          "enhanced_data": {
+            "blueprint": {
+              "blueprint_type": "content_blueprint",
+              "product_target": "education",
+              "content_type": "json",
+              "title": "General",
+              "outline": [
+                "create_blueprint"
+              ]
+            },
+            "target_product": "education",
+            "trace_id": "d688643497934795be3591478673b000",
+            "workflow_id": "wf_7b60de5fceaf"
+          }
+        },
+        "assessment": {},
+        "metadata": {
+          "status": "success"
+        }
+      },
+      "trace_id": "d688643497934795be3591478673b000",
+      "workflow_id": "wf_7b60de5fceaf"
+    },
+    "timestamp": "2026-07-08T09:58:44.003620+00:00"
+  }
+}

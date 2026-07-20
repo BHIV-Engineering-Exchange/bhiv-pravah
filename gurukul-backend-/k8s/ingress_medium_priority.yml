@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: backend-ingress-medium
+  namespace: gurukul-staging
+  annotations:
+    nginx.ingress.kubernetes.io/limit-rps: "30"
+    nginx.ingress.kubernetes.io/limit-burst-multiplier: "10"
+    nginx.ingress.kubernetes.io/limit-status-code: "429"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      limit_req_status 429;
+spec:
+  rules:
+  - host: medium.gurukul.local
+    http:
+      paths:
+      - path: /api/v1/chat
+        pathType: Prefix
+        backend:
+          service:
+            name: gurukul-backend
+            port:
+              number: 80

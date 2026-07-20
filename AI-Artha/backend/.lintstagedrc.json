@@ -1,0 +1,1 @@
+{\n  \"*.js\": [\n    \"eslint --fix\",\n    \"prettier --write\",\n    \"git add\"\n  ]\n}

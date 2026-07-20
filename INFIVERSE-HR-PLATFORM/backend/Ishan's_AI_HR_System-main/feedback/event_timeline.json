@@ -1,0 +1,62 @@
+[
+  {
+    "candidate_id": 1,
+    "event_type": "feedback_submitted",
+    "timestamp": "2025-11-28T11:14:59.557001",
+    "details": {
+      "feedback_id": 1,
+      "decision_id": "DEC_1_1764308699",
+      "score": 4,
+      "outcome": "accept"
+    },
+    "event_id": "EVT_1_1764308699"
+  },
+  {
+    "candidate_id": 2,
+    "event_type": "feedback_submitted",
+    "timestamp": "2025-11-28T11:15:01.622726",
+    "details": {
+      "feedback_id": 2,
+      "decision_id": "DEC_2_1764308701",
+      "score": 5,
+      "outcome": "accept"
+    },
+    "event_id": "EVT_2_1764308701"
+  },
+  {
+    "candidate_id": 3,
+    "event_type": "feedback_submitted",
+    "timestamp": "2025-11-28T11:15:03.671562",
+    "details": {
+      "feedback_id": 3,
+      "decision_id": "DEC_3_1764308703",
+      "score": 3,
+      "outcome": "reconsider"
+    },
+    "event_id": "EVT_3_1764308703"
+  },
+  {
+    "candidate_id": 4,
+    "event_type": "feedback_submitted",
+    "timestamp": "2025-11-28T11:15:05.733372",
+    "details": {
+      "feedback_id": 4,
+      "decision_id": "DEC_4_1764308705",
+      "score": 5,
+      "outcome": "accept"
+    },
+    "event_id": "EVT_4_1764308705"
+  },
+  {
+    "candidate_id": 5,
+    "event_type": "feedback_submitted",
+    "timestamp": "2025-11-28T11:15:07.791970",
+    "details": {
+      "feedback_id": 5,
+      "decision_id": "DEC_5_1764308707",
+      "score": 2,
+      "outcome": "reject"
+    },
+    "event_id": "EVT_5_1764308707"
+  }
+]

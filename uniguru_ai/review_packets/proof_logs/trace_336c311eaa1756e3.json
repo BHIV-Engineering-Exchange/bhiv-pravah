@@ -1,0 +1,1455 @@
+{
+  "answer": "## Content\n\nLord Ganesha (Ganapati, Vinayaka) is revered as the remover of obstacles (Vighnaharta) and the lord of beginnings. His distinctive form encodes spiritual symbolism rather than mere mythological description.\n\n**Elephant Head:** The elephant head represents supreme wisdom (buddhi), discrimination, and memory. It signifies the ability to overcome obstacles with intelligence and patience.\n\n**Large Ears:** Large ears symbolize attentive listening \u2014 the capacity to hear prayers, scriptures, and the needs of devotees.\n\n**Small Eyes:** Small eyes indicate concentration and the ability to perceive the subtle essence of reality beyond surface appearance.\n\n**Trunk:** The flexible trunk represents adaptability (viveka) \u2014 the power to discriminate between the real and unreal, and to grasp both the gross and subtle.\n\n**Single Tusk (Ekdanta):** One tusk denotes one-pointed focus on the ultimate truth, transcending duality.\n\n**Large Belly:** The generous belly symbolizes the capacity to digest all experiences of life \u2014 joy and sorrow \u2014 and to contain the cosmos within consciousness.\n\n**Modaka (Sweet):** The sweet held in his hand represents the rewards of spiritual discipline and the bliss of Self-knowledge.\n\n**Mouse (Mushika) as Vehicle:** The mouse represents desire and the restless mind. Ganesha's mastery over the mouse signifies control over desires and the ego.\n\n**Four Arms:** His four arms represent the four inner instruments (antahkarana): mind (manas), intellect (buddhi), ego (ahankara), and consciousness (chitta).\n\n**Broken Tusk and Writing the Mahabharata:** Tradition holds that Ganesha broke his tusk to write the Mahabharata when his pen failed, symbolizing sacrifice in the service of sacred knowledge (jnana).\n\nIn worship and meditation, Ganesha is invoked at the start of rituals because he clears inner and outer obstacles, granting clarity before any sacred undertaking.",
+  "confidence": 1.0,
+  "confidence_breakdown": {
+    "accepted_count": 1,
+    "fallback_method": "markdown_search",
+    "overall": 1.0,
+    "rejected_count": 18
+  },
+  "detected_domain": "puranas",
+  "domain_resolution": {
+    "confidence": 1.0,
+    "domain": "puranas",
+    "entities": [
+      {
+        "canonical": "Ganesha",
+        "concepts": [
+          "obstacles",
+          "wisdom",
+          "beginnings",
+          "symbolism"
+        ],
+        "domain": "puranas",
+        "entity_type": "deity",
+        "matched_alias": "lord ganesha"
+      }
+    ],
+    "method": "canonical_entity_majority"
+  },
+  "enforcement_stats": {
+    "rejected_entries": 19,
+    "total_entries": 37,
+    "valid_entries": 18
+  },
+  "fallback_to_llm": false,
+  "generated_at": "2026-06-25T05:10:09.891390Z",
+  "knowledge_ids_used": [],
+  "matched_signals": [],
+  "query": "Explain the symbolism of Lord Ganesha form",
+  "reasoning": "Accepted via markdown_search after Kosha signal validation found no match.",
+  "reasoning_path": [
+    "query_received",
+    "kosha_schema_enforced",
+    "canonical_entities_extracted",
+    "ontology_aware_retrieval",
+    "signal_validation",
+    "structured_signal_emission",
+    "knowledge_index_fallback",
+    "deterministic_synthesis"
+  ],
+  "rejected_signals": [
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Narada Purana",
+            "concepts": [
+              "purana",
+              "devotion",
+              "pilgrimage"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "narada purana"
+          }
+        ],
+        "concept_overlap": 0.0769,
+        "confidence": 0.2846,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.1542,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.2846,
+          "semantic_score": 0.2769,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.5,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "puranas",
+          "entities": [
+            {
+              "canonical": "Ganesha",
+              "concepts": [
+                "obstacles",
+                "wisdom",
+                "beginnings",
+                "symbolism"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "lord ganesha"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Ganesha"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Ganesha",
+            "concepts": [
+              "obstacles",
+              "wisdom",
+              "beginnings",
+              "symbolism"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "lord ganesha"
+          }
+        ],
+        "semantic_score": 0.2769,
+        "signal_id": "signal_5504c676a6f4",
+        "source": "The Narada-Purana, Part 3_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "no_query_relevance:tags_content_semantic_miss",
+      "signal_id": "signal_5504c676a6f4",
+      "source": "The Narada-Purana, Part 3_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Bhagavata Purana",
+            "concepts": [
+              "Krishna",
+              "devotion",
+              "purana"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "srimad bhagavata"
+          },
+          {
+            "canonical": "Narada Purana",
+            "concepts": [
+              "purana",
+              "devotion",
+              "pilgrimage"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "narada purana"
+          },
+          {
+            "canonical": "Narayana",
+            "concepts": [
+              "preservation",
+              "cosmic person"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "vishnu"
+          },
+          {
+            "canonical": "Padma Purana",
+            "concepts": [
+              "purana",
+              "Vishnu",
+              "creation"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "padma purana"
+          }
+        ],
+        "concept_overlap": 0.0769,
+        "confidence": 0.2798,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.153,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.2798,
+          "semantic_score": 0.2769,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.5,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "puranas",
+          "entities": [
+            {
+              "canonical": "Ganesha",
+              "concepts": [
+                "obstacles",
+                "wisdom",
+                "beginnings",
+                "symbolism"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "lord ganesha"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Ganesha"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Ganesha",
+            "concepts": [
+              "obstacles",
+              "wisdom",
+              "beginnings",
+              "symbolism"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "lord ganesha"
+          }
+        ],
+        "semantic_score": 0.2769,
+        "signal_id": "signal_5a22a962cd96",
+        "source": "The Narada-Purana, Part 4_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "no_query_relevance:tags_content_semantic_miss",
+      "signal_id": "signal_5a22a962cd96",
+      "source": "The Narada-Purana, Part 4_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Brahma",
+            "concepts": [
+              "creation",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "brahma"
+          },
+          {
+            "canonical": "Brahma Purana",
+            "concepts": [
+              "purana",
+              "creation"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "brahma purana"
+          },
+          {
+            "canonical": "Ganga",
+            "concepts": [
+              "sacred river",
+              "water"
+            ],
+            "domain": "ecology",
+            "entity_type": "river",
+            "matched_alias": "ganga"
+          },
+          {
+            "canonical": "Mahabharata",
+            "concepts": [
+              "dharma",
+              "Kurukshetra",
+              "Pandavas"
+            ],
+            "domain": "itihasa",
+            "entity_type": "text",
+            "matched_alias": "mahabharata"
+          },
+          {
+            "canonical": "Sarasvati",
+            "concepts": [
+              "river",
+              "knowledge"
+            ],
+            "domain": "ecology",
+            "entity_type": "river",
+            "matched_alias": "saraswati"
+          },
+          {
+            "canonical": "Water Conservation",
+            "concepts": [
+              "rivers",
+              "lakes",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "water conservation"
+          }
+        ],
+        "concept_overlap": 0.1538,
+        "confidence": 0.2718,
+        "confidence_derivation": {
+          "content_overlap": 0.25,
+          "derived_confidence": 0.2134,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.2718,
+          "semantic_score": 0.3182,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.25,
+        "contextual_proximity": 0.6438,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "puranas",
+          "entities": [
+            {
+              "canonical": "Ganesha",
+              "concepts": [
+                "obstacles",
+                "wisdom",
+                "beginnings",
+                "symbolism"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "lord ganesha"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Ganesha"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Ganesha",
+            "concepts": [
+              "obstacles",
+              "wisdom",
+              "beginnings",
+              "symbolism"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "lord ganesha"
+          }
+        ],
+        "semantic_score": 0.3182,
+        "signal_id": "signal_54402975e4d2",
+        "source": "Brahma Purana - Parts I-IV_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "entity_conflict",
+      "signal_id": "signal_54402975e4d2",
+      "source": "Brahma Purana - Parts I-IV_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.2715,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_f494c67a7b59",
+        "source": "The Narada-Purana, Part 1_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "low_contextual_overlap",
+      "signal_id": "signal_f494c67a7b59",
+      "source": "The Narada-Purana, Part 1_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Dharma",
+            "concepts": [
+              "ethics",
+              "order",
+              "responsibility"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "dharma"
+          },
+          {
+            "canonical": "Narada Purana",
+            "concepts": [
+              "purana",
+              "devotion",
+              "pilgrimage"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "narada purana"
+          },
+          {
+            "canonical": "Narayana",
+            "concepts": [
+              "preservation",
+              "cosmic person"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "narayana"
+          },
+          {
+            "canonical": "Vayu Purana",
+            "concepts": [
+              "purana",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "vayu purana"
+          },
+          {
+            "canonical": "Yuga",
+            "concepts": [
+              "time",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "concept",
+            "matched_alias": "yugas"
+          }
+        ],
+        "concept_overlap": 0.1538,
+        "confidence": 0.2697,
+        "confidence_derivation": {
+          "content_overlap": 0.25,
+          "derived_confidence": 0.216,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.2697,
+          "semantic_score": 0.3287,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.25,
+        "contextual_proximity": 0.7481,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "puranas",
+          "entities": [
+            {
+              "canonical": "Ganesha",
+              "concepts": [
+                "obstacles",
+                "wisdom",
+                "beginnings",
+                "symbolism"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "lord ganesha"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Ganesha"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Ganesha",
+            "concepts": [
+              "obstacles",
+              "wisdom",
+              "beginnings",
+              "symbolism"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "lord ganesha"
+          }
+        ],
+        "semantic_score": 0.3287,
+        "signal_id": "signal_3ae756065cb5",
+        "source": "Vayu Purana Part 1_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "entity_conflict",
+      "signal_id": "signal_3ae756065cb5",
+      "source": "Vayu Purana Part 1_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Brahmanda Purana",
+            "concepts": [
+              "cosmology",
+              "purana"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "brahmanda purana"
+          },
+          {
+            "canonical": "Ramayana",
+            "concepts": [
+              "Rama",
+              "dharma",
+              "forest exile"
+            ],
+            "domain": "itihasa",
+            "entity_type": "text",
+            "matched_alias": "valmiki ramayana"
+          }
+        ],
+        "concept_overlap": 0.0769,
+        "confidence": 0.2585,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.1477,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.2585,
+          "semantic_score": 0.2769,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.5,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "puranas",
+          "entities": [
+            {
+              "canonical": "Ganesha",
+              "concepts": [
+                "obstacles",
+                "wisdom",
+                "beginnings",
+                "symbolism"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "lord ganesha"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Ganesha"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Ganesha",
+            "concepts": [
+              "obstacles",
+              "wisdom",
+              "beginnings",
+              "symbolism"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "lord ganesha"
+          }
+        ],
+        "semantic_score": 0.2769,
+        "signal_id": "signal_20284861c1d3",
+        "source": "Valmiki-Ramayana-Eng-Translation-Griffith_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "no_query_relevance:tags_content_semantic_miss",
+      "signal_id": "signal_20284861c1d3",
+      "source": "Valmiki-Ramayana-Eng-Translation-Griffith_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Atman",
+            "concepts": [
+              "Brahman",
+              "liberation"
+            ],
+            "domain": "upanishads",
+            "entity_type": "concept",
+            "matched_alias": "self"
+          },
+          {
+            "canonical": "Brahma",
+            "concepts": [
+              "creation",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "brahma"
+          },
+          {
+            "canonical": "Brahman",
+            "concepts": [
+              "ultimate reality",
+              "Atman"
+            ],
+            "domain": "upanishads",
+            "entity_type": "concept",
+            "matched_alias": "brahman"
+          },
+          {
+            "canonical": "Upanishads",
+            "concepts": [
+              "Brahman",
+              "Atman",
+              "liberation"
+            ],
+            "domain": "upanishads",
+            "entity_type": "text_group",
+            "matched_alias": "upanishads"
+          },
+          {
+            "canonical": "Vedas",
+            "concepts": [
+              "samhita",
+              "ritual",
+              "knowledge"
+            ],
+            "domain": "vedas",
+            "entity_type": "text_group",
+            "matched_alias": "vedas"
+          },
+          {
+            "canonical": "Yoga",
+            "concepts": [
+              "discipline",
+              "meditation"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "yoga"
+          }
+        ],
+        "concept_overlap": 0.0769,
+        "confidence": 0.2504,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.1457,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.2504,
+          "semantic_score": 0.2769,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.5,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "puranas",
+          "entities": [
+            {
+              "canonical": "Ganesha",
+              "concepts": [
+                "obstacles",
+                "wisdom",
+                "beginnings",
+                "symbolism"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "lord ganesha"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Ganesha"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Ganesha",
+            "concepts": [
+              "obstacles",
+              "wisdom",
+              "beginnings",
+              "symbolism"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "lord ganesha"
+          }
+        ],
+        "semantic_score": 0.2769,
+        "signal_id": "signal_930e528ce3bb",
+        "source": "Yoga_Upanishad_[Sanskrit_English]_OCR.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "no_query_relevance:tags_content_semantic_miss",
+      "signal_id": "signal_930e528ce3bb",
+      "source": "Yoga_Upanishad_[Sanskrit_English]_OCR.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Devi",
+            "concepts": [
+              "power",
+              "protection"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "shakti"
+          }
+        ],
+        "concept_overlap": 0.0769,
+        "confidence": 0.2215,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.1384,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.2215,
+          "semantic_score": 0.2769,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.5,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "puranas",
+          "entities": [
+            {
+              "canonical": "Ganesha",
+              "concepts": [
+                "obstacles",
+                "wisdom",
+                "beginnings",
+                "symbolism"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "lord ganesha"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Ganesha"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Ganesha",
+            "concepts": [
+              "obstacles",
+              "wisdom",
+              "beginnings",
+              "symbolism"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "lord ganesha"
+          }
+        ],
+        "semantic_score": 0.2769,
+        "signal_id": "signal_c5654ac9fe29",
+        "source": "Shakti and Shakta_ocr.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "no_query_relevance:tags_content_semantic_miss",
+      "signal_id": "signal_c5654ac9fe29",
+      "source": "Shakti and Shakta_ocr.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Agni",
+            "concepts": [
+              "fire",
+              "yajna"
+            ],
+            "domain": "vedas",
+            "entity_type": "deity",
+            "matched_alias": "agni"
+          },
+          {
+            "canonical": "Agni Purana",
+            "concepts": [
+              "purana",
+              "ritual",
+              "architecture"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "agni purana"
+          },
+          {
+            "canonical": "Temple",
+            "concepts": [
+              "ritual",
+              "architecture"
+            ],
+            "domain": "governance",
+            "entity_type": "structure",
+            "matched_alias": "temple"
+          }
+        ],
+        "concept_overlap": 0.0769,
+        "confidence": 0.2215,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.1384,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.2215,
+          "semantic_score": 0.2769,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.5,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "puranas",
+          "entities": [
+            {
+              "canonical": "Ganesha",
+              "concepts": [
+                "obstacles",
+                "wisdom",
+                "beginnings",
+                "symbolism"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "lord ganesha"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Ganesha"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Ganesha",
+            "concepts": [
+              "obstacles",
+              "wisdom",
+              "beginnings",
+              "symbolism"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "lord ganesha"
+          }
+        ],
+        "semantic_score": 0.2769,
+        "signal_id": "signal_1efdee132265",
+        "source": "Agni Purana Unabridged English Motilal.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "no_query_relevance:tags_content_semantic_miss",
+      "signal_id": "signal_1efdee132265",
+      "source": "Agni Purana Unabridged English Motilal.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Bhagavad Gita",
+            "concepts": [
+              "dharma",
+              "karma yoga",
+              "jnana yoga",
+              "bhakti yoga"
+            ],
+            "domain": "gitas",
+            "entity_type": "text",
+            "matched_alias": "gita"
+          },
+          {
+            "canonical": "Bhagavata Purana",
+            "concepts": [
+              "Krishna",
+              "devotion",
+              "purana"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "srimad bhagavata"
+          },
+          {
+            "canonical": "City",
+            "concepts": [
+              "planning",
+              "society"
+            ],
+            "domain": "governance",
+            "entity_type": "structure",
+            "matched_alias": "city"
+          },
+          {
+            "canonical": "Smriti",
+            "concepts": [
+              "law",
+              "conduct"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "text_group",
+            "matched_alias": "smritis"
+          }
+        ],
+        "concept_overlap": 0.0769,
+        "confidence": 0.2215,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.1384,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.2215,
+          "semantic_score": 0.2769,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.5,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "puranas",
+          "entities": [
+            {
+              "canonical": "Ganesha",
+              "concepts": [
+                "obstacles",
+                "wisdom",
+                "beginnings",
+                "symbolism"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "lord ganesha"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Ganesha"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Ganesha",
+            "concepts": [
+              "obstacles",
+              "wisdom",
+              "beginnings",
+              "symbolism"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "lord ganesha"
+          }
+        ],
+        "semantic_score": 0.2769,
+        "signal_id": "signal_5500b8c2b78b",
+        "source": "Srimad Bhagavata Maha Purana With Sanskrit Text And English Trans. By C.L. Goswami, Part 1 (Book 1 To 8) - Gita Press, Gorakhpur_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "no_query_relevance:tags_content_semantic_miss",
+      "signal_id": "signal_5500b8c2b78b",
+      "source": "Srimad Bhagavata Maha Purana With Sanskrit Text And English Trans. By C.L. Goswami, Part 1 (Book 1 To 8) - Gita Press, Gorakhpur_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Atman",
+            "concepts": [
+              "Brahman",
+              "liberation"
+            ],
+            "domain": "upanishads",
+            "entity_type": "concept",
+            "matched_alias": "self"
+          },
+          {
+            "canonical": "Brahman",
+            "concepts": [
+              "ultimate reality",
+              "Atman"
+            ],
+            "domain": "upanishads",
+            "entity_type": "concept",
+            "matched_alias": "brahman"
+          },
+          {
+            "canonical": "Taittiriya Upanishad",
+            "concepts": [
+              "Brahman",
+              "kosha"
+            ],
+            "domain": "upanishads",
+            "entity_type": "text",
+            "matched_alias": "taittiriya upanishad"
+          },
+          {
+            "canonical": "Upanishads",
+            "concepts": [
+              "Brahman",
+              "Atman",
+              "liberation"
+            ],
+            "domain": "upanishads",
+            "entity_type": "text_group",
+            "matched_alias": "upanishads"
+          }
+        ],
+        "concept_overlap": 0.0769,
+        "confidence": 0.14285714285714285,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.0588,
+          "domain_consistency": 0.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.1429,
+          "semantic_score": 0.0769,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.5,
+        "domain_consistency": 0.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "puranas",
+          "entities": [
+            {
+              "canonical": "Ganesha",
+              "concepts": [
+                "obstacles",
+                "wisdom",
+                "beginnings",
+                "symbolism"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "lord ganesha"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Ganesha"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Ganesha",
+            "concepts": [
+              "obstacles",
+              "wisdom",
+              "beginnings",
+              "symbolism"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "lord ganesha"
+          }
+        ],
+        "semantic_score": 0.0769,
+        "signal_id": "signal_1a59ecae6701",
+        "source": "Taittiriya_Upanishad_Swami_Sarvanand[Sanskrit-English]_OCR.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "no_query_relevance:tags_content_semantic_miss",
+      "signal_id": "signal_1a59ecae6701",
+      "source": "Taittiriya_Upanishad_Swami_Sarvanand[Sanskrit-English]_OCR.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Assembly",
+            "concepts": [
+              "deliberation",
+              "governance"
+            ],
+            "domain": "governance",
+            "entity_type": "concept",
+            "matched_alias": "council"
+          },
+          {
+            "canonical": "Dharma",
+            "concepts": [
+              "ethics",
+              "order",
+              "responsibility"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "dharma"
+          }
+        ],
+        "concept_overlap": 0.0769,
+        "confidence": 0.14285714285714285,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.0588,
+          "domain_consistency": 0.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.1429,
+          "semantic_score": 0.0769,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.5,
+        "domain_consistency": 0.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "puranas",
+          "entities": [
+            {
+              "canonical": "Ganesha",
+              "concepts": [
+                "obstacles",
+                "wisdom",
+                "beginnings",
+                "symbolism"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "lord ganesha"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Ganesha"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Ganesha",
+            "concepts": [
+              "obstacles",
+              "wisdom",
+              "beginnings",
+              "symbolism"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "lord ganesha"
+          }
+        ],
+        "semantic_score": 0.0769,
+        "signal_id": "signal_ddf4d169c2d0",
+        "source": "The Uddhava-g\u012bt\u0101_sanskrit_English_Hindi_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "no_query_relevance:tags_content_semantic_miss",
+      "signal_id": "signal_ddf4d169c2d0",
+      "source": "The Uddhava-g\u012bt\u0101_sanskrit_English_Hindi_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Bhagavad Gita",
+            "concepts": [
+              "dharma",
+              "karma yoga",
+              "jnana yoga",
+              "bhakti yoga"
+            ],
+            "domain": "gitas",
+            "entity_type": "text",
+            "matched_alias": "bhagavad gita"
+          },
+          {
+            "canonical": "Dharma",
+            "concepts": [
+              "ethics",
+              "order",
+              "responsibility"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "dharma"
+          },
+          {
+            "canonical": "Karma",
+            "concepts": [
+              "cause",
+              "effect",
+              "duty"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "action"
+          },
+          {
+            "canonical": "Karma Yoga",
+            "concepts": [
+              "action",
+              "duty",
+              "detachment"
+            ],
+            "domain": "gitas",
+            "entity_type": "concept",
+            "matched_alias": "karma yoga"
+          },
+          {
+            "canonical": "Mahabharata",
+            "concepts": [
+              "dharma",
+              "Kurukshetra",
+              "Pandavas"
+            ],
+            "domain": "itihasa",
+            "entity_type": "text",
+            "matched_alias": "mahabharata"
+          },
+          {
+            "canonical": "Yajna",
+            "concepts": [
+              "ritual",
+              "offering"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "sacrifice"
+          },
+          {
+            "canonical": "Yoga",
+            "concepts": [
+              "discipline",
+              "meditation"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "yoga"
+          }
+        ],
+        "concept_overlap": 0.0769,
+        "confidence": 0.14285714285714285,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.0588,
+          "domain_consistency": 0.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.1429,
+          "semantic_score": 0.0769,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.5,
+        "domain_consistency": 0.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "puranas",
+          "entities": [
+            {
+              "canonical": "Ganesha",
+              "concepts": [
+                "obstacles",
+                "wisdom",
+                "beginnings",
+                "symbolism"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "lord ganesha"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Ganesha"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Ganesha",
+            "concepts": [
+              "obstacles",
+              "wisdom",
+              "beginnings",
+              "symbolism"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "lord ganesha"
+          }
+        ],
+        "semantic_score": 0.0769,
+        "signal_id": "signal_7398c6e21d4d",
+        "source": "The Complete Mahabharata_English_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "no_query_relevance:tags_content_semantic_miss",
+      "signal_id": "signal_7398c6e21d4d",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.0877,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_8e5d348aae1d",
+        "source": "The Complete Mahabharata_English_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "confidence_below_threshold:0.088",
+      "signal_id": "signal_8e5d348aae1d",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.0775,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_2cf69990c58a",
+        "source": "Svetasvatara Upanishad - sanskrit and English.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "confidence_below_threshold:0.077",
+      "signal_id": "signal_2cf69990c58a",
+      "source": "Svetasvatara Upanishad - sanskrit and English.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.0744,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_1451de24ad4c",
+        "source": "The Complete Mahabharata_English_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "confidence_below_threshold:0.074",
+      "signal_id": "signal_1451de24ad4c",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.07142857142857142,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_8e53b23e6a54",
+        "source": "Brihaspati Smriti (Reconstructed) - Rangaswami Aiyangar 1941 (GOS)_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "confidence_below_threshold:0.071",
+      "signal_id": "signal_8e53b23e6a54",
+      "source": "Brihaspati Smriti (Reconstructed) - Rangaswami Aiyangar 1941 (GOS)_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.07142857142857142,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_9714a628a68d",
+        "source": "vigyan-bhairava-tantra_ocr.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "confidence_below_threshold:0.071",
+      "signal_id": "signal_9714a628a68d",
+      "source": "vigyan-bhairava-tantra_ocr.pdf"
+    }
+  ],
+  "signals_found": 0,
+  "signals_rejected": 18,
+  "synthesis_mode": "FALLBACK_KNOWLEDGE_INDEX",
+  "trace_id": "trace_336c311eaa1756e3",
+  "verification_status": "VERIFIED"
+}

@@ -1,0 +1,101 @@
+{
+  "run_id": "20260713T035319Z",
+  "captured_at": "2026-07-13T03:53:59.680077+00:00",
+  "environment": "in-process FastAPI + mongomock_motor",
+  "load": {
+    "cycles": 50,
+    "all_org_200": true,
+    "all_signal_200": true,
+    "p50_ms": 36.59400000003643,
+    "p95_ms": 149.65529999994942,
+    "samples": [
+      {
+        "idx": 0,
+        "org_status": 200,
+        "signal_status": 200,
+        "latency_ms": 80.42380000006233,
+        "correlation_id": "c4f64a67-3a08-4d16-a422-54e3d58eca6e"
+      },
+      {
+        "idx": 1,
+        "org_status": 200,
+        "signal_status": 200,
+        "latency_ms": 37.47980000002826,
+        "correlation_id": "5da6a77b-0be1-4d34-9847-f4c69fb19a98"
+      },
+      {
+        "idx": 2,
+        "org_status": 200,
+        "signal_status": 200,
+        "latency_ms": 32.77969999999186,
+        "correlation_id": "edc2095f-bfa9-43c3-b558-07161bc8cbda"
+      },
+      {
+        "idx": 3,
+        "org_status": 200,
+        "signal_status": 200,
+        "latency_ms": 30.820700000049328,
+        "correlation_id": "416966ef-d454-4c61-ad14-ee9fd092e88e"
+      },
+      {
+        "idx": 4,
+        "org_status": 200,
+        "signal_status": 200,
+        "latency_ms": 27.94099999982791,
+        "correlation_id": "4d876151-bd97-4057-8b57-2d22c0a523d7"
+      }
+    ]
+  },
+  "concurrency": {
+    "workers": 10,
+    "tasks": 20,
+    "success_rate": 1.0,
+    "samples": [
+      {
+        "idx": 1000,
+        "org_status": 200,
+        "signal_status": 200,
+        "latency_ms": 290.9316000000217,
+        "correlation_id": "3fd5a437-3778-4e8d-9aef-c0509e465d5f"
+      },
+      {
+        "idx": 1001,
+        "org_status": 200,
+        "signal_status": 200,
+        "latency_ms": 158.87500000008004,
+        "correlation_id": "91a7a6c9-582c-4f44-bcdc-e5c6169a9e46"
+      },
+      {
+        "idx": 1002,
+        "org_status": 200,
+        "signal_status": 200,
+        "latency_ms": 194.24670000012156,
+        "correlation_id": "2f8e5cc3-3233-4dbb-8218-a3e27b03a332"
+      },
+      {
+        "idx": 1003,
+        "org_status": 200,
+        "signal_status": 200,
+        "latency_ms": 279.15260000008857,
+        "correlation_id": "c2dd685a-95ea-4520-8314-b15298501998"
+      },
+      {
+        "idx": 1004,
+        "org_status": 200,
+        "signal_status": 200,
+        "latency_ms": 277.71290000009685,
+        "correlation_id": "d0902099-4d1c-43a0-bd5b-e8f777459377"
+      }
+    ]
+  },
+  "long_duration": {
+    "duration_seconds": 30,
+    "iterations": 29,
+    "all_success": true
+  },
+  "retry": {
+    "scenario": "Sampada SETU ingest idempotency via distinct correlation ids",
+    "note": "Partner Artha MAX_RETRIES=3 documented in Artha setu.pipeline.js \u2014 not executed here (partner repo gitignored)",
+    "failover_dr": "UNKNOWN \u2014 route to TMS; not simulated in this workspace"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "rl_restock_agent": {
+    "total_actions": 3,
+    "total_reward": 125.56780779739904,
+    "average_reward": 41.855935932466345,
+    "success_rate": 0,
+    "recent_rewards": [
+      44.46561388785024,
+      46.21844188710699,
+      34.88375202244181
+    ],
+    "improvement_trend": 0
+  },
+  "rl_procurement_agent": {
+    "total_actions": 3,
+    "total_reward": -117.41930133056249,
+    "average_reward": -39.1397671101875,
+    "success_rate": 0,
+    "recent_rewards": [
+      -67.01795336808814,
+      -14.659494401809987,
+      -35.741853560664374
+    ],
+    "improvement_trend": 0
+  },
+  "rl_delivery_agent": {
+    "total_actions": 3,
+    "total_reward": 30.035350499525876,
+    "average_reward": 10.01178349984196,
+    "success_rate": 0,
+    "recent_rewards": [
+      15.063531017828268,
+      24.0204173344112,
+      -9.048597852713591
+    ],
+    "improvement_trend": 0
+  }
+}

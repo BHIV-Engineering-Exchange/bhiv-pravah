@@ -1,0 +1,13 @@
+{
+  "health_status": 200,
+  "auth_probe": {
+    "API_KEY_SECRET": {
+      "status": 200,
+      "works": true
+    },
+    "GATEWAY_SECRET_KEY": {
+      "status": 401,
+      "works": false
+    }
+  }
+}

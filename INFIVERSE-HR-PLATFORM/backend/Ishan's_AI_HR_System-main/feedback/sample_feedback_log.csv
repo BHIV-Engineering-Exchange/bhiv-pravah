@@ -1,0 +1,6 @@
+timestamp,candidate_id,score,comment,outcome,event
+2024-11-28T10:30:00,1,4,"Strong technical skills, good communication",accept,feedback_processed
+2024-11-28T11:15:00,2,5,"Excellent frontend skills, team player",accept,feedback_processed
+2024-11-28T14:20:00,3,3,"Good technical knowledge, needs improvement in soft skills",reconsider,feedback_processed
+2024-11-28T15:45:00,4,5,"Outstanding data science expertise",accept,feedback_processed
+2024-11-28T16:30:00,5,2,"Limited experience, not suitable for senior role",reject,feedback_processed

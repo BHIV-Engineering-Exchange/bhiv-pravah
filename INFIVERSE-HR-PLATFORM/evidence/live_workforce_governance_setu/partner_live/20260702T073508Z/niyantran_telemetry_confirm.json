@@ -1,0 +1,30 @@
+{
+  "status": 200,
+  "count": 1,
+  "items": [
+    {
+      "signal_id": "sig-a810511a2509",
+      "signal_type": "niyantran_telemetry",
+      "payload": {
+        "event": "task_completed",
+        "task_id": "live-831Z",
+        "workforce_ref": "wf-fd372f903780"
+      },
+      "workforce_ref_id": "wf-fd372f903780",
+      "source_declaration": "niyantran_telemetry participation",
+      "tenant_id": "platform",
+      "created_at": "2026-07-02T06:38:54.843000",
+      "lineage": {
+        "origin_system": "niyantran",
+        "owning_system": "niyantran",
+        "schema_version": "1.0.0",
+        "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+        "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+        "trust_classification": "observed",
+        "visibility_scope": "tenant"
+      },
+      "updated_at": "2026-07-02T06:38:54.843000",
+      "id": "6a46077ea102674ea6e61713"
+    }
+  ]
+}

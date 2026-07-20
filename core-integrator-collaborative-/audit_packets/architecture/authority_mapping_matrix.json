@@ -1,0 +1,40 @@
+{
+  "components": [
+    {
+      "name": "integration_bridge",
+      "role": "orchestrator",
+      "authority": "orchestration",
+      "external_calls": ["prompt_runner", "creator_core", "bhiv_core", "bucket"],
+      "boundary": "does not execute blueprint internals"
+    },
+    {
+      "name": "prompt_runner",
+      "role": "instruction generator",
+      "authority": "prompt interpretation",
+      "external_calls": [],
+      "boundary": "produces instruction only"
+    },
+    {
+      "name": "creator_core",
+      "role": "blueprint generator",
+      "authority": "blueprint creation",
+      "external_calls": [],
+      "boundary": "does not execute blueprint"
+    },
+    {
+      "name": "bhiv_core",
+      "role": "execution engine",
+      "authority": "execution and security",
+      "external_calls": [],
+      "boundary": "handles execution and result generation"
+    },
+    {
+      "name": "bucket",
+      "role": "artifact storage",
+      "authority": "data persistence",
+      "external_calls": [],
+      "boundary": "stores/retrieves trace artifacts"
+    }
+  ],
+  "notes": "This matrix captures the effective authority model in the current repository. Additional constitutional components (CET, Sarathi, Gate, InsightFlow) are present in test/simulation representations but not in the live bridge orchestration path."
+}

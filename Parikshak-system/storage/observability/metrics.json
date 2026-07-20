@@ -1,0 +1,14 @@
+{
+  "v": "1.0",
+  "total_executions": 480,
+  "pass_count": 4,
+  "fail_count": 476,
+  "failure_distribution": {
+    "schema_violation": 474,
+    "incomplete": 2,
+    "incorrect_logic": 0,
+    "integration_fail": 0
+  },
+  "hard_reject_count": 73,
+  "last_updated": "2026-07-16T14:23:59.081583"
+}

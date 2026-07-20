@@ -1,0 +1,6 @@
+{
+  "endpoint": "/api/v1/auth/login",
+  "status": 200,
+  "user_id": "6a22895f3f3ec80aa42cf3f5",
+  "has_token": true
+}

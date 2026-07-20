@@ -1,0 +1,206 @@
+[
+  {
+    "product": "ttg",
+    "status_code": 200,
+    "body": {
+      "status": "success",
+      "trace_id": "5363db20b91848a8b9e920e1dfd3d82c",
+      "workflow_id": "wf_bc148c2e9447",
+      "artifact_chain": {
+        "trace_id": "5363db20b91848a8b9e920e1dfd3d82c",
+        "workflow_id": "wf_bc148c2e9447",
+        "A1_instruction": "instruction_2c50b77a",
+        "A2_blueprint": "blueprint_ecd7bed9",
+        "A2b_contract": "contract_1cecbaf9",
+        "A2c_authority": "authority_050caee2",
+        "A2d_gate": "gate_88fea682",
+        "A3_execution": "execution_318a089e",
+        "A4_result": "result_47f05bc5"
+      },
+      "pipeline_result": {
+        "original_prompt": "Design a cooperative dungeon board game",
+        "generated_instruction": {
+          "prompt": "Design a cooperative dungeon board game",
+          "module": "creator",
+          "intent": "generate",
+          "topic": "general",
+          "tasks": [
+            "generate_game_blueprint"
+          ],
+          "output_format": "json",
+          "product_context": "ttg",
+          "trace_id": "5363db20b91848a8b9e920e1dfd3d82c",
+          "workflow_id": "wf_bc148c2e9447",
+          "instruction_id": "5363db20b91848a8b9e920e1dfd3d82c"
+        },
+        "blueprint_envelope": {
+          "blueprint": {
+            "instruction_id": "8fbd565b-e2fc-489b-9b7b-97d0dfaa4d09",
+            "origin": "creator_core",
+            "intent_type": "generate",
+            "target_product": "creator",
+            "payload": {
+              "blueprint_type": "content_blueprint",
+              "product_target": "creator",
+              "content_type": "json",
+              "title": "General",
+              "outline": [
+                "generate_game_blueprint"
+              ]
+            },
+            "schema_version": "1.0",
+            "timestamp": "2026-07-07T09:43:44.377662+00:00"
+          },
+          "trace_id": "5363db20b91848a8b9e920e1dfd3d82c",
+          "workflow_id": "wf_bc148c2e9447"
+        },
+        "contract": {
+          "contract_id": "contract_a94cdbfb4e01",
+          "instruction_id": "5363db20b91848a8b9e920e1dfd3d82c",
+          "trace_id": "5363db20b91848a8b9e920e1dfd3d82c",
+          "execution_plan": {
+            "target_module": "creator",
+            "execution_intent": "generate",
+            "execution_data": {
+              "blueprint_type": "content_blueprint",
+              "product_target": "creator",
+              "content_type": "json",
+              "title": "General",
+              "outline": [
+                "generate_game_blueprint"
+              ]
+            }
+          },
+          "constraints": {
+            "schema_version": "1.0.0",
+            "origin": "creator_core",
+            "intent_type": null,
+            "deterministic": true,
+            "replay_safe": true
+          },
+          "contract_hash": "b4c95d3855d4fc2beaac084a6507ac045b2d6600f5c4fc91ee5f62f9eb0b9375",
+          "timestamp": "2026-07-07T09:43:44.409965+00:00",
+          "schema_version": "1.0.0"
+        },
+        "authority_decision": {
+          "allowed": true,
+          "reason": "valid_contract",
+          "contract_id": "contract_a94cdbfb4e01",
+          "trace_id": "5363db20b91848a8b9e920e1dfd3d82c",
+          "decision_id": "decision_contract_a94cdbfb4e01",
+          "timestamp": "2026-07-07T09:43:44.430640+00:00",
+          "validation_checks": {
+            "has_contract_id": "contract_a94cdbfb4e01",
+            "has_trace_id": "5363db20b91848a8b9e920e1dfd3d82c",
+            "has_execution_plan": true,
+            "has_valid_module": "creator",
+            "has_constraints": true,
+            "has_contract_hash": "b4c95d3855d4fc2beaac084a6507ac045b2d6600f5c4fc91ee5f62f9eb0b9375"
+          }
+        },
+        "gate_decision": {
+          "status": "allowed",
+          "message": "Execution approved by gate",
+          "result": {},
+          "contract_id": "contract_a94cdbfb4e01",
+          "trace_id": "5363db20b91848a8b9e920e1dfd3d82c",
+          "gate_status": "ALLOWED",
+          "authority_decision": {
+            "allowed": true,
+            "reason": "valid_contract",
+            "contract_id": "contract_a94cdbfb4e01",
+            "trace_id": "5363db20b91848a8b9e920e1dfd3d82c",
+            "decision_id": "decision_contract_a94cdbfb4e01",
+            "timestamp": "2026-07-07T09:43:44.430640+00:00",
+            "validation_checks": {
+              "has_contract_id": "contract_a94cdbfb4e01",
+              "has_trace_id": "5363db20b91848a8b9e920e1dfd3d82c",
+              "has_execution_plan": true,
+              "has_valid_module": "creator",
+              "has_constraints": true,
+              "has_contract_hash": "b4c95d3855d4fc2beaac084a6507ac045b2d6600f5c4fc91ee5f62f9eb0b9375"
+            }
+          },
+          "timestamp": "2026-07-07T09:43:44.443455+00:00"
+        },
+        "execution_result": {
+          "status": "success",
+          "message": "Creative content generated with context",
+          "result": {
+            "content": "Generated content for: unknown topic",
+            "related_context": [],
+            "enhanced_data": {
+              "blueprint": {
+                "blueprint_type": "content_blueprint",
+                "product_target": "creator",
+                "content_type": "json",
+                "title": "General",
+                "outline": [
+                  "generate_game_blueprint"
+                ]
+              },
+              "target_product": "creator",
+              "trace_id": "5363db20b91848a8b9e920e1dfd3d82c",
+              "workflow_id": "wf_bc148c2e9447"
+            }
+          },
+          "trace_id": "5363db20b91848a8b9e920e1dfd3d82c",
+          "workflow_id": "wf_bc148c2e9447"
+        },
+        "pipeline_status": "completed",
+        "deterministic_hash": "b2b8164274175a37",
+        "product_output": {
+          "game_content": {
+            "title": "Untitled Game",
+            "description": "",
+            "genre": "general",
+            "mechanics": [],
+            "objectives": []
+          },
+          "gameplay_structure": {
+            "levels": [],
+            "progression": {},
+            "difficulty_curve": "linear",
+            "player_actions": []
+          },
+          "assets": {
+            "characters": [],
+            "environments": [],
+            "items": [],
+            "audio": {}
+          },
+          "metadata": {
+            "execution_id": null,
+            "trace_id": null,
+            "timestamp": null,
+            "status": "success"
+          }
+        },
+        "trace_id": "5363db20b91848a8b9e920e1dfd3d82c",
+        "workflow_id": "wf_bc148c2e9447"
+      },
+      "timestamp": "2026-07-07T09:43:44.535937+00:00"
+    }
+  },
+  {
+    "product": "ttv",
+    "status_code": 500,
+    "body": {
+      "detail": "429 Client Error: Too Many Requests for url: http://127.0.0.1:8001/core"
+    }
+  },
+  {
+    "product": "gurukul",
+    "status_code": 500,
+    "body": {
+      "detail": "429 Client Error: Too Many Requests for url: http://127.0.0.1:8001/core"
+    }
+  },
+  {
+    "product": "simulation_runtime",
+    "status_code": 500,
+    "body": {
+      "detail": "429 Client Error: Too Many Requests for url: http://127.0.0.1:8001/core"
+    }
+  }
+]

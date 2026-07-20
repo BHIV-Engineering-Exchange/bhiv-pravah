@@ -1,0 +1,107 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Execution Trace Schema",
+  "description": "Standardized format for logging execution events in the TG Engine pipeline",
+  "type": "object",
+  "required": ["timestamp", "action_event", "compiled_contract", "engine_job_stream", "runtime_state"],
+  "properties": {
+    "timestamp": {
+      "type": "number",
+      "description": "Unix timestamp in milliseconds when the trace was recorded"
+    },
+    "trace_id": {
+      "type": "string",
+      "description": "Unique identifier for this execution trace"
+    },
+    "execution_id": {
+      "type": "string",
+      "description": "Unique identifier for the execution session"
+    },
+    "action_event": {
+      "type": "string",
+      "description": "Human-readable description of the action that triggered this trace",
+      "examples": [
+        "user clicked 'start game' button",
+        "intent compiled to gameplay contract",
+        "execution dispatched to engine",
+        "job completed successfully",
+        "game ended due to collision"
+      ]
+    },
+    "compiled_contract": {
+      "type": "object",
+      "description": "The validated gameplay contract that was compiled from user intent",
+      "properties": {
+        "game_mode": { "type": "string" },
+        "movement": { "type": "object" },
+        "camera": { "type": "object" },
+        "spawn_rules": { "type": "object" },
+        "score_rules": { "type": "object" },
+        "end_conditions": { "type": "array" },
+        "player_params": { "type": "object" },
+        "physics": { "type": "object" }
+      }
+    },
+    "engine_job_stream": {
+      "type": "array",
+      "description": "Array of engine jobs dispatched or in progress",
+      "items": {
+        "type": "object",
+        "properties": {
+          "jobId": { "type": "string" },
+          "jobType": { 
+            "type": "string",
+            "enum": ["START_GAME", "STOP_GAME", "BUILD_SCENE", "SPAWN_ENTITY", "START_LOOP", "LOAD_ASSETS", "MOVE_ENTITY", "UPDATE_PROPERTY"]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["queued", "dispatched", "running", "completed", "failed"]
+          },
+          "payload": { "type": "object" },
+          "queuedAt": { "type": "number" },
+          "startedAt": { "type": "number" },
+          "completedAt": { "type": "number" },
+          "duration": { "type": "number" },
+          "error": { "type": "string" }
+        },
+        "required": ["jobId", "jobType", "status"]
+      }
+    },
+    "runtime_state": {
+      "type": "string",
+      "enum": ["IDLE", "QUEUED", "RUNNING", "PLAYING", "PAUSED", "COMPLETED", "FAILED", "GAME_OVER"],
+      "description": "Current state of the execution runtime"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional contextual information",
+      "properties": {
+        "user_id": { "type": "string" },
+        "session_id": { "type": "string" },
+        "intent": { "type": "string" },
+        "source": { "type": "string" },
+        "environment": { "type": "string" }
+      }
+    },
+    "telemetry": {
+      "type": "object",
+      "description": "Performance and diagnostic metrics",
+      "properties": {
+        "jobs_total": { "type": "number" },
+        "jobs_completed": { "type": "number" },
+        "jobs_failed": { "type": "number" },
+        "execution_duration_ms": { "type": "number" },
+        "engine_connected": { "type": "boolean" }
+      }
+    },
+    "error": {
+      "type": "object",
+      "description": "Error information if execution failed",
+      "properties": {
+        "message": { "type": "string" },
+        "code": { "type": "string" },
+        "stack": { "type": "string" }
+      }
+    }
+  }
+}

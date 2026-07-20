@@ -1,0 +1,5 @@
+Time,Action,ProductID,Quantity
+2025-08-07T12:06:53.542106,RestockRequest,A101,6
+2025-08-07T12:06:53.542106,RestockRequest,C303,8
+2025-08-11T22:11:00.949117,RestockRequest,A101,6
+2025-08-11T22:11:00.949117,RestockRequest,C303,8

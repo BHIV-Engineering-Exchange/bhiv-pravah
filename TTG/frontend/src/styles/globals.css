@@ -1,0 +1,27 @@
+/* Existing compact tweaks */
+.compact .glass-card {
+  padding: 10px !important;
+}
+
+.compact .grid {
+  gap: 10px !important;
+}
+
+.compact button {
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+}
+
+/* Make grid visibly more compact */
+.compact .grid {
+  /* smaller overall gap (already above) + denser columns */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* On larger screens, pack even more */
+@media (min-width: 1024px) {
+  .compact .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px !important;
+  }
+}

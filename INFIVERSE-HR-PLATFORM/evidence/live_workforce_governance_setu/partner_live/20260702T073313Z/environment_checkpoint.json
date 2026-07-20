@@ -1,0 +1,12 @@
+{
+  "repo_topology": "No uploaded ZIP copies present; embedded copies at Artha/, ai-crm/, workflow-blackhole/ used.",
+  "artha_db_configured": true,
+  "crm_db_configured": true,
+  "niyantran_db_configured": true,
+  "tier_decision": {
+    "artha": "Tier 2 \u2014 dispatcher invoked directly against live gateway; Artha API server not started (JWT-gated dispatch route).",
+    "crm": "Tier 2 \u2014 sampada_dispatcher invoked directly; CRM FastAPI server not started.",
+    "niyantran": "Tier 2 \u2014 setuDispatcher invoked with real ExecutionEvent from Niyantran Mongo when available, else blocker recorded.",
+    "logistics": "Tier 2 \u2014 crm_participation with payload.subsystem=logistics via CRM dispatcher (no separate Logistics backend)."
+  }
+}

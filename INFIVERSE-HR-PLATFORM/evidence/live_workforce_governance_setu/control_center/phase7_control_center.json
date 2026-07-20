@@ -1,0 +1,979 @@
+{
+  "calls": [
+    {
+      "note": "Control Center: scoped audit-events (admin/platform)",
+      "method": "GET",
+      "path": "/v1/control-center/audit-events?limit=50",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "550e9758-8a27-4b86-8611-93ad39f6dfca",
+      "timestamp_utc": "2026-07-01T08:11:24.124312+00:00",
+      "response_body": {
+        "events": [
+          {
+            "ts": "2026-07-01T08:11:24.108000",
+            "service": "Gateway",
+            "op": "setu_signal_setu_aggregation",
+            "correlation_id": "d9acb10a-41bc-4bb6-8765-c5152cb7b802",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:24.096000",
+            "service": "Gateway",
+            "op": "setu_signal_crm_participation",
+            "correlation_id": "2ee7500e-f60c-45a6-8940-6c60cd075fc2",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:24.083000",
+            "service": "Gateway",
+            "op": "setu_signal_artha_payroll_visibility",
+            "correlation_id": "45e5789f-9b3b-4c1e-83df-78c85cf554d6",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:24.071000",
+            "service": "Gateway",
+            "op": "setu_signal_niyantran_telemetry",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:24.063000",
+            "service": "Gateway",
+            "op": "policy_evaluate",
+            "correlation_id": "029102a2-cab4-44aa-9e7f-11f1d3fcaabb",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:24.059000",
+            "service": "Gateway",
+            "op": "policy_evaluate",
+            "correlation_id": "e9a9deff-4ce9-4df2-8068-d128f994bbd3",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:24.054000",
+            "service": "Gateway",
+            "op": "policy_evaluate",
+            "correlation_id": "64070707-efff-41dd-ae4d-4e0385da5881",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:24.041000",
+            "service": "Gateway",
+            "op": "decision_record",
+            "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:24.031000",
+            "service": "Gateway",
+            "op": "workflow_override_record",
+            "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:24.022000",
+            "service": "Gateway",
+            "op": "review_assign",
+            "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:24.018000",
+            "service": "Gateway",
+            "op": "challenge_create",
+            "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:24.013000",
+            "service": "Gateway",
+            "op": "policy_evaluate",
+            "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:24.002000",
+            "service": "Gateway",
+            "op": "decision_record",
+            "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.993000",
+            "service": "Gateway",
+            "op": "workflow_override_record",
+            "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.985000",
+            "service": "Gateway",
+            "op": "review_assign",
+            "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.980000",
+            "service": "Gateway",
+            "op": "challenge_create",
+            "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.976000",
+            "service": "Gateway",
+            "op": "policy_evaluate",
+            "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.958000",
+            "service": "Gateway",
+            "op": "decision_record",
+            "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.952000",
+            "service": "Gateway",
+            "op": "decision_record",
+            "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.940000",
+            "service": "Gateway",
+            "op": "workflow_override_record",
+            "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.927000",
+            "service": "Gateway",
+            "op": "review_assign",
+            "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.921000",
+            "service": "Gateway",
+            "op": "challenge_create",
+            "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.913000",
+            "service": "Gateway",
+            "op": "policy_evaluate",
+            "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.878000",
+            "service": "Gateway",
+            "op": "employee_create",
+            "correlation_id": "82b8ed75-2a23-4b01-8317-57883dc7e783",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.873000",
+            "service": "Gateway",
+            "op": "employee_create",
+            "correlation_id": "d782aa8f-392d-45c5-a713-33655ecc7b5d",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.862000",
+            "service": "Gateway",
+            "op": "employee_offboard_prepare",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.858000",
+            "service": "Gateway",
+            "op": "employee_department_transfer",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.854000",
+            "service": "Gateway",
+            "op": "employee_promotion",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.851000",
+            "service": "Gateway",
+            "op": "employee_department_transfer",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.846000",
+            "service": "Gateway",
+            "op": "employee_onboard_complete",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.842000",
+            "service": "Gateway",
+            "op": "employee_onboard",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.838000",
+            "service": "Gateway",
+            "op": "employee_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.833000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.829000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.825000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.820000",
+            "service": "Gateway",
+            "op": "unit_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.815000",
+            "service": "Gateway",
+            "op": "division_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.810000",
+            "service": "Gateway",
+            "op": "organization_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          }
+        ],
+        "count": 38,
+        "source": "audit_logs",
+        "policy_scope": {
+          "scope": "platform",
+          "scope_label": "platform_admin",
+          "role": "admin",
+          "user_id": null,
+          "tenant_id": null,
+          "org_id": null,
+          "workforce_category": "all"
+        }
+      }
+    },
+    {
+      "note": "Control Center: audit-events filtered by lifecycle correlation_id",
+      "method": "GET",
+      "path": "/v1/control-center/audit-events?correlation_id=0749c563-471a-49a2-8a74-74023b4526c5",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "2fcc15d9-3df4-4b79-92fb-feec08fb16ed",
+      "timestamp_utc": "2026-07-01T08:11:24.130682+00:00",
+      "response_body": {
+        "events": [
+          {
+            "ts": "2026-07-01T08:11:24.071000",
+            "service": "Gateway",
+            "op": "setu_signal_niyantran_telemetry",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.862000",
+            "service": "Gateway",
+            "op": "employee_offboard_prepare",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.858000",
+            "service": "Gateway",
+            "op": "employee_department_transfer",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.854000",
+            "service": "Gateway",
+            "op": "employee_promotion",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.851000",
+            "service": "Gateway",
+            "op": "employee_department_transfer",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.846000",
+            "service": "Gateway",
+            "op": "employee_onboard_complete",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.842000",
+            "service": "Gateway",
+            "op": "employee_onboard",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.838000",
+            "service": "Gateway",
+            "op": "employee_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.833000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.829000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.825000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.820000",
+            "service": "Gateway",
+            "op": "unit_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.815000",
+            "service": "Gateway",
+            "op": "division_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.810000",
+            "service": "Gateway",
+            "op": "organization_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          }
+        ],
+        "count": 14,
+        "source": "audit_logs",
+        "policy_scope": {
+          "scope": "platform",
+          "scope_label": "platform_admin",
+          "role": "admin",
+          "user_id": null,
+          "tenant_id": null,
+          "org_id": null,
+          "workforce_category": "all"
+        }
+      }
+    },
+    {
+      "note": "Control Center: audit-replay for lifecycle correlation_id",
+      "method": "GET",
+      "path": "/v1/control-center/audit-replay?correlation_id=0749c563-471a-49a2-8a74-74023b4526c5",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "f6632d2f-137f-450c-9f34-134eda65815e",
+      "timestamp_utc": "2026-07-01T08:11:24.135409+00:00",
+      "response_body": {
+        "events": [
+          {
+            "ts": "2026-07-01T08:11:24.071000",
+            "service": "Gateway",
+            "op": "setu_signal_niyantran_telemetry",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.862000",
+            "service": "Gateway",
+            "op": "employee_offboard_prepare",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.858000",
+            "service": "Gateway",
+            "op": "employee_department_transfer",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.854000",
+            "service": "Gateway",
+            "op": "employee_promotion",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.851000",
+            "service": "Gateway",
+            "op": "employee_department_transfer",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.846000",
+            "service": "Gateway",
+            "op": "employee_onboard_complete",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.842000",
+            "service": "Gateway",
+            "op": "employee_onboard",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.838000",
+            "service": "Gateway",
+            "op": "employee_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.833000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.829000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.825000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.820000",
+            "service": "Gateway",
+            "op": "unit_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.815000",
+            "service": "Gateway",
+            "op": "division_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-01T08:11:23.810000",
+            "service": "Gateway",
+            "op": "organization_create",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          }
+        ],
+        "count": 14,
+        "source": "audit_logs",
+        "policy_scope": {
+          "scope": "platform",
+          "scope_label": "platform_admin",
+          "role": "admin",
+          "user_id": null,
+          "tenant_id": null,
+          "org_id": null,
+          "workforce_category": "all"
+        },
+        "replay_mode": "single_correlation"
+      }
+    }
+  ],
+  "replay": {
+    "events": [
+      {
+        "ts": "2026-07-01T08:11:24.071000",
+        "service": "Gateway",
+        "op": "setu_signal_niyantran_telemetry",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+        "status": "in_progress",
+        "source_system": "gateway",
+        "derived_flag": false,
+        "policy_result": null,
+        "actor_role": "admin"
+      },
+      {
+        "ts": "2026-07-01T08:11:23.862000",
+        "service": "Gateway",
+        "op": "employee_offboard_prepare",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+        "status": "success",
+        "source_system": "gateway",
+        "derived_flag": false,
+        "policy_result": null,
+        "actor_role": "admin"
+      },
+      {
+        "ts": "2026-07-01T08:11:23.858000",
+        "service": "Gateway",
+        "op": "employee_department_transfer",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+        "status": "success",
+        "source_system": "gateway",
+        "derived_flag": false,
+        "policy_result": null,
+        "actor_role": "admin"
+      },
+      {
+        "ts": "2026-07-01T08:11:23.854000",
+        "service": "Gateway",
+        "op": "employee_promotion",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+        "status": "success",
+        "source_system": "gateway",
+        "derived_flag": false,
+        "policy_result": null,
+        "actor_role": "admin"
+      },
+      {
+        "ts": "2026-07-01T08:11:23.851000",
+        "service": "Gateway",
+        "op": "employee_department_transfer",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+        "status": "success",
+        "source_system": "gateway",
+        "derived_flag": false,
+        "policy_result": null,
+        "actor_role": "admin"
+      },
+      {
+        "ts": "2026-07-01T08:11:23.846000",
+        "service": "Gateway",
+        "op": "employee_onboard_complete",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+        "status": "success",
+        "source_system": "gateway",
+        "derived_flag": false,
+        "policy_result": null,
+        "actor_role": "admin"
+      },
+      {
+        "ts": "2026-07-01T08:11:23.842000",
+        "service": "Gateway",
+        "op": "employee_onboard",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+        "status": "success",
+        "source_system": "gateway",
+        "derived_flag": false,
+        "policy_result": null,
+        "actor_role": "admin"
+      },
+      {
+        "ts": "2026-07-01T08:11:23.838000",
+        "service": "Gateway",
+        "op": "employee_create",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+        "status": "success",
+        "source_system": "gateway",
+        "derived_flag": false,
+        "policy_result": null,
+        "actor_role": "admin"
+      },
+      {
+        "ts": "2026-07-01T08:11:23.833000",
+        "service": "Gateway",
+        "op": "department_create",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+        "status": "success",
+        "source_system": "gateway",
+        "derived_flag": false,
+        "policy_result": null,
+        "actor_role": "admin"
+      },
+      {
+        "ts": "2026-07-01T08:11:23.829000",
+        "service": "Gateway",
+        "op": "department_create",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+        "status": "success",
+        "source_system": "gateway",
+        "derived_flag": false,
+        "policy_result": null,
+        "actor_role": "admin"
+      },
+      {
+        "ts": "2026-07-01T08:11:23.825000",
+        "service": "Gateway",
+        "op": "department_create",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+        "status": "success",
+        "source_system": "gateway",
+        "derived_flag": false,
+        "policy_result": null,
+        "actor_role": "admin"
+      },
+      {
+        "ts": "2026-07-01T08:11:23.820000",
+        "service": "Gateway",
+        "op": "unit_create",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+        "status": "success",
+        "source_system": "gateway",
+        "derived_flag": false,
+        "policy_result": null,
+        "actor_role": "admin"
+      },
+      {
+        "ts": "2026-07-01T08:11:23.815000",
+        "service": "Gateway",
+        "op": "division_create",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+        "status": "success",
+        "source_system": "gateway",
+        "derived_flag": false,
+        "policy_result": null,
+        "actor_role": "admin"
+      },
+      {
+        "ts": "2026-07-01T08:11:23.810000",
+        "service": "Gateway",
+        "op": "organization_create",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+        "status": "success",
+        "source_system": "gateway",
+        "derived_flag": false,
+        "policy_result": null,
+        "actor_role": "admin"
+      }
+    ],
+    "count": 14,
+    "source": "audit_logs",
+    "policy_scope": {
+      "scope": "platform",
+      "scope_label": "platform_admin",
+      "role": "admin",
+      "user_id": null,
+      "tenant_id": null,
+      "org_id": null,
+      "workforce_category": "all"
+    },
+    "replay_mode": "single_correlation"
+  }
+}

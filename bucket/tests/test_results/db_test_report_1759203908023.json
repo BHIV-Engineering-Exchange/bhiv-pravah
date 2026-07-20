@@ -1,0 +1,77 @@
+{
+  "summary": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0,
+    "skipped": 0,
+    "details": [
+      {
+        "test": "Invalid JSON spec constraint",
+        "status": "passed",
+        "timestamp": "2025-09-30T03:45:01.345Z",
+        "error": "new row for relation \"specs\" violates check constraint \"json_spec_structure_check\""
+      },
+      {
+        "test": "Rating constraint violation",
+        "status": "passed",
+        "timestamp": "2025-09-30T03:45:01.389Z",
+        "error": "new row for relation \"evaluations\" violates check constraint \"evaluations_rating_check\""
+      },
+      {
+        "test": "Foreign key constraint violation",
+        "status": "passed",
+        "timestamp": "2025-09-30T03:45:01.439Z",
+        "error": "insert or update on table \"evaluations\" violates foreign key constraint \"evaluations_spec_id_fkey\""
+      },
+      {
+        "test": "Empty results handling",
+        "status": "passed",
+        "timestamp": "2025-09-30T03:45:01.479Z",
+        "resultCount": 0
+      },
+      {
+        "test": "Timeout simulation",
+        "status": "passed",
+        "timestamp": "2025-09-30T03:45:04.853Z",
+        "duration": 37,
+        "resultCount": 0
+      }
+    ],
+    "duration": 39131,
+    "success_rate": "100.00"
+  },
+  "tests": [
+    {
+      "test": "Invalid JSON spec constraint",
+      "status": "passed",
+      "timestamp": "2025-09-30T03:45:01.345Z",
+      "error": "new row for relation \"specs\" violates check constraint \"json_spec_structure_check\""
+    },
+    {
+      "test": "Rating constraint violation",
+      "status": "passed",
+      "timestamp": "2025-09-30T03:45:01.389Z",
+      "error": "new row for relation \"evaluations\" violates check constraint \"evaluations_rating_check\""
+    },
+    {
+      "test": "Foreign key constraint violation",
+      "status": "passed",
+      "timestamp": "2025-09-30T03:45:01.439Z",
+      "error": "insert or update on table \"evaluations\" violates foreign key constraint \"evaluations_spec_id_fkey\""
+    },
+    {
+      "test": "Empty results handling",
+      "status": "passed",
+      "timestamp": "2025-09-30T03:45:01.479Z",
+      "resultCount": 0
+    },
+    {
+      "test": "Timeout simulation",
+      "status": "passed",
+      "timestamp": "2025-09-30T03:45:04.853Z",
+      "duration": 37,
+      "resultCount": 0
+    }
+  ],
+  "generated_at": "2025-09-30T03:45:08.023Z"
+}

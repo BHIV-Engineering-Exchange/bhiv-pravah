@@ -1,0 +1,49 @@
+{
+  "template_id": "maritime_v1",
+  "domain": "maritime",
+
+  "entities": [
+    "vessel",
+    "zone",
+    "port"
+  ],
+
+  "components": {
+    "vessel": ["position", "velocity", "heading", "status"],
+    "zone":   ["position", "boundary"],
+    "port":   ["position", "status"]
+  },
+
+  "jobs": [
+    "SPAWN_ENTITY",
+    "UPDATE_ENTITY",
+    "CHECK_PROXIMITY",
+    "START_LOOP"
+  ],
+
+  "domain_parameters": {
+    "vessel_id": "string",
+    "lat":       "number",
+    "lon":       "number",
+    "speed":     "number",
+    "heading":   "number",
+    "status":    "moving | anchored"
+  },
+
+  "engine_mapping": {
+    "vessel":  "entity",
+    "lat":     "x",
+    "lon":     "z",
+    "speed":   "velocity",
+    "heading": "rotation"
+  },
+
+  "defaults": {
+    "max_vessels":        10,
+    "proximity_radius":   5.0,
+    "update_interval_ms": 1000,
+    "coordinate_scale":   100.0
+  },
+
+  "_note": "Governance decisions are external. This template contains NO decision assumptions."
+}

@@ -1,0 +1,58 @@
+{
+  "sample_text": {
+    "module_id": "sample_text",
+    "schema_version": "1.0.0",
+    "dependencies": [],
+    "contract_hash": "sha256:sample_text_v1_0_0",
+    "enabled": true,
+    "truth_classification_level": "unclassified"
+  },
+  "finance": {
+    "module_id": "finance",
+    "schema_version": "1.0.0",
+    "dependencies": [],
+    "contract_hash": "sha256:finance_v1_0_0",
+    "enabled": true,
+    "truth_classification_level": "restricted"
+  },
+  "creator": {
+    "module_id": "creator",
+    "schema_version": "1.0.0",
+    "dependencies": [],
+    "contract_hash": "sha256:creator_v1_0_0",
+    "enabled": true,
+    "truth_classification_level": "unclassified"
+  },
+  "education": {
+    "module_id": "education",
+    "schema_version": "1.0.0",
+    "dependencies": [],
+    "contract_hash": "sha256:education_v1_0_0",
+    "enabled": true,
+    "truth_classification_level": "unclassified"
+  },
+  "video": {
+    "module_id": "video",
+    "schema_version": "1.0.0",
+    "dependencies": ["creator"],
+    "contract_hash": "sha256:video_v1_0_0",
+    "enabled": true,
+    "truth_classification_level": "unclassified"
+  },
+  "example_math": {
+    "module_id": "example_math",
+    "schema_version": "1.0.0",
+    "dependencies": [],
+    "contract_hash": "sha256:example_math_v1_0_0",
+    "enabled": true,
+    "truth_classification_level": "unclassified"
+  },
+  "example_validation": {
+    "module_id": "example_validation",
+    "schema_version": "1.0.0",
+    "dependencies": [],
+    "contract_hash": "sha256:example_validation_v1_0_0",
+    "enabled": true,
+    "truth_classification_level": "unclassified"
+  }
+}

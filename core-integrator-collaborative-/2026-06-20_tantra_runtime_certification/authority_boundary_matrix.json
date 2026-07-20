@@ -1,0 +1,40 @@
+{
+  "authority_boundary_matrix": [
+    {
+      "component": "Replay System",
+      "can_initiate_execution": false,
+      "can_alter_legitimacy": false,
+      "can_accumulate_authority": false,
+      "can_shape_routing": false,
+      "can_influence_enforcement": false,
+      "rating": "PASS"
+    },
+    {
+      "component": "Reconstruction Engine",
+      "can_initiate_execution": false,
+      "can_alter_legitimacy": false,
+      "can_accumulate_authority": false,
+      "can_shape_routing": false,
+      "can_influence_enforcement": false,
+      "rating": "PASS"
+    },
+    {
+      "component": "Integration Bridge",
+      "can_initiate_execution": true,
+      "can_alter_legitimacy": false,
+      "can_accumulate_authority": false,
+      "can_shape_routing": true,
+      "can_influence_enforcement": false,
+      "rating": "RISK"
+    },
+    {
+      "component": "Bucket Adapter",
+      "can_initiate_execution": false,
+      "can_alter_legitimacy": false,
+      "can_accumulate_authority": false,
+      "can_shape_routing": false,
+      "can_influence_enforcement": false,
+      "rating": "PASS"
+    }
+  ]
+}

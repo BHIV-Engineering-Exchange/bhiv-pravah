@@ -1,0 +1,157 @@
+{
+  "domain": "software",
+  "version": "1.0.0",
+  "description": "Software engineering domain plugin for system design, code review, database design, deployment planning, and bug analysis.",
+
+  "detection_keywords": [
+    "code", "software", "application", "database", "api", "system",
+    "deployment", "debug", "programming", "development", "server",
+    "microservice", "repository", "git", "algorithm", "function",
+    "class", "module", "framework", "library", "endpoint", "schema"
+  ],
+
+  "detection_patterns": [
+    "software\\s+(?:design|architecture|development|engineering|system)",
+    "api\\s+(?:design|integration|endpoint|documentation)",
+    "database\\s+(?:design|schema|query|optimization|migration)",
+    "(?:deploy|deployment)\\s+(?:plan|strategy|pipeline|configuration)"
+  ],
+
+  "intents": {
+    "system_design": {
+      "patterns": [
+        "design\\s+(?:the\\s+)?(?:software|system|application|service)\\s+(?:architecture|design)",
+        "(?:software|system)\\s+(?:architecture|design|blueprint)",
+        "design\\s+(?:a\\s+)?(?:scalable|distributed|microservice)?\\s*(?:system|platform|application)",
+        "create\\s+(?:the\\s+)?(?:technical\\s+)?(?:architecture|design|blueprint)"
+      ],
+      "module": "system_designer",
+      "task": "design_system_architecture",
+      "required_entities": [],
+      "optional_entities": ["system_type", "language", "framework", "scale", "cloud_provider"],
+      "tasks": ["requirements analysis", "architecture design", "component planning", "technology selection", "design documentation"],
+      "output_format": "design_document"
+    },
+
+    "code_review": {
+      "patterns": [
+        "review\\s+(?:the\\s+)?code",
+        "code\\s+(?:review|analysis|audit|quality)",
+        "analyze\\s+(?:the\\s+)?(?:code|implementation|codebase)",
+        "check\\s+(?:the\\s+)?(?:code|implementation)\\s+(?:quality|for\\s+issues)"
+      ],
+      "module": "code_reviewer",
+      "task": "perform_code_review",
+      "required_entities": [],
+      "optional_entities": ["language", "framework", "repository", "focus_area"],
+      "tasks": ["code analysis", "quality assessment", "security review", "performance evaluation", "recommendations"],
+      "output_format": "review_report"
+    },
+
+    "database_design": {
+      "patterns": [
+        "design\\s+(?:the\\s+)?database",
+        "database\\s+(?:design|schema|structure|model)",
+        "create\\s+(?:the\\s+)?(?:database\\s+)?schema",
+        "(?:data\\s+model|entity\\s+relationship|erd)"
+      ],
+      "module": "database_designer",
+      "task": "design_database_schema",
+      "required_entities": [],
+      "optional_entities": ["db_type", "language", "scale", "system_type"],
+      "tasks": ["schema design", "relationship modeling", "indexing strategy", "migration planning"],
+      "output_format": "database_schema"
+    },
+
+    "deployment_planning": {
+      "patterns": [
+        "(?:plan|create)\\s+(?:the\\s+)?deployment",
+        "deployment\\s+(?:plan|strategy|pipeline|workflow)",
+        "(?:ci\\/cd|continuous\\s+integration|continuous\\s+deployment)",
+        "(?:infrastructure|cloud)\\s+(?:setup|configuration|plan|design)"
+      ],
+      "module": "deployment_planner",
+      "task": "create_deployment_plan",
+      "required_entities": [],
+      "optional_entities": ["cloud_provider", "environment", "scale", "framework"],
+      "tasks": ["environment configuration", "CI/CD pipeline setup", "infrastructure planning", "deployment documentation"],
+      "output_format": "deployment_plan"
+    },
+
+    "bug_analysis": {
+      "patterns": [
+        "(?:analyze|debug|diagnose|fix)\\s+(?:the\\s+)?(?:bug|error|issue|problem)",
+        "bug\\s+(?:analysis|report|investigation|tracking)",
+        "(?:error|exception|crash)\\s+(?:analysis|investigation|diagnosis)",
+        "troubleshoot\\s+(?:the\\s+)?(?:issue|problem|error)"
+      ],
+      "module": "bug_analyzer",
+      "task": "analyze_bug_report",
+      "required_entities": [],
+      "optional_entities": ["language", "framework", "error_type", "severity"],
+      "tasks": ["issue reproduction", "root cause analysis", "impact assessment", "fix recommendation"],
+      "output_format": "bug_report"
+    }
+  },
+
+  "extractors": {
+    "language": {
+      "type": "keyword",
+      "keywords": [
+        "python", "javascript", "typescript", "java", "c#", "c++", "go", "rust",
+        "php", "ruby", "swift", "kotlin", "scala", "r", "dart", "sql"
+      ]
+    },
+    "framework": {
+      "type": "keyword",
+      "keywords": [
+        "react", "angular", "vue", "django", "flask", "fastapi", "spring",
+        "express", "rails", "laravel", "nextjs", "nodejs", "tensorflow",
+        "pytorch", "kubernetes", "docker", "terraform"
+      ]
+    },
+    "system_type": {
+      "type": "keyword",
+      "keywords": [
+        "web application", "mobile app", "api", "microservice", "monolith",
+        "e-commerce", "saas", "crm", "erp", "data pipeline", "ml platform",
+        "real-time system", "event-driven", "serverless"
+      ]
+    },
+    "scale": {
+      "type": "keyword",
+      "keywords": ["small", "medium", "large", "enterprise", "startup", "scalable", "high availability", "distributed"]
+    },
+    "cloud_provider": {
+      "type": "keyword",
+      "keywords": ["aws", "azure", "gcp", "google cloud", "heroku", "vercel", "digitalocean", "on-premise", "hybrid"]
+    },
+    "db_type": {
+      "type": "keyword",
+      "keywords": ["postgresql", "mysql", "mongodb", "redis", "sqlite", "cassandra", "dynamodb", "oracle", "sql server", "elasticsearch"]
+    }
+  },
+
+  "constraint_rules": {
+    "environment": {
+      "type": "keyword",
+      "keywords": ["development", "staging", "production", "testing", "qa", "dev", "prod"]
+    },
+    "security": {
+      "type": "keyword",
+      "keywords": ["secure", "encrypted", "authentication", "authorization", "oauth", "jwt", "ssl", "tls"]
+    },
+    "performance": {
+      "type": "keyword",
+      "keywords": ["high performance", "low latency", "real-time", "high throughput", "optimized", "fast"]
+    }
+  },
+
+  "clarification_questions": {
+    "language": "What programming language(s) are involved?",
+    "framework": "What framework or technology stack is being used?",
+    "system_type": "What type of system or application is this (e.g., web app, API, microservice)?",
+    "scale": "What is the expected scale (e.g., startup, enterprise, high availability)?",
+    "cloud_provider": "What cloud or hosting platform is being used?"
+  }
+}

@@ -1,0 +1,230 @@
+{
+  "request": {
+    "source_id": "substation-7",
+    "metric": "transformer_temp_c",
+    "value": 97.5,
+    "unit": "celsius",
+    "timestamp": "2026-07-08T10:00:00Z"
+  },
+  "response": {
+    "status_code": 200,
+    "body": {
+      "trace_id": "trace_0a5c8b0a7e33",
+      "telemetry_artifact_id": "telemetry_7b985e48",
+      "signal": {
+        "signal_id": "sig_a18fea529d2c",
+        "trace_id": "trace_0a5c8b0a7e33",
+        "metric": "transformer_temp_c",
+        "value": 97.5,
+        "unit": "celsius",
+        "classification": "critical",
+        "threshold_breached": true,
+        "derived_at": "2026-07-08T09:56:07.522845+00:00",
+        "source_module_id": "signal_generator",
+        "status": "success",
+        "prompt": "Evaluate grid response for transformer_temp_c reading of 97.5celsius at substation-7, classified critical."
+      },
+      "pipeline_result": {
+        "status": "success",
+        "trace_id": "trace_0a5c8b0a7e33",
+        "workflow_id": "wf_fd8d3c559c0f",
+        "artifact_chain": {
+          "trace_id": "trace_0a5c8b0a7e33",
+          "workflow_id": "wf_fd8d3c559c0f",
+          "A1_instruction": "instruction_d3a26006",
+          "A2_blueprint": "blueprint_4309d49a",
+          "A2b_contract": "contract_ed5bac2e",
+          "A2c_authority": "authority_74e16b33",
+          "A2d_gate": "gate_8d48b3f6",
+          "A3_execution": "execution_efe5ef34",
+          "A4_result": "result_1eee0351"
+        },
+        "pipeline_result": {
+          "original_prompt": "Evaluate grid response for transformer_temp_c reading of 97.5celsius at substation-7, classified critical.",
+          "generated_instruction": {
+            "prompt": "Evaluate grid response for transformer_temp_c reading of 97.5celsius at substation-7, classified critical.",
+            "module": "creator",
+            "intent": "generate",
+            "topic": "general",
+            "tasks": [
+              "create_blueprint"
+            ],
+            "output_format": "json",
+            "product_context": "simulation_runtime",
+            "trace_id": "trace_0a5c8b0a7e33",
+            "workflow_id": "wf_fd8d3c559c0f",
+            "instruction_id": "trace_0a5c8b0a7e33"
+          },
+          "blueprint_envelope": {
+            "blueprint": {
+              "instruction_id": "77f258e3-98e5-4989-9c88-b1b3a4906e4d",
+              "origin": "creator_core",
+              "intent_type": "generate",
+              "target_product": "creator",
+              "payload": {
+                "blueprint_type": "content_blueprint",
+                "product_target": "creator",
+                "content_type": "json",
+                "title": "General",
+                "outline": [
+                  "create_blueprint"
+                ]
+              },
+              "schema_version": "1.0",
+              "timestamp": "2026-07-08T09:56:07.557720+00:00"
+            },
+            "trace_id": "trace_0a5c8b0a7e33",
+            "workflow_id": "wf_fd8d3c559c0f"
+          },
+          "contract": {
+            "contract_id": "contract_ffef7f291d14",
+            "instruction_id": "trace_0a5c8b0a7e33",
+            "trace_id": "trace_0a5c8b0a7e33",
+            "execution_plan": {
+              "target_module": "creator",
+              "execution_intent": "generate",
+              "execution_data": {
+                "blueprint_type": "content_blueprint",
+                "product_target": "creator",
+                "content_type": "json",
+                "title": "General",
+                "outline": [
+                  "create_blueprint"
+                ]
+              }
+            },
+            "constraints": {
+              "schema_version": "1.0.0",
+              "origin": "creator_core",
+              "intent_type": null,
+              "deterministic": true,
+              "replay_safe": true
+            },
+            "contract_hash": "5aecad62caf2ec98b8ba91f61b2d3ddd3f6c3c6958f5134c1a8b7db9595ef446",
+            "timestamp": "2026-07-08T09:56:07.582760+00:00",
+            "schema_version": "1.0.0"
+          },
+          "authority_decision": {
+            "allowed": true,
+            "reason": "valid_contract",
+            "contract_id": "contract_ffef7f291d14",
+            "trace_id": "trace_0a5c8b0a7e33",
+            "decision_id": "decision_contract_ffef7f291d14",
+            "timestamp": "2026-07-08T09:56:07.609806+00:00",
+            "validation_checks": {
+              "has_contract_id": "contract_ffef7f291d14",
+              "has_trace_id": "trace_0a5c8b0a7e33",
+              "has_execution_plan": true,
+              "has_valid_module": "creator",
+              "has_constraints": true,
+              "has_contract_hash": "5aecad62caf2ec98b8ba91f61b2d3ddd3f6c3c6958f5134c1a8b7db9595ef446"
+            }
+          },
+          "gate_decision": {
+            "status": "allowed",
+            "message": "Execution approved by gate",
+            "result": {},
+            "contract_id": "contract_ffef7f291d14",
+            "trace_id": "trace_0a5c8b0a7e33",
+            "gate_status": "ALLOWED",
+            "authority_decision": {
+              "allowed": true,
+              "reason": "valid_contract",
+              "contract_id": "contract_ffef7f291d14",
+              "trace_id": "trace_0a5c8b0a7e33",
+              "decision_id": "decision_contract_ffef7f291d14",
+              "timestamp": "2026-07-08T09:56:07.609806+00:00",
+              "validation_checks": {
+                "has_contract_id": "contract_ffef7f291d14",
+                "has_trace_id": "trace_0a5c8b0a7e33",
+                "has_execution_plan": true,
+                "has_valid_module": "creator",
+                "has_constraints": true,
+                "has_contract_hash": "5aecad62caf2ec98b8ba91f61b2d3ddd3f6c3c6958f5134c1a8b7db9595ef446"
+              }
+            },
+            "timestamp": "2026-07-08T09:56:07.634085+00:00"
+          },
+          "execution_result": {
+            "status": "success",
+            "message": "Creative content generated with context",
+            "result": {
+              "content": "Generated content for: unknown topic",
+              "related_context": [],
+              "enhanced_data": {
+                "blueprint": {
+                  "blueprint_type": "content_blueprint",
+                  "product_target": "creator",
+                  "content_type": "json",
+                  "title": "General",
+                  "outline": [
+                    "create_blueprint"
+                  ]
+                },
+                "target_product": "creator",
+                "trace_id": "trace_0a5c8b0a7e33",
+                "workflow_id": "wf_fd8d3c559c0f"
+              }
+            },
+            "trace_id": "trace_0a5c8b0a7e33",
+            "workflow_id": "wf_fd8d3c559c0f"
+          },
+          "pipeline_status": "completed",
+          "deterministic_hash": "cbba4ad5df456aa4",
+          "product_output": {
+            "simulation_result": {
+              "content": "Generated content for: unknown topic",
+              "related_context": [],
+              "enhanced_data": {
+                "blueprint": {
+                  "blueprint_type": "content_blueprint",
+                  "product_target": "creator",
+                  "content_type": "json",
+                  "title": "General",
+                  "outline": [
+                    "create_blueprint"
+                  ]
+                },
+                "target_product": "creator",
+                "trace_id": "trace_0a5c8b0a7e33",
+                "workflow_id": "wf_fd8d3c559c0f"
+              }
+            },
+            "status": "success",
+            "message": "Creative content generated with context"
+          },
+          "trace_id": "trace_0a5c8b0a7e33",
+          "workflow_id": "wf_fd8d3c559c0f"
+        },
+        "timestamp": "2026-07-08T09:56:07.733546+00:00"
+      },
+      "alert": {
+        "alert_id": "alert_f69e9f79970f",
+        "trace_id": "trace_0a5c8b0a7e33",
+        "severity": "critical",
+        "reason": "Critical transformer_temp_c reading",
+        "signal": {
+          "signal_id": "sig_a18fea529d2c",
+          "trace_id": "trace_0a5c8b0a7e33",
+          "metric": "transformer_temp_c",
+          "value": 97.5,
+          "unit": "celsius",
+          "classification": "critical",
+          "threshold_breached": true,
+          "derived_at": "2026-07-08T09:56:07.522845+00:00",
+          "source_module_id": "signal_generator",
+          "status": "success",
+          "prompt": "Evaluate grid response for transformer_temp_c reading of 97.5celsius at substation-7, classified critical."
+        },
+        "decision_summary": {
+          "gate_status": "ALLOWED",
+          "execution_status": "success",
+          "pipeline_status": "success"
+        },
+        "source_module_id": "alert_generator",
+        "status": "critical",
+        "raised_at": "2026-07-08T09:56:07.737889+00:00"
+      }
+    }
+  }
+}

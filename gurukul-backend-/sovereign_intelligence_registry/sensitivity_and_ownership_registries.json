@@ -1,0 +1,108 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SensitivityAndOwnershipRegistries",
+  "description": "Structured registry mapping high-volatility sensitivity zones and institutional ownership/interface nodes.",
+  "sensitivity_zones": {
+    "language": {
+      "volatility_class": "Extremely High",
+      "trigger_vectors": "Imposing non-state language options; translating state textbooks poorly; neglecting regional tribal dialects.",
+      "operational_guardrail": "Dynamic localization layer; strict metadata checks preventing language cross-contamination."
+    },
+    "history_curriculum": {
+      "volatility_class": "High",
+      "trigger_vectors": "Altering historical timelines; neglecting regional state heroes; modifying central history curriculum chapters.",
+      "operational_guardrail": "Static, department-approved RAG reference blocks; zero dynamic generation for sensitive historical queries."
+    },
+    "tribal_education": {
+      "volatility_class": "Medium-High",
+      "trigger_vectors": "Neglecting tribal dialect instruction; forcing standardized urban examples on rural forest-dwelling communities.",
+      "operational_guardrail": "Support for localized content templates; integration of regional contexts."
+    },
+    "minority_education": {
+      "volatility_class": "High",
+      "trigger_vectors": "Altering syllabus details regarding minority rights; neglecting minority language textbook editions (e.g. Urdu medium textbooks of Balbharati).",
+      "operational_guardrail": "Strict verification of all translated textbook volumes; exact alignment with official board-approved prints."
+    },
+    "board_examinations": {
+      "volatility_class": "Extremely High",
+      "trigger_vectors": "Paper leaks; grading system errors; sudden alterations in syllabus coverage weeks before the final board exams.",
+      "operational_guardrail": "Strict boundary locks on exam prep materials; secure, multi-layer verified grading engines."
+    },
+    "child_data": {
+      "volatility_class": "Extremely High",
+      "trigger_vectors": "Leak of student database; commercial profiling of minor children; unauthorized sharing of learning metrics with marketing vendors.",
+      "operational_guardrail": "Parent consent verification hooks; strict multi-tenant SQLite data isolation."
+    },
+    "AI_in_education": {
+      "volatility_class": "High",
+      "trigger_vectors": "AI tutor returning inaccurate information; generative AI hallucinating sensitive political responses; voice biometric data leaks.",
+      "operational_guardrail": "Mandatory RAG grounding; rigid content filtering; offline fallbacks with explicit system warnings."
+    },
+    "public_private_education_models": {
+      "volatility_class": "Medium-High",
+      "trigger_vectors": "Perceived privatization of public school infrastructure; charging minor students fees for premium digital features.",
+      "operational_guardrail": "Ensure all public school platform assets are permanently free and state-hosted; zero paywalls."
+    },
+    "content_governance": {
+      "volatility_class": "High",
+      "trigger_vectors": "Allowing content upload by unverified users; silent alteration of textbook chunks inside the vector store.",
+      "operational_guardrail": "Immutable database schemas; cryptographic hash verification of vector store collections."
+    }
+  },
+  "ownership_registry": {
+    "who_emits": {
+      "entity": "Telemetry engines, student chatbot, active school servers.",
+      "ambiguity_zones": "Ownership of anonymous interaction data under DPDP.",
+      "ownership_collisions": "Software provider claiming data usage rights vs government sovereign ownership.",
+      "dependency_chains": "Student action -> Telemetry client -> State database aggregator."
+    },
+    "who_governs": {
+      "entity": "School Education Department, MSCERT, Board of Education.",
+      "ambiguity_zones": "Delimitation of guidelines vs operational rules.",
+      "ownership_collisions": "MSCERT claiming curriculum authority vs Balbharati publishing changes.",
+      "dependency_chains": "NEP guidelines -> MSCERT SCF framework -> Balbharati printed textbooks."
+    },
+    "who_procures": {
+      "entity": "MPSP, MahaIT, district administrative offices.",
+      "ambiguity_zones": "Software licenses procurement vs hardware distribution contracts.",
+      "ownership_collisions": "MPSP selecting specific SIs vs MahaIT central cloud mandates.",
+      "dependency_chains": "State budget release -> MPSP RFP tender -> SI vendor empanelment."
+    },
+    "who_deploys": {
+      "entity": "Winning System Integrator (SI) vendor, district collectors, school principals.",
+      "ambiguity_zones": "Responsibility for school-level network setup and cabling.",
+      "ownership_collisions": "SI vendor claiming deployment complete vs principal rejecting broken tablet shipments.",
+      "dependency_chains": "SI central delivery -> District warehouse -> School inventory register."
+    },
+    "who_observes": {
+      "entity": "District Education Inspectors, state dashboards, Union Ministry monitoring cells.",
+      "ambiguity_zones": "Telemetry data access permissions under privacy laws.",
+      "ownership_collisions": "Central ministry demanding child-level progress scores vs state board blocking access to maintain data sovereignty.",
+      "dependency_chains": "School test entries -> State dashboard -> Central aggregate telemetry."
+    },
+    "who_trains": {
+      "entity": "MSCERT, DIETs, block education officers.",
+      "ambiguity_zones": "Responsibility for technical platform training vs standard pedagogical training.",
+      "ownership_collisions": "MSCERT trainer teaching curriculum changes vs technical provider explaining dashboard clicks.",
+      "dependency_chains": "State training guidelines -> BEO training camps -> Local teacher sessions."
+    },
+    "who_approves": {
+      "entity": "Education Secretary, Cabinet Ministers, Board Chairpersons.",
+      "ambiguity_zones": "Emergency bypass approvals vs formal committee reviews.",
+      "ownership_collisions": "Board chairman approving syllabus adjustments vs Ministry secretary demanding revisions.",
+      "dependency_chains": "Committee recommendation -> Secretary sign-off -> Ministerial decree."
+    },
+    "who_audits": {
+      "entity": "Comptroller & Auditor General (CAG), third-party security auditors, state vigilance wings.",
+      "ambiguity_zones": "Technical code audits vs physical inventory verification audits.",
+      "ownership_collisions": "External auditor raising security flags vs platform SI vendor dismissing warnings to avoid timeline penalties.",
+      "dependency_chains": "Auditor query -> Platform response logs -> Final compliance scorecard."
+    },
+    "who_operationalises": {
+      "entity": "School teachers, student learners, local system administrators.",
+      "ambiguity_zones": "Daily password resets and technical field troubleshooting.",
+      "ownership_collisions": "Teacher demanding immediate IT help vs remote SI vendor refusing on-site support.",
+      "dependency_chains": "User interface click -> Local host server database write -> State cloud synchronization."
+    }
+  }
+}

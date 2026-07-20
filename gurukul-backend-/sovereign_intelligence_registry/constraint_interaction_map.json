@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ConstraintInteractionMap",
+  "description": "Structured matrix mapping constraint interactions and outcomes under real deployment conditions.",
+  "interactions": [
+    {
+      "pairing": "policy x procurement",
+      "type": "Collision",
+      "latency": "High (6-9 months delay)",
+      "bottleneck": "Government Resolution (GR) guidelines mandate modern dynamic cloud services, but public procurement laws enforce standard L1 lowest-cost bidding, which favors cheap, low-quality static software providers.",
+      "dependency_chain": "NEP Guidelines -> Tender RFP specifications -> L1 bid selection -> Vendor default -> Deployment freeze.",
+      "exception_pressure": "High. Departments routinely draft urgent emergency shortcuts to bypass tenders and directly nominate specialized technical bodies."
+    },
+    {
+      "pairing": "policy x language",
+      "type": "Reinforcement",
+      "latency": "Medium (2-4 months delay)",
+      "bottleneck": "Syllabus policies mandate localized mother-tongue instruction, which reinforces the need to build strictly isolated regional-language vector indices and prevents English CBSE text bleed.",
+      "dependency_chain": "SCF language mandates -> MSCERT textbook translation -> Balbharati local print -> RAG metadata-isolated vector ingestion.",
+      "exception_pressure": "Low. Language guidelines are non-negotiable and cannot be bypassed via exceptions."
+    },
+    {
+      "pairing": "AI x DPDP",
+      "type": "Collision",
+      "latency": "Very High (Ongoing regulatory risk)",
+      "bottleneck": "Generative AI tutors require interactive voice and text logging to personalize learning pacing, but DPDP mandates strict parental consent and outlaws child profiling or long-term data collection.",
+      "dependency_chain": "AI personalization engine -> Telemetry data collection -> Consent validation hook -> DB partition block -> Model response limit.",
+      "exception_pressure": "High. Startups are lobbying for simplified 'class-wide' consent models to bypass individual minor data validations."
+    },
+    {
+      "pairing": "federal x curriculum",
+      "type": "Collision",
+      "latency": "Medium (3-6 months delay)",
+      "bottleneck": "Central NCF guidelines push for immediate standard textbook modernization, but state MSCERT councils demand custom localized adaptations, delaying final textbook approvals.",
+      "dependency_chain": "National NCF framework -> State curriculum committee -> Balbharati printing -> School syllabus rollout.",
+      "exception_pressure": "Medium. State departments frequently issue temporary textbook transition GRs allowing old textbooks to remain active."
+    },
+    {
+      "pairing": "procurement x officer transfer",
+      "type": "Collision",
+      "latency": "Extremely High (9-12 months delay)",
+      "bottleneck": "A complex educational technology tender is designed by a progressive IAS officer, but their sudden transfer mid-tender causes the new officer to restart the entire review process from scratch.",
+      "dependency_chain": "Officer design -> Tender publication -> Officer transfer -> New officer audit -> Project review -> Tender scrap.",
+      "exception_pressure": "Very High. System integrators lobby hard during transition periods to modify tender specifications in their favor."
+    },
+    {
+      "pairing": "audit x innovation",
+      "type": "Collision",
+      "latency": "High (3-5 months delay)",
+      "bottleneck": "Audit departments demand rigid adherence to standard operating procedures and verified databases, which restricts developers from deploying dynamic, rapidly evolving LLM personalizations.",
+      "dependency_chain": "Developer hotfix -> Telemetry log -> Audit check -> Security warning -> Development pause.",
+      "exception_pressure": "High. Development teams deploy 'shadow hotfixes' outside standard audit controls to maintain user feature requests."
+    },
+    {
+      "pairing": "infrastructure x smart classrooms",
+      "type": "Collision",
+      "latency": "High (Physical equipment failure)",
+      "bottleneck": "Procurement installs smart classroom boards in rural public schools, but local power grid failures and missing backup batteries render the boards unusable for most of the school week.",
+      "dependency_chain": "MPSP smart board tender -> Physical installation -> Power grid failure -> Missing local IT help -> Hardware orphaning.",
+      "exception_pressure": "Low. Physical constraints cannot be resolved by administrative shortcuts."
+    },
+    {
+      "pairing": "politics x curriculum rollout",
+      "type": "Collision",
+      "latency": "Very High (Sudden project halts)",
+      "bottleneck": "Curriculum revisions containing sensitive historical or social topics spark political protests, forcing state education departments to freeze textbook distributions.",
+      "dependency_chain": "Syllabus revision -> Textbook printing -> Media controversy -> Political protest -> Ministry freeze order.",
+      "exception_pressure": "High. Bureaucrats utilize emergency shortcuts to quickly print revised 'neutral' versions."
+    },
+    {
+      "pairing": "AI curriculum x teacher capability",
+      "type": "Collision",
+      "latency": "High (Implementation mismatch)",
+      "bottleneck": "State board mandates basic AI coding curriculum in Standard 8 Science, but rural school teachers lack standard computer literacy and cannot explain basic coding logic.",
+      "dependency_chain": "AI curriculum mandate -> Balbharati publishing -> Classroom delivery -> Teacher confusion -> Classroom skip.",
+      "exception_pressure": "Medium. School principals hire local computer science students or volunteers to bypass teaching shortages."
+    },
+    {
+      "pairing": "central policy x state implementation",
+      "type": "Collision",
+      "latency": "High (Budgetary & legal friction)",
+      "bottleneck": "Union MoE mandates centralized platform integrations (DIKSHA), but state departments demand regional software sovereignty, stalling cross-platform synchronization.",
+      "dependency_chain": "Central MoE mandate -> State integration challenge -> Software silo -> Sync mismatch.",
+      "exception_pressure": "Medium. States create local state-level digital platforms while maintaining basic mock APIs to satisfy central audits."
+    }
+  ]
+}

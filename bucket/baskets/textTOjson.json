@@ -1,0 +1,8 @@
+{
+  "basket_name": "textTOjson",
+  "agents": [
+    "textToJson"
+  ],
+  "execution_strategy": "sequential",
+  "description": ""
+}

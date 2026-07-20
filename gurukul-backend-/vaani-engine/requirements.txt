@@ -1,0 +1,9 @@
+coqui-tts
+fastapi
+uvicorn
+python-multipart
+pydantic
+numpy
+scipy
+torch
+torchaudio

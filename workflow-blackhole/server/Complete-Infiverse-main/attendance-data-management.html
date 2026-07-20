@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Data Management - Direct Access</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            color: #e53e3e;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .header p {
+            color: #666;
+            font-size: 1.2em;
+        }
+        .warning-box {
+            background: linear-gradient(135deg, #fed7d7 0%, #feb2b2 100%);
+            border: 2px solid #fc8181;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        .warning-box::before {
+            content: "⚠️";
+            font-size: 2em;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+        }
+        .warning-box h3 {
+            color: #c53030;
+            margin-top: 0;
+        }
+        .warning-box p {
+            color: #744210;
+            margin-bottom: 0;
+        }
+        .link-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .main-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+            color: white;
+            padding: 20px 40px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1.3em;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(229, 62, 62, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .main-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(229, 62, 62, 0.4);
+        }
+        .main-link::before {
+            content: "🗑️ ";
+            margin-right: 10px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .info-card {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+        .info-card .icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .info-card h4 {
+            color: #2d3748;
+            margin: 10px 0;
+        }
+        .info-card p {
+            color: #4a5568;
+            font-size: 0.9em;
+            margin: 0;
+        }
+        .prerequisites {
+            background: #ebf8ff;
+            border: 1px solid #90cdf4;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .prerequisites h3 {
+            color: #2b6cb0;
+            margin-top: 0;
+        }
+        .prerequisites ul {
+            color: #2c5282;
+            padding-left: 20px;
+        }
+        .prerequisites li {
+            margin: 8px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            color: #718096;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🗑️ Attendance Data Management</h1>
+            <p>Unified Database Cleanup Tool - Admin Access Required</p>
+        </div>
+
+        <div class="warning-box">
+            <h3>🚨 CRITICAL WARNING</h3>
+            <p><strong>This tool will permanently delete attendance data from MongoDB!</strong><br>
+            Only administrators should access this functionality. Ensure you have proper backups before proceeding.</p>
+        </div>
+
+        <div class="prerequisites">
+            <h3>📋 Prerequisites</h3>
+            <ul>
+                <li>✅ Admin role required</li>
+                <li>✅ Active login session</li>
+                <li>✅ Database backup recommended</li>
+                <li>✅ Proper authorization tokens</li>
+            </ul>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="icon">📊</div>
+                <h4>View Statistics</h4>
+                <p>See current attendance data counts before deletion</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">🗑️</div>
+                <h4>Clear All Data</h4>
+                <p>Delete all attendance-related records</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">📅</div>
+                <h4>Date Range Deletion</h4>
+                <p>Delete data within specific date ranges</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">🔒</div>
+                <h4>Secure Confirmation</h4>
+                <p>Multiple confirmation steps for safety</p>
+            </div>
+        </div>
+
+        <div class="link-container">
+            <a href="/attendance-data-management" class="main-link">
+                Access Attendance Data Management
+            </a>
+        </div>
+
+        <div class="warning-box">
+            <h3>📝 What Will Be Deleted?</h3>
+            <p>• Basic Attendance Records<br>
+            • Daily Attendance Data<br>
+            • Work Sessions<br>
+            • Employee Activity Logs<br>
+            • Screen Captures<br>
+            • Monitoring Alerts<br>
+            • Salary Attendance Data<br>
+            • Related Feedback</p>
+        </div>
+
+        <div class="footer">
+            <p>🛡️ This tool is protected by role-based access control.<br>
+            Only authenticated administrators can perform data deletion operations.</p>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactive feedback
+        document.querySelector('.main-link').addEventListener('click', function(e) {
+            // Check if user is likely logged in (basic check)
+            const hasToken = localStorage.getItem('WorkflowToken');
+            const hasUser = localStorage.getItem('WorkflowUser');
+            
+            if (!hasToken || !hasUser) {
+                e.preventDefault();
+                alert('⚠️ You must be logged in to access this tool. Please login first.');
+                window.location.href = '/login';
+                return;
+            }
+            
+            // Check if user is admin
+            try {
+                const user = JSON.parse(hasUser);
+                if (user.role !== 'Admin') {
+                    e.preventDefault();
+                    alert('🔒 Access Denied: Only administrators can access this tool.');
+                    return;
+                }
+            } catch (error) {
+                e.preventDefault();
+                alert('❌ Invalid user session. Please login again.');
+                window.location.href = '/login';
+                return;
+            }
+            
+            // If all checks pass, show final warning
+            const confirmed = confirm(
+                '🚨 FINAL WARNING 🚨\n\n' +
+                'You are about to access the Attendance Data Management tool.\n' +
+                'This tool can PERMANENTLY DELETE attendance data.\n\n' +
+                'Are you sure you want to continue?'
+            );
+            
+            if (!confirmed) {
+                e.preventDefault();
+            }
+        });
+
+        // Add some visual feedback
+        document.querySelectorAll('.info-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ProcurementRegistry",
+  "description": "Structured registry of educational procurement channels, entities, and systemic risks.",
+  "channels": {
+    "Tenders": {
+      "procurement_surface": "State-wide public competitive bidding hosted on portals like MahaTenders.",
+      "buyer_operator_split": "Buyer is MPSP / School Education Department; Operator is the winning system integrator (SI) vendor.",
+      "known_failure_modes": "Unrealistic cost underbidding (L1 bid system) leading to incomplete software delivery; vendor default mid-contract.",
+      "vendor_concentration": "High. Only 3-4 major national SIs typically possess the turnover and credentials required to bid on state-level contracts.",
+      "audit_exposure": "Very High. Scrutinized by Comptroller and Auditor General (CAG) and state finance departments.",
+      "continuity_risk": "High. Changing departments or minor delays in budget clearances can freeze SI payments, causing platform shutdowns."
+    },
+    "Empanelments": {
+      "procurement_surface": "Shortlisting multiple verified vendors based on a fixed rate contract, allowing quick project allocation without fresh tenders.",
+      "buyer_operator_split": "Buyer is individual state departments or universities; Operator is any shortlisted empanelled vendor.",
+      "known_failure_modes": "Cartelization among empanelled vendors; outdated technology specs locked under multi-year rate agreements.",
+      "vendor_concentration": "Medium. Empanelment list is limited to 10-15 vendors, shutting out newer startups.",
+      "audit_exposure": "Medium-High. Empanelment rate contracts are routinely audited to verify competitive pricing norms.",
+      "continuity_risk": "Medium. Re-empanelment delays every 3 years can cause temporary contract voids."
+    },
+    "GeM": {
+      "procurement_surface": "Government e-Marketplace (GeM) national portal for standard product and service purchases.",
+      "buyer_operator_split": "Buyer is MoE / central schools / CBSE; Operator is the registered OEM or reseller.",
+      "known_failure_modes": "Wrong product categorizations; shipping delays; difficulty in acquiring customized software adjustments.",
+      "vendor_concentration": "Low for hardware; Medium-High for specialized educational software.",
+      "audit_exposure": "Low-Medium. Automated audit trails are built directly into the central GeM portal system.",
+      "continuity_risk": "Low. GeM transactions are direct and backed by automated payment release escrow protocols."
+    },
+    "MahaTenders": {
+      "procurement_surface": "Maharashtra's official competitive e-procurement portal.",
+      "buyer_operator_split": "Buyer is MSCERT / Balbharati / MPSP; Operator is the contracted technical vendor.",
+      "known_failure_modes": "Technical bid disqualifications on minor clerical grounds; legal challenges by losing bidders stalling rollouts.",
+      "vendor_concentration": "High. Local credential criteria filter out out-of-state operators.",
+      "audit_exposure": "High. Subject to state-level administrative vigilance inspections.",
+      "continuity_risk": "High. Tenders can take 6-9 months to resolve, severely impacting deployment velocity."
+    },
+    "MahaIT_Procurement": {
+      "procurement_surface": "Centralized IT and cloud infrastructure procurement for Maharashtra state departments.",
+      "buyer_operator_split": "Buyer is MahaIT (technical proxy); Operator is the designated state cloud partner (e.g., AWS/Azure local partners).",
+      "known_failure_modes": "departmental mismatch; MahaIT procures generic server spaces but departments lack DBA skills to manage database locks.",
+      "vendor_concentration": "Extremely High. Restricted to major cloud service providers (CSPs) empanelled by MeitY.",
+      "audit_exposure": "Medium. Subject to MeitY audit guidelines and state cloud compliance checks.",
+      "continuity_risk": "Low. Cloud services operate under highly stable state-level SLA contracts."
+    },
+    "MPSP_Procurement": {
+      "procurement_surface": "Primary and secondary school infrastructure procurement (smart boards, tablets, local servers).",
+      "buyer_operator_split": "Buyer is MPSP; Operator is the hardware vendor and local support partner.",
+      "known_failure_modes": "Hardware orphaning; tablets delivered to rural schools but remain locked in closets due to missing chargers or teacher training.",
+      "vendor_concentration": "Medium-High. Sourced through large-scale hardware manufacturers.",
+      "audit_exposure": "High. Physical verification checks are conducted by district education inspectors.",
+      "continuity_risk": "High. Sourcing replacement parts for broken hardware in tribal districts is highly challenging."
+    },
+    "Balbharati_Channels": {
+      "procurement_surface": "Procurement of paper, printing logistics, and digital PDF copyright licensing.",
+      "buyer_operator_split": "Buyer is Balbharati Bureau; Operator is regional print houses and digital distribution platforms.",
+      "known_failure_modes": "Paper shortages; distribution delay during monsoon; leak of textbook digital assets before formal release.",
+      "vendor_concentration": "Medium. Printing is distributed across a large roster of state-registered regional printing presses.",
+      "audit_exposure": "High. Audited by state publishing regulators.",
+      "continuity_risk": "Medium. Paper price fluctuations can strain Balbharati publishing budgets."
+    },
+    "NCERT_Procurement": {
+      "procurement_surface": "Central print publishing contracts and digital content hosting services for national-scale delivery.",
+      "buyer_operator_split": "Buyer is NCERT (central); Operator is central publishing houses and national digital platforms.",
+      "known_failure_modes": "Distribution lags in non-Hindi speaking states; printing quality errors.",
+      "vendor_concentration": "Medium. Dominated by major national publishing houses.",
+      "audit_exposure": "Medium. Audited by central audit boards.",
+      "continuity_risk": "Low. Backed by solid central MoE funding allocations."
+    },
+    "Non_Tender_Pathways": {
+      "procurement_surface": "Direct nomination or proprietary procurement under special government guidelines (e.g., Rule 166 of GFR).",
+      "buyer_operator_split": "Buyer is State Department; Operator is the designated proprietary vendor (e.g., highly specialized national institutes).",
+      "known_failure_modes": "Accusations of favoritism leading to project pauses; lack of price discovery audits.",
+      "vendor_concentration": "Absolute (100% vendor monopoly for that specific project).",
+      "audit_exposure": "Extremely High. CAG routinely flags direct nominations for missing competitive price checks.",
+      "continuity_risk": "Medium. Vulnerable to political changes where new administrations reverse nomination decrees."
+    },
+    "Pilot_Pathways": {
+      "procurement_surface": "Low-budget or pro-bono pilot deployments in selected schools (less than 10 lakhs value) to test efficacy.",
+      "buyer_operator_split": "Buyer is District Education Officer / Principal; Operator is the technology startup.",
+      "known_failure_modes": "Pilot theater; startup delivers massive success in 2 highly funded showcase schools, but fails to scale when deployed to 200 standard schools.",
+      "vendor_concentration": "Low. Startups and local innovators are highly active in this space.",
+      "audit_exposure": "Low. Low financial values prevent deep audit scrutiny.",
+      "continuity_risk": "High. Pilots are rarely converted to permanent scale-up contracts once the pilot funding expires."
+    },
+    "Academic_Routes": {
+      "procurement_surface": "Procurement of software tools via university research budgets or academic partnership councils.",
+      "buyer_operator_split": "Buyer is Academic Institution / Registrar; Operator is the research team or academic spin-off vendor.",
+      "known_failure_modes": "Academic software lacks production hardening, causing database crash under live user load.",
+      "vendor_concentration": "Low. Wide variety of university labs and academic institutions.",
+      "audit_exposure": "Low-Medium. Audited under university internal funding rules.",
+      "continuity_risk": "High. Dependent on active academic research grant cycles."
+    },
+    "CSR_Pathways": {
+      "procurement_surface": "Deploying technology using Corporate Social Responsibility (CSR) funds contributed by corporate partners.",
+      "buyer_operator_split": "Buyer is the Corporate Foundation; Operator is the NGO or educational tech partner.",
+      "known_failure_modes": "CSR donor shifts focus to other areas (e.g., healthcare) mid-deployment, cutting off system maintenance.",
+      "vendor_concentration": "Low-Medium. Highly decentralized.",
+      "audit_exposure": "Low for government; Medium for corporate CSR auditors.",
+      "continuity_risk": "High. CSR funding is usually committed on a year-to-year voluntary basis."
+    },
+    "Innovation_Channels": {
+      "procurement_surface": "Government-backed startup challenges and innovation grants (e.g., Startup India, MahaIT Innovation Lab).",
+      "buyer_operator_split": "Buyer is State Innovation Council; Operator is the winning startup.",
+      "known_failure_modes": "Startup runs out of venture funding before completing the state deployment lifecycle.",
+      "vendor_concentration": "Low. Highly competitive startup ecosystem.",
+      "audit_exposure": "Low. Administered under innovation grant rules.",
+      "continuity_risk": "High. High startup mortality rate introduces severe continuity risks."
+    }
+  }
+}

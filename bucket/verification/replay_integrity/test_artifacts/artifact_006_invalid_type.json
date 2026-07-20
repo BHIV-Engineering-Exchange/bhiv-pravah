@@ -1,0 +1,12 @@
+{
+  "artifact_id": "invalid_type_001",
+  "source_module_id": "unknown_system",
+  "schema_version": "1.0.0",
+  "artifact_hash": "computed_hash_value",
+  "timestamp_utc": "2025-01-19T10:25:00Z",
+  "artifact_type": "custom_event",
+  "payload": {
+    "data": "test"
+  },
+  "_note": "This artifact will be REJECTED because artifact_type 'custom_event' is not in ALLOWED_ARTIFACT_TYPES"
+}

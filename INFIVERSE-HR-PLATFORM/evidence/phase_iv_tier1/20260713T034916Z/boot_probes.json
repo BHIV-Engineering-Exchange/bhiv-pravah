@@ -1,0 +1,14 @@
+{
+  "niyantran": {
+    "booted": false,
+    "tier": "Tier 2",
+    "blocker": "Server process exited (code 1) within boot window",
+    "stderr_tail": "/modules/helpers:152:16)\n    at Object.<anonymous> (C:\\Users\\shash\\OneDrive\\Documents\\INFIVERSE-HR-PLATFORM\\workflow-blackhole\\server\\index.js:125:17)\n    at Module._compile (node:internal/modules/cjs/loader:1761:14) {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: [\n    'C:\\\\Users\\\\shash\\\\OneDrive\\\\Documents\\\\INFIVERSE-HR-PLATFORM\\\\workflow-blackhole\\\\server\\\\index.js',\n    'C:\\\\Users\\\\shash\\\\OneDrive\\\\Documents\\\\INFIVERSE-HR-PLATFORM\\\\workflow-blackhole\\\\server\\\\start.js'\n  ]\n}\n\nNode.js v24.12.0\n"
+  },
+  "artha": {
+    "booted": false,
+    "tier": "Tier 2",
+    "blocker": "Server process exited (code 1) within boot window",
+    "stderr_tail": "/modules/cjs/loader:1059:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)\n    at Module._load (node:internal/modules/cjs/loader:1227:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:328:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: []\n}\n\nNode.js v24.12.0\n"
+  }
+}

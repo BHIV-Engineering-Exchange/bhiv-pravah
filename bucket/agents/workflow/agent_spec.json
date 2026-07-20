@@ -1,0 +1,62 @@
+{
+    "name": "workflow_agent",
+    "domains": ["workflow", "optimization"],
+    "module_path": "agents.workflow.workflow_main",
+    "capabilities": {
+        "chainable": true,
+        "memory_access": false
+    },
+    "input_schema": {
+        "required": ["workflow_request"],
+        "properties": {
+            "workflow_request": {
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "object",
+                        "properties": {
+                            "department": {"type": "string"},
+                            "action": {"type": "string"},
+                            "current_process": {"type": "string"},
+                            "pain_points": {"type": "array", "items": {"type": "string"}},
+                            "goals": {"type": "array", "items": {"type": "string"}}
+                        },
+                        "required": ["department", "action"]
+                    }
+                },
+                "required": ["content"]
+            }
+        }
+    },
+    "output_schema": {
+        "properties": {
+            "recommendations": {"type": "array", "items": {"type": "string"}},
+            "optimization_plan": {"type": "object"},
+            "implementation_steps": {"type": "array"},
+            "expected_benefits": {"type": "object"}
+        }
+    },
+    "sample_input": {
+        "workflow_request": {
+            "content": {
+                "department": "Finance",
+                "action": "optimize",
+                "current_process": "Manual invoice processing",
+                "pain_points": ["Time-consuming", "Error-prone"],
+                "goals": ["Reduce processing time", "Improve accuracy"]
+            }
+        }
+    },
+    "sample_output": {
+        "recommendations": [
+            "Implement automated invoice processing",
+            "Use OCR for data extraction",
+            "Set up approval workflows"
+        ],
+        "optimization_plan": {
+            "timeline": "3 months",
+            "resources_needed": ["Software", "Training"],
+            "expected_savings": "40% time reduction"
+        }
+    }
+}

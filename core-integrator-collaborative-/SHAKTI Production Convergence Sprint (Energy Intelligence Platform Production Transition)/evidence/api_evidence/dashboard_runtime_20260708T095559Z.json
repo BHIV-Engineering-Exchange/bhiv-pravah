@@ -1,0 +1,77 @@
+{
+  "generated_at": "2026-07-08T09:56:06.383325+00:00",
+  "services": {
+    "prompt_runner": {
+      "status": "healthy",
+      "pid": 26544,
+      "port": 8003,
+      "restarts": 0,
+      "last_restart_at": null
+    },
+    "creator_core": {
+      "status": "healthy",
+      "pid": 18188,
+      "port": 8000,
+      "restarts": 0,
+      "last_restart_at": null
+    },
+    "bhiv_core": {
+      "status": "healthy",
+      "pid": 20756,
+      "port": 8001,
+      "restarts": 1,
+      "last_restart_at": "2026-07-08T09:53:29.492137+00:00"
+    },
+    "integration_bridge": {
+      "status": "healthy",
+      "pid": 12096,
+      "port": 8004,
+      "restarts": 0,
+      "last_restart_at": null
+    },
+    "bucket": {
+      "status": "healthy",
+      "pid": 25340,
+      "port": 8005,
+      "restarts": 0,
+      "last_restart_at": null
+    },
+    "cet": {
+      "status": "healthy",
+      "pid": 19788,
+      "port": 8006,
+      "restarts": 0,
+      "last_restart_at": null
+    },
+    "sarathi": {
+      "status": "healthy",
+      "pid": 25156,
+      "port": 8007,
+      "restarts": 0,
+      "last_restart_at": null
+    },
+    "gate": {
+      "status": "healthy",
+      "pid": 20060,
+      "port": 8008,
+      "restarts": 0,
+      "last_restart_at": null
+    },
+    "control_plane": {
+      "status": "healthy",
+      "pid": 19844,
+      "port": 8009,
+      "restarts": 0,
+      "last_restart_at": null
+    },
+    "telemetry": {
+      "status": "healthy",
+      "pid": 17552,
+      "port": 8010,
+      "restarts": 1,
+      "last_restart_at": "2026-07-08T09:55:39.006163+00:00"
+    }
+  },
+  "uptime_seconds": 664.308,
+  "shutting_down": false
+}

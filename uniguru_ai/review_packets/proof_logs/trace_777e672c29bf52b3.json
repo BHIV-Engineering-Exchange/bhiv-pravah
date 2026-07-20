@@ -1,0 +1,152 @@
+{
+  "answer": "I do not have verified knowledge to answer this question.",
+  "confidence": 0.0,
+  "confidence_breakdown": {
+    "accepted_count": 0,
+    "accepted_derivations": [],
+    "overall": 0.0,
+    "rejected_count": 18
+  },
+  "detected_domain": null,
+  "domain_resolution": {
+    "confidence": 0.0,
+    "domain": "general",
+    "entities": [],
+    "method": "no_canonical_entity"
+  },
+  "enforcement_stats": {
+    "rejected_entries": 19,
+    "total_entries": 37,
+    "valid_entries": 18
+  },
+  "fallback_to_llm": false,
+  "generated_at": "2026-06-25T05:08:51.191311Z",
+  "knowledge_ids_used": [],
+  "matched_signals": [],
+  "query": "What is the current stock price of Apple?",
+  "reasoning": "No signals passed domain+tag+query validation.",
+  "reasoning_path": [
+    "query_received",
+    "kosha_schema_enforced",
+    "canonical_entities_extracted",
+    "ontology_aware_retrieval",
+    "signal_validation",
+    "structured_signal_emission",
+    "deterministic_rejection"
+  ],
+  "rejected_signals": [
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_6ba2e6320948",
+      "source": "vigyan-bhairava-tantra_ocr.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_8cd846563a7b",
+      "source": "Valmiki-Ramayana-Eng-Translation-Griffith_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_e92b98fc7c38",
+      "source": "Agni Purana Unabridged English Motilal.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_b00cb997f103",
+      "source": "The Narada-Purana, Part 3_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_4c8ebfa44448",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_fb70a947e4e1",
+      "source": "The Narada-Purana, Part 1_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_92b798426bd1",
+      "source": "Taittiriya_Upanishad_Swami_Sarvanand[Sanskrit-English]_OCR.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_8b149d2efef4",
+      "source": "The Narada-Purana, Part 4_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_9e648122f652",
+      "source": "Svetasvatara Upanishad - sanskrit and English.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_b28d80334f18",
+      "source": "Yoga_Upanishad_[Sanskrit_English]_OCR.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_8931a16e4753",
+      "source": "Vayu Purana Part 1_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_e9eeaf76a086",
+      "source": "Srimad Bhagavata Maha Purana With Sanskrit Text And English Trans. By C.L. Goswami, Part 1 (Book 1 To 8) - Gita Press, Gorakhpur_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_310d8a2a025a",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_576da2c246db",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_3ffa4bcb0dcc",
+      "source": "Brahma Purana - Parts I-IV_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_b249d9b86204",
+      "source": "Shakti and Shakta_ocr.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_07f6a9aedb76",
+      "source": "The Uddhava-g\u012bt\u0101_sanskrit_English_Hindi_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_7201a2007102",
+      "source": "Brihaspati Smriti (Reconstructed) - Rangaswami Aiyangar 1941 (GOS)_ocred.pdf"
+    }
+  ],
+  "signals_found": 0,
+  "signals_rejected": 18,
+  "synthesis_mode": "REJECTED_NO_SYNTHESIS",
+  "trace_id": "trace_777e672c29bf52b3",
+  "verification_status": "NO_VERIFIED_KNOWLEDGE"
+}

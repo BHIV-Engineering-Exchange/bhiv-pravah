@@ -1,0 +1,227 @@
+# ============================================================================
+# BHIV Core-Integrator Services Configuration
+# Single Source of Truth for all microservices
+# ============================================================================
+
+# Global settings
+global:
+  environment: development  # development, staging, production
+  log_level: INFO
+  request_timeout: 30  # seconds
+  pipeline_timeout: 60  # seconds
+  health_check_timeout: 5  # seconds
+
+# All microservices
+services:
+  prompt_runner:
+    name: "Prompt Runner"
+    port: 8003
+    description: "Converts natural language prompts to structured instructions"
+    host: "127.0.0.1"
+    timeout: 30
+    retries: 3
+    health_check_endpoint: "/health"
+    depends_on: []
+    environment:
+      LOG_LEVEL: "INFO"
+      MAX_TOKENS: "2000"
+  
+  creator_core:
+    name: "Creator Core"
+    port: 8000
+    description: "Converts instructions to blueprint envelopes"
+    host: "127.0.0.1"
+    timeout: 30
+    retries: 3
+    health_check_endpoint: "/"
+    depends_on: []
+    environment:
+      LOG_LEVEL: "INFO"
+      CACHE_ENABLED: "true"
+  
+  bhiv_core:
+    name: "BHIV Core"
+    port: 8001
+    description: "Core execution engine - executes blueprints and produces results"
+    host: "127.0.0.1"
+    timeout: 30
+    retries: 3
+    health_check_endpoint: "/"
+    depends_on: []
+    environment:
+      LOG_LEVEL: "INFO"
+      DATABASE_PATH: "data/context.db"
+  
+  integration_bridge:
+    name: "Integration Bridge"
+    port: 8004
+    description: "Orchestrates full pipeline from prompt to result"
+    host: "127.0.0.1"
+    timeout: 60
+    retries: 2
+    health_check_endpoint: "/health"
+    depends_on:
+      - prompt_runner
+      - creator_core
+      - cet
+      - sarathi
+      - gate
+      - bhiv_core
+      - bucket
+    environment:
+      LOG_LEVEL: "INFO"
+      ARTIFACT_STORAGE: "bucket"
+  
+  bucket:
+    name: "BHIV Bucket"
+    port: 8005
+    description: "Append-only artifact storage system"
+    host: "127.0.0.1"
+    timeout: 30
+    retries: 3
+    health_check_endpoint: "/bucket/stats"
+    depends_on: []
+    environment:
+      LOG_LEVEL: "INFO"
+      STORAGE_PATH: "data/artifacts"
+      ARTIFACT_RETENTION_DAYS: 30
+
+  cet:
+    name: "CET Service"
+    port: 8006
+    description: "Compiles blueprints into contracts"
+    host: "127.0.0.1"
+    timeout: 30
+    retries: 3
+    health_check_endpoint: "/health"
+    depends_on: []
+    environment:
+      LOG_LEVEL: "INFO"
+
+  sarathi:
+    name: "Sarathi Service"
+    port: 8007
+    description: "Validates contract authority"
+    host: "127.0.0.1"
+    timeout: 30
+    retries: 3
+    health_check_endpoint: "/health"
+    depends_on: []
+    environment:
+      LOG_LEVEL: "INFO"
+
+  gate:
+    name: "Gate Service"
+    port: 8008
+    description: "Enforces gate decisions and routes to execution"
+    host: "127.0.0.1"
+    timeout: 30
+    retries: 3
+    health_check_endpoint: "/health"
+    depends_on: []
+    environment:
+      LOG_LEVEL: "INFO"
+
+  control_plane:
+    name: "Control Plane Service"
+    port: 8009
+    description: "Runtime observability and executive dashboard API"
+    host: "127.0.0.1"
+    timeout: 30
+    retries: 3
+    health_check_endpoint: "/health"
+    depends_on:
+      - bucket
+      - bhiv_core
+      - integration_bridge
+      - telemetry
+    environment:
+      LOG_LEVEL: "INFO"
+
+  telemetry:
+    name: "Telemetry Service"
+    port: 8010
+    description: "Telemetry ingest and autonomous loop"
+    host: "127.0.0.1"
+    timeout: 30
+    retries: 3
+    health_check_endpoint: "/health"
+    depends_on:
+      - integration_bridge
+      - bucket
+    environment:
+      LOG_LEVEL: "INFO"
+
+# API Gateway Configuration
+# not implemented this sprint
+api_gateway:
+  name: "API Gateway"
+  port: 8080
+  host: "0.0.0.0"
+  description: "Single entry point for all service requests"
+  route_prefix: "/api/v1"
+  timeout: 30
+
+# Database Configuration
+database:
+  type: "sqlite"  # sqlite, mongodb, noopur
+  sqlite:
+    path: "data/context.db"
+    timeout: 30
+  mongodb:
+    url: "mongodb://localhost:27017"
+    database: "bhiv_core"
+  noopur:
+    enabled: false
+    base_url: "http://localhost:5001"
+
+# Storage Configuration
+storage:
+  type: "local"  # local, s3, gcs
+  local:
+    base_path: "data/artifacts"
+    retention_days: 30
+  s3:
+    bucket: ""
+    region: ""
+    access_key: ""
+    secret_key: ""
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "json"  # json, text
+  file:
+    enabled: true
+    path: "logs/bhiv.log"
+    max_size_mb: 100
+    backup_count: 5
+  
+# Monitoring and Observability
+monitoring:
+  enabled: true
+  metrics_port: 9090  # /metrics served by control_plane_service on 8009 in this sprint
+  health_check_interval: 10  # seconds
+
+# Feature Flags
+features:
+  use_noopur: false
+  use_video_service: false
+  enable_circuit_breaker: true
+  enable_retry_logic: true
+  enable_caching: true
+
+# Service URLs (auto-generated, but can be overridden)
+# URLs are constructed as: {protocol}://{host}:{port}
+urls:
+  prompt_runner: "https://prompt-runner.onrender.com"
+  creator_core: "http://127.0.0.1:8000"
+  bhiv_core: "http://127.0.0.1:8001"
+  integration_bridge: "http://127.0.0.1:8004"
+  bucket: "http://127.0.0.1:8005"
+  api_gateway: "http://127.0.0.1:8080"
+  cet: "http://127.0.0.1:8006"
+  sarathi: "http://127.0.0.1:8007"
+  gate: "http://127.0.0.1:8008"
+  control_plane: "http://127.0.0.1:8009"
+  telemetry: "http://127.0.0.1:8010"

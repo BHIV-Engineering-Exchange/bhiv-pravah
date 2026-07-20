@@ -1,0 +1,18 @@
+{
+  "test_date": "2026-06-20",
+  "recovery_replay": {
+    "trace_id": "trace_519787197c1e",
+    "recovered_stage": "Creator Core Restored",
+    "verification_endpoint": "/pipeline/replay/trace_519787197c1e",
+    "replay_status_code": 200,
+    "original_hash": "bd7c7a6823b7c487",
+    "recomputed_hash": "bd7c7a6823b7c487",
+    "determinism_verified": true,
+    "artifacts_reconstructed": [
+      "instruction_9d5a815d",
+      "blueprint_df05ea74",
+      "execution_202c213c",
+      "result_c83497d0"
+    ]
+  }
+}

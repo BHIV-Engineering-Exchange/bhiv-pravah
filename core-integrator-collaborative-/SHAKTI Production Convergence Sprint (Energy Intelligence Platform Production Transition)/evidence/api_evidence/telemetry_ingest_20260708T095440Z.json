@@ -1,0 +1,26 @@
+{
+  "request": {
+    "source_id": "substation-7",
+    "metric": "transformer_temp_c",
+    "value": 97.5,
+    "unit": "celsius",
+    "timestamp": "2026-07-08T10:00:00Z"
+  },
+  "response": {
+    "status_code": 422,
+    "body": {
+      "detail": {
+        "status": "error",
+        "error_type": "validation_error",
+        "validation_type": "telemetry_payload",
+        "message": "Validation failed for telemetry_payload: Validation failed for telemetry_payload: None is not of type 'string'",
+        "context": {},
+        "recovery_suggestions": [
+          "Check input data format",
+          "Verify schema compliance",
+          "Review validation rules"
+        ]
+      }
+    }
+  }
+}

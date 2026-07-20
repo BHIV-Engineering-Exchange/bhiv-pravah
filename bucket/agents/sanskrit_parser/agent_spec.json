@@ -1,0 +1,26 @@
+{
+    "name": "sanskrit_parser",
+    "domains": ["education", "gurukul"],
+    "module_path": "agents.sanskrit_parser.sanskrit_parser",
+    "capabilities": {
+        "chainable": true,
+        "memory_access": false
+    },
+    "input_schema": {
+        "required": ["text"],
+        "properties": {
+            "text": { "type": "string" }
+        }
+    },
+    "output_schema": {
+        "properties": {
+            "parsed": { "type": "object" }
+        }
+    },
+    "sample_input": {
+        "text": "vidya vinayam dadati"
+    },
+    "sample_output": {
+        "parsed": { "root": "vidya", "meaning": "parsed" }
+    }
+}

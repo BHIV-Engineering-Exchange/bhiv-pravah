@@ -1,0 +1,82 @@
+{
+  "info": {
+    "name": "BHIV Bucket Contract APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8000"
+    }
+  ],
+  "item": [
+    {
+      "name": "Write Artifact",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/bucket/artifacts/write",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"requester_id\": \"core_service\",\n  \"integration_id\": \"bhiv_core\",\n  \"artifact\": {\n    \"artifact_id\": \"pm-001\",\n    \"timestamp_utc\": \"2026-04-14T12:00:00Z\",\n    \"schema_version\": \"1.0.0\",\n    \"source_module_id\": \"core_pipeline\",\n    \"artifact_type\": \"integration_event\",\n    \"parent_hash\": null,\n    \"payload\": {\n      \"message\": \"from postman\"\n    }\n  }\n}"
+        }
+      }
+    },
+    {
+      "name": "Read Artifact",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/bucket/artifacts/read",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"requester_id\": \"core_service\",\n  \"integration_id\": \"bhiv_core\",\n  \"artifact_id\": \"pm-001\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Query Artifacts",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/bucket/artifacts/query",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"requester_id\": \"core_service\",\n  \"integration_id\": \"bhiv_core\",\n  \"limit\": 20,\n  \"offset\": 0,\n  \"artifact_type\": \"integration_event\",\n  \"source_module_id\": \"core_pipeline\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Read Audit",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/bucket/audit/read",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"requester_id\": \"core_service\",\n  \"integration_id\": \"bhiv_core\",\n  \"limit\": 50,\n  \"artifact_id\": \"pm-001\",\n  \"operation_type\": \"CREATE\",\n  \"status\": \"success\"\n}"
+        }
+      }
+    }
+  ]
+}

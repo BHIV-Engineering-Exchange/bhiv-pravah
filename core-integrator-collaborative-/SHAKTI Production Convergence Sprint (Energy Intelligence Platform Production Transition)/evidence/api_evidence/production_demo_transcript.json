@@ -1,0 +1,26 @@
+{
+  "started_at": "2026-07-08T09:58:16.674953+00:00",
+  "steps": [
+    {
+      "name": "telemetry_ingest",
+      "status_code": 200,
+      "trace_id": "trace_ae90e371d8da"
+    },
+    {
+      "name": "dashboard_alerts",
+      "alert_count": 6
+    },
+    {
+      "name": "dashboard_telemetry",
+      "sample_count": 27
+    },
+    {
+      "name": "audit_and_replay",
+      "artifact_count": 9,
+      "replay_status": "success"
+    }
+  ],
+  "status": "pass",
+  "completed_at": "2026-07-08T09:58:20.436784+00:00",
+  "trace_id": "trace_ae90e371d8da"
+}

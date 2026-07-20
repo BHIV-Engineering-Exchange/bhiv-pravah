@@ -1,0 +1,969 @@
+{
+  "info": {
+    "name": "AI Agent Unified API - Logistics + CRM + Infiverse v3.2.0",
+    "description": "Complete API collection for the unified AI Agent system including authentication, logistics, CRM (Accounts, Contacts, Leads, Opportunities, Activities, Tasks), consolidated endpoints, integrations (Office 365, Google Maps, BOS), and Infiverse endpoints",
+    "version": "3.2.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "auth_token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{auth_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"testuser\",\n  \"email\": \"test@example.com\",\n  \"password\": \"securepassword123\",\n  \"role\": \"user\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has access token\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('access_token');",
+                  "    pm.collectionVariables.set('auth_token', jsonData.access_token);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"admin123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/auth/me",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "me"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Logistics",
+      "item": [
+        {
+          "name": "Get Orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/orders",
+              "host": ["{{base_url}}"],
+              "path": ["orders"]
+            }
+          }
+        },
+        {
+          "name": "Get Inventory",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/inventory",
+              "host": ["{{base_url}}"],
+              "path": ["inventory"]
+            }
+          }
+        },
+        {
+          "name": "Create Restock Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"product_id\": \"PROD_001\",\n  \"quantity\": 50,\n  \"urgency\": \"medium\",\n  \"reason\": \"Low stock alert\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/restock",
+              "host": ["{{base_url}}"],
+              "path": ["restock"]
+            }
+          }
+        },
+        {
+          "name": "Run Agent Cycle",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/run_agent",
+              "host": ["{{base_url}}"],
+              "path": ["run_agent"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "CRM - Accounts",
+      "item": [
+        {
+          "name": "Get Accounts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/accounts?limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["accounts"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Account",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"TechCorp Solutions\",\n  \"account_type\": \"customer\",\n  \"industry\": \"Technology\",\n  \"website\": \"https://techcorp.com\",\n  \"phone\": \"+1-555-0123\",\n  \"email\": \"contact@techcorp.com\",\n  \"billing_address\": \"123 Tech Street\",\n  \"city\": \"San Francisco\",\n  \"state\": \"CA\",\n  \"country\": \"USA\",\n  \"postal_code\": \"94105\",\n  \"annual_revenue\": 5000000.0,\n  \"employee_count\": 150\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/accounts",
+              "host": ["{{base_url}}"],
+              "path": ["accounts"]
+            }
+          }
+        },
+        {
+          "name": "Get Account by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/accounts/ACC_A1B2C3D4",
+              "host": ["{{base_url}}"],
+              "path": ["accounts", "ACC_A1B2C3D4"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "CRM - Contacts",
+      "item": [
+        {
+          "name": "Get Contacts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/contacts?limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["contacts"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Contact",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_id\": \"ACC_A1B2C3D4\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Smith\",\n  \"title\": \"CTO\",\n  \"email\": \"john.smith@techcorp.com\",\n  \"phone\": \"+1-555-0199\",\n  \"contact_role\": \"decision_maker\",\n  \"is_primary\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/contacts",
+              "host": ["{{base_url}}"],
+              "path": ["contacts"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "CRM - Leads",
+      "item": [
+        {
+          "name": "Get Leads",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/leads?lead_status=new&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["leads"],
+              "query": [
+                {
+                  "key": "lead_status",
+                  "value": "new"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Lead",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"Jane\",\n  \"last_name\": \"Doe\",\n  \"company\": \"StartupXYZ\",\n  \"title\": \"CEO\",\n  \"email\": \"jane.doe@startupxyz.com\",\n  \"phone\": \"+1-555-0300\",\n  \"lead_source\": \"website\",\n  \"lead_status\": \"new\",\n  \"budget\": 100000.0,\n  \"timeline\": \"Q2 2024\",\n  \"need\": \"Logistics automation solution\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/leads",
+              "host": ["{{base_url}}"],
+              "path": ["leads"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "CRM - Opportunities",
+      "item": [
+        {
+          "name": "Get Opportunities",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/opportunities?stage=prospecting&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["opportunities"],
+              "query": [
+                {
+                  "key": "stage",
+                  "value": "prospecting"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Opportunity",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_id\": \"ACC_A1B2C3D4\",\n  \"name\": \"Enterprise Logistics Upgrade\",\n  \"description\": \"Complete warehouse automation\",\n  \"stage\": \"prospecting\",\n  \"probability\": 25.0,\n  \"amount\": 500000.0,\n  \"expected_revenue\": 125000.0,\n  \"close_date\": \"2024-12-31T00:00:00Z\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/opportunities",
+              "host": ["{{base_url}}"],
+              "path": ["opportunities"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "CRM - Activities & Tasks",
+      "item": [
+        {
+          "name": "Get Activities",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/activities?limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["activities"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Activity",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subject\": \"Initial Discovery Call\",\n  \"description\": \"Discussed requirements and timeline\",\n  \"activity_type\": \"call\",\n  \"status\": \"completed\",\n  \"account_id\": \"ACC_A1B2C3D4\",\n  \"outcome\": \"Positive feedback\",\n  \"next_steps\": \"Send proposal\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/activities",
+              "host": ["{{base_url}}"],
+              "path": ["activities"]
+            }
+          }
+        },
+        {
+          "name": "Get Tasks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/tasks?status=pending&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["tasks"],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "pending"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Task",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Send Proposal to TechCorp\",\n  \"description\": \"Prepare and send detailed proposal\",\n  \"priority\": \"high\",\n  \"due_date\": \"2024-01-20T17:00:00Z\",\n  \"assigned_to\": \"user123\",\n  \"account_id\": \"ACC_A1B2C3D4\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/tasks",
+              "host": ["{{base_url}}"],
+              "path": ["tasks"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Consolidated Endpoints",
+      "item": [
+        {
+          "name": "Account View",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/account/view/ACC_A1B2C3D4",
+              "host": ["{{base_url}}"],
+              "path": ["account", "view", "ACC_A1B2C3D4"]
+            }
+          }
+        },
+        {
+          "name": "Lead Pipeline",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/lead/pipeline",
+              "host": ["{{base_url}}"],
+              "path": ["lead", "pipeline"]
+            }
+          }
+        },
+        {
+          "name": "Opportunity Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/opportunity/status",
+              "host": ["{{base_url}}"],
+              "path": ["opportunity", "status"]
+            }
+          }
+        },
+        {
+          "name": "LLM Query - Opportunities Closing",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"Show me all opportunities closing this month\",\n  \"context\": {\n    \"user_id\": \"user123\",\n    \"filters\": {}\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/llm_query",
+              "host": ["{{base_url}}"],
+              "path": ["llm_query"]
+            }
+          }
+        },
+        {
+          "name": "LLM Query - Pending Tasks",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"What are the pending tasks for TechCorp?\",\n  \"context\": {\n    \"user_id\": \"user123\",\n    \"filters\": {}\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/llm_query",
+              "host": ["{{base_url}}"],
+              "path": ["llm_query"]
+            }
+          }
+        },
+        {
+          "name": "LLM Query - Leads by Source",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"List all leads from trade shows not yet converted\",\n  \"context\": {\n    \"user_id\": \"user123\",\n    \"filters\": {}\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/llm_query",
+              "host": ["{{base_url}}"],
+              "path": ["llm_query"]
+            }
+          }
+        },
+        {
+          "name": "LLM Query - Account Summary",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"Account summary for TechCorp Solutions\",\n  \"context\": {\n    \"user_id\": \"user123\",\n    \"filters\": {}\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/llm_query",
+              "host": ["{{base_url}}"],
+              "path": ["llm_query"]
+            }
+          }
+        },
+        {
+          "name": "LLM Query - Pipeline Analysis",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"Pipeline analysis\",\n  \"context\": {\n    \"user_id\": \"user123\",\n    \"filters\": {}\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/llm_query",
+              "host": ["{{base_url}}"],
+              "path": ["llm_query"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Integrations",
+      "item": [
+        {
+          "name": "Send Office 365 Email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to_email\": \"client@techcorp.com\",\n  \"subject\": \"Proposal Update\",\n  \"body\": \"<html><body><h2>Proposal Details</h2><p>Please find attached our updated proposal.</p></body></html>\",\n  \"cc_emails\": [\"manager@techcorp.com\"]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/integrations/office365/email",
+              "host": ["{{base_url}}"],
+              "path": ["integrations", "office365", "email"]
+            }
+          }
+        },
+        {
+          "name": "Plan Google Maps Visit",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_id\": \"ACC_A1B2C3D4\",\n  \"purpose\": \"Product demonstration\",\n  \"scheduled_time\": \"2024-01-20T14:00:00Z\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/integrations/google-maps/visit",
+              "host": ["{{base_url}}"],
+              "path": ["integrations", "google-maps", "visit"]
+            }
+          }
+        },
+        {
+          "name": "Create BOS Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"opportunity_id\": \"OPP_M3N4O5P6\",\n  \"order_details\": {\n    \"product_id\": \"LOGISTICS_PKG_001\",\n    \"quantity\": 1\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/integrations/bos/order",
+              "host": ["{{base_url}}"],
+              "path": ["integrations", "bos", "order"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "CRM Dashboard",
+      "item": [
+        {
+          "name": "Get CRM Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/dashboard/crm",
+              "host": ["{{base_url}}"],
+              "path": ["dashboard", "crm"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Infiverse - Employee Monitoring",
+      "item": [
+        {
+          "name": "Infiverse Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has access token\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('access_token');",
+                  "    pm.collectionVariables.set('auth_token', jsonData.access_token);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"admin123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Tasks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/tasks",
+              "host": ["{{base_url}}"],
+              "path": ["api", "tasks"]
+            }
+          }
+        },
+        {
+          "name": "Create Task",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Complete API Documentation\",\n  \"description\": \"Write comprehensive API documentation for the new endpoints\",\n  \"status\": \"Pending\",\n  \"priority\": \"High\",\n  \"department\": \"Engineering\",\n  \"assignee\": \"employee_123\",\n  \"dueDate\": \"2024-01-20T17:00:00Z\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/tasks",
+              "host": ["{{base_url}}"],
+              "path": ["api", "tasks"]
+            }
+          }
+        },
+        {
+          "name": "Start Monitoring",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/monitoring/start/employee_123",
+              "host": ["{{base_url}}"],
+              "path": ["api", "monitoring", "start", "employee_123"]
+            }
+          }
+        },
+        {
+          "name": "Stop Monitoring",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/monitoring/stop/employee_123",
+              "host": ["{{base_url}}"],
+              "path": ["api", "monitoring", "stop", "employee_123"]
+            }
+          }
+        },
+        {
+          "name": "Get Monitoring Alerts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/monitoring/alerts?severity=high",
+              "host": ["{{base_url}}"],
+              "path": ["api", "monitoring", "alerts"],
+              "query": [
+                {
+                  "key": "severity",
+                  "value": "high"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Attendance",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/attendance",
+              "host": ["{{base_url}}"],
+              "path": ["api", "attendance"]
+            }
+          }
+        },
+        {
+          "name": "Update Consent",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"consent\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/consent",
+              "host": ["{{base_url}}"],
+              "path": ["api", "consent"]
+            }
+          }
+        },
+        {
+          "name": "Get Alerts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/alerts",
+              "host": ["{{base_url}}"],
+              "path": ["api", "alerts"]
+            }
+          }
+        },
+        {
+          "name": "Get AI Insights",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/ai/insights",
+              "host": ["{{base_url}}"],
+              "path": ["api", "ai", "insights"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "System Health & Monitoring",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": ["{{base_url}}"],
+              "path": ["health"]
+            }
+          }
+        },
+        {
+          "name": "System Info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/",
+              "host": ["{{base_url}}"],
+              "path": [""]
+            }
+          }
+        },
+        {
+          "name": "Dashboard KPIs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/dashboard/kpis",
+              "host": ["{{base_url}}"],
+              "path": ["dashboard", "kpis"]
+            }
+          }
+        },
+        {
+          "name": "Recent Activity",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/dashboard/activity",
+              "host": ["{{base_url}}"],
+              "path": ["dashboard", "activity"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sample Workflows",
+      "item": [
+        {
+          "name": "Simulate Alert Workflow",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// This workflow simulates receiving and processing an alert"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/alerts?severity=medium",
+              "host": ["{{base_url}}"],
+              "path": ["api", "alerts"],
+              "query": [
+                {
+                  "key": "severity",
+                  "value": "medium"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Fetch Report Workflow",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// This workflow fetches productivity reports and insights"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/ai/insights",
+              "host": ["{{base_url}}"],
+              "path": ["api", "ai", "insights"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

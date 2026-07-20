@@ -1,0 +1,145 @@
+{
+  "domain": "legal",
+  "version": "1.0.0",
+  "description": "Legal domain plugin for contract analysis, legal research, compliance review, case assessment, and document drafting.",
+
+  "detection_keywords": [
+    "law", "legal", "contract", "court", "jurisdiction", "compliance",
+    "regulation", "attorney", "lawsuit", "agreement", "clause", "litigation",
+    "statute", "liability", "plaintiff", "defendant", "arbitration", "dispute",
+    "counsel", "rights", "legislation", "tribunal"
+  ],
+
+  "detection_patterns": [
+    "(?:legal|law)\\s+(?:advice|review|analysis|compliance|research)",
+    "contract\\s+(?:review|analysis|draft|violation|compliance)",
+    "(?:lawsuit|litigation|court\\s+case|legal\\s+dispute)",
+    "(?:regulatory|compliance)\\s+(?:review|check|requirement|audit)"
+  ],
+
+  "intents": {
+    "analyze_contract": {
+      "patterns": [
+        "(?:review|analyze|analyse)\\s+(?:the\\s+)?contract",
+        "contract\\s+(?:review|analysis|assessment)",
+        "check\\s+(?:the\\s+)?(?:contract|agreement)",
+        "examine\\s+(?:the\\s+)?(?:contract|agreement|clause)"
+      ],
+      "module": "legal_compliance",
+      "task": "analyze_contract_risk",
+      "required_entities": [],
+      "optional_entities": ["jurisdiction", "document_type", "party_role", "urgency"],
+      "tasks": ["document review", "clause analysis", "risk identification", "compliance check", "recommendations"],
+      "output_format": "analysis_report"
+    },
+
+    "legal_research": {
+      "patterns": [
+        "(?:research|find|look\\s+up)\\s+(?:the\\s+)?(?:law|legal|legislation|statute|precedent)",
+        "legal\\s+research",
+        "what\\s+(?:does|is)\\s+(?:the\\s+)?law\\s+(?:say|state|require)",
+        "find\\s+(?:legal\\s+)?precedent"
+      ],
+      "module": "legal_research",
+      "task": "perform_legal_research",
+      "required_entities": [],
+      "optional_entities": ["jurisdiction", "topic", "case_type"],
+      "tasks": ["case law search", "statute review", "precedent analysis", "summary preparation"],
+      "output_format": "research_report"
+    },
+
+    "draft_document": {
+      "patterns": [
+        "draft\\s+(?:a\\s+)?(?:legal\\s+)?(?:document|contract|agreement|letter|notice)",
+        "create\\s+(?:a\\s+)?(?:legal\\s+)?(?:document|contract|agreement)",
+        "prepare\\s+(?:a\\s+)?(?:legal\\s+)?(?:document|contract)"
+      ],
+      "module": "legal_drafting",
+      "task": "draft_legal_document",
+      "required_entities": [],
+      "optional_entities": ["document_type", "jurisdiction", "party_role"],
+      "tasks": ["requirements gathering", "template selection", "clause drafting", "legal review"],
+      "output_format": "legal_document"
+    },
+
+    "case_assessment": {
+      "patterns": [
+        "assess\\s+(?:the\\s+)?(?:case|lawsuit|claim|dispute)",
+        "(?:case|lawsuit|claim)\\s+(?:assessment|evaluation|analysis)",
+        "evaluate\\s+(?:my\\s+)?(?:legal\\s+)?(?:case|claim|position)",
+        "(?:chances|probability)\\s+of\\s+(?:winning|success|prevailing)"
+      ],
+      "module": "legal_analysis",
+      "task": "assess_case_merits",
+      "required_entities": [],
+      "optional_entities": ["case_type", "jurisdiction", "party_role"],
+      "tasks": ["facts review", "legal analysis", "risk assessment", "strategy recommendation"],
+      "output_format": "assessment_report"
+    },
+
+    "review_compliance": {
+      "patterns": [
+        "(?:review|check)\\s+(?:legal\\s+|regulatory\\s+)?compliance",
+        "(?:legal|regulatory)\\s+(?:compliance|requirement|obligation)",
+        "ensure\\s+(?:legal\\s+)?compliance",
+        "compliance\\s+(?:audit|check|review)"
+      ],
+      "module": "compliance_checker",
+      "task": "check_legal_compliance",
+      "required_entities": [],
+      "optional_entities": ["jurisdiction", "regulation_type", "industry"],
+      "tasks": ["regulatory review", "compliance gap analysis", "remediation planning", "compliance documentation"],
+      "output_format": "compliance_report"
+    }
+  },
+
+  "extractors": {
+    "jurisdiction": {
+      "type": "regex",
+      "pattern": "(?:under|in|per|according\\s+to)\\s+([A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)?(?:\\s+law|\\s+jurisdiction)?)",
+      "group": 1,
+      "case_insensitive": false
+    },
+    "document_type": {
+      "type": "keyword",
+      "keywords": [
+        "employment contract", "nda", "non-disclosure agreement", "lease agreement",
+        "purchase agreement", "service agreement", "partnership agreement",
+        "shareholder agreement", "loan agreement", "settlement agreement",
+        "power of attorney", "will", "trust deed", "mou", "memorandum of understanding"
+      ]
+    },
+    "party_role": {
+      "type": "keyword",
+      "keywords": ["plaintiff", "defendant", "employer", "employee", "buyer", "seller", "tenant", "landlord", "lender", "borrower", "licensor", "licensee"]
+    },
+    "case_type": {
+      "type": "keyword",
+      "keywords": ["civil", "criminal", "corporate", "family", "intellectual property", "employment", "contract dispute", "personal injury", "tax", "immigration"]
+    }
+  },
+
+  "constraint_rules": {
+    "urgency": {
+      "type": "keyword",
+      "keywords": ["urgent", "immediately", "asap", "deadline", "time-sensitive", "critical"]
+    },
+    "confidentiality": {
+      "type": "keyword",
+      "keywords": ["confidential", "privileged", "sensitive", "private", "restricted"]
+    },
+    "timeline": {
+      "type": "regex",
+      "pattern": "(?:within|by|before|deadline\\s+of)\\s+(\\d+\\s*(?:days?|weeks?|months?))",
+      "group": 1,
+      "case_insensitive": true
+    }
+  },
+
+  "clarification_questions": {
+    "jurisdiction": "What jurisdiction or country does this legal matter apply to?",
+    "document_type": "What type of legal document or agreement is involved?",
+    "party_role": "What is your role in this matter (e.g., employer, tenant, plaintiff)?",
+    "case_type": "What type of legal case or area of law is this (e.g., civil, employment, contract)?"
+  }
+}

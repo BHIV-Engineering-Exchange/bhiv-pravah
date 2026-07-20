@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-07-08T10:08:42.502355+00:00",
+  "trace_id": "trace_53e62f290296",
+  "original_hash": "a72bbad2b6fdeffa",
+  "replay_hash": "a72bbad2b6fdeffa",
+  "matched": true,
+  "original_artifact_count": 9,
+  "replay_artifact_count": 9,
+  "metadata": {
+    "script": "python -c telemetry hash proof",
+    "endpoints": [
+      "/telemetry/ingest",
+      "/bucket/trace/{trace_id}",
+      "/pipeline/replay/{trace_id}"
+    ]
+  }
+}

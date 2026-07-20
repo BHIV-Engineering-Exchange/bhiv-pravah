@@ -1,0 +1,213 @@
+{
+  "generated_at": "2026-06-13T06:53:19.915Z",
+  "replay_engine": "backend/domain-adapters/maritime/replayEngine.js",
+  "endpoint": "POST /pipeline/replay/:trace_id",
+  "traces": [
+    {
+      "trace_id": "maritime_c9e761c9-2f30-4d29-9e00-5875ae6c6f0c",
+      "original": {
+        "execution_id": "exec_maritime_sim_1775535679789",
+        "decision": "ALLOW",
+        "risk_level": "LOW",
+        "event_count": 31,
+        "artifacts_present": [
+          "schema",
+          "decision",
+          "events",
+          "state",
+          "log"
+        ]
+      },
+      "replay": {
+        "success": true,
+        "trace_id": "maritime_c9e761c9-2f30-4d29-9e00-5875ae6c6f0c",
+        "execution_id": "exec_maritime_sim_1775535679789",
+        "path": "ALLOW",
+        "decision": "ALLOW",
+        "risk_level": "LOW",
+        "event_count": 31,
+        "sequence": [
+          "decision_received",
+          "enforcement_applied",
+          "execution_started",
+          "execution_completed"
+        ],
+        "state_summary": {
+          "execution_id": "exec_maritime_sim_1775535679789",
+          "stopped": false,
+          "decision": "ALLOW"
+        },
+        "failure": null,
+        "elapsed_ms": 14
+      },
+      "match": {
+        "trace_id": "maritime_c9e761c9-2f30-4d29-9e00-5875ae6c6f0c",
+        "passed": 9,
+        "total": 9,
+        "all_passed": true,
+        "checks": [
+          {
+            "field": "replay_success",
+            "expected": true,
+            "got": true,
+            "pass": true
+          },
+          {
+            "field": "trace_id",
+            "expected": "maritime_c9e761c9-2f30-4d29-9e00-5875ae6c6f0c",
+            "got": "maritime_c9e761c9-2f30-4d29-9e00-5875ae6c6f0c",
+            "pass": true
+          },
+          {
+            "field": "execution_id",
+            "expected": "exec_maritime_sim_1775535679789",
+            "got": "exec_maritime_sim_1775535679789",
+            "pass": true
+          },
+          {
+            "field": "decision",
+            "expected": "ALLOW",
+            "got": "ALLOW",
+            "pass": true
+          },
+          {
+            "field": "risk_level",
+            "expected": "LOW",
+            "got": "LOW",
+            "pass": true
+          },
+          {
+            "field": "event_count",
+            "expected": 31,
+            "got": 31,
+            "pass": true
+          },
+          {
+            "field": "stage_sequence",
+            "expected": "decision_received→enforcement_applied→execution_started→execution_completed",
+            "got": "decision_received→enforcement_applied→execution_started→execution_completed",
+            "pass": true
+          },
+          {
+            "field": "execution_path",
+            "expected": "ALLOW",
+            "got": "ALLOW",
+            "pass": true
+          },
+          {
+            "field": "state.execution_id",
+            "expected": "exec_maritime_sim_1775535679789",
+            "got": "exec_maritime_sim_1775535679789",
+            "pass": true
+          }
+        ]
+      }
+    },
+    {
+      "trace_id": "p8-allow-test",
+      "original": {
+        "execution_id": "exec_p8_allow",
+        "decision": "ALLOW",
+        "risk_level": "LOW",
+        "event_count": 8,
+        "artifacts_present": [
+          "schema",
+          "decision",
+          "events",
+          "state",
+          "log"
+        ]
+      },
+      "replay": {
+        "success": true,
+        "trace_id": "p8-allow-test",
+        "execution_id": "exec_p8_allow",
+        "path": "ALLOW",
+        "decision": "ALLOW",
+        "risk_level": "LOW",
+        "event_count": 8,
+        "sequence": [
+          "decision_received",
+          "enforcement_applied",
+          "execution_started",
+          "execution_completed"
+        ],
+        "state_summary": {
+          "execution_id": "exec_p8_allow",
+          "stopped": false,
+          "decision": "ALLOW"
+        },
+        "failure": null,
+        "elapsed_ms": 8
+      },
+      "match": {
+        "trace_id": "p8-allow-test",
+        "passed": 9,
+        "total": 9,
+        "all_passed": true,
+        "checks": [
+          {
+            "field": "replay_success",
+            "expected": true,
+            "got": true,
+            "pass": true
+          },
+          {
+            "field": "trace_id",
+            "expected": "p8-allow-test",
+            "got": "p8-allow-test",
+            "pass": true
+          },
+          {
+            "field": "execution_id",
+            "expected": "exec_p8_allow",
+            "got": "exec_p8_allow",
+            "pass": true
+          },
+          {
+            "field": "decision",
+            "expected": "ALLOW",
+            "got": "ALLOW",
+            "pass": true
+          },
+          {
+            "field": "risk_level",
+            "expected": "LOW",
+            "got": "LOW",
+            "pass": true
+          },
+          {
+            "field": "event_count",
+            "expected": 8,
+            "got": 8,
+            "pass": true
+          },
+          {
+            "field": "stage_sequence",
+            "expected": "decision_received→enforcement_applied→execution_started→execution_completed",
+            "got": "decision_received→enforcement_applied→execution_started→execution_completed",
+            "pass": true
+          },
+          {
+            "field": "execution_path",
+            "expected": "ALLOW",
+            "got": "ALLOW",
+            "pass": true
+          },
+          {
+            "field": "state.execution_id",
+            "expected": "exec_p8_allow",
+            "got": "exec_p8_allow",
+            "pass": true
+          }
+        ]
+      }
+    }
+  ],
+  "overall_passed": true,
+  "summary": {
+    "traces_tested": 2,
+    "traces_passed": 2,
+    "traces_failed": 0
+  }
+}

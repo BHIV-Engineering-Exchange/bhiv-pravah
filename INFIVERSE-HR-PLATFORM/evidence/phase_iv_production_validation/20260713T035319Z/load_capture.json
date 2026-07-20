@@ -1,0 +1,44 @@
+{
+  "cycles": 50,
+  "all_org_200": true,
+  "all_signal_200": true,
+  "p50_ms": 36.59400000003643,
+  "p95_ms": 149.65529999994942,
+  "samples": [
+    {
+      "idx": 0,
+      "org_status": 200,
+      "signal_status": 200,
+      "latency_ms": 80.42380000006233,
+      "correlation_id": "c4f64a67-3a08-4d16-a422-54e3d58eca6e"
+    },
+    {
+      "idx": 1,
+      "org_status": 200,
+      "signal_status": 200,
+      "latency_ms": 37.47980000002826,
+      "correlation_id": "5da6a77b-0be1-4d34-9847-f4c69fb19a98"
+    },
+    {
+      "idx": 2,
+      "org_status": 200,
+      "signal_status": 200,
+      "latency_ms": 32.77969999999186,
+      "correlation_id": "edc2095f-bfa9-43c3-b558-07161bc8cbda"
+    },
+    {
+      "idx": 3,
+      "org_status": 200,
+      "signal_status": 200,
+      "latency_ms": 30.820700000049328,
+      "correlation_id": "416966ef-d454-4c61-ad14-ee9fd092e88e"
+    },
+    {
+      "idx": 4,
+      "org_status": 200,
+      "signal_status": 200,
+      "latency_ms": 27.94099999982791,
+      "correlation_id": "4d876151-bd97-4057-8b57-2d22c0a523d7"
+    }
+  ]
+}

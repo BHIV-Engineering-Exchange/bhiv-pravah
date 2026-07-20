@@ -1,0 +1,625 @@
+-- ========================================
+-- INSERT 70 QUESTIONS ACROSS 13 DOMAINS
+-- ========================================
+-- This script inserts all 70 curated questions across the 13 domains
+-- Questions include: Domain, Difficulty, Question Text, 4 Options, Correct Answer, 
+-- Explanation, Modern Application, and Optional Vedic Connection
+
+-- IoT Questions (7 questions: 2 Easy, 3 Medium, 2 Hard)
+INSERT INTO question_banks (question_id, category, difficulty, question_text, options, correct_answer, explanation, vedic_connection, modern_application, tags, is_active) VALUES
+
+('IOT-E1', 'IoT', 'easy', 'Which network protocol is lightweight and often used on constrained IoT devices?',
+ '["A) HTTP", "B) MQTT", "C) FTP", "D) SMTP"]',
+ 'B) MQTT',
+ 'MQTT is publish/subscribe, low bandwidth, suitable for constrained devices.',
+ 'Minimal messaging mirrors concise sutra style.',
+ 'Sensor telemetry to cloud (smart agriculture).',
+ '["IoT", "Protocols", "MQTT"]', true),
+
+('IOT-E2', 'IoT', 'easy', 'In LPWAN networks, which tech is designed for long range and low power?',
+ '["A) Wi-Fi 6", "B) LoRaWAN", "C) Bluetooth Classic", "D) NFC"]',
+ 'B) LoRaWAN',
+ 'LoRaWAN focuses on many-km range and low energy.',
+ '',
+ 'Remote sensor networks.',
+ '["IoT", "LPWAN", "LoRaWAN"]', true),
+
+('IOT-M1', 'IoT', 'medium', 'For remote firmware updates on thousands of endpoint nodes, the best practice is:',
+ '["A) Push updates directly without verifying", "B) Rollout staged updates + signature verification", "C) Update all at midnight", "D) Use FTP without auth"]',
+ 'B) Rollout staged updates + signature verification',
+ 'Staged rollouts and signed firmware avoid bricking and supply-chain attacks.',
+ '',
+ 'Fleet management of smart meters.',
+ '["IoT", "Firmware", "Security"]', true),
+
+('IOT-M2', 'IoT', 'medium', 'Edge computing for IoT is beneficial primarily because:',
+ '["A) It centralizes latency", "B) It reduces latency and bandwidth by processing near the source", "C) It removes sensors", "D) It increases power usage"]',
+ 'B) It reduces latency and bandwidth by processing near the source',
+ 'Local processing reduces data transfer and improves responsiveness.',
+ '',
+ 'Real-time analytics at edge.',
+ '["IoT", "Edge Computing", "Latency"]', true),
+
+('IOT-H1', 'IoT', 'hard', 'Secure Element chips in IoT devices typically provide:',
+ '["A) Fancy UI", "B) Hardware-backed key storage and secure crypto ops", "C) Increased battery drain", "D) Faster Wi-Fi"]',
+ 'B) Hardware-backed key storage and secure crypto ops',
+ 'Secure Elements provide tamper-resistant key storage and crypto.',
+ '',
+ 'Device identity in Sovereign grids.',
+ '["IoT", "Security", "Hardware"]', true),
+
+-- Blockchain Questions (5 questions)
+('BLOCK-E1', 'Blockchain', 'easy', 'Which property ensures past blocks cannot be altered without detection?',
+ '["A) Centralization", "B) Hash chaining", "C) Indexing", "D) Sharding"]',
+ 'B) Hash chaining',
+ 'Hash of previous block forms an immutable chain.',
+ 'Rita — preserved order.',
+ 'Immutable audit logs.',
+ '["Blockchain", "Hashing", "Immutability"]', true),
+
+('BLOCK-M1', 'Blockchain', 'medium', 'zk-SNARKs primarily provide:',
+ '["A) Faster block time", "B) Zero-knowledge proofs for succinct validity", "C) Larger blocks", "D) Public readable secrets"]',
+ 'B) Zero-knowledge proofs for succinct validity',
+ 'zk-SNARKs enable proving computation correctness without revealing inputs.',
+ '',
+ 'Privacy-preserving rollups, private credentials.',
+ '["Blockchain", "Zero-Knowledge", "Privacy"]', true),
+
+('BLOCK-M2', 'Blockchain', 'medium', 'In permissioned ledgers, consensus is often:',
+ '["A) PoW", "B) PBFT-like", "C) Random", "D) No consensus required"]',
+ 'B) PBFT-like',
+ 'PBFT offers low-latency finality suitable for permissioned networks.',
+ '',
+ 'Enterprise blockchain systems.',
+ '["Blockchain", "Consensus", "PBFT"]', true),
+
+('BLOCK-H1', 'Blockchain', 'hard', 'Layer-2 rollups improve scalability by:',
+ '["A) Moving transactions off-chain while posting succinct proofs or batches on L1", "B) Deleting L1", "C) Making blocks larger", "D) Centralized databases"]',
+ 'A) Moving transactions off-chain while posting succinct proofs or batches on L1',
+ 'Rollups process transactions off-chain and submit proofs/aggregates on main chain.',
+ '',
+ 'Cost-efficient throughput (rollups for sovereign compute).',
+ '["Blockchain", "Layer-2", "Scalability"]', true),
+
+('BLOCK-H2', 'Blockchain', 'hard', 'In sovereign compute, why is on-chain verification of off-chain compute (via proofs) important?',
+ '["A) Slower system", "B) To preserve trust without revealing full inputs by providing succinct validity proofs", "C) To centralize control", "D) To avoid audits"]',
+ 'B) To preserve trust without revealing full inputs by providing succinct validity proofs',
+ 'Off-chain computations with on-chain proofs allow privacy with verifiability.',
+ '',
+ 'Confidential compute networks.',
+ '["Blockchain", "Privacy", "Verification"]', true),
+
+-- Humanoid Robotics Questions (4 questions)
+('HUM-E1', 'Humanoid Robotics', 'easy', 'ZMP stands for:',
+ '["A) Zero Motion Path", "B) Zero Moment Point", "C) Zoned Motor Protocol", "D) Zonal Motion Plane"]',
+ 'B) Zero Moment Point',
+ 'ZMP is used in biped locomotion stability control.',
+ '',
+ 'Biped walking controllers.',
+ '["Robotics", "Locomotion", "ZMP"]', true),
+
+('HUM-M1', 'Humanoid Robotics', 'medium', 'For compliant grasping with soft fingers, the key sensor type is:',
+ '["A) Lidar", "B) Tactile / Force sensors", "C) RGB camera", "D) Ultrasonic"]',
+ 'B) Tactile / Force sensors',
+ 'Tactile/force sensors measure contact pressure for adaptive grip.',
+ '',
+ 'Prosthetic hands, dexterous manipulators.',
+ '["Robotics", "Sensors", "Manipulation"]', true),
+
+('HUM-M2', 'Humanoid Robotics', 'medium', 'To detect slip during grasp, which sensor data is primary?',
+ '["A) GPS", "B) Tactile shear + force", "C) RSSI", "D) Camera alone"]',
+ 'B) Tactile shear + force',
+ 'Tactile shear reveals micro-motions signaling slip.',
+ '',
+ 'Grasp correction.',
+ '["Robotics", "Tactile", "Grasping"]', true),
+
+('HUM-H1', 'Humanoid Robotics', 'hard', 'For whole-body control with contacts, which control formulation is most appropriate?',
+ '["A) Open loop", "B) Whole-body inverse dynamics + contact constraints", "C) Pure PID per joint", "D) Random torque impulses"]',
+ 'B) Whole-body inverse dynamics + contact constraints',
+ 'Inverse dynamics with contact models ensures coordinated, feasible motions.',
+ '',
+ 'Humanoid manipulation and dynamic locomotion.',
+ '["Robotics", "Control", "Dynamics"]', true),
+
+-- AI/ML/DS Questions (8 questions)
+('AI-E1', 'AI/ML/DS', 'easy', 'In supervised learning, what is required?',
+ '["A) Labeled data", "B) No labels", "C) Only models", "D) Random reward"]',
+ 'A) Labeled data',
+ 'Supervised models learn mapping from inputs to labeled outputs.',
+ 'Teacher (label) guiding student (model).',
+ 'Classification tasks (spam, image).',
+ '["AI", "Machine Learning", "Supervised Learning"]', true),
+
+('AI-E2', 'AI/ML/DS', 'easy', 'Data leakage means:',
+ '["A) More data helpful", "B) Training data accidentally includes info from validation/test leading to overoptimistic performance", "C) Saving models", "D) Encrypting data"]',
+ 'B) Training data accidentally includes info from validation/test leading to overoptimistic performance',
+ 'Leakage violates separation of train/test and inflates metrics.',
+ '',
+ 'Model validation best practices.',
+ '["AI", "Data Science", "Validation"]', true),
+
+('AI-M1', 'AI/ML/DS', 'medium', 'Embeddings are used to:',
+ '["A) Compress video", "B) Map tokens to vectors representing semantics", "C) Encrypt data", "D) Control hardware"]',
+ 'B) Map tokens to vectors representing semantics',
+ 'Embedding layers produce continuous vector representations for semantics.',
+ '',
+ 'Semantic search, RAG.',
+ '["AI", "NLP", "Embeddings"]', true),
+
+('AI-M2', 'AI/ML/DS', 'medium', 'Cross-validation helps to:',
+ '["A) Inflate scores", "B) Estimate generalization performance", "C) Reduce test sets", "D) Replace labels"]',
+ 'B) Estimate generalization performance',
+ 'CV estimates model generalization on unseen data.',
+ '',
+ 'Model evaluation techniques.',
+ '["AI", "Validation", "Testing"]', true),
+
+('AI-H1', 'AI/ML/DS', 'hard', 'Which approach best reduces catastrophic forgetting in continual learning?',
+ '["A) Retrain from scratch every time", "B) Regularization / replay buffer", "C) Delete old data", "D) Use shallower networks"]',
+ 'B) Regularization / replay buffer',
+ 'Methods like Elastic Weight Consolidation or replay buffers retain earlier knowledge.',
+ '',
+ 'Lifelong learning agents.',
+ '["AI", "Continual Learning", "Neural Networks"]', true),
+
+('AI-H2', 'AI/ML/DS', 'hard', 'Contrastive learning primarily trains models by:',
+ '["A) Reconstructing inputs", "B) Maximizing similarity of positive pairs while minimizing for negatives", "C) Only supervised labels", "D) Random noise injection"]',
+ 'B) Maximizing similarity of positive pairs while minimizing for negatives',
+ 'Contrastive objective separates similar from dissimilar samples in embedding space.',
+ '',
+ 'Self-supervised representation learning.',
+ '["AI", "Contrastive Learning", "Self-Supervised"]', true),
+
+-- Drone Tech Questions (5 questions)
+('DR-E1', 'Drone Tech', 'easy', 'ESC in drone systems means:',
+ '["A) Electronic Speed Controller", "B) Ethernet Switching Controller", "C) Embedded Servo Chip", "D) Event Stream Coordinator"]',
+ 'A) Electronic Speed Controller',
+ 'ESC controls motor speed and direction.',
+ '',
+ 'Drone flight stabilization.',
+ '["Drones", "ESC", "Flight Control"]', true),
+
+('DR-M1', 'Drone Tech', 'medium', 'For autonomous waypoint navigation in GPS-denied indoor spaces, the most helpful tech is:',
+ '["A) GNSS only", "B) Visual-Inertial Odometry (VIO)", "C) FM Radio", "D) Bluetooth beacons only"]',
+ 'B) Visual-Inertial Odometry (VIO)',
+ 'VIO fuses IMU and camera for pose estimation indoors.',
+ '',
+ 'Warehouse drones.',
+ '["Drones", "Navigation", "VIO"]', true),
+
+('DR-M2', 'Drone Tech', 'medium', 'RTK GPS improves positioning by:',
+ '["A) Removing GPS entirely", "B) Using differential corrections for cm-level accuracy", "C) Slowing updates", "D) Making signals weaker"]',
+ 'B) Using differential corrections for cm-level accuracy',
+ 'RTK provides centimeter-level accuracy for precision operations.',
+ '',
+ 'Precision agriculture drones.',
+ '["Drones", "GPS", "RTK"]', true),
+
+('DR-H1', 'Drone Tech', 'hard', 'For persistent high-altitude long-endurance drones, the key design tradeoff is:',
+ '["A) Fancy paint", "B) Energy density vs. payload mass", "C) Number of LEDs", "D) Speaker size"]',
+ 'B) Energy density vs. payload mass',
+ 'Longer endurance demands high energy density and light structure.',
+ '',
+ 'High endurance surveillance.',
+ '["Drones", "Design", "Endurance"]', true),
+
+-- Biotechnology Questions (6 questions)
+('BIO-E1', 'Biotechnology', 'easy', 'PCR (Polymerase Chain Reaction) is used to:',
+ '["A) Sequence proteins", "B) Amplify DNA segments", "C) Measure pH", "D) Grow cells"]',
+ 'B) Amplify DNA segments',
+ 'PCR amplifies specific DNA sequences for detection/analysis.',
+ '',
+ 'Diagnostics (COVID tests).',
+ '["Biotech", "PCR", "Molecular Biology"]', true),
+
+('BIO-E2', 'Biotechnology', 'easy', 'A plasmid used in cloning is:',
+ '["A) Viral particle", "B) Circular DNA vector", "C) Lipid", "D) Polymerase"]',
+ 'B) Circular DNA vector',
+ 'Plasmids are circular DNA used to clone genes.',
+ '',
+ 'Recombinant protein production.',
+ '["Biotech", "Cloning", "Plasmid"]', true),
+
+('BIO-E3', 'Biotechnology', 'easy', 'ELISA assay is used to detect:',
+ '["A) DNA", "B) Protein/antigen presence via antibody binding", "C) Radioactivity", "D) Light intensity only"]',
+ 'B) Protein/antigen presence via antibody binding',
+ 'ELISA uses antibodies to quantify proteins.',
+ '',
+ 'Diagnostics and research.',
+ '["Biotech", "ELISA", "Immunology"]', true),
+
+('BIO-M1', 'Biotechnology', 'medium', 'CRISPR-Cas9 edits genomes using:',
+ '["A) Random chemicals", "B) Guide RNA to target DNA sequence + Cas9 nuclease", "C) High heat", "D) Radiation"]',
+ 'B) Guide RNA to target DNA sequence + Cas9 nuclease',
+ 'gRNA guides Cas9 to specific sequence for cutting + repair.',
+ '',
+ 'Gene therapy research.',
+ '["Biotech", "CRISPR", "Gene Editing"]', true),
+
+('BIO-M3', 'Biotechnology', 'medium', 'In downstream processing, chromatography is used for:',
+ '["A) Growing cells", "B) Separating/purifying proteins", "C) PCR", "D) Microscopy"]',
+ 'B) Separating/purifying proteins',
+ 'Chromatography isolates target biomolecules.',
+ '',
+ 'Protein purification.',
+ '["Biotech", "Chromatography", "Purification"]', true),
+
+('BIO-H1', 'Biotechnology', 'hard', 'In process scale-up of bioreactors, main concerns include:',
+ '["A) Color of reactor", "B) Oxygen transfer, mixing, shear and scale-dependent kinetics", "C) Music in lab", "D) Label fonts"]',
+ 'B) Oxygen transfer, mixing, shear and scale-dependent kinetics',
+ 'Scale-up challenges change mass transfer and kinetics affecting yield.',
+ '',
+ 'Biopharma manufacturing.',
+ '["Biotech", "Bioreactors", "Scale-up"]', true),
+
+-- Pharma Tech Questions (6 questions)
+('PHARMA-E1', 'Pharma Tech', 'easy', 'API in pharma stands for:',
+ '["A) Application Programming Interface", "B) Active Pharmaceutical Ingredient", "C) Applied Physics Institute", "D) Annual Product Index"]',
+ 'B) Active Pharmaceutical Ingredient',
+ 'API is the biologically active component of a drug.',
+ '',
+ 'Drug formulation.',
+ '["Pharma", "API", "Terminology"]', true),
+
+('PHARMA-E2', 'Pharma Tech', 'easy', 'Microbial fermentation primarily produces:',
+ '["A) Metals", "B) Biomolecules like enzymes, antibiotics, metabolites", "C) Rocks", "D) Plastics only"]',
+ 'B) Biomolecules like enzymes, antibiotics, metabolites',
+ 'Fermentation yields biologics for pharma and industry.',
+ '',
+ 'Antibiotic production.',
+ '["Pharma", "Fermentation", "Production"]', true),
+
+('PHARMA-M1', 'Pharma Tech', 'medium', 'IND/CTA submission is required for:',
+ '["A) Launching a website", "B) Starting clinical trials (India: CDSCO/New drug regulations)", "C) Hiring staff", "D) Buying equipment"]',
+ 'B) Starting clinical trials (India: CDSCO/New drug regulations)',
+ 'Regulatory approval is needed before human trials.',
+ '',
+ 'Drug development compliance.',
+ '["Pharma", "Regulatory", "Clinical Trials"]', true),
+
+('PHARMA-M2', 'Pharma Tech', 'medium', 'GMP stands for:',
+ '["A) Good Marketing Practices", "B) Good Manufacturing Practice", "C) Great Management Plans", "D) General Medical Pressure"]',
+ 'B) Good Manufacturing Practice',
+ 'GMP ensures consistent product quality and documentation.',
+ '',
+ 'Quality assurance in manufacturing.',
+ '["Pharma", "GMP", "Quality"]', true),
+
+('PHARMA-M4', 'Pharma Tech', 'medium', 'Pharmacovigilance monitors:',
+ '["A) Market share", "B) Drug safety and adverse effects post-market", "C) Logo designs", "D) Office supplies"]',
+ 'B) Drug safety and adverse effects post-market',
+ 'Safety monitoring finds rare adverse events.',
+ '',
+ 'Post-market surveillance.',
+ '["Pharma", "Safety", "Pharmacovigilance"]', true),
+
+('PHARMA-H1', 'Pharma Tech', 'hard', 'Bioequivalence studies demonstrate:',
+ '["A) Different therapeutic effects", "B) That generic and reference product have same bioavailability", "C) Cost differences", "D) Packaging similarity"]',
+ 'B) That generic and reference product have same bioavailability',
+ 'Bioequivalence ensures generic drugs act the same clinically.',
+ '',
+ 'Generic drug approval.',
+ '["Pharma", "Bioequivalence", "Testing"]', true),
+
+-- Gaming Questions (5 questions)
+('GAM-E1', 'Gaming', 'easy', 'Unity primarily uses which language for scripting?',
+ '["A) JavaScript", "B) C#", "C) Python", "D) Go"]',
+ 'B) C#',
+ 'Unity C# APIs are standard for scripts.',
+ '',
+ 'Game prototypes.',
+ '["Gaming", "Unity", "Programming"]', true),
+
+('GAM-M1', 'Gaming', 'medium', 'For high-performance graphics, OpenGL pipeline stage that transforms coordinates is:',
+ '["A) Fragment shader", "B) Vertex shader", "C) Texture unit", "D) Blending stage"]',
+ 'B) Vertex shader',
+ 'Vertex shader performs model/view/projection transforms.',
+ '',
+ 'Rendering 3D scenes.',
+ '["Gaming", "OpenGL", "Graphics"]', true),
+
+('GAM-M2', 'Gaming', 'medium', 'Physics engine timestep stability depends on:',
+ '["A) Frame color", "B) Fixed timestep integration", "C) CPU brand", "D) File extension"]',
+ 'B) Fixed timestep integration',
+ 'Fixed timesteps avoid instability in physics simulations.',
+ '',
+ 'Game physics accuracy.',
+ '["Gaming", "Physics", "Simulation"]', true),
+
+('GAM-H1', 'Gaming', 'hard', 'In multiplayer games, client-side prediction reduces:',
+ '["A) Physics realism", "B) Perceived latency by predicting player actions", "C) Server costs", "D) Graphics quality"]',
+ 'B) Perceived latency by predicting player actions',
+ 'Predicting local actions before server confirms gives smoother experience.',
+ '',
+ 'Fast-paced multiplayer games.',
+ '["Gaming", "Multiplayer", "Networking"]', true),
+
+-- VR/AR Questions (5 questions)
+('VR-E1', 'VR/AR/Immersive', 'easy', 'To minimize motion sickness, VR systems must keep latency (motion-to-photon) typically under:',
+ '["A) 200 ms", "B) 1000 ms", "C) ~20 ms", "D) 5 seconds"]',
+ 'C) ~20 ms',
+ 'Low latency preserves vestibular coherence and reduces discomfort.',
+ '',
+ 'Immersive training simulators.',
+ '["VR", "Latency", "User Experience"]', true),
+
+('VR-M1', 'VR/AR/Immersive', 'medium', 'Foveated rendering reduces GPU load by:',
+ '["A) Rendering everything at max res", "B) Rendering high detail only at gaze center", "C) Lowering resolution globally", "D) Duplicating frames"]',
+ 'B) Rendering high detail only at gaze center',
+ 'Use eye-tracking to render high detail at gaze; reduce detail elsewhere.',
+ '',
+ 'High-fidelity VR on limited hardware.',
+ '["VR", "Rendering", "Optimization"]', true),
+
+('VR-M2', 'VR/AR/Immersive', 'medium', 'Spatial audio improves immersion by:',
+ '["A) Making sound mono", "B) Positioning sound sources in 3D relative to listener", "C) Removing audio", "D) Adding noise"]',
+ 'B) Positioning sound sources in 3D relative to listener',
+ 'Spatial audio cues increase realism in VR.',
+ '',
+ 'Immersive experiences.',
+ '["VR", "Audio", "3D Sound"]', true),
+
+('VR-H1', 'VR/AR/Immersive', 'hard', 'For full-body presence, inverse kinematics + full-body tracking must handle:',
+ '["A) Only hands", "B) Multiple sensors + solver stability + occlusion handling", "C) Lower resolution textures", "D) Offline processing only"]',
+ 'B) Multiple sensors + solver stability + occlusion handling',
+ 'Combining IMUs, trackers, and IK solves for natural full-body poses.',
+ '',
+ 'Full-body VR experiences.',
+ '["VR", "Tracking", "IK"]', true),
+
+-- CyberSecurity Questions (5 questions)
+('CYBER-E1', 'CyberSecurity', 'easy', 'The best immediate response to a detected intruder process is:',
+ '["A) Kill all services", "B) Isolate the affected host", "C) Ignore it", "D) Reboot network"]',
+ 'B) Isolate the affected host',
+ 'Isolation prevents lateral movement while allowing forensic capture.',
+ '',
+ 'Incident response playbooks.',
+ '["Security", "Incident Response", "Threat Detection"]', true),
+
+('CYBER-E2', 'CyberSecurity', 'easy', 'MFA strengthens authentication by requiring:',
+ '["A) One factor only", "B) Multiple independent factors (something you know + have + are)", "C) Always passwords only", "D) Social media login only"]',
+ 'B) Multiple independent factors (something you know + have + are)',
+ 'MFA reduces risk of credential compromise.',
+ '',
+ 'Authentication best practices.',
+ '["Security", "MFA", "Authentication"]', true),
+
+('CYBER-M1', 'CyberSecurity', 'medium', 'Principle of least privilege means:',
+ '["A) Everyone is admin", "B) Users get only permissions they need", "C) No permissions for anyone", "D) Open access model"]',
+ 'B) Users get only permissions they need',
+ 'Minimize granted rights to reduce attack surface.',
+ '',
+ 'RBAC policies, container security.',
+ '["Security", "Access Control", "Best Practices"]', true),
+
+('CYBER-M2', 'CyberSecurity', 'medium', 'A common method to detect anomalies in network traffic is:',
+ '["A) Ignore logs", "B) Use statistical baselines and ML anomaly detectors", "C) Manual watch only", "D) Block all traffic"]',
+ 'B) Use statistical baselines and ML anomaly detectors',
+ 'Statistical and ML detectors flag deviations from baseline.',
+ '',
+ 'Network threat detection.',
+ '["Security", "Anomaly Detection", "Network"]', true),
+
+('CYBER-H1', 'CyberSecurity', 'hard', 'Which control is strongest to prevent supply-chain attacks on build pipelines?',
+ '["A) Open download of dependencies", "B) Signed artifacts + reproducible builds + verified registries", "C) No audits", "D) Blind trust"]',
+ 'B) Signed artifacts + reproducible builds + verified registries',
+ 'Signed artifacts, registries and reproducible builds ensure integrity.',
+ '',
+ 'Secure CI/CD pipelines.',
+ '["Security", "Supply Chain", "DevSecOps"]', true),
+
+-- Web Development Questions (4 questions)
+('WEB-E1', 'Web Development', 'easy', 'In modern Jamstack architecture, which part is rendered at build time?',
+ '["A) Database queries", "B) Pre-rendered static pages", "C) Real-time leaderboard", "D) Server kernel"]',
+ 'B) Pre-rendered static pages',
+ 'Jamstack pre-renders static pages for speed and CDN delivery.',
+ '',
+ 'Static marketing sites + dynamic APIs.',
+ '["Web Dev", "Jamstack", "Architecture"]', true),
+
+('WEB-E2', 'Web Development', 'easy', 'REST uses which architectural principle?',
+ '["A) Statefulness always", "B) Statelessness", "C) Only XML", "D) No endpoints"]',
+ 'B) Statelessness',
+ 'REST APIs are stateless between requests.',
+ '',
+ 'API design.',
+ '["Web Dev", "REST", "APIs"]', true),
+
+('WEB-M1', 'Web Development', 'medium', 'What is the role of a reverse proxy (e.g., Nginx) in frontend hosting?',
+ '["A) Replace frontend runtime", "B) Route and cache requests to backend services", "C) Compile TypeScript", "D) Run browser tests"]',
+ 'B) Route and cache requests to backend services',
+ 'Reverse proxies handle routing, TLS termination, caching.',
+ '',
+ 'Edge routing + security.',
+ '["Web Dev", "Nginx", "Infrastructure"]', true),
+
+('WEB-M2', 'Web Development', 'medium', 'CI/CD pipelines ensure:',
+ '["A) Manual deploys only", "B) Automated build/test/deploy steps for reliability", "C) No testing", "D) Only local builds"]',
+ 'B) Automated build/test/deploy steps for reliability',
+ 'Pipelines automate checks and deployments for consistency.',
+ '',
+ 'DevOps automation.',
+ '["Web Dev", "CI/CD", "DevOps"]', true),
+
+('WEB-H1', 'Web Development', 'hard', 'RAG (Retrieval Augmented Generation) systems combine:',
+ '["A) Pure LLM hallucinations", "B) Vector retrieval + LLM to ground responses in external knowledge", "C) Only SQL DBs", "D) Static images"]',
+ 'B) Vector retrieval + LLM to ground responses in external knowledge',
+ 'Retrieval grounds LLM answers using relevant document context.',
+ '',
+ 'Knowledge assistants and search.',
+ '["Web Dev", "AI", "RAG"]', true),
+
+-- 3D Printing Questions (4 questions)
+('3D-E1', '3D Printing', 'easy', 'What is a common filament for FDM 3D printing?',
+ '["A) PLA", "B) Copper", "C) Glass", "D) Rubber"]',
+ 'A) PLA',
+ 'PLA is inexpensive, easy-to-print biodegradable filament.',
+ '',
+ 'Rapid prototyping.',
+ '["3D Printing", "FDM", "Materials"]', true),
+
+('3D-M1', '3D Printing', 'medium', 'For dimensional accuracy in FDM, which matters most?',
+ '["A) Print speed only", "B) Nozzle temp, bed leveling, and layer height", "C) Background music", "D) Random color"]',
+ 'B) Nozzle temp, bed leveling, and layer height',
+ 'Mechanical calibration and temperature govern accuracy.',
+ '',
+ 'Functional prototypes.',
+ '["3D Printing", "Accuracy", "Calibration"]', true),
+
+('3D-M2', '3D Printing', 'medium', 'Support structures are required because:',
+ '["A) Printers dislike overhangs", "B) They provide temporary scaffolding for overhangs and complex geometries", "C) They add color", "D) They speed up printing"]',
+ 'B) They provide temporary scaffolding for overhangs and complex geometries',
+ 'Supports prevent sagging for overhangs; removed after printing.',
+ '',
+ 'Complex 3D models.',
+ '["3D Printing", "Supports", "Design"]', true),
+
+('3D-H1', '3D Printing', 'hard', 'For printing functional metal parts, which technique is used?',
+ '["A) FDM", "B) SLS/SLM (Selective Laser Melting)", "C) Inkjet only", "D) Cardboard layering"]',
+ 'B) SLS/SLM (Selective Laser Melting)',
+ 'SLM melts metal powder to make load-bearing parts.',
+ '',
+ 'Aerospace components.',
+ '["3D Printing", "Metal", "Manufacturing"]', true),
+
+-- Quantum Computing Questions (6 questions)
+('QC-E1', 'Quantum Computing', 'easy', 'A qubit differs from a classical bit because it can be:',
+ '["A) Only 0", "B) Only 1", "C) Both 0 and 1 simultaneously (superposition)", "D) Faster 100GHz"]',
+ 'C) Both 0 and 1 simultaneously (superposition)',
+ 'Superposition allows qubits to represent complex amplitudes.',
+ '',
+ 'Quantum algorithms research.',
+ '["Quantum", "Qubits", "Superposition"]', true),
+
+('QC-M1', 'Quantum Computing', 'medium', 'Which algorithm efficiently factors large integers on a quantum computer?',
+ '["A) QuickSort", "B) Dijkstra", "C) Shors Algorithm", "D) BFS"]',
+ 'C) Shors Algorithm',
+ 'Shors algorithm factors integers exponentially faster than classical algorithms.',
+ '',
+ 'Post-quantum cryptography planning.',
+ '["Quantum", "Algorithms", "Cryptography"]', true),
+
+('QC-M2', 'Quantum Computing', 'medium', 'Quantum annealing is specialized for:',
+ '["A) Graphics", "B) Optimization problems mapped to energy minimization", "C) Text summarization", "D) Standard database indexing"]',
+ 'B) Optimization problems mapped to energy minimization',
+ 'Annealers find low-energy states corresponding to near-optimal solutions.',
+ '',
+ 'Optimization problems.',
+ '["Quantum", "Annealing", "Optimization"]', true),
+
+('QC-H1', 'Quantum Computing', 'hard', 'Quantum error correction uses logical qubits; the challenge is:',
+ '["A) Fewer qubits needed", "B) Overhead with many physical qubits per logical qubit", "C) No overhead", "D) Instant stability"]',
+ 'B) Overhead with many physical qubits per logical qubit',
+ 'QEC requires many physical qubits to protect logical qubits.',
+ '',
+ 'Fault-tolerant quantum systems.',
+ '["Quantum", "Error Correction", "Hardware"]', true);
+
+-- Create question-field mappings
+INSERT INTO question_field_mapping (question_id, field_id, weight, is_primary) VALUES
+-- IoT mappings
+('IOT-E1', 'iot', 1, true),
+('IOT-E2', 'iot', 1, true),
+('IOT-M1', 'iot', 1, true),
+('IOT-M2', 'iot', 1, true),
+('IOT-H1', 'iot', 1, true),
+
+-- Blockchain mappings
+('BLOCK-E1', 'blockchain', 1, true),
+('BLOCK-M1', 'blockchain', 1, true),
+('BLOCK-M2', 'blockchain', 1, true),
+('BLOCK-H1', 'blockchain', 1, true),
+('BLOCK-H2', 'blockchain', 1, true),
+
+-- Humanoid Robotics mappings
+('HUM-E1', 'humanoid_robotics', 1, true),
+('HUM-M1', 'humanoid_robotics', 1, true),
+('HUM-M2', 'humanoid_robotics', 1, true),
+('HUM-H1', 'humanoid_robotics', 1, true),
+
+-- AI/ML/DS mappings
+('AI-E1', 'ai_ml_ds', 1, true),
+('AI-E2', 'ai_ml_ds', 1, true),
+('AI-M1', 'ai_ml_ds', 1, true),
+('AI-M2', 'ai_ml_ds', 1, true),
+('AI-H1', 'ai_ml_ds', 1, true),
+('AI-H2', 'ai_ml_ds', 1, true),
+
+-- Drone Tech mappings
+('DR-E1', 'drone_tech', 1, true),
+('DR-M1', 'drone_tech', 1, true),
+('DR-M2', 'drone_tech', 1, true),
+('DR-H1', 'drone_tech', 1, true),
+
+-- Biotechnology mappings
+('BIO-E1', 'biotechnology', 1, true),
+('BIO-E2', 'biotechnology', 1, true),
+('BIO-E3', 'biotechnology', 1, true),
+('BIO-M1', 'biotechnology', 1, true),
+('BIO-M3', 'biotechnology', 1, true),
+('BIO-H1', 'biotechnology', 1, true),
+
+-- Pharma Tech mappings
+('PHARMA-E1', 'pharma_tech', 1, true),
+('PHARMA-E2', 'pharma_tech', 1, true),
+('PHARMA-M1', 'pharma_tech', 1, true),
+('PHARMA-M2', 'pharma_tech', 1, true),
+('PHARMA-M4', 'pharma_tech', 1, true),
+('PHARMA-H1', 'pharma_tech', 1, true),
+
+-- Gaming mappings
+('GAM-E1', 'gaming', 1, true),
+('GAM-M1', 'gaming', 1, true),
+('GAM-M2', 'gaming', 1, true),
+('GAM-H1', 'gaming', 1, true),
+
+-- VR/AR mappings
+('VR-E1', 'vr_ar_immersive', 1, true),
+('VR-M1', 'vr_ar_immersive', 1, true),
+('VR-M2', 'vr_ar_immersive', 1, true),
+('VR-H1', 'vr_ar_immersive', 1, true),
+
+-- CyberSecurity mappings
+('CYBER-E1', 'cybersecurity', 1, true),
+('CYBER-E2', 'cybersecurity', 1, true),
+('CYBER-M1', 'cybersecurity', 1, true),
+('CYBER-M2', 'cybersecurity', 1, true),
+('CYBER-H1', 'cybersecurity', 1, true),
+
+-- Web Development mappings
+('WEB-E1', 'web_dev', 1, true),
+('WEB-E2', 'web_dev', 1, true),
+('WEB-M1', 'web_dev', 1, true),
+('WEB-M2', 'web_dev', 1, true),
+('WEB-H1', 'web_dev', 1, true),
+
+-- 3D Printing mappings
+('3D-E1', '3d_printing', 1, true),
+('3D-M1', '3d_printing', 1, true),
+('3D-M2', '3d_printing', 1, true),
+('3D-H1', '3d_printing', 1, true),
+
+-- Quantum Computing mappings
+('QC-E1', 'quantum_computing', 1, true),
+('QC-M1', 'quantum_computing', 1, true),
+('QC-M2', 'quantum_computing', 1, true),
+('QC-H1', 'quantum_computing', 1, true);
+
+-- Success message
+SELECT 
+  'Successfully inserted 70 questions!' as status,
+  COUNT(*) as total_questions,
+  COUNT(DISTINCT category) as total_domains
+FROM question_banks;
+
+-- Display question count by domain
+SELECT 
+  category as domain,
+  COUNT(*) as question_count,
+  COUNT(CASE WHEN difficulty = 'easy' THEN 1 END) as easy,
+  COUNT(CASE WHEN difficulty = 'medium' THEN 1 END) as medium,
+  COUNT(CASE WHEN difficulty = 'hard' THEN 1 END) as hard
+FROM question_banks
+GROUP BY category
+ORDER BY category;

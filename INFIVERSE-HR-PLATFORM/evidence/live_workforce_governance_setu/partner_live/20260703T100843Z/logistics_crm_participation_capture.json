@@ -1,0 +1,66 @@
+{
+  "dispatched": true,
+  "request": {
+    "method": "POST",
+    "url": "https://bhiv-hr-gateway-l0xp.onrender.com/v1/setu/signals/crm_participation",
+    "body": {
+      "signal_type": "crm_participation",
+      "payload": {
+        "execution_id": "exec-logistics-closeout-20260702",
+        "trace_id": "logistics-trace-3d0a7d1a",
+        "tenant_id": "tenant-crm-closeout",
+        "timestamp": "2026-07-03T10:08:49.061788+00:00",
+        "event_type": "execution_completed",
+        "details": {
+          "source": "partner_closeout_harness",
+          "module": "logistics",
+          "page": "Logistics.jsx"
+        },
+        "subsystem": "logistics"
+      },
+      "workforce_ref_id": null,
+      "source_declaration": "crm participation",
+      "origin_system": "crm",
+      "owning_system": "crm",
+      "trace_id": "logistics-trace-3d0a7d1a",
+      "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "trust_classification": "observed",
+      "visibility_scope": "tenant"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "signal_id": "sig-077b665909d2",
+      "signal_type": "crm_participation",
+      "payload": {
+        "execution_id": "exec-logistics-closeout-20260702",
+        "trace_id": "logistics-trace-3d0a7d1a",
+        "tenant_id": "tenant-crm-closeout",
+        "timestamp": "2026-07-03T10:08:49.061788+00:00",
+        "event_type": "execution_completed",
+        "details": {
+          "source": "partner_closeout_harness",
+          "module": "logistics",
+          "page": "Logistics.jsx"
+        },
+        "subsystem": "logistics"
+      },
+      "workforce_ref_id": null,
+      "source_declaration": "crm participation",
+      "tenant_id": "platform",
+      "created_at": "2026-07-03T10:09:05.134382+00:00",
+      "lineage": {
+        "origin_system": "crm",
+        "owning_system": "crm",
+        "schema_version": "1.0.0",
+        "trace_id": "logistics-trace-3d0a7d1a",
+        "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+        "trust_classification": "observed",
+        "visibility_scope": "tenant"
+      },
+      "updated_at": "2026-07-03T10:09:05.134409+00:00",
+      "id": "6a478a4149f3fe77a3551ef5"
+    }
+  }
+}

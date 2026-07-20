@@ -1,0 +1,139 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ConstraintAndFailureRegistries",
+  "description": "Structured registry of institutional constraints and reusable failure ontology models.",
+  "constraint_classes": {
+    "policy": {
+      "description": "Constraints arising from national and state educational guidelines.",
+      "operational_impact": "Requires active content and algorithms to match shifting guidelines like NEP/NCF.",
+      "mitigation_protocol": "Decouple curriculum parameters from core codebase into configurable schema files."
+    },
+    "legal": {
+      "description": "Contractual liabilities, intellectual property, and statutory requirements.",
+      "operational_impact": "Requires all code, vectors, and texts to remain within compliance of state laws.",
+      "mitigation_protocol": "Continuous automated compliance audits and legal trace logs."
+    },
+    "constitutional": {
+      "description": "The Seventh Schedule, Concurrent List partition of educational authority.",
+      "operational_impact": "Prevents centralized systems from overriding state board curriculum decisions.",
+      "mitigation_protocol": "Enforce strict tenant boundary checks and state department authority routing."
+    },
+    "linguistic": {
+      "description": "State-level multi-lingual medium mandates (e.g., 8 mediums of Balbharati).",
+      "operational_impact": "Enforces strict language isolation, preventing Marathi prompts from retrieving English chunks silently.",
+      "mitigation_protocol": "Dynamic metadata filtering on the vector index level."
+    },
+    "curricular": {
+      "description": "Syllabus mapping ranges, textbook contents, and examination standards.",
+      "operational_impact": "Limits personalized Personalization engines from optimizing outside standard course scope.",
+      "mitigation_protocol": "Define rigid course bounding maps in SQLite database."
+    },
+    "procurement": {
+      "description": "Bidding laws, L1 cost limits, and vendor empanelment boundaries.",
+      "operational_impact": "Restricts direct technical integration to empanelled vendors.",
+      "mitigation_protocol": "Design open, modular APIs allowing hot-swappable integration adapters."
+    },
+    "audit": {
+      "description": "CAG and administrative transparency checks on funds and data usages.",
+      "operational_impact": "Requires all system actions to emit deterministic, cryptographically signed audit logs.",
+      "mitigation_protocol": "Enforce tamper-evident PRANA ledger verification scripts."
+    },
+    "budget": {
+      "description": "Yearly state school education funding allocations and utilization timelines.",
+      "operational_impact": "Delayed budget releases can cause platform hosting payments to block.",
+      "mitigation_protocol": "Host on cost-optimized server configurations; prepare local fallback protocols."
+    },
+    "federal": {
+      "description": "Coordination friction between central guidelines (MoE) and state execution (MSCERT).",
+      "operational_impact": "Causes sudden textbook content differences between state boards and NCERT.",
+      "mitigation_protocol": "Deploy dynamic mapping layer to reconcile local lessons with national standards."
+    },
+    "infrastructure": {
+      "description": "Power grid stability, computer labs, and high-speed internet availability in rural districts.",
+      "operational_impact": "Prevents reliance on continuous high-bandwidth cloud services.",
+      "mitigation_protocol": "Build local off-line RAG caches and simulated voice engines."
+    },
+    "cyber": {
+      "description": "Network security, SQL injections, and unauthorized database access attempts.",
+      "operational_impact": "Threatens student data and platform operational integrity.",
+      "mitigation_protocol": "Implement strict input validation, JWT token authorization, and automated penetration checks."
+    },
+    "identity_data_privacy": {
+      "description": "Legal protection of child data and student identity traces under the DPDP Act.",
+      "operational_impact": "Requires absolute isolation of student profiles and prohibits unauthorized profiling.",
+      "mitigation_protocol": "Enforce multi-tenant database partitions and parent consent tokens."
+    },
+    "political_sensitivity": {
+      "description": "Volatility zones like history, regional language priorities, and social reforms.",
+      "operational_impact": "Sensitive search queries can trigger major political controversies.",
+      "mitigation_protocol": "Implement highly strict guardrails and static fallback answers for sensitive topics."
+    },
+    "officer_transfer_continuity": {
+      "description": "Frequent state-level IAS officer transfers (average tenure 12-18 months).",
+      "operational_impact": "Causes sudden loss of administrative project champions and changing priorities.",
+      "mitigation_protocol": "Ensure exhaustive, self-explanatory documentation and compliance packet logs."
+    },
+    "institutional_inertia": {
+      "description": "Field resistance by school administrators and teachers to adopting new digital tools.",
+      "operational_impact": "Renders high-end digital dashboards unused.",
+      "mitigation_protocol": "Build low-scope, direct action MVP control panels that simplify rather than complicate workflows."
+    }
+  },
+  "failure_ontology": {
+    "hardware_orphaning": {
+      "definition": "Deploying physical technology (smart boards, tablets) that soon becomes unusable due to lack of local maintenance.",
+      "symptom": "Delivered tablets remaining locked in school storage rooms.",
+      "mitigation": "Enforce mandatory uptime reporting and local service empanelment rules."
+    },
+    "policy_reversal": {
+      "definition": "Sudden cancellation or massive alteration of a policy mandate due to political changes.",
+      "symptom": "Immediate freeze of project funding and budget freezes.",
+      "mitigation": "Ensure platform modules are abstract and easy to adapt to new guidelines."
+    },
+    "champion_dependency": {
+      "definition": "Project relying entirely on a single enthusiastic administrator, failing completely when they transfer.",
+      "symptom": "Project losing momentum and approvals stalling post-officer-transfer.",
+      "mitigation": "Embed project parameters into permanent Government Resolutions (GRs) and standard operating procedures."
+    },
+    "vendor_bottleneck": {
+      "definition": "Platform relying on a single vendor who lacks capacity to scale support to rural areas.",
+      "symptom": "Delayed bug fixes and system offline states in distant districts.",
+      "mitigation": "Decouple platform architecture via open APIs to allow multi-vendor support."
+    },
+    "dashboard_illusion": {
+      "definition": "Creating high-level dashboards showing beautiful metrics that do not represent the ground reality.",
+      "symptom": "Dashboard displays 95% student login rates, but students are only logging in to pass attendance.",
+      "mitigation": "Track direct comprehensive telemetry variables instead of basic page views."
+    },
+    "maintenance_collapse": {
+      "definition": "Failure to plan or allocate budgets for post-deployment platform support and hosting fees.",
+      "symptom": "Platform host shutting down services due to unpaid invoices.",
+      "mitigation": "Mandate dedicated, non-divertible multi-year maintenance budget allocations."
+    },
+    "federal_friction": {
+      "definition": "Clash between central board guidelines and state-level historical/linguistic priorities causing deployment standstills.",
+      "symptom": "Delays in textbooks printing or curriculum approvals.",
+      "mitigation": "Enforce strict local state board sovereignty within regional databases."
+    },
+    "procurement_fragmentation": {
+      "definition": "Different districts or departments procuring non-interoperable software systems.",
+      "symptom": "Data silos where student test scores from one district cannot import to the central dashboard.",
+      "mitigation": "Enforce mandatory state-level schema contracts (TANTRA MDU alignment)."
+    },
+    "pilot_theatre": {
+      "definition": "Demonstrating high-funded tech success in a small model sandbox while ignoring massive real-world resource constraints.",
+      "symptom": "Showcase success in 2 urban schools, complete failure when rolled out state-wide.",
+      "mitigation": "Require all pilots to operate under standard rural school resource limits (no local IT staff, slow internet)."
+    },
+    "infrastructure_mismatch": {
+      "definition": "Deploying advanced cloud software to schools that lack power stability or standard internet connectivity.",
+      "symptom": "Platform remains completely inaccessible during standard school hours.",
+      "mitigation": "Build resilient off-line RAG local databases and hybrid local architectures."
+    },
+    "announcement_implementation_divergence": {
+      "definition": "Announcing major digital reforms to the public before developing the operational software to back it up.",
+      "symptom": "Evaluator audits exposing that claimed dynamic features are actually hardcoded mocks.",
+      "mitigation": "Enforce absolute transparency scorecards and empirical runtime execution logs."
+    }
+  }
+}

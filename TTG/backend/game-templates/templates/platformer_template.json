@@ -1,0 +1,27 @@
+{
+  "template_id": "platformer_v1",
+  "entities": [
+    "player",
+    "platform",
+    "ground",
+    "checkpoint"
+  ],
+  "components": {
+    "player": ["platformer_controller", "collider", "rigidbody"],
+    "platform": ["collider", "mesh"],
+    "checkpoint": ["trigger"]
+  },
+  "jobs": [
+    "BUILD_SCENE",
+    "SPAWN_PLAYER",
+    "SPAWN_PLATFORMS",
+    "START_LOOP"
+  ],
+  "defaults": {
+    "movement_speed": 4,
+    "jump_height": 5,
+    "gravity": -9.8,
+    "platform_count": 10,
+    "platform_gap": 2
+  }
+}

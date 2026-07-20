@@ -1,0 +1,219 @@
+import express from 'express';
+import User from '../models/User.js';
+import Product from '../models/Product.js';
+import Order from '../models/Order.js';
+import RestockRequest from '../models/RestockRequest.js';
+import { protect } from '../middleware/auth.js';
+import { isAdminOrManager } from '../middleware/authorize.js';
+import { HTTP_STATUS, ORDER_STATUS, USER_ROLES, RESTOCK_STATUS } from '../config/constants.js';
+
+const router = express.Router();
+
+// All routes require authentication
+router.use(protect);
+
+// @route   GET /api/dashboard/stats
+// @desc    Get dashboard statistics
+// @access  Private
+router.get('/stats', async (req, res) => {
+  try {
+    const stats = {};
+
+    // User statistics (Admin/Manager only)
+    if (req.user.role === USER_ROLES.ADMIN || req.user.role === USER_ROLES.MANAGER) {
+      const totalUsers = await User.countDocuments();
+      const activeCustomers = await User.countDocuments({ 
+        role: USER_ROLES.CUSTOMER, 
+        isActive: true 
+      });
+      
+      stats.users = {
+        total: totalUsers,
+        activeCustomers,
+        adminCount: await User.countDocuments({ role: USER_ROLES.ADMIN }),
+        managerCount: await User.countDocuments({ role: USER_ROLES.MANAGER }),
+        customerCount: await User.countDocuments({ role: USER_ROLES.CUSTOMER })
+      };
+    }
+
+    // Product statistics
+    const totalProducts = await Product.countDocuments({ isActive: true });
+    const lowStockProducts = await Product.countDocuments({
+      $expr: { $lt: ['$stockQuantity', '$minThreshold'] },
+      isActive: true
+    });
+    const outOfStock = await Product.countDocuments({ stockQuantity: 0, isActive: true });
+
+    stats.products = {
+      total: totalProducts,
+      lowStock: lowStockProducts,
+      outOfStock
+    };
+
+    // Order statistics
+    let orderQuery = {};
+    if (req.user.role === USER_ROLES.CUSTOMER) {
+      orderQuery.customerId = req.user._id;
+    }
+
+    const totalOrders = await Order.countDocuments(orderQuery);
+    const placedOrders = await Order.countDocuments({ ...orderQuery, status: ORDER_STATUS.PLACED });
+    const dispatchedOrders = await Order.countDocuments({ ...orderQuery, status: ORDER_STATUS.DISPATCHED });
+    const deliveredOrders = await Order.countDocuments({ ...orderQuery, status: ORDER_STATUS.DELIVERED });
+
+    stats.orders = {
+      total: totalOrders,
+      placed: placedOrders,
+      dispatched: dispatchedOrders,
+      delivered: deliveredOrders
+    };
+
+    // Revenue statistics (Admin/Manager only)
+    if (req.user.role === USER_ROLES.ADMIN || req.user.role === USER_ROLES.MANAGER) {
+      const deliveredOrdersList = await Order.find({ status: ORDER_STATUS.DELIVERED });
+      const totalRevenue = deliveredOrdersList.reduce((sum, order) => sum + order.totalAmount, 0);
+
+      const products = await Product.find({ isActive: true });
+      const totalInventoryValue = products.reduce((sum, p) => sum + (p.costPrice * p.stockQuantity), 0);
+
+      stats.revenue = {
+        total: totalRevenue.toFixed(2),
+        inventoryValue: totalInventoryValue.toFixed(2)
+      };
+
+      // Restock statistics
+      const pendingRestocks = await RestockRequest.countDocuments({
+        status: { $in: [RESTOCK_STATUS.PENDING, RESTOCK_STATUS.EMAIL_SENT] }
+      });
+
+      stats.restock = {
+        pending: pendingRestocks
+      };
+    }
+
+    res.json({
+      success: true,
+      data: stats
+    });
+  } catch (error) {
+    res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: error.message
+    });
+  }
+});
+
+// @route   GET /api/dashboard/recent-activity
+// @desc    Get recent activity
+// @access  Private
+router.get('/recent-activity', async (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit) || 10;
+    
+    let orderQuery = {};
+    if (req.user.role === USER_ROLES.CUSTOMER) {
+      orderQuery.customerId = req.user._id;
+    }
+
+    const recentOrders = await Order.find(orderQuery)
+      .sort({ createdAt: -1 })
+      .limit(limit)
+      .populate('customerId', 'name email shopDetails')
+      .populate('items.productId', 'name sku');
+
+    let lowStockProducts = [];
+    if (req.user.role === USER_ROLES.ADMIN || req.user.role === USER_ROLES.MANAGER) {
+      lowStockProducts = await Product.find({
+        $expr: { $lt: ['$stockQuantity', '$minThreshold'] },
+        isActive: true
+      })
+        .sort({ stockQuantity: 1 })
+        .limit(limit);
+    }
+
+    res.json({
+      success: true,
+      data: {
+        recentOrders,
+        lowStockProducts
+      }
+    });
+  } catch (error) {
+    res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: error.message
+    });
+  }
+});
+
+// @route   GET /api/dashboard/alerts
+// @desc    Get system alerts
+// @access  Private/Admin/Manager
+router.get('/alerts', isAdminOrManager, async (req, res) => {
+  try {
+    const alerts = [];
+
+    // Low stock alerts
+    const lowStockProducts = await Product.find({
+      $expr: { $lt: ['$stockQuantity', '$minThreshold'] },
+      isActive: true
+    }).limit(20);
+
+    lowStockProducts.forEach(product => {
+      alerts.push({
+        type: 'low_stock',
+        severity: product.stockQuantity === 0 ? 'critical' : 'warning',
+        message: `${product.name} (${product.sku}) - Stock: ${product.stockQuantity} ${product.unit}`,
+        productId: product._id,
+        timestamp: new Date()
+      });
+    });
+
+    // Pending restock requests
+    const pendingRestocks = await RestockRequest.find({
+      status: { $in: [RESTOCK_STATUS.PENDING, RESTOCK_STATUS.EMAIL_SENT] }
+    })
+      .populate('productId', 'name sku')
+      .limit(20);
+
+    pendingRestocks.forEach(request => {
+      alerts.push({
+        type: 'restock_pending',
+        severity: 'info',
+        message: `Pending restock for ${request.productName} - ${request.requestedQuantity} units`,
+        requestId: request._id,
+        timestamp: request.createdAt
+      });
+    });
+
+    // Pending orders
+    const pendingOrders = await Order.countDocuments({ status: ORDER_STATUS.PLACED });
+    if (pendingOrders > 0) {
+      alerts.push({
+        type: 'pending_orders',
+        severity: 'info',
+        message: `${pendingOrders} order(s) waiting to be dispatched`,
+        count: pendingOrders,
+        timestamp: new Date()
+      });
+    }
+
+    // Sort by severity and timestamp
+    alerts.sort((a, b) => {
+      const severityOrder = { critical: 0, warning: 1, info: 2 };
+      return severityOrder[a.severity] - severityOrder[b.severity];
+    });
+
+    res.json({
+      success: true,
+      data: { alerts }
+    });
+  } catch (error) {
+    res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: error.message
+    });
+  }
+});
+
+export default router;

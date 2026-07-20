@@ -1,0 +1,66 @@
+{
+  "domain": "general",
+  "version": "1.0.0",
+  "description": "General-purpose plugin for requests that do not match a specific domain. Handles explanations, summaries, guides, and open-ended queries.",
+
+  "detection_keywords": [],
+  "detection_patterns": [],
+
+  "intents": {
+    "generate_explanation": {
+      "patterns": [
+        "explain\\s+(?:how\\s+to\\s+|what\\s+is\\s+|why\\s+)?",
+        "how\\s+(?:to|does|do|can)",
+        "what\\s+is\\s+",
+        "describe\\s+"
+      ],
+      "module": "creator",
+      "task": "generate_explanation",
+      "tasks": [
+        "topic analysis",
+        "content research",
+        "explanation structuring",
+        "output generation"
+      ],
+      "output_format": "step_by_step_guide",
+      "required_entities": [],
+      "optional_entities": []
+    },
+
+    "generate_summary": {
+      "patterns": [
+        "summarize\\s+",
+        "summary\\s+of\\s+",
+        "give\\s+(?:a\\s+)?(?:brief\\s+)?overview"
+      ],
+      "module": "creator",
+      "task": "generate_summary",
+      "tasks": [
+        "content review",
+        "key points extraction",
+        "summary drafting"
+      ],
+      "output_format": "summary",
+      "required_entities": [],
+      "optional_entities": []
+    },
+
+    "process_request": {
+      "patterns": [],
+      "module": "general_processor",
+      "task": "process_request",
+      "tasks": [
+        "understand request",
+        "process information",
+        "generate output"
+      ],
+      "output_format": "general_response",
+      "required_entities": [],
+      "optional_entities": []
+    }
+  },
+
+  "extractors": {},
+  "constraint_rules": {},
+  "clarification_questions": {}
+}

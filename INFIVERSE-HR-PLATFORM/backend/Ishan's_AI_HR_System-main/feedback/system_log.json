@@ -1,0 +1,83 @@
+[
+  {
+    "timestamp": "2024-01-25T10:00:00",
+    "event": "system_initialized",
+    "details": {
+      "status": "success",
+      "message": "HR AI System started successfully"
+    }
+<<<<<<< HEAD
+  },
+  {
+    "timestamp": "2025-11-28T11:14:59.561567",
+    "event": "feedback_processed",
+    "details": {
+      "timestamp": "2025-11-28T11:14:59.561567",
+      "event_type": "feedback_submitted",
+      "candidate_id": 1,
+      "details": {
+        "score": 4,
+        "outcome": "accept",
+        "comment": "Strong technical skills, good communication"
+      }
+    }
+  },
+  {
+    "timestamp": "2025-11-28T11:15:01.627745",
+    "event": "feedback_processed",
+    "details": {
+      "timestamp": "2025-11-28T11:15:01.627745",
+      "event_type": "feedback_submitted",
+      "candidate_id": 2,
+      "details": {
+        "score": 5,
+        "outcome": "accept",
+        "comment": "Excellent frontend skills, team player"
+      }
+    }
+  },
+  {
+    "timestamp": "2025-11-28T11:15:03.677035",
+    "event": "feedback_processed",
+    "details": {
+      "timestamp": "2025-11-28T11:15:03.677035",
+      "event_type": "feedback_submitted",
+      "candidate_id": 3,
+      "details": {
+        "score": 3,
+        "outcome": "reconsider",
+        "comment": "Good technical knowledge, needs improvement in soft skills"
+      }
+    }
+  },
+  {
+    "timestamp": "2025-11-28T11:15:05.737388",
+    "event": "feedback_processed",
+    "details": {
+      "timestamp": "2025-11-28T11:15:05.737388",
+      "event_type": "feedback_submitted",
+      "candidate_id": 4,
+      "details": {
+        "score": 5,
+        "outcome": "accept",
+        "comment": "Outstanding data science expertise"
+      }
+    }
+  },
+  {
+    "timestamp": "2025-11-28T11:15:07.796317",
+    "event": "feedback_processed",
+    "details": {
+      "timestamp": "2025-11-28T11:15:07.796317",
+      "event_type": "feedback_submitted",
+      "candidate_id": 5,
+      "details": {
+        "score": 2,
+        "outcome": "reject",
+        "comment": "Limited experience, not suitable for senior role"
+      }
+    }
+=======
+>>>>>>> ca18f614930b664ce9fedba6e82a380867881fe6
+  }
+]

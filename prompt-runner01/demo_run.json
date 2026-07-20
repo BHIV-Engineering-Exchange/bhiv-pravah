@@ -1,0 +1,104 @@
+{
+  "run_id": "PR-20260306-DEMO01",
+  "timestamp": "2026-03-06T12:00:00Z",
+  "description": "Reference example of a successful Universal Prompt Runner v2 run for demonstration purposes",
+  "demo_mode": true,
+
+  "input": {
+    "type": "natural_language",
+    "raw": "Design a residential building for a 1000 sqft plot in Mumbai."
+  },
+
+  "pipeline": {
+    "stage_1_domain_detection": {
+      "domain_detected": "architecture",
+      "domain_confidence": 0.7,
+      "fallback_candidates": [],
+      "method": "plugin_keyword_pattern_scoring"
+    },
+    "stage_2_intent_detection": {
+      "intent_detected": "design_building",
+      "intent_confidence": 0.55,
+      "patterns_matched": [
+        "design\\s+(?:a\\s+)?(?:residential|commercial|industrial)?\\s*building"
+      ],
+      "method": "domain_scoped_pattern_matching"
+    },
+    "stage_3_entity_extraction": {
+      "entities_extracted": {
+        "plot_size": "1000 sqft",
+        "city": "Mumbai",
+        "building_type": "residential"
+      },
+      "method": "plugin_extractor_rules"
+    },
+    "stage_4_constraint_extraction": {
+      "constraints_extracted": {},
+      "method": "plugin_constraint_rules"
+    },
+    "stage_5_instruction_build": {
+      "module_resolved": "architecture_design",
+      "tasks_resolved": ["site analysis", "architectural design", "structural planning", "material estimation", "permit compliance"],
+      "output_format_resolved": "design_document"
+    }
+  },
+
+  "output": {
+    "instruction": {
+      "module": "architecture_design",
+      "intent": "design_building",
+      "data": {
+        "topic": "residential building for a 1000 sqft plot in Mumbai",
+        "parameters": {
+          "plot_size": "1000 sqft",
+          "city": "Mumbai",
+          "building_type": "residential"
+        },
+        "original_prompt": "Design a residential building for a 1000 sqft plot in Mumbai."
+      },
+      "tasks": [
+        "site analysis",
+        "architectural design",
+        "structural planning",
+        "material estimation",
+        "permit compliance"
+      ],
+      "output_format": "design_document",
+      "context": {
+        "source": "prompt_runner"
+      }
+    }
+  },
+
+  "status": "success",
+
+  "metadata": {
+    "adapter_version": "2.0.0",
+    "source": "prompt_runner",
+    "demo_mode": true,
+    "downstream_target": "core_integrator",
+    "loaded_domains": ["architecture", "legal", "finance", "healthcare", "software", "general"],
+    "frozen_for_demo": true
+  },
+
+  "downstream_handoff": {
+    "target": "core_integrator",
+    "instruction_ready": true,
+    "next_steps": [
+      "Core Integrator receives instruction",
+      "Core routes to architecture_design module",
+      "Module executes generate_building_design task",
+      "Results stored in Bucket",
+      "Execution logged to Telemetry/InsightFlow"
+    ]
+  },
+
+  "verification": {
+    "schema_version": "2.0.0",
+    "schema_compliant": true,
+    "contract_satisfied": true,
+    "deterministic_output": true,
+    "all_domains_loaded": true,
+    "ready_for_integration": true
+  }
+}

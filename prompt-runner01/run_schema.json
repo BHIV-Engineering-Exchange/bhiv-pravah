@@ -1,0 +1,254 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Universal Prompt Runner Run Schema",
+  "description": "Defines the full execution structure of a Universal Prompt Runner run across any domain",
+  "version": "2.0.0",
+
+  "type": "object",
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "description": "Unique identifier for the run",
+      "pattern": "^PR-[0-9]{8}-[A-Z0-9]{6}$"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of when the run started"
+    },
+    "input": {
+      "type": "object",
+      "description": "The input provided to Prompt Runner",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["natural_language", "structured"],
+          "description": "Type of input received"
+        },
+        "raw": {
+          "description": "Raw input data (string or object)",
+          "oneOf": [
+            { "type": "string" },
+            { "type": "object" }
+          ]
+        }
+      },
+      "required": ["type", "raw"]
+    },
+    "pipeline": {
+      "type": "object",
+      "description": "Trace of all five pipeline stages",
+      "properties": {
+        "stage_1_domain_detection": {
+          "type": "object",
+          "properties": {
+            "detected_domain": { "type": "string" },
+            "domain_confidence": { "type": "number" },
+            "plugin_selected": { "type": "string" },
+            "fallback_candidates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "domain": { "type": "string" },
+                  "confidence": { "type": "number" }
+                }
+              }
+            }
+          }
+        },
+        "stage_2_intent_detection": {
+          "type": "object",
+          "properties": {
+            "detected_intent": { "type": "string" },
+            "intent_confidence": { "type": "number" },
+            "patterns_matched": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "stage_3_entity_extraction": {
+          "type": "object",
+          "properties": {
+            "entities_extracted": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "fields_found": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "stage_4_constraint_extraction": {
+          "type": "object",
+          "properties": {
+            "constraints_extracted": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        },
+        "stage_5_instruction_build": {
+          "type": "object",
+          "properties": {
+            "module_resolved": { "type": "string" },
+            "tasks_resolved": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "output_format_resolved": { "type": "string" }
+          }
+        },
+        "duration_ms": {
+          "type": "integer",
+          "description": "Total pipeline processing duration in milliseconds"
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "description": "The generated instruction",
+      "properties": {
+        "instruction": {
+          "type": "object",
+          "properties": {
+            "module": { "type": "string" },
+            "intent": { "type": "string" },
+            "data": {
+              "type": "object",
+              "properties": {
+                "topic": { "type": "string" },
+                "parameters": { "type": "object", "additionalProperties": true },
+                "original_prompt": { "type": "string" }
+              },
+              "required": ["topic", "parameters", "original_prompt"]
+            },
+            "tasks": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "output_format": { "type": "string" },
+            "context": {
+              "type": "object",
+              "properties": {
+                "source": { "type": "string", "const": "prompt_runner" }
+              },
+              "required": ["source"]
+            }
+          },
+          "required": ["module", "intent", "data", "tasks", "output_format", "context"]
+        }
+      },
+      "required": ["instruction"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["success", "error", "partial"],
+      "description": "Overall status of the run"
+    },
+    "error": {
+      "type": "object",
+      "description": "Error details if status is error",
+      "properties": {
+        "code": { "type": "string" },
+        "message": { "type": "string" },
+        "details": { "type": "object" }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Run metadata",
+      "properties": {
+        "adapter_version": { "type": "string" },
+        "source": { "type": "string", "const": "prompt_runner" },
+        "demo_mode": { "type": "boolean" },
+        "downstream_target": { "type": "string", "enum": ["core_integrator"] },
+        "loaded_domains": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Domains loaded by PluginLoader at time of run"
+        }
+      }
+    }
+  },
+  "required": ["run_id", "timestamp", "input", "output", "status", "metadata"],
+
+  "examples": [
+    {
+      "run_id": "PR-20260306-UNI001",
+      "timestamp": "2026-03-06T10:30:00Z",
+      "input": {
+        "type": "natural_language",
+        "raw": "Design a residential building for a 1000 sqft plot in Mumbai."
+      },
+      "pipeline": {
+        "stage_1_domain_detection": {
+          "detected_domain": "architecture",
+          "domain_confidence": 0.95,
+          "plugin_selected": "plugins/architecture/plugin.json",
+          "fallback_candidates": []
+        },
+        "stage_2_intent_detection": {
+          "detected_intent": "design_building",
+          "intent_confidence": 0.97,
+          "patterns_matched": ["design\\s+(?:a\\s+)?(?:residential|commercial|industrial)?\\s*building"]
+        },
+        "stage_3_entity_extraction": {
+          "entities_extracted": {
+            "plot_size": "1000 sqft",
+            "city": "Mumbai",
+            "building_type": "residential"
+          },
+          "fields_found": ["plot_size", "city", "building_type"]
+        },
+        "stage_4_constraint_extraction": {
+          "constraints_extracted": {}
+        },
+        "stage_5_instruction_build": {
+          "module_resolved": "architecture_design",
+          "task_resolved": "generate_building_design",
+          "overall_confidence": 0.96,
+          "requires_clarification": false,
+          "deterministic_hash": "a1b2c3d4e5f67890"
+        },
+        "duration_ms": 14
+      },
+      "output": {
+        "instruction": {
+          "module": "architecture_design",
+          "intent": "design_building",
+          "data": {
+            "topic": "residential building for a 1000 sqft plot in Mumbai",
+            "parameters": {
+              "plot_size": "1000 sqft",
+              "city": "Mumbai",
+              "building_type": "residential"
+            },
+            "original_prompt": "Design a residential building for a 1000 sqft plot in Mumbai."
+          },
+          "tasks": [
+            "site analysis",
+            "architectural design",
+            "structural planning",
+            "material estimation",
+            "permit compliance"
+          ],
+          "output_format": "design_document",
+          "context": {
+            "source": "prompt_runner"
+          }
+        }
+      },
+      "status": "success",
+      "metadata": {
+        "adapter_version": "2.0.0",
+        "source": "prompt_runner",
+        "demo_mode": false,
+        "downstream_target": "core_integrator",
+        "loaded_domains": ["architecture", "finance", "healthcare", "legal", "software"]
+      }
+    }
+  ]
+}

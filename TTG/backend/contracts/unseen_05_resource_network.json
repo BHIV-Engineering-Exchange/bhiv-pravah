@@ -1,0 +1,103 @@
+{
+  "trace_id":     "trace_unseen_05_resource_network",
+  "execution_id": "exec_unseen_05_resource_network",
+  "domain":       "logistics",
+  "scenario":     "resource_movement_network",
+  "ticks":        18,
+
+  "entities": [
+    {
+      "id": "source_node_a", "type": "resource_node",
+      "position": [0, 0, 0], "state": "supplying",
+      "behaviors": ["anchor_node"],
+      "meta": { "resource": "fuel", "capacity": 100, "current": 100 }
+    },
+    {
+      "id": "source_node_b", "type": "resource_node",
+      "position": [100, 0, 0], "state": "supplying",
+      "behaviors": ["anchor_node"],
+      "meta": { "resource": "ammunition", "capacity": 80, "current": 80 }
+    },
+    {
+      "id": "carrier_01", "type": "carrier",
+      "position": [0, 0, 0], "state": "loading",
+      "behaviors": ["deliver_to_depot"],
+      "meta": { "cargo": "fuel", "load": 50 }
+    },
+    {
+      "id": "carrier_02", "type": "carrier",
+      "position": [100, 0, 0], "state": "loading",
+      "behaviors": ["deliver_to_depot"],
+      "meta": { "cargo": "ammunition", "load": 40 }
+    },
+    {
+      "id": "carrier_03", "type": "carrier",
+      "position": [50, 0, 50], "state": "in_transit",
+      "behaviors": ["return_to_source"],
+      "meta": { "cargo": "empty", "load": 0 }
+    },
+    {
+      "id": "depot_node", "type": "resource_node",
+      "position": [50, 0, 100], "state": "receiving",
+      "behaviors": ["anchor_node"],
+      "meta": { "resource": "mixed", "capacity": 200, "current": 0 }
+    },
+    {
+      "id": "depot_zone", "type": "zone",
+      "position": [50, 0, 100], "state": "active",
+      "behaviors": [],
+      "meta": { "radius": 10.0, "label": "Central Depot" }
+    },
+    {
+      "id": "source_zone_a", "type": "zone",
+      "position": [0, 0, 0], "state": "active",
+      "behaviors": [],
+      "meta": { "radius": 8.0, "label": "Source Node A Zone" }
+    }
+  ],
+
+  "behaviors": [
+    {
+      "id": "anchor_node", "script": "anchor", "params": {}
+    },
+    {
+      "id": "deliver_to_depot", "script": "move_to",
+      "params": { "target": [50, 0, 100], "speed": 3.5, "threshold": 1.0 }
+    },
+    {
+      "id": "return_to_source", "script": "move_to",
+      "params": { "target": [0, 0, 0], "speed": 4.0, "threshold": 1.0 }
+    }
+  ],
+
+  "rules": [
+    {
+      "id": "carrier_depot_arrival",
+      "trigger": "on_zone_enter",
+      "condition": { "field": "state", "op": "eq", "value": "loading" },
+      "action": { "type": "set_state", "params": { "state": "unloading" } },
+      "enabled": true
+    },
+    {
+      "id": "carrier_arrived_idle",
+      "trigger": "on_tick",
+      "condition": { "field": "state", "op": "eq", "value": "idle" },
+      "action": { "type": "emit_event", "params": { "event_type": "carrier_delivery_complete", "data": {} } },
+      "enabled": true
+    },
+    {
+      "id": "flag_collision_in_transit",
+      "trigger": "on_collision",
+      "condition": { "field": "state", "op": "eq", "value": "in_transit" },
+      "action": { "type": "flag_entity", "params": { "reason": "transit_collision" } },
+      "enabled": true
+    },
+    {
+      "id": "network_status_tick",
+      "trigger": "on_tick",
+      "condition": { "field": "tick", "op": "eq", "value": 9 },
+      "action": { "type": "emit_event", "params": { "event_type": "network_status_snapshot", "data": {} } },
+      "enabled": true
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "ecosystem": "TANTRA",
+  "routing_catalog": {
+    "nodes": {
+      "prompt_runner": {
+        "url": "https://prompt-runner.onrender.com",
+        "endpoints": {
+          "/health": { "method": "GET", "expected_response_type": "application/json" },
+          "/generate": { "method": "POST", "payload_type": "application/json" }
+        }
+      },
+      "creator_core": {
+        "url": "http://127.0.0.1:8000",
+        "endpoints": {
+          "/": { "method": "GET", "expected_response_type": "application/json" },
+          "/creator-core/generate-blueprint": { "method": "POST", "payload_type": "application/json" }
+        }
+      },
+      "bhiv_core": {
+        "url": "http://127.0.0.1:8001",
+        "endpoints": {
+          "/": { "method": "GET", "expected_response_type": "application/json" },
+          "/core": { "method": "POST", "payload_type": "application/json" }
+        }
+      },
+      "integration_bridge": {
+        "url": "http://127.0.0.1:8004",
+        "endpoints": {
+          "/pipeline/execute": { "method": "POST", "payload_type": "application/json" },
+          "/pipeline/health": { "method": "GET", "expected_response_type": "application/json" },
+          "/pipeline/replay/{trace_id}": { "method": "GET", "expected_response_type": "application/json" }
+        }
+      },
+      "bhiv_bucket": {
+        "url": "http://127.0.0.1:8005",
+        "endpoints": {
+          "/bucket/store": { "method": "POST", "payload_type": "application/json" },
+          "/bucket/trace/{trace_id}": { "method": "GET", "expected_response_type": "application/json" },
+          "/bucket/stats": { "method": "GET", "expected_response_type": "application/json" }
+        }
+      }
+    },
+    "routing_rules": {
+      "trace_propagation_header": "trace_id",
+      "required_schema_keys": {
+        "instruction": ["prompt", "module", "intent"],
+        "blueprint": ["blueprint"],
+        "execution": ["status", "result"]
+      }
+    }
+  }
+}

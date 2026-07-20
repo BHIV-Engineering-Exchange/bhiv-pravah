@@ -1,0 +1,137 @@
+[
+  {
+    "input_prompt": "Explain Newton's laws of motion with simple real-world examples for students.",
+    "output": {
+      "module": "education",
+      "intent": "explain_concept",
+      "topic": "Newton's_laws_of_motion",
+      "tasks": [
+        "define_first_law",
+        "describe_second_law",
+        "explain_third_law"
+      ],
+      "output_format": "step_by_step_guide",
+      "product_context": "creator_core"
+    }
+  },
+  {
+    "input_prompt": "Calculate the estimated income tax for a person earning 18 lakh per year in India.",
+    "output": {
+      "module": "finance",
+      "intent": "tax_calculation",
+      "topic": "income_tax_estimation",
+      "tasks": [
+        "gross_income_calculation",
+        "tax_deduction_identification",
+        "tax_rate_application",
+        "tax_liability_calculation"
+      ],
+      "output_format": "step_by_step_guide",
+      "product_context": "creator_core"
+    }
+  },
+  {
+    "input_prompt": "Create a system architecture plan for a stock prediction web application using machine learning.",
+    "output": {
+      "module": "analytics",
+      "intent": "system_architecture_plan",
+      "topic": "stock_prediction_web_application",
+      "tasks": [
+        "data_collection",
+        "data_preprocessing",
+        "model_selection",
+        "model_training",
+        "model_evaluation",
+        "deployment_planning",
+        "frontend_design"
+      ],
+      "output_format": "step_by_step_guide",
+      "product_context": "creator_core"
+    }
+  },
+  {
+    "input_prompt": "Design a customer support workflow for an ecommerce company handling product returns.",
+    "output": {
+      "module": "workflow",
+      "intent": "design_workflow",
+      "topic": "customer_support",
+      "tasks": [
+        "return_policy_definition",
+        "return_request_processing",
+        "product_inspection",
+        "refund_processing",
+        "customer_notification"
+      ],
+      "output_format": "step_by_step_guide",
+      "product_context": "creator_core"
+    }
+  },
+  {
+    "input_prompt": "Create a blog outline about how artificial intelligence is transforming healthcare.",
+    "output": {
+      "module": "analytics",
+      "intent": "create_content",
+      "topic": "ai_in_healthcare",
+      "tasks": [
+        "research_ai_applications",
+        "outline_healthcare_transformations",
+        "draft_blog_structure",
+        "write_introduction",
+        "write_conclusion"
+      ],
+      "output_format": "step_by_step_guide",
+      "product_context": "creator_core"
+    }
+  },
+  {
+    "input_prompt": "Create a workflow for diagnosing and managing early stage diabetes in adults.",
+    "output": {
+      "module": "workflow",
+      "intent": "disease_management",
+      "topic": "diabetes_diagnosis",
+      "tasks": [
+        "patient_screening",
+        "risk_factor_assessment",
+        "blood_glucose_testing",
+        "medical_history_review",
+        "lifestyle_intervention_planning",
+        "medication_management",
+        "patient_education"
+      ],
+      "output_format": "step_by_step_guide",
+      "product_context": "creator_core"
+    }
+  },
+  {
+    "input_prompt": "Design a residential tower on a 1500 sqft plot in Mumbai with parking and safety compliance.",
+    "output": {
+      "module": "architecture",
+      "intent": "building_design",
+      "topic": "residential_tower",
+      "tasks": [
+        "site_analysis",
+        "floor_plan_design",
+        "structural_design",
+        "parking_layout",
+        "safety_compliance_check"
+      ],
+      "output_format": "step_by_step_guide",
+      "product_context": "creator_core"
+    }
+  },
+  {
+    "input_prompt": "Analyze sales data for the last quarter and identify the top performing products.",
+    "output": {
+      "module": "analytics",
+      "intent": "sales_analysis",
+      "topic": "quarterly_sales",
+      "tasks": [
+        "data_collection",
+        "sales_data_analysis",
+        "product_performance_ranking"
+      ],
+      "output_format": "step_by_step_guide",
+      "product_context": "creator_core"
+    }
+  }
+]

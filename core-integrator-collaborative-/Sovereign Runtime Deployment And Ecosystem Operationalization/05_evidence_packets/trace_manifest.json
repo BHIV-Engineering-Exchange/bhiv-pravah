@@ -1,0 +1,69 @@
+{
+  "generated_at": "2026-07-07T12:55:30+00:00",
+  "classification": "live_service_evidence",
+  "trace_ids": [
+    {
+      "trace_id": "comp_ttg_434a5d3954",
+      "integration": "ttg_onboarding",
+      "product": "ttg",
+      "status": "pass",
+      "evidence_packet": "ttg_runtime_evidence_packet.md",
+      "bucket_artifact_types": 7
+    },
+    {
+      "trace_id": "comp_ttv_49093259a5",
+      "integration": "ttv_onboarding",
+      "product": "ttv",
+      "status": "pass",
+      "evidence_packet": "ttv_runtime_evidence_packet.md",
+      "bucket_artifact_types": 7
+    },
+    {
+      "trace_id": "comp_gurukul_db1cef24b5",
+      "integration": "gurukul_onboarding",
+      "product": "gurukul",
+      "status": "pass",
+      "evidence_packet": "gurukul_runtime_evidence_packet.md",
+      "bucket_artifact_types": 7
+    },
+    {
+      "trace_id": "comp_simulation_runtime_4397308533",
+      "integration": "simulation_runtime_onboarding",
+      "product": "simulation_runtime",
+      "status": "pass",
+      "evidence_packet": "simulation_runtime_runtime_evidence_packet.md",
+      "bucket_artifact_types": 7
+    },
+    {
+      "trace_id": "comp_ttg_434a5d3954",
+      "integration": "pipeline_wiring",
+      "product": "ttg",
+      "status": "pass",
+      "evidence_packet": "pipeline_wiring_runtime_evidence_packet.md",
+      "bucket_artifact_types": 7
+    },
+    {
+      "trace_id": "det_48493b5f64",
+      "integration": "determinism_verification",
+      "product": "ttg",
+      "status": "pass",
+      "evidence_packet": "10_recovery_hardening/determinism_verification.md"
+    },
+    {
+      "trace_id": "rec_3b2c0c81b9",
+      "integration": "recovery_verification",
+      "product": "gurukul",
+      "status": "pass",
+      "evidence_packet": "10_recovery_hardening/replay_after_recovery_results.md",
+      "note": "BHIV down at execution; 5 artifacts; replay 200 after restart"
+    },
+    {
+      "trace_id": "inst_tantra_606bdd086cb4",
+      "integration": "simulation_baseline",
+      "product": null,
+      "status": "simulation_only",
+      "note": "full_tantra_flow_test.py — not live proof"
+    }
+  ],
+  "raw_results": "comprehensive_live_test_results.json"
+}

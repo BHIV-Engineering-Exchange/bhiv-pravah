@@ -1,0 +1,58 @@
+{
+  "runner_example": {
+    "game_mode": "runner",
+    "movement": {
+      "speed": 8,
+      "jump_height": 5
+    },
+    "camera": {
+      "type": "third_person",
+      "distance": 10
+    },
+    "spawn_rules": {
+      "obstacles": 2,
+      "frequency": 2
+    },
+    "score_rules": {
+      "distance": 1,
+      "collectibles": 10
+    },
+    "end_conditions": ["collision"],
+    "player_params": {
+      "jetpack": true,
+      "health": 3
+    },
+    "world_params": {
+      "gravity": -9.8,
+      "theme": "default"
+    }
+  },
+  "sidescroller_example": {
+    "game_mode": "sidescroller",
+    "movement": {
+      "speed": 5,
+      "jump_height": 3
+    },
+    "camera": {
+      "type": "side_view",
+      "distance": 12
+    },
+    "spawn_rules": {
+      "obstacles": 3,
+      "frequency": 3
+    },
+    "score_rules": {
+      "distance": 0,
+      "collectibles": 50
+    },
+    "end_conditions": ["collision", "distance_goal"],
+    "player_params": {
+      "jetpack": false,
+      "health": 5
+    },
+    "world_params": {
+      "gravity": -9.8,
+      "theme": "forest"
+    }
+  }
+}

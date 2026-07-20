@@ -1,0 +1,307 @@
+{
+  "version": "2.0.0",
+  "description": "Global registry of all processing modules available to the Universal Prompt Runner system",
+  "last_updated": "2026-03-06",
+
+  "modules": {
+    "architecture_design": {
+      "domain": "architecture",
+      "description": "Generates architectural building designs and floor plans",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["generate_building_design"],
+      "supported_intents": ["design_building"],
+      "required_inputs": [],
+      "optional_inputs": ["plot_size", "city", "building_type", "floors", "budget"],
+      "capabilities": ["floor_plan_generation", "3d_model_reference", "material_estimation", "space_planning"]
+    },
+
+    "site_analysis": {
+      "domain": "architecture",
+      "description": "Analyzes site conditions, constraints, and potential for construction",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["perform_site_analysis"],
+      "supported_intents": ["analyze_site"],
+      "required_inputs": [],
+      "optional_inputs": ["city", "plot_size", "zoning"],
+      "capabilities": ["geo_analysis", "zoning_check", "environmental_assessment", "utility_mapping"]
+    },
+
+    "cost_estimator": {
+      "domain": "architecture",
+      "description": "Calculates construction cost estimates for buildings and projects",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["calculate_cost_estimate"],
+      "supported_intents": ["calculate_estimate"],
+      "required_inputs": [],
+      "optional_inputs": ["plot_size", "building_type", "city", "quality"],
+      "capabilities": ["material_cost", "labor_cost", "total_project_cost", "cost_breakdown"]
+    },
+
+    "compliance_checker": {
+      "domain": "architecture",
+      "description": "Reviews building code compliance, permits, and zoning regulations",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["check_compliance", "check_legal_compliance", "check_healthcare_compliance"],
+      "supported_intents": ["review_compliance"],
+      "required_inputs": [],
+      "optional_inputs": ["city", "building_type", "jurisdiction", "regulation_type"],
+      "capabilities": ["zoning_check", "permit_review", "code_compliance", "regulatory_audit"]
+    },
+
+    "report_generator": {
+      "domain": "architecture",
+      "description": "Generates structured reports for site, building, or project data",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["create_report"],
+      "supported_intents": ["generate_report"],
+      "required_inputs": [],
+      "optional_inputs": ["report_type", "city"],
+      "capabilities": ["pdf_report", "summary_generation", "data_visualization", "executive_summary"]
+    },
+
+    "legal_compliance": {
+      "domain": "legal",
+      "description": "Analyzes contract risk, legal compliance, and regulatory obligations",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["analyze_contract_risk"],
+      "supported_intents": ["analyze_contract"],
+      "required_inputs": [],
+      "optional_inputs": ["jurisdiction", "document_type", "party_role"],
+      "capabilities": ["contract_risk_analysis", "clause_extraction", "obligation_mapping", "risk_scoring"]
+    },
+
+    "legal_research": {
+      "domain": "legal",
+      "description": "Researches laws, precedents, statutes, and regulations",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["perform_legal_research"],
+      "supported_intents": ["legal_research"],
+      "required_inputs": [],
+      "optional_inputs": ["jurisdiction", "topic", "case_type"],
+      "capabilities": ["statute_lookup", "case_precedent", "regulation_search", "legal_summary"]
+    },
+
+    "legal_drafting": {
+      "domain": "legal",
+      "description": "Drafts legal documents, contracts, and agreements",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["draft_legal_document"],
+      "supported_intents": ["draft_document"],
+      "required_inputs": [],
+      "optional_inputs": ["document_type", "jurisdiction", "party_role"],
+      "capabilities": ["contract_drafting", "clause_generation", "template_population", "review_checklist"]
+    },
+
+    "legal_analysis": {
+      "domain": "legal",
+      "description": "Assesses case merits, legal positions, and dispute outcomes",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["assess_case_merits"],
+      "supported_intents": ["case_assessment"],
+      "required_inputs": [],
+      "optional_inputs": ["case_type", "jurisdiction", "party_role"],
+      "capabilities": ["merit_assessment", "risk_evaluation", "strategy_recommendation", "outcome_probability"]
+    },
+
+    "investment_analyzer": {
+      "domain": "finance",
+      "description": "Analyzes investments, calculates ROI, and evaluates portfolio performance",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["analyze_investment_return"],
+      "supported_intents": ["analyze_investment"],
+      "required_inputs": [],
+      "optional_inputs": ["amount", "period", "asset_type", "currency", "risk_profile"],
+      "capabilities": ["roi_calculation", "npv_irr", "portfolio_analysis", "benchmark_comparison"]
+    },
+
+    "risk_assessor": {
+      "domain": "finance",
+      "description": "Assesses financial risk, credit risk, and market exposure",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["perform_risk_assessment"],
+      "supported_intents": ["assess_risk"],
+      "required_inputs": [],
+      "optional_inputs": ["risk_type", "amount", "sector", "period"],
+      "capabilities": ["risk_scoring", "exposure_analysis", "sensitivity_analysis", "stress_testing"]
+    },
+
+    "budget_planner": {
+      "domain": "finance",
+      "description": "Creates and reviews financial budgets and forecasts",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["create_budget_plan"],
+      "supported_intents": ["budget_planning"],
+      "required_inputs": [],
+      "optional_inputs": ["amount", "period", "department", "currency"],
+      "capabilities": ["budget_allocation", "variance_analysis", "forecasting", "scenario_planning"]
+    },
+
+    "financial_calculator": {
+      "domain": "finance",
+      "description": "Calculates financial projections, estimates, and metrics",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["calculate_financial_estimate"],
+      "supported_intents": ["calculate_estimate"],
+      "required_inputs": [],
+      "optional_inputs": ["amount", "period", "rate", "currency"],
+      "capabilities": ["compound_interest", "loan_amortization", "tax_estimation", "break_even"]
+    },
+
+    "financial_reporter": {
+      "domain": "finance",
+      "description": "Generates financial statements, dashboards, and performance reports",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["generate_financial_report"],
+      "supported_intents": ["generate_report"],
+      "required_inputs": [],
+      "optional_inputs": ["report_type", "period", "currency"],
+      "capabilities": ["p_and_l_statement", "balance_sheet", "cash_flow_report", "kpi_dashboard"]
+    },
+
+    "patient_assessor": {
+      "domain": "healthcare",
+      "description": "Performs structured patient assessments and clinical evaluations",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["perform_patient_assessment"],
+      "supported_intents": ["patient_assessment"],
+      "required_inputs": [],
+      "optional_inputs": ["condition", "specialty", "patient_type", "urgency"],
+      "capabilities": ["symptom_analysis", "risk_stratification", "clinical_scoring", "triage_support"]
+    },
+
+    "treatment_planner": {
+      "domain": "healthcare",
+      "description": "Creates evidence-based treatment plans and clinical protocols",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["create_treatment_plan"],
+      "supported_intents": ["treatment_planning"],
+      "required_inputs": [],
+      "optional_inputs": ["condition", "specialty", "patient_type", "medications"],
+      "capabilities": ["protocol_generation", "drug_interaction_check", "dosage_guidance", "care_plan"]
+    },
+
+    "medical_researcher": {
+      "domain": "healthcare",
+      "description": "Conducts medical literature research and clinical evidence review",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["perform_medical_research"],
+      "supported_intents": ["medical_research"],
+      "required_inputs": [],
+      "optional_inputs": ["condition", "drug_name", "specialty", "study_type"],
+      "capabilities": ["literature_search", "clinical_guidelines", "drug_database", "evidence_grading"]
+    },
+
+    "medical_reporter": {
+      "domain": "healthcare",
+      "description": "Generates clinical reports, medical records, and patient documentation",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["generate_medical_report"],
+      "supported_intents": ["generate_report"],
+      "required_inputs": [],
+      "optional_inputs": ["report_type", "condition", "specialty"],
+      "capabilities": ["discharge_summary", "clinical_notes", "progress_report", "referral_letter"]
+    },
+
+    "healthcare_compliance_checker": {
+      "domain": "healthcare",
+      "description": "Reviews healthcare regulatory compliance including HIPAA, GDPR, and clinical standards",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["check_healthcare_compliance"],
+      "supported_intents": ["review_compliance"],
+      "required_inputs": [],
+      "optional_inputs": ["regulation_type", "specialty", "jurisdiction"],
+      "capabilities": ["hipaa_compliance", "gdpr_compliance", "clinical_standard_review", "privacy_audit"]
+    },
+
+    "system_designer": {
+      "domain": "software",
+      "description": "Designs software system architecture, component diagrams, and technical blueprints",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["design_system_architecture"],
+      "supported_intents": ["system_design"],
+      "required_inputs": [],
+      "optional_inputs": ["system_type", "language", "framework", "scale", "cloud_provider"],
+      "capabilities": ["architecture_diagram", "component_design", "api_contract", "scalability_plan"]
+    },
+
+    "code_reviewer": {
+      "domain": "software",
+      "description": "Reviews code quality, security, performance, and best practices",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["perform_code_review"],
+      "supported_intents": ["code_review"],
+      "required_inputs": [],
+      "optional_inputs": ["language", "framework", "repository", "focus_area"],
+      "capabilities": ["quality_analysis", "security_scan", "performance_review", "best_practice_check"]
+    },
+
+    "database_designer": {
+      "domain": "software",
+      "description": "Designs database schemas, entity relationships, and data models",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["design_database_schema"],
+      "supported_intents": ["database_design"],
+      "required_inputs": [],
+      "optional_inputs": ["db_type", "language", "scale", "system_type"],
+      "capabilities": ["erd_design", "schema_generation", "index_optimization", "normalization"]
+    },
+
+    "deployment_planner": {
+      "domain": "software",
+      "description": "Plans deployment pipelines, CI/CD workflows, and infrastructure configurations",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["create_deployment_plan"],
+      "supported_intents": ["deployment_planning"],
+      "required_inputs": [],
+      "optional_inputs": ["cloud_provider", "environment", "scale", "framework"],
+      "capabilities": ["cicd_pipeline", "infrastructure_as_code", "container_config", "rollback_strategy"]
+    },
+
+    "bug_analyzer": {
+      "domain": "software",
+      "description": "Analyzes bug reports, error traces, and system issues to identify root causes",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["analyze_bug_report"],
+      "supported_intents": ["bug_analysis"],
+      "required_inputs": [],
+      "optional_inputs": ["language", "framework", "error_type", "severity"],
+      "capabilities": ["root_cause_analysis", "stack_trace_parsing", "fix_recommendation", "regression_check"]
+    },
+
+    "general_processor": {
+      "domain": "general",
+      "description": "Fallback processor for unrecognized or ambiguous requests",
+      "version": "1.0.0",
+      "status": "active",
+      "supported_tasks": ["process_request"],
+      "supported_intents": ["unknown"],
+      "required_inputs": [],
+      "optional_inputs": [],
+      "capabilities": ["generic_processing", "intent_clarification", "domain_suggestion"]
+    }
+  }
+}

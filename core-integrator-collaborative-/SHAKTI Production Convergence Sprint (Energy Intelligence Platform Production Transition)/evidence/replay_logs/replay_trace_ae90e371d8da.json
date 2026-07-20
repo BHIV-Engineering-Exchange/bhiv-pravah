@@ -1,0 +1,427 @@
+{
+  "status_code": 200,
+  "body": {
+    "status": "success",
+    "trace_id": "trace_ae90e371d8da",
+    "artifact_chain": [
+      {
+        "artifact_id": "telemetry_58e45427",
+        "artifact_type": "telemetry",
+        "trace_id": "trace_ae90e371d8da",
+        "timestamp": "2026-07-08T09:58:17.188244+00:00",
+        "data": {
+          "source_id": "substation-7",
+          "metric": "transformer_temp_c",
+          "value": 99.4,
+          "unit": "celsius",
+          "timestamp": "2026-07-08T09:58:16.674979+00:00",
+          "site": "production-demo",
+          "trace_id": "trace_ae90e371d8da",
+          "source_module_id": "telemetry_service",
+          "status": "success"
+        },
+        "metadata": {
+          "size_bytes": 267,
+          "schema_version": "1.0.0"
+        }
+      },
+      {
+        "artifact_id": "instruction_9676fa98",
+        "artifact_type": "instruction",
+        "trace_id": "trace_ae90e371d8da",
+        "timestamp": "2026-07-08T09:58:17.285794+00:00",
+        "data": {
+          "prompt": "Evaluate grid response for transformer_temp_c reading of 99.4celsius at substation-7, classified critical.",
+          "module": "creator",
+          "intent": "generate",
+          "topic": "general",
+          "tasks": [
+            "create_blueprint"
+          ],
+          "output_format": "json",
+          "product_context": "simulation_runtime",
+          "trace_id": "trace_ae90e371d8da",
+          "workflow_id": "wf_67b8c8106e5b",
+          "instruction_id": "trace_ae90e371d8da"
+        },
+        "metadata": {
+          "size_bytes": 388,
+          "schema_version": "1.0.0"
+        }
+      },
+      {
+        "artifact_id": "blueprint_92cd106b",
+        "artifact_type": "blueprint",
+        "trace_id": "trace_ae90e371d8da",
+        "timestamp": "2026-07-08T09:58:17.322008+00:00",
+        "data": {
+          "blueprint": {
+            "instruction_id": "1b50ff23-1b88-4e80-af1e-8bbc0cf8df4f",
+            "origin": "creator_core",
+            "intent_type": "generate",
+            "target_product": "creator",
+            "payload": {
+              "blueprint_type": "content_blueprint",
+              "product_target": "creator",
+              "content_type": "json",
+              "title": "General",
+              "outline": [
+                "create_blueprint"
+              ]
+            },
+            "schema_version": "1.0",
+            "timestamp": "2026-07-08T09:58:17.307477+00:00"
+          },
+          "trace_id": "trace_ae90e371d8da",
+          "workflow_id": "wf_67b8c8106e5b"
+        },
+        "metadata": {
+          "size_bytes": 455,
+          "schema_version": "1.0.0"
+        }
+      },
+      {
+        "artifact_id": "contract_d5a07f64",
+        "artifact_type": "contract",
+        "trace_id": "trace_ae90e371d8da",
+        "timestamp": "2026-07-08T09:58:17.372154+00:00",
+        "data": {
+          "contract_id": "contract_69159e037148",
+          "instruction_id": "trace_ae90e371d8da",
+          "trace_id": "trace_ae90e371d8da",
+          "execution_plan": {
+            "target_module": "creator",
+            "execution_intent": "generate",
+            "execution_data": {
+              "blueprint_type": "content_blueprint",
+              "product_target": "creator",
+              "content_type": "json",
+              "title": "General",
+              "outline": [
+                "create_blueprint"
+              ]
+            }
+          },
+          "constraints": {
+            "schema_version": "1.0.0",
+            "origin": "creator_core",
+            "intent_type": null,
+            "deterministic": true,
+            "replay_safe": true
+          },
+          "contract_hash": "df33107b7f12a1bdd151c1b33269ede6ddd92f2ac0cb843e7ad0a2f36be20c66",
+          "timestamp": "2026-07-08T09:58:17.362526+00:00",
+          "schema_version": "1.0.0",
+          "workflow_id": "wf_67b8c8106e5b"
+        },
+        "metadata": {
+          "size_bytes": 689,
+          "schema_version": "1.0.0"
+        }
+      },
+      {
+        "artifact_id": "authority_2e9e0a34",
+        "artifact_type": "authority",
+        "trace_id": "trace_ae90e371d8da",
+        "timestamp": "2026-07-08T09:58:17.420258+00:00",
+        "data": {
+          "allowed": true,
+          "reason": "valid_contract",
+          "contract_id": "contract_69159e037148",
+          "trace_id": "trace_ae90e371d8da",
+          "decision_id": "decision_contract_69159e037148",
+          "timestamp": "2026-07-08T09:58:17.411745+00:00",
+          "validation_checks": {
+            "has_contract_id": "contract_69159e037148",
+            "has_trace_id": "trace_ae90e371d8da",
+            "has_execution_plan": true,
+            "has_valid_module": "creator",
+            "has_constraints": true,
+            "has_contract_hash": "df33107b7f12a1bdd151c1b33269ede6ddd92f2ac0cb843e7ad0a2f36be20c66"
+          },
+          "workflow_id": "wf_67b8c8106e5b"
+        },
+        "metadata": {
+          "size_bytes": 529,
+          "schema_version": "1.0.0"
+        }
+      },
+      {
+        "artifact_id": "gate_d136a5ac",
+        "artifact_type": "gate",
+        "trace_id": "trace_ae90e371d8da",
+        "timestamp": "2026-07-08T09:58:17.456641+00:00",
+        "data": {
+          "status": "allowed",
+          "message": "Execution approved by gate",
+          "result": {},
+          "contract_id": "contract_69159e037148",
+          "trace_id": "trace_ae90e371d8da",
+          "gate_status": "ALLOWED",
+          "authority_decision": {
+            "allowed": true,
+            "reason": "valid_contract",
+            "contract_id": "contract_69159e037148",
+            "trace_id": "trace_ae90e371d8da",
+            "decision_id": "decision_contract_69159e037148",
+            "timestamp": "2026-07-08T09:58:17.411745+00:00",
+            "validation_checks": {
+              "has_contract_id": "contract_69159e037148",
+              "has_trace_id": "trace_ae90e371d8da",
+              "has_execution_plan": true,
+              "has_valid_module": "creator",
+              "has_constraints": true,
+              "has_contract_hash": "df33107b7f12a1bdd151c1b33269ede6ddd92f2ac0cb843e7ad0a2f36be20c66"
+            }
+          },
+          "timestamp": "2026-07-08T09:58:17.445837+00:00",
+          "workflow_id": "wf_67b8c8106e5b"
+        },
+        "metadata": {
+          "size_bytes": 778,
+          "schema_version": "1.0.0"
+        }
+      },
+      {
+        "artifact_id": "execution_490d581d",
+        "artifact_type": "execution",
+        "trace_id": "trace_ae90e371d8da",
+        "timestamp": "2026-07-08T09:58:17.529177+00:00",
+        "data": {
+          "status": "success",
+          "message": "Creative content generated with context",
+          "result": {
+            "content": "Generated content for: unknown topic",
+            "related_context": [],
+            "enhanced_data": {
+              "blueprint": {
+                "blueprint_type": "content_blueprint",
+                "product_target": "creator",
+                "content_type": "json",
+                "title": "General",
+                "outline": [
+                  "create_blueprint"
+                ]
+              },
+              "target_product": "creator",
+              "trace_id": "trace_ae90e371d8da",
+              "workflow_id": "wf_67b8c8106e5b"
+            }
+          },
+          "trace_id": "trace_ae90e371d8da",
+          "workflow_id": "wf_67b8c8106e5b"
+        },
+        "metadata": {
+          "size_bytes": 505,
+          "schema_version": "1.0.0"
+        }
+      },
+      {
+        "artifact_id": "result_499b2d85",
+        "artifact_type": "result",
+        "trace_id": "trace_ae90e371d8da",
+        "timestamp": "2026-07-08T09:58:17.555963+00:00",
+        "data": {
+          "original_prompt": "Evaluate grid response for transformer_temp_c reading of 99.4celsius at substation-7, classified critical.",
+          "generated_instruction": {
+            "prompt": "Evaluate grid response for transformer_temp_c reading of 99.4celsius at substation-7, classified critical.",
+            "module": "creator",
+            "intent": "generate",
+            "topic": "general",
+            "tasks": [
+              "create_blueprint"
+            ],
+            "output_format": "json",
+            "product_context": "simulation_runtime",
+            "trace_id": "trace_ae90e371d8da",
+            "workflow_id": "wf_67b8c8106e5b",
+            "instruction_id": "trace_ae90e371d8da"
+          },
+          "blueprint_envelope": {
+            "blueprint": {
+              "instruction_id": "1b50ff23-1b88-4e80-af1e-8bbc0cf8df4f",
+              "origin": "creator_core",
+              "intent_type": "generate",
+              "target_product": "creator",
+              "payload": {
+                "blueprint_type": "content_blueprint",
+                "product_target": "creator",
+                "content_type": "json",
+                "title": "General",
+                "outline": [
+                  "create_blueprint"
+                ]
+              },
+              "schema_version": "1.0",
+              "timestamp": "2026-07-08T09:58:17.307477+00:00"
+            },
+            "trace_id": "trace_ae90e371d8da",
+            "workflow_id": "wf_67b8c8106e5b"
+          },
+          "contract": {
+            "contract_id": "contract_69159e037148",
+            "instruction_id": "trace_ae90e371d8da",
+            "trace_id": "trace_ae90e371d8da",
+            "execution_plan": {
+              "target_module": "creator",
+              "execution_intent": "generate",
+              "execution_data": {
+                "blueprint_type": "content_blueprint",
+                "product_target": "creator",
+                "content_type": "json",
+                "title": "General",
+                "outline": [
+                  "create_blueprint"
+                ]
+              }
+            },
+            "constraints": {
+              "schema_version": "1.0.0",
+              "origin": "creator_core",
+              "intent_type": null,
+              "deterministic": true,
+              "replay_safe": true
+            },
+            "contract_hash": "df33107b7f12a1bdd151c1b33269ede6ddd92f2ac0cb843e7ad0a2f36be20c66",
+            "timestamp": "2026-07-08T09:58:17.362526+00:00",
+            "schema_version": "1.0.0"
+          },
+          "authority_decision": {
+            "allowed": true,
+            "reason": "valid_contract",
+            "contract_id": "contract_69159e037148",
+            "trace_id": "trace_ae90e371d8da",
+            "decision_id": "decision_contract_69159e037148",
+            "timestamp": "2026-07-08T09:58:17.411745+00:00",
+            "validation_checks": {
+              "has_contract_id": "contract_69159e037148",
+              "has_trace_id": "trace_ae90e371d8da",
+              "has_execution_plan": true,
+              "has_valid_module": "creator",
+              "has_constraints": true,
+              "has_contract_hash": "df33107b7f12a1bdd151c1b33269ede6ddd92f2ac0cb843e7ad0a2f36be20c66"
+            }
+          },
+          "gate_decision": {
+            "status": "allowed",
+            "message": "Execution approved by gate",
+            "result": {},
+            "contract_id": "contract_69159e037148",
+            "trace_id": "trace_ae90e371d8da",
+            "gate_status": "ALLOWED",
+            "authority_decision": {
+              "allowed": true,
+              "reason": "valid_contract",
+              "contract_id": "contract_69159e037148",
+              "trace_id": "trace_ae90e371d8da",
+              "decision_id": "decision_contract_69159e037148",
+              "timestamp": "2026-07-08T09:58:17.411745+00:00",
+              "validation_checks": {
+                "has_contract_id": "contract_69159e037148",
+                "has_trace_id": "trace_ae90e371d8da",
+                "has_execution_plan": true,
+                "has_valid_module": "creator",
+                "has_constraints": true,
+                "has_contract_hash": "df33107b7f12a1bdd151c1b33269ede6ddd92f2ac0cb843e7ad0a2f36be20c66"
+              }
+            },
+            "timestamp": "2026-07-08T09:58:17.445837+00:00"
+          },
+          "execution_result": {
+            "status": "success",
+            "message": "Creative content generated with context",
+            "result": {
+              "content": "Generated content for: unknown topic",
+              "related_context": [],
+              "enhanced_data": {
+                "blueprint": {
+                  "blueprint_type": "content_blueprint",
+                  "product_target": "creator",
+                  "content_type": "json",
+                  "title": "General",
+                  "outline": [
+                    "create_blueprint"
+                  ]
+                },
+                "target_product": "creator",
+                "trace_id": "trace_ae90e371d8da",
+                "workflow_id": "wf_67b8c8106e5b"
+              }
+            },
+            "trace_id": "trace_ae90e371d8da",
+            "workflow_id": "wf_67b8c8106e5b"
+          },
+          "pipeline_status": "completed",
+          "deterministic_hash": "6bb100805de98a3c",
+          "product_output": {
+            "simulation_result": {
+              "content": "Generated content for: unknown topic",
+              "related_context": [],
+              "enhanced_data": {
+                "blueprint": {
+                  "blueprint_type": "content_blueprint",
+                  "product_target": "creator",
+                  "content_type": "json",
+                  "title": "General",
+                  "outline": [
+                    "create_blueprint"
+                  ]
+                },
+                "target_product": "creator",
+                "trace_id": "trace_ae90e371d8da",
+                "workflow_id": "wf_67b8c8106e5b"
+              }
+            },
+            "status": "success",
+            "message": "Creative content generated with context"
+          },
+          "trace_id": "trace_ae90e371d8da",
+          "workflow_id": "wf_67b8c8106e5b"
+        },
+        "metadata": {
+          "size_bytes": 4111,
+          "schema_version": "1.0.0"
+        }
+      },
+      {
+        "artifact_id": "alert_f31be8fd3799",
+        "artifact_type": "alert",
+        "trace_id": "trace_ae90e371d8da",
+        "timestamp": "2026-07-08T09:58:17.587898+00:00",
+        "data": {
+          "alert_id": "alert_f31be8fd3799",
+          "trace_id": "trace_ae90e371d8da",
+          "severity": "critical",
+          "reason": "Critical transformer_temp_c reading",
+          "signal": {
+            "signal_id": "sig_9168c8b27ee6",
+            "trace_id": "trace_ae90e371d8da",
+            "metric": "transformer_temp_c",
+            "value": 99.4,
+            "unit": "celsius",
+            "classification": "critical",
+            "threshold_breached": true,
+            "derived_at": "2026-07-08T09:58:17.194034+00:00",
+            "source_module_id": "signal_generator",
+            "status": "success",
+            "prompt": "Evaluate grid response for transformer_temp_c reading of 99.4celsius at substation-7, classified critical."
+          },
+          "decision_summary": {
+            "gate_status": "ALLOWED",
+            "execution_status": "success",
+            "pipeline_status": "success"
+          },
+          "source_module_id": "alert_generator",
+          "status": "critical",
+          "raised_at": "2026-07-08T09:58:17.581479+00:00"
+        },
+        "metadata": {
+          "size_bytes": 794,
+          "schema_version": "1.0.0"
+        }
+      }
+    ],
+    "replay_timestamp": "2026-07-08T10:00:39.231358+00:00",
+    "source": "bucket"
+  }
+}

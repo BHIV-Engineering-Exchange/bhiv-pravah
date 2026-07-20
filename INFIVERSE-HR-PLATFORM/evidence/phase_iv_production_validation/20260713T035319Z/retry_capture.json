@@ -1,0 +1,5 @@
+{
+  "scenario": "Sampada SETU ingest idempotency via distinct correlation ids",
+  "note": "Partner Artha MAX_RETRIES=3 documented in Artha setu.pipeline.js \u2014 not executed here (partner repo gitignored)",
+  "failover_dr": "UNKNOWN \u2014 route to TMS; not simulated in this workspace"
+}

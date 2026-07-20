@@ -1,0 +1,169 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Game Mode Schema v1.0",
+  "description": "Minimal game mode contract for text-to-game conversion. Supports runner and side_scroller modes.",
+  "type": "object",
+  "required": ["game_mode", "params"],
+  "additionalProperties": false,
+
+  "properties": {
+    "game_mode": {
+      "type": "string",
+      "enum": ["runner", "side_scroller"],
+      "description": "Game mode type. FROZEN set: runner or side_scroller only."
+    },
+
+    "params": {
+      "type": "object",
+      "required": ["movement_speed", "gravity", "difficulty"],
+      "additionalProperties": false,
+      "properties": {
+        "movement_speed": {
+          "type": "number",
+          "minimum": 1.0,
+          "maximum": 15.0,
+          "default": 5.0,
+          "description": "Player movement speed. Range: 1.0 (slow) to 15.0 (very fast). Default: 5.0"
+        },
+
+        "gravity": {
+          "type": "array",
+          "items": { "type": "number" },
+          "minItems": 3,
+          "maxItems": 3,
+          "default": [0, -9.8, 0],
+          "description": "Gravity vector [x, y, z]. Standard: [0, -9.8, 0]"
+        },
+
+        "difficulty": {
+          "type": "string",
+          "enum": ["easy", "medium", "hard"],
+          "default": "medium",
+          "description": "Game difficulty level"
+        },
+
+        "obstacles": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": ["rock"],
+          "description": "List of obstacle types to spawn"
+        },
+
+        "spawn_rules": {
+          "type": "object",
+          "properties": {
+            "interval": {
+              "type": "number",
+              "minimum": 0.5,
+              "maximum": 10.0,
+              "default": 2.0,
+              "description": "Spawn interval in seconds"
+            },
+            "distance": {
+              "type": "number",
+              "minimum": 5.0,
+              "maximum": 50.0,
+              "default": 10.0,
+              "description": "Distance between spawns"
+            }
+          },
+          "default": {
+            "interval": 2.0,
+            "distance": 10.0
+          }
+        },
+
+        "scoring": {
+          "type": "object",
+          "properties": {
+            "points_per_second": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10,
+              "description": "Points earned per second of survival"
+            },
+            "obstacle_bonus": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000,
+              "default": 50,
+              "description": "Bonus points for avoiding obstacles"
+            }
+          },
+          "default": {
+            "points_per_second": 10,
+            "obstacle_bonus": 50
+          }
+        },
+
+        "end_condition": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["distance", "time", "score", "lives"],
+              "default": "lives",
+              "description": "Win/lose condition type"
+            },
+            "value": {
+              "type": "number",
+              "minimum": 1,
+              "default": 3,
+              "description": "Condition value (e.g., 3 lives, 1000 distance, 60 seconds)"
+            }
+          },
+          "default": {
+            "type": "lives",
+            "value": 3
+          }
+        }
+      }
+    }
+  },
+
+  "examples": [
+    {
+      "game_mode": "runner",
+      "params": {
+        "movement_speed": 8.0,
+        "gravity": [0, -9.8, 0],
+        "difficulty": "hard",
+        "obstacles": ["rock", "tree", "pit"],
+        "spawn_rules": {
+          "interval": 1.5,
+          "distance": 8.0
+        },
+        "scoring": {
+          "points_per_second": 15,
+          "obstacle_bonus": 100
+        },
+        "end_condition": {
+          "type": "lives",
+          "value": 3
+        }
+      }
+    },
+    {
+      "game_mode": "side_scroller",
+      "params": {
+        "movement_speed": 5.0,
+        "gravity": [0, -9.8, 0],
+        "difficulty": "medium",
+        "obstacles": ["spike", "enemy"],
+        "spawn_rules": {
+          "interval": 2.0,
+          "distance": 10.0
+        },
+        "scoring": {
+          "points_per_second": 10,
+          "obstacle_bonus": 50
+        },
+        "end_condition": {
+          "type": "distance",
+          "value": 1000
+        }
+      }
+    }
+  ]
+}

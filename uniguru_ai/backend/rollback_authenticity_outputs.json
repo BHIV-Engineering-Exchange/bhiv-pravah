@@ -1,0 +1,9 @@
+{
+  "rb_2a4e4d6a6a1c8f1e9f8b4d1c9e8a9d1b": {
+    "rollback_id": "rb_2a4e4d6a6a1c8f1e9f8b4d1c9e8a9d1b",
+    "target_checkpoint_id": "8b4d1c9e8a9d1b0f2a4e4d6a6a1c8f1e",
+    "restored_state_hash": "c4d21e8a9d1b0f2a4e4d6a6a1c8f1e9f",
+    "authenticity_signature": "roll_sig_x9y8z7w6v5u4t3s2r1q0",
+    "timestamp": 1715663742.333
+  }
+}

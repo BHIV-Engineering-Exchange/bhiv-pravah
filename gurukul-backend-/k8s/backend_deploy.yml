@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gurukul-backend
+  namespace: gurukul-staging
+spec:
+  replicas: 1
+  revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+
+  selector:
+    matchLabels:
+      app: gurukul-backend
+
+  template:
+    metadata:
+      labels:
+        app: gurukul-backend
+    spec:
+      initContainers:
+      - name: wait-for-postgres
+        image: alpine
+        command: ['sh', '-c', 'until nc -z postgres 5432; do echo waiting for postgres; sleep 2; done']
+      containers:
+      - name: backend
+        image: bhiv/gurukul-backend:new
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+
+        resources:
+          requests:
+            cpu: "100m"      # Reduced from 250m — saves 450m total (×3 replicas) for scheduling
+            memory: "512Mi"
+          limits:
+            cpu: "500m"      # Limit unchanged — pods can still burst to full 500m
+            memory: "1Gi"
+
+        startupProbe:
+          httpGet:
+            path: /system/health
+            port: 3000
+          failureThreshold: 30
+          periodSeconds: 5
+          timeoutSeconds: 15
+
+        readinessProbe:
+          httpGet:
+            path: /system/health
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 15
+          failureThreshold: 5
+
+        livenessProbe:
+          httpGet:
+            path: /system/health
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 15
+          failureThreshold: 5
+
+        envFrom:
+          - configMapRef:
+              name: backend-config
+          - secretRef:
+              name: backend-secret

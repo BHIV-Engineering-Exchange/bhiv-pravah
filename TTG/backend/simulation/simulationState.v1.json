@@ -1,0 +1,188 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "simulationState.v1",
+  "title": "Simulation Output State Contract v1",
+  "description": "Canonical output contract for the simulation node. Every simulation run produces exactly this shape. No domain-specific fields. Any system (NICAI, AIAIC, Samruddhi, Atharva, Education) reads what it needs from this structure.",
+  "type": "object",
+  "additionalProperties": false,
+
+  "required": [
+    "trace_id",
+    "execution_id",
+    "status",
+    "ticks_run",
+    "entities",
+    "transitions",
+    "event_log",
+    "state_summary",
+    "zones",
+    "metrics"
+  ],
+
+  "properties": {
+
+    "trace_id": {
+      "type": "string",
+      "description": "Matches the trace_id from the input contract. Used for replay and result retrieval."
+    },
+
+    "execution_id": {
+      "type": "string",
+      "description": "Matches the execution_id from the input contract."
+    },
+
+    "status": {
+      "type": "string",
+      "enum": ["completed", "failed"],
+      "description": "Final status of the simulation run."
+    },
+
+    "error": {
+      "type": ["string", "null"],
+      "description": "Error message if status=failed. Null on success."
+    },
+
+    "ticks_run": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of ticks that were executed."
+    },
+
+    "entities": {
+      "type": "object",
+      "description": "Final state of every entity after all ticks. Keyed by entity_id.",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "type", "state", "position", "velocity"],
+        "properties": {
+          "id":       { "type": "string" },
+          "type":     { "type": "string", "enum": ["vessel", "obstacle", "zone", "marker", "agent"] },
+          "state":    { "type": "string", "enum": ["active", "idle", "stopped", "destroyed"] },
+          "position": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 },
+          "rotation": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 },
+          "velocity": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 },
+          "behaviors":{ "type": "array", "items": { "type": "string" } },
+          "meta":     { "type": "object", "description": "Domain metadata — passed through unchanged from input." }
+        }
+      }
+    },
+
+    "transitions": {
+      "type": "array",
+      "description": "Full ordered log of every state change that occurred during the run.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["entity_id", "field", "from", "to", "tick", "reason"],
+        "properties": {
+          "entity_id": { "type": "string" },
+          "field":     { "type": "string", "description": "Which field changed: state, position, flag, etc." },
+          "from":      { "description": "Value before the change." },
+          "to":        { "description": "Value after the change." },
+          "tick":      { "type": "integer" },
+          "reason":    { "type": "string", "description": "What caused the transition: behavior, rule:rule_id, teleport, etc." }
+        }
+      }
+    },
+
+    "event_log": {
+      "type": "array",
+      "description": "Full ordered log of every event emitted during the run.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source", "type", "tick"],
+        "properties": {
+          "source":    { "type": "string", "enum": ["behavior", "rule", "collision", "zone", "engine", "transition"] },
+          "type":      { "type": "string" },
+          "entity_id": { "type": ["string", "null"] },
+          "rule_id":   { "type": "string" },
+          "payload":   { "type": "object" },
+          "tick":      { "type": "integer" }
+        }
+      }
+    },
+
+    "state_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Aggregate summary of the simulation run. No domain-specific counts.",
+      "required": ["entity_count", "active_count", "stopped_count", "flagged_count", "blocked_count", "collision_count", "zone_entry_count", "transition_count", "event_count", "duration_ms"],
+      "properties": {
+        "entity_count":     { "type": "integer" },
+        "active_count":     { "type": "integer" },
+        "idle_count":       { "type": "integer" },
+        "stopped_count":    { "type": "integer" },
+        "destroyed_count":  { "type": "integer" },
+        "flagged_count":    { "type": "integer", "description": "Entities flagged by rules." },
+        "blocked_count":    { "type": "integer", "description": "Entities blocked by rules." },
+        "flagged_entities": { "type": "object",  "description": "entity_id → { reason, rule_id, tick }" },
+        "blocked_entities": { "type": "object",  "description": "entity_id → { reason, rule_id, tick }" },
+        "collision_count":  { "type": "integer" },
+        "zone_entry_count": { "type": "integer" },
+        "transition_count": { "type": "integer" },
+        "event_count":      { "type": "integer" },
+        "duration_ms":      { "type": ["integer", "null"] }
+      }
+    },
+
+    "zones": {
+      "type": "object",
+      "description": "Final zone state. Keyed by zone entity_id.",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["position", "radius", "members"],
+        "properties": {
+          "position": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 },
+          "radius":   { "type": "number" },
+          "members":  { "type": "array", "items": { "type": "string" }, "description": "entity_ids currently inside this zone." }
+        }
+      }
+    },
+
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Performance and execution metrics. No domain logic.",
+      "required": ["started_at", "ended_at", "ticks_run", "events_per_tick", "transitions_per_tick"],
+      "properties": {
+        "started_at":          { "type": ["integer", "null"], "description": "Unix ms timestamp." },
+        "ended_at":            { "type": ["integer", "null"], "description": "Unix ms timestamp." },
+        "ticks_run":           { "type": "integer" },
+        "events_per_tick":     { "type": "number" },
+        "transitions_per_tick":{ "type": "number" },
+        "tick_snapshots": {
+          "type": "array",
+          "description": "Per-tick summary. Used for replay validation and timeline consumers.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["tick", "entity_count", "events_this_tick", "collisions", "zone_events"],
+            "properties": {
+              "tick":             { "type": "integer" },
+              "entity_count":     { "type": "integer" },
+              "events_this_tick": { "type": "integer" },
+              "collisions":       { "type": "integer" },
+              "zone_events":      { "type": "integer" },
+              "flags":            { "type": "integer" },
+              "blocked":          { "type": "integer" },
+              "entity_states": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "state":    { "type": "string" },
+                    "position": { "type": "array", "items": { "type": "number" } },
+                    "velocity": { "type": "array", "items": { "type": "number" } }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

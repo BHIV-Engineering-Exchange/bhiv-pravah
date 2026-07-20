@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Activate All Users</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        button { padding: 10px 20px; font-size: 16px; margin: 10px; }
+        .success { color: green; }
+        .error { color: red; }
+        .info { color: blue; }
+        pre { background: #f5f5f5; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>User Management Tool</h1>
+    <p>This tool will activate all users by setting stillExist: 1</p>
+    
+    <button onclick="activateAllUsers()">Activate All Users</button>
+    <button onclick="checkSpecificUser()">Check User: 9321vijaysharma@gmail.com</button>
+    
+    <div id="result"></div>
+
+    <script>
+        async function activateAllUsers() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p class="info">Activating all users...</p>';
+            
+            try {
+                const response = await fetch('http://localhost:5000/api/users/update-all-stillexist', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `
+                        <p class="success">✅ Success! All users activated.</p>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <p class="error">❌ Error: ${result.error || 'Unknown error'}</p>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <p class="error">❌ Network Error: ${error.message}</p>
+                    <p>Make sure your server is running on http://localhost:5000</p>
+                `;
+            }
+        }
+        
+        async function checkSpecificUser() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p class="info">Checking specific user...</p>';
+            
+            try {
+                // First, let's try to get all users to see if our target user exists
+                const response = await fetch('http://localhost:5000/api/users', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (response.status === 401) {
+                    resultDiv.innerHTML = `
+                        <p class="error">❌ 401 Unauthorized - Need to login first</p>
+                        <p>This endpoint requires authentication. The user exists but we can't access it without login.</p>
+                    `;
+                    return;
+                }
+                
+                const users = await response.json();
+                const targetUser = users.find(user => user.email === '9321vijaysharma@gmail.com');
+                
+                if (targetUser) {
+                    resultDiv.innerHTML = `
+                        <p class="success">✅ User found!</p>
+                        <pre>${JSON.stringify(targetUser, null, 2)}</pre>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <p class="error">❌ User not found in active users list</p>
+                        <p>Total users found: ${users.length}</p>
+                        <p>Try activating all users first, then check again.</p>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <p class="error">❌ Network Error: ${error.message}</p>
+                    <p>Make sure your server is running on http://localhost:5000</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

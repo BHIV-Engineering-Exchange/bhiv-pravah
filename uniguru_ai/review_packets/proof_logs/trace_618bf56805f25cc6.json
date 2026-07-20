@@ -1,0 +1,1471 @@
+{
+  "answer": "The significance of temple construction and architecture in ancient scriptures is highlighted in texts such as the Agni Purana and Kamika Agama , which provide guidelines for building temples. According to these scriptures, constructing a temple can bring spiritual benefits and destroy sins. The architecture of a temple, including its base, pedestal, and door orientation, is also considered important. The influence of these scriptures on society can be seen in the careful planning and construction of temples, with attention to detail and adherence to traditional guidelines.",
+  "confidence": 0.3293,
+  "confidence_breakdown": {
+    "accepted_count": 8,
+    "accepted_derivations": [
+      {
+        "content_overlap": 0.4,
+        "derived_confidence": 0.3293,
+        "domain_consistency": 1.0,
+        "entity_overlap": 0.0,
+        "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+        "retrieval_confidence": 0.5,
+        "semantic_score": 0.4142,
+        "tag_match_score": 0.0
+      },
+      {
+        "content_overlap": 0.2,
+        "derived_confidence": 0.2672,
+        "domain_consistency": 1.0,
+        "entity_overlap": 0.0,
+        "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+        "retrieval_confidence": 0.3911,
+        "semantic_score": 0.4313,
+        "tag_match_score": 0.0
+      },
+      {
+        "content_overlap": 0.2,
+        "derived_confidence": 0.2631,
+        "domain_consistency": 1.0,
+        "entity_overlap": 0.0,
+        "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+        "retrieval_confidence": 0.375,
+        "semantic_score": 0.4313,
+        "tag_match_score": 0.0
+      },
+      {
+        "content_overlap": 0.2,
+        "derived_confidence": 0.2562,
+        "domain_consistency": 1.0,
+        "entity_overlap": 0.0,
+        "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+        "retrieval_confidence": 0.375,
+        "semantic_score": 0.4083,
+        "tag_match_score": 0.0
+      },
+      {
+        "content_overlap": 0.2,
+        "derived_confidence": 0.239,
+        "domain_consistency": 1.0,
+        "entity_overlap": 0.0,
+        "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+        "retrieval_confidence": 0.3311,
+        "semantic_score": 0.3875,
+        "tag_match_score": 0.0
+      },
+      {
+        "content_overlap": 0.2,
+        "derived_confidence": 0.2365,
+        "domain_consistency": 1.0,
+        "entity_overlap": 0.0,
+        "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+        "retrieval_confidence": 0.345,
+        "semantic_score": 0.3674,
+        "tag_match_score": 0.0
+      },
+      {
+        "content_overlap": 0.0,
+        "derived_confidence": 0.2052,
+        "domain_consistency": 1.0,
+        "entity_overlap": 0.0,
+        "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+        "retrieval_confidence": 0.375,
+        "semantic_score": 0.3714,
+        "tag_match_score": 0.0
+      },
+      {
+        "content_overlap": 0.0,
+        "derived_confidence": 0.2026,
+        "domain_consistency": 1.0,
+        "entity_overlap": 0.0,
+        "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+        "retrieval_confidence": 0.3454,
+        "semantic_score": 0.3875,
+        "tag_match_score": 0.0
+      }
+    ],
+    "overall": 0.3293,
+    "rejected_count": 10
+  },
+  "detected_domain": null,
+  "domain_resolution": {
+    "confidence": 0.0,
+    "domain": "general",
+    "entities": [],
+    "method": "no_canonical_entity"
+  },
+  "enforcement_stats": {
+    "rejected_entries": 19,
+    "total_entries": 37,
+    "valid_entries": 18
+  },
+  "fallback_to_llm": false,
+  "generated_at": "2026-06-25T05:10:44.348792Z",
+  "knowledge_ids_used": [
+    "KOSHA_bffb6027024e",
+    "KOSHA_0ee0e39422ee",
+    "KOSHA_7c7d25934225",
+    "KOSHA_7eaed110c87b",
+    "KOSHA_af7f56640546",
+    "KOSHA_da8756d0729f",
+    "KOSHA_1164aa688883",
+    "KOSHA_19f643951084"
+  ],
+  "matched_signals": [
+    {
+      "acceptance_reasoning": {
+        "confidence_derivation": {
+          "content_overlap": 0.4,
+          "derived_confidence": 0.3293,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.5,
+          "semantic_score": 0.4142,
+          "tag_match_score": 0.0
+        },
+        "overlap_percent": {
+          "concept": 37.5,
+          "content": 40.0,
+          "entity": 0.0
+        },
+        "signal_id": "signal_4c479eaa05fd",
+        "what_matched": {
+          "candidate_entities": [
+            {
+              "canonical": "Agni",
+              "concepts": [
+                "fire",
+                "yajna"
+              ],
+              "domain": "vedas",
+              "entity_type": "deity",
+              "matched_alias": "agni"
+            },
+            {
+              "canonical": "Agni Purana",
+              "concepts": [
+                "purana",
+                "ritual",
+                "architecture"
+              ],
+              "domain": "puranas",
+              "entity_type": "text",
+              "matched_alias": "agni purana"
+            },
+            {
+              "canonical": "Temple",
+              "concepts": [
+                "ritual",
+                "architecture"
+              ],
+              "domain": "governance",
+              "entity_type": "structure",
+              "matched_alias": "temple"
+            }
+          ],
+          "query_entities": [],
+          "tags": []
+        },
+        "why_accepted": "Accepted after deterministic entity, concept, domain, contextual, tag, content, and confidence checks."
+      },
+      "confidence": 0.3293,
+      "content": "The significance of temple construction and architecture in ancient scriptures is highlighted in texts such as the Agni Purana [1] and Kamika Agama [2], which provide guidelines for building temples. According to these scriptures, constructing a temple can bring spiritual benefits and destroy sins. The architecture of a temple, including its base, pedestal, and door orientation, is also considered important. The influence of these scriptures on society can be seen in the careful planning and construction of temples, with attention to detail and adherence to traditional guidelines.",
+      "domain": "infrastructure",
+      "knowledge_id": "KOSHA_bffb6027024e",
+      "signal_id": "signal_4c479eaa05fd",
+      "source": "Agni Purana Unabridged English Motilal.pdf",
+      "tags": [
+        "ancient",
+        "architecture",
+        "construction"
+      ]
+    },
+    {
+      "acceptance_reasoning": {
+        "confidence_derivation": {
+          "content_overlap": 0.2,
+          "derived_confidence": 0.2672,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.3911,
+          "semantic_score": 0.4313,
+          "tag_match_score": 0.0
+        },
+        "overlap_percent": {
+          "concept": 37.5,
+          "content": 20.0,
+          "entity": 0.0
+        },
+        "signal_id": "signal_7b34ed7826f5",
+        "what_matched": {
+          "candidate_entities": [
+            {
+              "canonical": "Atman",
+              "concepts": [
+                "Brahman",
+                "liberation"
+              ],
+              "domain": "upanishads",
+              "entity_type": "concept",
+              "matched_alias": "self"
+            },
+            {
+              "canonical": "Brahma",
+              "concepts": [
+                "creation",
+                "cosmology"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "brahma"
+            },
+            {
+              "canonical": "Brahman",
+              "concepts": [
+                "ultimate reality",
+                "Atman"
+              ],
+              "domain": "upanishads",
+              "entity_type": "concept",
+              "matched_alias": "brahman"
+            },
+            {
+              "canonical": "Upanishads",
+              "concepts": [
+                "Brahman",
+                "Atman",
+                "liberation"
+              ],
+              "domain": "upanishads",
+              "entity_type": "text_group",
+              "matched_alias": "upanishads"
+            },
+            {
+              "canonical": "Vedas",
+              "concepts": [
+                "samhita",
+                "ritual",
+                "knowledge"
+              ],
+              "domain": "vedas",
+              "entity_type": "text_group",
+              "matched_alias": "vedas"
+            },
+            {
+              "canonical": "Yoga",
+              "concepts": [
+                "discipline",
+                "meditation"
+              ],
+              "domain": "dharma_systems",
+              "entity_type": "concept",
+              "matched_alias": "yoga"
+            }
+          ],
+          "query_entities": [],
+          "tags": []
+        },
+        "why_accepted": "Accepted after deterministic entity, concept, domain, contextual, tag, content, and confidence checks."
+      },
+      "confidence": 0.2672,
+      "content": "The Upanishads expound the secret meaning of the Vedas and treat of Brahma, according to [2]. They are considered the crowning part of the Veda, providing knowledge about the ultimate reality and the self. [1] also mentions the importance of being properly instructed by knowers of the Brahman, implying that the Upanishads contain teachings on spiritual growth and self-realization.",
+      "domain": "upanishads",
+      "knowledge_id": "KOSHA_0ee0e39422ee",
+      "signal_id": "signal_7b34ed7826f5",
+      "source": "Yoga_Upanishad_[Sanskrit_English]_OCR.pdf",
+      "tags": [
+        "taught",
+        "upanishads"
+      ]
+    },
+    {
+      "acceptance_reasoning": {
+        "confidence_derivation": {
+          "content_overlap": 0.2,
+          "derived_confidence": 0.2631,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.375,
+          "semantic_score": 0.4313,
+          "tag_match_score": 0.0
+        },
+        "overlap_percent": {
+          "concept": 37.5,
+          "content": 20.0,
+          "entity": 0.0
+        },
+        "signal_id": "signal_ed128650c1b4",
+        "what_matched": {
+          "candidate_entities": [
+            {
+              "canonical": "Brahma",
+              "concepts": [
+                "creation",
+                "cosmology"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "brahma"
+            },
+            {
+              "canonical": "Brahma Purana",
+              "concepts": [
+                "purana",
+                "creation"
+              ],
+              "domain": "puranas",
+              "entity_type": "text",
+              "matched_alias": "brahma purana"
+            },
+            {
+              "canonical": "Ganga",
+              "concepts": [
+                "sacred river",
+                "water"
+              ],
+              "domain": "ecology",
+              "entity_type": "river",
+              "matched_alias": "ganga"
+            },
+            {
+              "canonical": "Mahabharata",
+              "concepts": [
+                "dharma",
+                "Kurukshetra",
+                "Pandavas"
+              ],
+              "domain": "itihasa",
+              "entity_type": "text",
+              "matched_alias": "mahabharata"
+            },
+            {
+              "canonical": "Sarasvati",
+              "concepts": [
+                "river",
+                "knowledge"
+              ],
+              "domain": "ecology",
+              "entity_type": "river",
+              "matched_alias": "saraswati"
+            },
+            {
+              "canonical": "Water Conservation",
+              "concepts": [
+                "rivers",
+                "lakes",
+                "sustainability"
+              ],
+              "domain": "ecology",
+              "entity_type": "concept",
+              "matched_alias": "water conservation"
+            }
+          ],
+          "query_entities": [],
+          "tags": []
+        },
+        "why_accepted": "Accepted after deterministic entity, concept, domain, contextual, tag, content, and confidence checks."
+      },
+      "confidence": 0.2631,
+      "content": "In Puranic literature, rivers, lakes, and water conservation hold significant importance as they are considered holy and are believed to have the power to fulfill desires and grant salvation. According to the Brahma Purana [1], taking a bath in these holy waters, performing Japa, Homa, and Pitrtarpana can fulfill all cherished desires of men and grant enjoyment and salvation. The text mentions twenty-five divine rivers, including the Ganga, which are considered sacred and are worshipped by devotees. Similarly, in the Mahabharata [2], various sacred rivers such as the Bhagirathi, Kalindi, and Saraswati are mentioned, which are personified and worship the Lord Varuna. These references highlight the importance of preserving and respecting these water bodies.",
+      "domain": "water / rivers",
+      "knowledge_id": "KOSHA_7c7d25934225",
+      "signal_id": "signal_ed128650c1b4",
+      "source": "Brahma Purana - Parts I-IV_ocred.pdf",
+      "tags": [
+        "conservation",
+        "importance",
+        "lakes"
+      ]
+    },
+    {
+      "acceptance_reasoning": {
+        "confidence_derivation": {
+          "content_overlap": 0.2,
+          "derived_confidence": 0.2562,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.375,
+          "semantic_score": 0.4083,
+          "tag_match_score": 0.0
+        },
+        "overlap_percent": {
+          "concept": 37.5,
+          "content": 20.0,
+          "entity": 0.0
+        },
+        "signal_id": "signal_3bf02d1647b2",
+        "what_matched": {
+          "candidate_entities": [
+            {
+              "canonical": "Dharma",
+              "concepts": [
+                "ethics",
+                "order",
+                "responsibility"
+              ],
+              "domain": "dharma_systems",
+              "entity_type": "concept",
+              "matched_alias": "dharma"
+            },
+            {
+              "canonical": "Narada Purana",
+              "concepts": [
+                "purana",
+                "devotion",
+                "pilgrimage"
+              ],
+              "domain": "puranas",
+              "entity_type": "text",
+              "matched_alias": "narada purana"
+            },
+            {
+              "canonical": "Narayana",
+              "concepts": [
+                "preservation",
+                "cosmic person"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "narayana"
+            },
+            {
+              "canonical": "Vayu Purana",
+              "concepts": [
+                "purana",
+                "cosmology"
+              ],
+              "domain": "puranas",
+              "entity_type": "text",
+              "matched_alias": "vayu purana"
+            },
+            {
+              "canonical": "Yuga",
+              "concepts": [
+                "time",
+                "cosmology"
+              ],
+              "domain": "puranas",
+              "entity_type": "concept",
+              "matched_alias": "yugas"
+            }
+          ],
+          "query_entities": [],
+          "tags": []
+        },
+        "why_accepted": "Accepted after deterministic entity, concept, domain, contextual, tag, content, and confidence checks."
+      },
+      "confidence": 0.2562,
+      "content": "According to the Vayu Purana [1] and the Narada-Purana [2], the Puranas describe four yugas (Krta, Treta, Dvapara, and Kali) with specific durations and characteristics. Each yuga has a distinct impact on human life and society, with Krta being an age of equality and piety, and subsequent yugas experiencing a decline in dharma and an increase in adharma. The yugas are also associated with changes in the color of Lord Narayana and the stability of dharma, with each yuga having a shorter span of life and increased distress.",
+      "domain": "general",
+      "knowledge_id": "KOSHA_7eaed110c87b",
+      "signal_id": "signal_3bf02d1647b2",
+      "source": "Vayu Purana Part 1_ocred.pdf",
+      "tags": [
+        "cycles",
+        "describe",
+        "how"
+      ]
+    },
+    {
+      "acceptance_reasoning": {
+        "confidence_derivation": {
+          "content_overlap": 0.2,
+          "derived_confidence": 0.239,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.3311,
+          "semantic_score": 0.3875,
+          "tag_match_score": 0.0
+        },
+        "overlap_percent": {
+          "concept": 25.0,
+          "content": 20.0,
+          "entity": 0.0
+        },
+        "signal_id": "signal_91fb3667904d",
+        "what_matched": {
+          "candidate_entities": [
+            {
+              "canonical": "Devi",
+              "concepts": [
+                "power",
+                "protection"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "shakti"
+            }
+          ],
+          "query_entities": [],
+          "tags": []
+        },
+        "why_accepted": "Accepted after deterministic entity, concept, domain, contextual, tag, content, and confidence checks."
+      },
+      "confidence": 0.239,
+      "content": "According to the provided context, disease is defined as a state of want of wholeness or imperfection, which is a hindrance to the realization of perfect infinite Being [1]. This is further supported by the Charaka Samhita, which states that diseases originate from various causes such as heinous crimes, minor sins, and unpunished sins [2].",
+      "domain": "general",
+      "knowledge_id": "KOSHA_af7f56640546",
+      "signal_id": "signal_91fb3667904d",
+      "source": "Shakti and Shakta_ocr.pdf",
+      "tags": [
+        "charaka",
+        "defined",
+        "disease"
+      ]
+    },
+    {
+      "acceptance_reasoning": {
+        "confidence_derivation": {
+          "content_overlap": 0.2,
+          "derived_confidence": 0.2365,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.345,
+          "semantic_score": 0.3674,
+          "tag_match_score": 0.0
+        },
+        "overlap_percent": {
+          "concept": 25.0,
+          "content": 20.0,
+          "entity": 0.0
+        },
+        "signal_id": "signal_ce8454ca17f9",
+        "what_matched": {
+          "candidate_entities": [
+            {
+              "canonical": "Atman",
+              "concepts": [
+                "Brahman",
+                "liberation"
+              ],
+              "domain": "upanishads",
+              "entity_type": "concept",
+              "matched_alias": "self"
+            },
+            {
+              "canonical": "Brahman",
+              "concepts": [
+                "ultimate reality",
+                "Atman"
+              ],
+              "domain": "upanishads",
+              "entity_type": "concept",
+              "matched_alias": "brahman"
+            },
+            {
+              "canonical": "Upanishads",
+              "concepts": [
+                "Brahman",
+                "Atman",
+                "liberation"
+              ],
+              "domain": "upanishads",
+              "entity_type": "text_group",
+              "matched_alias": "upanishads"
+            },
+            {
+              "canonical": "Vedas",
+              "concepts": [
+                "samhita",
+                "ritual",
+                "knowledge"
+              ],
+              "domain": "vedas",
+              "entity_type": "text_group",
+              "matched_alias": "vedas"
+            }
+          ],
+          "query_entities": [],
+          "tags": []
+        },
+        "why_accepted": "Accepted after deterministic entity, concept, domain, contextual, tag, content, and confidence checks."
+      },
+      "confidence": 0.2365,
+      "content": "The meaning of \"\u092c\u094d\u0930\u0939\u094d\u092e (Brahman)\" is the Supreme or Ultimate Reality, which is described in the Vedas as the absolute and imperishable essence of the universe [1]. It can refer to the visible universe inclusive of individual souls or to the Ultimate Reality behind it, experienced in Samadhi as the Self of ourselves [1]. According to the Advaitic explanation, Brahman is above the world of cause and effect [1].",
+      "domain": "upanishads",
+      "knowledge_id": "KOSHA_da8756d0729f",
+      "signal_id": "signal_ce8454ca17f9",
+      "source": "Svetasvatara Upanishad - sanskrit and English.pdf",
+      "tags": [
+        "brahman",
+        "meaning"
+      ]
+    },
+    {
+      "acceptance_reasoning": {
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.2052,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.375,
+          "semantic_score": 0.3714,
+          "tag_match_score": 0.0
+        },
+        "overlap_percent": {
+          "concept": 25.0,
+          "content": 0.0,
+          "entity": 0.0
+        },
+        "signal_id": "signal_f5042a70add7",
+        "what_matched": {
+          "candidate_entities": [
+            {
+              "canonical": "Bhagavad Gita",
+              "concepts": [
+                "dharma",
+                "karma yoga",
+                "jnana yoga",
+                "bhakti yoga"
+              ],
+              "domain": "gitas",
+              "entity_type": "text",
+              "matched_alias": "bhagavad gita"
+            },
+            {
+              "canonical": "Bhairava",
+              "concepts": [
+                "Shiva",
+                "tantra"
+              ],
+              "domain": "tantra",
+              "entity_type": "deity",
+              "matched_alias": "bhairava"
+            },
+            {
+              "canonical": "Decision Making",
+              "concepts": [
+                "dharma",
+                "judgement"
+              ],
+              "domain": "governance",
+              "entity_type": "concept",
+              "matched_alias": "decision making"
+            },
+            {
+              "canonical": "Karma",
+              "concepts": [
+                "cause",
+                "effect",
+                "duty"
+              ],
+              "domain": "dharma_systems",
+              "entity_type": "concept",
+              "matched_alias": "karma"
+            },
+            {
+              "canonical": "Tripura Rahasya",
+              "concepts": [
+                "Devi",
+                "self knowledge"
+              ],
+              "domain": "tantra",
+              "entity_type": "text",
+              "matched_alias": "tripura rahasya"
+            },
+            {
+              "canonical": "Vigyan Bhairava Tantra",
+              "concepts": [
+                "meditation",
+                "Shiva"
+              ],
+              "domain": "tantra",
+              "entity_type": "text",
+              "matched_alias": "vigyan bhairava tantra"
+            }
+          ],
+          "query_entities": [],
+          "tags": []
+        },
+        "why_accepted": "Accepted after deterministic entity, concept, domain, contextual, tag, content, and confidence checks."
+      },
+      "confidence": 0.2052,
+      "content": "The Bhagavad Gita guides decision-making in morally complex situations by advising individuals to consider the concept of oneness and the Law of Karma [1]. It suggests that when we realize all of life is one, we stop hurting ourselves by hurting others, and what we do to others will one day be done to us. This principle, also known as \"Do unto others as you would have others do unto you,\" promotes treating others with love, compassion, and kindness [1]. Additionally, the Tripura Rahasya considers the Bhagavad Gita as a valuable resource for emancipation and recommends reading it every day with love and care [2].",
+      "domain": "general",
+      "knowledge_id": "KOSHA_1164aa688883",
+      "signal_id": "signal_f5042a70add7",
+      "source": "vigyan-bhairava-tantra_ocr.pdf",
+      "tags": [
+        "bhagavad",
+        "complex",
+        "decision"
+      ]
+    },
+    {
+      "acceptance_reasoning": {
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.2026,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.3454,
+          "semantic_score": 0.3875,
+          "tag_match_score": 0.0
+        },
+        "overlap_percent": {
+          "concept": 25.0,
+          "content": 0.0,
+          "entity": 0.0
+        },
+        "signal_id": "signal_20284861c1d3",
+        "what_matched": {
+          "candidate_entities": [
+            {
+              "canonical": "Brahmanda Purana",
+              "concepts": [
+                "cosmology",
+                "purana"
+              ],
+              "domain": "puranas",
+              "entity_type": "text",
+              "matched_alias": "brahmanda purana"
+            },
+            {
+              "canonical": "Ramayana",
+              "concepts": [
+                "Rama",
+                "dharma",
+                "forest exile"
+              ],
+              "domain": "itihasa",
+              "entity_type": "text",
+              "matched_alias": "valmiki ramayana"
+            }
+          ],
+          "query_entities": [],
+          "tags": []
+        },
+        "why_accepted": "Accepted after deterministic entity, concept, domain, contextual, tag, content, and confidence checks."
+      },
+      "confidence": 0.2026,
+      "content": "The texts that describe stories of gods and creation are the Valmiki-Ramayana and the Brahmanda Purana Part 4. The Valmiki-Ramayana mentions various gods and their interactions, while the Brahmanda Purana Part 4 discusses the creation of the cosmic egg and the activities of various gods and beings.",
+      "domain": "itihasa",
+      "knowledge_id": "KOSHA_19f643951084",
+      "signal_id": "signal_20284861c1d3",
+      "source": "Valmiki-Ramayana-Eng-Translation-Griffith_ocred.pdf",
+      "tags": [
+        "creation",
+        "describe",
+        "gods"
+      ]
+    }
+  ],
+  "query": "What are the health benefits of fasting according to Ayurveda?",
+  "reasoning": "Accepted signal because tags [], content overlap 0.40, entity overlap 0.00, domain consistency 1.00, and derived confidence 0.329 met deterministic thresholds.",
+  "reasoning_path": [
+    "query_received",
+    "kosha_schema_enforced",
+    "canonical_entities_extracted",
+    "ontology_aware_retrieval",
+    "signal_validation",
+    "structured_signal_emission",
+    "deterministic_synthesis"
+  ],
+  "rejected_signals": [
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.3346,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_35ad04ea07cc",
+        "source": "The Narada-Purana, Part 1_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "low_contextual_overlap",
+      "signal_id": "signal_35ad04ea07cc",
+      "source": "The Narada-Purana, Part 1_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Bhagavata Purana",
+            "concepts": [
+              "Krishna",
+              "devotion",
+              "purana"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "srimad bhagavata"
+          },
+          {
+            "canonical": "Narada Purana",
+            "concepts": [
+              "purana",
+              "devotion",
+              "pilgrimage"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "narada purana"
+          },
+          {
+            "canonical": "Narayana",
+            "concepts": [
+              "preservation",
+              "cosmic person"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "vishnu"
+          },
+          {
+            "canonical": "Padma Purana",
+            "concepts": [
+              "purana",
+              "Vishnu",
+              "creation"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "padma purana"
+          }
+        ],
+        "concept_overlap": 0.125,
+        "confidence": 0.2667,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.1548,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.2667,
+          "semantic_score": 0.2938,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.5,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 0.0,
+          "domain": "general",
+          "entities": [],
+          "method": "no_canonical_entity"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.2938,
+        "signal_id": "signal_0a775da12718",
+        "source": "The Narada-Purana, Part 4_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "semantic_only_without_entity_or_concept",
+      "signal_id": "signal_0a775da12718",
+      "source": "The Narada-Purana, Part 4_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Bhagavad Gita",
+            "concepts": [
+              "dharma",
+              "karma yoga",
+              "jnana yoga",
+              "bhakti yoga"
+            ],
+            "domain": "gitas",
+            "entity_type": "text",
+            "matched_alias": "gita"
+          },
+          {
+            "canonical": "Bhagavata Purana",
+            "concepts": [
+              "Krishna",
+              "devotion",
+              "purana"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "srimad bhagavata"
+          },
+          {
+            "canonical": "City",
+            "concepts": [
+              "planning",
+              "society"
+            ],
+            "domain": "governance",
+            "entity_type": "structure",
+            "matched_alias": "city"
+          },
+          {
+            "canonical": "Smriti",
+            "concepts": [
+              "law",
+              "conduct"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "text_group",
+            "matched_alias": "smritis"
+          }
+        ],
+        "concept_overlap": 0.125,
+        "confidence": 0.2595,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.153,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.2595,
+          "semantic_score": 0.2938,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.5,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 0.0,
+          "domain": "general",
+          "entities": [],
+          "method": "no_canonical_entity"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.2938,
+        "signal_id": "signal_4498fc843d8e",
+        "source": "Srimad Bhagavata Maha Purana With Sanskrit Text And English Trans. By C.L. Goswami, Part 1 (Book 1 To 8) - Gita Press, Gorakhpur_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "semantic_only_without_entity_or_concept",
+      "signal_id": "signal_4498fc843d8e",
+      "source": "Srimad Bhagavata Maha Purana With Sanskrit Text And English Trans. By C.L. Goswami, Part 1 (Book 1 To 8) - Gita Press, Gorakhpur_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Narada Purana",
+            "concepts": [
+              "purana",
+              "devotion",
+              "pilgrimage"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "narada purana"
+          }
+        ],
+        "concept_overlap": 0.125,
+        "confidence": 0.2517,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.1511,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.2517,
+          "semantic_score": 0.2938,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.5,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 0.0,
+          "domain": "general",
+          "entities": [],
+          "method": "no_canonical_entity"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.2938,
+        "signal_id": "signal_16517055e77e",
+        "source": "The Narada-Purana, Part 3_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "semantic_only_without_entity_or_concept",
+      "signal_id": "signal_16517055e77e",
+      "source": "The Narada-Purana, Part 3_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Manusmriti",
+            "concepts": [
+              "law",
+              "social duty"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "text",
+            "matched_alias": "manusmriti"
+          },
+          {
+            "canonical": "Smriti",
+            "concepts": [
+              "law",
+              "conduct"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "text_group",
+            "matched_alias": "smriti"
+          },
+          {
+            "canonical": "Yajnavalkya Smriti",
+            "concepts": [
+              "law",
+              "governance"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "text",
+            "matched_alias": "yajnavalkya"
+          }
+        ],
+        "concept_overlap": 0.125,
+        "confidence": 0.25,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.1506,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.25,
+          "semantic_score": 0.2938,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.5,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 0.0,
+          "domain": "general",
+          "entities": [],
+          "method": "no_canonical_entity"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.2938,
+        "signal_id": "signal_7495105dada5",
+        "source": "Brihaspati Smriti (Reconstructed) - Rangaswami Aiyangar 1941 (GOS)_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "semantic_only_without_entity_or_concept",
+      "signal_id": "signal_7495105dada5",
+      "source": "Brihaspati Smriti (Reconstructed) - Rangaswami Aiyangar 1941 (GOS)_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Atman",
+            "concepts": [
+              "Brahman",
+              "liberation"
+            ],
+            "domain": "upanishads",
+            "entity_type": "concept",
+            "matched_alias": "self"
+          },
+          {
+            "canonical": "Brahman",
+            "concepts": [
+              "ultimate reality",
+              "Atman"
+            ],
+            "domain": "upanishads",
+            "entity_type": "concept",
+            "matched_alias": "brahman"
+          },
+          {
+            "canonical": "Taittiriya Upanishad",
+            "concepts": [
+              "Brahman",
+              "kosha"
+            ],
+            "domain": "upanishads",
+            "entity_type": "text",
+            "matched_alias": "taittiriya upanishad"
+          },
+          {
+            "canonical": "Upanishads",
+            "concepts": [
+              "Brahman",
+              "Atman",
+              "liberation"
+            ],
+            "domain": "upanishads",
+            "entity_type": "text_group",
+            "matched_alias": "upanishads"
+          }
+        ],
+        "concept_overlap": 0.125,
+        "confidence": 0.2457,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.1496,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.2457,
+          "semantic_score": 0.2938,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.5,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 0.0,
+          "domain": "general",
+          "entities": [],
+          "method": "no_canonical_entity"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.2938,
+        "signal_id": "signal_b22e86b26e02",
+        "source": "Taittiriya_Upanishad_Swami_Sarvanand[Sanskrit-English]_OCR.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "semantic_only_without_entity_or_concept",
+      "signal_id": "signal_b22e86b26e02",
+      "source": "Taittiriya_Upanishad_Swami_Sarvanand[Sanskrit-English]_OCR.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Arjuna",
+            "concepts": [
+              "Gita dialogue",
+              "warrior duty"
+            ],
+            "domain": "itihasa",
+            "entity_type": "person",
+            "matched_alias": "arjuna"
+          },
+          {
+            "canonical": "Krishna",
+            "concepts": [
+              "Gita teacher",
+              "Vishnu avatar"
+            ],
+            "domain": "itihasa",
+            "entity_type": "person",
+            "matched_alias": "krishna"
+          },
+          {
+            "canonical": "Mahabharata",
+            "concepts": [
+              "dharma",
+              "Kurukshetra",
+              "Pandavas"
+            ],
+            "domain": "itihasa",
+            "entity_type": "text",
+            "matched_alias": "mahabharata"
+          },
+          {
+            "canonical": "Yajna",
+            "concepts": [
+              "ritual",
+              "offering"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "yagna"
+          }
+        ],
+        "concept_overlap": 0.125,
+        "confidence": 0.2433,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.149,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.2433,
+          "semantic_score": 0.2938,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.5,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 0.0,
+          "domain": "general",
+          "entities": [],
+          "method": "no_canonical_entity"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.2938,
+        "signal_id": "signal_5106edce2049",
+        "source": "The Complete Mahabharata_English_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "semantic_only_without_entity_or_concept",
+      "signal_id": "signal_5106edce2049",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Bhagavad Gita",
+            "concepts": [
+              "dharma",
+              "karma yoga",
+              "jnana yoga",
+              "bhakti yoga"
+            ],
+            "domain": "gitas",
+            "entity_type": "text",
+            "matched_alias": "bhagavad gita"
+          },
+          {
+            "canonical": "Dharma",
+            "concepts": [
+              "ethics",
+              "order",
+              "responsibility"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "dharma"
+          },
+          {
+            "canonical": "Karma",
+            "concepts": [
+              "cause",
+              "effect",
+              "duty"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "action"
+          },
+          {
+            "canonical": "Karma Yoga",
+            "concepts": [
+              "action",
+              "duty",
+              "detachment"
+            ],
+            "domain": "gitas",
+            "entity_type": "concept",
+            "matched_alias": "karma yoga"
+          },
+          {
+            "canonical": "Mahabharata",
+            "concepts": [
+              "dharma",
+              "Kurukshetra",
+              "Pandavas"
+            ],
+            "domain": "itihasa",
+            "entity_type": "text",
+            "matched_alias": "mahabharata"
+          },
+          {
+            "canonical": "Yajna",
+            "concepts": [
+              "ritual",
+              "offering"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "sacrifice"
+          },
+          {
+            "canonical": "Yoga",
+            "concepts": [
+              "discipline",
+              "meditation"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "yoga"
+          }
+        ],
+        "concept_overlap": 0.125,
+        "confidence": 0.2428,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.1488,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.2428,
+          "semantic_score": 0.2938,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.5,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 0.0,
+          "domain": "general",
+          "entities": [],
+          "method": "no_canonical_entity"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.2938,
+        "signal_id": "signal_acf214420509",
+        "source": "The Complete Mahabharata_English_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "semantic_only_without_entity_or_concept",
+      "signal_id": "signal_acf214420509",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Assembly",
+            "concepts": [
+              "deliberation",
+              "governance"
+            ],
+            "domain": "governance",
+            "entity_type": "concept",
+            "matched_alias": "council"
+          },
+          {
+            "canonical": "Dharma",
+            "concepts": [
+              "ethics",
+              "order",
+              "responsibility"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "dharma"
+          }
+        ],
+        "concept_overlap": 0.125,
+        "confidence": 0.235,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.1469,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.235,
+          "semantic_score": 0.2938,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.5,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 0.0,
+          "domain": "general",
+          "entities": [],
+          "method": "no_canonical_entity"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.2938,
+        "signal_id": "signal_07f6a9aedb76",
+        "source": "The Uddhava-g\u012bt\u0101_sanskrit_English_Hindi_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "semantic_only_without_entity_or_concept",
+      "signal_id": "signal_07f6a9aedb76",
+      "source": "The Uddhava-g\u012bt\u0101_sanskrit_English_Hindi_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Mahabharata",
+            "concepts": [
+              "dharma",
+              "Kurukshetra",
+              "Pandavas"
+            ],
+            "domain": "itihasa",
+            "entity_type": "text",
+            "matched_alias": "mahabharata"
+          },
+          {
+            "canonical": "Moksha",
+            "concepts": [
+              "freedom",
+              "realization"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "liberation"
+          }
+        ],
+        "concept_overlap": 0.125,
+        "confidence": 0.235,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.1469,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.235,
+          "semantic_score": 0.2938,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.5,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 0.0,
+          "domain": "general",
+          "entities": [],
+          "method": "no_canonical_entity"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.2938,
+        "signal_id": "signal_e3a25598e156",
+        "source": "The Complete Mahabharata_English_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "semantic_only_without_entity_or_concept",
+      "signal_id": "signal_e3a25598e156",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    }
+  ],
+  "signals_found": 8,
+  "signals_rejected": 10,
+  "synthesis_mode": "DETERMINISTIC_FROM_ACCEPTED_SIGNALS",
+  "trace_id": "trace_618bf56805f25cc6",
+  "verification_status": "VERIFIED"
+}

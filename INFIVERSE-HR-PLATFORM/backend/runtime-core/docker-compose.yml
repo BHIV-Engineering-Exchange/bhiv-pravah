@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  sar-runtime:
+    build: .
+    container_name: sar-runtime
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017
+      - MONGODB_DB_NAME=bhiv_hr
+      - JWT_SECRET_KEY=your-super-secret-jwt-key-change-in-production
+      - API_KEY_SECRET=your-api-key-secret
+      - CANDIDATE_JWT_SECRET_KEY=your-candidate-jwt-key-change-in-production
+      - AUDIT_LOGGING_ENABLED=true
+      - AUDIT_STORAGE_BACKEND=mongodb
+      - TENANT_ISOLATION_ENABLED=true
+      - WORKFLOW_STORAGE_BACKEND=mongodb
+      - ARTHA_API_URL=https://artha-api.example.com
+      - ARTHA_API_KEY=your-artha-key
+      - KARYA_API_URL=https://karya-api.example.com
+      - KARYA_API_KEY=your-karya-key
+      - INSIGHTFLOW_API_URL=https://insightflow-api.example.com
+      - INSIGHTFLOW_API_KEY=your-insightflow-key
+      - BUCKET_API_URL=https://bucket-api.example.com
+      - BUCKET_CREDENTIALS=your-bucket-credentials
+    volumes:
+      - ./audit_logs:/app/audit_logs
+      - ./config:/app/config
+    depends_on:
+      - mongo
+    restart: unless-stopped
+    networks:
+      - sar-network
+
+  mongo:
+    image: mongo:6.0
+    container_name: sar-mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=sar_user
+      - MONGO_INITDB_ROOT_PASSWORD=sar_password
+    ports:
+      - "27017:27017"
+    volumes:
+      - sar_mongo_data:/data/db
+    restart: unless-stopped
+    networks:
+      - sar-network
+
+volumes:
+  sar_mongo_data:
+
+networks:
+  sar-network:
+    driver: bridge

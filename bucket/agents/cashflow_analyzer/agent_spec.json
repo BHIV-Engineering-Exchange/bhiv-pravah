@@ -1,0 +1,30 @@
+{
+    "name": "cashflow_analyzer",
+    "domains": ["finance"],
+    "module_path": "agents.cashflow_analyzer.cashflow_analyzer",
+    "capabilities": {
+        "chainable": true,
+        "memory_access": true
+    },
+    "input_schema": {
+        "required": [],
+        "properties": {
+            "transactions": {
+                "type": "array",
+                "items": { "type": "object" },
+                "description": "Array of transaction objects. If not provided, default sample data will be used."
+            }
+        }
+    },
+    "output_schema": {
+        "properties": {
+            "analysis": { "type": "object" }
+        }
+    },
+    "sample_input": {
+        "transactions": [{ "id": 1, "amount": 100 }, { "id": 2, "amount": -50 }]
+    },
+    "sample_output": {
+        "analysis": { "total": 50, "positive": 100, "negative": -50 }
+    }
+}

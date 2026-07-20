@@ -1,0 +1,426 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 3D Card Flip Styles */
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+:root {
+  --font-primary: 'Outfit', sans-serif;
+  --font-heading: 'Playfair Display', serif;
+
+  /* Calm Color Palette - Purposeful Learning */
+  --color-text-main: #E8EAF0;
+  /* Soft white, less harsh */
+  --color-text-muted: #B0B8C8;
+  /* Muted gray */
+  --color-accent: #6B9080;
+  /* Calm sage green - growth & learning */
+  --color-accent-secondary: #4A90A4;
+  /* Soft ocean blue - calm & focus */
+
+  /* Darker Backgrounds */
+  --bg-primary: #0A0E1A;
+  /* Very dark navy */
+  --bg-secondary: #141824;
+  /* Dark charcoal */
+  --bg-glass: rgba(0, 0, 0, 0.4);
+  /* Darker glass effect */
+  --bg-glass-hover: rgba(0, 0, 0, 0.5);
+  --border-glass: rgba(255, 255, 255, 0.05);
+  --shadow-soft: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: #050608;
+  /* Very dark fallback */
+  color: var(--color-text-main);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Background Wrapper */
+.app-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.app-background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.5) 40%,
+      rgba(0, 0, 0, 0.8) 100%);
+  pointer-events: none;
+}
+
+/* Utility Classes */
+.text-accent {
+  color: var(--color-accent);
+}
+
+.glass-panel {
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+}
+
+.glass-panel:not(.no-hover):hover {
+  background: var(--bg-glass-hover);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Google Translate Overrides */
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+body {
+  top: 0px !important;
+  position: static !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Hide Google Translate element completely */
+#google_translate_element {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+.goog-te-gadget {
+  display: none !important;
+}
+
+.goog-te-gadget-simple {
+  display: none !important;
+}
+
+/* Hide Google Translate banner and popups - More aggressive */
+.goog-te-banner-frame {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+}
+
+.goog-te-balloon-frame {
+  display: none !important;
+}
+
+.goog-te-spinner-pos {
+  display: none !important;
+}
+
+/* Hide text selection popup from Google Translate */
+.goog-tooltip {
+  display: none !important;
+}
+
+.goog-tooltip:hover {
+  display: none !important;
+}
+
+.goog-tooltip-content {
+  display: none !important;
+}
+
+/* Disable Google Translate text selection popup */
+body {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+}
+
+/* Hide any Google Translate floating elements */
+div[id*="google_translate"] {
+  display: none !important;
+}
+
+iframe[src*="translate.google.com"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+}
+
+/* Prevent Google Translate from showing popups on text selection */
+.goog-te-menu-frame {
+  display: none !important;
+}
+
+.goog-te-menu-value {
+  display: none !important;
+}
+
+/* Hide Google Translate banner iframe */
+iframe.goog-te-banner-frame {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  position: fixed !important;
+  top: -9999px !important;
+  left: -9999px !important;
+  z-index: -9999 !important;
+}
+
+/* Hide all Google Translate related elements */
+[class*="goog-te"] {
+  display: none !important;
+}
+
+[class*="goog-te"]:not(.goog-te-combo) {
+  display: none !important;
+}
+
+/* Prevent notranslate elements from being translated */
+.notranslate {
+  -webkit-translation: none !important;
+  -moz-translation: none !important;
+  -ms-translation: none !important;
+  translation: none !important;
+}
+
+/* Google Translate Dropdown Styling */
+.goog-te-menu-frame {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: rgba(26, 28, 22, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+.goog-te-menu-value {
+  color: var(--color-text-main) !important;
+}
+
+.goog-te-menu2 {
+  background: rgba(26, 28, 22, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+.goog-te-menu2-item {
+  color: var(--color-text-main) !important;
+  padding: 12px 16px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  transition: background 0.2s ease !important;
+}
+
+.goog-te-menu2-item:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.goog-te-menu2-item-selected {
+  background: rgba(232, 185, 117, 0.1) !important;
+  color: var(--color-accent) !important;
+}
+
+/* Custom Scrollbar */
+/* Custom Scrollbar strong visibility */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 12px;
+  /* Standard visible width */
+  height: 12px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  /* Visible track */
+  border-radius: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4);
+  /* High contrast thumb */
+  border-radius: 6px;
+  border: 2px solid transparent;
+  /* Padding around thumb */
+  background-clip: content-box;
+  transition: background 0.3s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+/* Firefox support */
+.custom-scrollbar {
+  scrollbar-width: auto;
+  /* Default width */
+  scrollbar-color: rgba(255, 255, 255, 0.4) rgba(255, 255, 255, 0.1);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.3s ease-out forwards;
+}
+
+/* =========================================================================
+   Assessment & Generic Form Input Styling
+   ========================================================================= */
+.input,
+.select,
+.textarea {
+  width: 100%;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 12px 16px;
+  font-size: 15px;
+  color: #e8eaf0;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  outline: none;
+  background: rgba(0, 0, 0, 0.6);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(107, 144, 128, 0.15), 0 0 15px rgba(107, 144, 128, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Select specific styling */
+select.input {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+select.input:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+select.input option {
+  background-color: #141824;
+  /* match --bg-secondary */
+  color: #e8eaf0;
+  padding: 10px 14px;
+}
+
+select.input option:hover,
+select.input option:focus {
+  background-color: rgba(107, 144, 128, 0.2);
+}
+
+select.input option:checked {
+  background-color: rgba(107, 144, 128, 0.4);
+  color: white;
+}

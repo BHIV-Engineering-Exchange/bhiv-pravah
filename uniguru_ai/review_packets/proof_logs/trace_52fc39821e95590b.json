@@ -1,0 +1,1950 @@
+{
+  "answer": "I do not have verified knowledge to answer this question.",
+  "confidence": 0.0,
+  "confidence_breakdown": {
+    "accepted_count": 0,
+    "accepted_derivations": [],
+    "overall": 0.0,
+    "rejected_count": 18
+  },
+  "detected_domain": "ecology",
+  "domain_resolution": {
+    "confidence": 0.6667,
+    "domain": "ecology",
+    "entities": [
+      {
+        "canonical": "Dharma",
+        "concepts": [
+          "ethics",
+          "order",
+          "responsibility"
+        ],
+        "domain": "dharma_systems",
+        "entity_type": "concept",
+        "matched_alias": "dharma"
+      },
+      {
+        "canonical": "Ecology",
+        "concepts": [
+          "nature",
+          "sustainability"
+        ],
+        "domain": "ecology",
+        "entity_type": "concept",
+        "matched_alias": "ecology"
+      },
+      {
+        "canonical": "Water Conservation",
+        "concepts": [
+          "rivers",
+          "lakes",
+          "sustainability"
+        ],
+        "domain": "ecology",
+        "entity_type": "concept",
+        "matched_alias": "water conservation"
+      }
+    ],
+    "method": "canonical_entity_majority"
+  },
+  "enforcement_stats": {
+    "rejected_entries": 19,
+    "total_entries": 37,
+    "valid_entries": 18
+  },
+  "fallback_to_llm": false,
+  "generated_at": "2026-06-25T05:08:51.051624Z",
+  "knowledge_ids_used": [],
+  "matched_signals": [],
+  "query": "What is the role of ecology and water conservation in dharma systems?",
+  "reasoning": "No signals passed domain+tag+query validation.",
+  "reasoning_path": [
+    "query_received",
+    "kosha_schema_enforced",
+    "canonical_entities_extracted",
+    "ontology_aware_retrieval",
+    "signal_validation",
+    "structured_signal_emission",
+    "deterministic_rejection"
+  ],
+  "rejected_signals": [
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Brahma",
+            "concepts": [
+              "creation",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "brahma"
+          },
+          {
+            "canonical": "Brahma Purana",
+            "concepts": [
+              "purana",
+              "creation"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "brahma purana"
+          },
+          {
+            "canonical": "Ganga",
+            "concepts": [
+              "sacred river",
+              "water"
+            ],
+            "domain": "ecology",
+            "entity_type": "river",
+            "matched_alias": "ganga"
+          },
+          {
+            "canonical": "Mahabharata",
+            "concepts": [
+              "dharma",
+              "Kurukshetra",
+              "Pandavas"
+            ],
+            "domain": "itihasa",
+            "entity_type": "text",
+            "matched_alias": "mahabharata"
+          },
+          {
+            "canonical": "Sarasvati",
+            "concepts": [
+              "river",
+              "knowledge"
+            ],
+            "domain": "ecology",
+            "entity_type": "river",
+            "matched_alias": "saraswati"
+          },
+          {
+            "canonical": "Water Conservation",
+            "concepts": [
+              "rivers",
+              "lakes",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "water conservation"
+          }
+        ],
+        "concept_overlap": 0.4167,
+        "confidence": 0.5232,
+        "confidence_derivation": {
+          "content_overlap": 0.3333,
+          "derived_confidence": 0.4079,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.3333,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.5232,
+          "semantic_score": 0.5625,
+          "tag_match_score": 0.1667
+        },
+        "content_overlap": 0.3333,
+        "contextual_proximity": 1.0,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 0.6667,
+          "domain": "ecology",
+          "entities": [
+            {
+              "canonical": "Dharma",
+              "concepts": [
+                "ethics",
+                "order",
+                "responsibility"
+              ],
+              "domain": "dharma_systems",
+              "entity_type": "concept",
+              "matched_alias": "dharma"
+            },
+            {
+              "canonical": "Ecology",
+              "concepts": [
+                "nature",
+                "sustainability"
+              ],
+              "domain": "ecology",
+              "entity_type": "concept",
+              "matched_alias": "ecology"
+            },
+            {
+              "canonical": "Water Conservation",
+              "concepts": [
+                "rivers",
+                "lakes",
+                "sustainability"
+              ],
+              "domain": "ecology",
+              "entity_type": "concept",
+              "matched_alias": "water conservation"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.3333,
+        "matched_tags": [
+          "conservation"
+        ],
+        "missing_required_entities": [
+          "Dharma",
+          "Ecology"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Dharma",
+            "concepts": [
+              "ethics",
+              "order",
+              "responsibility"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "dharma"
+          },
+          {
+            "canonical": "Ecology",
+            "concepts": [
+              "nature",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "ecology"
+          },
+          {
+            "canonical": "Water Conservation",
+            "concepts": [
+              "rivers",
+              "lakes",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "water conservation"
+          }
+        ],
+        "semantic_score": 0.5625,
+        "signal_id": "signal_d7c3b84b41af",
+        "source": "Brahma Purana - Parts I-IV_ocred.pdf",
+        "tag_match_score": 0.1667
+      },
+      "rejection_reason": "entity_conflict",
+      "signal_id": "signal_d7c3b84b41af",
+      "source": "Brahma Purana - Parts I-IV_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Assembly",
+            "concepts": [
+              "deliberation",
+              "governance"
+            ],
+            "domain": "governance",
+            "entity_type": "concept",
+            "matched_alias": "council"
+          },
+          {
+            "canonical": "Dharma",
+            "concepts": [
+              "ethics",
+              "order",
+              "responsibility"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "dharma"
+          }
+        ],
+        "concept_overlap": 0.4167,
+        "confidence": 0.36,
+        "confidence_derivation": {
+          "content_overlap": 0.1667,
+          "derived_confidence": 0.2321,
+          "domain_consistency": 0.0,
+          "entity_overlap": 0.3333,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.36,
+          "semantic_score": 0.3625,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.1667,
+        "contextual_proximity": 1.0,
+        "domain_consistency": 0.0,
+        "domain_resolution": {
+          "confidence": 0.6667,
+          "domain": "ecology",
+          "entities": [
+            {
+              "canonical": "Dharma",
+              "concepts": [
+                "ethics",
+                "order",
+                "responsibility"
+              ],
+              "domain": "dharma_systems",
+              "entity_type": "concept",
+              "matched_alias": "dharma"
+            },
+            {
+              "canonical": "Ecology",
+              "concepts": [
+                "nature",
+                "sustainability"
+              ],
+              "domain": "ecology",
+              "entity_type": "concept",
+              "matched_alias": "ecology"
+            },
+            {
+              "canonical": "Water Conservation",
+              "concepts": [
+                "rivers",
+                "lakes",
+                "sustainability"
+              ],
+              "domain": "ecology",
+              "entity_type": "concept",
+              "matched_alias": "water conservation"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.3333,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Ecology",
+          "Water Conservation"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Dharma",
+            "concepts": [
+              "ethics",
+              "order",
+              "responsibility"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "dharma"
+          },
+          {
+            "canonical": "Ecology",
+            "concepts": [
+              "nature",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "ecology"
+          },
+          {
+            "canonical": "Water Conservation",
+            "concepts": [
+              "rivers",
+              "lakes",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "water conservation"
+          }
+        ],
+        "semantic_score": 0.3625,
+        "signal_id": "signal_cb7d75921bac",
+        "source": "The Uddhava-g\u012bt\u0101_sanskrit_English_Hindi_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "entity_conflict",
+      "signal_id": "signal_cb7d75921bac",
+      "source": "The Uddhava-g\u012bt\u0101_sanskrit_English_Hindi_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Bhagavad Gita",
+            "concepts": [
+              "dharma",
+              "karma yoga",
+              "jnana yoga",
+              "bhakti yoga"
+            ],
+            "domain": "gitas",
+            "entity_type": "text",
+            "matched_alias": "bhagavad gita"
+          },
+          {
+            "canonical": "Dharma",
+            "concepts": [
+              "ethics",
+              "order",
+              "responsibility"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "dharma"
+          },
+          {
+            "canonical": "Karma",
+            "concepts": [
+              "cause",
+              "effect",
+              "duty"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "action"
+          },
+          {
+            "canonical": "Karma Yoga",
+            "concepts": [
+              "action",
+              "duty",
+              "detachment"
+            ],
+            "domain": "gitas",
+            "entity_type": "concept",
+            "matched_alias": "karma yoga"
+          },
+          {
+            "canonical": "Mahabharata",
+            "concepts": [
+              "dharma",
+              "Kurukshetra",
+              "Pandavas"
+            ],
+            "domain": "itihasa",
+            "entity_type": "text",
+            "matched_alias": "mahabharata"
+          },
+          {
+            "canonical": "Yajna",
+            "concepts": [
+              "ritual",
+              "offering"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "sacrifice"
+          },
+          {
+            "canonical": "Yoga",
+            "concepts": [
+              "discipline",
+              "meditation"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "yoga"
+          }
+        ],
+        "concept_overlap": 0.4167,
+        "confidence": 0.3546,
+        "confidence_derivation": {
+          "content_overlap": 0.1667,
+          "derived_confidence": 0.2307,
+          "domain_consistency": 0.0,
+          "entity_overlap": 0.3333,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.3546,
+          "semantic_score": 0.3625,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.1667,
+        "contextual_proximity": 1.0,
+        "domain_consistency": 0.0,
+        "domain_resolution": {
+          "confidence": 0.6667,
+          "domain": "ecology",
+          "entities": [
+            {
+              "canonical": "Dharma",
+              "concepts": [
+                "ethics",
+                "order",
+                "responsibility"
+              ],
+              "domain": "dharma_systems",
+              "entity_type": "concept",
+              "matched_alias": "dharma"
+            },
+            {
+              "canonical": "Ecology",
+              "concepts": [
+                "nature",
+                "sustainability"
+              ],
+              "domain": "ecology",
+              "entity_type": "concept",
+              "matched_alias": "ecology"
+            },
+            {
+              "canonical": "Water Conservation",
+              "concepts": [
+                "rivers",
+                "lakes",
+                "sustainability"
+              ],
+              "domain": "ecology",
+              "entity_type": "concept",
+              "matched_alias": "water conservation"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.3333,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Ecology",
+          "Water Conservation"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Dharma",
+            "concepts": [
+              "ethics",
+              "order",
+              "responsibility"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "dharma"
+          },
+          {
+            "canonical": "Ecology",
+            "concepts": [
+              "nature",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "ecology"
+          },
+          {
+            "canonical": "Water Conservation",
+            "concepts": [
+              "rivers",
+              "lakes",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "water conservation"
+          }
+        ],
+        "semantic_score": 0.3625,
+        "signal_id": "signal_abee700a25c4",
+        "source": "The Complete Mahabharata_English_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "entity_conflict",
+      "signal_id": "signal_abee700a25c4",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Dharma",
+            "concepts": [
+              "ethics",
+              "order",
+              "responsibility"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "dharma"
+          },
+          {
+            "canonical": "Narada Purana",
+            "concepts": [
+              "purana",
+              "devotion",
+              "pilgrimage"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "narada purana"
+          },
+          {
+            "canonical": "Narayana",
+            "concepts": [
+              "preservation",
+              "cosmic person"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "narayana"
+          },
+          {
+            "canonical": "Vayu Purana",
+            "concepts": [
+              "purana",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "vayu purana"
+          },
+          {
+            "canonical": "Yuga",
+            "concepts": [
+              "time",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "concept",
+            "matched_alias": "yugas"
+          }
+        ],
+        "concept_overlap": 0.4167,
+        "confidence": 0.3174,
+        "confidence_derivation": {
+          "content_overlap": 0.1667,
+          "derived_confidence": 0.2157,
+          "domain_consistency": 0.0,
+          "entity_overlap": 0.3333,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.3174,
+          "semantic_score": 0.3432,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.1667,
+        "contextual_proximity": 0.8069,
+        "domain_consistency": 0.0,
+        "domain_resolution": {
+          "confidence": 0.6667,
+          "domain": "ecology",
+          "entities": [
+            {
+              "canonical": "Dharma",
+              "concepts": [
+                "ethics",
+                "order",
+                "responsibility"
+              ],
+              "domain": "dharma_systems",
+              "entity_type": "concept",
+              "matched_alias": "dharma"
+            },
+            {
+              "canonical": "Ecology",
+              "concepts": [
+                "nature",
+                "sustainability"
+              ],
+              "domain": "ecology",
+              "entity_type": "concept",
+              "matched_alias": "ecology"
+            },
+            {
+              "canonical": "Water Conservation",
+              "concepts": [
+                "rivers",
+                "lakes",
+                "sustainability"
+              ],
+              "domain": "ecology",
+              "entity_type": "concept",
+              "matched_alias": "water conservation"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.3333,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Ecology",
+          "Water Conservation"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Dharma",
+            "concepts": [
+              "ethics",
+              "order",
+              "responsibility"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "dharma"
+          },
+          {
+            "canonical": "Ecology",
+            "concepts": [
+              "nature",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "ecology"
+          },
+          {
+            "canonical": "Water Conservation",
+            "concepts": [
+              "rivers",
+              "lakes",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "water conservation"
+          }
+        ],
+        "semantic_score": 0.3432,
+        "signal_id": "signal_3bf02d1647b2",
+        "source": "Vayu Purana Part 1_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "entity_conflict",
+      "signal_id": "signal_3bf02d1647b2",
+      "source": "Vayu Purana Part 1_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.16,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_a123f0dbd778",
+        "source": "The Narada-Purana, Part 1_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "low_contextual_overlap",
+      "signal_id": "signal_a123f0dbd778",
+      "source": "The Narada-Purana, Part 1_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Bhagavad Gita",
+            "concepts": [
+              "dharma",
+              "karma yoga",
+              "jnana yoga",
+              "bhakti yoga"
+            ],
+            "domain": "gitas",
+            "entity_type": "text",
+            "matched_alias": "bhagavad gita"
+          },
+          {
+            "canonical": "Bhairava",
+            "concepts": [
+              "Shiva",
+              "tantra"
+            ],
+            "domain": "tantra",
+            "entity_type": "deity",
+            "matched_alias": "bhairava"
+          },
+          {
+            "canonical": "Decision Making",
+            "concepts": [
+              "dharma",
+              "judgement"
+            ],
+            "domain": "governance",
+            "entity_type": "concept",
+            "matched_alias": "decision making"
+          },
+          {
+            "canonical": "Karma",
+            "concepts": [
+              "cause",
+              "effect",
+              "duty"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "karma"
+          },
+          {
+            "canonical": "Tripura Rahasya",
+            "concepts": [
+              "Devi",
+              "self knowledge"
+            ],
+            "domain": "tantra",
+            "entity_type": "text",
+            "matched_alias": "tripura rahasya"
+          },
+          {
+            "canonical": "Vigyan Bhairava Tantra",
+            "concepts": [
+              "meditation",
+              "Shiva"
+            ],
+            "domain": "tantra",
+            "entity_type": "text",
+            "matched_alias": "vigyan bhairava tantra"
+          }
+        ],
+        "concept_overlap": 0.2083,
+        "confidence": 0.1599,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.087,
+          "domain_consistency": 0.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.1599,
+          "semantic_score": 0.1568,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.8387,
+        "domain_consistency": 0.0,
+        "domain_resolution": {
+          "confidence": 0.6667,
+          "domain": "ecology",
+          "entities": [
+            {
+              "canonical": "Dharma",
+              "concepts": [
+                "ethics",
+                "order",
+                "responsibility"
+              ],
+              "domain": "dharma_systems",
+              "entity_type": "concept",
+              "matched_alias": "dharma"
+            },
+            {
+              "canonical": "Ecology",
+              "concepts": [
+                "nature",
+                "sustainability"
+              ],
+              "domain": "ecology",
+              "entity_type": "concept",
+              "matched_alias": "ecology"
+            },
+            {
+              "canonical": "Water Conservation",
+              "concepts": [
+                "rivers",
+                "lakes",
+                "sustainability"
+              ],
+              "domain": "ecology",
+              "entity_type": "concept",
+              "matched_alias": "water conservation"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Dharma",
+          "Ecology",
+          "Water Conservation"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Dharma",
+            "concepts": [
+              "ethics",
+              "order",
+              "responsibility"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "dharma"
+          },
+          {
+            "canonical": "Ecology",
+            "concepts": [
+              "nature",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "ecology"
+          },
+          {
+            "canonical": "Water Conservation",
+            "concepts": [
+              "rivers",
+              "lakes",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "water conservation"
+          }
+        ],
+        "semantic_score": 0.1568,
+        "signal_id": "signal_7db049e8db37",
+        "source": "vigyan-bhairava-tantra_ocr.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "no_query_relevance:tags_content_semantic_miss",
+      "signal_id": "signal_7db049e8db37",
+      "source": "vigyan-bhairava-tantra_ocr.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Arjuna",
+            "concepts": [
+              "Gita dialogue",
+              "warrior duty"
+            ],
+            "domain": "itihasa",
+            "entity_type": "person",
+            "matched_alias": "arjuna"
+          },
+          {
+            "canonical": "Krishna",
+            "concepts": [
+              "Gita teacher",
+              "Vishnu avatar"
+            ],
+            "domain": "itihasa",
+            "entity_type": "person",
+            "matched_alias": "krishna"
+          },
+          {
+            "canonical": "Mahabharata",
+            "concepts": [
+              "dharma",
+              "Kurukshetra",
+              "Pandavas"
+            ],
+            "domain": "itihasa",
+            "entity_type": "text",
+            "matched_alias": "mahabharata"
+          },
+          {
+            "canonical": "Yajna",
+            "concepts": [
+              "ritual",
+              "offering"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "yagna"
+          }
+        ],
+        "concept_overlap": 0.1667,
+        "confidence": 0.1494,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.0848,
+          "domain_consistency": 0.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.1494,
+          "semantic_score": 0.1583,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 1.0,
+        "domain_consistency": 0.0,
+        "domain_resolution": {
+          "confidence": 0.6667,
+          "domain": "ecology",
+          "entities": [
+            {
+              "canonical": "Dharma",
+              "concepts": [
+                "ethics",
+                "order",
+                "responsibility"
+              ],
+              "domain": "dharma_systems",
+              "entity_type": "concept",
+              "matched_alias": "dharma"
+            },
+            {
+              "canonical": "Ecology",
+              "concepts": [
+                "nature",
+                "sustainability"
+              ],
+              "domain": "ecology",
+              "entity_type": "concept",
+              "matched_alias": "ecology"
+            },
+            {
+              "canonical": "Water Conservation",
+              "concepts": [
+                "rivers",
+                "lakes",
+                "sustainability"
+              ],
+              "domain": "ecology",
+              "entity_type": "concept",
+              "matched_alias": "water conservation"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Dharma",
+          "Ecology",
+          "Water Conservation"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Dharma",
+            "concepts": [
+              "ethics",
+              "order",
+              "responsibility"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "dharma"
+          },
+          {
+            "canonical": "Ecology",
+            "concepts": [
+              "nature",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "ecology"
+          },
+          {
+            "canonical": "Water Conservation",
+            "concepts": [
+              "rivers",
+              "lakes",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "water conservation"
+          }
+        ],
+        "semantic_score": 0.1583,
+        "signal_id": "signal_786dcdefbe27",
+        "source": "The Complete Mahabharata_English_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "no_query_relevance:tags_content_semantic_miss",
+      "signal_id": "signal_786dcdefbe27",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Bhagavad Gita",
+            "concepts": [
+              "dharma",
+              "karma yoga",
+              "jnana yoga",
+              "bhakti yoga"
+            ],
+            "domain": "gitas",
+            "entity_type": "text",
+            "matched_alias": "gita"
+          },
+          {
+            "canonical": "Bhagavata Purana",
+            "concepts": [
+              "Krishna",
+              "devotion",
+              "purana"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "srimad bhagavata"
+          },
+          {
+            "canonical": "City",
+            "concepts": [
+              "planning",
+              "society"
+            ],
+            "domain": "governance",
+            "entity_type": "structure",
+            "matched_alias": "city"
+          },
+          {
+            "canonical": "Smriti",
+            "concepts": [
+              "law",
+              "conduct"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "text_group",
+            "matched_alias": "smritis"
+          }
+        ],
+        "concept_overlap": 0.1667,
+        "confidence": 0.1448,
+        "confidence_derivation": {
+          "content_overlap": 0.1667,
+          "derived_confidence": 0.117,
+          "domain_consistency": 0.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.1448,
+          "semantic_score": 0.1583,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.1667,
+        "contextual_proximity": 1.0,
+        "domain_consistency": 0.0,
+        "domain_resolution": {
+          "confidence": 0.6667,
+          "domain": "ecology",
+          "entities": [
+            {
+              "canonical": "Dharma",
+              "concepts": [
+                "ethics",
+                "order",
+                "responsibility"
+              ],
+              "domain": "dharma_systems",
+              "entity_type": "concept",
+              "matched_alias": "dharma"
+            },
+            {
+              "canonical": "Ecology",
+              "concepts": [
+                "nature",
+                "sustainability"
+              ],
+              "domain": "ecology",
+              "entity_type": "concept",
+              "matched_alias": "ecology"
+            },
+            {
+              "canonical": "Water Conservation",
+              "concepts": [
+                "rivers",
+                "lakes",
+                "sustainability"
+              ],
+              "domain": "ecology",
+              "entity_type": "concept",
+              "matched_alias": "water conservation"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Dharma",
+          "Ecology",
+          "Water Conservation"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Dharma",
+            "concepts": [
+              "ethics",
+              "order",
+              "responsibility"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "dharma"
+          },
+          {
+            "canonical": "Ecology",
+            "concepts": [
+              "nature",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "ecology"
+          },
+          {
+            "canonical": "Water Conservation",
+            "concepts": [
+              "rivers",
+              "lakes",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "water conservation"
+          }
+        ],
+        "semantic_score": 0.1583,
+        "signal_id": "signal_eed1d7700fd5",
+        "source": "Srimad Bhagavata Maha Purana With Sanskrit Text And English Trans. By C.L. Goswami, Part 1 (Book 1 To 8) - Gita Press, Gorakhpur_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "entity_conflict",
+      "signal_id": "signal_eed1d7700fd5",
+      "source": "Srimad Bhagavata Maha Purana With Sanskrit Text And English Trans. By C.L. Goswami, Part 1 (Book 1 To 8) - Gita Press, Gorakhpur_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Atman",
+            "concepts": [
+              "Brahman",
+              "liberation"
+            ],
+            "domain": "upanishads",
+            "entity_type": "concept",
+            "matched_alias": "self"
+          },
+          {
+            "canonical": "Brahma",
+            "concepts": [
+              "creation",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "brahma"
+          },
+          {
+            "canonical": "Brahman",
+            "concepts": [
+              "ultimate reality",
+              "Atman"
+            ],
+            "domain": "upanishads",
+            "entity_type": "concept",
+            "matched_alias": "brahman"
+          },
+          {
+            "canonical": "Upanishads",
+            "concepts": [
+              "Brahman",
+              "Atman",
+              "liberation"
+            ],
+            "domain": "upanishads",
+            "entity_type": "text_group",
+            "matched_alias": "upanishads"
+          },
+          {
+            "canonical": "Vedas",
+            "concepts": [
+              "samhita",
+              "ritual",
+              "knowledge"
+            ],
+            "domain": "vedas",
+            "entity_type": "text_group",
+            "matched_alias": "vedas"
+          },
+          {
+            "canonical": "Yoga",
+            "concepts": [
+              "discipline",
+              "meditation"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "yoga"
+          }
+        ],
+        "concept_overlap": 0.0833,
+        "confidence": 0.1289,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.071,
+          "domain_consistency": 0.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.1289,
+          "semantic_score": 0.1292,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 1.0,
+        "domain_consistency": 0.0,
+        "domain_resolution": {
+          "confidence": 0.6667,
+          "domain": "ecology",
+          "entities": [
+            {
+              "canonical": "Dharma",
+              "concepts": [
+                "ethics",
+                "order",
+                "responsibility"
+              ],
+              "domain": "dharma_systems",
+              "entity_type": "concept",
+              "matched_alias": "dharma"
+            },
+            {
+              "canonical": "Ecology",
+              "concepts": [
+                "nature",
+                "sustainability"
+              ],
+              "domain": "ecology",
+              "entity_type": "concept",
+              "matched_alias": "ecology"
+            },
+            {
+              "canonical": "Water Conservation",
+              "concepts": [
+                "rivers",
+                "lakes",
+                "sustainability"
+              ],
+              "domain": "ecology",
+              "entity_type": "concept",
+              "matched_alias": "water conservation"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Dharma",
+          "Ecology",
+          "Water Conservation"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Dharma",
+            "concepts": [
+              "ethics",
+              "order",
+              "responsibility"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "dharma"
+          },
+          {
+            "canonical": "Ecology",
+            "concepts": [
+              "nature",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "ecology"
+          },
+          {
+            "canonical": "Water Conservation",
+            "concepts": [
+              "rivers",
+              "lakes",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "water conservation"
+          }
+        ],
+        "semantic_score": 0.1292,
+        "signal_id": "signal_e33976a84040",
+        "source": "Yoga_Upanishad_[Sanskrit_English]_OCR.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "no_query_relevance:tags_content_semantic_miss",
+      "signal_id": "signal_e33976a84040",
+      "source": "Yoga_Upanishad_[Sanskrit_English]_OCR.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Manusmriti",
+            "concepts": [
+              "law",
+              "social duty"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "text",
+            "matched_alias": "manusmriti"
+          },
+          {
+            "canonical": "Smriti",
+            "concepts": [
+              "law",
+              "conduct"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "text_group",
+            "matched_alias": "smriti"
+          },
+          {
+            "canonical": "Yajnavalkya Smriti",
+            "concepts": [
+              "law",
+              "governance"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "text",
+            "matched_alias": "yajnavalkya"
+          }
+        ],
+        "concept_overlap": 0.125,
+        "confidence": 0.1262,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.0747,
+          "domain_consistency": 0.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.1262,
+          "semantic_score": 0.1437,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 1.0,
+        "domain_consistency": 0.0,
+        "domain_resolution": {
+          "confidence": 0.6667,
+          "domain": "ecology",
+          "entities": [
+            {
+              "canonical": "Dharma",
+              "concepts": [
+                "ethics",
+                "order",
+                "responsibility"
+              ],
+              "domain": "dharma_systems",
+              "entity_type": "concept",
+              "matched_alias": "dharma"
+            },
+            {
+              "canonical": "Ecology",
+              "concepts": [
+                "nature",
+                "sustainability"
+              ],
+              "domain": "ecology",
+              "entity_type": "concept",
+              "matched_alias": "ecology"
+            },
+            {
+              "canonical": "Water Conservation",
+              "concepts": [
+                "rivers",
+                "lakes",
+                "sustainability"
+              ],
+              "domain": "ecology",
+              "entity_type": "concept",
+              "matched_alias": "water conservation"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Dharma",
+          "Ecology",
+          "Water Conservation"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Dharma",
+            "concepts": [
+              "ethics",
+              "order",
+              "responsibility"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "dharma"
+          },
+          {
+            "canonical": "Ecology",
+            "concepts": [
+              "nature",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "ecology"
+          },
+          {
+            "canonical": "Water Conservation",
+            "concepts": [
+              "rivers",
+              "lakes",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "water conservation"
+          }
+        ],
+        "semantic_score": 0.1437,
+        "signal_id": "signal_1f2cfcedd7ea",
+        "source": "Brihaspati Smriti (Reconstructed) - Rangaswami Aiyangar 1941 (GOS)_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "no_query_relevance:tags_content_semantic_miss",
+      "signal_id": "signal_1f2cfcedd7ea",
+      "source": "Brihaspati Smriti (Reconstructed) - Rangaswami Aiyangar 1941 (GOS)_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Atman",
+            "concepts": [
+              "Brahman",
+              "liberation"
+            ],
+            "domain": "upanishads",
+            "entity_type": "concept",
+            "matched_alias": "self"
+          },
+          {
+            "canonical": "Brahman",
+            "concepts": [
+              "ultimate reality",
+              "Atman"
+            ],
+            "domain": "upanishads",
+            "entity_type": "concept",
+            "matched_alias": "brahman"
+          },
+          {
+            "canonical": "Upanishads",
+            "concepts": [
+              "Brahman",
+              "Atman",
+              "liberation"
+            ],
+            "domain": "upanishads",
+            "entity_type": "text_group",
+            "matched_alias": "upanishads"
+          },
+          {
+            "canonical": "Vedas",
+            "concepts": [
+              "samhita",
+              "ritual",
+              "knowledge"
+            ],
+            "domain": "vedas",
+            "entity_type": "text_group",
+            "matched_alias": "vedas"
+          }
+        ],
+        "concept_overlap": 0.0833,
+        "confidence": 0.126,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.0703,
+          "domain_consistency": 0.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.126,
+          "semantic_score": 0.1292,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 1.0,
+        "domain_consistency": 0.0,
+        "domain_resolution": {
+          "confidence": 0.6667,
+          "domain": "ecology",
+          "entities": [
+            {
+              "canonical": "Dharma",
+              "concepts": [
+                "ethics",
+                "order",
+                "responsibility"
+              ],
+              "domain": "dharma_systems",
+              "entity_type": "concept",
+              "matched_alias": "dharma"
+            },
+            {
+              "canonical": "Ecology",
+              "concepts": [
+                "nature",
+                "sustainability"
+              ],
+              "domain": "ecology",
+              "entity_type": "concept",
+              "matched_alias": "ecology"
+            },
+            {
+              "canonical": "Water Conservation",
+              "concepts": [
+                "rivers",
+                "lakes",
+                "sustainability"
+              ],
+              "domain": "ecology",
+              "entity_type": "concept",
+              "matched_alias": "water conservation"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Dharma",
+          "Ecology",
+          "Water Conservation"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Dharma",
+            "concepts": [
+              "ethics",
+              "order",
+              "responsibility"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "dharma"
+          },
+          {
+            "canonical": "Ecology",
+            "concepts": [
+              "nature",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "ecology"
+          },
+          {
+            "canonical": "Water Conservation",
+            "concepts": [
+              "rivers",
+              "lakes",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "water conservation"
+          }
+        ],
+        "semantic_score": 0.1292,
+        "signal_id": "signal_eb60a8e8b4c2",
+        "source": "Svetasvatara Upanishad - sanskrit and English.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "no_query_relevance:tags_content_semantic_miss",
+      "signal_id": "signal_eb60a8e8b4c2",
+      "source": "Svetasvatara Upanishad - sanskrit and English.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Atman",
+            "concepts": [
+              "Brahman",
+              "liberation"
+            ],
+            "domain": "upanishads",
+            "entity_type": "concept",
+            "matched_alias": "self"
+          },
+          {
+            "canonical": "Brahman",
+            "concepts": [
+              "ultimate reality",
+              "Atman"
+            ],
+            "domain": "upanishads",
+            "entity_type": "concept",
+            "matched_alias": "brahman"
+          },
+          {
+            "canonical": "Taittiriya Upanishad",
+            "concepts": [
+              "Brahman",
+              "kosha"
+            ],
+            "domain": "upanishads",
+            "entity_type": "text",
+            "matched_alias": "taittiriya upanishad"
+          },
+          {
+            "canonical": "Upanishads",
+            "concepts": [
+              "Brahman",
+              "Atman",
+              "liberation"
+            ],
+            "domain": "upanishads",
+            "entity_type": "text_group",
+            "matched_alias": "upanishads"
+          }
+        ],
+        "concept_overlap": 0.0833,
+        "confidence": 0.1211,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.069,
+          "domain_consistency": 0.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.1211,
+          "semantic_score": 0.1292,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 1.0,
+        "domain_consistency": 0.0,
+        "domain_resolution": {
+          "confidence": 0.6667,
+          "domain": "ecology",
+          "entities": [
+            {
+              "canonical": "Dharma",
+              "concepts": [
+                "ethics",
+                "order",
+                "responsibility"
+              ],
+              "domain": "dharma_systems",
+              "entity_type": "concept",
+              "matched_alias": "dharma"
+            },
+            {
+              "canonical": "Ecology",
+              "concepts": [
+                "nature",
+                "sustainability"
+              ],
+              "domain": "ecology",
+              "entity_type": "concept",
+              "matched_alias": "ecology"
+            },
+            {
+              "canonical": "Water Conservation",
+              "concepts": [
+                "rivers",
+                "lakes",
+                "sustainability"
+              ],
+              "domain": "ecology",
+              "entity_type": "concept",
+              "matched_alias": "water conservation"
+            }
+          ],
+          "method": "canonical_entity_majority"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Dharma",
+          "Ecology",
+          "Water Conservation"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Dharma",
+            "concepts": [
+              "ethics",
+              "order",
+              "responsibility"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "dharma"
+          },
+          {
+            "canonical": "Ecology",
+            "concepts": [
+              "nature",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "ecology"
+          },
+          {
+            "canonical": "Water Conservation",
+            "concepts": [
+              "rivers",
+              "lakes",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "water conservation"
+          }
+        ],
+        "semantic_score": 0.1292,
+        "signal_id": "signal_4ea4a85de56d",
+        "source": "Taittiriya_Upanishad_Swami_Sarvanand[Sanskrit-English]_OCR.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "no_query_relevance:tags_content_semantic_miss",
+      "signal_id": "signal_4ea4a85de56d",
+      "source": "Taittiriya_Upanishad_Swami_Sarvanand[Sanskrit-English]_OCR.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.1151,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_12d8867e01f9",
+        "source": "The Narada-Purana, Part 4_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "confidence_below_threshold:0.115",
+      "signal_id": "signal_12d8867e01f9",
+      "source": "The Narada-Purana, Part 4_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.115,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_d983b6a23c75",
+        "source": "Valmiki-Ramayana-Eng-Translation-Griffith_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "confidence_below_threshold:0.115",
+      "signal_id": "signal_d983b6a23c75",
+      "source": "Valmiki-Ramayana-Eng-Translation-Griffith_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.1115,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_1cda42c470fd",
+        "source": "Shakti and Shakta_ocr.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "confidence_below_threshold:0.112",
+      "signal_id": "signal_1cda42c470fd",
+      "source": "Shakti and Shakta_ocr.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.1085,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_2b49b124d679",
+        "source": "Agni Purana Unabridged English Motilal.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "confidence_below_threshold:0.108",
+      "signal_id": "signal_2b49b124d679",
+      "source": "Agni Purana Unabridged English Motilal.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.0911,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_c64586808724",
+        "source": "The Complete Mahabharata_English_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "confidence_below_threshold:0.091",
+      "signal_id": "signal_c64586808724",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.0517,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_2bbf2d7f4e86",
+        "source": "The Narada-Purana, Part 3_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "confidence_below_threshold:0.052",
+      "signal_id": "signal_2bbf2d7f4e86",
+      "source": "The Narada-Purana, Part 3_ocred.pdf"
+    }
+  ],
+  "signals_found": 0,
+  "signals_rejected": 18,
+  "synthesis_mode": "REJECTED_NO_SYNTHESIS",
+  "trace_id": "trace_52fc39821e95590b",
+  "verification_status": "NO_VERIFIED_KNOWLEDGE"
+}

@@ -1,0 +1,136 @@
+{
+  "generated_at": "2026-07-10T10:16:59.588773+00:00",
+  "health": [
+    {
+      "service": "prompt_runner",
+      "url": "http://127.0.0.1:8003/health",
+      "status_code": 200,
+      "ok": true
+    },
+    {
+      "service": "creator_core",
+      "url": "http://127.0.0.1:8000/",
+      "status_code": 200,
+      "ok": true
+    },
+    {
+      "service": "bhiv_core",
+      "url": "http://127.0.0.1:8001/system/health",
+      "status_code": 200,
+      "ok": true
+    },
+    {
+      "service": "integration_bridge",
+      "url": "http://127.0.0.1:8004/pipeline/health",
+      "status_code": 200,
+      "ok": true
+    },
+    {
+      "service": "bucket",
+      "url": "http://127.0.0.1:8005/bucket/stats",
+      "status_code": 200,
+      "ok": true
+    },
+    {
+      "service": "cet",
+      "url": "http://127.0.0.1:8006/health",
+      "status_code": 200,
+      "ok": true
+    },
+    {
+      "service": "sarathi",
+      "url": "http://127.0.0.1:8007/health",
+      "status_code": 200,
+      "ok": true
+    },
+    {
+      "service": "gate",
+      "url": "http://127.0.0.1:8008/health",
+      "status_code": 200,
+      "ok": true
+    },
+    {
+      "service": "telemetry",
+      "url": "http://127.0.0.1:8010/health",
+      "status_code": 200,
+      "ok": true
+    },
+    {
+      "service": "control_plane",
+      "url": "http://127.0.0.1:8009/health",
+      "status_code": 200,
+      "ok": true
+    }
+  ],
+  "control_plane": [
+    {
+      "endpoint": "/health",
+      "status_code": 200,
+      "ok": true
+    },
+    {
+      "endpoint": "/metrics",
+      "status_code": 200,
+      "ok": true
+    },
+    {
+      "endpoint": "/system/status",
+      "status_code": 200,
+      "ok": true
+    },
+    {
+      "endpoint": "/dashboard/executive",
+      "status_code": 200,
+      "ok": true
+    },
+    {
+      "endpoint": "/dashboard/operations",
+      "status_code": 200,
+      "ok": true
+    },
+    {
+      "endpoint": "/dashboard/alerts",
+      "status_code": 200,
+      "ok": true
+    },
+    {
+      "endpoint": "/dashboard/runtime",
+      "status_code": 200,
+      "ok": true
+    },
+    {
+      "endpoint": "/dashboard/telemetry",
+      "status_code": 200,
+      "ok": true
+    }
+  ],
+  "telemetry": {
+    "status_code": 200,
+    "ok": true,
+    "trace_id": "trace_3b1f982f8c42",
+    "response_keys": [
+      "alert",
+      "pipeline_result",
+      "signal",
+      "telemetry_artifact_id",
+      "trace_id"
+    ],
+    "error_body": null,
+    "dashboard_alert_visible": true
+  },
+  "pipeline": {
+    "status_code": 200,
+    "ok": true,
+    "trace_id": "local_ca8c972196",
+    "replay_status": 200,
+    "replay_ok": true
+  },
+  "summary": {
+    "services_healthy": "10/10",
+    "control_plane_endpoints_ok": "8/8",
+    "telemetry_ok": true,
+    "telemetry_on_dashboard": true,
+    "pipeline_ok": true,
+    "all_pass": true
+  }
+}

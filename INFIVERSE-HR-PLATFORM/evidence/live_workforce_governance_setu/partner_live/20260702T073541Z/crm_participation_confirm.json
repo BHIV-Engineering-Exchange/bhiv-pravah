@@ -1,0 +1,162 @@
+{
+  "status": 200,
+  "count": 5,
+  "items": [
+    {
+      "signal_id": "sig-5b7a6d983dc6",
+      "signal_type": "crm_participation",
+      "payload": {
+        "execution_id": "exec-logistics-closeout-20260702",
+        "trace_id": "logistics-trace-3d0a7d1a",
+        "tenant_id": "tenant-crm-closeout",
+        "timestamp": "2026-07-02T07:35:45.549494+00:00",
+        "event_type": "execution_completed",
+        "details": {
+          "source": "partner_closeout_harness",
+          "module": "logistics",
+          "page": "Logistics.jsx"
+        },
+        "subsystem": "logistics"
+      },
+      "workforce_ref_id": null,
+      "source_declaration": "crm participation",
+      "tenant_id": "platform",
+      "created_at": "2026-07-02T07:36:01.114000",
+      "lineage": {
+        "origin_system": "crm",
+        "owning_system": "crm",
+        "schema_version": "1.0.0",
+        "trace_id": "logistics-trace-3d0a7d1a",
+        "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+        "trust_classification": "observed",
+        "visibility_scope": "tenant"
+      },
+      "updated_at": "2026-07-02T07:36:01.114000",
+      "id": "6a4614e17c009f69a56f8a1d"
+    },
+    {
+      "signal_id": "sig-93a24fb7c8fa",
+      "signal_type": "crm_participation",
+      "payload": {
+        "execution_id": "exec-crm-closeout-20260702",
+        "trace_id": "crm-trace-3d0a7d1a",
+        "tenant_id": "tenant-crm-closeout",
+        "timestamp": "2026-07-02T07:35:45.549494+00:00",
+        "event_type": "execution_completed",
+        "details": {
+          "source": "partner_closeout_harness",
+          "module": "crm"
+        }
+      },
+      "workforce_ref_id": null,
+      "source_declaration": "crm participation",
+      "tenant_id": "platform",
+      "created_at": "2026-07-02T07:36:00.565000",
+      "lineage": {
+        "origin_system": "crm",
+        "owning_system": "crm",
+        "schema_version": "1.0.0",
+        "trace_id": "crm-trace-3d0a7d1a",
+        "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+        "trust_classification": "observed",
+        "visibility_scope": "tenant"
+      },
+      "updated_at": "2026-07-02T07:36:00.565000",
+      "id": "6a4614e07c009f69a56f8a1b"
+    },
+    {
+      "signal_id": "sig-10c90df45c73",
+      "signal_type": "crm_participation",
+      "payload": {
+        "execution_id": "exec-logistics-closeout-20260702",
+        "trace_id": "logistics-trace-3d0a7d1a",
+        "tenant_id": "tenant-crm-closeout",
+        "timestamp": "2026-07-02T07:35:11.846667+00:00",
+        "event_type": "execution_completed",
+        "details": {
+          "source": "partner_closeout_harness",
+          "module": "logistics",
+          "page": "Logistics.jsx"
+        },
+        "subsystem": "logistics"
+      },
+      "workforce_ref_id": null,
+      "source_declaration": "crm participation",
+      "tenant_id": "platform",
+      "created_at": "2026-07-02T07:35:27.170000",
+      "lineage": {
+        "origin_system": "crm",
+        "owning_system": "crm",
+        "schema_version": "1.0.0",
+        "trace_id": "logistics-trace-3d0a7d1a",
+        "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+        "trust_classification": "observed",
+        "visibility_scope": "tenant"
+      },
+      "updated_at": "2026-07-02T07:35:27.170000",
+      "id": "6a4614bf7c009f69a56f8a17"
+    },
+    {
+      "signal_id": "sig-31d02b8079ef",
+      "signal_type": "crm_participation",
+      "payload": {
+        "execution_id": "exec-crm-closeout-20260702",
+        "trace_id": "crm-trace-3d0a7d1a",
+        "tenant_id": "tenant-crm-closeout",
+        "timestamp": "2026-07-02T07:35:11.846667+00:00",
+        "event_type": "execution_completed",
+        "details": {
+          "source": "partner_closeout_harness",
+          "module": "crm"
+        }
+      },
+      "workforce_ref_id": null,
+      "source_declaration": "crm participation",
+      "tenant_id": "platform",
+      "created_at": "2026-07-02T07:35:26.626000",
+      "lineage": {
+        "origin_system": "crm",
+        "owning_system": "crm",
+        "schema_version": "1.0.0",
+        "trace_id": "crm-trace-3d0a7d1a",
+        "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+        "trust_classification": "observed",
+        "visibility_scope": "tenant"
+      },
+      "updated_at": "2026-07-02T07:35:26.626000",
+      "id": "6a4614be7c009f69a56f8a15"
+    },
+    {
+      "signal_id": "sig-1d4446d0144a",
+      "signal_type": "crm_participation",
+      "payload": {
+        "execution_id": "exec-logistics-closeout-20260702",
+        "trace_id": "logistics-trace-3d0a7d1a",
+        "tenant_id": "tenant-crm-closeout",
+        "timestamp": "2026-07-02T07:34:20.622355+00:00",
+        "event_type": "execution_completed",
+        "details": {
+          "source": "partner_closeout_harness",
+          "module": "logistics",
+          "page": "Logistics.jsx"
+        },
+        "subsystem": "logistics"
+      },
+      "workforce_ref_id": null,
+      "source_declaration": "crm participation",
+      "tenant_id": "platform",
+      "created_at": "2026-07-02T07:34:36.088000",
+      "lineage": {
+        "origin_system": "crm",
+        "owning_system": "crm",
+        "schema_version": "1.0.0",
+        "trace_id": "logistics-trace-3d0a7d1a",
+        "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+        "trust_classification": "observed",
+        "visibility_scope": "tenant"
+      },
+      "updated_at": "2026-07-02T07:34:36.088000",
+      "id": "6a46148c7c009f69a56f8a11"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-07-07T12:50:40.966323+00:00",
+  "prompt": "Design a cooperative dungeon board game with card drafting mechanics",
+  "run_a": {
+    "trace_id": "det_48493b5f64",
+    "status_code": 200,
+    "deterministic_hash": "fd831a2e7c847d0e",
+    "replay_status": 200,
+    "bucket_status": 200,
+    "reconstructed_hash": "fd831a2e7c847d0e",
+    "stored_hash": "fd831a2e7c847d0e"
+  },
+  "run_b": {
+    "trace_id": "det_cf1fd1c3f0",
+    "status_code": 200,
+    "deterministic_hash": "fd831a2e7c847d0e",
+    "replay_status": 200,
+    "bucket_status": 200,
+    "reconstructed_hash": "fd831a2e7c847d0e",
+    "stored_hash": "fd831a2e7c847d0e"
+  },
+  "hashes_match_across_runs": true,
+  "replay_reconstructs_hash": true,
+  "passed": true
+}

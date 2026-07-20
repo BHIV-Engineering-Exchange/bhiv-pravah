@@ -1,0 +1,42 @@
+{
+  "workers": 10,
+  "tasks": 20,
+  "success_rate": 1.0,
+  "samples": [
+    {
+      "idx": 1000,
+      "org_status": 200,
+      "signal_status": 200,
+      "latency_ms": 290.9316000000217,
+      "correlation_id": "3fd5a437-3778-4e8d-9aef-c0509e465d5f"
+    },
+    {
+      "idx": 1001,
+      "org_status": 200,
+      "signal_status": 200,
+      "latency_ms": 158.87500000008004,
+      "correlation_id": "91a7a6c9-582c-4f44-bcdc-e5c6169a9e46"
+    },
+    {
+      "idx": 1002,
+      "org_status": 200,
+      "signal_status": 200,
+      "latency_ms": 194.24670000012156,
+      "correlation_id": "2f8e5cc3-3233-4dbb-8218-a3e27b03a332"
+    },
+    {
+      "idx": 1003,
+      "org_status": 200,
+      "signal_status": 200,
+      "latency_ms": 279.15260000008857,
+      "correlation_id": "c2dd685a-95ea-4520-8314-b15298501998"
+    },
+    {
+      "idx": 1004,
+      "org_status": 200,
+      "signal_status": 200,
+      "latency_ms": 277.71290000009685,
+      "correlation_id": "d0902099-4d1c-43a0-bd5b-e8f777459377"
+    }
+  ]
+}

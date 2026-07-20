@@ -1,0 +1,28 @@
+{
+  "name": "real-time-micro-bridge",
+  "version": "1.0.0",
+  "description": "---\r # **Real-Time Micro-Bridge + Multi-Agent Orchestrator Dashboard**",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "install:all": "npm install --prefix backend && npm install --prefix frontend",
+    "start:all": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rudra212545/Real-time-Dashboard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Rudra212545/Real-time-Dashboard/issues"
+  },
+  "homepage": "https://github.com/Rudra212545/Real-time-Dashboard#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

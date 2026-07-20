@@ -1,0 +1,51 @@
+{
+  "session": "2026-07-04 live comprehensive verification",
+  "gateway": "https://bhiv-hr-gateway-l0xp.onrender.com",
+  "auth": {
+    "API_KEY_SECRET": {"status": 200, "partner_facing": true},
+    "GATEWAY_SECRET_KEY": {"status": 401, "partner_facing": false}
+  },
+  "reachability": [
+    {"service": "Sampada Gateway", "type": "backend", "url": "https://bhiv-hr-gateway-l0xp.onrender.com/health", "status": 200, "notes": "v4.2.0 healthy"},
+    {"service": "Sampada Agent", "type": "backend", "url": "https://bhiv-hr-agent-cato.onrender.com/health", "status": 200, "notes": "v3.0.0 healthy"},
+    {"service": "Sampada LangGraph", "type": "backend", "url": "https://bhiv-hr-langgraph-luy9.onrender.com/health", "status": 200, "notes": "healthy, uptime ~22h"},
+    {"service": "Artha Backend", "type": "backend", "url": "https://ai-artha.onrender.com/health", "status": 200, "notes": "API running"},
+    {"service": "Ai-CRM Backend", "type": "backend", "url": "https://ai-crm-4nje.onrender.com/api/auth/login", "status": 401, "notes": "reachable; invalid creds expected"},
+    {"service": "Niyantran Backend", "type": "backend", "url": "https://blackholeworkflow.onrender.com/api/auth/login", "status": 400, "notes": "reachable; no /health route"},
+    {"service": "Sampada Frontend", "type": "frontend", "url": "https://sampada.blackholeinfiverse.com/", "status": 200, "notes": "bundle: gateway+agent+langgraph onrender URLs"},
+    {"service": "Artha Frontend", "type": "frontend", "url": "https://artha.blackholeinfiverse.com/", "status": 200, "notes": "bundle: ai-artha.onrender.com/api/v1"},
+    {"service": "SETU/CRM Frontend", "type": "frontend", "url": "https://setu.blackholeinfiverse.com/", "status": 200, "notes": "bundle: ai-crm-4nje.onrender.com; stale ai-artha.vercel.app ref"},
+    {"service": "Niyantran Frontend", "type": "frontend", "url": "https://niyantran.blackholeinfiverse.com/login", "status": 200, "notes": "bundle: blackholeworkflow.onrender.com/api"}
+  ],
+  "control_center_live": {
+    "setu_list": 200,
+    "setu_trace": 200,
+    "cc_audit_events": 200,
+    "cc_audit_replay": 200,
+    "cc_dashboard": 200,
+    "gateway_detailed_health": 200
+  },
+  "post_deploy_smoke": {"all_health_ok": true, "pass": true},
+  "partner_capture_run": "20260704T071016Z",
+  "fresh_signals": {
+    "artha_payroll_visibility": "sig-5527bab3a3c9",
+    "crm_participation": "sig-8ac9e1885a97",
+    "logistics_crm_participation": "sig-fff4f754415a",
+    "niyantran_telemetry": "sig-99fcca8ba98a"
+  },
+  "shared_correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+  "frontend_api_alignment": {
+    "sampada": {"VITE_API_BASE_URL": "https://bhiv-hr-gateway-l0xp.onrender.com", "aligned": true},
+    "artha": {"api": "https://ai-artha.onrender.com/api/v1", "aligned": true},
+    "crm": {"api": "https://ai-crm-4nje.onrender.com", "aligned": true, "stale_ref": "https://ai-artha.vercel.app/"},
+    "niyantran": {"api": "https://blackholeworkflow.onrender.com/api", "aligned": true}
+  },
+  "config_gaps": [
+    "Verify Render env on partner backends: SETU_BASE_URL / SAMPADA_SETU_BASE_URL + API key (Tier 1 auto-dispatch not proven)",
+    "CRM frontend bundle references stale ai-artha.vercel.app",
+    "Niyantran lacks /health; monitor via /api/auth/login or add health route",
+    "post_deploy_smoke.py does not yet probe Agent/LangGraph (both healthy today)",
+    "Rotate API_KEY_SECRET after live capture sessions",
+    "ai-crm Node backend does not auto-wire Python sampada_dispatcher"
+  ]
+}

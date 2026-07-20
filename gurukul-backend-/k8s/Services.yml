@@ -1,0 +1,78 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: gurukul-backend
+  namespace: gurukul-staging
+spec:
+  selector:
+    app: gurukul-backend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+  type: NodePort
+
+---
+
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: frontend
+  namespace: gurukul-staging
+spec:
+  selector:
+    app: frontend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5173
+  type: NodePort
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: tts-service
+  namespace: gurukul-staging
+spec:
+  selector:
+    app: tts-service
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8007
+  type: NodePort
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: postgres
+  namespace: gurukul-staging
+spec:
+  selector:
+    app: postgres
+  ports:
+  - protocol: TCP
+    port: 5432
+    targetPort: 5432
+  type: NodePort
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: mongo
+  namespace: gurukul-staging
+spec:
+  selector:
+    app: mongo
+  ports:
+  - protocol: TCP
+    port: 27017
+    targetPort: 27017
+  type: NodePort

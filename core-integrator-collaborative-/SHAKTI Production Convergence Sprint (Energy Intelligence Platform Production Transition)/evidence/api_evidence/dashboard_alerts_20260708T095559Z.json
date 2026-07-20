@@ -1,0 +1,112 @@
+{
+  "alerts": [
+    {
+      "alert_id": "alert_f69e9f79970f",
+      "trace_id": "trace_0a5c8b0a7e33",
+      "severity": "critical",
+      "reason": "Critical transformer_temp_c reading",
+      "signal": {
+        "signal_id": "sig_a18fea529d2c",
+        "trace_id": "trace_0a5c8b0a7e33",
+        "metric": "transformer_temp_c",
+        "value": 97.5,
+        "unit": "celsius",
+        "classification": "critical",
+        "threshold_breached": true,
+        "derived_at": "2026-07-08T09:56:07.522845+00:00",
+        "source_module_id": "signal_generator",
+        "status": "success",
+        "prompt": "Evaluate grid response for transformer_temp_c reading of 97.5celsius at substation-7, classified critical."
+      },
+      "decision_summary": {
+        "gate_status": "ALLOWED",
+        "execution_status": "success",
+        "pipeline_status": "success"
+      },
+      "source_module_id": "alert_generator",
+      "status": "critical",
+      "raised_at": "2026-07-08T09:56:07.737889+00:00"
+    },
+    {
+      "alert_id": "alert_0d3e8e7b3f72",
+      "trace_id": "trace_2ce72d4b75d9",
+      "severity": "critical",
+      "reason": "Critical transformer_temp_c reading",
+      "signal": {
+        "signal_id": "sig_337f1021565c",
+        "trace_id": "trace_2ce72d4b75d9",
+        "metric": "transformer_temp_c",
+        "value": 95.1,
+        "unit": "celsius",
+        "classification": "critical",
+        "threshold_breached": true,
+        "derived_at": "2026-07-08T09:55:07.786151+00:00",
+        "source_module_id": "signal_generator",
+        "status": "success",
+        "prompt": "Evaluate grid response for transformer_temp_c reading of 95.1celsius at substation-7, classified critical."
+      },
+      "decision_summary": {
+        "gate_status": "ALLOWED",
+        "execution_status": "success",
+        "pipeline_status": "success"
+      },
+      "source_module_id": "alert_generator",
+      "status": "critical",
+      "raised_at": "2026-07-08T09:55:07.992293+00:00"
+    },
+    {
+      "alert_id": "alert_fa7f58c6cc78",
+      "trace_id": "trace_1b7e3c15fe01",
+      "severity": "critical",
+      "reason": "Critical voltage_v reading",
+      "signal": {
+        "signal_id": "sig_8b458a4137b4",
+        "trace_id": "trace_1b7e3c15fe01",
+        "metric": "voltage_v",
+        "value": 262.57,
+        "unit": "v",
+        "classification": "critical",
+        "threshold_breached": true,
+        "derived_at": "2026-07-08T09:47:59.523721+00:00",
+        "source_module_id": "signal_generator",
+        "status": "success",
+        "prompt": "Evaluate grid response for voltage_v reading of 262.57v at feeder-21, classified critical."
+      },
+      "decision_summary": {
+        "gate_status": "ALLOWED",
+        "execution_status": "success",
+        "pipeline_status": "success"
+      },
+      "source_module_id": "alert_generator",
+      "status": "critical",
+      "raised_at": "2026-07-08T09:47:59.963337+00:00"
+    },
+    {
+      "alert_id": "alert_dd2c7a7b8e71",
+      "trace_id": "trace_fd38fc2b13ca",
+      "severity": "critical",
+      "reason": "Critical grid_load_mw reading",
+      "signal": {
+        "signal_id": "sig_b17aa93fddcb",
+        "trace_id": "trace_fd38fc2b13ca",
+        "metric": "grid_load_mw",
+        "value": 732.33,
+        "unit": "mw",
+        "classification": "critical",
+        "threshold_breached": true,
+        "derived_at": "2026-07-08T09:45:57.065092+00:00",
+        "source_module_id": "signal_generator",
+        "status": "success",
+        "prompt": "Evaluate grid response for grid_load_mw reading of 732.33mw at grid-zone-a, classified critical."
+      },
+      "decision_summary": {
+        "gate_status": "ALLOWED",
+        "execution_status": "success",
+        "pipeline_status": "success"
+      },
+      "source_module_id": "alert_generator",
+      "status": "critical",
+      "raised_at": "2026-07-08T09:45:57.574732+00:00"
+    }
+  ]
+}

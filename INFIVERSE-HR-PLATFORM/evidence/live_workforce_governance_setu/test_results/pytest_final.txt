@@ -1,0 +1,28 @@
+.............................                                            [100%]
+============================== warnings summary ===============================
+..\..\..\AppData\Roaming\Python\Python313\site-packages\starlette\formparsers.py:12
+  C:\Users\shash\AppData\Roaming\Python\Python313\site-packages\starlette\formparsers.py:12: PendingDeprecationWarning: Please use `import python_multipart` instead.
+    import multipart
+
+backend\tests\gateway\test_workforce_governance_runtime.py:24
+  C:\Users\shash\OneDrive\Documents\INFIVERSE-HR-PLATFORM\backend\tests\gateway\test_workforce_governance_runtime.py:24: PytestUnknownMarkWarning: Unknown pytest.mark.e2e_unit - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    pytestmark = pytest.mark.e2e_unit
+
+backend\tests\gateway\test_workforce_lifecycle.py:17
+  C:\Users\shash\OneDrive\Documents\INFIVERSE-HR-PLATFORM\backend\tests\gateway\test_workforce_lifecycle.py:17: PytestUnknownMarkWarning: Unknown pytest.mark.e2e_unit - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    pytestmark = pytest.mark.e2e_unit
+
+backend\tests\gateway\test_control_center_governance.py:22
+  C:\Users\shash\OneDrive\Documents\INFIVERSE-HR-PLATFORM\backend\tests\gateway\test_control_center_governance.py:22: PytestUnknownMarkWarning: Unknown pytest.mark.e2e_unit - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    pytestmark = pytest.mark.e2e_unit
+
+backend\tests\gateway\test_tenant_isolation_workforce.py:27
+  C:\Users\shash\OneDrive\Documents\INFIVERSE-HR-PLATFORM\backend\tests\gateway\test_tenant_isolation_workforce.py:27: PytestUnknownMarkWarning: Unknown pytest.mark.e2e_unit - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    pytestmark = pytest.mark.e2e_unit
+
+backend\tests\gateway\test_live_workforce_governance_setu_gapfix.py:28
+  C:\Users\shash\OneDrive\Documents\INFIVERSE-HR-PLATFORM\backend\tests\gateway\test_live_workforce_governance_setu_gapfix.py:28: PytestUnknownMarkWarning: Unknown pytest.mark.e2e_unit - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    pytestmark = pytest.mark.e2e_unit
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+29 passed, 6 warnings in 1.32s

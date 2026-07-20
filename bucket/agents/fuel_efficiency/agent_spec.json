@@ -1,0 +1,99 @@
+{
+    "name": "fuel_efficiency",
+    "domains": ["automotive", "efficiency"],
+    "module_path": "agents.fuel_efficiency.fuel_efficiency",
+    "capabilities": {
+        "chainable": true,
+        "memory_access": true
+    },
+    "input_schema": {
+        "required": ["driving_data"],
+        "properties": {
+            "driving_data": {
+                "type": "object",
+                "properties": {
+                    "vehicle": {
+                        "type": "object",
+                        "properties": {
+                            "make": {"type": "string"},
+                            "model": {"type": "string"},
+                            "year": {"type": "integer"},
+                            "engine_size": {"type": "number"}
+                        }
+                    },
+                    "fuel_records": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "date": {"type": "string", "format": "date"},
+                                "miles_driven": {"type": "number"},
+                                "fuel_consumed": {"type": "number"},
+                                "trip_type": {"type": "string", "enum": ["city", "highway", "mixed"]}
+                            }
+                        }
+                    },
+                    "driving_habits": {
+                        "type": "object",
+                        "properties": {
+                            "avg_speed": {"type": "number"},
+                            "aggressive_acceleration": {"type": "boolean"},
+                            "frequent_idling": {"type": "boolean"},
+                            "ac_usage": {"type": "string", "enum": ["low", "medium", "high"]}
+                        }
+                    }
+                },
+                "required": ["vehicle", "fuel_records"]
+            }
+        }
+    },
+    "output_schema": {
+        "properties": {
+            "efficiency_analysis": {
+                "type": "object",
+                "properties": {
+                    "current_mpg": {"type": "number"},
+                    "expected_mpg": {"type": "number"},
+                    "efficiency_rating": {"type": "string", "enum": ["poor", "below_average", "average", "good", "excellent"]},
+                    "improvement_potential": {"type": "number"},
+                    "recommendations": {"type": "array", "items": {"type": "string"}},
+                    "cost_savings_potential": {"type": "number"}
+                }
+            }
+        }
+    },
+    "sample_input": {
+        "driving_data": {
+            "vehicle": {
+                "make": "Honda",
+                "model": "Accord",
+                "year": 2022,
+                "engine_size": 2.0
+            },
+            "fuel_records": [
+                {
+                    "date": "2024-06-01",
+                    "miles_driven": 300,
+                    "fuel_consumed": 12.5,
+                    "trip_type": "mixed"
+                }
+            ],
+            "driving_habits": {
+                "avg_speed": 45,
+                "aggressive_acceleration": false,
+                "frequent_idling": true,
+                "ac_usage": "medium"
+            }
+        }
+    },
+    "sample_output": {
+        "efficiency_analysis": {
+            "current_mpg": 24.0,
+            "expected_mpg": 28.5,
+            "efficiency_rating": "below_average",
+            "improvement_potential": 4.5,
+            "recommendations": ["Reduce idling time", "Maintain steady speeds"],
+            "cost_savings_potential": 180.00
+        }
+    }
+}

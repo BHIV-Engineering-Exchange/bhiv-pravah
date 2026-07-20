@@ -1,0 +1,52 @@
+{
+  "user_id": "user_123",
+  "current_financial_state": {
+    "age": 28,
+    "income": 75000,
+    "net_worth": 82000,
+    "monthly_savings": 1000,
+    "debt_to_income_ratio": 0.26,
+    "emergency_fund_months": 4
+  },
+  "existing_goals": [
+    {
+      "id": "goal_1",
+      "type": "emergency_fund",
+      "target_amount": 30000,
+      "current_amount": 20000,
+      "timeline": "12_months",
+      "priority": "high"
+    },
+    {
+      "id": "goal_2",
+      "type": "vacation",
+      "target_amount": 5000,
+      "current_amount": 1000,
+      "timeline": "6_months",
+      "priority": "medium"
+    }
+  ],
+  "life_events": [
+    {
+      "event": "marriage",
+      "timeline": "18_months",
+      "estimated_cost": 25000
+    },
+    {
+      "event": "home_purchase",
+      "timeline": "36_months",
+      "estimated_cost": 50000
+    }
+  ],
+  "preferences": {
+    "risk_tolerance": "moderate",
+    "investment_horizon": "long_term",
+    "goal_types_interested": ["retirement", "investment", "education", "travel"],
+    "max_goals_to_recommend": 3
+  },
+  "market_conditions": {
+    "interest_rates": "moderate",
+    "inflation_rate": 3.2,
+    "market_volatility": "low"
+  }
+}

@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+env/
+.env
+
+# Large Files
+backend/RAG/chunks.db
+backend/RAG/faiss_index.bin
+backend/RAG/chroma.sqlite3
+
+# Node
+node_modules/
+dist/
+build/

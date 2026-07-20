@@ -1,0 +1,14 @@
+{
+  "artifact_id": "tampered_001",
+  "source_module_id": "malicious_actor",
+  "schema_version": "1.0.0",
+  "artifact_hash": "ORIGINAL_HASH_BEFORE_TAMPERING",
+  "timestamp_utc": "2025-01-19T10:15:00Z",
+  "artifact_type": "truth_event",
+  "payload": {
+    "transaction_id": "tx_002",
+    "amount": 9999999,
+    "status": "TAMPERED_VALUE"
+  },
+  "_note": "This artifact has been tampered with. The payload was modified but artifact_hash was not recomputed. Replay validation will detect this."
+}

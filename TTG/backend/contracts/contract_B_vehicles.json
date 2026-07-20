@@ -1,0 +1,82 @@
+{
+  "trace_id":     "trace_contract_B_vehicles",
+  "execution_id": "exec_contract_B_vehicles",
+  "domain":       "logistics",
+  "scenario":     "vehicle_convoy",
+  "ticks":        10,
+
+  "entities": [
+    {
+      "id": "vehicle_01", "type": "vehicle",
+      "position": [0, 0, 0], "state": "active",
+      "behaviors": ["move_forward"]
+    },
+    {
+      "id": "vehicle_02", "type": "vehicle",
+      "position": [5, 0, 0], "state": "active",
+      "behaviors": ["move_forward"]
+    },
+    {
+      "id": "vehicle_03", "type": "vehicle",
+      "position": [10, 0, 0], "state": "active",
+      "behaviors": ["move_forward"]
+    },
+    {
+      "id": "vehicle_04", "type": "vehicle",
+      "position": [15, 0, 0], "state": "active",
+      "behaviors": ["move_forward"]
+    },
+    {
+      "id": "vehicle_05", "type": "vehicle",
+      "position": [20, 0, 0], "state": "active",
+      "behaviors": ["move_forward"]
+    },
+    {
+      "id": "vehicle_06", "type": "vehicle",
+      "position": [25, 0, 0], "state": "active",
+      "behaviors": ["move_forward"]
+    },
+    {
+      "id": "vehicle_07", "type": "vehicle",
+      "position": [30, 0, 0], "state": "active",
+      "behaviors": ["move_forward"]
+    },
+    {
+      "id": "vehicle_08", "type": "vehicle",
+      "position": [35, 0, 0], "state": "active",
+      "behaviors": ["move_forward"]
+    },
+    {
+      "id": "vehicle_09", "type": "vehicle",
+      "position": [40, 0, 0], "state": "active",
+      "behaviors": ["move_forward"]
+    },
+    {
+      "id": "vehicle_10", "type": "vehicle",
+      "position": [45, 0, 0], "state": "active",
+      "behaviors": ["move_forward"]
+    }
+  ],
+
+  "behaviors": [
+    {
+      "id":     "move_forward",
+      "script": "move_to",
+      "params": {
+        "target":    [100, 0, 0],
+        "speed":     3.0,
+        "threshold": 1.0
+      }
+    }
+  ],
+
+  "rules": [
+    {
+      "id":        "log_arrival",
+      "trigger":   "on_tick",
+      "condition": { "field": "state", "op": "eq", "value": "idle" },
+      "action":    { "type": "emit_event", "params": { "event_type": "vehicle_arrived", "data": {} } },
+      "enabled":   true
+    }
+  ]
+}

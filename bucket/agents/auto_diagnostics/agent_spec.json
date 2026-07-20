@@ -1,0 +1,65 @@
+{
+    "name": "auto_diagnostics",
+    "domains": ["automotive", "diagnostics"],
+    "module_path": "agents.auto_diagnostics.auto_diagnostics",
+    "capabilities": {
+        "chainable": true,
+        "memory_access": false
+    },
+    "input_schema": {
+        "required": ["vehicle_data"],
+        "properties": {
+            "vehicle_data": {
+                "type": "object",
+                "properties": {
+                    "vin": {"type": "string"},
+                    "make": {"type": "string"},
+                    "model": {"type": "string"},
+                    "year": {"type": "integer"},
+                    "mileage": {"type": "integer"},
+                    "error_codes": {
+                        "type": "array",
+                        "items": {"type": "string"}
+                    },
+                    "symptoms": {
+                        "type": "array",
+                        "items": {"type": "string"}
+                    }
+                },
+                "required": ["vin", "make", "model", "year"]
+            }
+        }
+    },
+    "output_schema": {
+        "properties": {
+            "diagnosis": {
+                "type": "object",
+                "properties": {
+                    "issues": {"type": "array", "items": {"type": "string"}},
+                    "severity": {"type": "string", "enum": ["low", "medium", "high", "critical"]},
+                    "recommendations": {"type": "array", "items": {"type": "string"}},
+                    "estimated_cost": {"type": "number"}
+                }
+            }
+        }
+    },
+    "sample_input": {
+        "vehicle_data": {
+            "vin": "1HGBH41JXMN109186",
+            "make": "Honda",
+            "model": "Civic",
+            "year": 2021,
+            "mileage": 45000,
+            "error_codes": ["P0301", "P0420"],
+            "symptoms": ["engine misfire", "check engine light"]
+        }
+    },
+    "sample_output": {
+        "diagnosis": {
+            "issues": ["Cylinder 1 misfire", "Catalytic converter efficiency below threshold"],
+            "severity": "medium",
+            "recommendations": ["Replace spark plug cylinder 1", "Inspect catalytic converter"],
+            "estimated_cost": 450.0
+        }
+    }
+}

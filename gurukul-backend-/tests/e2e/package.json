@@ -1,0 +1,17 @@
+{
+  "name": "gurukul-e2e-tests",
+  "version": "1.0.0",
+  "description": "E2E test suite for Gurukul + School Management System",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:report": "playwright show-report",
+    "test:all": "playwright test --reporter=html"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0"
+  }
+}
+

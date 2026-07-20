@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tts-service
+  namespace: gurukul-staging
+spec:
+  replicas: 1
+  progressDeadlineSeconds: 1200
+  revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+
+  selector:
+    matchLabels:
+      app: tts-service
+
+  template:
+    metadata:
+      labels:
+        app: tts-service
+    spec:
+      containers:
+      - name: tts
+        image: bhiv/tts-service:212647f
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8007
+
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "256Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+
+        # startupProbe: guards slow TTS init — disables liveness/readiness until it passes
+        # Max startup wait: 60 failures × 10s period = 600 seconds (10 minutes)
+        startupProbe:
+          httpGet:
+            path: /api/health
+            port: 8007
+          failureThreshold: 60
+          periodSeconds: 10
+          timeoutSeconds: 15
+
+        # readinessProbe: only runs after startupProbe passes — NO initialDelaySeconds needed
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: 8007
+          periodSeconds: 10
+          timeoutSeconds: 15
+          failureThreshold: 3
+
+        # livenessProbe: only runs after startupProbe passes — NO initialDelaySeconds needed
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: 8007
+          periodSeconds: 15
+          timeoutSeconds: 15
+          failureThreshold: 3
+
+        envFrom:
+          - configMapRef:
+              name: backend-config
+          - secretRef:
+              name: backend-secret

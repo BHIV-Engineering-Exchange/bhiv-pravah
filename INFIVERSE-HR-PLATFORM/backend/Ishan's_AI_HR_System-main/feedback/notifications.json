@@ -1,0 +1,9 @@
+[
+  {
+    "candidate_id": 1,
+    "type": "follow_up",
+    "scheduled_time": "2025-12-01T10:57:33.135564",
+    "status": "pending",
+    "optimal_time": "morning_peak"
+  }
+]

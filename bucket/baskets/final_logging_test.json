@@ -1,0 +1,8 @@
+{
+  "basket_name": "final_logging_test",
+  "agents": [
+    "cashflow_analyzer"
+  ],
+  "execution_strategy": "sequential",
+  "description": "Final test basket with enhanced logging"
+}

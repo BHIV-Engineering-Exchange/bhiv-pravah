@@ -1,0 +1,567 @@
+{
+  "run_id": "20260702T073417Z",
+  "captured_at": "2026-07-02T07:34:24.286177+00:00",
+  "gateway": "https://bhiv-hr-gateway-l0xp.onrender.com",
+  "auth_working_key": "API_KEY_SECRET",
+  "shared_correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+  "partners": {
+    "artha": {
+      "ok": true,
+      "tier": "Tier 2 \u00e2\u20ac\u201d dispatcher invoked directly, partner server not booted in this environment",
+      "artha_signal_id": "SIG-d03e25ed-60d4-495c-8fad-6236993e219d",
+      "sampada_signal_id": "sig-b79218172c1f",
+      "trace_id": "TRC-20260702-19f21bf0",
+      "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "request": {
+        "method": "POST",
+        "url": "https://bhiv-hr-gateway-l0xp.onrender.com/v1/setu/signals/artha_payroll_visibility",
+        "body": {
+          "signal_type": "artha_payroll_visibility",
+          "payload": {
+            "signal_id": "SIG-d03e25ed-60d4-495c-8fad-6236993e219d",
+            "trace_id": "TRC-20260702-19f21bf0",
+            "source": {
+              "system": "ARTHA",
+              "module": "COMPLIANCE_FILING",
+              "entity_type": "COMPLIANCE_FILING",
+              "entity_id": "FILING-CLOSEOUT-20260702"
+            },
+            "severity": "LOW",
+            "timestamp": "2026-07-02T07:33:17.431Z",
+            "context": {
+              "filing_id": "FILING-CLOSEOUT-20260702",
+              "filing_type": "GSTR1",
+              "period": "2026-06"
+            },
+            "recommendation": {
+              "code": "REVIEW_BEFORE_FILING",
+              "message": "Filing packet generated. Review before submission."
+            }
+          },
+          "workforce_ref_id": null,
+          "source_declaration": "artha payroll visibility participation",
+          "origin_system": "artha",
+          "owning_system": "artha",
+          "trace_id": "TRC-20260702-19f21bf0",
+          "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "trust_classification": "observed",
+          "visibility_scope": "tenant"
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "signal_id": "sig-b79218172c1f",
+          "signal_type": "artha_payroll_visibility",
+          "payload": {
+            "signal_id": "SIG-d03e25ed-60d4-495c-8fad-6236993e219d",
+            "trace_id": "TRC-20260702-19f21bf0",
+            "source": {
+              "system": "ARTHA",
+              "module": "COMPLIANCE_FILING",
+              "entity_type": "COMPLIANCE_FILING",
+              "entity_id": "FILING-CLOSEOUT-20260702"
+            },
+            "severity": "LOW",
+            "timestamp": "2026-07-02T07:33:17.431Z",
+            "context": {
+              "filing_id": "FILING-CLOSEOUT-20260702",
+              "filing_type": "GSTR1",
+              "period": "2026-06"
+            },
+            "recommendation": {
+              "code": "REVIEW_BEFORE_FILING",
+              "message": "Filing packet generated. Review before submission."
+            }
+          },
+          "workforce_ref_id": null,
+          "source_declaration": "artha payroll visibility participation",
+          "tenant_id": "platform",
+          "created_at": "2026-07-02T07:34:34.764499+00:00",
+          "lineage": {
+            "origin_system": "artha",
+            "owning_system": "artha",
+            "schema_version": "1.0.0",
+            "trace_id": "TRC-20260702-19f21bf0",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trust_classification": "observed",
+            "visibility_scope": "tenant"
+          },
+          "updated_at": "2026-07-02T07:34:34.764518+00:00",
+          "id": "6a46148a7c009f69a56f8a0d"
+        },
+        "latency_ms": 271
+      },
+      "ack": {
+        "valid": true,
+        "status": "ACCEPTED",
+        "setuReference": "sig-b79218172c1f",
+        "raw": {
+          "signal_id": "sig-b79218172c1f",
+          "signal_type": "artha_payroll_visibility",
+          "payload": {
+            "signal_id": "SIG-d03e25ed-60d4-495c-8fad-6236993e219d",
+            "trace_id": "TRC-20260702-19f21bf0",
+            "source": {
+              "system": "ARTHA",
+              "module": "COMPLIANCE_FILING",
+              "entity_type": "COMPLIANCE_FILING",
+              "entity_id": "FILING-CLOSEOUT-20260702"
+            },
+            "severity": "LOW",
+            "timestamp": "2026-07-02T07:33:17.431Z",
+            "context": {
+              "filing_id": "FILING-CLOSEOUT-20260702",
+              "filing_type": "GSTR1",
+              "period": "2026-06"
+            },
+            "recommendation": {
+              "code": "REVIEW_BEFORE_FILING",
+              "message": "Filing packet generated. Review before submission."
+            }
+          },
+          "workforce_ref_id": null,
+          "source_declaration": "artha payroll visibility participation",
+          "tenant_id": "platform",
+          "created_at": "2026-07-02T07:34:34.764499+00:00",
+          "lineage": {
+            "origin_system": "artha",
+            "owning_system": "artha",
+            "schema_version": "1.0.0",
+            "trace_id": "TRC-20260702-19f21bf0",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trust_classification": "observed",
+            "visibility_scope": "tenant"
+          },
+          "updated_at": "2026-07-02T07:34:34.764518+00:00",
+          "id": "6a46148a7c009f69a56f8a0d"
+        }
+      }
+    },
+    "crm": {
+      "dispatched": true,
+      "request": {
+        "method": "POST",
+        "url": "https://bhiv-hr-gateway-l0xp.onrender.com/v1/setu/signals/crm_participation",
+        "body": {
+          "signal_type": "crm_participation",
+          "payload": {
+            "execution_id": "exec-crm-closeout-20260702",
+            "trace_id": "crm-trace-3d0a7d1a",
+            "tenant_id": "tenant-crm-closeout",
+            "timestamp": "2026-07-02T07:34:20.622355+00:00",
+            "event_type": "execution_completed",
+            "details": {
+              "source": "partner_closeout_harness",
+              "module": "crm"
+            }
+          },
+          "workforce_ref_id": null,
+          "source_declaration": "crm participation",
+          "origin_system": "crm",
+          "owning_system": "crm",
+          "trace_id": "crm-trace-3d0a7d1a",
+          "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "trust_classification": "observed",
+          "visibility_scope": "tenant"
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "signal_id": "sig-2a110e114757",
+          "signal_type": "crm_participation",
+          "payload": {
+            "execution_id": "exec-crm-closeout-20260702",
+            "trace_id": "crm-trace-3d0a7d1a",
+            "tenant_id": "tenant-crm-closeout",
+            "timestamp": "2026-07-02T07:34:20.622355+00:00",
+            "event_type": "execution_completed",
+            "details": {
+              "source": "partner_closeout_harness",
+              "module": "crm"
+            }
+          },
+          "workforce_ref_id": null,
+          "source_declaration": "crm participation",
+          "tenant_id": "platform",
+          "created_at": "2026-07-02T07:34:35.536650+00:00",
+          "lineage": {
+            "origin_system": "crm",
+            "owning_system": "crm",
+            "schema_version": "1.0.0",
+            "trace_id": "crm-trace-3d0a7d1a",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trust_classification": "observed",
+            "visibility_scope": "tenant"
+          },
+          "updated_at": "2026-07-02T07:34:35.536669+00:00",
+          "id": "6a46148b7c009f69a56f8a0f"
+        }
+      }
+    },
+    "logistics": {
+      "dispatched": true,
+      "request": {
+        "method": "POST",
+        "url": "https://bhiv-hr-gateway-l0xp.onrender.com/v1/setu/signals/crm_participation",
+        "body": {
+          "signal_type": "crm_participation",
+          "payload": {
+            "execution_id": "exec-logistics-closeout-20260702",
+            "trace_id": "logistics-trace-3d0a7d1a",
+            "tenant_id": "tenant-crm-closeout",
+            "timestamp": "2026-07-02T07:34:20.622355+00:00",
+            "event_type": "execution_completed",
+            "details": {
+              "source": "partner_closeout_harness",
+              "module": "logistics",
+              "page": "Logistics.jsx"
+            },
+            "subsystem": "logistics"
+          },
+          "workforce_ref_id": null,
+          "source_declaration": "crm participation",
+          "origin_system": "crm",
+          "owning_system": "crm",
+          "trace_id": "logistics-trace-3d0a7d1a",
+          "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "trust_classification": "observed",
+          "visibility_scope": "tenant"
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "signal_id": "sig-1d4446d0144a",
+          "signal_type": "crm_participation",
+          "payload": {
+            "execution_id": "exec-logistics-closeout-20260702",
+            "trace_id": "logistics-trace-3d0a7d1a",
+            "tenant_id": "tenant-crm-closeout",
+            "timestamp": "2026-07-02T07:34:20.622355+00:00",
+            "event_type": "execution_completed",
+            "details": {
+              "source": "partner_closeout_harness",
+              "module": "logistics",
+              "page": "Logistics.jsx"
+            },
+            "subsystem": "logistics"
+          },
+          "workforce_ref_id": null,
+          "source_declaration": "crm participation",
+          "tenant_id": "platform",
+          "created_at": "2026-07-02T07:34:36.088113+00:00",
+          "lineage": {
+            "origin_system": "crm",
+            "owning_system": "crm",
+            "schema_version": "1.0.0",
+            "trace_id": "logistics-trace-3d0a7d1a",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trust_classification": "observed",
+            "visibility_scope": "tenant"
+          },
+          "updated_at": "2026-07-02T07:34:36.088133+00:00",
+          "id": "6a46148c7c009f69a56f8a11"
+        }
+      }
+    },
+    "niyantran": {
+      "ok": false,
+      "tier": "Not Yet Available",
+      "blocker": "No ExecutionEvent documents in Niyantran Mongo \u00e2\u20ac\u201d cannot build payload from real records"
+    }
+  },
+  "confirmations": {
+    "artha": {
+      "status": 200,
+      "count": 2,
+      "items": [
+        {
+          "signal_id": "sig-b79218172c1f",
+          "signal_type": "artha_payroll_visibility",
+          "payload": {
+            "signal_id": "SIG-d03e25ed-60d4-495c-8fad-6236993e219d",
+            "trace_id": "TRC-20260702-19f21bf0",
+            "source": {
+              "system": "ARTHA",
+              "module": "COMPLIANCE_FILING",
+              "entity_type": "COMPLIANCE_FILING",
+              "entity_id": "FILING-CLOSEOUT-20260702"
+            },
+            "severity": "LOW",
+            "timestamp": "2026-07-02T07:33:17.431Z",
+            "context": {
+              "filing_id": "FILING-CLOSEOUT-20260702",
+              "filing_type": "GSTR1",
+              "period": "2026-06"
+            },
+            "recommendation": {
+              "code": "REVIEW_BEFORE_FILING",
+              "message": "Filing packet generated. Review before submission."
+            }
+          },
+          "workforce_ref_id": null,
+          "source_declaration": "artha payroll visibility participation",
+          "tenant_id": "platform",
+          "created_at": "2026-07-02T07:34:34.764000",
+          "lineage": {
+            "origin_system": "artha",
+            "owning_system": "artha",
+            "schema_version": "1.0.0",
+            "trace_id": "TRC-20260702-19f21bf0",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trust_classification": "observed",
+            "visibility_scope": "tenant"
+          },
+          "updated_at": "2026-07-02T07:34:34.764000",
+          "id": "6a46148a7c009f69a56f8a0d"
+        },
+        {
+          "signal_id": "sig-485003a10f74",
+          "signal_type": "artha_payroll_visibility",
+          "payload": {
+            "signal_id": "SIG-d03e25ed-60d4-495c-8fad-6236993e219d",
+            "trace_id": "TRC-20260702-19f21bf0",
+            "source": {
+              "system": "ARTHA",
+              "module": "COMPLIANCE_FILING",
+              "entity_type": "COMPLIANCE_FILING",
+              "entity_id": "FILING-CLOSEOUT-20260702"
+            },
+            "severity": "LOW",
+            "timestamp": "2026-07-02T07:33:17.431Z",
+            "context": {
+              "filing_id": "FILING-CLOSEOUT-20260702",
+              "filing_type": "GSTR1",
+              "period": "2026-06"
+            },
+            "recommendation": {
+              "code": "REVIEW_BEFORE_FILING",
+              "message": "Filing packet generated. Review before submission."
+            }
+          },
+          "workforce_ref_id": null,
+          "source_declaration": "artha payroll visibility participation",
+          "tenant_id": "platform",
+          "created_at": "2026-07-02T07:33:31.929000",
+          "lineage": {
+            "origin_system": "artha",
+            "owning_system": "artha",
+            "schema_version": "1.0.0",
+            "trace_id": "TRC-20260702-19f21bf0",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trust_classification": "observed",
+            "visibility_scope": "tenant"
+          },
+          "updated_at": "2026-07-02T07:33:31.929000",
+          "id": "6a46144b7c009f69a56f8a07"
+        }
+      ]
+    },
+    "crm": {
+      "status": 200,
+      "count": 5,
+      "items": [
+        {
+          "signal_id": "sig-1d4446d0144a",
+          "signal_type": "crm_participation",
+          "payload": {
+            "execution_id": "exec-logistics-closeout-20260702",
+            "trace_id": "logistics-trace-3d0a7d1a",
+            "tenant_id": "tenant-crm-closeout",
+            "timestamp": "2026-07-02T07:34:20.622355+00:00",
+            "event_type": "execution_completed",
+            "details": {
+              "source": "partner_closeout_harness",
+              "module": "logistics",
+              "page": "Logistics.jsx"
+            },
+            "subsystem": "logistics"
+          },
+          "workforce_ref_id": null,
+          "source_declaration": "crm participation",
+          "tenant_id": "platform",
+          "created_at": "2026-07-02T07:34:36.088000",
+          "lineage": {
+            "origin_system": "crm",
+            "owning_system": "crm",
+            "schema_version": "1.0.0",
+            "trace_id": "logistics-trace-3d0a7d1a",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trust_classification": "observed",
+            "visibility_scope": "tenant"
+          },
+          "updated_at": "2026-07-02T07:34:36.088000",
+          "id": "6a46148c7c009f69a56f8a11"
+        },
+        {
+          "signal_id": "sig-2a110e114757",
+          "signal_type": "crm_participation",
+          "payload": {
+            "execution_id": "exec-crm-closeout-20260702",
+            "trace_id": "crm-trace-3d0a7d1a",
+            "tenant_id": "tenant-crm-closeout",
+            "timestamp": "2026-07-02T07:34:20.622355+00:00",
+            "event_type": "execution_completed",
+            "details": {
+              "source": "partner_closeout_harness",
+              "module": "crm"
+            }
+          },
+          "workforce_ref_id": null,
+          "source_declaration": "crm participation",
+          "tenant_id": "platform",
+          "created_at": "2026-07-02T07:34:35.536000",
+          "lineage": {
+            "origin_system": "crm",
+            "owning_system": "crm",
+            "schema_version": "1.0.0",
+            "trace_id": "crm-trace-3d0a7d1a",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trust_classification": "observed",
+            "visibility_scope": "tenant"
+          },
+          "updated_at": "2026-07-02T07:34:35.536000",
+          "id": "6a46148b7c009f69a56f8a0f"
+        },
+        {
+          "signal_id": "sig-720e73b6ebb9",
+          "signal_type": "crm_participation",
+          "payload": {
+            "execution_id": "exec-logistics-closeout-20260702",
+            "trace_id": "logistics-trace-3d0a7d1a",
+            "tenant_id": "tenant-crm-closeout",
+            "timestamp": "2026-07-02T07:33:17.800917+00:00",
+            "event_type": "execution_completed",
+            "details": {
+              "source": "partner_closeout_harness",
+              "module": "logistics",
+              "page": "Logistics.jsx"
+            },
+            "subsystem": "logistics"
+          },
+          "workforce_ref_id": null,
+          "source_declaration": "crm participation",
+          "tenant_id": "platform",
+          "created_at": "2026-07-02T07:33:33.051000",
+          "lineage": {
+            "origin_system": "crm",
+            "owning_system": "crm",
+            "schema_version": "1.0.0",
+            "trace_id": "logistics-trace-3d0a7d1a",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trust_classification": "observed",
+            "visibility_scope": "tenant"
+          },
+          "updated_at": "2026-07-02T07:33:33.051000",
+          "id": "6a46144d7c009f69a56f8a0b"
+        },
+        {
+          "signal_id": "sig-d270adfcdd82",
+          "signal_type": "crm_participation",
+          "payload": {
+            "execution_id": "exec-crm-closeout-20260702",
+            "trace_id": "crm-trace-3d0a7d1a",
+            "tenant_id": "tenant-crm-closeout",
+            "timestamp": "2026-07-02T07:33:17.800917+00:00",
+            "event_type": "execution_completed",
+            "details": {
+              "source": "partner_closeout_harness",
+              "module": "crm"
+            }
+          },
+          "workforce_ref_id": null,
+          "source_declaration": "crm participation",
+          "tenant_id": "platform",
+          "created_at": "2026-07-02T07:33:32.571000",
+          "lineage": {
+            "origin_system": "crm",
+            "owning_system": "crm",
+            "schema_version": "1.0.0",
+            "trace_id": "crm-trace-3d0a7d1a",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trust_classification": "observed",
+            "visibility_scope": "tenant"
+          },
+          "updated_at": "2026-07-02T07:33:32.571000",
+          "id": "6a46144c7c009f69a56f8a09"
+        },
+        {
+          "signal_id": "sig-c3f61ba15586",
+          "signal_type": "crm_participation",
+          "payload": {
+            "execution_id": "exec-logistics-closeout-20260702",
+            "trace_id": "logistics-trace-3d0a7d1a",
+            "tenant_id": "tenant-crm-closeout",
+            "timestamp": "2026-07-02T07:32:33.924743+00:00",
+            "event_type": "execution_completed",
+            "details": {
+              "source": "partner_closeout_harness",
+              "module": "logistics",
+              "page": "Logistics.jsx"
+            },
+            "subsystem": "logistics"
+          },
+          "workforce_ref_id": null,
+          "source_declaration": "crm participation",
+          "tenant_id": "platform",
+          "created_at": "2026-07-02T07:32:49.437000",
+          "lineage": {
+            "origin_system": "crm",
+            "owning_system": "crm",
+            "schema_version": "1.0.0",
+            "trace_id": "logistics-trace-3d0a7d1a",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trust_classification": "observed",
+            "visibility_scope": "tenant"
+          },
+          "updated_at": "2026-07-02T07:32:49.437000",
+          "id": "6a4614217c009f69a56f8a05"
+        }
+      ]
+    },
+    "niyantran": {
+      "status": 200,
+      "count": 1,
+      "items": [
+        {
+          "signal_id": "sig-a810511a2509",
+          "signal_type": "niyantran_telemetry",
+          "payload": {
+            "event": "task_completed",
+            "task_id": "live-831Z",
+            "workforce_ref": "wf-fd372f903780"
+          },
+          "workforce_ref_id": "wf-fd372f903780",
+          "source_declaration": "niyantran_telemetry participation",
+          "tenant_id": "platform",
+          "created_at": "2026-07-02T06:38:54.843000",
+          "lineage": {
+            "origin_system": "niyantran",
+            "owning_system": "niyantran",
+            "schema_version": "1.0.0",
+            "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trust_classification": "observed",
+            "visibility_scope": "tenant"
+          },
+          "updated_at": "2026-07-02T06:38:54.843000",
+          "id": "6a46077ea102674ea6e61713"
+        }
+      ]
+    }
+  },
+  "boot_checkpoint": {
+    "repo_topology": "No uploaded ZIP copies present; embedded copies at Artha/, ai-crm/, workflow-blackhole/ used.",
+    "artha_db_configured": true,
+    "crm_db_configured": true,
+    "niyantran_db_configured": true,
+    "tier_decision": {
+      "artha": "Tier 2 \u2014 dispatcher invoked directly against live gateway; Artha API server not started (JWT-gated dispatch route).",
+      "crm": "Tier 2 \u2014 sampada_dispatcher invoked directly; CRM FastAPI server not started.",
+      "niyantran": "Tier 2 \u2014 setuDispatcher invoked with real ExecutionEvent from Niyantran Mongo when available, else blocker recorded.",
+      "logistics": "Tier 2 \u2014 crm_participation with payload.subsystem=logistics via CRM dispatcher (no separate Logistics backend)."
+    }
+  }
+}

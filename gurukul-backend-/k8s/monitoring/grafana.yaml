@@ -1,0 +1,394 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-datasources
+  namespace: gurukul-staging
+data:
+  datasource.yaml: |
+    apiVersion: 1
+    datasources:
+    - name: Prometheus
+      type: prometheus
+      access: proxy
+      url: http://prometheus.gurukul-staging.svc.cluster.local:9090
+      isDefault: true
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-dashboard-providers
+  namespace: gurukul-staging
+data:
+  provider.yaml: |
+    apiVersion: 1
+    providers:
+    - name: 'default'
+      orgId: 1
+      folder: ''
+      type: file
+      disableDeletion: false
+      editable: true
+      options:
+        path: /var/lib/grafana/dashboards
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-dashboard-json
+  namespace: gurukul-staging
+data:
+  grafana-dashboard.json: |
+    {
+      "annotations": {
+        "list": [
+          {
+            "builtIn": 1,
+            "datasource": "-- Grafana --",
+            "enable": true,
+            "hide": true,
+            "name": "Annotations & Alerts",
+            "type": "dashboard"
+          }
+        ]
+      },
+      "editable": true,
+      "fiscalYearStartMonth": 0,
+      "graphTooltip": 0,
+      "id": 1,
+      "links": [],
+      "liveNow": false,
+      "panels": [
+        {
+          "collapsed": false,
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 0
+          },
+          "id": 1,
+          "title": "API Request Throughput (RPS)",
+          "type": "timeseries",
+          "targets": [
+            {
+              "expr": "rate(gurukul_requests_total[1m])",
+              "legendFormat": "HTTP Request Rate",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "collapsed": false,
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 0
+          },
+          "id": 2,
+          "title": "API Latency (Average & p95)",
+          "type": "timeseries",
+          "targets": [
+            {
+              "expr": "gurukul_voice_latency_seconds_avg * 1000",
+              "legendFormat": "Voice Latency Avg (ms)",
+              "refId": "A"
+            },
+            {
+              "expr": "gurukul_voice_latency_seconds_p95 * 1000",
+              "legendFormat": "Voice Latency p95 (ms)",
+              "refId": "B"
+            }
+          ]
+        },
+        {
+          "collapsed": false,
+          "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 0,
+            "y": 8
+          },
+          "id": 3,
+          "title": "System CPU Usage",
+          "type": "gauge",
+          "targets": [
+            {
+              "expr": "gurukul_cpu_usage_ratio",
+              "legendFormat": "CPU Usage Ratio",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "collapsed": false,
+          "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 8,
+            "y": 8
+          },
+          "id": 4,
+          "title": "System Memory Usage",
+          "type": "gauge",
+          "targets": [
+            {
+              "expr": "gurukul_memory_usage_ratio",
+              "legendFormat": "Memory Usage Ratio",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "collapsed": false,
+          "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 16,
+            "y": 8
+          },
+          "id": 5,
+          "title": "HTTP 5xx Error Counts",
+          "type": "timeseries",
+          "targets": [
+            {
+              "expr": "gurukul_errors_total",
+              "legendFormat": "Errors Total",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "collapsed": false,
+          "gridPos": {
+            "h": 4,
+            "w": 8,
+            "x": 0,
+            "y": 16
+          },
+          "id": 6,
+          "title": "Database Connection Health",
+          "type": "stat",
+          "targets": [
+            {
+              "expr": "gurukul_database_healthy",
+              "legendFormat": "DB Status",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "red", "value": null },
+                  { "color": "green", "value": 1 }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "collapsed": false,
+          "gridPos": {
+            "h": 4,
+            "w": 8,
+            "x": 8,
+            "y": 16
+          },
+          "id": 7,
+          "title": "Redis Connection Health",
+          "type": "stat",
+          "targets": [
+            {
+              "expr": "gurukul_redis_healthy",
+              "legendFormat": "Redis Status",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "red", "value": null },
+                  { "color": "green", "value": 1 }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "collapsed": false,
+          "gridPos": {
+            "h": 4,
+            "w": 8,
+            "x": 16,
+            "y": 16
+          },
+          "id": 8,
+          "title": "Service Watchdog Status",
+          "type": "stat",
+          "targets": [
+            {
+              "expr": "gurukul_watchdog_active",
+              "legendFormat": "Watchdog Status",
+              "refId": "A"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  { "color": "red", "value": null },
+                  { "color": "green", "value": 1 }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "collapsed": false,
+          "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 0,
+            "y": 20
+          },
+          "id": 9,
+          "title": "Unique Active Visitors",
+          "type": "stat",
+          "targets": [
+            {
+              "expr": "gurukul_unique_visitors_total",
+              "legendFormat": "Distinct Visitors",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "collapsed": false,
+          "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 8,
+            "y": 20
+          },
+          "id": 10,
+          "title": "Traffic Browser Share",
+          "type": "bargauge",
+          "targets": [
+            {
+              "expr": "sum(gurukul_requests_by_browser_total) by (browser)",
+              "legendFormat": "{{browser}}",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "collapsed": false,
+          "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 16,
+            "y": 20
+          },
+          "id": 11,
+          "title": "Traffic Device Type Share",
+          "type": "bargauge",
+          "targets": [
+            {
+              "expr": "sum(gurukul_requests_by_device_total) by (device)",
+              "legendFormat": "{{device}}",
+              "refId": "A"
+            }
+          ]
+        }
+      ],
+      "schemaVersion": 36,
+      "style": "dark",
+      "tags": ["gurukul", "production"],
+      "time": {
+        "from": "now-1h",
+        "to": "now"
+      },
+      "title": "Gurukul Production Hardening Dashboard",
+      "version": 1
+    }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  namespace: gurukul-staging
+  labels:
+    app: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      containers:
+      - name: grafana
+        image: grafana/grafana:10.0.3
+        ports:
+        - containerPort: 3000
+          name: web
+        env:
+        - name: GF_SECURITY_ADMIN_PASSWORD
+          value: "admin"
+        volumeMounts:
+        - name: datasource-volume
+          mountPath: /etc/grafana/provisioning/datasources
+        - name: provider-volume
+          mountPath: /etc/grafana/provisioning/dashboards
+        - name: dashboard-volume
+          mountPath: /var/lib/grafana/dashboards
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 250m
+            memory: 512Mi
+      volumes:
+      - name: datasource-volume
+        configMap:
+          name: grafana-datasources
+      - name: provider-volume
+        configMap:
+          name: grafana-dashboard-providers
+      - name: dashboard-volume
+        configMap:
+          name: grafana-dashboard-json
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+  namespace: gurukul-staging
+  labels:
+    app: grafana
+spec:
+  ports:
+  - port: 3000
+    targetPort: 3000
+    name: web
+  selector:
+    app: grafana
+  type: ClusterIP

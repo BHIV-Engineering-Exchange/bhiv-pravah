@@ -1,0 +1,89 @@
+# AI Agent CRM System - Production Deployment
+# Multi-stage Docker build for optimal security and performance
+
+# Stage 1: Build stage
+FROM python:3.11-slim as builder
+
+# Set build arguments
+ARG BUILD_DATE
+ARG VERSION
+ARG GIT_COMMIT
+
+# Set labels
+LABEL maintainer="AI Agent Team"
+LABEL version="${VERSION}"
+LABEL description="AI Agent CRM System with Enhanced Integrations"
+LABEL build-date="${BUILD_DATE}"
+LABEL git-commit="${GIT_COMMIT}"
+
+# Install system dependencies for building
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create application user
+RUN groupadd -r appuser && useradd -r -g appuser appuser
+
+# Set working directory
+WORKDIR /app
+
+# Copy requirements first for better caching
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir --user -r requirements.txt
+
+# Stage 2: Production stage
+FROM python:3.11-slim as production
+
+# Install runtime dependencies only
+RUN apt-get update && apt-get install -y \
+    curl \
+    sqlite3 \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
+
+# Create application user
+RUN groupadd -r appuser && useradd -r -g appuser -d /app appuser
+
+# Copy Python packages from builder stage
+COPY --from=builder /root/.local /home/appuser/.local
+
+# Create directories with proper permissions
+RUN mkdir -p /app/data /app/logs /app/static/images \
+    && chown -R appuser:appuser /app
+
+# Set working directory
+WORKDIR /app
+
+# Copy application code
+COPY --chown=appuser:appuser . .
+
+# Remove unnecessary files
+RUN rm -rf tests/ docs/ *.md .git .gitignore
+
+# Set environment variables
+ENV PYTHONPATH=/app
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV PATH=/home/appuser/.local/bin:$PATH
+
+# Security: Run as non-root user
+USER appuser
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD curl -f http://localhost:8000/health || exit 1
+
+# Expose ports
+EXPOSE 8000 8001 8501 8502
+
+# Create startup script
+COPY --chown=appuser:appuser docker-entrypoint.sh /app/
+RUN chmod +x /app/docker-entrypoint.sh
+
+# Default command
+ENTRYPOINT ["/app/docker-entrypoint.sh"]
+CMD ["production"]

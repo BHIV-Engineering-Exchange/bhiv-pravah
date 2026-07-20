@@ -1,0 +1,34 @@
+{
+  "constitutional_boundary_matrix": [
+    {
+      "boundary_type": "Replay Boundedness",
+      "limit": "No side-effects or state modification during re-run",
+      "evidence": "Hash check matching between original and replayed artifacts",
+      "status": "BOUNDED"
+    },
+    {
+      "boundary_type": "Governance Boundedness",
+      "limit": "Stateless orchestration via Integration Bridge",
+      "evidence": "Configuration parameters loaded from read-only environment files",
+      "status": "BOUNDED"
+    },
+    {
+      "boundary_type": "Schema Boundedness",
+      "limit": "Pydantic structural constraints on endpoints",
+      "evidence": "Dropped dynamic fields during validation checking",
+      "status": "BOUNDED"
+    },
+    {
+      "boundary_type": "Authority Boundedness",
+      "limit": "Gate and Sarathi layers enforce authority boundaries",
+      "evidence": "Invalid blueprints rejected before BHIV Core execution",
+      "status": "BOUNDED"
+    },
+    {
+      "boundary_type": "Observability Boundedness",
+      "limit": "Transition tracing matches trace schema",
+      "evidence": "Verified logs and structured trace catalogs",
+      "status": "BOUNDED"
+    }
+  ]
+}

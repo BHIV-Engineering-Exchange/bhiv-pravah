@@ -1,0 +1,157 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Universal Prompt Runner Contract",
+  "description": "Defines the input and output schema for the Universal Prompt Runner. Supports any domain via the plugin system.",
+  "version": "2.0.0",
+
+  "definitions": {
+    "naturalLanguageInput": {
+      "type": "string",
+      "description": "Natural language prompt from user — any domain",
+      "minLength": 1,
+      "examples": [
+        "Design a residential building for a 1000 sqft plot in Mumbai.",
+        "Review the employment contract for compliance under Indian law.",
+        "Calculate the ROI for a 50 lakh investment over 5 years.",
+        "Create a patient assessment report for a diabetic patient.",
+        "Design the database architecture for a scalable e-commerce platform."
+      ]
+    },
+
+    "structuredInput": {
+      "type": "object",
+      "description": "Pre-structured request with optional domain, intent, topic, and data",
+      "properties": {
+        "domain": {
+          "type": "string",
+          "description": "Optional explicit domain (architecture, legal, finance, healthcare, software, general)"
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional explicit intent within the domain"
+        },
+        "topic": {
+          "type": "string",
+          "description": "Optional explicit topic — used as data.topic in the instruction"
+        },
+        "prompt": {
+          "type": "string",
+          "description": "Optional natural language prompt for domain/intent detection"
+        },
+        "data": {
+          "type": "object",
+          "description": "Structured input parameters",
+          "additionalProperties": true
+        },
+        "constraints": {
+          "type": "object",
+          "description": "Explicit constraint overrides",
+          "additionalProperties": true
+        }
+      }
+    },
+
+    "instruction": {
+      "type": "object",
+      "description": "Deterministic JSON instruction output — consistent across all domains",
+      "properties": {
+        "module": {
+          "type": "string",
+          "description": "The system module responsible for execution"
+        },
+        "intent": {
+          "type": "string",
+          "description": "The detected or specified intent"
+        },
+        "data": {
+          "type": "object",
+          "description": "Structured data for the module",
+          "properties": {
+            "topic": {
+              "type": "string",
+              "description": "The main subject extracted from the request"
+            },
+            "parameters": {
+              "type": "object",
+              "description": "Extracted parameters from the request",
+              "additionalProperties": true
+            },
+            "original_prompt": {
+              "type": "string",
+              "description": "The original user input"
+            }
+          },
+          "required": ["topic", "parameters", "original_prompt"]
+        },
+        "tasks": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Ordered list of task components the module must execute"
+        },
+        "output_format": {
+          "type": "string",
+          "description": "Expected result format (e.g. step_by_step_guide, analysis_report, design_document)"
+        },
+        "context": {
+          "type": "object",
+          "description": "Instruction metadata",
+          "properties": {
+            "source": {
+              "type": "string",
+              "const": "prompt_runner"
+            }
+          },
+          "required": ["source"]
+        }
+      },
+      "required": ["module", "intent", "data", "tasks", "output_format", "context"]
+    },
+
+    "successResponse": {
+      "type": "object",
+      "properties": {
+        "status": { "type": "string", "const": "success" },
+        "instruction": { "$ref": "#/definitions/instruction" },
+        "adapter_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" }
+      },
+      "required": ["status", "instruction", "adapter_version"]
+    },
+
+    "errorResponse": {
+      "type": "object",
+      "properties": {
+        "status": { "type": "string", "const": "error" },
+        "error": { "type": "string" },
+        "message": { "type": "string" },
+        "adapter_version": { "type": "string" }
+      },
+      "required": ["status"]
+    }
+  },
+
+  "input": {
+    "oneOf": [
+      { "$ref": "#/definitions/naturalLanguageInput" },
+      { "$ref": "#/definitions/structuredInput" }
+    ]
+  },
+
+  "output": {
+    "oneOf": [
+      { "$ref": "#/definitions/successResponse" },
+      { "$ref": "#/definitions/errorResponse" }
+    ]
+  },
+
+  "routing_model": {
+    "description": "Hierarchical routing: Domain → Intent → Module → Task. All domains defined in domain_registry.json, all modules in module_registry.json.",
+    "pipeline_stages": [
+      "DomainDetector",
+      "IntentDetector",
+      "EntityExtractor",
+      "ConstraintExtractor",
+      "InstructionBuilder"
+    ],
+    "extensibility": "Add a new domain by dropping plugins/<domain>/plugin.json — no core changes required."
+  }
+}

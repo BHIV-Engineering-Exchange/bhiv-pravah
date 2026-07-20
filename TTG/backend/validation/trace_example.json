@@ -1,0 +1,445 @@
+[
+  {
+    "description": "Trace 1: Execution Started - User initiates game creation",
+    "trace": {
+      "timestamp": 1772078864291,
+      "trace_id": "trace_dispatch_1772078864175",
+      "execution_id": "exec_dispatch_1772078864175",
+      "action_event": "user submitted 'create a runner game' intent",
+      "compiled_contract": {
+        "game_mode": "runner",
+        "movement": {
+          "speed": 8,
+          "jump_height": 5
+        },
+        "camera": {
+          "type": "third_person",
+          "distance": 10
+        },
+        "spawn_rules": {
+          "obstacles": 2,
+          "frequency": 2
+        },
+        "score_rules": {
+          "distance": 1,
+          "collectibles": 0
+        },
+        "end_conditions": ["collision"],
+        "player_params": {
+          "jetpack": false,
+          "health": 3
+        },
+        "physics": {
+          "gravity": -9.8,
+          "friction": 0.5,
+          "bounce": 0.3
+        }
+      },
+      "engine_job_stream": [
+        {
+          "jobId": "build_exec_dispatch_1772078864175",
+          "jobType": "BUILD_SCENE",
+          "status": "queued",
+          "payload": {
+            "sceneId": "scene_runner",
+            "ambientLight": [0.6, 0.6, 0.6],
+            "skybox": "default_sky"
+          },
+          "queuedAt": 1772078864295
+        },
+        {
+          "jobId": "spawn_player_exec_dispatch_1772078864175",
+          "jobType": "SPAWN_ENTITY",
+          "status": "queued",
+          "payload": {
+            "id": "player_1",
+            "type": "player",
+            "transform": {
+              "position": [0, 0, 0],
+              "rotation": [0, 0, 0],
+              "scale": [1, 1, 1]
+            }
+          },
+          "queuedAt": 1772078864296
+        },
+        {
+          "jobId": "start_exec_dispatch_1772078864175",
+          "jobType": "START_LOOP",
+          "status": "queued",
+          "payload": {
+            "game_mode": "runner",
+            "params": {
+              "movement_speed": 8,
+              "difficulty": "medium"
+            }
+          },
+          "queuedAt": 1772078864297
+        }
+      ],
+      "runtime_state": "QUEUED",
+      "metadata": {
+        "user_id": "user_123",
+        "session_id": "session_456",
+        "intent": "create a runner game with speed 8",
+        "source": "dashboard",
+        "environment": "development"
+      },
+      "telemetry": {
+        "jobs_total": 3,
+        "jobs_completed": 0,
+        "jobs_failed": 0,
+        "execution_duration_ms": 0,
+        "engine_connected": true
+      }
+    }
+  },
+  {
+    "description": "Trace 2: Execution Running - Jobs being processed",
+    "trace": {
+      "timestamp": 1772078866500,
+      "trace_id": "trace_dispatch_1772078864175",
+      "execution_id": "exec_dispatch_1772078864175",
+      "action_event": "engine processing jobs - scene built, spawning player",
+      "compiled_contract": {
+        "game_mode": "runner",
+        "movement": {
+          "speed": 8,
+          "jump_height": 5
+        },
+        "camera": {
+          "type": "third_person",
+          "distance": 10
+        },
+        "spawn_rules": {
+          "obstacles": 2,
+          "frequency": 2
+        },
+        "score_rules": {
+          "distance": 1,
+          "collectibles": 0
+        },
+        "end_conditions": ["collision"],
+        "player_params": {
+          "jetpack": false,
+          "health": 3
+        },
+        "physics": {
+          "gravity": -9.8,
+          "friction": 0.5,
+          "bounce": 0.3
+        }
+      },
+      "engine_job_stream": [
+        {
+          "jobId": "build_exec_dispatch_1772078864175",
+          "jobType": "BUILD_SCENE",
+          "status": "completed",
+          "payload": {
+            "sceneId": "scene_runner",
+            "ambientLight": [0.6, 0.6, 0.6],
+            "skybox": "default_sky"
+          },
+          "queuedAt": 1772078864295,
+          "startedAt": 1772078864800,
+          "completedAt": 1772078865500,
+          "duration": 700
+        },
+        {
+          "jobId": "spawn_player_exec_dispatch_1772078864175",
+          "jobType": "SPAWN_ENTITY",
+          "status": "running",
+          "payload": {
+            "id": "player_1",
+            "type": "player",
+            "transform": {
+              "position": [0, 0, 0],
+              "rotation": [0, 0, 0],
+              "scale": [1, 1, 1]
+            }
+          },
+          "queuedAt": 1772078864296,
+          "startedAt": 1772078865600
+        },
+        {
+          "jobId": "start_exec_dispatch_1772078864175",
+          "jobType": "START_LOOP",
+          "status": "queued",
+          "payload": {
+            "game_mode": "runner",
+            "params": {
+              "movement_speed": 8,
+              "difficulty": "medium"
+            }
+          },
+          "queuedAt": 1772078864297
+        }
+      ],
+      "runtime_state": "RUNNING",
+      "metadata": {
+        "user_id": "user_123",
+        "session_id": "session_456",
+        "intent": "create a runner game with speed 8",
+        "source": "dashboard",
+        "environment": "development"
+      },
+      "telemetry": {
+        "jobs_total": 3,
+        "jobs_completed": 1,
+        "jobs_failed": 0,
+        "execution_duration_ms": 2209,
+        "engine_connected": true
+      }
+    }
+  },
+  {
+    "description": "Trace 3: Execution Completed - All jobs finished successfully",
+    "trace": {
+      "timestamp": 1772078869000,
+      "trace_id": "trace_dispatch_1772078864175",
+      "execution_id": "exec_dispatch_1772078864175",
+      "action_event": "all jobs completed - game started successfully",
+      "compiled_contract": {
+        "game_mode": "runner",
+        "movement": {
+          "speed": 8,
+          "jump_height": 5
+        },
+        "camera": {
+          "type": "third_person",
+          "distance": 10
+        },
+        "spawn_rules": {
+          "obstacles": 2,
+          "frequency": 2
+        },
+        "score_rules": {
+          "distance": 1,
+          "collectibles": 0
+        },
+        "end_conditions": ["collision"],
+        "player_params": {
+          "jetpack": false,
+          "health": 3
+        },
+        "physics": {
+          "gravity": -9.8,
+          "friction": 0.5,
+          "bounce": 0.3
+        }
+      },
+      "engine_job_stream": [
+        {
+          "jobId": "build_exec_dispatch_1772078864175",
+          "jobType": "BUILD_SCENE",
+          "status": "completed",
+          "payload": {
+            "sceneId": "scene_runner",
+            "ambientLight": [0.6, 0.6, 0.6],
+            "skybox": "default_sky"
+          },
+          "queuedAt": 1772078864295,
+          "startedAt": 1772078864800,
+          "completedAt": 1772078865500,
+          "duration": 700
+        },
+        {
+          "jobId": "spawn_player_exec_dispatch_1772078864175",
+          "jobType": "SPAWN_ENTITY",
+          "status": "completed",
+          "payload": {
+            "id": "player_1",
+            "type": "player",
+            "transform": {
+              "position": [0, 0, 0],
+              "rotation": [0, 0, 0],
+              "scale": [1, 1, 1]
+            }
+          },
+          "queuedAt": 1772078864296,
+          "startedAt": 1772078865600,
+          "completedAt": 1772078866800,
+          "duration": 1200
+        },
+        {
+          "jobId": "start_exec_dispatch_1772078864175",
+          "jobType": "START_LOOP",
+          "status": "completed",
+          "payload": {
+            "game_mode": "runner",
+            "params": {
+              "movement_speed": 8,
+              "difficulty": "medium"
+            }
+          },
+          "queuedAt": 1772078864297,
+          "startedAt": 1772078866900,
+          "completedAt": 1772078868500,
+          "duration": 1600
+        }
+      ],
+      "runtime_state": "PLAYING",
+      "metadata": {
+        "user_id": "user_123",
+        "session_id": "session_456",
+        "intent": "create a runner game with speed 8",
+        "source": "dashboard",
+        "environment": "development"
+      },
+      "telemetry": {
+        "jobs_total": 3,
+        "jobs_completed": 3,
+        "jobs_failed": 0,
+        "execution_duration_ms": 4709,
+        "engine_connected": true
+      }
+    }
+  },
+  {
+    "description": "Trace 4: Execution Failed - Job failure during processing",
+    "trace": {
+      "timestamp": 1772078920000,
+      "trace_id": "trace_failed_1772078915000",
+      "execution_id": "exec_failed_1772078915000",
+      "action_event": "execution failed - asset loading error",
+      "compiled_contract": {
+        "game_mode": "sidescroller",
+        "movement": {
+          "speed": 5,
+          "jump_height": 3
+        },
+        "camera": {
+          "type": "side_view",
+          "distance": 12
+        },
+        "spawn_rules": {
+          "obstacles": 3,
+          "frequency": 1.5
+        },
+        "score_rules": {
+          "distance": 2,
+          "collectibles": 5
+        },
+        "end_conditions": ["time_limit"],
+        "player_params": {
+          "health": 5
+        },
+        "physics": {
+          "gravity": -12
+        }
+      },
+      "engine_job_stream": [
+        {
+          "jobId": "build_exec_failed_1772078915000",
+          "jobType": "BUILD_SCENE",
+          "status": "completed",
+          "payload": {
+            "sceneId": "scene_sidescroller"
+          },
+          "queuedAt": 1772078915100,
+          "startedAt": 1772078915500,
+          "completedAt": 1772078916200,
+          "duration": 700
+        },
+        {
+          "jobId": "load_assets_exec_failed_1772078915000",
+          "jobType": "LOAD_ASSETS",
+          "status": "failed",
+          "payload": {
+            "assets": ["player", "missing_texture"]
+          },
+          "queuedAt": 1772078915101,
+          "startedAt": 1772078916300,
+          "completedAt": 1772078920000,
+          "duration": 3700,
+          "error": "Asset not found: missing_texture"
+        }
+      ],
+      "runtime_state": "FAILED",
+      "metadata": {
+        "user_id": "user_456",
+        "session_id": "session_789",
+        "intent": "create a sidescroller game",
+        "source": "api",
+        "environment": "production"
+      },
+      "telemetry": {
+        "jobs_total": 2,
+        "jobs_completed": 1,
+        "jobs_failed": 1,
+        "execution_duration_ms": 5000,
+        "engine_connected": true
+      },
+      "error": {
+        "message": "Execution failed: Asset loading error",
+        "code": "ASSET_LOAD_FAILED",
+        "stack": "Error: Asset not found: missing_texture\n    at AssetLoader.load (engine.js:245)"
+      }
+    }
+  },
+  {
+    "description": "Trace 5: Game Over - Runtime state change during gameplay",
+    "trace": {
+      "timestamp": 1772079000000,
+      "trace_id": "trace_gameplay_1772078950000",
+      "execution_id": "exec_gameplay_1772078950000",
+      "action_event": "player collided with obstacle - game over",
+      "compiled_contract": {
+        "game_mode": "runner",
+        "movement": {
+          "speed": 10,
+          "jump_height": 4
+        },
+        "camera": {
+          "type": "third_person",
+          "distance": 8
+        },
+        "spawn_rules": {
+          "obstacles": 5,
+          "frequency": 1
+        },
+        "score_rules": {
+          "distance": 1,
+          "collectibles": 10
+        },
+        "end_conditions": ["collision"],
+        "player_params": {
+          "health": 1
+        },
+        "physics": {
+          "gravity": -9.8
+        }
+      },
+      "engine_job_stream": [
+        {
+          "jobId": "stop_exec_gameplay_1772078950000",
+          "jobType": "STOP_GAME",
+          "status": "completed",
+          "payload": {
+            "reason": "collision",
+            "final_score": 245,
+            "duration": 45000
+          },
+          "queuedAt": 1772078999500,
+          "startedAt": 1772078999600,
+          "completedAt": 1772079000000,
+          "duration": 400
+        }
+      ],
+      "runtime_state": "GAME_OVER",
+      "metadata": {
+        "user_id": "user_789",
+        "session_id": "session_101",
+        "intent": "create a fast runner game",
+        "source": "dashboard",
+        "environment": "development"
+      },
+      "telemetry": {
+        "jobs_total": 4,
+        "jobs_completed": 4,
+        "jobs_failed": 0,
+        "execution_duration_ms": 50000,
+        "engine_connected": true
+      }
+    }
+  }
+]

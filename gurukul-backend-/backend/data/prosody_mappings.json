@@ -1,0 +1,65 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-01-20",
+  "description": "Prosody mappings for Vaani RL-TTS system - Arabic language focus",
+  "languages": {
+    "ar": {
+      "language_name": "Arabic",
+      "language_name_native": "العربية",
+      "rtl": true,
+      "tones": {
+        "neutral": {
+          "pitch": 0.5,
+          "speed": 1.0,
+          "emphasis": 0.3,
+          "pause_duration": 0.2,
+          "prosody_hint": "neutral_ar",
+          "description": "Neutral, balanced Arabic speech"
+        },
+        "excited": {
+          "pitch": 0.7,
+          "speed": 1.2,
+          "emphasis": 0.6,
+          "pause_duration": 0.15,
+          "prosody_hint": "excited_ar",
+          "description": "Enthusiastic, energetic Arabic speech"
+        },
+        "educational": {
+          "pitch": 0.55,
+          "speed": 0.95,
+          "emphasis": 0.4,
+          "pause_duration": 0.25,
+          "prosody_hint": "educational_ar",
+          "description": "Clear, instructional Arabic speech for learning"
+        },
+        "formal": {
+          "pitch": 0.48,
+          "speed": 0.9,
+          "emphasis": 0.35,
+          "pause_duration": 0.3,
+          "prosody_hint": "formal_ar",
+          "description": "Formal, professional Arabic speech"
+        },
+        "friendly": {
+          "pitch": 0.6,
+          "speed": 1.05,
+          "emphasis": 0.45,
+          "pause_duration": 0.2,
+          "prosody_hint": "friendly_ar",
+          "description": "Warm, friendly Arabic speech"
+        },
+        "calm": {
+          "pitch": 0.45,
+          "speed": 0.85,
+          "emphasis": 0.25,
+          "pause_duration": 0.35,
+          "prosody_hint": "calm_ar",
+          "description": "Calm, soothing Arabic speech"
+        }
+      },
+      "default_tone": "neutral"
+    }
+  },
+  "notes": "Prosody hints are used by Vaani RL-TTS to generate natural-sounding Arabic speech with appropriate tone and rhythm"
+}
+

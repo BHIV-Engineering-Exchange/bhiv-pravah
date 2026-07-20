@@ -1,0 +1,7 @@
+{"endpoint": "/tools/predict", "error": null, "price": 3920.5, "quantity": null, "request_id": "proof_predict_1", "status_code": 200, "success": true, "symbol": "TCS.NS", "timestamp": "2026-05-07T10:00:01Z"}
+{"endpoint": "/tools/feedback", "error": null, "price": null, "quantity": null, "request_id": "proof_feedback_2", "status_code": 200, "success": true, "symbol": "TCS.NS", "timestamp": "2026-05-07T10:01:02Z"}
+{"endpoint": "/portfolio/update", "error": null, "price": 3920.5, "quantity": 3.0, "request_id": "proof_portfolio_1", "status_code": 200, "success": true, "symbol": "TCS.NS", "timestamp": "2026-05-07T10:02:00Z"}
+{"endpoint": "/news/ingest", "error": null, "price": null, "quantity": null, "request_id": "news_b4f7f3f2-3796-413f-b5db-7edc513d5658", "status_code": 200, "success": true, "symbol": null, "timestamp": "2026-05-07T06:58:45Z"}
+{"endpoint": "/tools/predict", "error": null, "price": 3920.5, "quantity": null, "request_id": "proof_predict_3", "status_code": 200, "success": true, "symbol": "TCS.NS", "timestamp": "2026-05-07T10:00:03Z"}
+{"endpoint": "/tools/predict", "error": null, "price": 3920.5, "quantity": null, "request_id": "proof_predict_4", "status_code": 200, "success": true, "symbol": "TCS.NS", "timestamp": "2026-05-07T10:00:04Z"}
+{"endpoint": "/tools/predict", "error": null, "price": 3920.5, "quantity": null, "request_id": "proof_predict_5", "status_code": 200, "success": true, "symbol": "TCS.NS", "timestamp": "2026-05-07T10:00:05Z"}

@@ -1,0 +1,41 @@
+﻿python : [STT] Groq failed (GROQ_API_KEY not set 
+in environment ΓÇö Groq STT unavailable), trying 
+faster-whisper...
+At line:1 char:1
++ python scripts/stt_standalone_logger.py 2>&1 | 
+Out-File -FilePath ..\ ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([STT] 
+    Groq fail...ster-whisper...:String) [], Remot  
+  eException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[STT] Groq failed (GROQ_API_KEY not set in 
+environment ΓÇö Groq STT unavailable), trying 
+faster-whisper...
+[STT] Groq failed (GROQ_API_KEY not set in 
+environment ΓÇö Groq STT unavailable), trying 
+faster-whisper...
+
+==================================================
+ Gurukul STT - Standalone Multilingual Log Generator
+==================================================
+
+[*] [TEST] Transcribing en via Groq API...
+ [!] [ERR] en failed: Both STT engines failed.
+  Groq error:          GROQ_API_KEY not set in environment ΓÇö Groq STT unavailable
+  faster-whisper error: faster-whisper not installed. Run: pip install faster-whisper
+[*] [TEST] Transcribing hi via Groq API...
+ [!] [ERR] hi failed: Both STT engines failed.
+  Groq error:          GROQ_API_KEY not set in environment ΓÇö Groq STT unavailable
+  faster-whisper error: faster-whisper not installed. Run: pip install faster-whisper
+[*] [TEST] Transcribing ar via Groq API...
+ [!] [ERR] ar failed: Both STT engines failed.
+  Groq error:          GROQ_API_KEY not set in environment ΓÇö Groq STT unavailable
+  faster-whisper error: faster-whisper not installed. Run: pip install faster-whisper
+
+==================================================
+ COMPLETE: Captured 0 logs.
+ Results saved to: multilingual_test_logs.json
+==================================================
+

@@ -1,0 +1,16 @@
+{
+  "folder": "runtime_metrics",
+  "files": [
+    "metrics_20260708T095440Z.json",
+    "metrics_post_kill_20260708T095929Z.json",
+    "metrics_post_recovery_20260708T095940Z.json",
+    "metrics_pre_kill_20260708T095925Z.json",
+    "shutdown_mitigation_20260708T101042Z.json",
+    "shutdown_post_cleanup_20260708T101124Z.json",
+    "shutdown_verification_20260708T101005Z.json",
+    "status_post_kill_20260708T095929Z.json",
+    "status_post_recovery_20260708T095940Z.json",
+    "status_pre_kill_20260708T095925Z.json",
+    "system_status_20260708T095440Z.json"
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "version": "2.0.0",
+  "description": "Global registry of all domains supported by the Universal Prompt Runner",
+  "last_updated": "2026-03-06",
+
+  "domains": {
+    "architecture": {
+      "plugin_path": "plugins/architecture/plugin.json",
+      "description": "Architecture, construction, building design, and site analysis",
+      "status": "active",
+      "version": "1.0.0",
+      "primary_modules": ["architecture_design", "site_analysis", "cost_estimator", "compliance_checker", "report_generator"],
+      "example_prompts": [
+        "Design a residential building for a 1000 sqft plot in Mumbai.",
+        "Analyze the site conditions for a construction project in Delhi.",
+        "Calculate construction cost for a commercial building."
+      ]
+    },
+
+    "legal": {
+      "plugin_path": "plugins/legal/plugin.json",
+      "description": "Legal research, contract analysis, document drafting, case assessment, and compliance",
+      "status": "active",
+      "version": "1.0.0",
+      "primary_modules": ["legal_compliance", "legal_research", "legal_drafting", "legal_analysis", "compliance_checker"],
+      "example_prompts": [
+        "Review the employment contract for compliance under Indian law.",
+        "Research intellectual property regulations in the EU.",
+        "Draft a non-disclosure agreement for a software partnership."
+      ]
+    },
+
+    "finance": {
+      "plugin_path": "plugins/finance/plugin.json",
+      "description": "Investment analysis, risk assessment, budgeting, cost estimation, and financial reporting",
+      "status": "active",
+      "version": "1.0.0",
+      "primary_modules": ["investment_analyzer", "risk_assessor", "budget_planner", "financial_calculator", "financial_reporter"],
+      "example_prompts": [
+        "Calculate the ROI for a 50 lakh investment over 5 years.",
+        "Assess the financial risk for a startup expansion plan.",
+        "Create a quarterly budget plan for the operations department."
+      ]
+    },
+
+    "healthcare": {
+      "plugin_path": "plugins/healthcare/plugin.json",
+      "description": "Patient assessment, treatment planning, medical research, clinical reporting, and healthcare compliance",
+      "status": "active",
+      "version": "1.0.0",
+      "primary_modules": ["patient_assessor", "treatment_planner", "medical_researcher", "medical_reporter", "healthcare_compliance_checker"],
+      "example_prompts": [
+        "Create a patient assessment report for a diabetic patient.",
+        "Develop a treatment plan for a patient with hypertension.",
+        "Research evidence-based treatments for stage 2 cancer."
+      ]
+    },
+
+    "software": {
+      "plugin_path": "plugins/software/plugin.json",
+      "description": "Software system design, code review, database design, deployment planning, and bug analysis",
+      "status": "active",
+      "version": "1.0.0",
+      "primary_modules": ["system_designer", "code_reviewer", "database_designer", "deployment_planner", "bug_analyzer"],
+      "example_prompts": [
+        "Design the database architecture for a scalable e-commerce platform.",
+        "Review the Python code for performance and security issues.",
+        "Plan the deployment pipeline for a microservices application on AWS."
+      ]
+    }
+  },
+
+  "fallback": {
+    "domain": "general",
+    "module": "general_processor",
+    "task": "process_request",
+    "description": "Fallback for unrecognized or ambiguous domain requests"
+  },
+
+  "onboarding": {
+    "instructions": "To add a new domain: create plugins/<domain_name>/plugin.json following the plugin schema, then register it in this file under 'domains'.",
+    "required_plugin_fields": ["domain", "version", "description", "detection_keywords", "detection_patterns", "intents", "extractors"],
+    "optional_plugin_fields": ["constraint_rules", "clarification_questions"]
+  }
+}

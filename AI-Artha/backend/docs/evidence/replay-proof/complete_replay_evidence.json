@@ -1,0 +1,29 @@
+{
+  "flow_name": "Replay and Provenance Proof",
+  "started": "2026-06-08T10:56:06.504Z",
+  "steps": [
+    {
+      "step": 1,
+      "name": "Authentication",
+      "timestamp": "2026-06-08T10:56:06.760Z"
+    },
+    {
+      "step": 2,
+      "name": "Initialize Unified Trace",
+      "timestamp": "2026-06-08T10:56:07.030Z"
+    },
+    {
+      "step": 3,
+      "name": "Progress Trace Stages",
+      "timestamp": "2026-06-08T10:56:07.104Z"
+    },
+    {
+      "step": 4,
+      "name": "Query Trace Continuity",
+      "timestamp": "2026-06-08T10:56:07.338Z"
+    }
+  ],
+  "completed": "2026-06-08T10:56:07.348Z",
+  "success": false,
+  "error": "Error"
+}

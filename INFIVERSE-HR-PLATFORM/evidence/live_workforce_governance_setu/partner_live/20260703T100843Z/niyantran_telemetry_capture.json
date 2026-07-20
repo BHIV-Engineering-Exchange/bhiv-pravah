@@ -1,0 +1,88 @@
+{
+  "ok": true,
+  "tier": "Tier 2 \u00e2\u20ac\u201d dispatcher invoked directly, partner server not booted in this environment",
+  "execution_event_id": "39ec574cc9c09d5c5cd72393d2d5df54f7ec5bec6f58102ab2a7dd89bd331051",
+  "sampada_signal_id": "sig-89a4b9062553",
+  "trace_id": "trace_demo_002",
+  "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+  "dispatched": true,
+  "request": {
+    "method": "POST",
+    "url": "https://bhiv-hr-gateway-l0xp.onrender.com/v1/setu/signals/niyantran_telemetry",
+    "body": {
+      "signal_type": "niyantran_telemetry",
+      "payload": {
+        "event_id": "39ec574cc9c09d5c5cd72393d2d5df54f7ec5bec6f58102ab2a7dd89bd331051",
+        "execution_id": "exec_demo_002",
+        "tenant_id": "blackhole_mumbai",
+        "event_type": "execution_completed",
+        "event_index": 1,
+        "event_timestamp": "2026-05-29T06:01:55.570Z",
+        "event_payload": {
+          "result_hash": "20547cbfda3319c888520a1095b81e8430e1928083d02ac85017ff789e065c8d",
+          "output": null,
+          "contract_hash": "9531dd37192bec73b9ff3c97662a773fd4b047644e53311dd5d1789678369e71",
+          "execution_action": "participate",
+          "governance": {
+            "method": "POST",
+            "authority": "SETU",
+            "decision": "allow",
+            "policy_id": "policy_demo_001",
+            "route": "/tantra/execution/participate"
+          }
+        }
+      },
+      "workforce_ref_id": null,
+      "source_declaration": "niyantran telemetry participation",
+      "origin_system": "niyantran",
+      "owning_system": "niyantran",
+      "trace_id": "trace_demo_002",
+      "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "trust_classification": "observed",
+      "visibility_scope": "tenant"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "signal_id": "sig-89a4b9062553",
+      "signal_type": "niyantran_telemetry",
+      "payload": {
+        "event_id": "39ec574cc9c09d5c5cd72393d2d5df54f7ec5bec6f58102ab2a7dd89bd331051",
+        "execution_id": "exec_demo_002",
+        "tenant_id": "blackhole_mumbai",
+        "event_type": "execution_completed",
+        "event_index": 1,
+        "event_timestamp": "2026-05-29T06:01:55.570Z",
+        "event_payload": {
+          "result_hash": "20547cbfda3319c888520a1095b81e8430e1928083d02ac85017ff789e065c8d",
+          "output": null,
+          "contract_hash": "9531dd37192bec73b9ff3c97662a773fd4b047644e53311dd5d1789678369e71",
+          "execution_action": "participate",
+          "governance": {
+            "method": "POST",
+            "authority": "SETU",
+            "decision": "allow",
+            "policy_id": "policy_demo_001",
+            "route": "/tantra/execution/participate"
+          }
+        }
+      },
+      "workforce_ref_id": null,
+      "source_declaration": "niyantran telemetry participation",
+      "tenant_id": "platform",
+      "created_at": "2026-07-03T10:09:07.847222+00:00",
+      "lineage": {
+        "origin_system": "niyantran",
+        "owning_system": "niyantran",
+        "schema_version": "1.0.0",
+        "trace_id": "trace_demo_002",
+        "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+        "trust_classification": "observed",
+        "visibility_scope": "tenant"
+      },
+      "updated_at": "2026-07-03T10:09:07.847243+00:00",
+      "id": "6a478a4349f3fe77a3551ef7"
+    }
+  }
+}

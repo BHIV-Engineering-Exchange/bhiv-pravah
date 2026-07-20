@@ -1,0 +1,14 @@
+# High-Resource AI Dependencies (FOR LOCAL OR HEAVY SERVERS ONLY)
+# Not recommended for Render Free Tier (requires 2GB+ RAM)
+
+-r requirements.txt
+
+# Local Speech-to-Text Fallback
+faster-whisper==1.0.3
+
+# Local Text-to-Speech Engine
+TTS==0.22.0
+
+# Core AI Frameworks
+torch==2.3.1
+tensorboard

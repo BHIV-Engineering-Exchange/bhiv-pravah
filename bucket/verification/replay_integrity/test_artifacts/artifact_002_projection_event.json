@@ -1,0 +1,14 @@
+{
+  "artifact_id": "projection_001",
+  "source_module_id": "analytics_engine_v1",
+  "schema_version": "1.0.0",
+  "artifact_hash": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35",
+  "parent_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "timestamp_utc": "2025-01-19T10:05:00Z",
+  "artifact_type": "projection_event",
+  "payload": {
+    "daily_total": 1000,
+    "transaction_count": 1,
+    "derived_from": "truth_001"
+  }
+}

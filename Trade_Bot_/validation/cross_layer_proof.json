@@ -1,0 +1,551 @@
+{
+  "/news/ingest": {
+    "API response": {
+      "data": {
+        "impact_score": 0.85,
+        "sentiment": "positive",
+        "tags": [
+          "positive",
+          "technology",
+          "in"
+        ]
+      },
+      "error": null,
+      "request_id": "news_b4f7f3f2-3796-413f-b5db-7edc513d5658",
+      "success": true,
+      "timestamp": "2026-05-07T06:58:45Z"
+    },
+    "DB row": {
+      "endpoint": "/news/ingest",
+      "error": null,
+      "id": 4,
+      "log": {
+        "endpoint": "/news/ingest",
+        "error": null,
+        "price": null,
+        "quantity": null,
+        "request_id": "news_b4f7f3f2-3796-413f-b5db-7edc513d5658",
+        "status_code": 200,
+        "success": true,
+        "symbol": null,
+        "timestamp": "2026-05-07T06:58:45Z"
+      },
+      "portfolio": {
+        "positions": [
+          {
+            "avg_price": 3920.5,
+            "last_price": 3920.5,
+            "market_value": 11761.5,
+            "quantity": 3.0,
+            "request_id": "proof_portfolio_1",
+            "symbol": "TCS.NS",
+            "timestamp": "2026-05-07T10:02:00Z"
+          }
+        ],
+        "total_positions": 1,
+        "total_value": 11761.5
+      },
+      "price": null,
+      "quantity": null,
+      "request": {
+        "content": "TCS reported strong growth and profit improvement in cloud services for Indian enterprise customers.",
+        "metadata": {
+          "category": "technology",
+          "region": "IN"
+        },
+        "news_id": "samachar-proof-001",
+        "source": "Samachar",
+        "timestamp": "2026-05-07T10:03:00Z",
+        "title": "TCS reports strong growth in cloud revenue"
+      },
+      "request_id": "news_b4f7f3f2-3796-413f-b5db-7edc513d5658",
+      "response": {
+        "data": {
+          "impact_score": 0.85,
+          "sentiment": "positive",
+          "tags": [
+            "positive",
+            "technology",
+            "in"
+          ]
+        },
+        "error": null,
+        "request_id": "news_b4f7f3f2-3796-413f-b5db-7edc513d5658",
+        "success": true,
+        "timestamp": "2026-05-07T06:58:45Z"
+      },
+      "status_code": 200,
+      "success": true,
+      "symbol": null,
+      "timestamp": "2026-05-07T06:58:45Z"
+    },
+    "Log entry": {
+      "endpoint": "/news/ingest",
+      "error": null,
+      "price": null,
+      "quantity": null,
+      "request_id": "news_b4f7f3f2-3796-413f-b5db-7edc513d5658",
+      "status_code": 200,
+      "success": true,
+      "symbol": null,
+      "timestamp": "2026-05-07T06:58:45Z"
+    },
+    "Portfolio state": {
+      "positions": [
+        {
+          "avg_price": 3920.5,
+          "last_price": 3920.5,
+          "market_value": 11761.5,
+          "quantity": 3.0,
+          "request_id": "proof_portfolio_1",
+          "symbol": "TCS.NS",
+          "timestamp": "2026-05-07T10:02:00Z"
+        }
+      ],
+      "total_positions": 1,
+      "total_value": 11761.5
+    },
+    "Request": {
+      "content": "TCS reported strong growth and profit improvement in cloud services for Indian enterprise customers.",
+      "metadata": {
+        "category": "technology",
+        "region": "IN"
+      },
+      "news_id": "samachar-proof-001",
+      "source": "Samachar",
+      "timestamp": "2026-05-07T10:03:00Z",
+      "title": "TCS reports strong growth in cloud revenue"
+    },
+    "checks": {
+      "price_exact": true,
+      "quantity_exact": true,
+      "request_id_exact": true,
+      "symbol_exact": true,
+      "timestamp_exact": true
+    }
+  },
+  "/portfolio/update": {
+    "API response": {
+      "data": {
+        "portfolio_state": {
+          "positions": [
+            {
+              "avg_price": 3920.5,
+              "last_price": 3920.5,
+              "market_value": 11761.5,
+              "quantity": 3.0,
+              "request_id": "proof_portfolio_1",
+              "symbol": "TCS.NS",
+              "timestamp": "2026-05-07T10:02:00Z"
+            }
+          ],
+          "total_positions": 1,
+          "total_value": 11761.5
+        },
+        "price": 3920.5,
+        "quantity": 3.0,
+        "symbol": "TCS.NS"
+      },
+      "error": null,
+      "request_id": "proof_portfolio_1",
+      "success": true,
+      "timestamp": "2026-05-07T10:02:00Z"
+    },
+    "DB row": {
+      "endpoint": "/portfolio/update",
+      "error": null,
+      "id": 3,
+      "log": {
+        "endpoint": "/portfolio/update",
+        "error": null,
+        "price": 3920.5,
+        "quantity": 3.0,
+        "request_id": "proof_portfolio_1",
+        "status_code": 200,
+        "success": true,
+        "symbol": "TCS.NS",
+        "timestamp": "2026-05-07T10:02:00Z"
+      },
+      "portfolio": {
+        "positions": [
+          {
+            "avg_price": 3920.5,
+            "last_price": 3920.5,
+            "market_value": 11761.5,
+            "quantity": 3.0,
+            "request_id": "proof_portfolio_1",
+            "symbol": "TCS.NS",
+            "timestamp": "2026-05-07T10:02:00Z"
+          }
+        ],
+        "total_positions": 1,
+        "total_value": 11761.5
+      },
+      "price": 3920.5,
+      "quantity": 3.0,
+      "request": {
+        "price": 3920.5,
+        "quantity": 3.0,
+        "request_id": "proof_portfolio_1",
+        "symbol": "TCS.NS",
+        "timestamp": "2026-05-07T10:02:00Z"
+      },
+      "request_id": "proof_portfolio_1",
+      "response": {
+        "data": {
+          "portfolio_state": {
+            "positions": [
+              {
+                "avg_price": 3920.5,
+                "last_price": 3920.5,
+                "market_value": 11761.5,
+                "quantity": 3.0,
+                "request_id": "proof_portfolio_1",
+                "symbol": "TCS.NS",
+                "timestamp": "2026-05-07T10:02:00Z"
+              }
+            ],
+            "total_positions": 1,
+            "total_value": 11761.5
+          },
+          "price": 3920.5,
+          "quantity": 3.0,
+          "symbol": "TCS.NS"
+        },
+        "error": null,
+        "request_id": "proof_portfolio_1",
+        "success": true,
+        "timestamp": "2026-05-07T10:02:00Z"
+      },
+      "status_code": 200,
+      "success": true,
+      "symbol": "TCS.NS",
+      "timestamp": "2026-05-07T10:02:00Z"
+    },
+    "Log entry": {
+      "endpoint": "/portfolio/update",
+      "error": null,
+      "price": 3920.5,
+      "quantity": 3.0,
+      "request_id": "proof_portfolio_1",
+      "status_code": 200,
+      "success": true,
+      "symbol": "TCS.NS",
+      "timestamp": "2026-05-07T10:02:00Z"
+    },
+    "Portfolio state": {
+      "positions": [
+        {
+          "avg_price": 3920.5,
+          "last_price": 3920.5,
+          "market_value": 11761.5,
+          "quantity": 3.0,
+          "request_id": "proof_portfolio_1",
+          "symbol": "TCS.NS",
+          "timestamp": "2026-05-07T10:02:00Z"
+        }
+      ],
+      "total_positions": 1,
+      "total_value": 11761.5
+    },
+    "Request": {
+      "price": 3920.5,
+      "quantity": 3,
+      "request_id": "proof_portfolio_1",
+      "symbol": "TCS.NS",
+      "timestamp": "2026-05-07T10:02:00Z"
+    },
+    "checks": {
+      "price_exact": true,
+      "quantity_exact": true,
+      "request_id_exact": true,
+      "symbol_exact": true,
+      "timestamp_exact": true
+    }
+  },
+  "/tools/feedback": {
+    "API response": {
+      "feedback_entry": {
+        "actual_return": 1.2,
+        "predicted_action": "LONG",
+        "symbol": "TCS.NS",
+        "timestamp": "2026-05-07T10:01:02Z",
+        "user_feedback": "correct"
+      },
+      "message": "Feedback recorded for TCS.NS",
+      "next_steps": {
+        "message": "Feedback saved to memory",
+        "suggestion": "Use /tools/train_rl with force_retrain=true to fine-tune the model with this feedback"
+      },
+      "request_id": "proof_feedback_2",
+      "statistics": {
+        "accuracy": 100.0,
+        "correct": 1,
+        "incorrect": 0,
+        "symbol_feedback_count": 1,
+        "total_feedback_count": 2
+      },
+      "status": "success",
+      "timestamp": "2026-05-07T10:01:02Z",
+      "validation": null
+    },
+    "DB row": {
+      "endpoint": "/tools/feedback",
+      "error": null,
+      "id": 2,
+      "log": {
+        "endpoint": "/tools/feedback",
+        "error": null,
+        "price": null,
+        "quantity": null,
+        "request_id": "proof_feedback_2",
+        "status_code": 200,
+        "success": true,
+        "symbol": "TCS.NS",
+        "timestamp": "2026-05-07T10:01:02Z"
+      },
+      "portfolio": {
+        "positions": [],
+        "total_positions": 0,
+        "total_value": 0.0
+      },
+      "price": null,
+      "quantity": null,
+      "request": {
+        "actual_return": 1.2,
+        "predicted_action": "LONG",
+        "symbol": "TCS.NS",
+        "user_feedback": "correct"
+      },
+      "request_id": "proof_feedback_2",
+      "response": {
+        "feedback_entry": {
+          "actual_return": 1.2,
+          "predicted_action": "LONG",
+          "symbol": "TCS.NS",
+          "timestamp": "2026-05-07T10:01:02Z",
+          "user_feedback": "correct"
+        },
+        "message": "Feedback recorded for TCS.NS",
+        "next_steps": {
+          "message": "Feedback saved to memory",
+          "suggestion": "Use /tools/train_rl with force_retrain=true to fine-tune the model with this feedback"
+        },
+        "request_id": "proof_feedback_2",
+        "statistics": {
+          "accuracy": 100.0,
+          "correct": 1,
+          "incorrect": 0,
+          "symbol_feedback_count": 1,
+          "total_feedback_count": 2
+        },
+        "status": "success",
+        "timestamp": "2026-05-07T10:01:02Z",
+        "validation": null
+      },
+      "status_code": 200,
+      "success": true,
+      "symbol": "TCS.NS",
+      "timestamp": "2026-05-07T10:01:02Z"
+    },
+    "Log entry": {
+      "endpoint": "/tools/feedback",
+      "error": null,
+      "price": null,
+      "quantity": null,
+      "request_id": "proof_feedback_2",
+      "status_code": 200,
+      "success": true,
+      "symbol": "TCS.NS",
+      "timestamp": "2026-05-07T10:01:02Z"
+    },
+    "Portfolio state": {
+      "positions": [],
+      "total_positions": 0,
+      "total_value": 0.0
+    },
+    "Request": {
+      "actual_return": 1.2,
+      "predicted_action": "LONG",
+      "symbol": "TCS.NS",
+      "user_feedback": "correct"
+    },
+    "checks": {
+      "price_exact": true,
+      "quantity_exact": true,
+      "request_id_exact": true,
+      "symbol_exact": true,
+      "timestamp_exact": true
+    }
+  },
+  "/tools/predict": {
+    "API response": {
+      "metadata": {
+        "count": 1,
+        "horizon": "intraday",
+        "request_id": "proof_predict_1",
+        "risk_profile": "moderate",
+        "timestamp": "2026-05-07T10:00:01Z"
+      },
+      "predictions": [
+        {
+          "action": "LONG",
+          "confidence": 0.82,
+          "current_price": 3920.5,
+          "data_status": {
+            "data_freshness_seconds": 0,
+            "data_source": "VALIDATION_STUB",
+            "market_context": "VALIDATION"
+          },
+          "horizon": "intraday",
+          "predicted_price": 3955.25,
+          "symbol": "TCS.NS"
+        }
+      ],
+      "request_id": "proof_predict_1",
+      "timestamp": "2026-05-07T10:00:01Z"
+    },
+    "DB row": {
+      "endpoint": "/tools/predict",
+      "error": null,
+      "id": 1,
+      "log": {
+        "endpoint": "/tools/predict",
+        "error": null,
+        "price": 3920.5,
+        "quantity": null,
+        "request_id": "proof_predict_1",
+        "status_code": 200,
+        "success": true,
+        "symbol": "TCS.NS",
+        "timestamp": "2026-05-07T10:00:01Z"
+      },
+      "portfolio": {
+        "positions": [],
+        "total_positions": 0,
+        "total_value": 0.0
+      },
+      "price": 3920.5,
+      "quantity": null,
+      "request": {
+        "capital_risk_pct": 1.0,
+        "drawdown_limit_pct": 5.0,
+        "horizon": "intraday",
+        "risk_profile": "moderate",
+        "stop_loss_pct": 2.0,
+        "symbols": [
+          "TCS.NS"
+        ]
+      },
+      "request_id": "proof_predict_1",
+      "response": {
+        "metadata": {
+          "count": 1,
+          "horizon": "intraday",
+          "request_id": "proof_predict_1",
+          "risk_profile": "moderate",
+          "timestamp": "2026-05-07T10:00:01Z"
+        },
+        "predictions": [
+          {
+            "action": "LONG",
+            "confidence": 0.82,
+            "current_price": 3920.5,
+            "data_status": {
+              "data_freshness_seconds": 0,
+              "data_source": "VALIDATION_STUB",
+              "market_context": "VALIDATION"
+            },
+            "horizon": "intraday",
+            "predicted_price": 3955.25,
+            "symbol": "TCS.NS"
+          }
+        ],
+        "request_id": "proof_predict_1",
+        "timestamp": "2026-05-07T10:00:01Z"
+      },
+      "status_code": 200,
+      "success": true,
+      "symbol": "TCS.NS",
+      "timestamp": "2026-05-07T10:00:01Z"
+    },
+    "Log entry": {
+      "endpoint": "/tools/predict",
+      "error": null,
+      "price": 3920.5,
+      "quantity": null,
+      "request_id": "proof_predict_1",
+      "status_code": 200,
+      "success": true,
+      "symbol": "TCS.NS",
+      "timestamp": "2026-05-07T10:00:01Z"
+    },
+    "Portfolio state": {
+      "positions": [],
+      "total_positions": 0,
+      "total_value": 0.0
+    },
+    "Request": {
+      "horizon": "intraday",
+      "symbols": [
+        "TCS.NS"
+      ]
+    },
+    "checks": {
+      "price_exact": true,
+      "quantity_exact": true,
+      "request_id_exact": true,
+      "symbol_exact": true,
+      "timestamp_exact": true
+    }
+  },
+  "news_retrieval": {
+    "data": {
+      "category": "technology",
+      "content": "TCS reported strong growth and profit improvement in cloud services for Indian enterprise customers.",
+      "impact_score": 0.85,
+      "news_id": "samachar-proof-001",
+      "raw": {
+        "content": "TCS reported strong growth and profit improvement in cloud services for Indian enterprise customers.",
+        "metadata": {
+          "category": "technology",
+          "region": "IN"
+        },
+        "news_id": "samachar-proof-001",
+        "source": "Samachar",
+        "timestamp": "2026-05-07T10:03:00Z",
+        "title": "TCS reports strong growth in cloud revenue"
+      },
+      "region": "IN",
+      "request_id": "news_b4f7f3f2-3796-413f-b5db-7edc513d5658",
+      "response": {
+        "data": {
+          "impact_score": 0.85,
+          "sentiment": "positive",
+          "tags": [
+            "positive",
+            "technology",
+            "in"
+          ]
+        },
+        "error": null,
+        "request_id": "news_b4f7f3f2-3796-413f-b5db-7edc513d5658",
+        "success": true,
+        "timestamp": "2026-05-07T06:58:45Z"
+      },
+      "sentiment": "positive",
+      "source": "Samachar",
+      "tags": [
+        "positive",
+        "technology",
+        "in"
+      ],
+      "timestamp": "2026-05-07T06:58:45Z",
+      "title": "TCS reports strong growth in cloud revenue"
+    },
+    "error": null,
+    "request_id": "news_read_22f3a463-3986-4997-ba03-6ca18bf2c7ce",
+    "success": true,
+    "timestamp": "2026-05-07T06:58:45Z"
+  }
+}

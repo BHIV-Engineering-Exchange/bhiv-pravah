@@ -1,0 +1,18 @@
+{
+  "grid_load_mw": {
+    "warning": 550.0,
+    "critical": 700.0
+  },
+  "voltage_v": {
+    "warning": 240.0,
+    "critical": 260.0
+  },
+  "transformer_temp_c": {
+    "warning": 85.0,
+    "critical": 95.0
+  },
+  "frequency_hz": {
+    "warning": 50.8,
+    "critical": 51.2
+  }
+}

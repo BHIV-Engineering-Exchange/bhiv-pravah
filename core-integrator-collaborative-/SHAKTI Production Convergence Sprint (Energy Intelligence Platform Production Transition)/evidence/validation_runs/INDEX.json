@@ -1,0 +1,27 @@
+{
+  "folder": "validation_runs",
+  "description": "Automated sprint validation suite results (pytest + py_compile + evidence checks)",
+  "last_updated": "2026-07-09",
+  "latest_passing_run": "sprint_validation_20260709T142110Z.json",
+  "summary": {
+    "pytest_tests": 38,
+    "pytest_passed": 38,
+    "pytest_failed": 0,
+    "validation_steps_passed": 4,
+    "validation_steps_failed": 0
+  },
+  "runs": [
+    {
+      "file": "sprint_validation_20260709T142044Z.json",
+      "generated_at": "2026-07-09T14:20:44.988442+00:00",
+      "passed": false,
+      "note": "py_compile failed on Windows package dirs (fixed in subsequent run)"
+    },
+    {
+      "file": "sprint_validation_20260709T142110Z.json",
+      "generated_at": "2026-07-09T14:21:10.972180+00:00",
+      "passed": true,
+      "note": "Authoritative passing run — 38/38 pytest, all checks PASS"
+    }
+  ]
+}

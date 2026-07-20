@@ -1,0 +1,47 @@
+[
+  {
+    "candidate_id": 1,
+    "decision": "accept",
+    "score": 4,
+    "reasoning": "Strong technical skills, good communication",
+    "hr_name": "System",
+    "timestamp": "2025-11-28T11:14:59.552936",
+    "decision_id": "DEC_1_1764308699"
+  },
+  {
+    "candidate_id": 2,
+    "decision": "accept",
+    "score": 5,
+    "reasoning": "Excellent frontend skills, team player",
+    "hr_name": "System",
+    "timestamp": "2025-11-28T11:15:01.618206",
+    "decision_id": "DEC_2_1764308701"
+  },
+  {
+    "candidate_id": 3,
+    "decision": "reconsider",
+    "score": 3,
+    "reasoning": "Good technical knowledge, needs improvement in soft skills",
+    "hr_name": "System",
+    "timestamp": "2025-11-28T11:15:03.666526",
+    "decision_id": "DEC_3_1764308703"
+  },
+  {
+    "candidate_id": 4,
+    "decision": "accept",
+    "score": 5,
+    "reasoning": "Outstanding data science expertise",
+    "hr_name": "System",
+    "timestamp": "2025-11-28T11:15:05.728335",
+    "decision_id": "DEC_4_1764308705"
+  },
+  {
+    "candidate_id": 5,
+    "decision": "reject",
+    "score": 2,
+    "reasoning": "Limited experience, not suitable for senior role",
+    "hr_name": "System",
+    "timestamp": "2025-11-28T11:15:07.786451",
+    "decision_id": "DEC_5_1764308707"
+  }
+]

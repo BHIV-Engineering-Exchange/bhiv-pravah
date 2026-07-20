@@ -1,0 +1,109 @@
+{
+  "trace_id":     "trace_state_evolution_proof",
+  "execution_id": "exec_state_evolution_proof",
+  "domain":       "state_evolution",
+  "scenario":     "transition_proof",
+  "ticks":        20,
+
+  "entities": [
+    {
+      "id": "unit_moving", "type": "vessel",
+      "position": [0, 0, 0], "state": "moving",
+      "behaviors": ["hold_moving"],
+      "meta": {}
+    },
+    {
+      "id": "unit_idle", "type": "agent",
+      "position": [20, 0, 0], "state": "idle",
+      "behaviors": ["stay_idle"],
+      "meta": {}
+    },
+    {
+      "id": "unit_active", "type": "vehicle",
+      "position": [40, 0, 0], "state": "active",
+      "behaviors": ["move_to_zone"],
+      "meta": {}
+    },
+    {
+      "id": "unit_healthy", "type": "drone",
+      "position": [60, 0, 0], "state": "healthy",
+      "behaviors": ["hold_healthy"],
+      "meta": {}
+    },
+    {
+      "id": "unit_collider", "type": "drone",
+      "position": [60, 0, 0], "state": "active",
+      "behaviors": ["hold_healthy"],
+      "meta": {}
+    },
+    {
+      "id": "restricted_zone", "type": "zone",
+      "position": [50, 0, 0], "state": "active",
+      "behaviors": [],
+      "meta": { "radius": 8.0 }
+    }
+  ],
+
+  "behaviors": [
+    {
+      "id": "hold_moving", "script": "idle",
+      "params": {}
+    },
+    {
+      "id": "stay_idle", "script": "idle",
+      "params": {}
+    },
+    {
+      "id": "move_to_zone", "script": "move_to",
+      "params": { "target": [50, 0, 0], "speed": 4.0, "threshold": 1.0 }
+    },
+    {
+      "id": "hold_healthy", "script": "idle",
+      "params": {}
+    }
+  ],
+
+  "rules": [
+    {
+      "id":      "moving_to_stopped",
+      "trigger": "on_tick",
+      "condition": {
+        "field": "state", "op": "eq", "value": "moving",
+        "target": "unit_moving"
+      },
+      "action": { "type": "set_state", "params": { "state": "stopped" } },
+      "enabled": true
+    },
+    {
+      "id":      "idle_to_active",
+      "trigger": "on_tick",
+      "condition": {
+        "field": "tick", "op": "eq", "value": 3,
+        "target": "unit_idle"
+      },
+      "action": { "type": "set_state", "params": { "state": "active" } },
+      "enabled": true
+    },
+    {
+      "id":      "active_to_restricted_zone",
+      "trigger": "on_zone_enter",
+      "condition": { "field": "state", "op": "eq", "value": "active" },
+      "action": { "type": "set_state", "params": { "state": "restricted_zone" } },
+      "enabled": true
+    },
+    {
+      "id":      "healthy_to_damaged",
+      "trigger": "on_collision",
+      "condition": { "field": "state", "op": "eq", "value": "healthy" },
+      "action": { "type": "set_state", "params": { "state": "damaged" } },
+      "enabled": true
+    },
+    {
+      "id":      "log_stopped",
+      "trigger": "on_tick",
+      "condition": { "field": "state", "op": "eq", "value": "stopped" },
+      "action": { "type": "emit_event", "params": { "event_type": "unit_stopped", "data": {} } },
+      "enabled": true
+    }
+  ]
+}

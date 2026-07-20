@@ -1,0 +1,16 @@
+{
+  "generated_at": "2026-07-08T10:11:24.060927+00:00",
+  "ports_open": {
+    "8000": true,
+    "8001": true,
+    "8003": true,
+    "8004": false,
+    "8005": true,
+    "8006": true,
+    "8007": true,
+    "8008": true,
+    "8009": false,
+    "8010": false
+  },
+  "all_closed": false
+}

@@ -1,0 +1,1 @@
+{"timestamp": "2026-05-09T15:48:35.711726", "data": {"fill_id": "FILL_0", "price": 2500.333345833333, "qty": 50, "fees": 32.2924, "breakdown": "FeeBreakdown(brokerage=20.0, stt=0.0, exchange_txn_charge=4.063, sebi_fees=0.125, stamp_duty=3.7505, gst=4.3539, total_tax_and_fees=32.2924, tax_category='BUSINESS_INCOME', trade_type='EQUITY_INTRADAY')"}}

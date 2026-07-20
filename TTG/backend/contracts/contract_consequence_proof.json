@@ -1,0 +1,109 @@
+{
+  "trace_id":     "trace_consequence_engine_proof",
+  "execution_id": "exec_consequence_engine_proof",
+  "domain":       "consequence_proof",
+  "scenario":     "all_consequence_types",
+
+  "consequences": [
+    {
+      "rule_id":     "zone_entry_alert",
+      "on":          "zone_enter",
+      "if": {
+        "context_checks": { "zone_id": "restricted_zone" }
+      },
+      "then": [
+        {
+          "action":   "EMIT_ALERT",
+          "priority": "high",
+          "payload":  { "alert_type": "zone_violation", "message": "Entity entered restricted zone" }
+        },
+        {
+          "action":   "LOG_EVENT",
+          "priority": "medium",
+          "payload":  { "message": "Zone entry logged for audit" }
+        }
+      ],
+      "description": "Zone entry — alert + log when entity enters restricted zone"
+    },
+    {
+      "rule_id": "collision_response",
+      "on":      "collision",
+      "if": {
+        "context_checks": {
+          "distance": { "operator": "<=", "value": 2.0 }
+        }
+      },
+      "then": [
+        {
+          "action":   "EMIT_ALERT",
+          "priority": "critical",
+          "payload":  { "alert_type": "collision_critical", "message": "Entities at collision distance" }
+        },
+        {
+          "action":   "RECORD_INCIDENT",
+          "priority": "high",
+          "payload":  { "incident_type": "collision", "severity": "high" }
+        }
+      ],
+      "description": "Collision — critical alert + incident record"
+    },
+    {
+      "rule_id": "resource_depleted",
+      "on":      "resource_update",
+      "if": {
+        "context_checks": {
+          "resource_level": { "operator": "<=", "value": 0 }
+        }
+      },
+      "then": [
+        {
+          "action":   "EMIT_ALERT",
+          "priority": "critical",
+          "payload":  { "alert_type": "resource_depleted", "message": "Resource level reached zero" }
+        },
+        {
+          "action":   "HALT_ENTITY",
+          "priority": "critical",
+          "payload":  { "reason": "resource_depleted" }
+        }
+      ],
+      "description": "Resource depletion — halt entity when resource_level reaches 0"
+    },
+    {
+      "rule_id": "mission_complete",
+      "on":      "mission_update",
+      "if": {
+        "context_checks": { "status": "complete" }
+      },
+      "then": [
+        {
+          "action":   "EMIT_EVENT",
+          "priority": "high",
+          "payload":  { "event_type": "mission_complete", "message": "All objectives achieved" }
+        },
+        {
+          "action":   "WRITE_ARTIFACT",
+          "priority": "medium",
+          "payload":  { "artifact_type": "mission_summary" }
+        }
+      ],
+      "description": "Mission completion — emit event + write artifact"
+    },
+    {
+      "rule_id": "alert_generation",
+      "on":      "state_change",
+      "if": {
+        "context_checks": { "new_state": "damaged" },
+        "entities":       ["unit_"]
+      },
+      "then": [
+        {
+          "action":   "EMIT_ALERT",
+          "priority": "high",
+          "payload":  { "alert_type": "unit_damaged", "message": "Unit state changed to damaged" }
+        }
+      ],
+      "description": "Alert generation — emit alert when any unit becomes damaged"
+    }
+  ]
+}

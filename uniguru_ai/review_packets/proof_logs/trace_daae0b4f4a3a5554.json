@@ -1,0 +1,1621 @@
+{
+  "answer": "# Swaminarayan Knowledge Base \u2014 Panch Vartman (Five Moral Vows)\n\n---\ntitle: Panch Vartman \u2014 The Five Fundamental Vows of the Swaminarayan Sampradaya\nsource: Vachanamrut; Shikshapatri (Bhagwan Swaminarayan, 1826)\nurl: https://www.swaminarayan.org/panch-vartman\nverification_status: VERIFIED\ncategory: swaminarayan\n---\n\n## Content\n\nThe Panch Vartman (Five Vows / Five Codes of Conduct) are the foundational ethical commitments required of all initiated members of the Swaminarayan Sampradaya.\n\n**The Five Vows:**\n\n1. **Nishpapa (Ahimsa / Non-harm)**\n   Abstain from violence. Do not harm any living being unnecessarily. This prohibits meat eating for all initiates.\n\n2. **Nirmatsari (Non-intoxication)**\n   Complete abstinence from alcohol, drugs, tobacco, and intoxicating substances of all kinds.\n\n3. **Nischaurya (Non-theft)**\n   Do not steal or take anything that has not been given with consent. Act with complete honesty in all dealings.\n\n4. **Nishkam (Celibacy in mind and action)**\n   Maintaining purity of thought, word, and deed. For householders this means fidelity; for sadhus it means complete celibacy.\n\n5. **Nirlobha (Non-possessiveness / Non-greed)**\n   Detachment from material possessions, wealth, and status. Seeking only what is necessary and dedicating all resources to God's service.\n\n**Purpose:**\nThese five vows purify the individual's character and remove the obstacles to developing genuine devotion (bhakti) to Purushottam. They are prerequisites for deeper spiritual progress.\n\n**Initiation (Diksha):**\nWhen a devotee formally commits to the Panch Vartman at initiation, they receive kanthi (a tulsi wood beaded necklace) as a mark of initiation.\n\n**Universal Application:**\nUnlike caste-based Hindu ethical codes, the Panch Vartman applies equally to all members regardless of gender, caste, or social status \u2014 a socially revolutionary position for 19th century India.\n\nUniGuru Citation: Shikshapatri Verses 9-16; Vachanamrut Gadhada I-18; BAPS Swaminarayan Sanstha ethical framework",
+  "confidence": 0.5,
+  "confidence_breakdown": {
+    "accepted_count": 1,
+    "fallback_method": "keyword_kb",
+    "overall": 0.5,
+    "rejected_count": 18
+  },
+  "detected_domain": "puranas",
+  "domain_resolution": {
+    "confidence": 1.0,
+    "domain": "puranas",
+    "entities": [
+      {
+        "canonical": "Shiva",
+        "concepts": [
+          "destruction",
+          "yoga"
+        ],
+        "domain": "puranas",
+        "entity_type": "deity",
+        "matched_alias": "shiva"
+      },
+      {
+        "canonical": "Shiva Purana",
+        "concepts": [
+          "Shiva",
+          "creation",
+          "cosmology"
+        ],
+        "domain": "puranas",
+        "entity_type": "text",
+        "matched_alias": "shiva purana"
+      }
+    ],
+    "method": "canonical_text_entity"
+  },
+  "enforcement_stats": {
+    "rejected_entries": 19,
+    "total_entries": 37,
+    "valid_entries": 18
+  },
+  "fallback_to_llm": false,
+  "generated_at": "2026-06-25T05:10:44.194546Z",
+  "knowledge_ids_used": [],
+  "matched_signals": [],
+  "query": "What are the main teachings of the Shiva Purana?",
+  "reasoning": "Accepted via keyword_kb after Kosha signal validation found no match.",
+  "reasoning_path": [
+    "query_received",
+    "kosha_schema_enforced",
+    "canonical_entities_extracted",
+    "ontology_aware_retrieval",
+    "signal_validation",
+    "structured_signal_emission",
+    "knowledge_index_fallback",
+    "deterministic_synthesis"
+  ],
+  "rejected_signals": [
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Bhagavata Purana",
+            "concepts": [
+              "Krishna",
+              "devotion",
+              "purana"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "srimad bhagavata"
+          },
+          {
+            "canonical": "Narada Purana",
+            "concepts": [
+              "purana",
+              "devotion",
+              "pilgrimage"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "narada purana"
+          },
+          {
+            "canonical": "Narayana",
+            "concepts": [
+              "preservation",
+              "cosmic person"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "vishnu"
+          },
+          {
+            "canonical": "Padma Purana",
+            "concepts": [
+              "purana",
+              "Vishnu",
+              "creation"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "padma purana"
+          }
+        ],
+        "concept_overlap": 0.25,
+        "confidence": 0.3998,
+        "confidence_derivation": {
+          "content_overlap": 0.5,
+          "derived_confidence": 0.3787,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.3998,
+          "semantic_score": 0.3875,
+          "tag_match_score": 0.25
+        },
+        "content_overlap": 0.5,
+        "contextual_proximity": 1.0,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "puranas",
+          "entities": [
+            {
+              "canonical": "Shiva",
+              "concepts": [
+                "destruction",
+                "yoga"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "shiva"
+            },
+            {
+              "canonical": "Shiva Purana",
+              "concepts": [
+                "Shiva",
+                "creation",
+                "cosmology"
+              ],
+              "domain": "puranas",
+              "entity_type": "text",
+              "matched_alias": "shiva purana"
+            }
+          ],
+          "method": "canonical_text_entity"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [
+          "purana"
+        ],
+        "missing_required_entities": [
+          "Shiva"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Shiva",
+            "concepts": [
+              "destruction",
+              "yoga"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "shiva"
+          },
+          {
+            "canonical": "Shiva Purana",
+            "concepts": [
+              "Shiva",
+              "creation",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "shiva purana"
+          }
+        ],
+        "semantic_score": 0.3875,
+        "signal_id": "signal_15c23a4dedd5",
+        "source": "The Narada-Purana, Part 4_ocred.pdf",
+        "tag_match_score": 0.25
+      },
+      "rejection_reason": "entity_conflict",
+      "signal_id": "signal_15c23a4dedd5",
+      "source": "The Narada-Purana, Part 4_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Brahmanda Purana",
+            "concepts": [
+              "cosmology",
+              "purana"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "brahmanda purana"
+          },
+          {
+            "canonical": "Ramayana",
+            "concepts": [
+              "Rama",
+              "dharma",
+              "forest exile"
+            ],
+            "domain": "itihasa",
+            "entity_type": "text",
+            "matched_alias": "valmiki ramayana"
+          }
+        ],
+        "concept_overlap": 0.3125,
+        "confidence": 0.3632,
+        "confidence_derivation": {
+          "content_overlap": 0.25,
+          "derived_confidence": 0.2636,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.3632,
+          "semantic_score": 0.4094,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.25,
+        "contextual_proximity": 1.0,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "puranas",
+          "entities": [
+            {
+              "canonical": "Shiva",
+              "concepts": [
+                "destruction",
+                "yoga"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "shiva"
+            },
+            {
+              "canonical": "Shiva Purana",
+              "concepts": [
+                "Shiva",
+                "creation",
+                "cosmology"
+              ],
+              "domain": "puranas",
+              "entity_type": "text",
+              "matched_alias": "shiva purana"
+            }
+          ],
+          "method": "canonical_text_entity"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Shiva"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Shiva",
+            "concepts": [
+              "destruction",
+              "yoga"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "shiva"
+          },
+          {
+            "canonical": "Shiva Purana",
+            "concepts": [
+              "Shiva",
+              "creation",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "shiva purana"
+          }
+        ],
+        "semantic_score": 0.4094,
+        "signal_id": "signal_8cd846563a7b",
+        "source": "Valmiki-Ramayana-Eng-Translation-Griffith_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "entity_conflict",
+      "signal_id": "signal_8cd846563a7b",
+      "source": "Valmiki-Ramayana-Eng-Translation-Griffith_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Atman",
+            "concepts": [
+              "Brahman",
+              "liberation"
+            ],
+            "domain": "upanishads",
+            "entity_type": "concept",
+            "matched_alias": "self"
+          },
+          {
+            "canonical": "Brahma",
+            "concepts": [
+              "creation",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "brahma"
+          },
+          {
+            "canonical": "Brahman",
+            "concepts": [
+              "ultimate reality",
+              "Atman"
+            ],
+            "domain": "upanishads",
+            "entity_type": "concept",
+            "matched_alias": "brahman"
+          },
+          {
+            "canonical": "Upanishads",
+            "concepts": [
+              "Brahman",
+              "Atman",
+              "liberation"
+            ],
+            "domain": "upanishads",
+            "entity_type": "text_group",
+            "matched_alias": "upanishads"
+          },
+          {
+            "canonical": "Vedas",
+            "concepts": [
+              "samhita",
+              "ritual",
+              "knowledge"
+            ],
+            "domain": "vedas",
+            "entity_type": "text_group",
+            "matched_alias": "vedas"
+          },
+          {
+            "canonical": "Yoga",
+            "concepts": [
+              "discipline",
+              "meditation"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "yoga"
+          }
+        ],
+        "concept_overlap": 0.375,
+        "confidence": 0.3597,
+        "confidence_derivation": {
+          "content_overlap": 0.25,
+          "derived_confidence": 0.2618,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.3597,
+          "semantic_score": 0.4061,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.25,
+        "contextual_proximity": 0.7488,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "puranas",
+          "entities": [
+            {
+              "canonical": "Shiva",
+              "concepts": [
+                "destruction",
+                "yoga"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "shiva"
+            },
+            {
+              "canonical": "Shiva Purana",
+              "concepts": [
+                "Shiva",
+                "creation",
+                "cosmology"
+              ],
+              "domain": "puranas",
+              "entity_type": "text",
+              "matched_alias": "shiva purana"
+            }
+          ],
+          "method": "canonical_text_entity"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Shiva"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Shiva",
+            "concepts": [
+              "destruction",
+              "yoga"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "shiva"
+          },
+          {
+            "canonical": "Shiva Purana",
+            "concepts": [
+              "Shiva",
+              "creation",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "shiva purana"
+          }
+        ],
+        "semantic_score": 0.4061,
+        "signal_id": "signal_6f913e536412",
+        "source": "Yoga_Upanishad_[Sanskrit_English]_OCR.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "entity_conflict",
+      "signal_id": "signal_6f913e536412",
+      "source": "Yoga_Upanishad_[Sanskrit_English]_OCR.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.3436,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_f494c67a7b59",
+        "source": "The Narada-Purana, Part 1_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "low_contextual_overlap",
+      "signal_id": "signal_f494c67a7b59",
+      "source": "The Narada-Purana, Part 1_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Brahma",
+            "concepts": [
+              "creation",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "brahma"
+          },
+          {
+            "canonical": "Brahma Purana",
+            "concepts": [
+              "purana",
+              "creation"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "brahma purana"
+          },
+          {
+            "canonical": "Ganga",
+            "concepts": [
+              "sacred river",
+              "water"
+            ],
+            "domain": "ecology",
+            "entity_type": "river",
+            "matched_alias": "ganga"
+          },
+          {
+            "canonical": "Mahabharata",
+            "concepts": [
+              "dharma",
+              "Kurukshetra",
+              "Pandavas"
+            ],
+            "domain": "itihasa",
+            "entity_type": "text",
+            "matched_alias": "mahabharata"
+          },
+          {
+            "canonical": "Sarasvati",
+            "concepts": [
+              "river",
+              "knowledge"
+            ],
+            "domain": "ecology",
+            "entity_type": "river",
+            "matched_alias": "saraswati"
+          },
+          {
+            "canonical": "Water Conservation",
+            "concepts": [
+              "rivers",
+              "lakes",
+              "sustainability"
+            ],
+            "domain": "ecology",
+            "entity_type": "concept",
+            "matched_alias": "water conservation"
+          }
+        ],
+        "concept_overlap": 0.3125,
+        "confidence": 0.3275,
+        "confidence_derivation": {
+          "content_overlap": 0.25,
+          "derived_confidence": 0.2547,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.3275,
+          "semantic_score": 0.4094,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.25,
+        "contextual_proximity": 1.0,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "puranas",
+          "entities": [
+            {
+              "canonical": "Shiva",
+              "concepts": [
+                "destruction",
+                "yoga"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "shiva"
+            },
+            {
+              "canonical": "Shiva Purana",
+              "concepts": [
+                "Shiva",
+                "creation",
+                "cosmology"
+              ],
+              "domain": "puranas",
+              "entity_type": "text",
+              "matched_alias": "shiva purana"
+            }
+          ],
+          "method": "canonical_text_entity"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Shiva"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Shiva",
+            "concepts": [
+              "destruction",
+              "yoga"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "shiva"
+          },
+          {
+            "canonical": "Shiva Purana",
+            "concepts": [
+              "Shiva",
+              "creation",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "shiva purana"
+          }
+        ],
+        "semantic_score": 0.4094,
+        "signal_id": "signal_ed128650c1b4",
+        "source": "Brahma Purana - Parts I-IV_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "entity_conflict",
+      "signal_id": "signal_ed128650c1b4",
+      "source": "Brahma Purana - Parts I-IV_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Narada Purana",
+            "concepts": [
+              "purana",
+              "devotion",
+              "pilgrimage"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "narada purana"
+          }
+        ],
+        "concept_overlap": 0.125,
+        "confidence": 0.325,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.1844,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.325,
+          "semantic_score": 0.3438,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 1.0,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "puranas",
+          "entities": [
+            {
+              "canonical": "Shiva",
+              "concepts": [
+                "destruction",
+                "yoga"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "shiva"
+            },
+            {
+              "canonical": "Shiva Purana",
+              "concepts": [
+                "Shiva",
+                "creation",
+                "cosmology"
+              ],
+              "domain": "puranas",
+              "entity_type": "text",
+              "matched_alias": "shiva purana"
+            }
+          ],
+          "method": "canonical_text_entity"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Shiva"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Shiva",
+            "concepts": [
+              "destruction",
+              "yoga"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "shiva"
+          },
+          {
+            "canonical": "Shiva Purana",
+            "concepts": [
+              "Shiva",
+              "creation",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "shiva purana"
+          }
+        ],
+        "semantic_score": 0.3438,
+        "signal_id": "signal_0a24bb487c5d",
+        "source": "The Narada-Purana, Part 3_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "semantic_only_without_entity_or_concept",
+      "signal_id": "signal_0a24bb487c5d",
+      "source": "The Narada-Purana, Part 3_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Bhagavad Gita",
+            "concepts": [
+              "dharma",
+              "karma yoga",
+              "jnana yoga",
+              "bhakti yoga"
+            ],
+            "domain": "gitas",
+            "entity_type": "text",
+            "matched_alias": "gita"
+          },
+          {
+            "canonical": "Bhagavata Purana",
+            "concepts": [
+              "Krishna",
+              "devotion",
+              "purana"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "srimad bhagavata"
+          },
+          {
+            "canonical": "City",
+            "concepts": [
+              "planning",
+              "society"
+            ],
+            "domain": "governance",
+            "entity_type": "structure",
+            "matched_alias": "city"
+          },
+          {
+            "canonical": "Smriti",
+            "concepts": [
+              "law",
+              "conduct"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "text_group",
+            "matched_alias": "smritis"
+          }
+        ],
+        "concept_overlap": 0.1875,
+        "confidence": 0.3048,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.1859,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.3048,
+          "semantic_score": 0.3656,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 1.0,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "puranas",
+          "entities": [
+            {
+              "canonical": "Shiva",
+              "concepts": [
+                "destruction",
+                "yoga"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "shiva"
+            },
+            {
+              "canonical": "Shiva Purana",
+              "concepts": [
+                "Shiva",
+                "creation",
+                "cosmology"
+              ],
+              "domain": "puranas",
+              "entity_type": "text",
+              "matched_alias": "shiva purana"
+            }
+          ],
+          "method": "canonical_text_entity"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Shiva"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Shiva",
+            "concepts": [
+              "destruction",
+              "yoga"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "shiva"
+          },
+          {
+            "canonical": "Shiva Purana",
+            "concepts": [
+              "Shiva",
+              "creation",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "shiva purana"
+          }
+        ],
+        "semantic_score": 0.3656,
+        "signal_id": "signal_7117454c345d",
+        "source": "Srimad Bhagavata Maha Purana With Sanskrit Text And English Trans. By C.L. Goswami, Part 1 (Book 1 To 8) - Gita Press, Gorakhpur_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "entity_conflict",
+      "signal_id": "signal_7117454c345d",
+      "source": "Srimad Bhagavata Maha Purana With Sanskrit Text And English Trans. By C.L. Goswami, Part 1 (Book 1 To 8) - Gita Press, Gorakhpur_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Dharma",
+            "concepts": [
+              "ethics",
+              "order",
+              "responsibility"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "dharma"
+          },
+          {
+            "canonical": "Narada Purana",
+            "concepts": [
+              "purana",
+              "devotion",
+              "pilgrimage"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "narada purana"
+          },
+          {
+            "canonical": "Narayana",
+            "concepts": [
+              "preservation",
+              "cosmic person"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "narayana"
+          },
+          {
+            "canonical": "Vayu Purana",
+            "concepts": [
+              "purana",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "vayu purana"
+          },
+          {
+            "canonical": "Yuga",
+            "concepts": [
+              "time",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "concept",
+            "matched_alias": "yugas"
+          }
+        ],
+        "concept_overlap": 0.25,
+        "confidence": 0.2988,
+        "confidence_derivation": {
+          "content_overlap": 0.25,
+          "derived_confidence": 0.2343,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.2988,
+          "semantic_score": 0.3654,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.25,
+        "contextual_proximity": 0.7788,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "puranas",
+          "entities": [
+            {
+              "canonical": "Shiva",
+              "concepts": [
+                "destruction",
+                "yoga"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "shiva"
+            },
+            {
+              "canonical": "Shiva Purana",
+              "concepts": [
+                "Shiva",
+                "creation",
+                "cosmology"
+              ],
+              "domain": "puranas",
+              "entity_type": "text",
+              "matched_alias": "shiva purana"
+            }
+          ],
+          "method": "canonical_text_entity"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Shiva"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Shiva",
+            "concepts": [
+              "destruction",
+              "yoga"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "shiva"
+          },
+          {
+            "canonical": "Shiva Purana",
+            "concepts": [
+              "Shiva",
+              "creation",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "shiva purana"
+          }
+        ],
+        "semantic_score": 0.3654,
+        "signal_id": "signal_0e25f75878d2",
+        "source": "Vayu Purana Part 1_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "entity_conflict",
+      "signal_id": "signal_0e25f75878d2",
+      "source": "Vayu Purana Part 1_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Agni",
+            "concepts": [
+              "fire",
+              "yajna"
+            ],
+            "domain": "vedas",
+            "entity_type": "deity",
+            "matched_alias": "agni"
+          },
+          {
+            "canonical": "Agni Purana",
+            "concepts": [
+              "purana",
+              "ritual",
+              "architecture"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "agni purana"
+          },
+          {
+            "canonical": "Temple",
+            "concepts": [
+              "ritual",
+              "architecture"
+            ],
+            "domain": "governance",
+            "entity_type": "structure",
+            "matched_alias": "temple"
+          }
+        ],
+        "concept_overlap": 0.125,
+        "confidence": 0.2891,
+        "confidence_derivation": {
+          "content_overlap": 0.25,
+          "derived_confidence": 0.2254,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.2891,
+          "semantic_score": 0.3438,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.25,
+        "contextual_proximity": 1.0,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "puranas",
+          "entities": [
+            {
+              "canonical": "Shiva",
+              "concepts": [
+                "destruction",
+                "yoga"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "shiva"
+            },
+            {
+              "canonical": "Shiva Purana",
+              "concepts": [
+                "Shiva",
+                "creation",
+                "cosmology"
+              ],
+              "domain": "puranas",
+              "entity_type": "text",
+              "matched_alias": "shiva purana"
+            }
+          ],
+          "method": "canonical_text_entity"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Shiva"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Shiva",
+            "concepts": [
+              "destruction",
+              "yoga"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "shiva"
+          },
+          {
+            "canonical": "Shiva Purana",
+            "concepts": [
+              "Shiva",
+              "creation",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "shiva purana"
+          }
+        ],
+        "semantic_score": 0.3438,
+        "signal_id": "signal_1efdee132265",
+        "source": "Agni Purana Unabridged English Motilal.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "entity_conflict",
+      "signal_id": "signal_1efdee132265",
+      "source": "Agni Purana Unabridged English Motilal.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Devi",
+            "concepts": [
+              "power",
+              "protection"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "shakti"
+          }
+        ],
+        "concept_overlap": 0.0625,
+        "confidence": 0.2414,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.1419,
+          "domain_consistency": 1.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.2414,
+          "semantic_score": 0.2719,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.5,
+        "domain_consistency": 1.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "puranas",
+          "entities": [
+            {
+              "canonical": "Shiva",
+              "concepts": [
+                "destruction",
+                "yoga"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "shiva"
+            },
+            {
+              "canonical": "Shiva Purana",
+              "concepts": [
+                "Shiva",
+                "creation",
+                "cosmology"
+              ],
+              "domain": "puranas",
+              "entity_type": "text",
+              "matched_alias": "shiva purana"
+            }
+          ],
+          "method": "canonical_text_entity"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Shiva"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Shiva",
+            "concepts": [
+              "destruction",
+              "yoga"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "shiva"
+          },
+          {
+            "canonical": "Shiva Purana",
+            "concepts": [
+              "Shiva",
+              "creation",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "shiva purana"
+          }
+        ],
+        "semantic_score": 0.2719,
+        "signal_id": "signal_875b23cbc5bf",
+        "source": "Shakti and Shakta_ocr.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "no_query_relevance:tags_content_semantic_miss",
+      "signal_id": "signal_875b23cbc5bf",
+      "source": "Shakti and Shakta_ocr.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Bhagavad Gita",
+            "concepts": [
+              "dharma",
+              "karma yoga",
+              "jnana yoga",
+              "bhakti yoga"
+            ],
+            "domain": "gitas",
+            "entity_type": "text",
+            "matched_alias": "bhagavad gita"
+          },
+          {
+            "canonical": "Bhairava",
+            "concepts": [
+              "Shiva",
+              "tantra"
+            ],
+            "domain": "tantra",
+            "entity_type": "deity",
+            "matched_alias": "bhairava"
+          },
+          {
+            "canonical": "Decision Making",
+            "concepts": [
+              "dharma",
+              "judgement"
+            ],
+            "domain": "governance",
+            "entity_type": "concept",
+            "matched_alias": "decision making"
+          },
+          {
+            "canonical": "Karma",
+            "concepts": [
+              "cause",
+              "effect",
+              "duty"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "karma"
+          },
+          {
+            "canonical": "Tripura Rahasya",
+            "concepts": [
+              "Devi",
+              "self knowledge"
+            ],
+            "domain": "tantra",
+            "entity_type": "text",
+            "matched_alias": "tripura rahasya"
+          },
+          {
+            "canonical": "Vigyan Bhairava Tantra",
+            "concepts": [
+              "meditation",
+              "Shiva"
+            ],
+            "domain": "tantra",
+            "entity_type": "text",
+            "matched_alias": "vigyan bhairava tantra"
+          }
+        ],
+        "concept_overlap": 0.25,
+        "confidence": 0.17647058823529413,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.0955,
+          "domain_consistency": 0.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.1765,
+          "semantic_score": 0.1714,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.8387,
+        "domain_consistency": 0.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "puranas",
+          "entities": [
+            {
+              "canonical": "Shiva",
+              "concepts": [
+                "destruction",
+                "yoga"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "shiva"
+            },
+            {
+              "canonical": "Shiva Purana",
+              "concepts": [
+                "Shiva",
+                "creation",
+                "cosmology"
+              ],
+              "domain": "puranas",
+              "entity_type": "text",
+              "matched_alias": "shiva purana"
+            }
+          ],
+          "method": "canonical_text_entity"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Shiva"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Shiva",
+            "concepts": [
+              "destruction",
+              "yoga"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "shiva"
+          },
+          {
+            "canonical": "Shiva Purana",
+            "concepts": [
+              "Shiva",
+              "creation",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "shiva purana"
+          }
+        ],
+        "semantic_score": 0.1714,
+        "signal_id": "signal_f641ecc00869",
+        "source": "vigyan-bhairava-tantra_ocr.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "no_query_relevance:tags_content_semantic_miss",
+      "signal_id": "signal_f641ecc00869",
+      "source": "vigyan-bhairava-tantra_ocr.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [
+          {
+            "canonical": "Bhagavad Gita",
+            "concepts": [
+              "dharma",
+              "karma yoga",
+              "jnana yoga",
+              "bhakti yoga"
+            ],
+            "domain": "gitas",
+            "entity_type": "text",
+            "matched_alias": "bhagavad gita"
+          },
+          {
+            "canonical": "Dharma",
+            "concepts": [
+              "ethics",
+              "order",
+              "responsibility"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "dharma"
+          },
+          {
+            "canonical": "Karma",
+            "concepts": [
+              "cause",
+              "effect",
+              "duty"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "action"
+          },
+          {
+            "canonical": "Karma Yoga",
+            "concepts": [
+              "action",
+              "duty",
+              "detachment"
+            ],
+            "domain": "gitas",
+            "entity_type": "concept",
+            "matched_alias": "karma yoga"
+          },
+          {
+            "canonical": "Mahabharata",
+            "concepts": [
+              "dharma",
+              "Kurukshetra",
+              "Pandavas"
+            ],
+            "domain": "itihasa",
+            "entity_type": "text",
+            "matched_alias": "mahabharata"
+          },
+          {
+            "canonical": "Yajna",
+            "concepts": [
+              "ritual",
+              "offering"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "sacrifice"
+          },
+          {
+            "canonical": "Yoga",
+            "concepts": [
+              "discipline",
+              "meditation"
+            ],
+            "domain": "dharma_systems",
+            "entity_type": "concept",
+            "matched_alias": "yoga"
+          }
+        ],
+        "concept_overlap": 0.125,
+        "confidence": 0.1267,
+        "confidence_derivation": {
+          "content_overlap": 0.0,
+          "derived_confidence": 0.0748,
+          "domain_consistency": 0.0,
+          "entity_overlap": 0.0,
+          "formula": "0.25*retrieval + 0.25*tag + 0.2*content + 0.3*semantic",
+          "retrieval_confidence": 0.1267,
+          "semantic_score": 0.1437,
+          "tag_match_score": 0.0
+        },
+        "content_overlap": 0.0,
+        "contextual_proximity": 1.0,
+        "domain_consistency": 0.0,
+        "domain_resolution": {
+          "confidence": 1.0,
+          "domain": "puranas",
+          "entities": [
+            {
+              "canonical": "Shiva",
+              "concepts": [
+                "destruction",
+                "yoga"
+              ],
+              "domain": "puranas",
+              "entity_type": "deity",
+              "matched_alias": "shiva"
+            },
+            {
+              "canonical": "Shiva Purana",
+              "concepts": [
+                "Shiva",
+                "creation",
+                "cosmology"
+              ],
+              "domain": "puranas",
+              "entity_type": "text",
+              "matched_alias": "shiva purana"
+            }
+          ],
+          "method": "canonical_text_entity"
+        },
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [
+          "Shiva"
+        ],
+        "query_entities": [
+          {
+            "canonical": "Shiva",
+            "concepts": [
+              "destruction",
+              "yoga"
+            ],
+            "domain": "puranas",
+            "entity_type": "deity",
+            "matched_alias": "shiva"
+          },
+          {
+            "canonical": "Shiva Purana",
+            "concepts": [
+              "Shiva",
+              "creation",
+              "cosmology"
+            ],
+            "domain": "puranas",
+            "entity_type": "text",
+            "matched_alias": "shiva purana"
+          }
+        ],
+        "semantic_score": 0.1437,
+        "signal_id": "signal_c440233b1a39",
+        "source": "The Complete Mahabharata_English_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "no_query_relevance:tags_content_semantic_miss",
+      "signal_id": "signal_c440233b1a39",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.11764705882352941,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_7495105dada5",
+        "source": "Brihaspati Smriti (Reconstructed) - Rangaswami Aiyangar 1941 (GOS)_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "confidence_below_threshold:0.118",
+      "signal_id": "signal_7495105dada5",
+      "source": "Brihaspati Smriti (Reconstructed) - Rangaswami Aiyangar 1941 (GOS)_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.0736,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_b22e86b26e02",
+        "source": "Taittiriya_Upanishad_Swami_Sarvanand[Sanskrit-English]_OCR.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "confidence_below_threshold:0.074",
+      "signal_id": "signal_b22e86b26e02",
+      "source": "Taittiriya_Upanishad_Swami_Sarvanand[Sanskrit-English]_OCR.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.073,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_2cf69990c58a",
+        "source": "Svetasvatara Upanishad - sanskrit and English.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "confidence_below_threshold:0.073",
+      "signal_id": "signal_2cf69990c58a",
+      "source": "Svetasvatara Upanishad - sanskrit and English.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.0722,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_9fea627d56a6",
+        "source": "The Uddhava-g\u012bt\u0101_sanskrit_English_Hindi_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "confidence_below_threshold:0.072",
+      "signal_id": "signal_9fea627d56a6",
+      "source": "The Uddhava-g\u012bt\u0101_sanskrit_English_Hindi_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.0637,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_3acd3cd7b73a",
+        "source": "The Complete Mahabharata_English_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "confidence_below_threshold:0.064",
+      "signal_id": "signal_3acd3cd7b73a",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    },
+    {
+      "details": {
+        "candidate_entities": [],
+        "concept_overlap": 0.0,
+        "confidence": 0.058823529411764705,
+        "confidence_derivation": {},
+        "content_overlap": 0.0,
+        "contextual_proximity": 0.0,
+        "domain_consistency": 0.0,
+        "entity_overlap": 0.0,
+        "matched_tags": [],
+        "missing_required_entities": [],
+        "query_entities": [],
+        "semantic_score": 0.0,
+        "signal_id": "signal_e3a25598e156",
+        "source": "The Complete Mahabharata_English_ocred.pdf",
+        "tag_match_score": 0.0
+      },
+      "rejection_reason": "confidence_below_threshold:0.059",
+      "signal_id": "signal_e3a25598e156",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    }
+  ],
+  "signals_found": 0,
+  "signals_rejected": 18,
+  "synthesis_mode": "FALLBACK_KNOWLEDGE_INDEX",
+  "trace_id": "trace_daae0b4f4a3a5554",
+  "verification_status": "VERIFIED"
+}

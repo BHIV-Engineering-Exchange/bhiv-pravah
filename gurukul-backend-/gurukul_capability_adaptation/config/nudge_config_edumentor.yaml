@@ -1,0 +1,33 @@
+# Edumentor thresholds for capability/risk-based nudges and triggers
+# Source: Backend/Karthikeya/config/nudge_config.yaml (edumentor section)
+
+risk_thresholds:
+  edumentor:
+    overall_risk: 0.65
+    metrics:
+      average_score:
+        excellent: 85
+        good: 70
+        average: 50
+        poor: 30
+        critical: 0
+      engagement_score:
+        high: 80
+        medium: 50
+        low: 30
+        critical: 10
+      quiz_completion_rate:
+        excellent: 90
+        good: 75
+        average: 60
+        poor: 40
+        critical: 20
+      streak_maintenance:
+        safe_days: 0
+        warning_days: 1
+        critical_days: 3
+      missed_assignments:
+        low_concern: 1
+        medium_concern: 3
+        high_concern: 5
+        critical: 8

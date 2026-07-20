@@ -1,0 +1,281 @@
+import mongoose from 'mongoose';
+import Decimal from 'decimal.js';
+
+// Decimal validation helper
+const validateDecimal = {
+  validator: function(v) {
+    if (v === null || v === undefined) return true;
+    try {
+      new Decimal(v);
+      return true;
+    } catch {
+      return false;
+    }
+  },
+  message: 'Invalid decimal value'
+};
+
+const invoiceSchema = new mongoose.Schema({
+  invoiceNumber: {
+    type: String,
+    unique: true,
+  },
+  customerName: {
+    type: String,
+    required: true,
+  },
+  customerEmail: {
+    type: String,
+    required: true,
+  },
+  customerAddress: {
+    type: mongoose.Schema.Types.Mixed,
+  },
+  customerState: {
+    type: String,
+  },
+  customerGSTIN: {
+    type: String,
+    match: /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/,
+    // Optional - for B2B transactions
+  },
+  invoiceDate: {
+    type: Date,
+    required: true,
+    default: Date.now,
+  },
+  dueDate: {
+    type: Date,
+    required: true,
+  },
+  items: [{
+    description: {
+      type: String,
+      required: true,
+    },
+    quantity: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
+    unitPrice: {
+      type: String,
+      required: true,
+      validate: validateDecimal,
+    },
+    amount: {
+      type: String,
+      required: true,
+      validate: validateDecimal,
+    },
+    taxRate: {
+      type: Number,
+      min: 0,
+      max: 100,
+    },
+    hsnCode: String, // HSN/SAC code for GST
+  }],
+  
+  // Alias for backward compatibility - both items and lines are supported
+  lines: {
+    type: [{
+      description: String,
+      quantity: Number,
+      unitPrice: { type: String, validate: validateDecimal },
+      amount: { type: String, validate: validateDecimal },
+      taxRate: Number,
+      hsnCode: String,
+    }],
+  },
+  subtotal: {
+    type: String,
+    required: true,
+    validate: validateDecimal,
+  },
+  taxRate: {
+    type: Number,
+    default: 0,
+    min: 0,
+    max: 100,
+  },
+  taxAmount: {
+    type: String,
+    default: '0',
+    validate: validateDecimal,
+  },
+  
+  // GST breakdown (for India compliance)
+  gstBreakdown: {
+    cgst: {
+      type: String,
+      default: '0',
+      validate: validateDecimal,
+    },
+    sgst: {
+      type: String,
+      default: '0',
+      validate: validateDecimal,
+    },
+    igst: {
+      type: String,
+      default: '0',
+      validate: validateDecimal,
+    },
+    cess: {
+      type: String,
+      default: '0',
+      validate: validateDecimal,
+    },
+  },
+  
+  // Alias for backward compatibility
+  totalTax: {
+    type: String,
+    default: function() {
+      return this.taxAmount;
+    }
+  },
+  totalAmount: {
+    type: String,
+    required: true,
+    validate: validateDecimal,
+  },
+  amountPaid: {
+    type: String,
+    default: '0',
+    validate: validateDecimal,
+  },
+  status: {
+    type: String,
+    enum: ['draft', 'sent', 'partial', 'paid', 'overdue', 'cancelled'],
+    default: 'draft',
+  },
+  payments: [{
+    amount: {
+      type: String,
+      required: true,
+      validate: validateDecimal,
+    },
+    paymentDate: {
+      type: Date,
+      required: true,
+    },
+    paymentMethod: {
+      type: String,
+      required: true,
+    },
+    reference: String,
+    journalEntryId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'JournalEntry',
+    },
+    notes: String,
+  }],
+  notes: String,
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+}, {
+  timestamps: true,
+});
+
+invoiceSchema.set('toJSON', { virtuals: true });
+invoiceSchema.set('toObject', { virtuals: true });
+
+// Additional indexes for performance
+invoiceSchema.index({ status: 1 });
+invoiceSchema.index({ invoiceDate: -1 });
+invoiceSchema.index({ dueDate: 1 });
+invoiceSchema.index({ status: 1, dueDate: 1 });
+invoiceSchema.index({ customerName: 1 });
+invoiceSchema.index({ customerName: 1, invoiceDate: -1 });
+invoiceSchema.index({ customerEmail: 1 });
+invoiceSchema.index({ createdBy: 1 });
+invoiceSchema.index({ customerGSTIN: 1 });
+
+// Virtual for amount due using Decimal.js for precision
+invoiceSchema.virtual('amountDue').get(function() {
+  try {
+    const total = new Decimal(this.totalAmount || 0);
+    const paid = new Decimal(this.amountPaid || 0);
+    return total.minus(paid).toFixed(2);
+  } catch {
+    return '0.00';
+  }
+});
+
+invoiceSchema.virtual('invoice_amount').get(function() {
+  return this.totalAmount || '0.00';
+});
+
+invoiceSchema.virtual('paid_amount').get(function() {
+  return this.amountPaid || '0.00';
+});
+
+invoiceSchema.virtual('outstanding_amount').get(function() {
+  return this.amountDue;
+});
+
+// Sync items and lines fields for backward compatibility
+invoiceSchema.pre('save', async function(next) {
+  try {
+    // Auto-generate invoice number
+    if (this.isNew && !this.invoiceNumber) {
+      const date = new Date();
+      const dateStr = date.toISOString().slice(0, 10).replace(/-/g, '');
+      const count = await mongoose.model('Invoice').countDocuments({
+        invoiceNumber: new RegExp(`^INV-${dateStr}`)
+      });
+      this.invoiceNumber = `INV-${dateStr}-${String(count + 1).padStart(4, '0')}`;
+    }
+    
+    // Sync items and lines
+    if (this.items && this.items.length > 0 && (!this.lines || this.lines.length === 0)) {
+      this.lines = this.items;
+    } else if (this.lines && this.lines.length > 0 && (!this.items || this.items.length === 0)) {
+      this.items = this.lines;
+    }
+    
+    // Update status based on payments using Decimal.js
+    try {
+      const total = new Decimal(this.totalAmount || 0);
+      const paid = new Decimal(this.amountPaid || 0);
+      
+      if (this.status !== 'cancelled') {
+        if (paid.greaterThanOrEqualTo(total) && total.greaterThan(0)) {
+          this.status = 'paid';
+        } else if (paid.greaterThan(0)) {
+          this.status = 'partial';
+        } else if (this.status === 'sent' && new Date() > this.dueDate) {
+          this.status = 'overdue';
+        }
+      }
+    } catch (error) {
+      // If decimal parsing fails, use original logic as fallback
+      const total = parseFloat(this.totalAmount) || 0;
+      const paid = parseFloat(this.amountPaid) || 0;
+      
+      if (this.status !== 'cancelled') {
+        if (paid >= total && total > 0) {
+          this.status = 'paid';
+        } else if (paid > 0) {
+          this.status = 'partial';
+        } else if (this.status === 'sent' && new Date() > this.dueDate) {
+          this.status = 'overdue';
+        }
+      }
+    }
+    
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Ensure virtual fields are serialized
+invoiceSchema.set('toJSON', { virtuals: true });
+invoiceSchema.set('toObject', { virtuals: true });
+
+export default mongoose.model('Invoice', invoiceSchema);

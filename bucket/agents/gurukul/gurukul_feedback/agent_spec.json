@@ -1,0 +1,26 @@
+{
+    "name": "gurukul_feedback",
+    "domains": ["education", "feedback"],
+    "module_path": "agents.gurukul.gurukul_feedback.gurukul_feedback",
+    "capabilities": {
+        "chainable": true,
+        "memory_access": true
+    },
+    "input_schema": {
+        "required": ["student_id"],
+        "properties": {
+            "student_id": {"type": "string"}
+        }
+    },
+    "output_schema": {
+        "properties": {
+            "feedback": {"type": "string"}
+        }
+    },
+    "sample_input": {
+        "student_id": "student123"
+    },
+    "sample_output": {
+        "feedback": "You've completed 2 of 3 lessons."
+    }
+}

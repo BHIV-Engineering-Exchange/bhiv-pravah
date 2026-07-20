@@ -1,0 +1,266 @@
+# AI Agent CRM System - Production Docker Compose
+# Complete containerized deployment with all services and dependencies
+
+version: '3.8'
+
+services:
+  # Redis for caching and session management
+  redis:
+    image: redis:7.2-alpine
+    container_name: crm_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-changeme}
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - crm_network
+
+  # PostgreSQL for production database (optional - can use SQLite)
+  postgres:
+    image: postgres:15-alpine
+    container_name: crm_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-crm_database}
+      POSTGRES_USER: ${POSTGRES_USER:-crm_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backups:/backups
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-crm_user}"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - crm_network
+
+  # Main CRM Application
+  crm_app:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+      args:
+        BUILD_DATE: ${BUILD_DATE}
+        VERSION: ${VERSION:-latest}
+        GIT_COMMIT: ${GIT_COMMIT}
+    container_name: crm_app
+    restart: unless-stopped
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    environment:
+      # Database configuration
+      DATABASE_URL: ${DATABASE_URL:-postgresql://${POSTGRES_USER:-crm_user}:${POSTGRES_PASSWORD:-changeme}@postgres:5432/${POSTGRES_DB:-crm_database}}
+      REDIS_URL: redis://:${REDIS_PASSWORD:-changeme}@redis:6379/0
+      
+      # Security
+      SECRET_KEY: ${SECRET_KEY}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-${SECRET_KEY}}
+      
+      # Office 365 Integration
+      OFFICE365_CLIENT_ID: ${OFFICE365_CLIENT_ID}
+      OFFICE365_CLIENT_SECRET: ${OFFICE365_CLIENT_SECRET}
+      OFFICE365_TENANT_ID: ${OFFICE365_TENANT_ID}
+      OFFICE365_EMAIL: ${OFFICE365_EMAIL}
+      OFFICE365_PASSWORD: ${OFFICE365_PASSWORD}
+      
+      # Google Maps Integration
+      GOOGLE_MAPS_API_KEY: ${GOOGLE_MAPS_API_KEY}
+      
+      # OpenAI Integration
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      
+      # Application settings
+      ENVIRONMENT: production
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      DEBUG: ${DEBUG:-false}
+      
+      # CORS settings
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-http://localhost:3000,https://yourdomain.com}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS:-localhost,yourdomain.com}
+      
+    ports:
+      - "8000:8000"  # Main API
+      - "8001:8001"  # CRM API
+      - "8501:8501"  # CRM Dashboard
+      - "8502:8502"  # Logistics Dashboard
+    volumes:
+      - app_data:/app/data
+      - app_logs:/app/logs
+      - app_static:/app/static
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - crm_network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.crm.rule=Host(`${DOMAIN:-localhost}`)"
+      - "traefik.http.routers.crm.tls=true"
+      - "traefik.http.routers.crm.tls.certresolver=letsencrypt"
+
+  # Nginx reverse proxy
+  nginx:
+    image: nginx:alpine
+    container_name: crm_nginx
+    restart: unless-stopped
+    depends_on:
+      - crm_app
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+      - app_static:/usr/share/nginx/html/static:ro
+    networks:
+      - crm_network
+
+  # Monitoring with Prometheus
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: crm_prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    networks:
+      - crm_network
+
+  # Grafana for dashboards
+  grafana:
+    image: grafana/grafana:latest
+    container_name: crm_grafana
+    restart: unless-stopped
+    depends_on:
+      - prometheus
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:-admin}
+      GF_USERS_ALLOW_SIGN_UP: false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources
+    networks:
+      - crm_network
+
+  # Log aggregation with ELK stack
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.8.0
+    container_name: crm_elasticsearch
+    restart: unless-stopped
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    networks:
+      - crm_network
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.8.0
+    container_name: crm_logstash
+    restart: unless-stopped
+    depends_on:
+      - elasticsearch
+    volumes:
+      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
+      - app_logs:/app/logs:ro
+    networks:
+      - crm_network
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.8.0
+    container_name: crm_kibana
+    restart: unless-stopped
+    depends_on:
+      - elasticsearch
+    ports:
+      - "5601:5601"
+    environment:
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    networks:
+      - crm_network
+
+  # Backup service
+  backup:
+    image: alpine:latest
+    container_name: crm_backup
+    restart: unless-stopped
+    depends_on:
+      - postgres
+      - crm_app
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-crm_database}
+      POSTGRES_USER: ${POSTGRES_USER:-crm_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      BACKUP_SCHEDULE: ${BACKUP_SCHEDULE:-0 2 * * *}  # Daily at 2 AM
+    volumes:
+      - postgres_data:/postgres_data:ro
+      - app_data:/app_data:ro
+      - ./backups:/backups
+      - ./backup-script.sh:/backup-script.sh:ro
+    command: |
+      sh -c "
+        apk add --no-cache postgresql-client dcron
+        echo '${BACKUP_SCHEDULE:-0 2 * * *} /backup-script.sh' | crontab -
+        crond -f -d 8
+      "
+    networks:
+      - crm_network
+
+# Named volumes for data persistence
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  app_data:
+    driver: local
+  app_logs:
+    driver: local
+  app_static:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
+  elasticsearch_data:
+    driver: local
+
+# Custom network
+networks:
+  crm_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

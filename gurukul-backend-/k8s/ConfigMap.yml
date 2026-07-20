@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-config
+  namespace: gurukul-staging
+data:
+  POSTGRES_DB: school_management_db
+  MONGO_URI: mongodb://mongo:27017
+  DB_NAME: karma-chain
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+  namespace: gurukul-staging
+data:
+  MONGO_URI: mongodb://mongo:27017
+  DB_NAME: karma-chain
+  TANTRA_DEBUG_LOG: "true"
+  REDIS_HOST: "redis"
+  REDIS_PORT: "6379"
+  # Add any backend-specific configuration here, e.g. API keys, feature flags, etc.
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+  namespace: gurukul-staging
+data:
+  VITE_SUPABASE_URL: https://jjlhxfhstolhtekolmky.supabase.co
+  VITE_API_URL: http://127.0.0.1:3000  #https://gurukul-backend-kap2.onrender.com
+  VITE_SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpqbGh4ZmhzdG9saHRla29sbWt5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk5NTY3MTcsImV4cCI6MjA4NTUzMjcxN30.AUnd0k3ZmJ0tBswVFKw79SR9dTcEttc4VOfS7UkgLEo
+

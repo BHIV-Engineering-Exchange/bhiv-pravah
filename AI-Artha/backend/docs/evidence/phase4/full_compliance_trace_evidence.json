@@ -1,0 +1,283 @@
+{
+  "phase": "Phase 2 — Compliance Continuity Proof",
+  "started_at": "2026-06-17T11:31:12.720Z",
+  "script": "proof-compliance.js",
+  "status": "PASS",
+  "stages_captured": [
+    {
+      "stage": "TRANSACTION_CREATED",
+      "entity_type": "Invoice",
+      "entity_id": "6a328581dcbd09cbad6fd70f",
+      "entity_number": "INV-20260617-0011",
+      "journal_entry_id": "6a328582dcbd09cbad6fd759",
+      "journal_entry_number": "JE-20260617-0028",
+      "timestamp": "2026-06-17T11:31:15.330Z"
+    },
+    {
+      "stage": "JOURNAL_POSTED",
+      "entity_type": "JournalEntry",
+      "entity_id": "6a328582dcbd09cbad6fd759",
+      "entry_number": "JE-20260617-0028",
+      "status": "POSTED",
+      "hash": "510d3c41e6730dccd5721aebec97c8c87c211ecaf471038deabe5b6f1a5e9113",
+      "chain_position": 43,
+      "lines_count": 3,
+      "balanced": true,
+      "timestamp": "2026-06-17T11:31:15.331Z"
+    },
+    {
+      "stage": "SIGNAL_GENERATED",
+      "entity_type": "ComplianceSignal",
+      "entity_id": "6a328583dcbd09cbad6fd797",
+      "signal_id": "SIG-b15e2b8e-a037-4136-889a-8136bca4e7de",
+      "type": "SIG_FILING_GENERATED",
+      "severity": "INFO",
+      "timestamp": "2026-06-17T11:31:15.341Z"
+    },
+    {
+      "stage": "FILING_CREATED",
+      "entity_type": "ComplianceFiling",
+      "entity_id": "6a328583dcbd09cbad6fd79c",
+      "filing_id": "FIL-96d34f26-fb28-4527-a5f6-71059a106bef",
+      "filing_type": "GSTR-1",
+      "timestamp": "2026-06-17T11:31:15.374Z"
+    },
+    {
+      "stage": "FILING_VALIDATED",
+      "entity_type": "ComplianceValidationLog",
+      "filing_id": "FIL-96d34f26-fb28-4527-a5f6-71059a106bef",
+      "filing_ready": true,
+      "errors_count": 0,
+      "timestamp": "2026-06-17T11:31:15.387Z"
+    },
+    {
+      "stage": "SETU_DISPATCHED",
+      "entity_type": "SetuDispatch",
+      "entity_id": "SETU-1781695875427-2d75beb4",
+      "status": "SUCCESS",
+      "dispatched": true,
+      "setu_status": "ACCEPTED",
+      "setu_reference": "SETU-1781695875427-2d75beb4",
+      "signal_id": "SIG-b15e2b8e-a037-4136-889a-8136bca4e7de",
+      "filing_id": "FIL-96d34f26-fb28-4527-a5f6-71059a106bef",
+      "simulation": false,
+      "http_status": 200,
+      "response": {
+        "status": "ACCEPTED",
+        "request_id": "d563f80a-64fa-49a1-9ddc-b12a7315dffd",
+        "setu_reference": "SETU-1781695875427-2d75beb4",
+        "signal_id": "SIG-b15e2b8e-a037-4136-889a-8136bca4e7de",
+        "trace_id": "2f81e4c6-7bf5-4cb7-9609-61a4d77e018f",
+        "filing_type": "GSTR-1",
+        "processing_time_ms": 127,
+        "timestamp": "2026-06-17T11:31:15.427Z",
+        "gateway": "MOCK_SETU_v1.0"
+      },
+      "payload": {
+        "signal_id": "SIG-b15e2b8e-a037-4136-889a-8136bca4e7de",
+        "trace_id": "2f81e4c6-7bf5-4cb7-9609-61a4d77e018f",
+        "signal_type": "SIG_FILING_GENERATED",
+        "severity": "INFO",
+        "filing_type": "GSTR-1",
+        "filing_id": "FIL-96d34f26-fb28-4527-a5f6-71059a106bef",
+        "entity_type": "INVOICE",
+        "entity_id": "6a328581dcbd09cbad6fd70f",
+        "payload": {}
+      },
+      "timestamp": "2026-06-17T11:31:15.435Z"
+    },
+    {
+      "stage": "JOURNAL_CREATED",
+      "entity_type": "JournalEntry",
+      "entity_id": "6a328582dcbd09cbad6fd759",
+      "status": "SUCCESS",
+      "timestamp": "2026-06-17T11:31:15.479Z"
+    },
+    {
+      "stage": "JOURNAL_VALIDATED",
+      "entity_type": "JournalEntry",
+      "entity_id": "6a328582dcbd09cbad6fd759",
+      "status": "SUCCESS",
+      "timestamp": "2026-06-17T11:31:15.497Z"
+    }
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "name": "Transaction Creation",
+      "status": "SUCCESS",
+      "data": {
+        "stage": "TRANSACTION_CREATED",
+        "entity_type": "Invoice",
+        "entity_id": "6a328581dcbd09cbad6fd70f",
+        "entity_number": "INV-20260617-0011",
+        "journal_entry_id": "6a328582dcbd09cbad6fd759",
+        "journal_entry_number": "JE-20260617-0028",
+        "timestamp": "2026-06-17T11:31:15.330Z"
+      }
+    },
+    {
+      "step": 2,
+      "name": "Journal Creation & Posting",
+      "status": "SUCCESS",
+      "data": {
+        "stage": "JOURNAL_POSTED",
+        "entity_type": "JournalEntry",
+        "entity_id": "6a328582dcbd09cbad6fd759",
+        "entry_number": "JE-20260617-0028",
+        "status": "POSTED",
+        "hash": "510d3c41e6730dccd5721aebec97c8c87c211ecaf471038deabe5b6f1a5e9113",
+        "chain_position": 43,
+        "lines_count": 3,
+        "balanced": true,
+        "timestamp": "2026-06-17T11:31:15.331Z"
+      }
+    },
+    {
+      "step": 3,
+      "name": "Signal Generation",
+      "status": "SUCCESS",
+      "data": {
+        "stage": "SIGNAL_GENERATED",
+        "entity_type": "ComplianceSignal",
+        "entity_id": "6a328583dcbd09cbad6fd797",
+        "signal_id": "SIG-b15e2b8e-a037-4136-889a-8136bca4e7de",
+        "type": "SIG_FILING_GENERATED",
+        "severity": "INFO",
+        "timestamp": "2026-06-17T11:31:15.341Z"
+      }
+    },
+    {
+      "step": 4,
+      "name": "Filing Creation",
+      "status": "SUCCESS",
+      "data": {
+        "stage": "FILING_CREATED",
+        "entity_type": "ComplianceFiling",
+        "entity_id": "6a328583dcbd09cbad6fd79c",
+        "filing_id": "FIL-96d34f26-fb28-4527-a5f6-71059a106bef",
+        "filing_type": "GSTR-1",
+        "timestamp": "2026-06-17T11:31:15.374Z"
+      }
+    },
+    {
+      "step": 5,
+      "name": "Filing Validation",
+      "status": "SUCCESS",
+      "data": {
+        "stage": "FILING_VALIDATED",
+        "entity_type": "ComplianceValidationLog",
+        "filing_id": "FIL-96d34f26-fb28-4527-a5f6-71059a106bef",
+        "filing_ready": true,
+        "errors_count": 0,
+        "timestamp": "2026-06-17T11:31:15.387Z"
+      }
+    },
+    {
+      "step": 6,
+      "name": "SETU Dispatch",
+      "status": "SUCCESS",
+      "data": {
+        "stage": "SETU_DISPATCHED",
+        "entity_type": "SetuDispatch",
+        "entity_id": "SETU-1781695875427-2d75beb4",
+        "status": "SUCCESS",
+        "dispatched": true,
+        "setu_status": "ACCEPTED",
+        "setu_reference": "SETU-1781695875427-2d75beb4",
+        "signal_id": "SIG-b15e2b8e-a037-4136-889a-8136bca4e7de",
+        "filing_id": "FIL-96d34f26-fb28-4527-a5f6-71059a106bef",
+        "simulation": false,
+        "http_status": 200,
+        "response": {
+          "status": "ACCEPTED",
+          "request_id": "d563f80a-64fa-49a1-9ddc-b12a7315dffd",
+          "setu_reference": "SETU-1781695875427-2d75beb4",
+          "signal_id": "SIG-b15e2b8e-a037-4136-889a-8136bca4e7de",
+          "trace_id": "2f81e4c6-7bf5-4cb7-9609-61a4d77e018f",
+          "filing_type": "GSTR-1",
+          "processing_time_ms": 127,
+          "timestamp": "2026-06-17T11:31:15.427Z",
+          "gateway": "MOCK_SETU_v1.0"
+        },
+        "payload": {
+          "signal_id": "SIG-b15e2b8e-a037-4136-889a-8136bca4e7de",
+          "trace_id": "2f81e4c6-7bf5-4cb7-9609-61a4d77e018f",
+          "signal_type": "SIG_FILING_GENERATED",
+          "severity": "INFO",
+          "filing_type": "GSTR-1",
+          "filing_id": "FIL-96d34f26-fb28-4527-a5f6-71059a106bef",
+          "entity_type": "INVOICE",
+          "entity_id": "6a328581dcbd09cbad6fd70f",
+          "payload": {}
+        },
+        "timestamp": "2026-06-17T11:31:15.435Z"
+      }
+    },
+    {
+      "step": 7,
+      "name": "Unified Trace Assembly",
+      "status": "SUCCESS",
+      "data": {
+        "trace_id": "TRC-20260617-86c79651",
+        "source": "INVOICE",
+        "status": "IN_PROGRESS",
+        "current_stage": "SETU_DISPATCHED",
+        "total_stages": 8,
+        "linked_entities": {
+          "journal_entries": 4,
+          "signals": 2,
+          "filings": 3,
+          "validation_logs": 0
+        },
+        "continuity": {
+          "is_continuous": true,
+          "missing_stages": [],
+          "total_stages": 8,
+          "current_stage": "SETU_DISPATCHED",
+          "status": "IN_PROGRESS"
+        }
+      }
+    },
+    {
+      "step": 8,
+      "name": "Lineage Reconstruction",
+      "status": "SUCCESS",
+      "data": {
+        "trace_id": "TRC-20260617-86c79651",
+        "has_lineage": true,
+        "depth": 0,
+        "execution_flow_steps": 8
+      }
+    },
+    {
+      "step": 9,
+      "name": "Trace Completion",
+      "status": "SUCCESS",
+      "data": {
+        "trace_id": "TRC-20260617-86c79651",
+        "status": "COMPLETED",
+        "completed_at": "2026-06-17T11:31:15.649Z",
+        "total_stages": 8,
+        "all_stages_verified": true
+      }
+    }
+  ],
+  "summary": {
+    "stages_captured": [
+      "TRANSACTION_CREATED",
+      "JOURNAL_POSTED",
+      "SIGNAL_GENERATED",
+      "FILING_CREATED",
+      "FILING_VALIDATED",
+      "SETU_DISPATCHED",
+      "JOURNAL_CREATED",
+      "JOURNAL_VALIDATED"
+    ],
+    "missing_stages": [],
+    "trace_id": "TRC-20260617-86c79651",
+    "continuity": true,
+    "verdict": "COMPLIANCE CONTINUITY PROVEN — All stages captured, no gaps, trace continuous"
+  },
+  "completed_at": "2026-06-17T11:31:15.649Z"
+}

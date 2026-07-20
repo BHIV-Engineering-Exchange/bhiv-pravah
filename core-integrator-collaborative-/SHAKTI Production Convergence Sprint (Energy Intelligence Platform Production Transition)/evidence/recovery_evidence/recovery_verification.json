@@ -1,0 +1,63 @@
+{
+  "generated_at": "2026-07-08T09:57:22.280760+00:00",
+  "interruption": {
+    "trace_id": "rec_446a0d16ac",
+    "bhiv_pid": 20756,
+    "killed_before_execution": true,
+    "kill_command": "taskkill /F /PID 20756 (pre-execution)",
+    "pipeline_status_code": 500,
+    "pipeline_body_excerpt": "{\"detail\":\"HTTPConnectionPool(host='127.0.0.1', port=8001): Max retries exceeded with url: /core (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000210F861DD00>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))\"}",
+    "bucket_artifact_types": [
+      "authority",
+      "blueprint",
+      "contract",
+      "gate",
+      "instruction"
+    ],
+    "clean_failure": true
+  },
+  "recovery": {
+    "bhiv_restarted": true,
+    "new_bhiv_pid": 17012,
+    "replay_status_code": 200,
+    "bucket_status_code": 200,
+    "bucket_artifact_count": 5,
+    "replay_after_restart": true
+  },
+  "runtime_manager_restart_scenario": {
+    "passed": true,
+    "before": {
+      "telemetry": {
+        "status": "healthy",
+        "pid": 17552,
+        "port": 8010,
+        "restarts": 1,
+        "last_restart_at": "2026-07-08T09:55:39.006163+00:00"
+      },
+      "control_plane": {
+        "status": "healthy",
+        "pid": 19844,
+        "port": 8009,
+        "restarts": 0,
+        "last_restart_at": null
+      }
+    },
+    "after": {
+      "telemetry": {
+        "status": "healthy",
+        "pid": 18764,
+        "port": 8010,
+        "restarts": 2,
+        "last_restart_at": "2026-07-08T09:57:15.976600+00:00"
+      },
+      "control_plane": {
+        "status": "healthy",
+        "pid": 20940,
+        "port": 8009,
+        "restarts": 1,
+        "last_restart_at": "2026-07-08T09:57:21.056089+00:00"
+      }
+    }
+  },
+  "passed": true
+}

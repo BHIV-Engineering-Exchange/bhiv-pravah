@@ -1,0 +1,76 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment variables — NEVER commit real .env files
+.env
+.env.local
+.env.integration_bridge
+.env.production
+.env.vercel
+.env.*.local
+
+# Runtime data and databases
+*.db
+*.sqlite
+*.sqlite3
+data/
+db/creator_core_bucket/
+db/creator_core_telemetry/
+bhiv_bucket/
+
+# Logs
+*.log
+logs/
+creator_core.log
+
+Sovereign Runtime Deployment And Ecosystem Operationalization.md
+Implementation.md
+SHAKTI Production Convergence Sprint (Energy Intelligence Platform Production Transition).md
+Implementation.md
+Production Ecosystem Deployment Sprint (Creator Core TTG_TTV_AI Content Platform).md

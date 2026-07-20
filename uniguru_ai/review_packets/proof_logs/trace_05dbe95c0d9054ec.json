@@ -1,0 +1,152 @@
+{
+  "answer": "I do not have verified knowledge to answer this question.",
+  "confidence": 0.0,
+  "confidence_breakdown": {
+    "accepted_count": 0,
+    "accepted_derivations": [],
+    "overall": 0.0,
+    "rejected_count": 18
+  },
+  "detected_domain": null,
+  "domain_resolution": {
+    "confidence": 0.0,
+    "domain": "general",
+    "entities": [],
+    "method": "no_canonical_entity"
+  },
+  "enforcement_stats": {
+    "rejected_entries": 19,
+    "total_entries": 37,
+    "valid_entries": 18
+  },
+  "fallback_to_llm": false,
+  "generated_at": "2026-06-25T05:10:44.259213Z",
+  "knowledge_ids_used": [],
+  "matched_signals": [],
+  "query": "Is time travel possible according to ancient Indian texts?",
+  "reasoning": "No signals passed domain+tag+query validation.",
+  "reasoning_path": [
+    "query_received",
+    "kosha_schema_enforced",
+    "canonical_entities_extracted",
+    "ontology_aware_retrieval",
+    "signal_validation",
+    "structured_signal_emission",
+    "deterministic_rejection"
+  ],
+  "rejected_signals": [
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_4c479eaa05fd",
+      "source": "Agni Purana Unabridged English Motilal.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_64bf346303c9",
+      "source": "Srimad Bhagavata Maha Purana With Sanskrit Text And English Trans. By C.L. Goswami, Part 1 (Book 1 To 8) - Gita Press, Gorakhpur_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_6137270e3e6e",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_3bf02d1647b2",
+      "source": "Vayu Purana Part 1_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_a123f0dbd778",
+      "source": "The Narada-Purana, Part 1_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_20284861c1d3",
+      "source": "Valmiki-Ramayana-Eng-Translation-Griffith_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_930e528ce3bb",
+      "source": "Yoga_Upanishad_[Sanskrit_English]_OCR.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_5c78fd323de3",
+      "source": "Brahma Purana - Parts I-IV_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_91fb3667904d",
+      "source": "Shakti and Shakta_ocr.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_1f2cfcedd7ea",
+      "source": "Brihaspati Smriti (Reconstructed) - Rangaswami Aiyangar 1941 (GOS)_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_eb60a8e8b4c2",
+      "source": "Svetasvatara Upanishad - sanskrit and English.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_27445294169e",
+      "source": "The Narada-Purana, Part 4_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_17aa792963f2",
+      "source": "Taittiriya_Upanishad_Swami_Sarvanand[Sanskrit-English]_OCR.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_0933ec973657",
+      "source": "The Uddhava-g\u012bt\u0101_sanskrit_English_Hindi_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_aaaf48d1d6ee",
+      "source": "The Narada-Purana, Part 3_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_ac33b680c2e9",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_548a59bf3778",
+      "source": "vigyan-bhairava-tantra_ocr.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_7b530b3f635a",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    }
+  ],
+  "signals_found": 0,
+  "signals_rejected": 18,
+  "synthesis_mode": "REJECTED_NO_SYNTHESIS",
+  "trace_id": "trace_05dbe95c0d9054ec",
+  "verification_status": "NO_VERIFIED_KNOWLEDGE"
+}

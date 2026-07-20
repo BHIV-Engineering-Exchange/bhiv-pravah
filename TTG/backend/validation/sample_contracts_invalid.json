@@ -1,0 +1,240 @@
+[
+  {
+    "description": "Missing jobType",
+    "contract": {
+      "payload": {
+        "sceneId": "test_scene"
+      }
+    }
+  },
+  {
+    "description": "Missing payload",
+    "contract": {
+      "jobType": "BUILD_SCENE"
+    }
+  },
+  {
+    "description": "Unsupported jobType",
+    "contract": {
+      "jobType": "HACK_SYSTEM",
+      "payload": {
+        "malicious": true
+      }
+    }
+  },
+  {
+    "description": "Invalid entity ID - empty string",
+    "contract": {
+      "jobType": "SPAWN_ENTITY",
+      "payload": {
+        "id": "",
+        "transform": {
+          "position": [0, 0, 0]
+        }
+      }
+    }
+  },
+  {
+    "description": "Invalid entity ID - special characters",
+    "contract": {
+      "jobType": "SPAWN_ENTITY",
+      "payload": {
+        "id": "player@#$%",
+        "transform": {
+          "position": [0, 0, 0]
+        }
+      }
+    }
+  },
+  {
+    "description": "Malformed transform - position not array",
+    "contract": {
+      "jobType": "SPAWN_ENTITY",
+      "payload": {
+        "id": "player_1",
+        "transform": {
+          "position": "0,0,0"
+        }
+      }
+    }
+  },
+  {
+    "description": "Malformed transform - position wrong length",
+    "contract": {
+      "jobType": "SPAWN_ENTITY",
+      "payload": {
+        "id": "player_1",
+        "transform": {
+          "position": [0, 0]
+        }
+      }
+    }
+  },
+  {
+    "description": "Malformed transform - position contains NaN",
+    "contract": {
+      "jobType": "SPAWN_ENTITY",
+      "payload": {
+        "id": "player_1",
+        "transform": {
+          "position": [0, NaN, 0]
+        }
+      }
+    }
+  },
+  {
+    "description": "Malformed transform - position contains string",
+    "contract": {
+      "jobType": "SPAWN_ENTITY",
+      "payload": {
+        "id": "player_1",
+        "transform": {
+          "position": [0, "invalid", 0]
+        }
+      }
+    }
+  },
+  {
+    "description": "Malformed transform - rotation contains Infinity",
+    "contract": {
+      "jobType": "SPAWN_ENTITY",
+      "payload": {
+        "id": "player_1",
+        "transform": {
+          "position": [0, 0, 0],
+          "rotation": [0, Infinity, 0]
+        }
+      }
+    }
+  },
+  {
+    "description": "START_GAME - missing game_mode",
+    "contract": {
+      "jobType": "START_GAME",
+      "payload": {
+        "movement": {
+          "speed": 5
+        }
+      }
+    }
+  },
+  {
+    "description": "START_GAME - speed out of range (too high)",
+    "contract": {
+      "jobType": "START_GAME",
+      "payload": {
+        "game_mode": "runner",
+        "movement": {
+          "speed": 50
+        }
+      }
+    }
+  },
+  {
+    "description": "START_GAME - speed out of range (too low)",
+    "contract": {
+      "jobType": "START_GAME",
+      "payload": {
+        "game_mode": "runner",
+        "movement": {
+          "speed": 0
+        }
+      }
+    }
+  },
+  {
+    "description": "START_GAME - gravity out of range",
+    "contract": {
+      "jobType": "START_GAME",
+      "payload": {
+        "game_mode": "runner",
+        "movement": {
+          "speed": 5
+        },
+        "physics": {
+          "gravity": -50
+        }
+      }
+    }
+  },
+  {
+    "description": "BUILD_SCENE - missing sceneId",
+    "contract": {
+      "jobType": "BUILD_SCENE",
+      "payload": {
+        "ambientLight": [0.5, 0.5, 0.5]
+      }
+    }
+  },
+  {
+    "description": "BUILD_SCENE - invalid ambientLight",
+    "contract": {
+      "jobType": "BUILD_SCENE",
+      "payload": {
+        "sceneId": "test_scene",
+        "ambientLight": [0.5, 0.5]
+      }
+    }
+  },
+  {
+    "description": "LOAD_ASSETS - empty assets array",
+    "contract": {
+      "jobType": "LOAD_ASSETS",
+      "payload": {
+        "assets": []
+      }
+    }
+  },
+  {
+    "description": "LOAD_ASSETS - assets not array",
+    "contract": {
+      "jobType": "LOAD_ASSETS",
+      "payload": {
+        "assets": "player,wolf"
+      }
+    }
+  },
+  {
+    "description": "Prototype pollution attempt - __proto__",
+    "contract": {
+      "jobType": "BUILD_SCENE",
+      "payload": {
+        "sceneId": "test"
+      },
+      "__proto__": {
+        "admin": true
+      }
+    }
+  },
+  {
+    "description": "Prototype pollution attempt - constructor",
+    "contract": {
+      "jobType": "BUILD_SCENE",
+      "payload": {
+        "sceneId": "test"
+      },
+      "constructor": {
+        "prototype": {
+          "admin": true
+        }
+      }
+    }
+  },
+  {
+    "description": "Contract is array instead of object",
+    "contract": [
+      {
+        "jobType": "BUILD_SCENE",
+        "payload": {}
+      }
+    ]
+  },
+  {
+    "description": "Contract is null",
+    "contract": null
+  },
+  {
+    "description": "Contract is string",
+    "contract": "invalid"
+  }
+]

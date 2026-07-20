@@ -1,0 +1,18 @@
+# Automatically normalize line endings and enforce LF for text files
+* text=auto
+
+# Explicitly enforce LF for common text/source files
+*.py     text eol=lf
+*.md     text eol=lf
+*.json   text eol=lf
+*.yml    text eol=lf
+*.yaml   text eol=lf
+*.sh     text eol=lf
+*.txt    text eol=lf
+
+# Binary files
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gz     binary
+*.zip    binary

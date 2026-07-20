@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-07-08T10:10:05.681132+00:00",
+  "manager_pid": 20384,
+  "signal": "SIGINT",
+  "before_ports_open": {
+    "8000": true,
+    "8001": true,
+    "8003": true,
+    "8004": true,
+    "8005": true,
+    "8006": true,
+    "8007": true,
+    "8008": true,
+    "8009": true,
+    "8010": true
+  },
+  "after_ports_open": {
+    "8000": true,
+    "8001": true,
+    "8003": true,
+    "8004": true,
+    "8005": true,
+    "8006": true,
+    "8007": true,
+    "8008": true,
+    "8009": true,
+    "8010": true
+  },
+  "all_closed_after": false,
+  "note": "SIGINT path tested; Windows taskkill terminate path may bypass signal handlers."
+}

@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-07-07T09:22:38.584786+00:00",
+  "trace_id": "inst_tantra_606bdd086cb4",
+  "hash_match": true,
+  "determinism_verified": true,
+  "artifact_chain": {
+    "A1_instruction": "artifact_instruction_235b9beb",
+    "A2_blueprint": "artifact_blueprint_92358014",
+    "A3_contract": "artifact_contract_21549bd4",
+    "A4_execution": "artifact_execution_7b59e954",
+    "A5_result": "artifact_result_7c0d8112"
+  },
+  "hash_chain_valid": true
+}

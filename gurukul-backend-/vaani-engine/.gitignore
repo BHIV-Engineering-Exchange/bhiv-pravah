@@ -1,0 +1,9 @@
+# Vaani Engine Ignore
+audio_samples/*.wav
+audio_samples/*.mp3
+__pycache__/
+*.pyc
+.env
+# Ignore any model weights if they were accidentally downloaded here
+models/
+checkpoint/

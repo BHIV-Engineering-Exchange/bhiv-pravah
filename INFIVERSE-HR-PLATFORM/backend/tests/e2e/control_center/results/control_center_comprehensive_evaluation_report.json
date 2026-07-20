@@ -1,0 +1,178 @@
+{
+  "suite": "control_center_comprehensive_evaluation",
+  "finished_at": "2026-07-02T06:39:46.936617+00:00",
+  "gateway": "https://bhiv-hr-gateway-l0xp.onrender.com",
+  "summary": {
+    "total": 33,
+    "passed": 32,
+    "failed": 1,
+    "skipped": 0
+  },
+  "tests": [
+    {
+      "name": "health_gateway",
+      "passed": true,
+      "detail": "status=200"
+    },
+    {
+      "name": "health_agent",
+      "passed": false,
+      "detail": "The read operation timed out"
+    },
+    {
+      "name": "health_langgraph",
+      "passed": true,
+      "detail": "status=200"
+    },
+    {
+      "name": "unauth_metrics_401",
+      "passed": true,
+      "detail": "status=401"
+    },
+    {
+      "name": "apikey_health",
+      "passed": true,
+      "detail": "status=200 corr=True"
+    },
+    {
+      "name": "apikey_metrics_dashboard",
+      "passed": true,
+      "detail": "status=200 corr=True keys=['performance_summary', 'business_metrics', 'system_metrics', 'policy_scope'] policy_scope=True"
+    },
+    {
+      "name": "apikey_v1_candidates_stats",
+      "passed": true,
+      "detail": "status=200 corr=True scope=platform_admin"
+    },
+    {
+      "name": "apikey_v1_control-center_dashboard-aggregates",
+      "passed": true,
+      "detail": "status=200 corr=True count=4"
+    },
+    {
+      "name": "apikey_v1_control-center_audit-events",
+      "passed": true,
+      "detail": "status=200 corr=True count=10"
+    },
+    {
+      "name": "apikey_v1_control-center_audit-replay",
+      "passed": true,
+      "detail": "status=200 corr=True count=1"
+    },
+    {
+      "name": "audit_write_canary",
+      "passed": true,
+      "detail": "status=200"
+    },
+    {
+      "name": "audit_replay_by_cid",
+      "passed": true,
+      "detail": "status=200 events=1 mode=single_correlation"
+    },
+    {
+      "name": "gov_v1_workforce_organizations",
+      "passed": true,
+      "detail": "status=200 items=3 scope=platform_admin"
+    },
+    {
+      "name": "gov_v1_policies_definitions",
+      "passed": true,
+      "detail": "status=200 items=6 scope=platform_admin"
+    },
+    {
+      "name": "gov_v1_governance_challenges",
+      "passed": true,
+      "detail": "status=200 items=2 scope=platform_admin"
+    },
+    {
+      "name": "gov_v1_decisions",
+      "passed": true,
+      "detail": "status=200 items=2 scope=platform_admin"
+    },
+    {
+      "name": "gov_v1_setu_signals",
+      "passed": true,
+      "detail": "status=200 items=7 scope=n/a"
+    },
+    {
+      "name": "gov_v1_workforce_trace-replay",
+      "passed": true,
+      "detail": "status=200 items=30 scope=platform_admin"
+    },
+    {
+      "name": "rbac_admin_jwt_stats",
+      "passed": true,
+      "detail": "status=200 expected=200 scope=platform"
+    },
+    {
+      "name": "rbac_admin_jwt_metrics",
+      "passed": true,
+      "detail": "status=200 expected=200"
+    },
+    {
+      "name": "rbac_admin_jwt_governance",
+      "passed": true,
+      "detail": "status=200 expected=200"
+    },
+    {
+      "name": "rbac_client_jwt_stats",
+      "passed": true,
+      "detail": "status=200 expected=200 scope=client"
+    },
+    {
+      "name": "rbac_client_jwt_metrics",
+      "passed": true,
+      "detail": "status=200 expected=200"
+    },
+    {
+      "name": "rbac_client_jwt_governance",
+      "passed": true,
+      "detail": "status=200 expected=200"
+    },
+    {
+      "name": "rbac_recruiter_jwt_stats",
+      "passed": true,
+      "detail": "status=200 expected=200 scope=recruiter"
+    },
+    {
+      "name": "rbac_recruiter_jwt_metrics",
+      "passed": true,
+      "detail": "status=200 expected=200"
+    },
+    {
+      "name": "rbac_recruiter_jwt_governance",
+      "passed": true,
+      "detail": "status=200 expected=200"
+    },
+    {
+      "name": "rbac_candidate_jwt_stats",
+      "passed": true,
+      "detail": "status=403 expected=403 scope=n/a"
+    },
+    {
+      "name": "rbac_candidate_jwt_metrics",
+      "passed": true,
+      "detail": "status=403 expected=403"
+    },
+    {
+      "name": "rbac_candidate_jwt_governance",
+      "passed": true,
+      "detail": "status=403 expected=403"
+    },
+    {
+      "name": "isolation_client_vs_recruiter_scope",
+      "passed": true,
+      "detail": "client_scope=client recruiter_scope=recruiter"
+    },
+    {
+      "name": "vercel_infiverse-hr.vercel.app",
+      "passed": true,
+      "detail": "status=200 render_in_bundle=True"
+    },
+    {
+      "name": "vercel_sampada.blackholeinfiverse.com",
+      "passed": true,
+      "detail": "status=200 render_in_bundle=True"
+    }
+  ]
+}

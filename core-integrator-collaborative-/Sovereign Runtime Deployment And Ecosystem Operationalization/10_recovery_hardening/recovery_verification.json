@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-07-07T12:54:35.707035+00:00",
+  "interruption": {
+    "trace_id": "rec_3b2c0c81b9",
+    "bhiv_pid": null,
+    "killed_before_execution": false,
+    "kill_command": "",
+    "pipeline_status_code": 500,
+    "pipeline_body_excerpt": "{\"detail\":\"HTTPConnectionPool(host='127.0.0.1', port=8001): Max retries exceeded with url: /core (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002099BD7F8A0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))\"}",
+    "bucket_artifact_types": [
+      "authority",
+      "blueprint",
+      "contract",
+      "gate",
+      "instruction"
+    ],
+    "clean_failure": true
+  },
+  "recovery": {
+    "bhiv_restarted": true,
+    "new_bhiv_pid": 15148,
+    "replay_status_code": 200,
+    "bucket_status_code": 200,
+    "bucket_artifact_count": 5,
+    "replay_after_restart": true
+  },
+  "passed": true
+}

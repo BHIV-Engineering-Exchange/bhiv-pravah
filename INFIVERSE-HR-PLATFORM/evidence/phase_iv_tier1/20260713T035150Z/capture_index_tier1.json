@@ -1,0 +1,346 @@
+{
+  "run_id": "20260713T035150Z",
+  "captured_at": "2026-07-13T03:52:12.366385+00:00",
+  "correlation_id": "c530d0b7-eb17-4fb8-bc78-e81a500042fd",
+  "targets": {
+    "live_gateway": "https://bhiv-hr-gateway-l0xp.onrender.com",
+    "local_gateway": "in-process://local-gateway"
+  },
+  "partners": {
+    "artha": {
+      "boot": {
+        "booted": false,
+        "tier": "Tier 2",
+        "blocker": "Server process exited (code 1) within boot window",
+        "stderr_tail": "/modules/cjs/loader:1059:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)\n    at Module._load (node:internal/modules/cjs/loader:1227:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:328:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: []\n}\n\nNode.js v24.12.0\n"
+      },
+      "live_dispatch": {
+        "ok": true,
+        "tier": "Tier 2 \u2014 dispatcher invoked directly, partner server not booted in this environment",
+        "artha_signal_id": "SIG-d03e25ed-60d4-495c-8fad-6236993e219d",
+        "sampada_signal_id": "sig-66c8d789c660",
+        "trace_id": "TRC-20260702-19f21bf0",
+        "correlation_id": "c530d0b7-eb17-4fb8-bc78-e81a500042fd",
+        "request": {
+          "method": "POST",
+          "url": "https://bhiv-hr-gateway-l0xp.onrender.com/v1/setu/signals/artha_payroll_visibility",
+          "body": {
+            "signal_type": "artha_payroll_visibility",
+            "payload": {
+              "signal_id": "SIG-d03e25ed-60d4-495c-8fad-6236993e219d",
+              "trace_id": "TRC-20260702-19f21bf0",
+              "source": {
+                "system": "ARTHA",
+                "module": "COMPLIANCE_FILING",
+                "entity_type": "COMPLIANCE_FILING",
+                "entity_id": "FILING-CLOSEOUT-20260702"
+              },
+              "severity": "LOW",
+              "timestamp": "2026-07-02T07:33:17.431Z",
+              "context": {
+                "filing_id": "FILING-CLOSEOUT-20260702",
+                "filing_type": "GSTR1",
+                "period": "2026-06"
+              },
+              "recommendation": {
+                "code": "REVIEW_BEFORE_FILING",
+                "message": "Filing packet generated. Review before submission."
+              }
+            },
+            "workforce_ref_id": null,
+            "source_declaration": "artha payroll visibility participation",
+            "origin_system": "artha",
+            "owning_system": "artha",
+            "trace_id": "TRC-20260702-19f21bf0",
+            "correlation_id": "c530d0b7-eb17-4fb8-bc78-e81a500042fd",
+            "trust_classification": "observed",
+            "visibility_scope": "tenant"
+          }
+        },
+        "response": {
+          "status": 200,
+          "body": {
+            "signal_id": "sig-66c8d789c660",
+            "signal_type": "artha_payroll_visibility",
+            "payload": {
+              "signal_id": "SIG-d03e25ed-60d4-495c-8fad-6236993e219d",
+              "trace_id": "TRC-20260702-19f21bf0",
+              "source": {
+                "system": "ARTHA",
+                "module": "COMPLIANCE_FILING",
+                "entity_type": "COMPLIANCE_FILING",
+                "entity_id": "FILING-CLOSEOUT-20260702"
+              },
+              "severity": "LOW",
+              "timestamp": "2026-07-02T07:33:17.431Z",
+              "context": {
+                "filing_id": "FILING-CLOSEOUT-20260702",
+                "filing_type": "GSTR1",
+                "period": "2026-06"
+              },
+              "recommendation": {
+                "code": "REVIEW_BEFORE_FILING",
+                "message": "Filing packet generated. Review before submission."
+              }
+            },
+            "workforce_ref_id": null,
+            "source_declaration": "artha payroll visibility participation",
+            "tenant_id": "platform",
+            "created_at": "2026-07-13T03:52:09.360154+00:00",
+            "lineage": {
+              "origin_system": "artha",
+              "owning_system": "artha",
+              "schema_version": "1.0.0",
+              "trace_id": "TRC-20260702-19f21bf0",
+              "correlation_id": "c530d0b7-eb17-4fb8-bc78-e81a500042fd",
+              "trust_classification": "observed",
+              "visibility_scope": "tenant"
+            },
+            "updated_at": "2026-07-13T03:52:09.360174+00:00",
+            "id": "6a5460e97d5bb2f01eaf5ca5"
+          },
+          "latency_ms": 330
+        },
+        "ack": {
+          "valid": true,
+          "status": "ACCEPTED",
+          "setuReference": "sig-66c8d789c660",
+          "raw": {
+            "signal_id": "sig-66c8d789c660",
+            "signal_type": "artha_payroll_visibility",
+            "payload": {
+              "signal_id": "SIG-d03e25ed-60d4-495c-8fad-6236993e219d",
+              "trace_id": "TRC-20260702-19f21bf0",
+              "source": {
+                "system": "ARTHA",
+                "module": "COMPLIANCE_FILING",
+                "entity_type": "COMPLIANCE_FILING",
+                "entity_id": "FILING-CLOSEOUT-20260702"
+              },
+              "severity": "LOW",
+              "timestamp": "2026-07-02T07:33:17.431Z",
+              "context": {
+                "filing_id": "FILING-CLOSEOUT-20260702",
+                "filing_type": "GSTR1",
+                "period": "2026-06"
+              },
+              "recommendation": {
+                "code": "REVIEW_BEFORE_FILING",
+                "message": "Filing packet generated. Review before submission."
+              }
+            },
+            "workforce_ref_id": null,
+            "source_declaration": "artha payroll visibility participation",
+            "tenant_id": "platform",
+            "created_at": "2026-07-13T03:52:09.360154+00:00",
+            "lineage": {
+              "origin_system": "artha",
+              "owning_system": "artha",
+              "schema_version": "1.0.0",
+              "trace_id": "TRC-20260702-19f21bf0",
+              "correlation_id": "c530d0b7-eb17-4fb8-bc78-e81a500042fd",
+              "trust_classification": "observed",
+              "visibility_scope": "tenant"
+            },
+            "updated_at": "2026-07-13T03:52:09.360174+00:00",
+            "id": "6a5460e97d5bb2f01eaf5ca5"
+          }
+        }
+      },
+      "live_confirm": {
+        "status": 200,
+        "count": 0,
+        "items": []
+      },
+      "tier": "Tier 2 \u2014 dispatcher invoked directly; partner server not booted through full HTTP business route"
+    },
+    "crm": {
+      "live_dispatch": {
+        "dispatched": true,
+        "request": {
+          "method": "POST",
+          "url": "https://bhiv-hr-gateway-l0xp.onrender.com/v1/setu/signals/crm_participation",
+          "body": {
+            "signal_type": "crm_participation",
+            "payload": {
+              "execution_id": "exec-crm-phaseiv-c530d0b7",
+              "trace_id": "crm-trace-c530d0b7",
+              "tenant_id": "tenant-phaseiv",
+              "timestamp": "2026-07-13T03:52:05.773711+00:00",
+              "event_type": "execution_completed",
+              "details": {
+                "source": "phase_iv_tier1_harness",
+                "module": "crm"
+              }
+            },
+            "workforce_ref_id": null,
+            "source_declaration": "crm participation",
+            "origin_system": "crm",
+            "owning_system": "crm",
+            "trace_id": "crm-trace-c530d0b7",
+            "correlation_id": "c530d0b7-eb17-4fb8-bc78-e81a500042fd",
+            "trust_classification": "observed",
+            "visibility_scope": "tenant"
+          }
+        },
+        "response": {
+          "status": 200,
+          "body": {
+            "signal_id": "sig-5f80c230999c",
+            "signal_type": "crm_participation",
+            "payload": {
+              "execution_id": "exec-crm-phaseiv-c530d0b7",
+              "trace_id": "crm-trace-c530d0b7",
+              "tenant_id": "tenant-phaseiv",
+              "timestamp": "2026-07-13T03:52:05.773711+00:00",
+              "event_type": "execution_completed",
+              "details": {
+                "source": "phase_iv_tier1_harness",
+                "module": "crm"
+              }
+            },
+            "workforce_ref_id": null,
+            "source_declaration": "crm participation",
+            "tenant_id": "platform",
+            "created_at": "2026-07-13T03:52:11.255145+00:00",
+            "lineage": {
+              "origin_system": "crm",
+              "owning_system": "crm",
+              "schema_version": "1.0.0",
+              "trace_id": "crm-trace-c530d0b7",
+              "correlation_id": "c530d0b7-eb17-4fb8-bc78-e81a500042fd",
+              "trust_classification": "observed",
+              "visibility_scope": "tenant"
+            },
+            "updated_at": "2026-07-13T03:52:11.255164+00:00",
+            "id": "6a5460eb7d5bb2f01eaf5ca7"
+          }
+        }
+      },
+      "live_confirm": {
+        "status": 200,
+        "count": 0,
+        "items": []
+      },
+      "tier": "Tier 1 \u2014 partner server booted + business workflow dispatch confirmed"
+    },
+    "logistics": {
+      "live_dispatch": {
+        "dispatched": true,
+        "request": {
+          "method": "POST",
+          "url": "https://bhiv-hr-gateway-l0xp.onrender.com/v1/setu/signals/crm_participation",
+          "body": {
+            "signal_type": "crm_participation",
+            "payload": {
+              "execution_id": "exec-logistics-phaseiv-c530d0b7",
+              "trace_id": "logistics-trace-c530d0b7",
+              "tenant_id": "tenant-phaseiv",
+              "timestamp": "2026-07-13T03:52:05.773711+00:00",
+              "event_type": "execution_completed",
+              "details": {
+                "subsystem": "logistics",
+                "page": "Logistics.jsx"
+              },
+              "subsystem": "logistics"
+            },
+            "workforce_ref_id": null,
+            "source_declaration": "crm participation",
+            "origin_system": "crm",
+            "owning_system": "crm",
+            "trace_id": "logistics-trace-c530d0b7",
+            "correlation_id": "c530d0b7-eb17-4fb8-bc78-e81a500042fd",
+            "trust_classification": "observed",
+            "visibility_scope": "tenant"
+          }
+        },
+        "response": {
+          "status": 200,
+          "body": {
+            "signal_id": "sig-8ae9c683f2ef",
+            "signal_type": "crm_participation",
+            "payload": {
+              "execution_id": "exec-logistics-phaseiv-c530d0b7",
+              "trace_id": "logistics-trace-c530d0b7",
+              "tenant_id": "tenant-phaseiv",
+              "timestamp": "2026-07-13T03:52:05.773711+00:00",
+              "event_type": "execution_completed",
+              "details": {
+                "subsystem": "logistics",
+                "page": "Logistics.jsx"
+              },
+              "subsystem": "logistics"
+            },
+            "workforce_ref_id": null,
+            "source_declaration": "crm participation",
+            "tenant_id": "platform",
+            "created_at": "2026-07-13T03:52:13.122948+00:00",
+            "lineage": {
+              "origin_system": "crm",
+              "owning_system": "crm",
+              "schema_version": "1.0.0",
+              "trace_id": "logistics-trace-c530d0b7",
+              "correlation_id": "c530d0b7-eb17-4fb8-bc78-e81a500042fd",
+              "trust_classification": "observed",
+              "visibility_scope": "tenant"
+            },
+            "updated_at": "2026-07-13T03:52:13.122972+00:00",
+            "id": "6a5460ed7d5bb2f01eaf5ca9"
+          }
+        }
+      },
+      "tier": "Tier 1 \u2014 partner server booted + business workflow dispatch confirmed"
+    },
+    "niyantran": {
+      "boot": {
+        "booted": false,
+        "tier": "Tier 2",
+        "blocker": "Server process exited (code 1) within boot window",
+        "stderr_tail": "/modules/helpers:152:16)\n    at Object.<anonymous> (C:\\Users\\shash\\OneDrive\\Documents\\INFIVERSE-HR-PLATFORM\\workflow-blackhole\\server\\index.js:125:17)\n    at Module._compile (node:internal/modules/cjs/loader:1761:14) {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: [\n    'C:\\\\Users\\\\shash\\\\OneDrive\\\\Documents\\\\INFIVERSE-HR-PLATFORM\\\\workflow-blackhole\\\\server\\\\index.js',\n    'C:\\\\Users\\\\shash\\\\OneDrive\\\\Documents\\\\INFIVERSE-HR-PLATFORM\\\\workflow-blackhole\\\\server\\\\start.js'\n  ]\n}\n\nNode.js v24.12.0\n"
+      },
+      "live_dispatch": {
+        "ok": false,
+        "error": "[dotenv@17.3.1] injecting env (40) from .env -- tip: \u2699\ufe0f  specify custom .env file path with { path: '/custom/path/.env' }",
+        "exit_code": 1
+      },
+      "live_confirm": {
+        "status": 200,
+        "count": 0,
+        "items": []
+      },
+      "tier": "Not Yet Available \u2014 Blocked on [dotenv@17.3.1] injecting env (40) from .env -- tip: \u2699\ufe0f  specify custom .env file path with { path: '/custom/path/.env' }"
+    }
+  },
+  "local_setu_sample": {
+    "status": 200,
+    "body": {
+      "signal_id": "sig-502f26a49b89",
+      "signal_type": "setu_aggregation",
+      "payload": {
+        "phase": "IV",
+        "note": "local in-process confirmation"
+      },
+      "workforce_ref_id": null,
+      "source_declaration": "phase_iv harness",
+      "tenant_id": "platform",
+      "created_at": "2026-07-13T03:52:12.357947+00:00",
+      "lineage": {
+        "origin_system": "setu",
+        "owning_system": "setu",
+        "schema_version": "1.0.0",
+        "trace_id": "local-trace-c530d0b7",
+        "correlation_id": "c530d0b7-eb17-4fb8-bc78-e81a500042fd",
+        "trust_classification": "observed",
+        "visibility_scope": "tenant"
+      },
+      "updated_at": "2026-07-13T03:52:12.358004+00:00",
+      "id": "6a5460ecb0dc21c05fed6cde"
+    }
+  },
+  "no_dispatcher": [
+    "bucket",
+    "prana",
+    "insightflow",
+    "karma"
+  ]
+}

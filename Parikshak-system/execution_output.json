@@ -1,0 +1,36 @@
+[
+  {
+    "scenario": "1. Same Input -> Same Task ID",
+    "input_1": "NT-COR-B-001, Pass (8.0)",
+    "output_1": "NT-REI-B-001",
+    "input_2": "NT-COR-B-001, Pass (8.0)",
+    "output_2": "NT-REI-B-001",
+    "is_deterministic": true
+  },
+  {
+    "scenario": "2. Fail Case -> Correct Failure Branch",
+    "input": "NT-COR-B-001, Fail (4.0)",
+    "output": "NT-COR-B-002",
+    "expected": "NT-COR-B-002",
+    "branch": "fail"
+  },
+  {
+    "scenario": "3. Pass Case -> Correct Progression",
+    "input": "NT-COR-B-001, Pass (8.0)",
+    "output": "NT-REI-B-001",
+    "expected": "NT-REI-B-001",
+    "branch": "pass"
+  },
+  {
+    "scenario": "4. Mandala Context Mapping",
+    "input": "Keywords: dashboard visualization metrics",
+    "mapped_product": "insightflow",
+    "expected_product": "insightflow"
+  },
+  {
+    "scenario": "5. Missing Task ID Fallback Determinism",
+    "input": "ZZ-UNKNOWN-000, Fail (3.0)",
+    "output": "NT-COR-B-001",
+    "source": "task_graph"
+  }
+]

@@ -1,0 +1,5 @@
+{
+  "name": "example_validation",
+  "version": "1.0.0", 
+  "description": "Data validation module for sovereign-safe input verification"
+}

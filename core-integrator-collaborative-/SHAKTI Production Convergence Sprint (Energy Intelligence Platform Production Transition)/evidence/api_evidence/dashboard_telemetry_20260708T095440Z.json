@@ -1,0 +1,303 @@
+{
+  "recent_telemetry": [
+    {
+      "trace_id": "trace_4cf77cfdbd5d",
+      "telemetry": {
+        "source_id": "substation-7",
+        "metric": "transformer_temp_c",
+        "value": 88.7,
+        "unit": "celsius",
+        "timestamp": "2026-07-08T09:54:37.474601+00:00",
+        "site": "autonomous-loop",
+        "trace_id": "trace_4cf77cfdbd5d",
+        "source_module_id": "telemetry_service",
+        "status": "success"
+      },
+      "signal": null
+    },
+    {
+      "trace_id": "trace_10eeaf9c721f",
+      "telemetry": {
+        "source_id": "feeder-21",
+        "metric": "voltage_v",
+        "value": 247.33,
+        "unit": "v",
+        "timestamp": "2026-07-08T09:54:07.180195+00:00",
+        "site": "autonomous-loop",
+        "trace_id": "trace_10eeaf9c721f",
+        "source_module_id": "telemetry_service",
+        "status": "success"
+      },
+      "signal": null
+    },
+    {
+      "trace_id": "trace_7a9810cea3bf",
+      "telemetry": {
+        "source_id": "substation-7",
+        "metric": "transformer_temp_c",
+        "value": 76.43,
+        "unit": "celsius",
+        "timestamp": "2026-07-08T09:53:34.993036+00:00",
+        "site": "autonomous-loop",
+        "trace_id": "trace_7a9810cea3bf",
+        "source_module_id": "telemetry_service",
+        "status": "success"
+      },
+      "signal": null
+    },
+    {
+      "trace_id": "trace_6b08e7b90a07",
+      "telemetry": {
+        "source_id": "substation-7",
+        "metric": "transformer_temp_c",
+        "value": 90.29,
+        "unit": "celsius",
+        "timestamp": "2026-07-08T09:53:04.610507+00:00",
+        "site": "autonomous-loop",
+        "trace_id": "trace_6b08e7b90a07",
+        "source_module_id": "telemetry_service",
+        "status": "success"
+      },
+      "signal": null
+    },
+    {
+      "trace_id": "trace_88285111acd2",
+      "telemetry": {
+        "source_id": "substation-7",
+        "metric": "transformer_temp_c",
+        "value": 97.06,
+        "unit": "celsius",
+        "timestamp": "2026-07-08T09:52:34.229305+00:00",
+        "site": "autonomous-loop",
+        "trace_id": "trace_88285111acd2",
+        "source_module_id": "telemetry_service",
+        "status": "success"
+      },
+      "signal": null
+    },
+    {
+      "trace_id": "trace_0b84fd7a9b80",
+      "telemetry": {
+        "source_id": "substation-7",
+        "metric": "transformer_temp_c",
+        "value": 80.63,
+        "unit": "celsius",
+        "timestamp": "2026-07-08T09:52:03.742293+00:00",
+        "site": "autonomous-loop",
+        "trace_id": "trace_0b84fd7a9b80",
+        "source_module_id": "telemetry_service",
+        "status": "success"
+      },
+      "signal": null
+    },
+    {
+      "trace_id": "trace_873434ee361a",
+      "telemetry": {
+        "source_id": "grid-zone-a",
+        "metric": "grid_load_mw",
+        "value": 496.18,
+        "unit": "mw",
+        "timestamp": "2026-07-08T09:51:33.199433+00:00",
+        "site": "autonomous-loop",
+        "trace_id": "trace_873434ee361a",
+        "source_module_id": "telemetry_service",
+        "status": "success"
+      },
+      "signal": null
+    },
+    {
+      "trace_id": "trace_606ae7ffa2a6",
+      "telemetry": {
+        "source_id": "substation-7",
+        "metric": "transformer_temp_c",
+        "value": 86.76,
+        "unit": "celsius",
+        "timestamp": "2026-07-08T09:51:02.689315+00:00",
+        "site": "autonomous-loop",
+        "trace_id": "trace_606ae7ffa2a6",
+        "source_module_id": "telemetry_service",
+        "status": "success"
+      },
+      "signal": null
+    },
+    {
+      "trace_id": "trace_056e56ba6c57",
+      "telemetry": {
+        "source_id": "grid-zone-a",
+        "metric": "grid_load_mw",
+        "value": 656.21,
+        "unit": "mw",
+        "timestamp": "2026-07-08T09:50:32.149607+00:00",
+        "site": "autonomous-loop",
+        "trace_id": "trace_056e56ba6c57",
+        "source_module_id": "telemetry_service",
+        "status": "success"
+      },
+      "signal": null
+    },
+    {
+      "trace_id": "trace_f681e8215c63",
+      "telemetry": {
+        "source_id": "feeder-21",
+        "metric": "voltage_v",
+        "value": 221.02,
+        "unit": "v",
+        "timestamp": "2026-07-08T09:50:01.676612+00:00",
+        "site": "autonomous-loop",
+        "trace_id": "trace_f681e8215c63",
+        "source_module_id": "telemetry_service",
+        "status": "success"
+      },
+      "signal": null
+    },
+    {
+      "trace_id": "trace_cdaa4724a55d",
+      "telemetry": {
+        "source_id": "grid-zone-a",
+        "metric": "grid_load_mw",
+        "value": 544.41,
+        "unit": "mw",
+        "timestamp": "2026-07-08T09:49:30.984532+00:00",
+        "site": "autonomous-loop",
+        "trace_id": "trace_cdaa4724a55d",
+        "source_module_id": "telemetry_service",
+        "status": "success"
+      },
+      "signal": null
+    },
+    {
+      "trace_id": "trace_672eb78cd028",
+      "telemetry": {
+        "source_id": "grid-zone-a",
+        "metric": "grid_load_mw",
+        "value": 601.97,
+        "unit": "mw",
+        "timestamp": "2026-07-08T09:49:00.466404+00:00",
+        "site": "autonomous-loop",
+        "trace_id": "trace_672eb78cd028",
+        "source_module_id": "telemetry_service",
+        "status": "success"
+      },
+      "signal": null
+    },
+    {
+      "trace_id": "trace_b223b1920eec",
+      "telemetry": {
+        "source_id": "feeder-21",
+        "metric": "voltage_v",
+        "value": 220.28,
+        "unit": "v",
+        "timestamp": "2026-07-08T09:48:29.997107+00:00",
+        "site": "autonomous-loop",
+        "trace_id": "trace_b223b1920eec",
+        "source_module_id": "telemetry_service",
+        "status": "success"
+      },
+      "signal": null
+    },
+    {
+      "trace_id": "trace_1b7e3c15fe01",
+      "telemetry": {
+        "source_id": "feeder-21",
+        "metric": "voltage_v",
+        "value": 262.57,
+        "unit": "v",
+        "timestamp": "2026-07-08T09:47:59.494283+00:00",
+        "site": "autonomous-loop",
+        "trace_id": "trace_1b7e3c15fe01",
+        "source_module_id": "telemetry_service",
+        "status": "success"
+      },
+      "signal": {
+        "signal_id": "sig_8b458a4137b4",
+        "trace_id": "trace_1b7e3c15fe01",
+        "metric": "voltage_v",
+        "value": 262.57,
+        "unit": "v",
+        "classification": "critical",
+        "threshold_breached": true,
+        "derived_at": "2026-07-08T09:47:59.523721+00:00",
+        "source_module_id": "signal_generator",
+        "status": "success",
+        "prompt": "Evaluate grid response for voltage_v reading of 262.57v at feeder-21, classified critical."
+      }
+    },
+    {
+      "trace_id": "trace_ad5cad0c9277",
+      "telemetry": {
+        "source_id": "feeder-21",
+        "metric": "voltage_v",
+        "value": 238.45,
+        "unit": "v",
+        "timestamp": "2026-07-08T09:47:29.040509+00:00",
+        "site": "autonomous-loop",
+        "trace_id": "trace_ad5cad0c9277",
+        "source_module_id": "telemetry_service",
+        "status": "success"
+      },
+      "signal": null
+    },
+    {
+      "trace_id": "trace_b5710f79f49a",
+      "telemetry": {
+        "source_id": "substation-7",
+        "metric": "transformer_temp_c",
+        "value": 83.82,
+        "unit": "celsius",
+        "timestamp": "2026-07-08T09:46:58.207115+00:00",
+        "site": "autonomous-loop",
+        "trace_id": "trace_b5710f79f49a",
+        "source_module_id": "telemetry_service",
+        "status": "success"
+      },
+      "signal": null
+    },
+    {
+      "trace_id": "trace_4057fcf1b513",
+      "telemetry": {
+        "source_id": "substation-7",
+        "metric": "transformer_temp_c",
+        "value": 79.12,
+        "unit": "celsius",
+        "timestamp": "2026-07-08T09:46:27.637548+00:00",
+        "site": "autonomous-loop",
+        "trace_id": "trace_4057fcf1b513",
+        "source_module_id": "telemetry_service",
+        "status": "success"
+      },
+      "signal": null
+    },
+    {
+      "trace_id": "trace_fd38fc2b13ca",
+      "telemetry": {
+        "source_id": "grid-zone-a",
+        "metric": "grid_load_mw",
+        "value": 732.33,
+        "unit": "mw",
+        "timestamp": "2026-07-08T09:45:57.023450+00:00",
+        "site": "autonomous-loop",
+        "trace_id": "trace_fd38fc2b13ca",
+        "source_module_id": "telemetry_service",
+        "status": "success"
+      },
+      "signal": {
+        "signal_id": "sig_b17aa93fddcb",
+        "trace_id": "trace_fd38fc2b13ca",
+        "metric": "grid_load_mw",
+        "value": 732.33,
+        "unit": "mw",
+        "classification": "critical",
+        "threshold_breached": true,
+        "derived_at": "2026-07-08T09:45:57.065092+00:00",
+        "source_module_id": "signal_generator",
+        "status": "success",
+        "prompt": "Evaluate grid response for grid_load_mw reading of 732.33mw at grid-zone-a, classified critical."
+      }
+    }
+  ],
+  "classification_breakdown": {
+    "nominal": 0,
+    "warning": 0,
+    "critical": 2
+  }
+}

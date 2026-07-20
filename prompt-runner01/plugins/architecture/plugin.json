@@ -1,0 +1,152 @@
+{
+  "domain": "architecture",
+  "version": "1.0.0",
+  "description": "Architecture and construction domain plugin for building design, site analysis, and construction planning.",
+
+  "detection_keywords": [
+    "building", "construction", "plot", "sqft", "floor", "architect",
+    "residential", "commercial", "industrial", "site", "structure",
+    "blueprint", "zoning", "permit", "facade", "elevation", "layout",
+    "storey", "foundation", "interior"
+  ],
+
+  "detection_patterns": [
+    "design\\s+(?:a\\s+)?(?:residential|commercial|industrial)?\\s*building",
+    "(?:building|construction)\\s+(?:design|plan|project)",
+    "(?:plot|land|site)\\s+(?:analysis|evaluation|assessment)",
+    "floor\\s+plan",
+    "building\\s+permit|zoning\\s+(?:check|review|compliance)"
+  ],
+
+  "intents": {
+    "design_building": {
+      "patterns": [
+        "design\\s+(?:a\\s+)?(?:residential|commercial|industrial)?\\s*building",
+        "create\\s+(?:a\\s+)?building\\s+design",
+        "generate\\s+(?:a\\s+)?(?:floor\\s+)?plan",
+        "plan\\s+(?:a\\s+)?(?:house|structure|building)"
+      ],
+      "module": "architecture_design",
+      "task": "generate_building_design",
+      "required_entities": [],
+      "optional_entities": ["plot_size", "city", "building_type", "floors", "budget"],
+      "tasks": ["site analysis", "architectural design", "structural planning", "material estimation", "permit compliance"],
+      "output_format": "design_document"
+    },
+
+    "analyze_site": {
+      "patterns": [
+        "analyze\\s+(?:the\\s+)?site",
+        "site\\s+analysis",
+        "evaluate\\s+(?:the\\s+)?(?:plot|land|location)",
+        "(?:plot|land)\\s+evaluation"
+      ],
+      "module": "site_analysis",
+      "task": "perform_site_analysis",
+      "required_entities": [],
+      "optional_entities": ["city", "plot_size", "zoning"],
+      "tasks": ["location assessment", "soil analysis", "zoning review", "utility mapping"],
+      "output_format": "analysis_report"
+    },
+
+    "calculate_estimate": {
+      "patterns": [
+        "calculate\\s+(?:the\\s+)?(?:construction\\s+)?(?:cost|estimate|budget)",
+        "estimate\\s+(?:the\\s+)?(?:construction\\s+)?(?:cost|price|budget)",
+        "construction\\s+(?:cost|budget|estimate)"
+      ],
+      "module": "cost_estimator",
+      "task": "calculate_cost_estimate",
+      "required_entities": [],
+      "optional_entities": ["plot_size", "building_type", "city", "quality"],
+      "tasks": ["quantity survey", "material costing", "labor estimation", "contingency planning"],
+      "output_format": "cost_estimate"
+    },
+
+    "review_compliance": {
+      "patterns": [
+        "review\\s+(?:the\\s+)?(?:building\\s+)?compliance",
+        "check\\s+(?:the\\s+)?(?:building\\s+codes|zoning|permits)",
+        "building\\s+(?:permit|code|regulation)",
+        "zoning\\s+(?:check|review|compliance)"
+      ],
+      "module": "compliance_checker",
+      "task": "check_compliance",
+      "required_entities": [],
+      "optional_entities": ["city", "building_type", "zoning"],
+      "tasks": ["code review", "permit verification", "regulatory check", "compliance documentation"],
+      "output_format": "compliance_report"
+    },
+
+    "generate_report": {
+      "patterns": [
+        "generate\\s+(?:a\\s+)?(?:site|building|construction)?\\s*report",
+        "create\\s+(?:a\\s+)?(?:site|building)?\\s*report",
+        "produce\\s+(?:a\\s+)?(?:summary|report)"
+      ],
+      "module": "report_generator",
+      "task": "create_report",
+      "required_entities": [],
+      "optional_entities": ["report_type", "city"],
+      "tasks": ["data collection", "analysis compilation", "report drafting", "final review"],
+      "output_format": "project_report"
+    }
+  },
+
+  "extractors": {
+    "plot_size": {
+      "type": "regex",
+      "pattern": "(\\d+(?:,\\d+)?)\\s*(?:sq\\s*ft|sqft|square\\s*feet|sq\\.?\\s*ft\\.?)",
+      "group": 1,
+      "case_insensitive": true,
+      "normalize": "{value} sqft"
+    },
+    "city": {
+      "type": "regex",
+      "pattern": "(?:in|at|near|for|located\\s+in)\\s+([A-Z][a-zA-Z]+(?:\\s+[A-Z][a-zA-Z]+)?)",
+      "group": 1,
+      "case_insensitive": false
+    },
+    "building_type": {
+      "type": "keyword",
+      "keywords": ["residential", "commercial", "industrial", "mixed-use", "institutional", "retail"]
+    },
+    "floors": {
+      "type": "regex",
+      "pattern": "(\\d+)\\s*(?:floor|storey|story|level)s?",
+      "group": 1,
+      "case_insensitive": true
+    },
+    "budget": {
+      "type": "regex",
+      "pattern": "(?:budget|cost)\\s*(?:of\\s*)?(?:Rs\\.?|INR|₹|\\$)?\\s*(\\d+(?:,\\d+)*(?:\\.\\d+)?)\\s*(?:lakhs?|crores?|k|million)?",
+      "group": 0,
+      "case_insensitive": true
+    }
+  },
+
+  "constraint_rules": {
+    "zoning": {
+      "type": "keyword",
+      "keywords": ["residential zone", "commercial zone", "industrial zone", "mixed zone"]
+    },
+    "timeline": {
+      "type": "regex",
+      "pattern": "(?:within|complete\\s+in|by)\\s+(\\d+\\s*(?:months?|years?|weeks?))",
+      "group": 1,
+      "case_insensitive": true
+    },
+    "quality": {
+      "type": "keyword",
+      "keywords": ["premium", "luxury", "standard", "budget", "affordable", "high-end"]
+    }
+  },
+
+  "clarification_questions": {
+    "plot_size": "What is the plot or land size (in sqft or sqm)?",
+    "city": "Where is the building or site located?",
+    "building_type": "Is this a residential, commercial, or industrial building?",
+    "floors": "How many floors or storeys are required?",
+    "budget": "What is the approximate construction budget?"
+  }
+}

@@ -1,0 +1,66 @@
+{
+    "name": "task-review-frontend",
+    "version": "1.0.0",
+    "private": true,
+    "proxy": "http://localhost:8000",
+    "homepage": ".",
+    "engines": {
+        "node": "20.x"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/blackholeinfiverse78-rgb/Task-Review-Agent-Full-Product-Evolution.git"
+    },
+    "dependencies": {
+        "@tanstack/react-query": "^5.90.21",
+        "axios": "^1.6.0",
+        "clsx": "^2.1.1",
+        "framer-motion": "^12.35.1",
+        "lucide-react": "^0.577.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-router-dom": "^6.8.0",
+        "react-scripts": "^5.0.1",
+        "tailwind-merge": "^3.5.0"
+    },
+    "scripts": {
+        "start": "node --no-deprecation node_modules/react-scripts/bin/react-scripts.js start",
+        "build": "node --no-deprecation node_modules/react-scripts/bin/react-scripts.js build",
+        "test": "node --no-deprecation node_modules/react-scripts/bin/react-scripts.js test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.4.27",
+        "postcss": "^8.5.8",
+        "tailwindcss": "^3.4.19"
+    },
+    "overrides": {
+        "nth-check": ">=2.0.1",
+        "serialize-javascript": ">=6.0.2",
+        "yaml": ">=2.0.0",
+        "underscore": ">=1.13.8",
+        "svgo": ">=2.0.0",
+        "node-forge": ">=1.3.0",
+        "minimatch": ">=3.1.2",
+        "lodash": ">=4.17.21",
+        "flatted": ">=3.3.3",
+        "brace-expansion": ">=1.1.12"
+    }
+}

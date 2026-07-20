@@ -1,0 +1,35 @@
+export const USER_ROLES = {
+  ADMIN: 'admin',
+  MANAGER: 'manager',
+  CUSTOMER: 'customer'
+};
+
+export const ORDER_STATUS = {
+  PLACED: 'PLACED',
+  DISPATCHED: 'DISPATCHED',
+  DELIVERED: 'DELIVERED'
+};
+
+export const INVENTORY_CHANGE_TYPE = {
+  ORDER: 'ORDER',
+  RESTOCK: 'RESTOCK',
+  MANUAL: 'MANUAL',
+  RETURN: 'RETURN'
+};
+
+export const RESTOCK_STATUS = {
+  EMAIL_SENT: 'EMAIL_SENT',
+  RESTOCKED: 'RESTOCKED',
+  PENDING: 'PENDING'
+};
+
+export const HTTP_STATUS = {
+  OK: 200,
+  CREATED: 201,
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
+  FORBIDDEN: 403,
+  NOT_FOUND: 404,
+  CONFLICT: 409,
+  INTERNAL_SERVER_ERROR: 500
+};

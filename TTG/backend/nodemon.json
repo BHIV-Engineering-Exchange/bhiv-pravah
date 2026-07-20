@@ -1,0 +1,10 @@
+{
+    "ignore": [
+      "engine/engine_event_log.json",
+      "telemetry_samples.json",
+      "test_failures.js",
+      "tts/translation_cache.json",
+      "bucket_artifacts/*"
+    ]
+  }
+  

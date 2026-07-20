@@ -1,0 +1,471 @@
+/* Full page background - matching main dashboard */
+.sim-page-container {
+    min-height:220vh;
+    padding: 48px 32px;
+    max-width: 1600px;
+    margin: 0 auto;
+    font-family: 'Poppins', 'Inter', 'Segoe UI', sans-serif;
+    color: #f4f8ff;
+    position: relative;
+    z-index: 1;
+    background: radial-gradient(
+    circle at top,
+    #0f172a 0%,
+    #020617 70%
+  );
+  }
+  
+  /* Title styling */
+  .sim-title {
+    text-align: center;
+    margin-bottom: 12px;
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 40px rgba(96, 165, 250, 0.3));
+    animation: titlePulse 3s ease-in-out infinite;
+  }
+  
+  .sim-subtitle {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 16px;
+    margin-bottom: 48px;
+    font-weight: 400;
+  }
+  
+  @keyframes titlePulse {
+    0%, 100% { filter: brightness(1) drop-shadow(0 0 40px rgba(96, 165, 250, 0.3)); }
+    50% { filter: brightness(1.2) drop-shadow(0 0 60px rgba(96, 165, 250, 0.5)); }
+  }
+  
+  /* Grid layout for two users */
+  .sim-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 32px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Individual user card with glassmorphism */
+  .sim-user {
+    background: linear-gradient(135deg, 
+      rgba(30, 36, 58, 0.7) 0%, 
+      rgba(43, 50, 72, 0.6) 100%);
+    padding: 28px;
+    border-radius: 24px;
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+  }
+  
+  .sim-user::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  
+  .sim-user:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+      0 16px 48px rgba(99, 102, 241, 0.25),
+      0 0 0 1px rgba(99, 102, 241, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(99, 102, 241, 0.5);
+  }
+  
+  .sim-user:hover::before {
+    opacity: 1;
+  }
+  
+  /* User header with status */
+  .user-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+  }
+  
+  .user-header h3 {
+    margin: 0;
+    font-size: 24px;
+    color: #a5b4fc;
+    font-weight: 600;
+  }
+  
+  .user-id {
+    color: #64748b;
+    font-size: 13px;
+    margin: 0 0 20px 0;
+    font-family: 'Fira Code', monospace;
+  }
+  
+  /* Status badge */
+  .status-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .status-badge.active {
+    background: rgba(52, 211, 153, 0.15);
+    color: #34d399;
+    border: 1px solid rgba(52, 211, 153, 0.3);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  
+  .status-badge.idle {
+    background: rgba(251, 191, 36, 0.15);
+    color: #fbbf24;
+    border: 1px solid rgba(251, 191, 36, 0.3);
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+  
+  /* Section styling */
+  .section {
+    margin-bottom: 24px;
+  }
+  
+  .section h4 {
+    margin: 0 0 12px 0;
+    font-size: 16px;
+    color: #a5b4fc;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* Button grid */
+  .btns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+  }
+  
+  .btns button {
+    padding: 12px 16px;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 
+      0 4px 12px rgba(99, 102, 241, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Button shimmer effect */
+  .btns button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(255, 255, 255, 0.2), 
+      transparent);
+    transition: left 0.5s ease;
+  }
+  
+  .btns button:hover::before {
+    left: 100%;
+  }
+  
+  .btns button:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 
+      0 6px 20px rgba(99, 102, 241, 0.4),
+      0 0 15px rgba(99, 102, 241, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+  }
+  
+  .btns button:active {
+    transform: translateY(0) scale(0.98);
+  }
+  
+  /* Special button variants */
+  .spam-btn {
+    background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%) !important;
+  }
+  
+  .spam-btn:hover {
+    background: linear-gradient(135deg, #d97706 0%, #ea580c 100%) !important;
+    box-shadow: 
+      0 6px 20px rgba(245, 158, 11, 0.4),
+      0 0 15px rgba(245, 158, 11, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+  }
+  
+  .idle-btn {
+    background: linear-gradient(135deg, #64748b 0%, #475569 100%) !important;
+  }
+  
+  .idle-btn:hover {
+    background: linear-gradient(135deg, #475569 0%, #334155 100%) !important;
+    box-shadow: 
+      0 6px 20px rgba(100, 116, 139, 0.4),
+      0 0 15px rgba(100, 116, 139, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+  }
+  
+  /* Agent list */
+  .agent-list {
+    background: rgba(15, 23, 42, 0.4);
+    padding: 14px;
+    height: 160px;
+    overflow-y: auto;
+    border-radius: 12px;
+    border: 1px solid rgba(99, 102, 241, 0.15);
+    backdrop-filter: blur(8px);
+  }
+  
+  .agent-item {
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    background: rgba(99, 102, 241, 0.08);
+    border-left: 3px solid #6366f1;
+    transition: all 0.25s ease;
+    animation: slideIn 0.3s ease;
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .agent-item:hover {
+    background: rgba(99, 102, 241, 0.15);
+    transform: translateX(4px);
+  }
+  
+  .agent-name {
+    display: block;
+    color: #a5b4fc;
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+  
+  .agent-msg {
+    display: block;
+    color: #e0e7ff;
+    font-size: 13px;
+    opacity: 0.9;
+  }
+  
+  /* Log box */
+  .log-box {
+    background: rgba(15, 23, 42, 0.4);
+    padding: 14px;
+    height: 160px;
+    overflow-y: auto;
+    font-size: 13px;
+    border-radius: 12px;
+    border: 1px solid rgba(99, 102, 241, 0.15);
+    backdrop-filter: blur(8px);
+    font-family: 'Fira Code', 'Courier New', monospace;
+  }
+  
+  .log-line {
+    padding: 6px 0;
+    color: #cbd5e1;
+    border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+    transition: all 0.2s ease;
+    animation: slideIn 0.3s ease;
+  }
+  
+  .log-line:hover {
+    color: #e0e7ff;
+    background: rgba(99, 102, 241, 0.08);
+    padding-left: 8px;
+  }
+  
+  .log-bullet {
+    color: #6366f1;
+    margin-right: 6px;
+  }
+  
+  /* Empty states */
+  .empty-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #64748b;
+    font-style: italic;
+    font-size: 14px;
+  }
+  
+  /* Custom scrollbar */
+  .agent-list::-webkit-scrollbar,
+  .log-box::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .agent-list::-webkit-scrollbar-thumb,
+  .log-box::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #6366f1, #8b5cf6);
+    border-radius: 10px;
+  }
+  
+  .agent-list::-webkit-scrollbar-thumb:hover,
+  .log-box::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #7c3aed, #a78bfa);
+  }
+  
+  .agent-list::-webkit-scrollbar-track,
+  .log-box::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.3);
+    border-radius: 10px;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 1200px) {
+    .sim-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .sim-page-container {
+      padding: 32px 16px;
+    }
+  
+    .sim-title {
+      font-size: 28px;
+    }
+  
+    .sim-subtitle {
+      font-size: 14px;
+    }
+  
+    .btns {
+      grid-template-columns: 1fr 1fr;
+    }
+  
+    .user-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .btns {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* Home button styling */
+.home-btn {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 
+    0 4px 16px rgba(99, 102, 241, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.home-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent);
+  transition: left 0.5s ease;
+}
+
+.home-btn:hover::before {
+  left: 100%;
+}
+
+.home-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 
+    0 8px 24px rgba(99, 102, 241, 0.4),
+    0 0 20px rgba(99, 102, 241, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+}
+
+.home-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Responsive adjustment for home button */
+@media (max-width: 768px) {
+  .home-btn {
+    top: 16px;
+    left: 16px;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+}
+

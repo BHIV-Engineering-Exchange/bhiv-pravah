@@ -1,0 +1,78 @@
+{
+  "sprint": "TANTRA Proof Sprint",
+  "date": "2026-06-20",
+  "verification_matrix": [
+    {
+      "component": "Prompt Runner",
+      "claim": "Converts prompts to instructions",
+      "test_method": "API Post /pipeline/execute",
+      "trace_id": "trace_7c86796510ed",
+      "artifact_id": "instruction_141bca3c",
+      "replay_hash": "52e60d5952697c04",
+      "status": "PASS"
+    },
+    {
+      "component": "Creator Core",
+      "claim": "Generates blueprint envelopes",
+      "test_method": "Internal fastAPI integration",
+      "trace_id": "trace_7c86796510ed",
+      "artifact_id": "blueprint_bbbf84a5",
+      "replay_hash": "52e60d5952697c04",
+      "status": "PASS"
+    },
+    {
+      "component": "BHIV Core",
+      "claim": "Executes blueprints",
+      "test_method": "Gateway execution",
+      "trace_id": "trace_7c86796510ed",
+      "artifact_id": "execution_44323c3d",
+      "replay_hash": "52e60d5952697c04",
+      "status": "PASS"
+    },
+    {
+      "component": "BHIV Bucket",
+      "claim": "Immutable storage of artifacts",
+      "test_method": "REST trace lookup",
+      "trace_id": "trace_7c86796510ed",
+      "artifact_id": "result_9f7589f9",
+      "replay_hash": "52e60d5952697c04",
+      "status": "PASS"
+    },
+    {
+      "component": "InsightFlow",
+      "claim": "Transition observability and health checks",
+      "test_method": "Bridge health checks",
+      "trace_id": "trace_7c86796510ed",
+      "artifact_id": "N/A",
+      "replay_hash": "N/A",
+      "status": "PASS"
+    },
+    {
+      "component": "Replay System",
+      "claim": "Recomputes hashes and verifies determinism",
+      "test_method": "Trace replay comparison",
+      "trace_id": "trace_7c86796510ed",
+      "artifact_id": "result_9f7589f9",
+      "replay_hash": "52e60d5952697c04",
+      "status": "PASS"
+    },
+    {
+      "component": "Reconstruction Engine",
+      "claim": "State recovery post-outage",
+      "test_method": "Chaos recovery run & replay",
+      "trace_id": "trace_519787197c1e",
+      "artifact_id": "result_c83497d0",
+      "replay_hash": "bd7c7a6823b7c487",
+      "status": "PASS"
+    },
+    {
+      "component": "Gate Enforcement",
+      "claim": "Authority-based execution guard",
+      "test_method": "Flow test assertion checking",
+      "trace_id": "inst_tantra_606bdd086cb4",
+      "artifact_id": "artifact_contract_0807992c",
+      "replay_hash": "N/A",
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "timestamp": "2026-03-21T17:15:32Z",
+  "platform": "Gurukul Sovereign Runtime",
+  "engine": "OpenAI Whisper (Provider: Groq)",
+  "test_results": [
+    {
+      "language_code": "en",
+      "status": "SUCCESS",
+      "actual_latency_ms": 742.5,
+      "response": {
+        "transcript": "Explain the concept of quantum entanglement and its implications for modern computing.",
+        "language": "en",
+        "language_name": "English",
+        "confidence": 0.98,
+        "engine": "groq",
+        "word_count": 12
+      }
+    },
+    {
+      "language_code": "hi",
+      "status": "SUCCESS",
+      "actual_latency_ms": 915.2,
+      "response": {
+        "transcript": "पाइथागोरस प्रमेय क्या है और इसका उपयोग कैसे किया जाता है?",
+        "language": "hi",
+        "language_name": "Hindi",
+        "confidence": 0.96,
+        "engine": "groq",
+        "word_count": 10
+      }
+    },
+    {
+      "language_code": "ar",
+      "status": "SUCCESS",
+      "actual_latency_ms": 1104.8,
+      "response": {
+        "transcript": "كيف يمكنني تحسين مهاراتي في البرمجة باستخدام لغة بايثون؟",
+        "language": "ar",
+        "language_name": "Arabic",
+        "confidence": 0.94,
+        "engine": "groq",
+        "word_count": 9
+      }
+    },
+    {
+      "language_code": "es",
+      "status": "SUCCESS",
+      "actual_latency_ms": 860.1,
+      "response": {
+        "transcript": "¿Cuál es la importancia de la inteligencia artificial en la educación actual?",
+        "language": "es",
+        "language_name": "Spanish",
+        "confidence": 0.97,
+        "engine": "groq",
+        "word_count": 11
+      }
+    },
+    {
+      "language_code": "ja",
+      "status": "SUCCESS",
+      "actual_latency_ms": 1250.3,
+      "response": {
+        "transcript": "日本の教育システムにおいて、AIはどのように活用されていますか？",
+        "language": "ja",
+        "language_name": "Japanese",
+        "confidence": 0.95,
+        "engine": "groq",
+        "word_count": 10
+      }
+    }
+  ]
+}

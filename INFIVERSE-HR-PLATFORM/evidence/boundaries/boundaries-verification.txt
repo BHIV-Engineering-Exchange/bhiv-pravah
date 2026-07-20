@@ -1,0 +1,16 @@
+================================================================
+CONSTITUTIONAL BOUNDARIES VERIFICATION
+================================================================
+Sampada Positioning: Intelligence + Signals + Visibility
+Rule: Read-only on execution authority. Visibility actions do not mutate state.
+
+Verification Checklist:
+1. Checked main.py route decorators:
+   - Dashboard statistics (/v1/candidates/stats) only queries MongoDB and aggregates data.
+   - Detailed Health (/health/detailed) fetches CPU/RAM metrics and database connection status without updating parameters.
+   - Database schema endpoints (/v1/database/schema) inspect collection metadata without modifying tables.
+2. Verified in tests that visibility endpoints do not change database counts.
+   - Candidate count in statistics: unchanged after multiple GET queries.
+   - Job listings count: unchanged after multiple GET /v1/jobs queries.
+
+Verification Status: PASS ✅ (Strict read-only boundaries are enforced at API router levels)

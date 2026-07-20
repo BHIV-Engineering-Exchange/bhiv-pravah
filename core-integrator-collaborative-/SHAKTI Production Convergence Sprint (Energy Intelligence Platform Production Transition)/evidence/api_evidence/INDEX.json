@@ -1,0 +1,24 @@
+{
+  "folder": "api_evidence",
+  "files": [
+    "dashboard_alerts_20260708T095440Z.json",
+    "dashboard_alerts_20260708T095559Z.json",
+    "dashboard_executive_20260708T095440Z.json",
+    "dashboard_executive_20260708T095559Z.json",
+    "dashboard_operations_20260708T095440Z.json",
+    "dashboard_operations_20260708T095559Z.json",
+    "dashboard_runtime_20260708T095440Z.json",
+    "dashboard_runtime_20260708T095559Z.json",
+    "dashboard_telemetry_20260708T095440Z.json",
+    "dashboard_telemetry_20260708T095559Z.json",
+    "health_20260708T100111Z.json",
+    "metrics_20260708T095440Z.json",
+    "metrics_20260708T095559Z.json",
+    "plain_pipeline_execute_20260708T095843Z.json",
+    "production_demo_transcript.json",
+    "system_status_20260708T095440Z.json",
+    "system_status_20260708T095559Z.json",
+    "telemetry_ingest_20260708T095440Z.json",
+    "telemetry_ingest_20260708T095559Z.json"
+  ]
+}

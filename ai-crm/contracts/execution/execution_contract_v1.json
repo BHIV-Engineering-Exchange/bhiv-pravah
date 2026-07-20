@@ -1,0 +1,297 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://setu.local/contracts/execution/execution_contract_v1.json",
+  "title": "SETU Execution Contract v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "execution_id",
+    "trace_id",
+    "source_system",
+    "actor",
+    "intent_type",
+    "target_system",
+    "parameters",
+    "priority",
+    "timestamp",
+    "schema_version",
+    "tenant_id"
+  ],
+  "properties": {
+    "execution_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9._-]+$",
+      "description": "Stable execution identifier for replay and lineage."
+    },
+    "trace_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9._-]+$",
+      "description": "Immutable trace identifier shared across the operational chain."
+    },
+    "source_system": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64,
+      "description": "Origin system emitting the execution intent."
+    },
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actor_id", "actor_type"],
+      "properties": {
+        "actor_id": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 128
+        },
+        "actor_type": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 32,
+          "description": "user | service | system | agent"
+        },
+        "display_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "delegated_by": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 128
+        },
+        "authentication": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "claims": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "intent_type": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64,
+      "description": "Operational intent label (ex: approve_order, allocate_inventory)."
+    },
+    "target_system": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["system_id"],
+      "properties": {
+        "system_id": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64
+        },
+        "system_type": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64
+        },
+        "endpoint": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 256
+        },
+        "interface": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64
+        }
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Intent parameters."
+    },
+    "priority": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "schema_version": {
+      "type": "string",
+      "enum": ["1.0"]
+    },
+    "tenant_id": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 64,
+      "pattern": "^[A-Za-z0-9._-]+$"
+    },
+    "trace_lineage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "root_trace_id": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 128
+        },
+        "parent_trace_id": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 128
+        },
+        "parent_execution_id": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 128
+        },
+        "lineage_hash": {
+          "type": "string",
+          "minLength": 16,
+          "maxLength": 128
+        },
+        "lineage_path": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 128
+          },
+          "maxItems": 64
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "recorded_by": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 128
+        },
+        "recorded_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "source_signature": {
+          "type": "string",
+          "minLength": 16,
+          "maxLength": 512
+        },
+        "integrity_hash": {
+          "type": "string",
+          "minLength": 16,
+          "maxLength": 128
+        },
+        "ingest_path": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 128
+        }
+      }
+    },
+    "replay": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idempotency_key": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 128
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "determinism_fingerprint": {
+          "type": "string",
+          "minLength": 16,
+          "maxLength": 128
+        }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "policy_id": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64
+        },
+        "policy_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 32
+        },
+        "gated_bridge": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": ["approved", "rejected", "pending"]
+            },
+            "attestation_id": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 128
+            },
+            "checked_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "policy_id": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 64
+            },
+            "policy_version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 32
+            },
+            "evidence_ref": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 256
+            }
+          }
+        }
+      }
+    },
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "decision": {
+          "type": "string",
+          "enum": ["allow", "deny"]
+        },
+        "reason": {
+          "type": "string",
+          "maxLength": 256
+        },
+        "checked_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "policy_id": {
+          "type": "string",
+          "maxLength": 64
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

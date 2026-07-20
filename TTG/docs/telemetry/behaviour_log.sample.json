@@ -1,0 +1,134 @@
+[
+{
+    "sessionId": "user:1767934013283",
+    "userId": "user",
+    "role": "user",
+    "device": "desktop",
+    "behaviour": {
+      "type": "click",
+      "category": "GENERAL"
+    },
+    "context": {
+      "payloadKeys": []
+    },
+    "ts": 1767934017330
+  },
+  {
+    "sessionId": "user:1767934013283",
+    "userId": "user",
+    "role": "user",
+    "device": "desktop",
+    "behaviour": {
+      "type": "click",
+      "category": "GENERAL"
+    },
+    "context": {
+      "payloadKeys": []
+    },
+    "ts": 1767934017481
+  },
+  {
+    "sessionId": "user:1767934013283",
+    "userId": "user",
+    "role": "user",
+    "device": "desktop",
+    "behaviour": {
+      "type": "click",
+      "category": "GENERAL"
+    },
+    "context": {
+      "payloadKeys": []
+    },
+    "ts": 1767934018304
+  },
+  {
+    "sessionId": "user:1767934013283",
+    "userId": "user",
+    "role": "user",
+    "device": "desktop",
+    "behaviour": {
+      "type": "click",
+      "category": "GENERAL"
+    },
+    "context": {
+      "payloadKeys": []
+    },
+    "ts": 1767934018397
+  },
+  {
+    "sessionId": "user:1767934013283",
+    "userId": "user",
+    "role": "user",
+    "device": "desktop",
+    "behaviour": {
+      "type": "click",
+      "category": "GENERAL"
+    },
+    "context": {
+      "payloadKeys": []
+    },
+    "ts": 1767934018480
+  },
+  {
+    "sessionId": "user:1767934013283",
+    "userId": "user",
+    "role": "user",
+    "device": "desktop",
+    "behaviour": {
+      "type": "click",
+      "category": "GENERAL"
+    },
+    "context": {
+      "payloadKeys": []
+    },
+    "ts": 1767934018774
+  },
+  {
+    "sessionId": "user:1767934013283",
+    "userId": "user",
+    "role": "user",
+    "device": "desktop",
+    "behaviour": {
+      "type": "click",
+      "category": "GENERAL"
+    },
+    "context": {
+      "payloadKeys": []
+    },
+    "ts": 1767934018781
+  },
+  {
+    "sessionId": "user:1767934013283",
+    "userId": "user",
+    "role": "user",
+    "device": "desktop",
+    "behaviour": {
+      "type": "call_npc",
+      "category": "GENERAL"
+    },
+    "context": {
+      "payloadKeys": []
+    },
+    "ts": 1767934019300
+  },
+  {
+    "sessionId": "user:1767934013283",
+    "userId": "user",
+    "role": "user",
+    "device": "desktop",
+    "behaviour": {
+      "type": "speak",
+      "category": "GENERAL"
+    },
+    "context": {
+      "payloadKeys": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    "ts": 1767934019333
+  }
+]

@@ -1,0 +1,68 @@
+{
+  "generated_at": "2026-07-08T10:10:42.653572+00:00",
+  "killed_attempts": [
+    {
+      "pid": 3252,
+      "rc": 0,
+      "out": "SUCCESS: The process with PID 3252 has been terminated."
+    },
+    {
+      "pid": 15828,
+      "rc": 0,
+      "out": "SUCCESS: The process with PID 15828 has been terminated."
+    },
+    {
+      "pid": 20808,
+      "rc": 0,
+      "out": "SUCCESS: The process with PID 20808 has been terminated."
+    },
+    {
+      "pid": 21100,
+      "rc": 0,
+      "out": "SUCCESS: The process with PID 21100 has been terminated."
+    },
+    {
+      "pid": 21248,
+      "rc": 0,
+      "out": "SUCCESS: The process with PID 21248 has been terminated."
+    },
+    {
+      "pid": 21316,
+      "rc": 0,
+      "out": "SUCCESS: The process with PID 21316 has been terminated."
+    },
+    {
+      "pid": 21844,
+      "rc": 0,
+      "out": "SUCCESS: The process with PID 21844 has been terminated."
+    },
+    {
+      "pid": 22568,
+      "rc": 0,
+      "out": "SUCCESS: The process with PID 22568 has been terminated."
+    },
+    {
+      "pid": 24936,
+      "rc": 0,
+      "out": "SUCCESS: The process with PID 24936 has been terminated."
+    },
+    {
+      "pid": 25548,
+      "rc": 128,
+      "out": ""
+    }
+  ],
+  "ports_open_after_cleanup": {
+    "8000": false,
+    "8001": true,
+    "8003": false,
+    "8004": false,
+    "8005": false,
+    "8006": false,
+    "8007": false,
+    "8008": false,
+    "8009": false,
+    "8010": false
+  },
+  "all_closed_after_cleanup": false
+}

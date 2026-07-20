@@ -1,0 +1,12 @@
+# Portal Service - Streamlit Dependencies - Python 3.12.7 Compatible
+streamlit>=1.28.0,<2.0.0
+httpx>=0.25.2,<0.28.0
+pandas>=2.1.4,<3.0.0
+plotly>=5.17.0,<6.0.0
+numpy>=1.24.4,<2.0.0
+python-dotenv>=1.0.0,<2.0.0
+requests>=2.31.0,<3.0.0
+
+# 2FA Dependencies
+pillow>=10.0.1,<11.0.0
+qrcode[pil]>=7.4.2,<8.0.0

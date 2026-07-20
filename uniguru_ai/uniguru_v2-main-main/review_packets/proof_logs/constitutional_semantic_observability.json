@@ -1,0 +1,11 @@
+{
+  "canonical_entity_count": 4,
+  "contradiction_event_count": 1,
+  "event_count": 5,
+  "generated_at": "2026-05-13T14:06:48.438330Z",
+  "hash_chain_ok": true,
+  "last_event_hash": "53fa6dab62136ae066fb9b00e43c7799b9ab97f12213c26b22457da6e997437d",
+  "schema": "UNIGURU_CONSTITUTIONAL_SEMANTIC_OBSERVABILITY_V1",
+  "state_hash": "9cd2c4c4150735eb20d6655303a76431d1d462fe41a560f509810db1dec69ffa",
+  "transient_event_count": 4
+}

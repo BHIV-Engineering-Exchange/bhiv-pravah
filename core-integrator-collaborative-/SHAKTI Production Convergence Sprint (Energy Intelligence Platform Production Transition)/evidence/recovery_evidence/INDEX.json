@@ -1,0 +1,8 @@
+{
+  "folder": "recovery_evidence",
+  "files": [
+    "node_interruption_results.md",
+    "recovery_verification.json",
+    "replay_after_recovery_results.md"
+  ]
+}

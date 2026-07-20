@@ -1,0 +1,31 @@
+{
+  "failure_matrix": [
+    {
+      "scenario": "Node Unavailable (Creator Core Offline)",
+      "impact": "Pipeline execution fails at Stage 2 (Blueprint Generation)",
+      "detection": "HTTPConnectionPool NewConnectionError [WinError 10061]",
+      "mitigation": "Graceful error propagation with HTTP 500, no corrupted database writes",
+      "recovery_action": "Automatic/manual subprocess reload",
+      "recovery_time_seconds": 1.0,
+      "status": "RECOVERED"
+    },
+    {
+      "scenario": "Remote Network Interruption (Prompt Runner Delay)",
+      "impact": "High request latency on first hit (cold start)",
+      "detection": "API response time >10 seconds",
+      "mitigation": "Configured request timeout limits (30s) exceeding latency thresholds",
+      "recovery_action": "Subsequent warm hits respond in <1s",
+      "recovery_time_seconds": 0.0,
+      "status": "PASS"
+    },
+    {
+      "scenario": "Database Write Interruption",
+      "impact": "Trace record not stored in local context DB",
+      "detection": "Database query returns empty/fails",
+      "mitigation": "Append-only Bucket storage acts as the fallback source of truth",
+      "recovery_action": "Reconstruction of state from Bucket files",
+      "recovery_time_seconds": 0.05,
+      "status": "PASS"
+    }
+  ]
+}

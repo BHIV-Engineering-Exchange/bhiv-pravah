@@ -1,0 +1,166 @@
+{
+  "canonical_memory": {
+    "Bhagavata Purana": {
+      "canonical": "Bhagavata Purana",
+      "confidence": 0.5972,
+      "lineage_event_hashes": [
+        "c477cbe78ae240e1862b2e23dcf917dacf5489cd9fefa1803a11f3dd288dbbc9"
+      ],
+      "source_signal_ids": [
+        "signal_15c23a4dedd5"
+      ],
+      "trace_ids": [
+        "constitutional_lineage_vishnu"
+      ]
+    },
+    "Narada Purana": {
+      "canonical": "Narada Purana",
+      "confidence": 0.5972,
+      "lineage_event_hashes": [
+        "c477cbe78ae240e1862b2e23dcf917dacf5489cd9fefa1803a11f3dd288dbbc9"
+      ],
+      "source_signal_ids": [
+        "signal_15c23a4dedd5"
+      ],
+      "trace_ids": [
+        "constitutional_lineage_vishnu"
+      ]
+    },
+    "Narayana": {
+      "canonical": "Narayana",
+      "confidence": 0.5972,
+      "lineage_event_hashes": [
+        "c477cbe78ae240e1862b2e23dcf917dacf5489cd9fefa1803a11f3dd288dbbc9"
+      ],
+      "source_signal_ids": [
+        "signal_15c23a4dedd5"
+      ],
+      "trace_ids": [
+        "constitutional_lineage_vishnu"
+      ]
+    },
+    "Padma Purana": {
+      "canonical": "Padma Purana",
+      "confidence": 0.5972,
+      "lineage_event_hashes": [
+        "c477cbe78ae240e1862b2e23dcf917dacf5489cd9fefa1803a11f3dd288dbbc9"
+      ],
+      "source_signal_ids": [
+        "signal_15c23a4dedd5"
+      ],
+      "trace_ids": [
+        "constitutional_lineage_vishnu"
+      ]
+    }
+  },
+  "contradiction_audit": [
+    {
+      "contradictions": [
+        {
+          "claim_key": "Injected Governance Claim",
+          "polarities": [
+            "affirmative",
+            "negative"
+          ],
+          "signal_ids": [
+            "injected_signal_a",
+            "injected_signal_b"
+          ]
+        }
+      ],
+      "event_hash": "96cdac46b61e4d8f9bb074e96d174d057ae2c5d43fae099df836662b9cb11980",
+      "pressure": 1.0,
+      "trace_id": "constitutional_contradiction_injection"
+    }
+  ],
+  "event_count": 5,
+  "lineage": [
+    {
+      "classification": "transient",
+      "event_hash": "ee885e7b53760604fa12610a511526ccd8098b5ee3451eda8022e6b1cf1d131f",
+      "interpretation_hash": "477be26b329cb0470de505787039c88f653b8b1406f6df7827af4f9ce0446339",
+      "previous_event_hash": null,
+      "retrieval_truth_hash": "655f44abb74f7d595292bd4f7e0b72b0fe1fbbab080aa53b3693ff519c989003",
+      "trace_id": "constitutional_replay_qubit"
+    },
+    {
+      "classification": "canonical",
+      "event_hash": "c477cbe78ae240e1862b2e23dcf917dacf5489cd9fefa1803a11f3dd288dbbc9",
+      "interpretation_hash": "82c4bcb7f82dbcf64545370b28e043b24c9c3d25cc88b1970af49b91b99b1514",
+      "previous_event_hash": "ee885e7b53760604fa12610a511526ccd8098b5ee3451eda8022e6b1cf1d131f",
+      "retrieval_truth_hash": "43cbf5ac45429b5c2fcc71d4d449b8b202b241ee5959767287681c2666625cc2",
+      "trace_id": "constitutional_lineage_vishnu"
+    },
+    {
+      "classification": "transient",
+      "event_hash": "7c588607585b5403e108e0c971f444bd03a11c0fff3cc1718c73f6c668679b52",
+      "interpretation_hash": "039d35e4f474c668a6f1fc45dbb5d84092cd05f91dc58d9da764441d3c56f680",
+      "previous_event_hash": "c477cbe78ae240e1862b2e23dcf917dacf5489cd9fefa1803a11f3dd288dbbc9",
+      "retrieval_truth_hash": "aedcce58b44f895af19cdf19b3b7335c5b2c1943c04801578e0e3e490161813c",
+      "trace_id": "constitutional_transient_governance"
+    },
+    {
+      "classification": "quarantined",
+      "event_hash": "96cdac46b61e4d8f9bb074e96d174d057ae2c5d43fae099df836662b9cb11980",
+      "interpretation_hash": "016c37339c9df0a1f96f272861c480ef4fed8306ab3b18b1c577c817d614eb68",
+      "previous_event_hash": "7c588607585b5403e108e0c971f444bd03a11c0fff3cc1718c73f6c668679b52",
+      "retrieval_truth_hash": "61eedbeae214f19fc18df1e57eba1624f5532b56f2106e4b2cb9a75037060277",
+      "trace_id": "constitutional_contradiction_injection"
+    },
+    {
+      "classification": "transient",
+      "event_hash": "53fa6dab62136ae066fb9b00e43c7799b9ab97f12213c26b22457da6e997437d",
+      "interpretation_hash": "a667d44940b449af0a9bac1435d9cf34f4fa0e3f702c7382f2b50fd3c59e11bc",
+      "previous_event_hash": "96cdac46b61e4d8f9bb074e96d174d057ae2c5d43fae099df836662b9cb11980",
+      "retrieval_truth_hash": null,
+      "trace_id": "constitutional_poisoning_attempt"
+    }
+  ],
+  "replay_integrity": {
+    "hash_chain_ok": true,
+    "last_event_hash": "53fa6dab62136ae066fb9b00e43c7799b9ab97f12213c26b22457da6e997437d",
+    "rollback_target": null
+  },
+  "schema": "UNIGURU_CONSTITUTIONAL_SEMANTIC_RECONSTRUCTION_V1",
+  "state_hash": "9cd2c4c4150735eb20d6655303a76431d1d462fe41a560f509810db1dec69ffa",
+  "transient_memory": [
+    {
+      "classification": "transient",
+      "event_hash": "ee885e7b53760604fa12610a511526ccd8098b5ee3451eda8022e6b1cf1d131f",
+      "reasons": [
+        "verification_status_not_verified",
+        "no_accepted_signals",
+        "confidence_below_canonical_floor"
+      ],
+      "trace_id": "constitutional_replay_qubit"
+    },
+    {
+      "classification": "transient",
+      "event_hash": "7c588607585b5403e108e0c971f444bd03a11c0fff3cc1718c73f6c668679b52",
+      "reasons": [
+        "verification_status_not_verified",
+        "no_accepted_signals",
+        "confidence_below_canonical_floor"
+      ],
+      "trace_id": "constitutional_transient_governance"
+    },
+    {
+      "classification": "quarantined",
+      "event_hash": "96cdac46b61e4d8f9bb074e96d174d057ae2c5d43fae099df836662b9cb11980",
+      "reasons": [
+        "contradiction_requires_audit"
+      ],
+      "trace_id": "constitutional_contradiction_injection"
+    },
+    {
+      "classification": "transient",
+      "event_hash": "53fa6dab62136ae066fb9b00e43c7799b9ab97f12213c26b22457da6e997437d",
+      "reasons": [
+        "missing_retrieval_truth_hash",
+        "truth_interpretation_boundary_not_enforced",
+        "interpretation_does_not_reference_retrieval_truth"
+      ],
+      "trace_id": "constitutional_poisoning_attempt"
+    }
+  ]
+}

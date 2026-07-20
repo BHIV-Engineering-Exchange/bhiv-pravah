@@ -1,0 +1,821 @@
+{
+  "entities": {
+    "Atman": {
+      "contradiction_pressure": 0.0,
+      "decay_state": "weak",
+      "last_seen": "2026-05-08T10:06:52.803118Z",
+      "reinforcement_score": 0.1875,
+      "source_ids": [
+        "Yoga_Upanishad_[Sanskrit_English]_OCR.pdf"
+      ],
+      "trace_ids": [
+        "probe_valid_4"
+      ]
+    },
+    "Bhagavata Purana": {
+      "contradiction_pressure": 0.0,
+      "decay_state": "active",
+      "last_seen": "2026-05-13T14:06:48.094750Z",
+      "reinforcement_score": 0.3125,
+      "source_ids": [
+        "The Narada-Purana, Part 4_ocred.pdf"
+      ],
+      "trace_ids": [
+        "probe_valid_3",
+        "tantra_downstream_vishnu",
+        "constitutional_lineage_vishnu"
+      ]
+    },
+    "Brahma": {
+      "contradiction_pressure": 0.0,
+      "decay_state": "weak",
+      "last_seen": "2026-05-08T10:06:52.803118Z",
+      "reinforcement_score": 0.1875,
+      "source_ids": [
+        "Yoga_Upanishad_[Sanskrit_English]_OCR.pdf"
+      ],
+      "trace_ids": [
+        "probe_valid_4"
+      ]
+    },
+    "Brahman": {
+      "contradiction_pressure": 0.0,
+      "decay_state": "weak",
+      "last_seen": "2026-05-08T10:06:52.803118Z",
+      "reinforcement_score": 0.1875,
+      "source_ids": [
+        "Yoga_Upanishad_[Sanskrit_English]_OCR.pdf"
+      ],
+      "trace_ids": [
+        "probe_valid_4"
+      ]
+    },
+    "Narada Purana": {
+      "contradiction_pressure": 0.0,
+      "decay_state": "active",
+      "last_seen": "2026-05-13T14:06:48.094750Z",
+      "reinforcement_score": 0.5,
+      "source_ids": [
+        "The Narada-Purana, Part 3_ocred.pdf",
+        "The Narada-Purana, Part 4_ocred.pdf"
+      ],
+      "trace_ids": [
+        "probe_valid_0",
+        "probe_valid_3",
+        "tantra_downstream_vishnu",
+        "constitutional_lineage_vishnu"
+      ]
+    },
+    "Narayana": {
+      "contradiction_pressure": 0.0,
+      "decay_state": "active",
+      "last_seen": "2026-05-13T14:06:48.094750Z",
+      "reinforcement_score": 0.3125,
+      "source_ids": [
+        "The Narada-Purana, Part 4_ocred.pdf"
+      ],
+      "trace_ids": [
+        "probe_valid_3",
+        "tantra_downstream_vishnu",
+        "constitutional_lineage_vishnu"
+      ]
+    },
+    "Padma Purana": {
+      "contradiction_pressure": 0.0,
+      "decay_state": "active",
+      "last_seen": "2026-05-13T14:06:48.094750Z",
+      "reinforcement_score": 0.3125,
+      "source_ids": [
+        "The Narada-Purana, Part 4_ocred.pdf"
+      ],
+      "trace_ids": [
+        "probe_valid_3",
+        "tantra_downstream_vishnu",
+        "constitutional_lineage_vishnu"
+      ]
+    },
+    "Upanishads": {
+      "contradiction_pressure": 0.0,
+      "decay_state": "weak",
+      "last_seen": "2026-05-08T10:06:52.803118Z",
+      "reinforcement_score": 0.1875,
+      "source_ids": [
+        "Yoga_Upanishad_[Sanskrit_English]_OCR.pdf"
+      ],
+      "trace_ids": [
+        "probe_valid_4"
+      ]
+    },
+    "Vedas": {
+      "contradiction_pressure": 0.0,
+      "decay_state": "weak",
+      "last_seen": "2026-05-08T10:06:52.803118Z",
+      "reinforcement_score": 0.1875,
+      "source_ids": [
+        "Yoga_Upanishad_[Sanskrit_English]_OCR.pdf"
+      ],
+      "trace_ids": [
+        "probe_valid_4"
+      ]
+    },
+    "Yoga": {
+      "contradiction_pressure": 0.0,
+      "decay_state": "weak",
+      "last_seen": "2026-05-08T10:06:52.803118Z",
+      "reinforcement_score": 0.1875,
+      "source_ids": [
+        "Yoga_Upanishad_[Sanskrit_English]_OCR.pdf"
+      ],
+      "trace_ids": [
+        "probe_valid_4"
+      ]
+    }
+  },
+  "events": [
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "tantra_replay_qubit",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:04:04.829558Z",
+      "user_id": "tantra-demo-user"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "tantra_replay_qubit",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:04:04.884554Z",
+      "user_id": "tantra-demo-user"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "tantra_contradiction_governance",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:04:04.938118Z",
+      "user_id": "tantra-demo-user"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "tantra_contradiction_governance",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:04:04.991085Z",
+      "user_id": "tantra-demo-user"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "tantra_memory_gita_governance",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:04:05.055045Z",
+      "user_id": "tantra-demo-user"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "tantra_memory_gita_governance",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:04:05.115566Z",
+      "user_id": "tantra-demo-user"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "tantra_downstream_mahavira",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:04:05.178003Z",
+      "user_id": "tantra-demo-user"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "tantra_downstream_mahavira",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:04:05.230637Z",
+      "user_id": "tantra-demo-user"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "probe_0",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:06:36.443963Z",
+      "user_id": "anonymous"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "probe2_0",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:06:36.503268Z",
+      "user_id": "anonymous"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "probe_1",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:06:36.559945Z",
+      "user_id": "anonymous"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "probe2_1",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:06:36.622149Z",
+      "user_id": "anonymous"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "probe_2",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:06:36.677220Z",
+      "user_id": "anonymous"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "probe2_2",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:06:36.725059Z",
+      "user_id": "anonymous"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "probe_3",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:06:36.774734Z",
+      "user_id": "anonymous"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "probe2_3",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:06:36.834725Z",
+      "user_id": "anonymous"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "probe_4",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:06:36.879868Z",
+      "user_id": "anonymous"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "probe2_4",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:06:36.925515Z",
+      "user_id": "anonymous"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [
+        "Narada Purana"
+      ],
+      "event": "semantic_memory_update",
+      "trace_id": "probe_valid_0",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:06:52.599984Z",
+      "user_id": "anonymous"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "probe_valid_1",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:06:52.651066Z",
+      "user_id": "anonymous"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "probe_valid_2",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:06:52.698023Z",
+      "user_id": "anonymous"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [
+        "Bhagavata Purana",
+        "Narada Purana",
+        "Narayana",
+        "Padma Purana"
+      ],
+      "event": "semantic_memory_update",
+      "trace_id": "probe_valid_3",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:06:52.750088Z",
+      "user_id": "anonymous"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [
+        "Atman",
+        "Brahma",
+        "Brahman",
+        "Upanishads",
+        "Vedas",
+        "Yoga"
+      ],
+      "event": "semantic_memory_update",
+      "trace_id": "probe_valid_4",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:06:52.803118Z",
+      "user_id": "anonymous"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "probe_valid_5",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:06:52.854555Z",
+      "user_id": "anonymous"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "tantra_replay_qubit",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:07:22.780229Z",
+      "user_id": "tantra-demo-user"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "tantra_replay_qubit",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:07:22.828758Z",
+      "user_id": "tantra-demo-user"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "tantra_contradiction_governance",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:07:22.880391Z",
+      "user_id": "tantra-demo-user"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "tantra_contradiction_governance",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:07:22.929317Z",
+      "user_id": "tantra-demo-user"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "tantra_memory_gita_governance",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:07:22.980685Z",
+      "user_id": "tantra-demo-user"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "trace_id": "tantra_memory_gita_governance",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:07:23.038686Z",
+      "user_id": "tantra-demo-user"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [
+        "Bhagavata Purana",
+        "Narada Purana",
+        "Narayana",
+        "Padma Purana"
+      ],
+      "event": "semantic_memory_update",
+      "trace_id": "tantra_downstream_vishnu",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:07:23.091187Z",
+      "user_id": "tantra-demo-user"
+    },
+    {
+      "contradiction_pressure": 0.0,
+      "entities_touched": [
+        "Bhagavata Purana",
+        "Narada Purana",
+        "Narayana",
+        "Padma Purana"
+      ],
+      "event": "semantic_memory_update",
+      "trace_id": "tantra_downstream_vishnu",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-08T10:07:23.141142Z",
+      "user_id": "tantra-demo-user"
+    },
+    {
+      "canonical_authority_granted": false,
+      "constitutional_event_hash": "ee885e7b53760604fa12610a511526ccd8098b5ee3451eda8022e6b1cf1d131f",
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "memory_classification": "transient",
+      "trace_id": "constitutional_replay_qubit",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-13T14:06:47.804158Z",
+      "user_id": "constitutional-demo-user"
+    },
+    {
+      "canonical_authority_granted": false,
+      "constitutional_event_hash": "ee885e7b53760604fa12610a511526ccd8098b5ee3451eda8022e6b1cf1d131f",
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "memory_classification": "transient",
+      "trace_id": "constitutional_replay_qubit",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-13T14:06:47.886662Z",
+      "user_id": "constitutional-demo-user"
+    },
+    {
+      "canonical_authority_granted": true,
+      "constitutional_event_hash": "c477cbe78ae240e1862b2e23dcf917dacf5489cd9fefa1803a11f3dd288dbbc9",
+      "contradiction_pressure": 0.0,
+      "entities_touched": [
+        "Bhagavata Purana",
+        "Narada Purana",
+        "Narayana",
+        "Padma Purana"
+      ],
+      "event": "semantic_memory_update",
+      "memory_classification": "canonical",
+      "trace_id": "constitutional_lineage_vishnu",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-13T14:06:47.989770Z",
+      "user_id": "constitutional-demo-user"
+    },
+    {
+      "canonical_authority_granted": true,
+      "constitutional_event_hash": "c477cbe78ae240e1862b2e23dcf917dacf5489cd9fefa1803a11f3dd288dbbc9",
+      "contradiction_pressure": 0.0,
+      "entities_touched": [
+        "Bhagavata Purana",
+        "Narada Purana",
+        "Narayana",
+        "Padma Purana"
+      ],
+      "event": "semantic_memory_update",
+      "memory_classification": "canonical",
+      "trace_id": "constitutional_lineage_vishnu",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-13T14:06:48.094750Z",
+      "user_id": "constitutional-demo-user"
+    },
+    {
+      "canonical_authority_granted": false,
+      "constitutional_event_hash": "7c588607585b5403e108e0c971f444bd03a11c0fff3cc1718c73f6c668679b52",
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "memory_classification": "transient",
+      "trace_id": "constitutional_transient_governance",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-13T14:06:48.240935Z",
+      "user_id": "constitutional-demo-user"
+    },
+    {
+      "canonical_authority_granted": false,
+      "constitutional_event_hash": "7c588607585b5403e108e0c971f444bd03a11c0fff3cc1718c73f6c668679b52",
+      "contradiction_pressure": 0.0,
+      "entities_touched": [],
+      "event": "semantic_memory_update",
+      "memory_classification": "transient",
+      "trace_id": "constitutional_transient_governance",
+      "unresolved_thread_opened": true,
+      "updated_at": "2026-05-13T14:06:48.339285Z",
+      "user_id": "constitutional-demo-user"
+    }
+  ],
+  "schema": "UNIGURU_SEMANTIC_MEMORY_V1",
+  "unresolved_threads": {
+    "anonymous:probe2_0": {
+      "contradiction_pressure": 0.0,
+      "query": "What is Akshar Purushottam Darshan?",
+      "rejected_signal_count": 12,
+      "state": "open",
+      "trace_id": "probe2_0",
+      "updated_at": "2026-05-08T10:06:36.503268Z",
+      "user_id": "anonymous",
+      "verification_status": "NO_VERIFIED_KNOWLEDGE"
+    },
+    "anonymous:probe2_1": {
+      "contradiction_pressure": 0.0,
+      "query": "Explain Vachanamrut",
+      "rejected_signal_count": 12,
+      "state": "open",
+      "trace_id": "probe2_1",
+      "updated_at": "2026-05-08T10:06:36.622149Z",
+      "user_id": "anonymous",
+      "verification_status": "NO_VERIFIED_KNOWLEDGE"
+    },
+    "anonymous:probe2_2": {
+      "contradiction_pressure": 0.0,
+      "query": "What is Ahimsa?",
+      "rejected_signal_count": 12,
+      "state": "open",
+      "trace_id": "probe2_2",
+      "updated_at": "2026-05-08T10:06:36.725059Z",
+      "user_id": "anonymous",
+      "verification_status": "NO_VERIFIED_KNOWLEDGE"
+    },
+    "anonymous:probe2_3": {
+      "contradiction_pressure": 0.0,
+      "query": "What is Anekantavada?",
+      "rejected_signal_count": 12,
+      "state": "open",
+      "trace_id": "probe2_3",
+      "updated_at": "2026-05-08T10:06:36.834725Z",
+      "user_id": "anonymous",
+      "verification_status": "NO_VERIFIED_KNOWLEDGE"
+    },
+    "anonymous:probe2_4": {
+      "contradiction_pressure": 0.0,
+      "query": "What is superposition?",
+      "rejected_signal_count": 12,
+      "state": "open",
+      "trace_id": "probe2_4",
+      "updated_at": "2026-05-08T10:06:36.925515Z",
+      "user_id": "anonymous",
+      "verification_status": "NO_VERIFIED_KNOWLEDGE"
+    },
+    "anonymous:probe_0": {
+      "contradiction_pressure": 0.0,
+      "query": "What is Akshar Purushottam Darshan?",
+      "rejected_signal_count": 12,
+      "state": "open",
+      "trace_id": "probe_0",
+      "updated_at": "2026-05-08T10:06:36.443963Z",
+      "user_id": "anonymous",
+      "verification_status": "NO_VERIFIED_KNOWLEDGE"
+    },
+    "anonymous:probe_1": {
+      "contradiction_pressure": 0.0,
+      "query": "Explain Vachanamrut",
+      "rejected_signal_count": 12,
+      "state": "open",
+      "trace_id": "probe_1",
+      "updated_at": "2026-05-08T10:06:36.559945Z",
+      "user_id": "anonymous",
+      "verification_status": "NO_VERIFIED_KNOWLEDGE"
+    },
+    "anonymous:probe_2": {
+      "contradiction_pressure": 0.0,
+      "query": "What is Ahimsa?",
+      "rejected_signal_count": 12,
+      "state": "open",
+      "trace_id": "probe_2",
+      "updated_at": "2026-05-08T10:06:36.677220Z",
+      "user_id": "anonymous",
+      "verification_status": "NO_VERIFIED_KNOWLEDGE"
+    },
+    "anonymous:probe_3": {
+      "contradiction_pressure": 0.0,
+      "query": "What is Anekantavada?",
+      "rejected_signal_count": 12,
+      "state": "open",
+      "trace_id": "probe_3",
+      "updated_at": "2026-05-08T10:06:36.774734Z",
+      "user_id": "anonymous",
+      "verification_status": "NO_VERIFIED_KNOWLEDGE"
+    },
+    "anonymous:probe_4": {
+      "contradiction_pressure": 0.0,
+      "query": "What is superposition?",
+      "rejected_signal_count": 12,
+      "state": "open",
+      "trace_id": "probe_4",
+      "updated_at": "2026-05-08T10:06:36.879868Z",
+      "user_id": "anonymous",
+      "verification_status": "NO_VERIFIED_KNOWLEDGE"
+    },
+    "anonymous:probe_valid_0": {
+      "contradiction_pressure": 0.0,
+      "query": "What does Satyam vada translate?",
+      "rejected_signal_count": 11,
+      "state": "open",
+      "trace_id": "probe_valid_0",
+      "updated_at": "2026-05-08T10:06:52.599984Z",
+      "user_id": "anonymous",
+      "verification_status": "VERIFIED"
+    },
+    "anonymous:probe_valid_1": {
+      "contradiction_pressure": 0.0,
+      "query": "How does Bhagavad Gita guide decision making?",
+      "rejected_signal_count": 12,
+      "state": "open",
+      "trace_id": "probe_valid_1",
+      "updated_at": "2026-05-08T10:06:52.651066Z",
+      "user_id": "anonymous",
+      "verification_status": "NO_VERIFIED_KNOWLEDGE"
+    },
+    "anonymous:probe_valid_2": {
+      "contradiction_pressure": 0.0,
+      "query": "What are key features of ancient cities?",
+      "rejected_signal_count": 12,
+      "state": "open",
+      "trace_id": "probe_valid_2",
+      "updated_at": "2026-05-08T10:06:52.698023Z",
+      "user_id": "anonymous",
+      "verification_status": "NO_VERIFIED_KNOWLEDGE"
+    },
+    "anonymous:probe_valid_3": {
+      "contradiction_pressure": 0.0,
+      "query": "What is Vishnu in Padma Purana?",
+      "rejected_signal_count": 11,
+      "state": "open",
+      "trace_id": "probe_valid_3",
+      "updated_at": "2026-05-08T10:06:52.750088Z",
+      "user_id": "anonymous",
+      "verification_status": "VERIFIED"
+    },
+    "anonymous:probe_valid_4": {
+      "contradiction_pressure": 0.0,
+      "query": "What do Upanishads teach?",
+      "rejected_signal_count": 11,
+      "state": "open",
+      "trace_id": "probe_valid_4",
+      "updated_at": "2026-05-08T10:06:52.803118Z",
+      "user_id": "anonymous",
+      "verification_status": "VERIFIED"
+    },
+    "anonymous:probe_valid_5": {
+      "contradiction_pressure": 0.0,
+      "query": "How does Bhagavad Gita emphasize duty dharma action karma yoga?",
+      "rejected_signal_count": 12,
+      "state": "open",
+      "trace_id": "probe_valid_5",
+      "updated_at": "2026-05-08T10:06:52.854555Z",
+      "user_id": "anonymous",
+      "verification_status": "NO_VERIFIED_KNOWLEDGE"
+    },
+    "constitutional-demo-user:constitutional_lineage_vishnu": {
+      "contradiction_pressure": 0.0,
+      "query": "What is Vishnu in Padma Purana?",
+      "rejected_signal_count": 11,
+      "state": "open",
+      "trace_id": "constitutional_lineage_vishnu",
+      "updated_at": "2026-05-13T14:06:48.094750Z",
+      "user_id": "constitutional-demo-user",
+      "verification_status": "VERIFIED"
+    },
+    "constitutional-demo-user:constitutional_replay_qubit": {
+      "contradiction_pressure": 0.0,
+      "query": "What is a qubit?",
+      "rejected_signal_count": 12,
+      "state": "open",
+      "trace_id": "constitutional_replay_qubit",
+      "updated_at": "2026-05-13T14:06:47.886662Z",
+      "user_id": "constitutional-demo-user",
+      "verification_status": "NO_VERIFIED_KNOWLEDGE"
+    },
+    "constitutional-demo-user:constitutional_transient_governance": {
+      "contradiction_pressure": 0.0,
+      "query": "How does Gita connect dharma, karma yoga, rajadharma, and governance?",
+      "rejected_signal_count": 12,
+      "state": "open",
+      "trace_id": "constitutional_transient_governance",
+      "updated_at": "2026-05-13T14:06:48.339285Z",
+      "user_id": "constitutional-demo-user",
+      "verification_status": "NO_VERIFIED_KNOWLEDGE"
+    },
+    "tantra-demo-user:tantra_contradiction_governance": {
+      "contradiction_pressure": 0.0,
+      "query": "Explain dharma and rajadharma for governance",
+      "rejected_signal_count": 12,
+      "state": "open",
+      "trace_id": "tantra_contradiction_governance",
+      "updated_at": "2026-05-08T10:07:22.929317Z",
+      "user_id": "tantra-demo-user",
+      "verification_status": "NO_VERIFIED_KNOWLEDGE"
+    },
+    "tantra-demo-user:tantra_downstream_mahavira": {
+      "contradiction_pressure": 0.0,
+      "query": "Who is Mahavira?",
+      "rejected_signal_count": 12,
+      "state": "open",
+      "trace_id": "tantra_downstream_mahavira",
+      "updated_at": "2026-05-08T10:04:05.230637Z",
+      "user_id": "tantra-demo-user",
+      "verification_status": "NO_VERIFIED_KNOWLEDGE"
+    },
+    "tantra-demo-user:tantra_downstream_vishnu": {
+      "contradiction_pressure": 0.0,
+      "query": "What is Vishnu in Padma Purana?",
+      "rejected_signal_count": 11,
+      "state": "open",
+      "trace_id": "tantra_downstream_vishnu",
+      "updated_at": "2026-05-08T10:07:23.141142Z",
+      "user_id": "tantra-demo-user",
+      "verification_status": "VERIFIED"
+    },
+    "tantra-demo-user:tantra_memory_gita_governance": {
+      "contradiction_pressure": 0.0,
+      "query": "How does Gita connect dharma, karma yoga, rajadharma, and governance?",
+      "rejected_signal_count": 12,
+      "state": "open",
+      "trace_id": "tantra_memory_gita_governance",
+      "updated_at": "2026-05-08T10:07:23.038686Z",
+      "user_id": "tantra-demo-user",
+      "verification_status": "NO_VERIFIED_KNOWLEDGE"
+    },
+    "tantra-demo-user:tantra_replay_qubit": {
+      "contradiction_pressure": 0.0,
+      "query": "What is a qubit?",
+      "rejected_signal_count": 12,
+      "state": "open",
+      "trace_id": "tantra_replay_qubit",
+      "updated_at": "2026-05-08T10:07:22.828758Z",
+      "user_id": "tantra-demo-user",
+      "verification_status": "NO_VERIFIED_KNOWLEDGE"
+    }
+  },
+  "updated_at": "2026-05-13T14:06:48.339285Z",
+  "users": {
+    "anonymous": {
+      "continuity_score": 0.9,
+      "last_seen": "2026-05-08T10:06:52.854555Z",
+      "queries": 16,
+      "trace_ids": [
+        "probe_0",
+        "probe2_0",
+        "probe_1",
+        "probe2_1",
+        "probe_2",
+        "probe2_2",
+        "probe_3",
+        "probe2_3",
+        "probe_4",
+        "probe2_4",
+        "probe_valid_0",
+        "probe_valid_1",
+        "probe_valid_2",
+        "probe_valid_3",
+        "probe_valid_4",
+        "probe_valid_5"
+      ]
+    },
+    "constitutional-demo-user": {
+      "continuity_score": 0.25,
+      "last_seen": "2026-05-13T14:06:48.339285Z",
+      "queries": 6,
+      "trace_ids": [
+        "constitutional_replay_qubit",
+        "constitutional_lineage_vishnu",
+        "constitutional_transient_governance"
+      ]
+    },
+    "tantra-demo-user": {
+      "continuity_score": 0.35,
+      "last_seen": "2026-05-08T10:07:23.141142Z",
+      "queries": 16,
+      "trace_ids": [
+        "tantra_replay_qubit",
+        "tantra_contradiction_governance",
+        "tantra_memory_gita_governance",
+        "tantra_downstream_mahavira",
+        "tantra_downstream_vishnu"
+      ]
+    }
+  }
+}

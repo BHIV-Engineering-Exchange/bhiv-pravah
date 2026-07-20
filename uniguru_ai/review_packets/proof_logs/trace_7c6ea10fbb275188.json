@@ -1,0 +1,153 @@
+{
+  "answer": "# Jain Knowledge Base \u2014 Rishabhadeva (Adinatha)\n\n---\ntitle: Rishabhadeva \u2014 The First Tirthankara\nsource: \u0100di Pur\u0101\u1e47a (Jinasena); Kalpa Sutra; Rishabhdev Foundation\nurl: https://www.jainworld.com/rishabhadeva\nverification_status: VERIFIED\ncategory: jain\n---\n\n## Content\n\nRishabhadeva (also called Adinatha \u2014 \"First Lord\") is the first of the 24 Tirthankaras of the current cosmic time cycle according to Jain cosmology.\n\n**Mythological Status:**\nHe is credited as the founder of human civilization:\n- Taught humans to cook and eat food (previously humans ate only tubers and fruit)\n- Introduced agriculture, crafts, and governance\n- Established the first kingdom and social order\n\n**Renunciation and Tapas:**\nAfter ruling for countless years, Rishabhadeva renounced his kingdom and became a naked ascetic (digambara). He meditated without eating for one year and eventually attained Kevala Jnana (omniscience).\n\n**Mention in Other Traditions:**\nThe Bhagavata Purana (a Hindu text) describes Rishabha as an avatara of Vishnu who taught yoga and renunciation \u2014 demonstrating Jain influence on broader Indian religious tradition.\n\n**Symbol:**\nRishabhadeva's symbol is the Bull (Vrishabha/nandi). His yaksha (attendant deity) is Gomukha and his yakshi is Chakreshvari.\n\n**Ashta Pratiharya (Eight Auspicious Events at Enlightenment):**\nWhen a Tirthankara attains Kevala Jnana, eight supernatural manifestations appear including celestial music, fragrant rain, and divine light.\n\n**Legacy:**\nRishabhadeva's teachings were preserved through his 84 disciples (ganadharas) of whom Pundarika was the chief.\n\nUniGuru Citation: Adi Purana (Jinasena); Kalpa Sutra of Bhadrabahu, Life of Rishabhadeva section",
+  "confidence": 0.33,
+  "confidence_breakdown": {
+    "accepted_count": 1,
+    "fallback_method": "keyword_kb",
+    "overall": 0.33,
+    "rejected_count": 18
+  },
+  "detected_domain": null,
+  "domain_resolution": {
+    "confidence": 0.0,
+    "domain": "general",
+    "entities": [],
+    "method": "no_canonical_entity"
+  },
+  "enforcement_stats": {
+    "rejected_entries": 19,
+    "total_entries": 37,
+    "valid_entries": 18
+  },
+  "fallback_to_llm": false,
+  "generated_at": "2026-06-25T05:09:35.833581Z",
+  "knowledge_ids_used": [],
+  "matched_signals": [],
+  "query": "Who won the cricket match yesterday?",
+  "reasoning": "Accepted via keyword_kb after Kosha signal validation found no match.",
+  "reasoning_path": [
+    "query_received",
+    "kosha_schema_enforced",
+    "canonical_entities_extracted",
+    "ontology_aware_retrieval",
+    "signal_validation",
+    "structured_signal_emission",
+    "knowledge_index_fallback",
+    "deterministic_synthesis"
+  ],
+  "rejected_signals": [
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_e5c4debb7542",
+      "source": "Shakti and Shakta_ocr.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_cd3dd47d4021",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_91047be9626d",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_3bf02d1647b2",
+      "source": "Vayu Purana Part 1_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_16aa42bee099",
+      "source": "The Narada-Purana, Part 3_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_4d3ceb769d0f",
+      "source": "The Complete Mahabharata_English_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_60b38e626344",
+      "source": "The Narada-Purana, Part 1_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_847a097d63b7",
+      "source": "Valmiki-Ramayana-Eng-Translation-Griffith_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_248ccce0b0a5",
+      "source": "Taittiriya_Upanishad_Swami_Sarvanand[Sanskrit-English]_OCR.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_cab73d94ce1c",
+      "source": "Svetasvatara Upanishad - sanskrit and English.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_c64a60428a65",
+      "source": "Brihaspati Smriti (Reconstructed) - Rangaswami Aiyangar 1941 (GOS)_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_ddf4d169c2d0",
+      "source": "The Uddhava-g\u012bt\u0101_sanskrit_English_Hindi_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_8159f85f8a89",
+      "source": "Agni Purana Unabridged English Motilal.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_c7a5b3eadd82",
+      "source": "Yoga_Upanishad_[Sanskrit_English]_OCR.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_717b220e056d",
+      "source": "Srimad Bhagavata Maha Purana With Sanskrit Text And English Trans. By C.L. Goswami, Part 1 (Book 1 To 8) - Gita Press, Gorakhpur_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_92256d8eff77",
+      "source": "vigyan-bhairava-tantra_ocr.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_8c4aaf037168",
+      "source": "Brahma Purana - Parts I-IV_ocred.pdf"
+    },
+    {
+      "details": {},
+      "rejection_reason": "off_topic_query",
+      "signal_id": "signal_efdf1ac19afb",
+      "source": "The Narada-Purana, Part 4_ocred.pdf"
+    }
+  ],
+  "signals_found": 0,
+  "signals_rejected": 18,
+  "synthesis_mode": "FALLBACK_KNOWLEDGE_INDEX",
+  "trace_id": "trace_7c6ea10fbb275188",
+  "verification_status": "VERIFIED"
+}

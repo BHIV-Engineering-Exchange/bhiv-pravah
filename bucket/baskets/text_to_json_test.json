@@ -1,0 +1,8 @@
+{
+  "basket_name": "text_to_json_test",
+  "agents": [
+    "textToJson"
+  ],
+  "execution_strategy": "sequential",
+  "description": "Test basket for the text-to-JSON AI agent that calls external API endpoints"
+}

@@ -1,0 +1,174 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Runtime Event Schema v1.0",
+  "description": "Standard format for runtime events emitted by the game engine during gameplay",
+  "type": "object",
+  "required": ["event_type", "timestamp", "event_id"],
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "collision",
+        "entity_spawned",
+        "entity_destroyed",
+        "score_update",
+        "timer_expired",
+        "pickup_collected",
+        "player_death",
+        "level_complete",
+        "game_start",
+        "game_end",
+        "health_changed",
+        "position_update"
+      ],
+      "description": "Type of runtime event"
+    },
+    "event_id": {
+      "type": "string",
+      "description": "Unique identifier for this event (UUID v4)"
+    },
+    "timestamp": {
+      "type": "number",
+      "description": "Unix timestamp in milliseconds when event occurred"
+    },
+    "game_session_id": {
+      "type": "string",
+      "description": "ID of the game session this event belongs to"
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of entity IDs involved in this event"
+    },
+    "context": {
+      "type": "object",
+      "description": "Event-specific contextual data",
+      "properties": {
+        "velocity": {
+          "type": "number",
+          "description": "Velocity at time of event"
+        },
+        "position": {
+          "type": "object",
+          "properties": {
+            "x": { "type": "number" },
+            "y": { "type": "number" },
+            "z": { "type": "number" }
+          }
+        },
+        "score": {
+          "type": "number",
+          "description": "Score value for score-related events"
+        },
+        "health": {
+          "type": "number",
+          "description": "Health value for health-related events"
+        },
+        "damage": {
+          "type": "number",
+          "description": "Damage amount for collision events"
+        },
+        "entity_type": {
+          "type": "string",
+          "description": "Type of entity (player, enemy, obstacle, collectible)"
+        },
+        "collision_force": {
+          "type": "number",
+          "description": "Force of collision impact"
+        },
+        "timer_value": {
+          "type": "number",
+          "description": "Timer value in seconds"
+        }
+      },
+      "additionalProperties": true
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional metadata for debugging and telemetry",
+      "properties": {
+        "engine_id": {
+          "type": "string",
+          "description": "ID of the engine that emitted this event"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "ID of the user playing the game"
+        },
+        "game_mode": {
+          "type": "string",
+          "description": "Current game mode (runner, sidescroller, etc.)"
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "event_type": "collision",
+      "event_id": "evt_12345678-1234-1234-1234-123456789abc",
+      "timestamp": 1738425600000,
+      "game_session_id": "session_abc123",
+      "entities": ["player", "obstacle_01"],
+      "context": {
+        "velocity": 3.2,
+        "position": { "x": 10.5, "y": 2.0, "z": 0.0 },
+        "collision_force": 5.8,
+        "entity_type": "obstacle"
+      },
+      "metadata": {
+        "engine_id": "engine_local_01",
+        "user_id": "user_123",
+        "game_mode": "runner"
+      }
+    },
+    {
+      "event_type": "score_update",
+      "event_id": "evt_87654321-4321-4321-4321-cba987654321",
+      "timestamp": 1738425605000,
+      "game_session_id": "session_abc123",
+      "entities": ["player"],
+      "context": {
+        "score": 150,
+        "position": { "x": 25.0, "y": 0.0, "z": 0.0 }
+      },
+      "metadata": {
+        "engine_id": "engine_local_01",
+        "user_id": "user_123",
+        "game_mode": "runner"
+      }
+    },
+    {
+      "event_type": "entity_spawned",
+      "event_id": "evt_11111111-2222-3333-4444-555555555555",
+      "timestamp": 1738425610000,
+      "game_session_id": "session_abc123",
+      "entities": ["enemy_02"],
+      "context": {
+        "entity_type": "enemy",
+        "position": { "x": 50.0, "y": 0.0, "z": 0.0 }
+      },
+      "metadata": {
+        "engine_id": "engine_local_01",
+        "user_id": "user_123",
+        "game_mode": "runner"
+      }
+    },
+    {
+      "event_type": "timer_expired",
+      "event_id": "evt_99999999-8888-7777-6666-555555555555",
+      "timestamp": 1738425615000,
+      "game_session_id": "session_abc123",
+      "entities": [],
+      "context": {
+        "timer_value": 0
+      },
+      "metadata": {
+        "engine_id": "engine_local_01",
+        "user_id": "user_123",
+        "game_mode": "runner"
+      }
+    }
+  ]
+}

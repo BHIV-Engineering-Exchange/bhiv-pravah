@@ -1,0 +1,38 @@
+{
+  "timestamp": "2025-12-18T14:48:38.434603",
+  "environment": "localhost",
+  "gateway_url": "http://localhost:8000",
+  "total_tests": 7,
+  "passed_tests": 6,
+  "success_rate": 85.71428571428571,
+  "results": [
+    {
+      "test_name": "Gateway Health",
+      "passed": true
+    },
+    {
+      "test_name": "API Key Auth",
+      "passed": true
+    },
+    {
+      "test_name": "Client JWT Auth",
+      "passed": false
+    },
+    {
+      "test_name": "2FA Setup",
+      "passed": true
+    },
+    {
+      "test_name": "Database Schema",
+      "passed": true
+    },
+    {
+      "test_name": "Password Management",
+      "passed": true
+    },
+    {
+      "test_name": "Security Features",
+      "passed": true
+    }
+  ]
+}

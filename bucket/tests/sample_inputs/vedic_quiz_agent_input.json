@@ -1,0 +1,37 @@
+{
+  "user_id": "student_456",
+  "quiz_type": "adaptive",
+  "subject_areas": [
+    "vedic_mathematics",
+    "sanskrit_grammar",
+    "philosophy",
+    "astronomy"
+  ],
+  "difficulty_level": "intermediate",
+  "question_count": 10,
+  "time_limit_minutes": 30,
+  "user_profile": {
+    "learning_level": "intermediate",
+    "previous_scores": {
+      "vedic_mathematics": 85,
+      "sanskrit_grammar": 70,
+      "philosophy": 90,
+      "astronomy": 65
+    },
+    "preferred_question_types": ["multiple_choice", "fill_in_blank"],
+    "learning_style": "visual"
+  },
+  "quiz_preferences": {
+    "include_explanations": true,
+    "randomize_questions": true,
+    "adaptive_difficulty": true,
+    "immediate_feedback": false,
+    "include_hints": true
+  },
+  "session_context": {
+    "previous_session_score": 78,
+    "topics_to_focus": ["sanskrit_grammar", "astronomy"],
+    "weak_areas": ["complex_calculations", "astronomical_terms"],
+    "session_goals": ["improve_weak_areas", "maintain_strong_areas"]
+  }
+}

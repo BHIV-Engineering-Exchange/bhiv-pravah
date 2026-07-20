@@ -1,0 +1,75 @@
+{
+  "demo_flows": {
+    "whitelisted_routes": [
+      "/",
+      "/home",
+      "/subjects",
+      "/lectures",
+      "/chatbot",
+      "/test"
+    ],
+    "enabled_features": [
+      "home_page_navigation",
+      "subject_selection",
+      "lesson_viewing",
+      "chat_interaction",
+      "practice_tests",
+      "basic_navigation"
+    ],
+    "disabled_sections": [
+      "/admin_dashboard",
+      "/teacher/dashboard", 
+      "/parent/dashboard",
+      "/settings",
+      "/avatar",
+      "/flashcards",
+      "/summarizer",
+      "/agent-simulator",
+      "/sign*",
+      "/dashboard"
+    ]
+  },
+  "ui_visibility": {
+    "visible_components": [
+      "navbar",
+      "hero_section", 
+      "feature_grid",
+      "learning_flow",
+      "basic_chat_interface",
+      "subject_list",
+      "lesson_content_placeholder",
+      "practice_questions_basic"
+    ],
+    "hidden_components": [
+      "advanced_analytics",
+      "admin_panels",
+      "teacher_tools",
+      "parent_controls", 
+      "avatar_customization",
+      "advanced_settings",
+      "detailed_progress",
+      "complex_dashboards"
+    ]
+  },
+  "api_access": {
+    "allowed_endpoints": [
+      "/api/v1/chat",
+      "/api/v1/subjects",
+      "/api/v1/lessons",
+      "/api/v1/questions"
+    ],
+    "blocked_endpoints": [
+      "/api/v1/admin/*",
+      "/api/v1/teacher/*", 
+      "/api/v1/soul/*",
+      "/api/v1/analytics/*",
+      "/api/v1/settings/*"
+    ]
+  },
+  "safety_defaults": {
+    "fallback_content": "Learning content loading...",
+    "safe_timeout_ms": 5000,
+    "max_retries": 1,
+    "graceful_degradation": true
+  }
+}

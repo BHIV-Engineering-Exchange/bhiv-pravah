@@ -1,0 +1,9 @@
+{
+  "basket_name": "chained_test",
+  "agents": [
+    "cashflow_analyzer",
+    "goal_recommender"
+  ],
+  "execution_strategy": "sequential",
+  "description": "Test chained agents"
+}

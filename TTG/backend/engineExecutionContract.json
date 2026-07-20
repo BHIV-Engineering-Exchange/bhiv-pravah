@@ -1,0 +1,327 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Engine Execution Contract v2.0",
+  "description": "Contract for TTG execution pipeline - consumed directly by C++ engine",
+  "version": "2.0.0",
+  "type": "object",
+  "required": ["execution_id", "trace_id", "game_mode", "entities", "physics", "scoring"],
+  "properties": {
+    "execution_id": {
+      "type": "string",
+      "description": "Unique execution identifier",
+      "example": "exec_001"
+    },
+    "trace_id": {
+      "type": "string",
+      "description": "Distributed trace ID (UUID v4)",
+      "example": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+    },
+    "game_mode": {
+      "type": "string",
+      "enum": ["runner", "sidescroller", "open_scene"],
+      "description": "Game mode type"
+    },
+    "scene": {
+      "type": "object",
+      "description": "Scene configuration",
+      "properties": {
+        "scene_id": {
+          "type": "string",
+          "description": "Scene identifier"
+        },
+        "ambient_light": {
+          "type": "array",
+          "items": { "type": "number", "minimum": 0, "maximum": 1 },
+          "minItems": 3,
+          "maxItems": 3,
+          "description": "RGB ambient light [r, g, b]"
+        },
+        "skybox": {
+          "type": "string",
+          "description": "Skybox asset name"
+        }
+      }
+    },
+    "entities": {
+      "type": "array",
+      "description": "Entity spawn instructions",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "transform"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique entity identifier"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["player", "npc", "object", "obstacle"],
+            "description": "Entity type"
+          },
+          "transform": {
+            "type": "object",
+            "required": ["position", "rotation", "scale"],
+            "properties": {
+              "position": {
+                "type": "array",
+                "items": { "type": "number" },
+                "minItems": 3,
+                "maxItems": 3,
+                "description": "Position [x, y, z]"
+              },
+              "rotation": {
+                "type": "array",
+                "items": { "type": "number" },
+                "minItems": 3,
+                "maxItems": 3,
+                "description": "Rotation [x, y, z] in degrees"
+              },
+              "scale": {
+                "type": "array",
+                "items": { "type": "number" },
+                "minItems": 3,
+                "maxItems": 3,
+                "description": "Scale [x, y, z]"
+              }
+            }
+          },
+          "material": {
+            "type": "object",
+            "properties": {
+              "shader": { "type": "string" },
+              "texture": { "type": "string" },
+              "color": {
+                "type": "array",
+                "items": { "type": "number", "minimum": 0, "maximum": 1 },
+                "minItems": 3,
+                "maxItems": 3
+              }
+            }
+          },
+          "components": {
+            "type": "object",
+            "properties": {
+              "mesh": { "type": "string" },
+              "collider": { "type": "string", "enum": ["box", "sphere", "capsule", "mesh"] },
+              "script": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "physics": {
+      "type": "object",
+      "description": "Physics parameters",
+      "required": ["gravity"],
+      "properties": {
+        "gravity": {
+          "type": "array",
+          "items": { "type": "number" },
+          "minItems": 3,
+          "maxItems": 3,
+          "description": "Gravity vector [x, y, z]",
+          "example": [0, -9.8, 0]
+        },
+        "friction": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Surface friction coefficient"
+        },
+        "bounce": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Bounciness/restitution"
+        },
+        "air_resistance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Air drag coefficient"
+        },
+        "collision_force": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 2,
+          "description": "Collision impact multiplier"
+        }
+      }
+    },
+    "movement": {
+      "type": "object",
+      "description": "Player movement parameters",
+      "properties": {
+        "speed": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 15,
+          "description": "Movement speed"
+        },
+        "jump_height": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Jump force/height"
+        }
+      }
+    },
+    "camera": {
+      "type": "object",
+      "description": "Camera configuration",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["third_person", "side_view", "top_down"],
+          "description": "Camera perspective"
+        },
+        "distance": {
+          "type": "number",
+          "minimum": 5,
+          "maximum": 20,
+          "description": "Camera distance from player"
+        }
+      }
+    },
+    "spawn_rules": {
+      "type": "object",
+      "description": "Entity spawning rules",
+      "properties": {
+        "obstacles": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Number of obstacle types"
+        },
+        "frequency": {
+          "type": "number",
+          "minimum": 0.5,
+          "maximum": 10,
+          "description": "Spawn frequency in seconds"
+        },
+        "distance": {
+          "type": "number",
+          "minimum": 5,
+          "maximum": 50,
+          "description": "Distance between spawns"
+        }
+      }
+    },
+    "scoring": {
+      "type": "object",
+      "description": "Score calculation rules",
+      "required": ["rules"],
+      "properties": {
+        "rules": {
+          "type": "object",
+          "properties": {
+            "distance": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Points per distance unit"
+            },
+            "collectibles": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Points per collectible"
+            },
+            "time": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Points per second"
+            }
+          }
+        },
+        "end_conditions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["collision", "time_limit", "distance_goal", "score_goal"]
+          },
+          "description": "Win/lose conditions"
+        }
+      }
+    },
+    "player_params": {
+      "type": "object",
+      "description": "Player-specific parameters",
+      "properties": {
+        "health": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 100,
+          "description": "Player health/lives"
+        },
+        "jetpack": {
+          "type": "boolean",
+          "description": "Enable jetpack ability"
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "execution_id": "exec_001",
+      "trace_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "game_mode": "runner",
+      "scene": {
+        "scene_id": "scene_runner",
+        "ambient_light": [0.6, 0.6, 0.6],
+        "skybox": "default_sky"
+      },
+      "entities": [
+        {
+          "id": "player_1",
+          "type": "player",
+          "transform": {
+            "position": [0, 0, 0],
+            "rotation": [0, 0, 0],
+            "scale": [1, 1, 1]
+          },
+          "material": {
+            "shader": "standard",
+            "texture": "player_skin",
+            "color": [1, 1, 1]
+          },
+          "components": {
+            "mesh": "player",
+            "collider": "box",
+            "script": "runner_controller"
+          }
+        }
+      ],
+      "physics": {
+        "gravity": [0, -9.8, 0],
+        "friction": 0.5,
+        "bounce": 0.3,
+        "air_resistance": 0.1,
+        "collision_force": 1.0
+      },
+      "movement": {
+        "speed": 8,
+        "jump_height": 5
+      },
+      "camera": {
+        "type": "third_person",
+        "distance": 10
+      },
+      "spawn_rules": {
+        "obstacles": 2,
+        "frequency": 2,
+        "distance": 10
+      },
+      "scoring": {
+        "rules": {
+          "distance": 1,
+          "collectibles": 0,
+          "time": 0
+        },
+        "end_conditions": ["collision"]
+      },
+      "player_params": {
+        "health": 3,
+        "jetpack": false
+      }
+    }
+  ]
+}

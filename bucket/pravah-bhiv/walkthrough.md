@@ -1,0 +1,68 @@
+ # Integration Walkthrough: Pravah Runtime Observation
+
+We have successfully integrated the `pravah-bhiv` observation layer into the `AI-Artha` and `core-integrator-collaborative-` systems. Pravah now actively observes execution metrics, latencies, state changes, and error logs across these runtimes without ownership or interference in their control flows.
+
+## What Was Changed
+
+### 1. Decision Brain & Port Resolution (pravah-bhiv)
+- **Main App Server (`main.py`)**: Added a `/process-runtime` POST route to the FastAPI Decision Brain (running on port `8000`). This endpoint converts the agent runtime telemetry to a standard `DecisionRequest`, triggers policy rules using `DecisionEngine.decide`, and appends the result to `_RECENT_DECISIONS` for dashboard logging.
+- **Agent Runtime (`agent_runtime.py`)**: 
+  - Updated the default target port for the decision endpoint to `8000` (configurable via `DECISION_BRAIN_PORT` or `PORT`) to resolve the port conflict with the Node.js backend.
+  - Dynamically appended the `control_plane` directory to `sys.path` to allow imports like `import core...` to resolve cleanly without name shadowing issues.
+- **Unified Deployment (`deploy_pravah.py`)**: Fixed python import paths to use `control_plane.api.agent_api:app` and replaced the incompatible `signal.pause()` with a standard `time.sleep` loop for Windows systems.
+- **Registry Specs**: Created and onboarded the following application specs under `control_plane/apps/registry`:
+  - `artha-backend.json` (Node.js backend, port 5000)
+  - `artha-fastapi.json` (Python FastAPI, port 9000)
+  - `bhiv-integrator.json` (Python Integrator Bridge, port 8004)
+
+### 2. AI-Artha Node.js Runtime Integration
+- **Tantra Service (`tantra.service.js`)**: 
+  - Implemented the signed telemetry generator `sendTelemetryToPravah` using native Node.js cryptography (HMAC-SHA256) and Axios.
+  - Hooked this telemetry sender directly into the `emitEvent` method. Every time the Node.js application generates a compliance event, ledger action, or transaction lifecyle update, it asynchronously reports to Pravah.
+
+### 3. AI-Artha Python FastAPI Runtime Integration
+- **Runtime Observability (`runtime_observability.py`)**: Added a background thread-based signed telemetry emitter `send_telemetry_to_pravah`. Connected it to `record_platform_event` to observe platform actions.
+
+### 4. BHIV Core-Integrator Pipeline Integration
+- **Integration Bridge (`integration_bridge.py`)**: Implemented a background-threaded telemetry sender `_report_to_pravah` and hooked it into the end of `process_full_pipeline` to report overall execution durations and status codes.
+
+---
+
+## Verification & Testing
+
+To test the integration, we started the Pravah services and ran targeted verification scripts that directly mock operations in the target systems:
+
+### 1. Verification of AI-Artha Node.js Observability
+We triggered a transaction lifecycle event using [verify_artha_observability.js](file:///c:/Users/black/OneDrive/Desktop/Pravah/AI-Artha/backend/src/verify_artha_observability.js):
+```bash
+node src/verify_artha_observability.js
+```
+**Result**:
+- Payload signed with trace ID `trace-b0595f7d-8c6e-4a0c-ac42-ddcdbdc2acda`.
+- Pravah Flask API server received the POST request at `/api/runtime` and returned `200 OK`.
+- The Decision Brain resolved the telemetry to a policy check and decided on `scale_down`.
+
+### 2. Verification of AI-Artha FastAPI Observability
+We ran [verify_fastapi_observability.py](file:///C:/Users/black/.gemini/antigravity-ide/brain/9a708983-52c9-4a32-8710-73529b366a29/scratch/verify_fastapi_observability.py):
+```bash
+python verify_fastapi_observability.py
+```
+**Result**:
+- A platform event was triggered.
+- Telemetry payload containing `app: artha-fastapi` was successfully posted to Pravah's `/api/runtime` endpoint.
+
+### 3. Verification of Core-Integrator Observability
+We executed [verify_integrator_observability.py](file:///c:/Users/black/OneDrive/Desktop/Pravah/core-integrator-collaborative-/verify_integrator_observability.py) to simulate a pipeline run:
+```bash
+python verify_integrator_observability.py
+```
+**Result**:
+- Telemetry payload containing `app: bhiv-integrator` was successfully posted to Pravah's `/api/runtime` endpoint.
+
+### Pravah Unified Logs
+As seen in `api_server.log`:
+- **`artha-backend`**: Telemetry resolved, Decision Brain decided `scale_down` (due to low CPU load).
+- **`artha-fastapi`**: Telemetry resolved, Decision Brain evaluated overloading state.
+- **`bhiv-integrator`**: Telemetry resolved, Decision Brain logged execution duration (1250.5ms).
+
+Pravah now has complete execution visibility across all three systems!

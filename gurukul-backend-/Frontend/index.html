@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gurukul</title>
+  <!-- BUILD: 2026-01-06-v2 CACHE BUSTER -->
+  <!-- Google Translate -->
+  <script type="text/javascript">
+    // Suppress Google Translate DOM errors globally (they're harmless but annoying)
+    // These errors occur when Google Translate tries to manipulate DOM nodes that have been modified
+    const originalError = window.onerror;
+    window.onerror = function(msg, url, line, col, error) {
+      // Suppress insertBefore errors from Google Translate
+      if (msg && (msg.includes('insertBefore') || msg.includes('Node.insertBefore'))) {
+        return true; // Suppress the error
+      }
+      // Call original error handler if it exists
+      if (originalError) {
+        return originalError.apply(this, arguments);
+      }
+      return false;
+    };
+    
+    // Also suppress uncaught exceptions
+    window.addEventListener('error', function(e) {
+      if (e.message && (e.message.includes('insertBefore') || e.message.includes('Node.insertBefore'))) {
+        e.stopImmediatePropagation();
+        e.preventDefault();
+        return true;
+      }
+    }, true);
+    
+    window.googleTranslateElementInit = function() {
+      try {
+        if (window.google && window.google.translate && window.google.translate.TranslateElement) {
+          new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'en,hi,es,fr,de,it,pt,ru,ja,ko,zh-CN,ar,bn,gu,kn,ml,mr,ne,pa,ta,te,ur,vi',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+          }, 'google_translate_element');
+        } else {
+          console.warn('Google Translate API not available yet');
+        }
+      } catch (error) {
+        // Suppress Google Translate initialization errors
+        if (process.env.NODE_ENV === 'development') {
+          if (!error.message || (!error.message.includes('insertBefore') && !error.message.includes('Node.insertBefore'))) {
+            console.error('Error initializing Google Translate:', error);
+          }
+        }
+      }
+    };
+    
+    // Hide only the Google Translate top bar ("Translated into X" / "Show original"), not the dropdown
+    function hideTranslateBanner() {
+      try {
+        // Hide banner iframe
+        var frames = document.querySelectorAll('iframe.goog-te-banner-frame');
+        for (var i = 0; i < frames.length; i++) {
+          var f = frames[i];
+          f.style.setProperty('display', 'none', 'important');
+          f.style.setProperty('visibility', 'hidden', 'important');
+          f.style.setProperty('height', '0', 'important');
+          f.style.setProperty('overflow', 'hidden', 'important');
+          f.style.setProperty('position', 'absolute', 'important');
+          f.style.setProperty('left', '-9999px', 'important');
+        }
+        // Also hide any banner divs
+        var banners = document.querySelectorAll('.goog-te-banner-frame, .skiptranslate');
+        for (var j = 0; j < banners.length; j++) {
+          var b = banners[j];
+          if (b.tagName === 'IFRAME' || b.classList.contains('goog-te-banner-frame')) {
+            b.style.setProperty('display', 'none', 'important');
+            b.style.setProperty('visibility', 'hidden', 'important');
+            b.style.setProperty('height', '0', 'important');
+          }
+        }
+      } catch (e) {
+        // Silent fail - Google Translate may not be loaded yet
+      }
+    }
+    
+    var bannerInterval;
+    var mouseupTimeout;
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      hideTranslateBanner();
+      // Use setInterval with cleanup tracking
+      bannerInterval = setInterval(hideTranslateBanner, 500);
+      
+      document.addEventListener('mouseup', function(e) {
+        // Clear previous timeout
+        if (mouseupTimeout) clearTimeout(mouseupTimeout);
+        mouseupTimeout = setTimeout(function() {
+          try {
+            var tooltip = document.querySelector('.goog-tooltip');
+            if (tooltip) {
+              tooltip.style.setProperty('display', 'none', 'important');
+              tooltip.style.setProperty('visibility', 'hidden', 'important');
+              tooltip.style.setProperty('opacity', '0', 'important');
+            }
+            hideTranslateBanner();
+          } catch (e) {
+            // Silent fail
+          }
+        }, 10);
+      }, true);
+    });
+    
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', function() {
+      if (bannerInterval) clearInterval(bannerInterval);
+      if (mouseupTimeout) clearTimeout(mouseupTimeout);
+    });
+  </script>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+
+</body>
+
+</html>

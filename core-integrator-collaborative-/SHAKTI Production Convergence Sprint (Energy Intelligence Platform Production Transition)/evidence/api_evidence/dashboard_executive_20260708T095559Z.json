@@ -1,0 +1,8 @@
+{
+  "total_pipeline_executions_today": 87,
+  "success_rate": null,
+  "active_alerts_by_severity": {
+    "critical": 4
+  },
+  "overall_system_status": "ok"
+}

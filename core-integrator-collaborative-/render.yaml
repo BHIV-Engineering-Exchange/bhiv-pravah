@@ -1,0 +1,106 @@
+services:
+  - type: web_service
+    name: prompt-runner
+    env: python
+    plan: starter
+    region: oregon
+    root: .
+    buildCommand: pip install -r requirements.txt
+    startCommand: python prompt-runner01/run_server.py
+    envVars:
+      - key: PROMPT_RUNNER_PORT
+        value: "8003"
+      - key: GROQ_API_KEY
+        sync: false
+      - key: CREATOR_CORE_URL
+        value: "https://creator-core.onrender.com/creator-core/generate-blueprint"
+
+  - type: web_service
+    name: creator-core
+    env: python
+    plan: starter
+    region: oregon
+    root: .
+    buildCommand: pip install -r requirements.txt && pip install -r creator-core/Core-Integrator-Sprint-1.1/requirements.txt
+    startCommand: python creator-core/Core-Integrator-Sprint-1.1/main.py
+    envVars:
+      - key: PYTHONPATH
+        value: ".:./src:./creator-core/Core-Integrator-Sprint-1.1"
+      - key: BHIV_CORE_URL
+        value: "https://bhiv-core.onrender.com/core"
+      - key: BUCKET_URL
+        value: "https://bhiv-bucket.onrender.com"
+
+  - type: web_service
+    name: bhiv-core
+    env: python
+    plan: starter
+    region: oregon
+    root: .
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHONPATH
+        value: ".:./src"
+      - key: USE_MONGODB
+        value: "false"
+
+  - type: web_service
+    name: bhiv-bucket
+    env: python
+    plan: starter
+    region: oregon
+    root: .
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn bhiv_bucket:bucket_app --host 0.0.0.0 --port $PORT
+
+  - type: web_service
+    name: cet
+    env: python
+    plan: starter
+    region: oregon
+    root: .
+    buildCommand: pip install -r requirements.txt
+    startCommand: python cet_service.py
+
+  - type: web_service
+    name: sarathi
+    env: python
+    plan: starter
+    region: oregon
+    root: .
+    buildCommand: pip install -r requirements.txt
+    startCommand: python sarathi_service.py
+
+  - type: web_service
+    name: gate
+    env: python
+    plan: starter
+    region: oregon
+    root: .
+    buildCommand: pip install -r requirements.txt
+    startCommand: python gate_service.py
+
+  - type: web_service
+    name: integration-bridge
+    env: python
+    plan: starter
+    region: oregon
+    root: .
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn integration_bridge:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PROMPT_RUNNER_URL
+        value: "https://prompt-runner.onrender.com"
+      - key: CREATOR_CORE_URL
+        value: "https://creator-core.onrender.com"
+      - key: BHIV_CORE_URL
+        value: "https://bhiv-core.onrender.com"
+      - key: BUCKET_URL
+        value: "https://bhiv-bucket.onrender.com"
+      - key: CET_URL
+        value: "https://cet.onrender.com"
+      - key: SARATHI_URL
+        value: "https://sarathi.onrender.com"
+      - key: GATE_URL
+        value: "https://gate.onrender.com"

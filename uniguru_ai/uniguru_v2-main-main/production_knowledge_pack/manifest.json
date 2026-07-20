@@ -1,0 +1,10 @@
+{
+  "pack_id": "UNIGURU_LM_PRODUCTION_KNOWLEDGE_PACK_V1",
+  "generated_at": "2026-06-23T12:27:36.604434+00:00",
+  "artifact_count": 11,
+  "canonical_record_count": 42,
+  "graph_hash": "31a42763c5aa3cb941456b492d32990a0ccb0ef8158b9311cdf19a308498fd3a",
+  "dataset_hash": "376bacf1f1a844cd5c3d3acebb1f151f2598f7fa5d20fc1173af64fffe3b92bf",
+  "evidence_registry_hash": "49c46b4d983657e29d717920d2dde16822f5745a426173ec6f9f7c13f2e245b9",
+  "status": "GENERATED_FROM_CANONICAL_DATASET"
+}

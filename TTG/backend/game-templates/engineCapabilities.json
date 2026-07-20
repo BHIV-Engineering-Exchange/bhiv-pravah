@@ -1,0 +1,34 @@
+{
+  "entities": [
+    "player",
+    "enemy",
+    "obstacle",
+    "obstacle_spawner",
+    "pickup",
+    "ground",
+    "platform",
+    "spawner",
+    "checkpoint"
+  ],
+  "components": [
+    "runner_controller",
+    "platformer_controller",
+    "arena_controller",
+    "ai_controller",
+    "collider",
+    "mesh",
+    "rigidbody",
+    "health",
+    "trigger"
+  ],
+  "jobs": [
+    "BUILD_SCENE",
+    "SPAWN_ENTITY",
+    "SPAWN_PLAYER",
+    "SPAWN_OBSTACLE_SYSTEM",
+    "SPAWN_ENEMIES",
+    "SPAWN_PLATFORMS",
+    "SPAWN_PICKUPS",
+    "START_LOOP"
+  ]
+}

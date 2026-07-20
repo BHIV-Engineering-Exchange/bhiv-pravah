@@ -1,0 +1,760 @@
+{
+  "calls": [
+    {
+      "note": "create employee in dept A to demonstrate inherited_roles (org+dept defaults)",
+      "method": "POST",
+      "path": "/v1/workforce/employees",
+      "request_correlation_id_header": null,
+      "request_body": {
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "department_id": "6a44cbabf5b43a528e6ee588",
+        "workforce_type": "consultant",
+        "role": "analyst",
+        "display_name": "S. Iyer",
+        "email": "s.iyer@tenant-client-01.local",
+        "lifecycle_state": "draft",
+        "source_system": "sampada"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "d782aa8f-392d-45c5-a713-33655ecc7b5d",
+      "timestamp_utc": "2026-07-01T08:11:23.869825+00:00",
+      "response_body": {
+        "workforce_ref_id": "wf-9ff66f9a66d9",
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "department_id": "6a44cbabf5b43a528e6ee588",
+        "unit_id": null,
+        "workforce_type": "consultant",
+        "role": "analyst",
+        "inherited_roles": [
+          "org_member",
+          "analyst"
+        ],
+        "display_name": "S. Iyer",
+        "email": "s.iyer@tenant-client-01.local",
+        "lifecycle_state": "draft",
+        "local_system_id": null,
+        "source_system": "sampada",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.873473+00:00",
+        "updated_at": "2026-07-01T08:11:23.873473+00:00",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "d782aa8f-392d-45c5-a713-33655ecc7b5d",
+          "correlation_id": "d782aa8f-392d-45c5-a713-33655ecc7b5d",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a44cbabf5b43a528e6ee596"
+      }
+    },
+    {
+      "note": "create employee in dept B (different role)",
+      "method": "POST",
+      "path": "/v1/workforce/employees",
+      "request_correlation_id_header": null,
+      "request_body": {
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "department_id": "6a44cbabf5b43a528e6ee58a",
+        "workforce_type": "employee",
+        "role": "operations_specialist",
+        "display_name": "K. Rao",
+        "email": "k.rao@tenant-client-01.local",
+        "lifecycle_state": "draft",
+        "source_system": "sampada"
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "82b8ed75-2a23-4b01-8317-57883dc7e783",
+      "timestamp_utc": "2026-07-01T08:11:23.874943+00:00",
+      "response_body": {
+        "workforce_ref_id": "wf-7e12c94e1e96",
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "department_id": "6a44cbabf5b43a528e6ee58a",
+        "unit_id": null,
+        "workforce_type": "employee",
+        "role": "operations_specialist",
+        "inherited_roles": [
+          "org_member",
+          "operations_specialist"
+        ],
+        "display_name": "K. Rao",
+        "email": "k.rao@tenant-client-01.local",
+        "lifecycle_state": "draft",
+        "local_system_id": null,
+        "source_system": "sampada",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.878142+00:00",
+        "updated_at": "2026-07-01T08:11:23.878142+00:00",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "82b8ed75-2a23-4b01-8317-57883dc7e783",
+          "correlation_id": "82b8ed75-2a23-4b01-8317-57883dc7e783",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a44cbabf5b43a528e6ee598"
+      }
+    },
+    {
+      "note": "org hierarchy traversal (full nested tree)",
+      "method": "GET",
+      "path": "/v1/workforce/organizations/6a44cbabf5b43a528e6ee582/hierarchy",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "a75bf999-8c4e-4973-adc1-4b695bdac1f6",
+      "timestamp_utc": "2026-07-01T08:11:23.879965+00:00",
+      "response_body": {
+        "organization": {
+          "name": "Sampada National Operations",
+          "code": "SNO-T21",
+          "parent_organization_id": null,
+          "default_roles": [
+            "org_member"
+          ],
+          "status": "active",
+          "tenant_id": "platform",
+          "created_at": "2026-07-01T08:11:23.810000",
+          "updated_at": "2026-07-01T08:11:23.810000",
+          "lineage": {
+            "origin_system": "gateway",
+            "owning_system": "sampada",
+            "schema_version": "1.0.0",
+            "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "trust_classification": "canonical",
+            "visibility_scope": "tenant"
+          },
+          "id": "6a44cbabf5b43a528e6ee582"
+        },
+        "divisions": [
+          {
+            "organization_id": "6a44cbabf5b43a528e6ee582",
+            "name": "Field Operations Division",
+            "code": "FOD-T21",
+            "status": "active",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:23.815000",
+            "updated_at": "2026-07-01T08:11:23.815000",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "id": "6a44cbabf5b43a528e6ee584"
+          }
+        ],
+        "units": [
+          {
+            "division_id": "6a44cbabf5b43a528e6ee584",
+            "name": "Northern Unit",
+            "code": "NU-T21",
+            "status": "active",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:23.819000",
+            "updated_at": "2026-07-01T08:11:23.819000",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "id": "6a44cbabf5b43a528e6ee586"
+          }
+        ],
+        "departments": [
+          {
+            "organization_id": "6a44cbabf5b43a528e6ee582",
+            "unit_id": "6a44cbabf5b43a528e6ee586",
+            "name": "Strategic Programs",
+            "code": "DEPT-C-T21",
+            "teams": [],
+            "default_roles": [
+              "program_lead"
+            ],
+            "status": "active",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:23.833000",
+            "updated_at": "2026-07-01T08:11:23.833000",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "id": "6a44cbabf5b43a528e6ee58c"
+          },
+          {
+            "organization_id": "6a44cbabf5b43a528e6ee582",
+            "unit_id": "6a44cbabf5b43a528e6ee586",
+            "name": "Regional Operations",
+            "code": "DEPT-B-T21",
+            "teams": [],
+            "default_roles": [
+              "operations_specialist"
+            ],
+            "status": "active",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:23.829000",
+            "updated_at": "2026-07-01T08:11:23.829000",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "id": "6a44cbabf5b43a528e6ee58a"
+          },
+          {
+            "organization_id": "6a44cbabf5b43a528e6ee582",
+            "unit_id": "6a44cbabf5b43a528e6ee586",
+            "name": "Onboarding Desk",
+            "code": "DEPT-A-T21",
+            "teams": [
+              {
+                "team_id": "tm-a1",
+                "name": "Intake Team",
+                "lead_role": "lead"
+              }
+            ],
+            "default_roles": [
+              "analyst"
+            ],
+            "status": "active",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:23.825000",
+            "updated_at": "2026-07-01T08:11:23.825000",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "id": "6a44cbabf5b43a528e6ee588"
+          }
+        ],
+        "employees": [
+          {
+            "workforce_ref_id": "wf-7e12c94e1e96",
+            "organization_id": "6a44cbabf5b43a528e6ee582",
+            "department_id": "6a44cbabf5b43a528e6ee58a",
+            "unit_id": null,
+            "workforce_type": "employee",
+            "role": "operations_specialist",
+            "inherited_roles": [
+              "org_member",
+              "operations_specialist"
+            ],
+            "display_name": "K. Rao",
+            "email": "k.rao@tenant-client-01.local",
+            "lifecycle_state": "draft",
+            "local_system_id": null,
+            "source_system": "sampada",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:23.878000",
+            "updated_at": "2026-07-01T08:11:23.878000",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "82b8ed75-2a23-4b01-8317-57883dc7e783",
+              "correlation_id": "82b8ed75-2a23-4b01-8317-57883dc7e783",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "id": "6a44cbabf5b43a528e6ee598"
+          },
+          {
+            "workforce_ref_id": "wf-9ff66f9a66d9",
+            "organization_id": "6a44cbabf5b43a528e6ee582",
+            "department_id": "6a44cbabf5b43a528e6ee588",
+            "unit_id": null,
+            "workforce_type": "consultant",
+            "role": "analyst",
+            "inherited_roles": [
+              "org_member",
+              "analyst"
+            ],
+            "display_name": "S. Iyer",
+            "email": "s.iyer@tenant-client-01.local",
+            "lifecycle_state": "draft",
+            "local_system_id": null,
+            "source_system": "sampada",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:23.873000",
+            "updated_at": "2026-07-01T08:11:23.873000",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "d782aa8f-392d-45c5-a713-33655ecc7b5d",
+              "correlation_id": "d782aa8f-392d-45c5-a713-33655ecc7b5d",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "id": "6a44cbabf5b43a528e6ee596"
+          },
+          {
+            "workforce_ref_id": "wf-704dedc80d02",
+            "organization_id": "6a44cbabf5b43a528e6ee582",
+            "department_id": "6a44cbabf5b43a528e6ee58c",
+            "unit_id": null,
+            "workforce_type": "employee",
+            "role": "operations_manager",
+            "inherited_roles": [
+              "operations_manager"
+            ],
+            "display_name": "R. Mehta",
+            "email": "r.mehta@tenant-client-01.local",
+            "lifecycle_state": "offboarding_prep",
+            "local_system_id": null,
+            "source_system": "sampada",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:23.837000",
+            "updated_at": "2026-07-01T08:11:23.861000",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "transition_type": "promotion",
+            "id": "6a44cbabf5b43a528e6ee58e"
+          }
+        ],
+        "policy_scope": {
+          "scope": "platform",
+          "scope_label": "platform_admin",
+          "role": "admin",
+          "user_id": null,
+          "tenant_id": null,
+          "org_id": null,
+          "workforce_category": "all"
+        }
+      }
+    },
+    {
+      "note": "employee list under ADMIN/platform scope",
+      "method": "GET",
+      "path": "/v1/workforce/employees?organization_id=6a44cbabf5b43a528e6ee582",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "3f889820-bd1f-4073-bdf9-1efd44054e05",
+      "timestamp_utc": "2026-07-01T08:11:23.884494+00:00",
+      "response_body": {
+        "items": [
+          {
+            "workforce_ref_id": "wf-7e12c94e1e96",
+            "organization_id": "6a44cbabf5b43a528e6ee582",
+            "department_id": "6a44cbabf5b43a528e6ee58a",
+            "unit_id": null,
+            "workforce_type": "employee",
+            "role": "operations_specialist",
+            "inherited_roles": [
+              "org_member",
+              "operations_specialist"
+            ],
+            "display_name": "K. Rao",
+            "email": "k.rao@tenant-client-01.local",
+            "lifecycle_state": "draft",
+            "local_system_id": null,
+            "source_system": "sampada",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:23.878000",
+            "updated_at": "2026-07-01T08:11:23.878000",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "82b8ed75-2a23-4b01-8317-57883dc7e783",
+              "correlation_id": "82b8ed75-2a23-4b01-8317-57883dc7e783",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "id": "6a44cbabf5b43a528e6ee598"
+          },
+          {
+            "workforce_ref_id": "wf-9ff66f9a66d9",
+            "organization_id": "6a44cbabf5b43a528e6ee582",
+            "department_id": "6a44cbabf5b43a528e6ee588",
+            "unit_id": null,
+            "workforce_type": "consultant",
+            "role": "analyst",
+            "inherited_roles": [
+              "org_member",
+              "analyst"
+            ],
+            "display_name": "S. Iyer",
+            "email": "s.iyer@tenant-client-01.local",
+            "lifecycle_state": "draft",
+            "local_system_id": null,
+            "source_system": "sampada",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:23.873000",
+            "updated_at": "2026-07-01T08:11:23.873000",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "d782aa8f-392d-45c5-a713-33655ecc7b5d",
+              "correlation_id": "d782aa8f-392d-45c5-a713-33655ecc7b5d",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "id": "6a44cbabf5b43a528e6ee596"
+          },
+          {
+            "workforce_ref_id": "wf-704dedc80d02",
+            "organization_id": "6a44cbabf5b43a528e6ee582",
+            "department_id": "6a44cbabf5b43a528e6ee58c",
+            "unit_id": null,
+            "workforce_type": "employee",
+            "role": "operations_manager",
+            "inherited_roles": [
+              "operations_manager"
+            ],
+            "display_name": "R. Mehta",
+            "email": "r.mehta@tenant-client-01.local",
+            "lifecycle_state": "offboarding_prep",
+            "local_system_id": null,
+            "source_system": "sampada",
+            "tenant_id": "platform",
+            "created_at": "2026-07-01T08:11:23.837000",
+            "updated_at": "2026-07-01T08:11:23.861000",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "transition_type": "promotion",
+            "id": "6a44cbabf5b43a528e6ee58e"
+          }
+        ],
+        "policy_scope": {
+          "scope": "platform",
+          "scope_label": "platform_admin",
+          "role": "admin",
+          "user_id": null,
+          "tenant_id": null,
+          "org_id": null,
+          "workforce_category": "all"
+        }
+      }
+    },
+    {
+      "note": "employee list under CLIENT/tenant scope (boundary check)",
+      "method": "GET",
+      "path": "/v1/workforce/employees",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "jwt:client",
+      "http_status": 200,
+      "response_correlation_id_header": "31cc1518-f3e5-4c41-8666-ba9d888bab2d",
+      "timestamp_utc": "2026-07-01T08:11:23.888393+00:00",
+      "response_body": {
+        "items": [],
+        "policy_scope": {
+          "scope": "client",
+          "scope_label": "client:TENANT-CLIENT-01",
+          "role": "client",
+          "user_id": "TENANT-CLIENT-01",
+          "tenant_id": "TENANT-CLIENT-01",
+          "org_id": "TENANT-CLIENT-01",
+          "workforce_category": "client_workforce"
+        }
+      }
+    },
+    {
+      "note": "negative-path: unknown organization_id (expect 404)",
+      "method": "GET",
+      "path": "/v1/workforce/organizations/000000000000000000000000/hierarchy",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 404,
+      "response_correlation_id_header": "c94614e9-07f7-4b46-8abc-87a7572807f8",
+      "timestamp_utc": "2026-07-01T08:11:23.892614+00:00",
+      "response_body": {
+        "detail": "Organization not found"
+      }
+    }
+  ],
+  "hierarchy": {
+    "organization": {
+      "name": "Sampada National Operations",
+      "code": "SNO-T21",
+      "parent_organization_id": null,
+      "default_roles": [
+        "org_member"
+      ],
+      "status": "active",
+      "tenant_id": "platform",
+      "created_at": "2026-07-01T08:11:23.810000",
+      "updated_at": "2026-07-01T08:11:23.810000",
+      "lineage": {
+        "origin_system": "gateway",
+        "owning_system": "sampada",
+        "schema_version": "1.0.0",
+        "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+        "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+        "trust_classification": "canonical",
+        "visibility_scope": "tenant"
+      },
+      "id": "6a44cbabf5b43a528e6ee582"
+    },
+    "divisions": [
+      {
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "name": "Field Operations Division",
+        "code": "FOD-T21",
+        "status": "active",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.815000",
+        "updated_at": "2026-07-01T08:11:23.815000",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a44cbabf5b43a528e6ee584"
+      }
+    ],
+    "units": [
+      {
+        "division_id": "6a44cbabf5b43a528e6ee584",
+        "name": "Northern Unit",
+        "code": "NU-T21",
+        "status": "active",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.819000",
+        "updated_at": "2026-07-01T08:11:23.819000",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a44cbabf5b43a528e6ee586"
+      }
+    ],
+    "departments": [
+      {
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "unit_id": "6a44cbabf5b43a528e6ee586",
+        "name": "Strategic Programs",
+        "code": "DEPT-C-T21",
+        "teams": [],
+        "default_roles": [
+          "program_lead"
+        ],
+        "status": "active",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.833000",
+        "updated_at": "2026-07-01T08:11:23.833000",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a44cbabf5b43a528e6ee58c"
+      },
+      {
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "unit_id": "6a44cbabf5b43a528e6ee586",
+        "name": "Regional Operations",
+        "code": "DEPT-B-T21",
+        "teams": [],
+        "default_roles": [
+          "operations_specialist"
+        ],
+        "status": "active",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.829000",
+        "updated_at": "2026-07-01T08:11:23.829000",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a44cbabf5b43a528e6ee58a"
+      },
+      {
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "unit_id": "6a44cbabf5b43a528e6ee586",
+        "name": "Onboarding Desk",
+        "code": "DEPT-A-T21",
+        "teams": [
+          {
+            "team_id": "tm-a1",
+            "name": "Intake Team",
+            "lead_role": "lead"
+          }
+        ],
+        "default_roles": [
+          "analyst"
+        ],
+        "status": "active",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.825000",
+        "updated_at": "2026-07-01T08:11:23.825000",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a44cbabf5b43a528e6ee588"
+      }
+    ],
+    "employees": [
+      {
+        "workforce_ref_id": "wf-7e12c94e1e96",
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "department_id": "6a44cbabf5b43a528e6ee58a",
+        "unit_id": null,
+        "workforce_type": "employee",
+        "role": "operations_specialist",
+        "inherited_roles": [
+          "org_member",
+          "operations_specialist"
+        ],
+        "display_name": "K. Rao",
+        "email": "k.rao@tenant-client-01.local",
+        "lifecycle_state": "draft",
+        "local_system_id": null,
+        "source_system": "sampada",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.878000",
+        "updated_at": "2026-07-01T08:11:23.878000",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "82b8ed75-2a23-4b01-8317-57883dc7e783",
+          "correlation_id": "82b8ed75-2a23-4b01-8317-57883dc7e783",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a44cbabf5b43a528e6ee598"
+      },
+      {
+        "workforce_ref_id": "wf-9ff66f9a66d9",
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "department_id": "6a44cbabf5b43a528e6ee588",
+        "unit_id": null,
+        "workforce_type": "consultant",
+        "role": "analyst",
+        "inherited_roles": [
+          "org_member",
+          "analyst"
+        ],
+        "display_name": "S. Iyer",
+        "email": "s.iyer@tenant-client-01.local",
+        "lifecycle_state": "draft",
+        "local_system_id": null,
+        "source_system": "sampada",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.873000",
+        "updated_at": "2026-07-01T08:11:23.873000",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "d782aa8f-392d-45c5-a713-33655ecc7b5d",
+          "correlation_id": "d782aa8f-392d-45c5-a713-33655ecc7b5d",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a44cbabf5b43a528e6ee596"
+      },
+      {
+        "workforce_ref_id": "wf-704dedc80d02",
+        "organization_id": "6a44cbabf5b43a528e6ee582",
+        "department_id": "6a44cbabf5b43a528e6ee58c",
+        "unit_id": null,
+        "workforce_type": "employee",
+        "role": "operations_manager",
+        "inherited_roles": [
+          "operations_manager"
+        ],
+        "display_name": "R. Mehta",
+        "email": "r.mehta@tenant-client-01.local",
+        "lifecycle_state": "offboarding_prep",
+        "local_system_id": null,
+        "source_system": "sampada",
+        "tenant_id": "platform",
+        "created_at": "2026-07-01T08:11:23.837000",
+        "updated_at": "2026-07-01T08:11:23.861000",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "transition_type": "promotion",
+        "id": "6a44cbabf5b43a528e6ee58e"
+      }
+    ],
+    "policy_scope": {
+      "scope": "platform",
+      "scope_label": "platform_admin",
+      "role": "admin",
+      "user_id": null,
+      "tenant_id": null,
+      "org_id": null,
+      "workforce_category": "all"
+    }
+  }
+}

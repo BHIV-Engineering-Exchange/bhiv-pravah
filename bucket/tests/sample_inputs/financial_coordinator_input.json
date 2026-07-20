@@ -1,0 +1,49 @@
+{
+  "user_id": "user_123",
+  "financial_data": {
+    "income": 75000,
+    "expenses": {
+      "housing": 2000,
+      "food": 800,
+      "transportation": 500,
+      "utilities": 300,
+      "entertainment": 400,
+      "savings": 1000,
+      "other": 500
+    },
+    "assets": {
+      "checking_account": 5000,
+      "savings_account": 25000,
+      "investments": 50000,
+      "retirement_401k": 75000
+    },
+    "debts": {
+      "credit_cards": 3000,
+      "student_loans": 15000,
+      "mortgage": 180000
+    }
+  },
+  "goals": [
+    {
+      "type": "emergency_fund",
+      "target_amount": 30000,
+      "timeline": "12_months"
+    },
+    {
+      "type": "vacation",
+      "target_amount": 5000,
+      "timeline": "6_months"
+    },
+    {
+      "type": "retirement",
+      "target_amount": 1000000,
+      "timeline": "30_years"
+    }
+  ],
+  "risk_tolerance": "moderate",
+  "preferences": {
+    "investment_style": "balanced",
+    "communication_frequency": "monthly",
+    "automated_savings": true
+  }
+}

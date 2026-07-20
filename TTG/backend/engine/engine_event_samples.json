@@ -1,0 +1,317 @@
+{
+  "connection_flow": {
+    "1_engine_connects": {
+      "direction": "engine → server",
+      "event": "connection",
+      "auth": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+        "engineId": "engine_local_01"
+      },
+      "response": {
+        "event": "ENGINE_CONNECTED",
+        "socketId": "abc123",
+        "engineId": "engine_local_01"
+      }
+    },
+    "2_engine_ready": {
+      "direction": "engine → server",
+      "event": "engine_ready",
+      "payload": {},
+      "response": {
+        "event": "ready_ack",
+        "status": "acknowledged",
+        "ts": 1738425600000
+      }
+    },
+    "3_server_sends_jobs": {
+      "direction": "server → engine",
+      "event": "engine_job",
+      "payload": {
+        "jobId": "uuid-v4",
+        "userId": "user_123",
+        "jobType": "BUILD_SCENE",
+        "payload": {
+          "sceneId": "scene_forest",
+          "ambientLight": [0.4, 0.6, 0.4],
+          "skybox": "forest_sky"
+        },
+        "status": "dispatched",
+        "submittedAt": 1738425600000,
+        "queuedAt": 1738425600000,
+        "dispatchedAt": 1738425600500
+      }
+    }
+  },
+
+  "heartbeat_flow": {
+    "engine_heartbeat": {
+      "direction": "engine → server",
+      "event": "engine_heartbeat",
+      "payload": {},
+      "frequency": "every 5 seconds",
+      "response": {
+        "event": "heartbeat_ack",
+        "ts": 1738425600000
+      }
+    },
+    "heartbeat_timeout": {
+      "condition": "no heartbeat for 10 seconds",
+      "action": "server disconnects engine",
+      "logged_event": {
+        "type": "ENGINE_HEARTBEAT_TIMEOUT",
+        "engineId": "engine_local_01",
+        "ts": 1738425610000
+      }
+    }
+  },
+
+  "job_lifecycle": {
+    "1_job_acknowledgement": {
+      "direction": "engine → server",
+      "event": "job_ack",
+      "payload": {
+        "jobId": "uuid-v4",
+        "status": "received"
+      },
+      "response": {
+        "event": "ack_received",
+        "jobId": "uuid-v4",
+        "ts": 1738425600000
+      }
+    },
+    "2_job_progress": {
+      "direction": "engine → server",
+      "event": "job_progress",
+      "payload": {
+        "jobId": "uuid-v4",
+        "progress": 45
+      },
+      "frequency": "optional, as needed",
+      "response": "none (fire and forget)"
+    },
+    "3_job_status_update": {
+      "direction": "engine → server",
+      "event": "job_status",
+      "payload": {
+        "nonce": "engine_nonce_123",
+        "sig": "hmac_signature_here",
+        "payload": {
+          "jobId": "uuid-v4",
+          "jobType": "BUILD_SCENE",
+          "status": "completed",
+          "error": null
+        }
+      },
+      "security": "HMAC signature + nonce required",
+      "response": {
+        "event": "status_ack",
+        "jobId": "uuid-v4",
+        "received": true,
+        "ts": 1738425605000
+      }
+    },
+    "4_job_failure": {
+      "direction": "engine → server",
+      "event": "job_status",
+      "payload": {
+        "nonce": "engine_nonce_124",
+        "sig": "hmac_signature_here",
+        "payload": {
+          "jobId": "uuid-v4",
+          "jobType": "LOAD_ASSETS",
+          "status": "failed",
+          "error": "BAD_ASSET: corrupted_texture.png"
+        }
+      },
+      "response": {
+        "event": "status_ack",
+        "jobId": "uuid-v4",
+        "received": true,
+        "ts": 1738425605000
+      }
+    }
+  },
+
+  "error_handling": {
+    "engine_error": {
+      "direction": "engine → server",
+      "event": "engine_error",
+      "payload": {
+        "error": "OUT_OF_MEMORY",
+        "details": "Failed to allocate 2GB for texture loading",
+        "severity": "critical"
+      },
+      "response": {
+        "event": "error_ack",
+        "received": true,
+        "ts": 1738425600000
+      }
+    },
+    "signature_rejection": {
+      "direction": "engine → server",
+      "event": "job_status",
+      "payload": {
+        "nonce": "invalid_nonce",
+        "sig": "bad_signature",
+        "payload": {}
+      },
+      "response": {
+        "event": "status_rejected",
+        "reason": "Invalid signature"
+      },
+      "action": "packet rejected, not processed"
+    },
+    "nonce_replay": {
+      "direction": "engine → server",
+      "event": "job_status",
+      "payload": {
+        "nonce": "already_used_nonce",
+        "sig": "valid_signature",
+        "payload": {}
+      },
+      "response": {
+        "event": "status_rejected",
+        "reason": "Nonce replay detected"
+      },
+      "action": "packet rejected, not processed"
+    }
+  },
+
+  "disconnect_flow": {
+    "graceful_disconnect": {
+      "direction": "engine → server",
+      "event": "disconnect",
+      "logged_event": {
+        "type": "ENGINE_DISCONNECTED",
+        "socketId": "abc123",
+        "engineId": "engine_local_01",
+        "ts": 1738425700000
+      },
+      "action": "all active jobs marked as failed"
+    },
+    "forced_disconnect": {
+      "trigger": "heartbeat timeout or auth failure",
+      "direction": "server → engine",
+      "action": "socket.disconnect(true)",
+      "logged_event": {
+        "type": "ENGINE_DISCONNECTED",
+        "reason": "heartbeat_timeout",
+        "engineId": "engine_local_01",
+        "ts": 1738425700000
+      }
+    }
+  },
+
+  "complete_job_example": {
+    "scenario": "BUILD_SCENE job from queue to completion",
+    "steps": [
+      {
+        "step": 1,
+        "event": "engine_job",
+        "direction": "server → engine",
+        "payload": {
+          "jobId": "job_001",
+          "jobType": "BUILD_SCENE",
+          "payload": {
+            "sceneId": "scene_forest",
+            "ambientLight": [0.4, 0.6, 0.4],
+            "skybox": "forest_sky"
+          }
+        }
+      },
+      {
+        "step": 2,
+        "event": "job_ack",
+        "direction": "engine → server",
+        "payload": {
+          "jobId": "job_001",
+          "status": "received"
+        }
+      },
+      {
+        "step": 3,
+        "event": "job_progress",
+        "direction": "engine → server",
+        "payload": {
+          "jobId": "job_001",
+          "progress": 50
+        }
+      },
+      {
+        "step": 4,
+        "event": "job_status",
+        "direction": "engine → server",
+        "payload": {
+          "nonce": "nonce_123",
+          "sig": "signature_here",
+          "payload": {
+            "jobId": "job_001",
+            "jobType": "BUILD_SCENE",
+            "status": "completed"
+          }
+        }
+      },
+      {
+        "step": 5,
+        "event": "status_ack",
+        "direction": "server → engine",
+        "payload": {
+          "jobId": "job_001",
+          "received": true,
+          "ts": 1738425605000
+        }
+      }
+    ]
+  },
+
+  "telemetry_events": {
+    "JOB_DISPATCHED_TO_ENGINE": {
+      "when": "job sent to engine",
+      "payload": {
+        "jobId": "uuid-v4",
+        "engineId": "engine_local_01"
+      }
+    },
+    "JOB_ACK": {
+      "when": "engine acknowledges job",
+      "payload": {
+        "jobId": "uuid-v4",
+        "status": "received",
+        "engineId": "engine_local_01"
+      }
+    },
+    "JOB_PROGRESS": {
+      "when": "engine reports progress",
+      "payload": {
+        "jobId": "uuid-v4",
+        "progress": 45,
+        "engineId": "engine_local_01"
+      }
+    },
+    "JOB_COMPLETED": {
+      "when": "engine reports completion",
+      "payload": {
+        "jobId": "uuid-v4",
+        "jobType": "BUILD_SCENE",
+        "engineId": "engine_local_01"
+      }
+    },
+    "JOB_FAILED": {
+      "when": "engine reports failure",
+      "payload": {
+        "jobId": "uuid-v4",
+        "jobType": "LOAD_ASSETS",
+        "error": "BAD_ASSET: corrupted_texture.png",
+        "engineId": "engine_local_01"
+      }
+    },
+    "ENGINE_ERROR": {
+      "when": "engine reports system error",
+      "payload": {
+        "error": "OUT_OF_MEMORY",
+        "details": "Failed to allocate memory",
+        "engineId": "engine_local_01"
+      }
+    }
+  }
+}

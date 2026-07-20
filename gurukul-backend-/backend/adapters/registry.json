@@ -1,0 +1,24 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-01-20",
+  "adapters": [
+    {
+      "lang": "ar",
+      "language_name": "Arabic",
+      "language_name_native": "العربية",
+      "tokens": 50000,
+      "vram_mb": 2048,
+      "version": "1.0.0",
+      "path": "adapters/ar_adapter.bin",
+      "status": "active",
+      "description": "Arabic language adapter for multilingual processing",
+      "supported_scripts": ["arabic"],
+      "rtl": true
+    }
+  ],
+  "default_language": "ar",
+  "sync_source": "local",
+  "notes": "Focused on Arabic language support for Sovereign Fusion Layer"
+}
+
+

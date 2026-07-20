@@ -1,0 +1,29 @@
+# Agent Service - AI Dependencies - Python 3.12.7 Compatible
+fastapi>=0.104.0,<0.120.0
+uvicorn[standard]>=0.24.0,<0.30.0
+pydantic>=2.5.0,<3.0.0
+
+# Database dependencies - MongoDB
+pymongo>=4.6.0
+dnspython>=2.4.0  # For MongoDB Atlas SRV connections
+
+# PostgreSQL dependencies - REMOVED (migrating to MongoDB)
+# psycopg2-binary>=2.9.7,<3.0.0
+# sqlalchemy>=2.0.23,<2.1.0
+
+# Authentication Dependencies
+PyJWT>=2.8.0,<3.0.0
+
+# AI Dependencies - Python 3.12.7 compatible
+sentence-transformers>=2.2.2  # Updated for v4 compatibility
+scikit-learn>=1.3.2,<1.6.0
+numpy>=1.24.4,<2.0.0
+torch>=2.1.0,<2.3.0
+transformers>=4.35.0,<5.0.0
+
+# Monitoring - Stable version
+prometheus-client>=0.19.0,<1.0.0
+
+# Utilities - Compatible versions
+python-multipart>=0.0.6
+python-dotenv>=1.0.0,<2.0.0

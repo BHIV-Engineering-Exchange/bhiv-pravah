@@ -1,0 +1,643 @@
+{
+  "signals": [
+    {
+      "signal_type": "niyantran_telemetry",
+      "ingest": {
+        "note": "SETU ingest niyantran_telemetry (linked to lifecycle trace)",
+        "method": "POST",
+        "path": "/v1/setu/signals/niyantran_telemetry",
+        "request_correlation_id_header": null,
+        "request_body": {
+          "payload": {
+            "event": "task_completed",
+            "task_id": "exec-7781",
+            "workforce_ref": "wf-704dedc80d02"
+          },
+          "workforce_ref_id": "wf-704dedc80d02",
+          "source_declaration": "niyantran_telemetry participation",
+          "trust_classification": "observed",
+          "visibility_scope": "tenant",
+          "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+        },
+        "auth": "api_key:admin",
+        "http_status": 200,
+        "response_correlation_id_header": "44a91b28-607e-4c65-89e5-ebce0bfcea10",
+        "timestamp_utc": "2026-07-01T08:11:24.065474+00:00",
+        "response_body": {
+          "signal_id": "sig-9746f00e65f0",
+          "signal_type": "niyantran_telemetry",
+          "payload": {
+            "event": "task_completed",
+            "task_id": "exec-7781",
+            "workforce_ref": "wf-704dedc80d02"
+          },
+          "workforce_ref_id": "wf-704dedc80d02",
+          "source_declaration": "niyantran_telemetry participation",
+          "tenant_id": "platform",
+          "created_at": "2026-07-01T08:11:24.071673+00:00",
+          "lineage": {
+            "origin_system": "niyantran",
+            "owning_system": "niyantran",
+            "schema_version": "1.0.0",
+            "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+            "trust_classification": "observed",
+            "visibility_scope": "tenant"
+          },
+          "updated_at": "2026-07-01T08:11:24.071686+00:00",
+          "id": "6a44cbacf5b43a528e6ee5c3"
+        }
+      },
+      "signal_id": "sig-9746f00e65f0",
+      "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+      "owning_system": "niyantran",
+      "list": {
+        "note": "SETU list niyantran_telemetry by correlation_id",
+        "method": "GET",
+        "path": "/v1/setu/signals?signal_type=niyantran_telemetry&correlation_id=0749c563-471a-49a2-8a74-74023b4526c5",
+        "request_correlation_id_header": null,
+        "request_body": null,
+        "auth": "api_key:admin",
+        "http_status": 200,
+        "response_correlation_id_header": "f5de2309-af44-485e-b81a-883f3fdf21ab",
+        "timestamp_utc": "2026-07-01T08:11:24.073216+00:00",
+        "response_body": {
+          "items": [
+            {
+              "signal_id": "sig-9746f00e65f0",
+              "signal_type": "niyantran_telemetry",
+              "payload": {
+                "event": "task_completed",
+                "task_id": "exec-7781",
+                "workforce_ref": "wf-704dedc80d02"
+              },
+              "workforce_ref_id": "wf-704dedc80d02",
+              "source_declaration": "niyantran_telemetry participation",
+              "tenant_id": "platform",
+              "created_at": "2026-07-01T08:11:24.071000",
+              "lineage": {
+                "origin_system": "niyantran",
+                "owning_system": "niyantran",
+                "schema_version": "1.0.0",
+                "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+                "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+                "trust_classification": "observed",
+                "visibility_scope": "tenant"
+              },
+              "updated_at": "2026-07-01T08:11:24.071000",
+              "id": "6a44cbacf5b43a528e6ee5c3"
+            }
+          ]
+        }
+      },
+      "trace": {
+        "note": "SETU trace continuity for niyantran_telemetry",
+        "method": "GET",
+        "path": "/v1/setu/trace/0749c563-471a-49a2-8a74-74023b4526c5",
+        "request_correlation_id_header": null,
+        "request_body": null,
+        "auth": "api_key:admin",
+        "http_status": 200,
+        "response_correlation_id_header": "74ec643c-ac63-433a-b318-8be419e15533",
+        "timestamp_utc": "2026-07-01T08:11:24.076743+00:00",
+        "response_body": {
+          "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+          "signal_count": 1,
+          "audit_count": 14,
+          "signals": [
+            {
+              "signal_id": "sig-9746f00e65f0",
+              "signal_type": "niyantran_telemetry",
+              "payload": {
+                "event": "task_completed",
+                "task_id": "exec-7781",
+                "workforce_ref": "wf-704dedc80d02"
+              },
+              "workforce_ref_id": "wf-704dedc80d02",
+              "source_declaration": "niyantran_telemetry participation",
+              "tenant_id": "platform",
+              "created_at": "2026-07-01T08:11:24.071000",
+              "lineage": {
+                "origin_system": "niyantran",
+                "owning_system": "niyantran",
+                "schema_version": "1.0.0",
+                "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+                "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+                "trust_classification": "observed",
+                "visibility_scope": "tenant"
+              },
+              "updated_at": "2026-07-01T08:11:24.071000",
+              "id": "6a44cbacf5b43a528e6ee5c3"
+            }
+          ],
+          "audit_events": [
+            {
+              "action": "organization_create",
+              "outcome": "success",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+            },
+            {
+              "action": "division_create",
+              "outcome": "success",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+            },
+            {
+              "action": "unit_create",
+              "outcome": "success",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+            },
+            {
+              "action": "department_create",
+              "outcome": "success",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+            },
+            {
+              "action": "department_create",
+              "outcome": "success",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+            },
+            {
+              "action": "department_create",
+              "outcome": "success",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+            },
+            {
+              "action": "employee_create",
+              "outcome": "success",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+            },
+            {
+              "action": "employee_onboard",
+              "outcome": "success",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+            },
+            {
+              "action": "employee_onboard_complete",
+              "outcome": "success",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+            },
+            {
+              "action": "employee_department_transfer",
+              "outcome": "success",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+            },
+            {
+              "action": "employee_promotion",
+              "outcome": "success",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+            },
+            {
+              "action": "employee_department_transfer",
+              "outcome": "success",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+            },
+            {
+              "action": "employee_offboard_prepare",
+              "outcome": "success",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+            },
+            {
+              "action": "setu_signal_niyantran_telemetry",
+              "outcome": "ingested",
+              "correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5"
+            }
+          ]
+        }
+      },
+      "trace_signal_count": 1,
+      "trace_audit_count": 14
+    },
+    {
+      "signal_type": "artha_payroll_visibility",
+      "ingest": {
+        "note": "SETU ingest artha_payroll_visibility",
+        "method": "POST",
+        "path": "/v1/setu/signals/artha_payroll_visibility",
+        "request_correlation_id_header": null,
+        "request_body": {
+          "payload": {
+            "period": "2026-06",
+            "visibility": "summary_only",
+            "workforce_ref": "wf-704dedc80d02"
+          },
+          "workforce_ref_id": "wf-704dedc80d02",
+          "source_declaration": "artha_payroll_visibility participation",
+          "trust_classification": "observed",
+          "visibility_scope": "tenant"
+        },
+        "auth": "api_key:admin",
+        "http_status": 200,
+        "response_correlation_id_header": "b63b8e35-e440-4280-8cb8-5d6ef1b3c927",
+        "timestamp_utc": "2026-07-01T08:11:24.080963+00:00",
+        "response_body": {
+          "signal_id": "sig-680230213813",
+          "signal_type": "artha_payroll_visibility",
+          "payload": {
+            "period": "2026-06",
+            "visibility": "summary_only",
+            "workforce_ref": "wf-704dedc80d02"
+          },
+          "workforce_ref_id": "wf-704dedc80d02",
+          "source_declaration": "artha_payroll_visibility participation",
+          "tenant_id": "platform",
+          "created_at": "2026-07-01T08:11:24.083623+00:00",
+          "lineage": {
+            "origin_system": "artha",
+            "owning_system": "artha",
+            "schema_version": "1.0.0",
+            "trace_id": "45e5789f-9b3b-4c1e-83df-78c85cf554d6",
+            "correlation_id": "45e5789f-9b3b-4c1e-83df-78c85cf554d6",
+            "trust_classification": "observed",
+            "visibility_scope": "tenant"
+          },
+          "updated_at": "2026-07-01T08:11:24.083642+00:00",
+          "id": "6a44cbacf5b43a528e6ee5c5"
+        }
+      },
+      "signal_id": "sig-680230213813",
+      "trace_id": "45e5789f-9b3b-4c1e-83df-78c85cf554d6",
+      "owning_system": "artha",
+      "list": {
+        "note": "SETU list artha_payroll_visibility by correlation_id",
+        "method": "GET",
+        "path": "/v1/setu/signals?signal_type=artha_payroll_visibility&correlation_id=45e5789f-9b3b-4c1e-83df-78c85cf554d6",
+        "request_correlation_id_header": null,
+        "request_body": null,
+        "auth": "api_key:admin",
+        "http_status": 200,
+        "response_correlation_id_header": "3470d81a-e342-4f3f-b9c6-b622d2f52478",
+        "timestamp_utc": "2026-07-01T08:11:24.085348+00:00",
+        "response_body": {
+          "items": [
+            {
+              "signal_id": "sig-680230213813",
+              "signal_type": "artha_payroll_visibility",
+              "payload": {
+                "period": "2026-06",
+                "visibility": "summary_only",
+                "workforce_ref": "wf-704dedc80d02"
+              },
+              "workforce_ref_id": "wf-704dedc80d02",
+              "source_declaration": "artha_payroll_visibility participation",
+              "tenant_id": "platform",
+              "created_at": "2026-07-01T08:11:24.083000",
+              "lineage": {
+                "origin_system": "artha",
+                "owning_system": "artha",
+                "schema_version": "1.0.0",
+                "trace_id": "45e5789f-9b3b-4c1e-83df-78c85cf554d6",
+                "correlation_id": "45e5789f-9b3b-4c1e-83df-78c85cf554d6",
+                "trust_classification": "observed",
+                "visibility_scope": "tenant"
+              },
+              "updated_at": "2026-07-01T08:11:24.083000",
+              "id": "6a44cbacf5b43a528e6ee5c5"
+            }
+          ]
+        }
+      },
+      "trace": {
+        "note": "SETU trace continuity for artha_payroll_visibility",
+        "method": "GET",
+        "path": "/v1/setu/trace/45e5789f-9b3b-4c1e-83df-78c85cf554d6",
+        "request_correlation_id_header": null,
+        "request_body": null,
+        "auth": "api_key:admin",
+        "http_status": 200,
+        "response_correlation_id_header": "9868addb-2ad4-4138-8e1d-f8ae4dd57eed",
+        "timestamp_utc": "2026-07-01T08:11:24.089289+00:00",
+        "response_body": {
+          "trace_id": "45e5789f-9b3b-4c1e-83df-78c85cf554d6",
+          "signal_count": 1,
+          "audit_count": 1,
+          "signals": [
+            {
+              "signal_id": "sig-680230213813",
+              "signal_type": "artha_payroll_visibility",
+              "payload": {
+                "period": "2026-06",
+                "visibility": "summary_only",
+                "workforce_ref": "wf-704dedc80d02"
+              },
+              "workforce_ref_id": "wf-704dedc80d02",
+              "source_declaration": "artha_payroll_visibility participation",
+              "tenant_id": "platform",
+              "created_at": "2026-07-01T08:11:24.083000",
+              "lineage": {
+                "origin_system": "artha",
+                "owning_system": "artha",
+                "schema_version": "1.0.0",
+                "trace_id": "45e5789f-9b3b-4c1e-83df-78c85cf554d6",
+                "correlation_id": "45e5789f-9b3b-4c1e-83df-78c85cf554d6",
+                "trust_classification": "observed",
+                "visibility_scope": "tenant"
+              },
+              "updated_at": "2026-07-01T08:11:24.083000",
+              "id": "6a44cbacf5b43a528e6ee5c5"
+            }
+          ],
+          "audit_events": [
+            {
+              "action": "setu_signal_artha_payroll_visibility",
+              "outcome": "ingested",
+              "correlation_id": "45e5789f-9b3b-4c1e-83df-78c85cf554d6"
+            }
+          ]
+        }
+      },
+      "trace_signal_count": 1,
+      "trace_audit_count": 1
+    },
+    {
+      "signal_type": "crm_participation",
+      "ingest": {
+        "note": "SETU ingest crm_participation",
+        "method": "POST",
+        "path": "/v1/setu/signals/crm_participation",
+        "request_correlation_id_header": null,
+        "request_body": {
+          "payload": {
+            "interaction": "client_touchpoint",
+            "account": "TENANT-CLIENT-01"
+          },
+          "workforce_ref_id": "wf-704dedc80d02",
+          "source_declaration": "crm_participation participation",
+          "trust_classification": "observed",
+          "visibility_scope": "tenant"
+        },
+        "auth": "api_key:admin",
+        "http_status": 200,
+        "response_correlation_id_header": "74b9bcf5-a4d7-40e7-82c6-5a5c2caec2af",
+        "timestamp_utc": "2026-07-01T08:11:24.092794+00:00",
+        "response_body": {
+          "signal_id": "sig-35aff75373cf",
+          "signal_type": "crm_participation",
+          "payload": {
+            "interaction": "client_touchpoint",
+            "account": "TENANT-CLIENT-01"
+          },
+          "workforce_ref_id": "wf-704dedc80d02",
+          "source_declaration": "crm_participation participation",
+          "tenant_id": "platform",
+          "created_at": "2026-07-01T08:11:24.095784+00:00",
+          "lineage": {
+            "origin_system": "crm",
+            "owning_system": "crm",
+            "schema_version": "1.0.0",
+            "trace_id": "2ee7500e-f60c-45a6-8940-6c60cd075fc2",
+            "correlation_id": "2ee7500e-f60c-45a6-8940-6c60cd075fc2",
+            "trust_classification": "observed",
+            "visibility_scope": "tenant"
+          },
+          "updated_at": "2026-07-01T08:11:24.095804+00:00",
+          "id": "6a44cbacf5b43a528e6ee5c7"
+        }
+      },
+      "signal_id": "sig-35aff75373cf",
+      "trace_id": "2ee7500e-f60c-45a6-8940-6c60cd075fc2",
+      "owning_system": "crm",
+      "list": {
+        "note": "SETU list crm_participation by correlation_id",
+        "method": "GET",
+        "path": "/v1/setu/signals?signal_type=crm_participation&correlation_id=2ee7500e-f60c-45a6-8940-6c60cd075fc2",
+        "request_correlation_id_header": null,
+        "request_body": null,
+        "auth": "api_key:admin",
+        "http_status": 200,
+        "response_correlation_id_header": "d50d5ba6-ab11-4aeb-bf1c-1a32df2d8039",
+        "timestamp_utc": "2026-07-01T08:11:24.097525+00:00",
+        "response_body": {
+          "items": [
+            {
+              "signal_id": "sig-35aff75373cf",
+              "signal_type": "crm_participation",
+              "payload": {
+                "interaction": "client_touchpoint",
+                "account": "TENANT-CLIENT-01"
+              },
+              "workforce_ref_id": "wf-704dedc80d02",
+              "source_declaration": "crm_participation participation",
+              "tenant_id": "platform",
+              "created_at": "2026-07-01T08:11:24.095000",
+              "lineage": {
+                "origin_system": "crm",
+                "owning_system": "crm",
+                "schema_version": "1.0.0",
+                "trace_id": "2ee7500e-f60c-45a6-8940-6c60cd075fc2",
+                "correlation_id": "2ee7500e-f60c-45a6-8940-6c60cd075fc2",
+                "trust_classification": "observed",
+                "visibility_scope": "tenant"
+              },
+              "updated_at": "2026-07-01T08:11:24.095000",
+              "id": "6a44cbacf5b43a528e6ee5c7"
+            }
+          ]
+        }
+      },
+      "trace": {
+        "note": "SETU trace continuity for crm_participation",
+        "method": "GET",
+        "path": "/v1/setu/trace/2ee7500e-f60c-45a6-8940-6c60cd075fc2",
+        "request_correlation_id_header": null,
+        "request_body": null,
+        "auth": "api_key:admin",
+        "http_status": 200,
+        "response_correlation_id_header": "7e17441e-443b-402d-beef-822fb7405c88",
+        "timestamp_utc": "2026-07-01T08:11:24.101616+00:00",
+        "response_body": {
+          "trace_id": "2ee7500e-f60c-45a6-8940-6c60cd075fc2",
+          "signal_count": 1,
+          "audit_count": 1,
+          "signals": [
+            {
+              "signal_id": "sig-35aff75373cf",
+              "signal_type": "crm_participation",
+              "payload": {
+                "interaction": "client_touchpoint",
+                "account": "TENANT-CLIENT-01"
+              },
+              "workforce_ref_id": "wf-704dedc80d02",
+              "source_declaration": "crm_participation participation",
+              "tenant_id": "platform",
+              "created_at": "2026-07-01T08:11:24.095000",
+              "lineage": {
+                "origin_system": "crm",
+                "owning_system": "crm",
+                "schema_version": "1.0.0",
+                "trace_id": "2ee7500e-f60c-45a6-8940-6c60cd075fc2",
+                "correlation_id": "2ee7500e-f60c-45a6-8940-6c60cd075fc2",
+                "trust_classification": "observed",
+                "visibility_scope": "tenant"
+              },
+              "updated_at": "2026-07-01T08:11:24.095000",
+              "id": "6a44cbacf5b43a528e6ee5c7"
+            }
+          ],
+          "audit_events": [
+            {
+              "action": "setu_signal_crm_participation",
+              "outcome": "ingested",
+              "correlation_id": "2ee7500e-f60c-45a6-8940-6c60cd075fc2"
+            }
+          ]
+        }
+      },
+      "trace_signal_count": 1,
+      "trace_audit_count": 1
+    },
+    {
+      "signal_type": "setu_aggregation",
+      "ingest": {
+        "note": "SETU ingest setu_aggregation",
+        "method": "POST",
+        "path": "/v1/setu/signals/setu_aggregation",
+        "request_correlation_id_header": null,
+        "request_body": {
+          "payload": {
+            "aggregate": "cross_system_rollup",
+            "sources": [
+              "niyantran",
+              "artha",
+              "crm"
+            ]
+          },
+          "workforce_ref_id": "wf-704dedc80d02",
+          "source_declaration": "setu_aggregation participation",
+          "trust_classification": "derived",
+          "visibility_scope": "tenant"
+        },
+        "auth": "api_key:admin",
+        "http_status": 200,
+        "response_correlation_id_header": "8478008e-106d-4ca4-921f-b9998b3e6223",
+        "timestamp_utc": "2026-07-01T08:11:24.105867+00:00",
+        "response_body": {
+          "signal_id": "sig-b6506b9eab8c",
+          "signal_type": "setu_aggregation",
+          "payload": {
+            "aggregate": "cross_system_rollup",
+            "sources": [
+              "niyantran",
+              "artha",
+              "crm"
+            ]
+          },
+          "workforce_ref_id": "wf-704dedc80d02",
+          "source_declaration": "setu_aggregation participation",
+          "tenant_id": "platform",
+          "created_at": "2026-07-01T08:11:24.108465+00:00",
+          "lineage": {
+            "origin_system": "setu",
+            "owning_system": "setu",
+            "schema_version": "1.0.0",
+            "trace_id": "d9acb10a-41bc-4bb6-8765-c5152cb7b802",
+            "correlation_id": "d9acb10a-41bc-4bb6-8765-c5152cb7b802",
+            "trust_classification": "derived",
+            "visibility_scope": "tenant"
+          },
+          "updated_at": "2026-07-01T08:11:24.108478+00:00",
+          "id": "6a44cbacf5b43a528e6ee5c9"
+        }
+      },
+      "signal_id": "sig-b6506b9eab8c",
+      "trace_id": "d9acb10a-41bc-4bb6-8765-c5152cb7b802",
+      "owning_system": "setu",
+      "list": {
+        "note": "SETU list setu_aggregation by correlation_id",
+        "method": "GET",
+        "path": "/v1/setu/signals?signal_type=setu_aggregation&correlation_id=d9acb10a-41bc-4bb6-8765-c5152cb7b802",
+        "request_correlation_id_header": null,
+        "request_body": null,
+        "auth": "api_key:admin",
+        "http_status": 200,
+        "response_correlation_id_header": "a218d6c5-59f0-4a88-8beb-08fbf6e6a098",
+        "timestamp_utc": "2026-07-01T08:11:24.109762+00:00",
+        "response_body": {
+          "items": [
+            {
+              "signal_id": "sig-b6506b9eab8c",
+              "signal_type": "setu_aggregation",
+              "payload": {
+                "aggregate": "cross_system_rollup",
+                "sources": [
+                  "niyantran",
+                  "artha",
+                  "crm"
+                ]
+              },
+              "workforce_ref_id": "wf-704dedc80d02",
+              "source_declaration": "setu_aggregation participation",
+              "tenant_id": "platform",
+              "created_at": "2026-07-01T08:11:24.108000",
+              "lineage": {
+                "origin_system": "setu",
+                "owning_system": "setu",
+                "schema_version": "1.0.0",
+                "trace_id": "d9acb10a-41bc-4bb6-8765-c5152cb7b802",
+                "correlation_id": "d9acb10a-41bc-4bb6-8765-c5152cb7b802",
+                "trust_classification": "derived",
+                "visibility_scope": "tenant"
+              },
+              "updated_at": "2026-07-01T08:11:24.108000",
+              "id": "6a44cbacf5b43a528e6ee5c9"
+            }
+          ]
+        }
+      },
+      "trace": {
+        "note": "SETU trace continuity for setu_aggregation",
+        "method": "GET",
+        "path": "/v1/setu/trace/d9acb10a-41bc-4bb6-8765-c5152cb7b802",
+        "request_correlation_id_header": null,
+        "request_body": null,
+        "auth": "api_key:admin",
+        "http_status": 200,
+        "response_correlation_id_header": "5165a0be-c4bd-48e1-9efb-f9957b6550f5",
+        "timestamp_utc": "2026-07-01T08:11:24.113687+00:00",
+        "response_body": {
+          "trace_id": "d9acb10a-41bc-4bb6-8765-c5152cb7b802",
+          "signal_count": 1,
+          "audit_count": 1,
+          "signals": [
+            {
+              "signal_id": "sig-b6506b9eab8c",
+              "signal_type": "setu_aggregation",
+              "payload": {
+                "aggregate": "cross_system_rollup",
+                "sources": [
+                  "niyantran",
+                  "artha",
+                  "crm"
+                ]
+              },
+              "workforce_ref_id": "wf-704dedc80d02",
+              "source_declaration": "setu_aggregation participation",
+              "tenant_id": "platform",
+              "created_at": "2026-07-01T08:11:24.108000",
+              "lineage": {
+                "origin_system": "setu",
+                "owning_system": "setu",
+                "schema_version": "1.0.0",
+                "trace_id": "d9acb10a-41bc-4bb6-8765-c5152cb7b802",
+                "correlation_id": "d9acb10a-41bc-4bb6-8765-c5152cb7b802",
+                "trust_classification": "derived",
+                "visibility_scope": "tenant"
+              },
+              "updated_at": "2026-07-01T08:11:24.108000",
+              "id": "6a44cbacf5b43a528e6ee5c9"
+            }
+          ],
+          "audit_events": [
+            {
+              "action": "setu_signal_setu_aggregation",
+              "outcome": "ingested",
+              "correlation_id": "d9acb10a-41bc-4bb6-8765-c5152cb7b802"
+            }
+          ]
+        }
+      },
+      "trace_signal_count": 1,
+      "trace_audit_count": 1
+    }
+  ]
+}

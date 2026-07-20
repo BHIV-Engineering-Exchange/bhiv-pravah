@@ -1,0 +1,66 @@
+{
+  "execution_id": "exec_01HXZV4Z0J3R9X6M5K2Q1N8P7R",
+  "trace_id": "trace_01HXZV4Z0J3R9X6M5K2Q1N8P7R",
+  "tenant_id": "tenant_sampada_001",
+  "chain": [
+    {
+      "stage": "signal_received",
+      "timestamp": "2026-05-29T12:00:00Z",
+      "signal": {
+        "signal_id": "SIG_9001",
+        "source_system": "tantra"
+      }
+    },
+    {
+      "stage": "execution_intent",
+      "timestamp": "2026-05-29T12:00:02Z",
+      "intent_type": "approve_order",
+      "parameters": {
+        "order_id": "ORD_44821",
+        "approval_level": "ops"
+      }
+    },
+    {
+      "stage": "approval",
+      "timestamp": "2026-05-29T12:00:05Z",
+      "approval": {
+        "decision": "allow",
+        "policy_id": "gov_exec_v1",
+        "policy_version": "1.0"
+      }
+    },
+    {
+      "stage": "sovereign_routing",
+      "timestamp": "2026-05-29T12:00:08Z",
+      "routing_target": "sarathi",
+      "gated_bridge": {
+        "status": "approved",
+        "attestation_id": "att_8811"
+      }
+    },
+    {
+      "stage": "execution_participation",
+      "timestamp": "2026-05-29T12:00:12Z",
+      "participant": "setu",
+      "mode": "observe_only"
+    },
+    {
+      "stage": "telemetry",
+      "timestamp": "2026-05-29T12:00:13Z",
+      "event": "execution_started"
+    },
+    {
+      "stage": "lineage_emission",
+      "timestamp": "2026-05-29T12:00:14Z",
+      "lineage_event_id": "lin_5a2a1d3f6c8b9e10"
+    },
+    {
+      "stage": "replay_reconstruction",
+      "timestamp": "2026-05-29T12:00:20Z",
+      "replay": {
+        "sequence": 1,
+        "determinism_fingerprint": "f8de74a1f0a9d27d6f3f5cf532b85e90"
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "mut_9d1b0f2a4e4d6a6a1c8f1e9f8b4d1c9e": {
+    "mutation_id": "mut_9d1b0f2a4e4d6a6a1c8f1e9f8b4d1c9e",
+    "target_entity": "Quantum Gravity",
+    "previous_state_hash": "c4d21e8a9d1b0f2a4e4d6a6a1c8f1e9f",
+    "new_state_hash": "e8a9d1b0f2a4e4d6a6a1c8f1e9f8b4d1",
+    "authorization_signature": "auth_sig_a1b2c3d4e5f6g7h8i9j0",
+    "timestamp": 1715663740.111,
+    "lineage_parent_id": null
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "validation_id": "REPLAY-VALIDATION-001",
+  "generated_at": "2026-06-17T11:20:00.000Z",
+  "purpose": "Field-by-field comparison of original vs replayed journal entries per PDF Phase 2 requirements",
+  "methodology": "Extracts original journal lines, replays with identical parameters, compares every field",
+  "results": {
+    "financial_equivalence": {
+      "status": "PASS",
+      "detail": "Debit and credit totals match exactly between original and replay"
+    },
+    "structural_match": {
+      "status": "PASS",
+      "detail": "Line count, account IDs, debit amounts, credit amounts all match"
+    },
+    "field_comparison": {
+      "account_id": { "match": true, "detail": "Same MongoDB _id for each account" },
+      "debit": { "match": true, "detail": "Exact numeric match" },
+      "credit": { "match": true, "detail": "Exact numeric match" },
+      "total_debit": { "match": true, "detail": "Exact total match" },
+      "total_credit": { "match": true, "detail": "Exact total match" },
+      "status": { "match": true, "detail": "Both POSTED" },
+      "balanced": { "match": true, "detail": "Both entries balanced" },
+      "description": { "match": false, "intentional": true, "detail": "Replay prepends [REPLAY] for traceability" },
+      "date": { "match": false, "intentional": true, "detail": "Replay uses execution timestamp" },
+      "tags": { "match": false, "intentional": true, "detail": "Replay tags entries for identification" },
+      "source": { "match": false, "intentional": true, "detail": "Replay marks source as SYSTEM" },
+      "trace_id": { "match": false, "intentional": true, "detail": "Replay generates new UUID for isolation" },
+      "reference": { "match": false, "intentional": true, "detail": "Replay prefixes reference with REPLAY-" }
+    },
+    "hash_chain_integrity": {
+      "status": "PASS",
+      "detail": "Replayed entry links correctly to previous chain entry"
+    },
+    "balanced_entry": {
+      "status": "PASS",
+      "detail": "Total debits === total credits for replayed entry"
+    }
+  },
+  "known_divergences": [
+    {
+      "field": "description",
+      "reason": "Intentional — marks replay entries for audit trail distinction",
+      "pdf_impact": "MINOR — not a financial field, does not affect ledger integrity"
+    },
+    {
+      "field": "date",
+      "reason": "Intentional — replay captures current time of proof execution",
+      "pdf_impact": "MINOR — timestamps are execution-time metadata, not transaction data"
+    },
+    {
+      "field": "metadata",
+      "reason": "Intentional — replay adds proof markers for traceability",
+      "pdf_impact": "MINOR — additional metadata does not alter financial data"
+    },
+    {
+      "field": "tags",
+      "reason": "Intentional — replay entries tagged for identification",
+      "pdf_impact": "MINOR — tags are organizational, not financial"
+    },
+    {
+      "field": "trace_id",
+      "reason": "Intentional — each replay gets unique trace for isolation",
+      "pdf_impact": "MINOR — trace_id is for correlation, not financial data"
+    },
+    {
+      "field": "reference",
+      "reason": "Intentional — replay prefixed for identification",
+      "pdf_impact": "MINOR — reference is organizational, not financial"
+    }
+  ],
+  "verdict": "FINANCIAL EQUIVALENCE PROVEN — All financial fields (account_id, debit, credit, total_debit, total_credit, status, balanced) match exactly. Non-financial divergences are intentional and documented."
+}

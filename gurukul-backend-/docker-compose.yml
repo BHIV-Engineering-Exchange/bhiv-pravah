@@ -1,0 +1,71 @@
+services:
+
+  gurukul-backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: gurukul_backend_local
+    ports:
+      - "3002:3000"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=3000
+      - DATABASE_URL=${GURUKUL_DATABASE_URL}
+      - MONGO_URI=${MONGODB_URI}
+      - REDIS_URL=${REDIS_URL}
+      - DB_NAME=karma-chain
+      - EMS_API_BASE_URL=http://ems-backend:8000
+      - ALLOWED_ORIGINS=http://localhost:5174,http://localhost:3001,http://127.0.0.1:5174,http://127.0.0.1:3001
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  gurukul-frontend:
+    build:
+      context: .
+      dockerfile: Frontend/Dockerfile
+      args:
+        - VITE_API_URL=http://localhost:3002
+    container_name: gurukul_frontend_local
+    ports:
+      - "5174:5174"
+    depends_on:
+      - gurukul-backend
+    restart: unless-stopped
+
+  ems-backend:
+    build:
+      context: ./EMS-System
+      dockerfile: Dockerfile
+    container_name: ems_backend_local
+    ports:
+      - "8001:8000"
+    environment:
+      - DATABASE_URL=${EMS_DATABASE_URL}
+      - GURUKUL_API_BASE_URL=http://gurukul-backend:3000
+      - FRONTEND_URL=http://localhost:3001
+      - ALLOWED_ORIGINS=http://localhost:5174,http://localhost:3001,http://127.0.0.1:5174,http://127.0.0.1:3001
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  ems-frontend:
+    build:
+      context: .
+      dockerfile: EMS-System/frontend/Dockerfile
+      args:
+        - VITE_API_URL=http://localhost:8001
+    container_name: ems_frontend_local
+    ports:
+      - "3001:3001"
+    depends_on:
+      - ems-backend
+    restart: unless-stopped
+
+

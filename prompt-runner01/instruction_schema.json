@@ -1,0 +1,110 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Prompt Runner Instruction v4",
+  "description": "Structured execution instruction produced by Prompt Runner. No additional fields allowed.",
+  "type": "object",
+  "properties": {
+    "module": {
+      "type": "string",
+      "description": "The system module responsible for executing the instruction",
+      "examples": [
+        "creator",
+        "architecture_design",
+        "legal_compliance",
+        "investment_analyzer",
+        "system_designer",
+        "database_designer",
+        "code_reviewer",
+        "data_analysis",
+        "financial_calculator",
+        "deployment_planner",
+        "general_processor"
+      ]
+    },
+    "intent": {
+      "type": "string",
+      "description": "The detected user intent in snake_case",
+      "examples": [
+        "generate_explanation",
+        "design_solution",
+        "perform_analysis",
+        "calculate_estimate",
+        "create_workflow",
+        "review_code",
+        "analyze_contract",
+        "assess_risk",
+        "plan_deployment",
+        "research_topic"
+      ]
+    },
+    "topic": {
+      "type": "string",
+      "description": "The main subject extracted from the prompt, stripped of leading action verbs",
+      "minLength": 1
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "maxItems": 10,
+      "description": "Dynamically generated, context-specific task steps for the module to execute"
+    },
+    "output_format": {
+      "type": "string",
+      "description": "Expected result format for the module output",
+      "examples": [
+        "step_by_step_guide",
+        "analysis_report",
+        "design_document",
+        "code_solution",
+        "summary",
+        "tutorial",
+        "financial_report",
+        "assessment_report",
+        "cost_estimate",
+        "compliance_report",
+        "research_report",
+        "deployment_plan",
+        "database_schema",
+        "review_report",
+        "investment_analysis",
+        "treatment_plan",
+        "budget_plan",
+        "general_response"
+      ]
+    }
+  },
+  "required": ["module", "intent", "topic", "tasks", "output_format"],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "module": "creator",
+      "intent": "generate_explanation",
+      "topic": "stock prediction application",
+      "tasks": [
+        "system architecture",
+        "data collection and preprocessing",
+        "model selection",
+        "training pipeline",
+        "web integration"
+      ],
+      "output_format": "step_by_step_guide"
+    },
+    {
+      "module": "architecture_design",
+      "intent": "design_solution",
+      "topic": "residential building for a 1000 sqft plot in Mumbai",
+      "tasks": [
+        "site analysis",
+        "floor plan design",
+        "structural planning",
+        "material estimation",
+        "permit compliance review"
+      ],
+      "output_format": "design_document"
+    }
+  ]
+}

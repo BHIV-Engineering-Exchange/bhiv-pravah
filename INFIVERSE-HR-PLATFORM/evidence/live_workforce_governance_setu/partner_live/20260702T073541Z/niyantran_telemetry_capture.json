@@ -1,0 +1,8 @@
+{
+  "ok": false,
+  "tier": "Tier 2 \u00e2\u20ac\u201d dispatcher invoked directly, partner server not booted in this environment",
+  "execution_event_id": "39ec574cc9c09d5c5cd72393d2d5df54f7ec5bec6f58102ab2a7dd89bd331051",
+  "trace_id": "trace_demo_002",
+  "dispatched": false,
+  "reason": "missing SAMPADA_SETU_BASE_URL or SAMPADA_SETU_API_KEY"
+}

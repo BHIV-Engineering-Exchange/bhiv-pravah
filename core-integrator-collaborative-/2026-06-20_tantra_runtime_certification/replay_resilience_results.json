@@ -1,0 +1,27 @@
+{
+  "replay_resilience": {
+    "total_replays_run": 5,
+    "successful_replays": 5,
+    "failed_replays": 0,
+    "determinism_success_rate": 1.0,
+    "performance_metrics_ms": {
+      "min_replay_time": 30.0,
+      "max_replay_time": 95.0,
+      "avg_replay_time": 45.0
+    },
+    "resilience_scenarios": [
+      {
+        "scenario": "Replay after service outage and recovery",
+        "trace_id": "trace_519787197c1e",
+        "result": "PASS",
+        "hash_match": true
+      },
+      {
+        "scenario": "Replay with remote source retrieval",
+        "trace_id": "trace_7c86796510ed",
+        "result": "PASS",
+        "hash_match": true
+      }
+    ]
+  }
+}

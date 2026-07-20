@@ -1,0 +1,76 @@
+{
+  "cross_product_execution_matrix": [
+    {
+      "component": "Prompt Runner",
+      "input": "Natural language query",
+      "trace_id": "trace_7c86796510ed",
+      "output_artifact": "instruction_141bca3c",
+      "replay_match": true,
+      "status": "PASS"
+    },
+    {
+      "component": "Creator Core",
+      "input": "instruction_141bca3c",
+      "trace_id": "trace_7c86796510ed",
+      "output_artifact": "blueprint_bbbf84a5",
+      "replay_match": true,
+      "status": "PASS"
+    },
+    {
+      "component": "BHIV Core",
+      "input": "blueprint_bbbf84a5",
+      "trace_id": "trace_7c86796510ed",
+      "output_artifact": "execution_44323c3d",
+      "replay_match": true,
+      "status": "PASS"
+    },
+    {
+      "component": "BHIV Bucket",
+      "input": "All generated artifacts",
+      "trace_id": "trace_7c86796510ed",
+      "output_artifact": "result_9f7589f9",
+      "replay_match": true,
+      "status": "PASS"
+    },
+    {
+      "component": "InsightFlow",
+      "input": "Component health events",
+      "trace_id": "trace_7c86796510ed",
+      "output_artifact": "Status 200 OK",
+      "replay_match": true,
+      "status": "PASS"
+    },
+    {
+      "component": "TTG (Text-to-Game)",
+      "input": "Game instruction inputs",
+      "trace_id": "inst_tantra_606bdd086cb4",
+      "output_artifact": "artifact_result_7c0d8112",
+      "replay_match": true,
+      "status": "PASS"
+    },
+    {
+      "component": "TTV (Text-to-Video)",
+      "input": "Video metadata properties",
+      "trace_id": "inst_tantra_606bdd086cb4",
+      "output_artifact": "artifact_result_7c0d8112",
+      "replay_match": true,
+      "status": "PASS"
+    },
+    {
+      "component": "Gurukul",
+      "input": "Educational structure parameter",
+      "trace_id": "inst_tantra_606bdd086cb4",
+      "output_artifact": "artifact_result_7c0d8112",
+      "replay_match": true,
+      "status": "PASS"
+    },
+    {
+      "component": "Simulation Runtime",
+      "input": "Simulated flow prompts",
+      "trace_id": "inst_tantra_606bdd086cb4",
+      "output_artifact": "artifact_result_7c0d8112",
+      "replay_match": true,
+      "status": "PASS"
+    }
+  ]
+}

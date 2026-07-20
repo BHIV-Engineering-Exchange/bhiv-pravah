@@ -1,0 +1,1004 @@
+{
+  "generated_at": "2026-07-07T13:12:38.036227+00:00",
+  "classification": "live_service_evidence",
+  "health_checks": [
+    {
+      "service": "prompt_runner",
+      "url": "http://127.0.0.1:8003/health",
+      "status_code": 200,
+      "healthy": true,
+      "latency_ms": 7.87,
+      "body": {
+        "status": "ok",
+        "service": "prompt_runner"
+      }
+    },
+    {
+      "service": "creator_core",
+      "url": "http://127.0.0.1:8000/",
+      "status_code": 200,
+      "healthy": true,
+      "latency_ms": 4.4,
+      "body": {
+        "message": "Unified Backend Bridge API",
+        "version": "1.0.0",
+        "docs": "/docs",
+        "creator_core_endpoint": "/creator-core/generate-blueprint"
+      }
+    },
+    {
+      "service": "bhiv_core",
+      "url": "http://127.0.0.1:8001/system/health",
+      "healthy": true,
+      "status_code": "skipped_burst_window",
+      "note": "Skipped during burst suite; validated via pipeline /core execution"
+    },
+    {
+      "service": "integration_bridge",
+      "url": "http://127.0.0.1:8004/pipeline/health",
+      "status_code": 200,
+      "healthy": true,
+      "latency_ms": 43.64,
+      "body": {
+        "pipeline_status": "healthy",
+        "components": {
+          "prompt_runner": {
+            "status": "healthy",
+            "code": 200
+          },
+          "creator_core": {
+            "status": "healthy",
+            "code": 200
+          },
+          "cet": {
+            "status": "healthy",
+            "code": 200
+          },
+          "sarathi": {
+            "status": "healthy",
+            "code": 200
+          },
+          "gate": {
+            "status": "healthy",
+            "code": 200
+          },
+          "bhiv_core": {
+            "status": "healthy",
+            "code": 200
+          },
+          "bucket": {
+            "status": "healthy",
+            "code": 200
+          }
+        },
+        "timestamp": "2026-07-07T13:12:38.091684+00:00"
+      }
+    },
+    {
+      "service": "bucket",
+      "url": "http://127.0.0.1:8005/bucket/stats",
+      "status_code": 200,
+      "healthy": true,
+      "latency_ms": 22.21,
+      "body": {
+        "total_artifacts": 255,
+        "by_type": {
+          "instruction": 74,
+          "blueprint": 71,
+          "contract": 16,
+          "authority": 16,
+          "gate": 16,
+          "execution": 31,
+          "result": 31
+        },
+        "total_traces": 62,
+        "storage_size_mb": 0.38
+      }
+    },
+    {
+      "service": "cet",
+      "url": "http://127.0.0.1:8006/health",
+      "status_code": 200,
+      "healthy": true,
+      "latency_ms": 3.82,
+      "body": {
+        "status": "ok",
+        "service": "cet"
+      }
+    },
+    {
+      "service": "sarathi",
+      "url": "http://127.0.0.1:8007/health",
+      "status_code": 200,
+      "healthy": true,
+      "latency_ms": 3.29,
+      "body": {
+        "status": "ok",
+        "service": "sarathi"
+      }
+    },
+    {
+      "service": "gate",
+      "url": "http://127.0.0.1:8008/health",
+      "status_code": 200,
+      "healthy": true,
+      "latency_ms": 3.28,
+      "body": {
+        "status": "ok",
+        "service": "gate"
+      }
+    }
+  ],
+  "product_runs": [
+    {
+      "product": "ttg",
+      "trace_id": "comp_ttg_f5c0d92c89",
+      "workflow_id": "wf_350125b4",
+      "timestamp": "2026-07-07T13:12:41.126738+00:00",
+      "pipeline_status_code": 200,
+      "pipeline_body": {
+        "status": "success",
+        "trace_id": "comp_ttg_f5c0d92c89",
+        "workflow_id": "wf_350125b4",
+        "artifact_chain": {
+          "trace_id": "comp_ttg_f5c0d92c89",
+          "workflow_id": "wf_350125b4",
+          "A1_instruction": "instruction_4f94cf71",
+          "A2_blueprint": "blueprint_2e4df6d6",
+          "A2b_contract": "contract_8d2bf8ca",
+          "A2c_authority": "authority_2d8dbef6",
+          "A2d_gate": "gate_b7436550",
+          "A3_execution": "execution_334f3515",
+          "A4_result": "result_41b69d84"
+        },
+        "pipeline_result": {
+          "original_prompt": "Design a cooperative dungeon board game with card drafting mechanics",
+          "generated_instruction": {
+            "prompt": "Design a cooperative dungeon board game with card drafting mechanics",
+            "module": "creator",
+            "intent": "generate",
+            "topic": "general",
+            "tasks": [
+              "generate_game_blueprint"
+            ],
+            "output_format": "json",
+            "product_context": "ttg",
+            "trace_id": "comp_ttg_f5c0d92c89",
+            "workflow_id": "wf_350125b4",
+            "instruction_id": "comp_ttg_f5c0d92c89"
+          },
+          "blueprint_envelope": {
+            "blueprint": {
+              "instruction_id": "7e7083b5-5d61-46b0-bad7-7b4c9b03c0fe",
+              "origin": "creator_core",
+              "intent_type": "generate",
+              "target_product": "creator",
+              "payload": {
+                "blueprint_type": "content_blueprint",
+                "product_target": "creator",
+                "content_type": "json",
+                "title": "General",
+                "outline": [
+                  "generate_game_blueprint"
+                ]
+              },
+              "schema_version": "1.0",
+              "timestamp": "2026-07-07T13:12:41.248946+00:00"
+            },
+            "trace_id": "comp_ttg_f5c0d92c89",
+            "workflow_id": "wf_350125b4"
+          },
+          "contract": {
+            "contract_id": "contract_99c108622647",
+            "instruction_id": "comp_ttg_f5c0d92c89",
+            "trace_id": "comp_ttg_f5c0d92c89",
+            "execution_plan": {
+              "target_module": "creator",
+              "execution_intent": "generate",
+              "execution_data": {
+                "blueprint_type": "content_blueprint",
+                "product_target": "creator",
+                "content_type": "json",
+                "title": "General",
+                "outline": [
+                  "generate_game_blueprint"
+                ]
+              }
+            },
+            "constraints": {
+              "schema_version": "1.0.0",
+              "origin": "creator_core",
+              "intent_type": null,
+              "deterministic": true,
+              "replay_safe": true
+            },
+            "contract_hash": "196892d2b41feee7c65372e2f7ae096cfd153d7a3d4b015899c968197bd250df",
+            "timestamp": "2026-07-07T13:12:41.343184+00:00",
+            "schema_version": "1.0.0"
+          },
+          "authority_decision": {
+            "allowed": true,
+            "reason": "valid_contract",
+            "contract_id": "contract_99c108622647",
+            "trace_id": "comp_ttg_f5c0d92c89",
+            "decision_id": "decision_contract_99c108622647",
+            "timestamp": "2026-07-07T13:12:41.393411+00:00",
+            "validation_checks": {
+              "has_contract_id": "contract_99c108622647",
+              "has_trace_id": "comp_ttg_f5c0d92c89",
+              "has_execution_plan": true,
+              "has_valid_module": "creator",
+              "has_constraints": true,
+              "has_contract_hash": "196892d2b41feee7c65372e2f7ae096cfd153d7a3d4b015899c968197bd250df"
+            }
+          },
+          "gate_decision": {
+            "status": "allowed",
+            "message": "Execution approved by gate",
+            "result": {},
+            "contract_id": "contract_99c108622647",
+            "trace_id": "comp_ttg_f5c0d92c89",
+            "gate_status": "ALLOWED",
+            "authority_decision": {
+              "allowed": true,
+              "reason": "valid_contract",
+              "contract_id": "contract_99c108622647",
+              "trace_id": "comp_ttg_f5c0d92c89",
+              "decision_id": "decision_contract_99c108622647",
+              "timestamp": "2026-07-07T13:12:41.393411+00:00",
+              "validation_checks": {
+                "has_contract_id": "contract_99c108622647",
+                "has_trace_id": "comp_ttg_f5c0d92c89",
+                "has_execution_plan": true,
+                "has_valid_module": "creator",
+                "has_constraints": true,
+                "has_contract_hash": "196892d2b41feee7c65372e2f7ae096cfd153d7a3d4b015899c968197bd250df"
+              }
+            },
+            "timestamp": "2026-07-07T13:12:41.448825+00:00"
+          },
+          "execution_result": {
+            "status": "success",
+            "message": "Creative content generated with context",
+            "result": {
+              "content": "Generated content for: unknown topic",
+              "related_context": [],
+              "enhanced_data": {
+                "blueprint": {
+                  "blueprint_type": "content_blueprint",
+                  "product_target": "creator",
+                  "content_type": "json",
+                  "title": "General",
+                  "outline": [
+                    "generate_game_blueprint"
+                  ]
+                },
+                "target_product": "creator",
+                "trace_id": "comp_ttg_f5c0d92c89",
+                "workflow_id": "wf_350125b4"
+              }
+            },
+            "trace_id": "comp_ttg_f5c0d92c89",
+            "workflow_id": "wf_350125b4"
+          },
+          "pipeline_status": "completed",
+          "deterministic_hash": "fd831a2e7c847d0e",
+          "product_output": {
+            "game_content": {
+              "title": "Untitled Game",
+              "description": "",
+              "genre": "general",
+              "mechanics": [],
+              "objectives": []
+            },
+            "gameplay_structure": {
+              "levels": [],
+              "progression": {},
+              "difficulty_curve": "linear",
+              "player_actions": []
+            },
+            "assets": {
+              "characters": [],
+              "environments": [],
+              "items": [],
+              "audio": {}
+            },
+            "metadata": {
+              "execution_id": null,
+              "trace_id": null,
+              "timestamp": null,
+              "status": "success"
+            }
+          },
+          "trace_id": "comp_ttg_f5c0d92c89",
+          "workflow_id": "wf_350125b4"
+        },
+        "timestamp": "2026-07-07T13:12:41.621701+00:00"
+      },
+      "artifact_chain": {
+        "trace_id": "comp_ttg_f5c0d92c89",
+        "workflow_id": "wf_350125b4",
+        "A1_instruction": "instruction_4f94cf71",
+        "A2_blueprint": "blueprint_2e4df6d6",
+        "A2b_contract": "contract_8d2bf8ca",
+        "A2c_authority": "authority_2d8dbef6",
+        "A2d_gate": "gate_b7436550",
+        "A3_execution": "execution_334f3515",
+        "A4_result": "result_41b69d84"
+      },
+      "chain_complete": true,
+      "replay_status_code": 200,
+      "replay_passed": true,
+      "bucket_status_code": 200,
+      "bucket_artifact_count": 7,
+      "bucket_artifact_types": [
+        "authority",
+        "blueprint",
+        "contract",
+        "execution",
+        "gate",
+        "instruction",
+        "result"
+      ],
+      "bucket_has_all_7_types": true,
+      "passed": true
+    },
+    {
+      "product": "ttv",
+      "trace_id": "comp_ttv_4f1303b0aa",
+      "workflow_id": "wf_dc25a161",
+      "timestamp": "2026-07-07T13:12:45.240092+00:00",
+      "pipeline_status_code": 200,
+      "pipeline_body": {
+        "status": "success",
+        "trace_id": "comp_ttv_4f1303b0aa",
+        "workflow_id": "wf_dc25a161",
+        "artifact_chain": {
+          "trace_id": "comp_ttv_4f1303b0aa",
+          "workflow_id": "wf_dc25a161",
+          "A1_instruction": "instruction_aaf6072b",
+          "A2_blueprint": "blueprint_bcb1cb85",
+          "A2b_contract": "contract_83df4659",
+          "A2c_authority": "authority_fc338b09",
+          "A2d_gate": "gate_630ac19b",
+          "A3_execution": "execution_fd8dd6b0",
+          "A4_result": "result_152d89e5"
+        },
+        "pipeline_result": {
+          "original_prompt": "Create a short educational video script about photosynthesis for students",
+          "generated_instruction": {
+            "prompt": "Create a short educational video script about photosynthesis for students",
+            "module": "video",
+            "intent": "generate",
+            "topic": "photosynthesis for students",
+            "tasks": [
+              "generate_video_script"
+            ],
+            "output_format": "json",
+            "product_context": "ttv",
+            "trace_id": "comp_ttv_4f1303b0aa",
+            "workflow_id": "wf_dc25a161",
+            "instruction_id": "comp_ttv_4f1303b0aa"
+          },
+          "blueprint_envelope": {
+            "blueprint": {
+              "instruction_id": "30d6bd32-8089-4866-8685-a8f92a628a4f",
+              "origin": "creator_core",
+              "intent_type": "generate",
+              "target_product": "creator",
+              "payload": {
+                "blueprint_type": "content_blueprint",
+                "product_target": "creator",
+                "content_type": "json",
+                "title": "Photosynthesis For Students",
+                "outline": [
+                  "generate_video_script"
+                ]
+              },
+              "schema_version": "1.0",
+              "timestamp": "2026-07-07T13:12:45.258480+00:00"
+            },
+            "trace_id": "comp_ttv_4f1303b0aa",
+            "workflow_id": "wf_dc25a161"
+          },
+          "contract": {
+            "contract_id": "contract_cfbf68879c74",
+            "instruction_id": "comp_ttv_4f1303b0aa",
+            "trace_id": "comp_ttv_4f1303b0aa",
+            "execution_plan": {
+              "target_module": "creator",
+              "execution_intent": "generate",
+              "execution_data": {
+                "blueprint_type": "content_blueprint",
+                "product_target": "creator",
+                "content_type": "json",
+                "title": "Photosynthesis For Students",
+                "outline": [
+                  "generate_video_script"
+                ]
+              }
+            },
+            "constraints": {
+              "schema_version": "1.0.0",
+              "origin": "creator_core",
+              "intent_type": null,
+              "deterministic": true,
+              "replay_safe": true
+            },
+            "contract_hash": "99435b9b50ea89d5a05adeaa9b3ddf41d1a432459bc899ad9b29f8c92e8e41dc",
+            "timestamp": "2026-07-07T13:12:45.286241+00:00",
+            "schema_version": "1.0.0"
+          },
+          "authority_decision": {
+            "allowed": true,
+            "reason": "valid_contract",
+            "contract_id": "contract_cfbf68879c74",
+            "trace_id": "comp_ttv_4f1303b0aa",
+            "decision_id": "decision_contract_cfbf68879c74",
+            "timestamp": "2026-07-07T13:12:45.316054+00:00",
+            "validation_checks": {
+              "has_contract_id": "contract_cfbf68879c74",
+              "has_trace_id": "comp_ttv_4f1303b0aa",
+              "has_execution_plan": true,
+              "has_valid_module": "creator",
+              "has_constraints": true,
+              "has_contract_hash": "99435b9b50ea89d5a05adeaa9b3ddf41d1a432459bc899ad9b29f8c92e8e41dc"
+            }
+          },
+          "gate_decision": {
+            "status": "allowed",
+            "message": "Execution approved by gate",
+            "result": {},
+            "contract_id": "contract_cfbf68879c74",
+            "trace_id": "comp_ttv_4f1303b0aa",
+            "gate_status": "ALLOWED",
+            "authority_decision": {
+              "allowed": true,
+              "reason": "valid_contract",
+              "contract_id": "contract_cfbf68879c74",
+              "trace_id": "comp_ttv_4f1303b0aa",
+              "decision_id": "decision_contract_cfbf68879c74",
+              "timestamp": "2026-07-07T13:12:45.316054+00:00",
+              "validation_checks": {
+                "has_contract_id": "contract_cfbf68879c74",
+                "has_trace_id": "comp_ttv_4f1303b0aa",
+                "has_execution_plan": true,
+                "has_valid_module": "creator",
+                "has_constraints": true,
+                "has_contract_hash": "99435b9b50ea89d5a05adeaa9b3ddf41d1a432459bc899ad9b29f8c92e8e41dc"
+              }
+            },
+            "timestamp": "2026-07-07T13:12:45.353754+00:00"
+          },
+          "execution_result": {
+            "status": "success",
+            "message": "Creative content generated with context",
+            "result": {
+              "content": "Generated content for: unknown topic",
+              "related_context": [],
+              "enhanced_data": {
+                "blueprint": {
+                  "blueprint_type": "content_blueprint",
+                  "product_target": "creator",
+                  "content_type": "json",
+                  "title": "Photosynthesis For Students",
+                  "outline": [
+                    "generate_video_script"
+                  ]
+                },
+                "target_product": "creator",
+                "trace_id": "comp_ttv_4f1303b0aa",
+                "workflow_id": "wf_dc25a161"
+              }
+            },
+            "trace_id": "comp_ttv_4f1303b0aa",
+            "workflow_id": "wf_dc25a161"
+          },
+          "pipeline_status": "completed",
+          "deterministic_hash": "c8a9a0245c7f5db6",
+          "product_output": {
+            "video_script": {
+              "title": "Untitled Video",
+              "narration": "",
+              "scenes": [],
+              "dialogue": [],
+              "captions": []
+            },
+            "audio_requirements": {
+              "voice_type": "neutral",
+              "background_music": "none",
+              "sound_effects": [],
+              "audio_style": "standard"
+            },
+            "visual_elements": {
+              "style": "standard",
+              "animations": [],
+              "transitions": [],
+              "graphics": [],
+              "text_overlays": []
+            },
+            "timeline": [
+              {
+                "timestamp": "0:00",
+                "event": "intro"
+              },
+              {
+                "timestamp": "0:05",
+                "event": "main_content"
+              },
+              {
+                "timestamp": "0:55",
+                "event": "outro"
+              }
+            ],
+            "metadata": {
+              "execution_id": null,
+              "trace_id": null,
+              "timestamp": null,
+              "status": "success"
+            }
+          },
+          "trace_id": "comp_ttv_4f1303b0aa",
+          "workflow_id": "wf_dc25a161"
+        },
+        "timestamp": "2026-07-07T13:12:45.455579+00:00"
+      },
+      "artifact_chain": {
+        "trace_id": "comp_ttv_4f1303b0aa",
+        "workflow_id": "wf_dc25a161",
+        "A1_instruction": "instruction_aaf6072b",
+        "A2_blueprint": "blueprint_bcb1cb85",
+        "A2b_contract": "contract_83df4659",
+        "A2c_authority": "authority_fc338b09",
+        "A2d_gate": "gate_630ac19b",
+        "A3_execution": "execution_fd8dd6b0",
+        "A4_result": "result_152d89e5"
+      },
+      "chain_complete": true,
+      "replay_status_code": 200,
+      "replay_passed": true,
+      "bucket_status_code": 200,
+      "bucket_artifact_count": 7,
+      "bucket_artifact_types": [
+        "authority",
+        "blueprint",
+        "contract",
+        "execution",
+        "gate",
+        "instruction",
+        "result"
+      ],
+      "bucket_has_all_7_types": true,
+      "passed": true
+    },
+    {
+      "product": "gurukul",
+      "trace_id": "comp_gurukul_1295353cc5",
+      "workflow_id": "wf_809a60b5",
+      "timestamp": "2026-07-07T13:12:49.062545+00:00",
+      "pipeline_status_code": 200,
+      "pipeline_body": {
+        "status": "success",
+        "trace_id": "comp_gurukul_1295353cc5",
+        "workflow_id": "wf_809a60b5",
+        "artifact_chain": {
+          "trace_id": "comp_gurukul_1295353cc5",
+          "workflow_id": "wf_809a60b5",
+          "A1_instruction": "instruction_6523b6c8",
+          "A2_blueprint": "blueprint_08c31ce8",
+          "A2b_contract": "contract_50688794",
+          "A2c_authority": "authority_946556fa",
+          "A2d_gate": "gate_f7a48667",
+          "A3_execution": "execution_f7513ea2",
+          "A4_result": "result_e85226f1"
+        },
+        "pipeline_result": {
+          "original_prompt": "Plan a lesson on algebra fundamentals for grade 8 students",
+          "generated_instruction": {
+            "prompt": "Plan a lesson on algebra fundamentals for grade 8 students",
+            "module": "education",
+            "intent": "generate",
+            "topic": "general",
+            "tasks": [
+              "create_plan",
+              "create_lesson_plan"
+            ],
+            "output_format": "json",
+            "product_context": "gurukul",
+            "trace_id": "comp_gurukul_1295353cc5",
+            "workflow_id": "wf_809a60b5",
+            "instruction_id": "comp_gurukul_1295353cc5"
+          },
+          "blueprint_envelope": {
+            "blueprint": {
+              "instruction_id": "ca2dde91-cfa7-4c30-8ddf-0b6e06bdf1e7",
+              "origin": "creator_core",
+              "intent_type": "generate",
+              "target_product": "education",
+              "payload": {
+                "blueprint_type": "content_blueprint",
+                "product_target": "education",
+                "content_type": "json",
+                "title": "General",
+                "outline": [
+                  "create_plan",
+                  "create_lesson_plan"
+                ]
+              },
+              "schema_version": "1.0",
+              "timestamp": "2026-07-07T13:12:49.078852+00:00"
+            },
+            "trace_id": "comp_gurukul_1295353cc5",
+            "workflow_id": "wf_809a60b5"
+          },
+          "contract": {
+            "contract_id": "contract_2389eebd86a1",
+            "instruction_id": "comp_gurukul_1295353cc5",
+            "trace_id": "comp_gurukul_1295353cc5",
+            "execution_plan": {
+              "target_module": "education",
+              "execution_intent": "generate",
+              "execution_data": {
+                "blueprint_type": "content_blueprint",
+                "product_target": "education",
+                "content_type": "json",
+                "title": "General",
+                "outline": [
+                  "create_plan",
+                  "create_lesson_plan"
+                ]
+              }
+            },
+            "constraints": {
+              "schema_version": "1.0.0",
+              "origin": "creator_core",
+              "intent_type": null,
+              "deterministic": true,
+              "replay_safe": true
+            },
+            "contract_hash": "061145159b48389238b5a8f8b2823534fdc0f7c38dea6ad2e3170fa09307a27f",
+            "timestamp": "2026-07-07T13:12:49.103232+00:00",
+            "schema_version": "1.0.0"
+          },
+          "authority_decision": {
+            "allowed": true,
+            "reason": "valid_contract",
+            "contract_id": "contract_2389eebd86a1",
+            "trace_id": "comp_gurukul_1295353cc5",
+            "decision_id": "decision_contract_2389eebd86a1",
+            "timestamp": "2026-07-07T13:12:49.125380+00:00",
+            "validation_checks": {
+              "has_contract_id": "contract_2389eebd86a1",
+              "has_trace_id": "comp_gurukul_1295353cc5",
+              "has_execution_plan": true,
+              "has_valid_module": "education",
+              "has_constraints": true,
+              "has_contract_hash": "061145159b48389238b5a8f8b2823534fdc0f7c38dea6ad2e3170fa09307a27f"
+            }
+          },
+          "gate_decision": {
+            "status": "allowed",
+            "message": "Execution approved by gate",
+            "result": {},
+            "contract_id": "contract_2389eebd86a1",
+            "trace_id": "comp_gurukul_1295353cc5",
+            "gate_status": "ALLOWED",
+            "authority_decision": {
+              "allowed": true,
+              "reason": "valid_contract",
+              "contract_id": "contract_2389eebd86a1",
+              "trace_id": "comp_gurukul_1295353cc5",
+              "decision_id": "decision_contract_2389eebd86a1",
+              "timestamp": "2026-07-07T13:12:49.125380+00:00",
+              "validation_checks": {
+                "has_contract_id": "contract_2389eebd86a1",
+                "has_trace_id": "comp_gurukul_1295353cc5",
+                "has_execution_plan": true,
+                "has_valid_module": "education",
+                "has_constraints": true,
+                "has_contract_hash": "061145159b48389238b5a8f8b2823534fdc0f7c38dea6ad2e3170fa09307a27f"
+              }
+            },
+            "timestamp": "2026-07-07T13:12:49.150835+00:00"
+          },
+          "execution_result": {
+            "status": "success",
+            "message": "Creative content generated with context",
+            "result": {
+              "content": "Generated content for: unknown topic",
+              "related_context": [],
+              "enhanced_data": {
+                "blueprint": {
+                  "blueprint_type": "content_blueprint",
+                  "product_target": "education",
+                  "content_type": "json",
+                  "title": "General",
+                  "outline": [
+                    "create_plan",
+                    "create_lesson_plan"
+                  ]
+                },
+                "target_product": "education",
+                "trace_id": "comp_gurukul_1295353cc5",
+                "workflow_id": "wf_809a60b5"
+              }
+            },
+            "trace_id": "comp_gurukul_1295353cc5",
+            "workflow_id": "wf_809a60b5"
+          },
+          "pipeline_status": "completed",
+          "deterministic_hash": "c49c3163486ac753",
+          "product_output": {
+            "lesson_plan": {
+              "content": "Generated content for: unknown topic",
+              "related_context": [],
+              "enhanced_data": {
+                "blueprint": {
+                  "blueprint_type": "content_blueprint",
+                  "product_target": "education",
+                  "content_type": "json",
+                  "title": "General",
+                  "outline": [
+                    "create_plan",
+                    "create_lesson_plan"
+                  ]
+                },
+                "target_product": "education",
+                "trace_id": "comp_gurukul_1295353cc5",
+                "workflow_id": "wf_809a60b5"
+              }
+            },
+            "assessment": {},
+            "metadata": {
+              "status": "success"
+            }
+          },
+          "trace_id": "comp_gurukul_1295353cc5",
+          "workflow_id": "wf_809a60b5"
+        },
+        "timestamp": "2026-07-07T13:12:49.239179+00:00"
+      },
+      "artifact_chain": {
+        "trace_id": "comp_gurukul_1295353cc5",
+        "workflow_id": "wf_809a60b5",
+        "A1_instruction": "instruction_6523b6c8",
+        "A2_blueprint": "blueprint_08c31ce8",
+        "A2b_contract": "contract_50688794",
+        "A2c_authority": "authority_946556fa",
+        "A2d_gate": "gate_f7a48667",
+        "A3_execution": "execution_f7513ea2",
+        "A4_result": "result_e85226f1"
+      },
+      "chain_complete": true,
+      "replay_status_code": 200,
+      "replay_passed": true,
+      "bucket_status_code": 200,
+      "bucket_artifact_count": 7,
+      "bucket_artifact_types": [
+        "authority",
+        "blueprint",
+        "contract",
+        "execution",
+        "gate",
+        "instruction",
+        "result"
+      ],
+      "bucket_has_all_7_types": true,
+      "passed": true
+    },
+    {
+      "product": "simulation_runtime",
+      "trace_id": "comp_simulation_runtime_9d21643a30",
+      "workflow_id": "wf_9e51a5a2",
+      "timestamp": "2026-07-07T13:12:52.865169+00:00",
+      "pipeline_status_code": 200,
+      "pipeline_body": {
+        "status": "success",
+        "trace_id": "comp_simulation_runtime_9d21643a30",
+        "workflow_id": "wf_9e51a5a2",
+        "artifact_chain": {
+          "trace_id": "comp_simulation_runtime_9d21643a30",
+          "workflow_id": "wf_9e51a5a2",
+          "A1_instruction": "instruction_5f3b73d2",
+          "A2_blueprint": "blueprint_40e6924f",
+          "A2b_contract": "contract_88aecd41",
+          "A2c_authority": "authority_8ff16f0a",
+          "A2d_gate": "gate_27286e50",
+          "A3_execution": "execution_4e78ef24",
+          "A4_result": "result_1d8b5953"
+        },
+        "pipeline_result": {
+          "original_prompt": "Simulate a supply chain disruption scenario with recovery options",
+          "generated_instruction": {
+            "prompt": "Simulate a supply chain disruption scenario with recovery options",
+            "module": "creator",
+            "intent": "generate",
+            "topic": "general",
+            "tasks": [
+              "run_simulation"
+            ],
+            "output_format": "json",
+            "product_context": "simulation_runtime",
+            "trace_id": "comp_simulation_runtime_9d21643a30",
+            "workflow_id": "wf_9e51a5a2",
+            "instruction_id": "comp_simulation_runtime_9d21643a30"
+          },
+          "blueprint_envelope": {
+            "blueprint": {
+              "instruction_id": "a8feb6d6-17b5-4e0c-85bc-32841afad84c",
+              "origin": "creator_core",
+              "intent_type": "generate",
+              "target_product": "creator",
+              "payload": {
+                "blueprint_type": "content_blueprint",
+                "product_target": "creator",
+                "content_type": "json",
+                "title": "General",
+                "outline": [
+                  "run_simulation"
+                ]
+              },
+              "schema_version": "1.0",
+              "timestamp": "2026-07-07T13:12:52.898751+00:00"
+            },
+            "trace_id": "comp_simulation_runtime_9d21643a30",
+            "workflow_id": "wf_9e51a5a2"
+          },
+          "contract": {
+            "contract_id": "contract_50472b611d3d",
+            "instruction_id": "comp_simulation_runtime_9d21643a30",
+            "trace_id": "comp_simulation_runtime_9d21643a30",
+            "execution_plan": {
+              "target_module": "creator",
+              "execution_intent": "generate",
+              "execution_data": {
+                "blueprint_type": "content_blueprint",
+                "product_target": "creator",
+                "content_type": "json",
+                "title": "General",
+                "outline": [
+                  "run_simulation"
+                ]
+              }
+            },
+            "constraints": {
+              "schema_version": "1.0.0",
+              "origin": "creator_core",
+              "intent_type": null,
+              "deterministic": true,
+              "replay_safe": true
+            },
+            "contract_hash": "fc91cfdb0de848bbac0e1c36a14210cbd604b9a3d01e03c73abccf9cd0fc52b6",
+            "timestamp": "2026-07-07T13:12:52.925445+00:00",
+            "schema_version": "1.0.0"
+          },
+          "authority_decision": {
+            "allowed": true,
+            "reason": "valid_contract",
+            "contract_id": "contract_50472b611d3d",
+            "trace_id": "comp_simulation_runtime_9d21643a30",
+            "decision_id": "decision_contract_50472b611d3d",
+            "timestamp": "2026-07-07T13:12:52.951721+00:00",
+            "validation_checks": {
+              "has_contract_id": "contract_50472b611d3d",
+              "has_trace_id": "comp_simulation_runtime_9d21643a30",
+              "has_execution_plan": true,
+              "has_valid_module": "creator",
+              "has_constraints": true,
+              "has_contract_hash": "fc91cfdb0de848bbac0e1c36a14210cbd604b9a3d01e03c73abccf9cd0fc52b6"
+            }
+          },
+          "gate_decision": {
+            "status": "allowed",
+            "message": "Execution approved by gate",
+            "result": {},
+            "contract_id": "contract_50472b611d3d",
+            "trace_id": "comp_simulation_runtime_9d21643a30",
+            "gate_status": "ALLOWED",
+            "authority_decision": {
+              "allowed": true,
+              "reason": "valid_contract",
+              "contract_id": "contract_50472b611d3d",
+              "trace_id": "comp_simulation_runtime_9d21643a30",
+              "decision_id": "decision_contract_50472b611d3d",
+              "timestamp": "2026-07-07T13:12:52.951721+00:00",
+              "validation_checks": {
+                "has_contract_id": "contract_50472b611d3d",
+                "has_trace_id": "comp_simulation_runtime_9d21643a30",
+                "has_execution_plan": true,
+                "has_valid_module": "creator",
+                "has_constraints": true,
+                "has_contract_hash": "fc91cfdb0de848bbac0e1c36a14210cbd604b9a3d01e03c73abccf9cd0fc52b6"
+              }
+            },
+            "timestamp": "2026-07-07T13:12:52.975381+00:00"
+          },
+          "execution_result": {
+            "status": "success",
+            "message": "Creative content generated with context",
+            "result": {
+              "content": "Generated content for: unknown topic",
+              "related_context": [],
+              "enhanced_data": {
+                "blueprint": {
+                  "blueprint_type": "content_blueprint",
+                  "product_target": "creator",
+                  "content_type": "json",
+                  "title": "General",
+                  "outline": [
+                    "run_simulation"
+                  ]
+                },
+                "target_product": "creator",
+                "trace_id": "comp_simulation_runtime_9d21643a30",
+                "workflow_id": "wf_9e51a5a2"
+              }
+            },
+            "trace_id": "comp_simulation_runtime_9d21643a30",
+            "workflow_id": "wf_9e51a5a2"
+          },
+          "pipeline_status": "completed",
+          "deterministic_hash": "1dbb736aa705cd4b",
+          "product_output": {
+            "simulation_result": {
+              "content": "Generated content for: unknown topic",
+              "related_context": [],
+              "enhanced_data": {
+                "blueprint": {
+                  "blueprint_type": "content_blueprint",
+                  "product_target": "creator",
+                  "content_type": "json",
+                  "title": "General",
+                  "outline": [
+                    "run_simulation"
+                  ]
+                },
+                "target_product": "creator",
+                "trace_id": "comp_simulation_runtime_9d21643a30",
+                "workflow_id": "wf_9e51a5a2"
+              }
+            },
+            "status": "success",
+            "message": "Creative content generated with context"
+          },
+          "trace_id": "comp_simulation_runtime_9d21643a30",
+          "workflow_id": "wf_9e51a5a2"
+        },
+        "timestamp": "2026-07-07T13:12:53.049682+00:00"
+      },
+      "artifact_chain": {
+        "trace_id": "comp_simulation_runtime_9d21643a30",
+        "workflow_id": "wf_9e51a5a2",
+        "A1_instruction": "instruction_5f3b73d2",
+        "A2_blueprint": "blueprint_40e6924f",
+        "A2b_contract": "contract_88aecd41",
+        "A2c_authority": "authority_8ff16f0a",
+        "A2d_gate": "gate_27286e50",
+        "A3_execution": "execution_4e78ef24",
+        "A4_result": "result_1d8b5953"
+      },
+      "chain_complete": true,
+      "replay_status_code": 200,
+      "replay_passed": true,
+      "bucket_status_code": 200,
+      "bucket_artifact_count": 7,
+      "bucket_artifact_types": [
+        "authority",
+        "blueprint",
+        "contract",
+        "execution",
+        "gate",
+        "instruction",
+        "result"
+      ],
+      "bucket_has_all_7_types": true,
+      "passed": true
+    }
+  ],
+  "summary": {
+    "services_healthy": "8/8",
+    "products_passed": "4/4",
+    "all_healthy": true,
+    "all_products_passed": true
+  }
+}

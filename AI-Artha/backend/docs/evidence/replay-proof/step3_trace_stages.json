@@ -1,0 +1,91 @@
+{
+  "_id": "6a269fc78c07b66812ae147f",
+  "trace_id": "TRC-20260608-cc9c43f7",
+  "source": "EXPENSE",
+  "source_id": "6a2289623f3ec80aa42cf536",
+  "initiated_by": "6a22895f3f3ec80aa42cf3f5",
+  "initiated_at": "2026-06-08T10:56:07.030Z",
+  "stages": [
+    {
+      "stage": "TRANSACTION_CREATED",
+      "entity_type": "Expense",
+      "entity_id": "6a2289623f3ec80aa42cf536",
+      "status": "SUCCESS",
+      "timestamp": "2026-06-08T10:56:07.030Z",
+      "metadata": {
+        "expenseNumber": "EXP-2025-001",
+        "totalAmount": "5000",
+        "vendor": "Office Depot"
+      },
+      "_id": "6a269fc78c07b66812ae1480"
+    },
+    {
+      "stage": "JOURNAL_CREATED",
+      "entity_type": "JournalEntry",
+      "entity_id": "6a269fc78c07b66812ae1486",
+      "status": "SUCCESS",
+      "timestamp": "2026-06-08T10:56:07.226Z",
+      "metadata": {
+        "journalEntryNumber": "JE-TEST-001"
+      },
+      "_id": "6a269fc78c07b66812ae1492"
+    },
+    {
+      "stage": "JOURNAL_VALIDATED",
+      "entity_type": "JournalEntry",
+      "entity_id": "6a269fc78c07b66812ae1486",
+      "status": "SUCCESS",
+      "timestamp": "2026-06-08T10:56:07.257Z",
+      "metadata": {
+        "validation_passed": true
+      },
+      "_id": "6a269fc78c07b66812ae149e"
+    },
+    {
+      "stage": "JOURNAL_POSTED",
+      "entity_type": "JournalEntry",
+      "entity_id": "6a269fc78c07b66812ae1486",
+      "status": "SUCCESS",
+      "timestamp": "2026-06-08T10:56:07.281Z",
+      "metadata": {
+        "chainPosition": 42,
+        "prevHash": "0abc123",
+        "hash": "xyz789"
+      },
+      "_id": "6a269fc78c07b66812ae14a4"
+    },
+    {
+      "stage": "SIGNAL_GENERATED",
+      "entity_type": "ComplianceSignal",
+      "entity_id": "6a269fc78c07b66812ae14a7",
+      "status": "SUCCESS",
+      "timestamp": "2026-06-08T10:56:07.311Z",
+      "metadata": {
+        "signal_type": "SIG_CASHFLOW_NEGATIVE",
+        "severity": "HIGH"
+      },
+      "_id": "6a269fc78c07b66812ae14ae"
+    }
+  ],
+  "current_stage": "SIGNAL_GENERATED",
+  "status": "IN_PROGRESS",
+  "linked_entities": {
+    "journal_entries": [
+      "6a269fc78c07b66812ae1486",
+      "6a269fc78c07b66812ae1486",
+      "6a269fc78c07b66812ae1486"
+    ],
+    "signals": [
+      "6a269fc78c07b66812ae14a7"
+    ],
+    "filings": [],
+    "validation_logs": [],
+    "setu_dispatches": []
+  },
+  "replay_available": true,
+  "replay_count": 0,
+  "triggers": [],
+  "createdAt": "2026-06-08T10:56:07.049Z",
+  "updatedAt": "2026-06-08T10:56:07.314Z",
+  "__v": 4
+}

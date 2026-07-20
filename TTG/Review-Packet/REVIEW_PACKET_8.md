@@ -1,0 +1,646 @@
+# REVIEW_PACKET_8.md
+
+**Project:** Real-Time Micro-Bridge — TANTRA Execution Participant  
+**Task:** Convert simulation node into live TANTRA execution participant with deterministic delta streams  
+**Author:** Rudra Parmeshwar  
+**Status:** COMPLETE — Phases 1–8 Delivered — 66/66 Checks Passed  
+**Date:** 2026-05-14  
+
+---
+
+## Table of Contents
+
+1. [Entry Point](#1-entry-point)
+2. [Delta Stream Architecture](#2-delta-stream-architecture)
+3. [Replay / Live Equivalence Proof](#3-replay--live-equivalence-proof)
+4. [Tick Enforcement Rules](#4-tick-enforcement-rules)
+5. [Atharva Integration Proof](#5-atharva-integration-proof)
+6. [Failure Behavior](#6-failure-behavior)
+7. [Concurrency Proof](#7-concurrency-proof)
+8. [Stream Payload Examples](#8-stream-payload-examples)
+9. [Determinism Validation](#9-determinism-validation)
+10. [Known Remaining Convergence Gaps](#10-known-remaining-convergence-gaps)
+
+---
+
+## 1. Entry Point
+
+### WebSocket Stream Namespace
+
+```
+ws://localhost:3000/simulate/stream
+```
+
+**Registered in:** `backend/index.js` via `attachStreamNamespace(io)`  
+**Defined in:** `backend/routes/simulate.js`
+
+### Client Protocol
+
+```
+client emits → stream:start   { contract: simulationContract.v1 }
+server emits → stream:tick    { TANTRA delta payload, one per tick }
+server emits → stream:done    { trace_id, execution_id, ticks_run, status }
+server emits → stream:error   { code, reason, trace_id }
+
+client emits → replay:start   { trace_id }
+server emits → stream:tick    (identical shape to live — no replay-specific events)
+server emits → stream:done    (identical shape to live)
+server emits → stream:error   (identical shape to live)
+```
+
+### HTTP Routes (unchanged from REVIEW_PACKET_7)
+
+```
+POST /simulate/run
+POST /simulate/replay/:trace_id
+GET  /simulate/result/:trace_id
+GET  /simulate/health
+```
+
+### New Files Delivered
+
+| File | Purpose |
+|---|---|
+| `backend/simulation/engine/SimEngineStream.js` | Streaming tick engine — emits delta per tick |
+| `backend/simulation/engine/deltaComputer.js` | Computes changed entities per tick, validates TANTRA schema |
+| `backend/simulation/streamRegistry.js` | Tracks active streams, enforces tick integrity |
+| `backend/mock_atharva_renderer.js` | Mock Atharva execution layer — integration proof |
+| `backend/test_phase1_stream.js` | Phase 1 — delta stream test |
+| `backend/test_phase2_replay.js` | Phase 2 — replay/live equivalence test |
+| `backend/test_phase3_tick_integrity.js` | Phase 3 — tick integrity enforcement test |
+| `backend/test_phase4_trace_continuity.js` | Phase 4 — trace continuity test |
+| `backend/test_phase5_atharva_integration.js` | Phase 5 — Atharva integration proof test |
+| `backend/test_phase6_failure_boundary.js` | Phase 6 — failure boundary test |
+| `backend/test_phase7_concurrency.js` | Phase 7 — concurrency validation test |
+| `backend/phase5_integration_proof.log` | Evidence artifact — full Atharva integration log |
+
+### Modified Files
+
+| File | Change |
+|---|---|
+| `backend/simulation/simReplayEngine.js` | Added `replayStream()` — stream replay with parity check. Fixed `_fail()` to preserve `trace_id` |
+| `backend/simulation/simResultStore.js` | Added `stream_ticks` field — stores live delta sequence for replay parity |
+| `backend/routes/simulate.js` | Added `attachStreamNamespace()` with `stream:start` and `replay:start` handlers |
+| `backend/index.js` | Wired `attachStreamNamespace(io)` after server init |
+
+---
+
+## 2. Delta Stream Architecture
+
+### Flow
+
+```
+Caller (Atharva / test client)
+    │
+    │  stream:start { contract }   ← trace_id originates HERE (upstream authority)
+    ▼
+[simulate.js — stream:start handler]
+    │  contractValidator.v1 — fail-closed on any violation
+    │  streamRegistry.register(trace_id) — one stream per trace_id
+    │  contractAdapter.adapt() — maps to SumScript
+    ▼
+[SimEngineStream.runStream()]
+    │  SumScript.parse() + validate
+    │  EntityRegistry.load() — isolated per stream
+    │  SceneManager.init() — isolated per stream
+    │  TickLoop — synchronous, deterministic
+    │
+    │  FOR EACH TICK:
+    │    loop._tick++
+    │    loop._runOneTick()          ← behaviors, rules, collisions, zones
+    │    deltaComputer.compute()     ← changed entities only, {x,y,z} positions
+    │    deltaComputer.validate()    ← Phase 6 failure boundary
+    │    streamRegistry.recordTick() ← Phase 3 tick integrity
+    │    onTick(delta)               ← emits stream:tick to caller
+    │
+    ▼
+[simResultStore.save()]
+    │  stores contract + emitted_ticks for replay parity
+    ▼
+onComplete() → stream:done
+```
+
+### Isolation Guarantee
+
+Each `runStream()` call creates its own:
+- `EntityRegistry` — entity state, transitions, flags
+- `SceneManager` — event log, zones, collision detection
+- `TickLoop` — seeded RNG, tick counter
+
+No shared mutable state between concurrent streams. Proven in Phase 7.
+
+### Delta Schema (locked TANTRA shape)
+
+```json
+{
+  "trace_id":  "string — upstream trace, never generated by sim node",
+  "tick_id":   "number — 1-based, strictly sequential",
+  "timestamp": "ISO-8601 string",
+  "entities":  [
+    {
+      "id":         "string",
+      "type":       "string",
+      "position":   { "x": 0.0, "y": 0.0, "z": 0.0 },
+      "state":      "active | idle | stopped | destroyed",
+      "attributes": {}
+    }
+  ]
+}
+```
+
+**Delta rule:** only entities whose `position`, `state`, or `attributes` changed since the previous tick appear in `entities[]`. Ticks where nothing changed emit `entities: []`.
+
+---
+
+## 3. Replay / Live Equivalence Proof
+
+### Mechanism
+
+1. Live stream stores every emitted delta in `simResultStore` as `stream_ticks[]`
+2. `replayStream()` re-runs `SimEngineStream` with the same contract
+3. After each replayed tick, `_checkParity()` compares it field-by-field against the stored live tick
+4. If any field differs → `PARITY_VIOLATION` → hard fail, stream stops
+5. If parity confirmed → emit the replayed delta using the same `stream:tick` event name
+
+### Parity Fields Checked Per Tick
+
+| Field | Check |
+|---|---|
+| `tick_id` | exact match |
+| `trace_id` | exact match against original |
+| `entities.length` | exact match |
+| `entity.id` | exact match (sorted) |
+| `entity.type` | exact match |
+| `entity.state` | exact match |
+| `entity.position.x/y/z` | exact match |
+| `entity.attributes` | JSON.stringify match |
+
+### Test Result — Phase 2
+
+```
+── Step 1: Live stream ──────────────────────────────
+  · Live stream complete — 5 ticks received
+
+── Step 2: Replay stream ────────────────────────────
+  · Replay stream complete — 5 ticks received
+
+── Step 3: Parity comparison ────────────────────────
+  ✓ tick count matches: 5
+  ✓ all 5 ticks structurally identical (tick_id, trace_id, entities, positions, states, attributes)
+  ✓ stream:done trace_id matches
+  ✓ stream:done ticks_run matches
+  ✓ stream:done status matches
+
+RESULT: 5 passed, 0 failed
+✓ Phase 2 replay test PASSED
+```
+
+### No Replay-Specific Shape
+
+Replay emits `stream:tick`, `stream:done`, `stream:error` — identical event names to live. Atharva's renderer cannot distinguish live from replay by event shape.
+
+---
+
+## 4. Tick Enforcement Rules
+
+### Enforcement Point
+
+`streamRegistry.recordTick(trace_id, tick_id)` — called inside `SimEngineStream` after every tick, before `onTick()`.
+
+### Rules (hard, no exceptions)
+
+| Condition | Code | Action |
+|---|---|---|
+| `tick_id !== last_tick + 1` AND `tick_id < expected` | `OUT_OF_ORDER_TICK` | hard fail, stop stream |
+| `tick_id !== last_tick + 1` AND `tick_id > expected` | `MISSING_TICK` | hard fail, stop stream |
+| `tick_id === expected` AND `seen.has(tick_id)` | `DUPLICATE_TICK` | hard fail, stop stream |
+| No session registered for `trace_id` | `NO_SESSION` | hard fail, stop stream |
+
+**No auto-repair. No buffering. No silent recovery.**
+
+On violation: `scene.fail()` → `onError({ code, reason, trace_id, tick_id, expected })` → `return` exits the loop.
+
+### Test Result — Phase 3
+
+```
+── Unit: recordTick() enforcement ──────────────────
+  ✓ tick_id=1 accepted (valid)
+  ✓ tick_id=2 accepted (valid)
+  ✓ tick_id=3 accepted (valid)
+  ✓ OUT_OF_ORDER_TICK: expected tick_id=4, got tick_id=2
+  ✓ MISSING_TICK: expected tick_id=4, got tick_id=6
+  ✓ tick_id=4 accepted (valid, advancing for duplicate test)
+  ✓ DUPLICATE_TICK: Duplicate tick_id=4 (already emitted)
+  ✓ NO_SESSION detected for unknown trace_id
+
+── Integration: normal stream regression ────────────
+  ✓ normal stream: 5 ticks in strict order (1→5)
+  ✓ normal stream: status=completed
+  ✓ normal stream: all tick_ids unique (no duplicates)
+
+── Integration: duplicate stream attempt ────────────
+  ✓ second stream completed cleanly (trace released before retry)
+
+RESULT: 12 passed, 0 failed
+✓ Phase 3 tick integrity test PASSED
+```
+
+---
+
+## 5. Atharva Integration Proof
+
+### Integration Contract
+
+**Inbound (Atharva receives from Rudra's sim node):**
+
+```
+stream:tick   { trace_id, tick_id, timestamp, entities[] }
+stream:done   { trace_id, execution_id, ticks_run, status }
+stream:error  { code, reason, trace_id }
+```
+
+**Outbound (Atharva emits after consuming each tick):**
+
+```
+render:entity_update  { trace_id, tick_id, entity_id, type, position, state, attributes }
+render:tick_complete  { trace_id, tick_id, entity_count, ts }
+execution:complete    { trace_id, execution_id, ticks_consumed, entity_updates, status, elapsed_ms }
+```
+
+### Live Run Metrics
+
+```
+trace_id        : atharva-trace-1778735397125
+ticks consumed  : 8 / 8
+entity updates  : 17
+elapsed         : 15ms
+trace continuity: ✓ INTACT
+stream parity   : ✓ CONFIRMED
+```
+
+### Execution Event Log (from `phase5_integration_proof.log`)
+
+```json
+{"type":"STREAM_START_SENT","trace_id":"atharva-trace-1778735397125","ticks":8,"ts":"2026-05-14T05:09:57.191Z"}
+{"type":"vessel","trace_id":"atharva-trace-1778735397125","tick_id":1,"entity_id":"vessel_alpha","position":{"x":0,"y":0,"z":0},"state":"active","ts":"2026-05-14T05:09:57.198Z"}
+{"type":"vessel","trace_id":"atharva-trace-1778735397125","tick_id":1,"entity_id":"vessel_beta","position":{"x":13.5,"y":0,"z":0},"state":"active","ts":"2026-05-14T05:09:57.198Z"}
+{"type":"render:tick_complete","trace_id":"atharva-trace-1778735397125","tick_id":1,"entity_count":3,"ts":"2026-05-14T05:09:57.198Z"}
+{"type":"execution:complete","trace_id":"atharva-trace-1778735397125","ticks_consumed":8,"entity_updates":17,"status":"execution_complete","elapsed_ms":15,"ts":"2026-05-14T05:09:57.206Z"}
+```
+
+Full log: `backend/phase5_integration_proof.log`
+
+### Test Result — Phase 5
+
+```
+  ✓ Renderer connected to /simulate/stream
+  ✓ stream:start sent with upstream trace_id
+  ✓ All 8 stream:tick payloads consumed by renderer
+  ✓ render:tick_complete emitted for all 8 ticks
+  ✓ render:entity_update emitted (17 total)
+  ✓ execution:complete emitted on stream:done
+  ✓ trace_id intact across all events
+  ✓ No stream:error received
+  ✓ CONVERGENCE PROOF: LIVE INTEGRATION CONFIRMED
+
+RESULT: 9 passed, 0 failed
+✓ Phase 5 Atharva integration test PASSED
+```
+
+### Note on Real Atharva Integration
+
+`mock_atharva_renderer.js` defines the exact contract Atharva's real layer must implement. When his real renderer connects, only the socket URL changes. The event names, payload shapes, and trace_id authority model are locked.
+
+---
+
+## 6. Failure Behavior
+
+### Failure Boundaries — All Fail-Close
+
+| Failure Type | Code | Behavior |
+|---|---|---|
+| Null or non-object delta | `MALFORMED_DELTA` | hard fail, stream stops |
+| `entities` not an array | `MALFORMED_DELTA` | hard fail, stream stops |
+| `timestamp` missing or not string | `MALFORMED_DELTA` | hard fail, stream stops |
+| `trace_id` null or not string | `BROKEN_TRACE_ID` | hard fail, stream stops |
+| `trace_id` mismatched from contract | `BROKEN_TRACE_ID` | hard fail, stream stops |
+| Entity `state` absent or invalid | `MISSING_ENTITY_STATE` | hard fail, stream stops |
+| Position is array not `{x,y,z}` | `INVALID_POSITION` | hard fail, stream stops |
+| Position contains NaN or Infinity | `INVALID_POSITION` | hard fail, stream stops |
+| Duplicate tick_id | `DUPLICATE_TICK` | hard fail, stream stops |
+| Out-of-order tick_id | `OUT_OF_ORDER_TICK` | hard fail, stream stops |
+| Missing tick (gap) | `MISSING_TICK` | hard fail, stream stops |
+| Tick loop throws | `TICK_ERROR` | hard fail, stream stops |
+| Invalid SumScript contract | `INVALID_CONTRACT` | rejected before stream starts |
+| Socket disconnect mid-stream | — | `streamRegistry.release()` called, session cleaned up |
+
+### Error Payload Shape (all failures)
+
+```json
+{
+  "code":     "BROKEN_TRACE_ID",
+  "reason":   "tick 3: trace_id mismatch — expected \"abc\" got \"xyz\"",
+  "trace_id": "abc",
+  "tick_id":  3
+}
+```
+
+`trace_id` is always present on every error payload — even `MISSING_TRACE_ID` includes the field (value is `null`).
+
+### No Partial Continuation
+
+Once `onError()` is called, `SimEngineStream` returns immediately. No further ticks are computed or emitted. The stream registry session is released. The socket receives exactly one `stream:error` event.
+
+### Test Result — Phase 6
+
+```
+── Unit: validate() failure boundaries ─────────────
+  ✓ A. MALFORMED_DELTA: null delta
+  ✓ B. MALFORMED_DELTA: entities not array
+  ✓ C. BROKEN_TRACE_ID: null trace_id
+  ✓ D. BROKEN_TRACE_ID: mismatch
+  ✓ E. MISSING_ENTITY_STATE: state absent
+  ✓ F. MISSING_ENTITY_STATE: invalid value "flying"
+  ✓ G. INVALID_POSITION: array position
+  ✓ H. INVALID_POSITION: NaN in position
+  ✓ I. INVALID_POSITION: Infinity in position
+  ✓ J. valid delta accepted (validate returns null)
+
+── Integration: normal stream regression ────────────
+  ✓ normal stream: 5 ticks received
+  ✓ normal stream: status=completed
+  ✓ normal stream: all tick deltas passed failure boundary validation
+
+RESULT: 13 passed, 0 failed
+✓ Phase 6 failure boundary test PASSED
+```
+
+---
+
+## 7. Concurrency Proof
+
+### Test Configuration
+
+- 5 simultaneous live streams, each on its own socket connection
+- Each stream: 2 entities, 8 ticks, unique `trace_id`
+- Concurrent phase: 3 live streams + 1 replay running simultaneously
+
+### Results
+
+```
+── A/B/C: 5 simultaneous live streams ───────────────
+  · All 5 streams completed in 44ms
+
+  ✓ A. all 5 streams completed successfully
+  ✓ A. all streams received exactly 8 ticks
+  ✓ B. zero cross-trace contamination across all 5 streams
+  ✓ C. stable ordering confirmed in all 5 streams (tick_ids 1→8)
+
+── D/E: Concurrent replay under live load ───────────
+  · Concurrent phase completed in 39ms
+
+  ✓ D. replay completed under concurrent live load (39ms)
+  ✓ D. replay received all 8 ticks under load
+  ✓ D. all 3 concurrent live streams completed alongside replay
+  ✓ E. replay consistent with live under concurrent load — all 8 ticks match
+  ✓ E. replay stream has zero contamination from concurrent live streams
+
+RESULT: 9 passed, 0 failed
+✓ Phase 7 concurrency test PASSED
+```
+
+### Why Isolation Holds
+
+Each `runStream()` call instantiates its own `EntityRegistry`, `SceneManager`, and `TickLoop`. These are local variables — no module-level shared state. The only shared structure is `streamRegistry` (a `Map`), which is keyed by `trace_id` and accessed only for integrity checks, not for entity state.
+
+---
+
+## 8. Stream Payload Examples
+
+### stream:tick — Tick 1 (3 entities changed, first tick)
+
+```json
+{
+  "trace_id":  "atharva-trace-1778735397125",
+  "tick_id":   1,
+  "timestamp": "2026-05-14T05:09:57.200Z",
+  "entities": [
+    {
+      "id":         "vessel_alpha",
+      "type":       "vessel",
+      "position":   { "x": 0, "y": 0, "z": 0 },
+      "state":      "active",
+      "attributes": { "patrol_index": 1 }
+    },
+    {
+      "id":         "vessel_beta",
+      "type":       "vessel",
+      "position":   { "x": 13.5, "y": 0, "z": 0 },
+      "state":      "active",
+      "attributes": { "patrol_index": 0 }
+    },
+    {
+      "id":         "marker_1",
+      "type":       "marker",
+      "position":   { "x": 7, "y": 0, "z": 0 },
+      "state":      "stopped",
+      "attributes": {}
+    }
+  ]
+}
+```
+
+### stream:tick — Tick 2 (delta only — marker_1 unchanged, not included)
+
+```json
+{
+  "trace_id":  "atharva-trace-1778735397125",
+  "tick_id":   2,
+  "timestamp": "2026-05-14T05:09:57.201Z",
+  "entities": [
+    {
+      "id":         "vessel_alpha",
+      "type":       "vessel",
+      "position":   { "x": 1.5, "y": 0, "z": 0 },
+      "state":      "active",
+      "attributes": { "patrol_index": 1 }
+    },
+    {
+      "id":         "vessel_beta",
+      "type":       "vessel",
+      "position":   { "x": 12, "y": 0, "z": 0 },
+      "state":      "active",
+      "attributes": { "patrol_index": 0 }
+    }
+  ]
+}
+```
+
+### stream:done
+
+```json
+{
+  "trace_id":     "atharva-trace-1778735397125",
+  "execution_id": "atharva-exec-1778735397125",
+  "ticks_run":    8,
+  "status":       "completed"
+}
+```
+
+### stream:error — BROKEN_TRACE_ID
+
+```json
+{
+  "code":     "BROKEN_TRACE_ID",
+  "reason":   "tick 3: trace_id mismatch — expected \"abc-123\" got \"xyz-999\"",
+  "trace_id": "abc-123",
+  "tick_id":  3
+}
+```
+
+### stream:error — MISSING_TICK
+
+```json
+{
+  "code":     "MISSING_TICK",
+  "reason":   "MISSING_TICK: expected tick_id=4, got tick_id=6 for trace_id=abc-123",
+  "trace_id": "abc-123",
+  "tick_id":  6,
+  "expected": 4
+}
+```
+
+### stream:error — INVALID_POSITION
+
+```json
+{
+  "code":     "INVALID_POSITION",
+  "reason":   "tick 2 entity[0] (id=ship_1): position must be {x,y,z} object, got: [1,0,0]",
+  "trace_id": "abc-123",
+  "tick_id":  2
+}
+```
+
+---
+
+## 9. Determinism Validation
+
+### Mechanism
+
+Determinism is guaranteed by the seeded RNG in `TickLoop`:
+
+```js
+// Mulberry32 — fast, deterministic, no deps
+function _makeRng(seed) {
+  let s = seed >>> 0;
+  return function() { ... };
+}
+```
+
+The seed is derived from `trace_id` via `SumScript.parse()`. Same `trace_id` → same seed → same RNG sequence → same entity movements every run.
+
+### Validation Layers
+
+| Layer | What it checks |
+|---|---|
+| Phase 2 parity check | Every replayed tick matches live tick field-by-field |
+| Phase 3 tick integrity | tick_ids are strictly sequential — no gaps, no duplicates |
+| Phase 7 replay under load | Replay matches live even when 3 concurrent streams are running |
+| `simReplayEngine.replay()` | Full `simulationState.v1` comparison — entity positions, transition counts, event counts |
+
+### Phase 2 Determinism Evidence
+
+```
+Live tick 1:   vessel_alpha pos=(0,0,0)    vessel_beta pos=(9,0,0)
+Replay tick 1: vessel_alpha pos=(0,0,0)    vessel_beta pos=(9,0,0)  ✓
+
+Live tick 5:   vessel_alpha pos=(4,0,0)    vessel_beta pos=(5,0,0)
+Replay tick 5: vessel_alpha pos=(4,0,0)    vessel_beta pos=(5,0,0)  ✓
+
+All 5 ticks structurally identical — DETERMINISM CONFIRMED
+```
+
+### Phase 7 Determinism Under Load
+
+```
+Replay of p7-trace-0 while 3 live streams active:
+  ✓ replay consistent with live under concurrent load — all 8 ticks match
+  ✓ replay stream has zero contamination from concurrent live streams
+```
+
+---
+
+## 10. Known Remaining Convergence Gaps
+
+### Gap 1 — Atharva Real Layer Not Connected
+
+**Status:** Mock renderer proven. Real Atharva layer not yet connected.  
+**What's needed:** Atharva connects his renderer to `ws://localhost:3000/simulate/stream`, sends `stream:start` with a `trace_id` he owns, and emits `render:entity_update` / `render:tick_complete` / `execution:complete`.  
+**Blocker:** Atharva's execution layer endpoint and agreed connection details not yet confirmed (see `docs/atharva_sync_checklist.md` — all checkboxes empty).  
+**Resolution path:** Share `mock_atharva_renderer.js` with Atharva as the integration spec. No code changes needed on Rudra's side.
+
+### Gap 2 — Phase 4 Trace Continuity Not Separately Tested Until Late
+
+**Status:** Trace continuity was enforced from Phase 1 but the dedicated audit test (`test_phase4_trace_continuity.js`) was written after Phases 1–3. The `_fail()` function in `simReplayEngine.js` was hardcoding `trace_id: null` on HTTP replay errors — fixed during Phase 4 audit.  
+**Current state:** All payloads (tick, replay, done, error) carry `trace_id`. Validated by Phase 4 test.
+
+### Gap 3 — No Persistent Storage for Stream Ticks
+
+**Status:** `simResultStore` is in-memory with 1-hour TTL. Server restart loses all stored stream ticks.  
+**Impact:** Replay only works within the same server session. Cross-session replay not supported.  
+**Resolution path:** Write `stream_ticks` to `bucket_artifacts/` using the existing `bucketWriter` pattern. Not required for current convergence window.
+
+### Gap 4 — Vijay / HIAS Bucket Alignment Not Implemented
+
+**Status:** Stream deltas are not written to HIAS-aligned bucket artifacts.  
+**What's needed:** Each `stream:tick` payload appended to a `.jsonl` bucket file under `bucket_artifacts/` with the HIAS schema.  
+**Resolution path:** Add a `bucketWriter.appendStreamTick(trace_id, delta)` call inside `SimEngineStream` after `onTick()`. Depends on Vijay confirming the bucket schema for stream deltas.
+
+### Gap 5 — Ankita / NICAI Visualization Not Consuming Stream
+
+**Status:** NICAI formatter (`nicaiFormatter.js`) formats `simulationState.v1` (full result). It does not consume the delta stream.  
+**What's needed:** NICAI visualization layer subscribes to `stream:tick` events and renders incrementally instead of waiting for `stream:done`.  
+**Resolution path:** Ankita connects to `/simulate/stream` namespace and handles `stream:tick` events. No changes needed to Rudra's stream output.
+
+### Gap 6 — Samruddhi Layer Not Consuming Stream
+
+**Status:** Same as Gap 5 — `samruddhiFormatter.js` formats full result, not delta stream.  
+**Resolution path:** Same pattern as Ankita — subscribe to `stream:tick`.
+
+### Gap 7 — No WebSocket Authentication on /simulate/stream
+
+**Status:** The `/simulate/stream` namespace has no JWT or signature check. Any client can connect.  
+**Impact:** Acceptable for internal TANTRA convergence. Not acceptable for production.  
+**Resolution path:** Apply `socketAuth` middleware to the `/simulate/stream` namespace, same as the main namespace in `socket.js`.
+
+---
+
+## Test Summary
+
+```
+node test_phase1_stream.js              →  7 passed,  0 failed   Phase 1 — delta stream
+node test_phase2_replay.js              →  5 passed,  0 failed   Phase 2 — replay/live equivalence
+node test_phase3_tick_integrity.js      → 12 passed,  0 failed   Phase 3 — tick integrity
+node test_phase4_trace_continuity.js    → 11 passed,  0 failed   Phase 4 — trace continuity
+node test_phase5_atharva_integration.js →  9 passed,  0 failed   Phase 5 — Atharva integration
+node test_phase6_failure_boundary.js    → 13 passed,  0 failed   Phase 6 — failure boundary
+node test_phase7_concurrency.js         →  9 passed,  0 failed   Phase 7 — concurrency
+─────────────────────────────────────────────────────────────────
+TOTAL                                   → 66 passed,  0 failed
+```
+
+---
+
+## Convergence Statement
+
+Rudra's simulation node is now a deterministic upstream state authority for live TANTRA execution flow.
+
+- Delta streams are emitted tick-by-tick over WebSocket in locked TANTRA schema
+- Replay is byte-equivalent to live — no replay-specific shape
+- Tick integrity is hard-enforced — duplicate, out-of-order, and missing ticks cause immediate fail-close
+- trace_id originates upstream and is never regenerated or transformed
+- Atharva's execution layer can consume the stream directly using `mock_atharva_renderer.js` as the integration spec
+- 5 simultaneous streams run with zero cross-trace contamination in 44ms
+- All failure boundaries are explicit — no silent recovery, no partial continuation
+
+**Remaining work before full TANTRA convergence:** Atharva real layer connection (Gap 1), HIAS bucket alignment (Gap 4), stream authentication (Gap 7).

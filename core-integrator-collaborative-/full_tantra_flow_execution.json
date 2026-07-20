@@ -1,0 +1,219 @@
+{
+  "flow_id": "flow_1783416158",
+  "timestamp": "2026-07-07T09:22:38.577190+00:00",
+  "input_prompt": "Generate a simple text processing module for content transformation",
+  "stages": {
+    "prompt_runner": {
+      "artifact_id": "artifact_instruction_235b9beb",
+      "artifact_type": "instruction",
+      "trace_id": "inst_tantra_606bdd086cb4",
+      "instruction_id": "inst_tantra_606bdd086cb4",
+      "schema_version": "1.0.0-FINAL",
+      "timestamp": "2026-07-07T09:22:38.580662+00:00",
+      "payload": {
+        "origin": "prompt_runner",
+        "intent_type": "generate",
+        "target_product": "creator",
+        "instruction_data": {
+          "prompt": "Generate a simple text processing module for content transformation",
+          "complexity": "standard"
+        }
+      },
+      "artifact_hash": "d65068dd28eba008c395d9ad8686212b3f3095ab06ed3efb777f69931dacc65e"
+    },
+    "creator_core": {
+      "artifact_id": "artifact_blueprint_92358014",
+      "artifact_type": "blueprint",
+      "trace_id": "inst_tantra_606bdd086cb4",
+      "instruction_id": "inst_tantra_606bdd086cb4",
+      "schema_version": "1.0.0-FINAL",
+      "timestamp": "2026-07-07T09:22:38.582135+00:00",
+      "parent_artifact_id": "artifact_instruction_235b9beb",
+      "parent_hash": "d65068dd28eba008c395d9ad8686212b3f3095ab06ed3efb777f69931dacc65e",
+      "payload": {
+        "blueprint_id": "bp_inst_tantra_606bdd086cb4",
+        "instruction_reference": "artifact_instruction_235b9beb",
+        "blueprint_data": {
+          "target_module": "sample_text",
+          "execution_intent": "generate",
+          "parameters": {
+            "prompt": "Generate a simple text processing module for content transformation",
+            "complexity": "standard"
+          }
+        }
+      },
+      "artifact_hash": "e78fde32989690a937a5df7c9460a81eaaaac6666f5516deacd0272b98192f2d"
+    },
+    "cet": {
+      "artifact_id": "artifact_contract_21549bd4",
+      "artifact_type": "contract",
+      "trace_id": "inst_tantra_606bdd086cb4",
+      "instruction_id": "inst_tantra_606bdd086cb4",
+      "schema_version": "1.0.0-FINAL",
+      "timestamp": "2026-07-07T09:22:38.582277+00:00",
+      "parent_artifact_id": "artifact_blueprint_92358014",
+      "parent_hash": "e78fde32989690a937a5df7c9460a81eaaaac6666f5516deacd0272b98192f2d",
+      "payload": {
+        "contract_id": "contract_235b9beb3e85",
+        "execution_plan": {
+          "target_module": "sample_text",
+          "execution_intent": "generate",
+          "parameters": {
+            "prompt": "Generate a simple text processing module for content transformation",
+            "complexity": "standard"
+          }
+        },
+        "constraints": {
+          "deterministic": true,
+          "replay_safe": true
+        },
+        "contract_hash": "0807992c6b2b3306875b0851d03cc8cfbeecb84b3a7dd0e5475b1b39bd3ea597"
+      },
+      "artifact_hash": "31e383b519031ceb2bc32c6d493b73a1b7fde18639bb51f517077453b6f16a31"
+    },
+    "sarathi": {
+      "allowed": true,
+      "reason": "valid_contract",
+      "contract_id": "contract_235b9beb3e85",
+      "trace_id": "inst_tantra_606bdd086cb4",
+      "decision_id": "decision_contract_235b9beb3e85",
+      "validation_checks": {
+        "has_contract_id": true,
+        "has_trace_id": true,
+        "has_execution_plan": true,
+        "has_valid_module": true,
+        "has_constraints": true,
+        "has_contract_hash": true
+      }
+    },
+    "gate": {
+      "gate_status": "EXECUTED",
+      "contract_id": "contract_235b9beb3e85",
+      "trace_id": "inst_tantra_606bdd086cb4",
+      "authority_decision": {
+        "allowed": true,
+        "reason": "valid_contract",
+        "contract_id": "contract_235b9beb3e85",
+        "trace_id": "inst_tantra_606bdd086cb4",
+        "decision_id": "decision_contract_235b9beb3e85",
+        "validation_checks": {
+          "has_contract_id": true,
+          "has_trace_id": true,
+          "has_execution_plan": true,
+          "has_valid_module": true,
+          "has_constraints": true,
+          "has_contract_hash": true
+        }
+      }
+    },
+    "execution": {
+      "artifact_id": "artifact_execution_7b59e954",
+      "artifact_type": "execution",
+      "trace_id": "inst_tantra_606bdd086cb4",
+      "instruction_id": "inst_tantra_606bdd086cb4",
+      "schema_version": "1.0.0-FINAL",
+      "timestamp": "2026-07-07T09:22:38.582410+00:00",
+      "parent_artifact_id": "artifact_contract_21549bd4",
+      "parent_hash": "31e383b519031ceb2bc32c6d493b73a1b7fde18639bb51f517077453b6f16a31",
+      "payload": {
+        "execution_id": "exec_235b9beb3e850c5e",
+        "gate_status": "EXECUTED",
+        "output": {
+          "generated_content": "This is sample generated content from the module execution.",
+          "metadata": {
+            "module": "sample_text",
+            "duration_ms": 150
+          }
+        }
+      },
+      "artifact_hash": "f352615bd99b64a224d292632bb95d5daf7d6e7f0ceba2bd99f4709bf766ae08"
+    },
+    "bucket": {
+      "artifact_id": "artifact_result_7c0d8112",
+      "artifact_type": "result",
+      "trace_id": "inst_tantra_606bdd086cb4",
+      "instruction_id": "inst_tantra_606bdd086cb4",
+      "schema_version": "1.0.0-FINAL",
+      "timestamp": "2026-07-07T09:22:38.582457+00:00",
+      "parent_artifact_id": "artifact_execution_7b59e954",
+      "parent_hash": "f352615bd99b64a224d292632bb95d5daf7d6e7f0ceba2bd99f4709bf766ae08",
+      "payload": {
+        "status": "success",
+        "result_data": {
+          "generated_content": "This is sample generated content from the module execution.",
+          "metadata": {
+            "module": "sample_text",
+            "duration_ms": 150
+          }
+        },
+        "deterministic_hash": "5c039389c758e0c8fd818c64258a271944b421304b6ad1313ca406503fd2932c"
+      },
+      "artifact_hash": "c08a5c0f407e41b5af294c0315e85186d909d784a72147c9a7f88c9325aed85b"
+    },
+    "insightflow": {
+      "events_emitted": 7,
+      "trace_id": "inst_tantra_606bdd086cb4",
+      "artifact_chain": [
+        "artifact_instruction_235b9beb",
+        "artifact_blueprint_92358014",
+        "artifact_contract_21549bd4",
+        "artifact_execution_7b59e954",
+        "artifact_result_7c0d8112"
+      ],
+      "telemetry_target": "insightflow"
+    },
+    "replay": {
+      "replay_status": "completed",
+      "hash_match": true,
+      "original_hashes": [
+        "d65068dd28eba008...",
+        "e78fde32989690a9...",
+        "31e383b519031ceb...",
+        "f352615bd99b64a2...",
+        "c08a5c0f407e41b5..."
+      ],
+      "recomputed_hashes": [
+        "d65068dd28eba008...",
+        "e78fde32989690a9...",
+        "31e383b519031ceb...",
+        "f352615bd99b64a2...",
+        "c08a5c0f407e41b5..."
+      ],
+      "determinism_verified": true
+    }
+  },
+  "artifact_chain": {
+    "A1_instruction": "artifact_instruction_235b9beb",
+    "A2_blueprint": "artifact_blueprint_92358014",
+    "A3_contract": "artifact_contract_21549bd4",
+    "A4_execution": "artifact_execution_7b59e954",
+    "A5_result": "artifact_result_7c0d8112"
+  },
+  "hash_validation": {
+    "valid": true,
+    "chain_length": 5,
+    "issues": []
+  },
+  "replay_proof": {
+    "replay_status": "completed",
+    "hash_match": true,
+    "original_hashes": [
+      "d65068dd28eba008...",
+      "e78fde32989690a9...",
+      "31e383b519031ceb...",
+      "f352615bd99b64a2...",
+      "c08a5c0f407e41b5..."
+    ],
+    "recomputed_hashes": [
+      "d65068dd28eba008...",
+      "e78fde32989690a9...",
+      "31e383b519031ceb...",
+      "f352615bd99b64a2...",
+      "c08a5c0f407e41b5..."
+    ],
+    "determinism_verified": true
+  },
+  "flow_complete": true,
+  "deterministic": true,
+  "trace_id_consistent": true
+}

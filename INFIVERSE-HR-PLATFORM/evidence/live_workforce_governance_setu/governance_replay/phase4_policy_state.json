@@ -1,0 +1,244 @@
+{
+  "calls": [
+    {
+      "note": "list policy definitions (post-scenario state)",
+      "method": "GET",
+      "path": "/v1/policies/definitions?limit=50",
+      "request_correlation_id_header": null,
+      "request_body": null,
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "9d188027-2eb0-4b9e-9768-a7d8cdbac5f8",
+      "timestamp_utc": "2026-07-01T08:11:24.047014+00:00",
+      "response_body": {
+        "items": [
+          {
+            "policy_key": "approval_policy",
+            "name": "Approval Policy",
+            "description": "Approval governance scenario",
+            "version": "1.0.0",
+            "rules": {
+              "require_explicit_approval": true,
+              "effect": "deny_until_approved"
+            },
+            "scope_type": "tenant",
+            "tenant_id": "platform",
+            "status": "active",
+            "created_at": "2026-07-01T08:11:24.009000",
+            "updated_at": "2026-07-01T08:11:24.009000",
+            "id": "6a44cbacf5b43a528e6ee5b2"
+          },
+          {
+            "policy_key": "leave_policy",
+            "name": "Leave Policy",
+            "description": "Leave governance scenario",
+            "version": "1.0.0",
+            "rules": {
+              "min_tenure_days": 90,
+              "effect": "observe"
+            },
+            "scope_type": "tenant",
+            "tenant_id": "platform",
+            "status": "active",
+            "created_at": "2026-07-01T08:11:23.903000",
+            "updated_at": "2026-07-01T08:11:23.903000",
+            "id": "6a44cbabf5b43a528e6ee59a"
+          },
+          {
+            "policy_key": "visibility_policy",
+            "name": "Visibility Policy",
+            "description": "Visibility governance scenario",
+            "version": "1.0.0",
+            "rules": {
+              "require_scope_match": true,
+              "effect": "allow"
+            },
+            "scope_type": "tenant",
+            "tenant_id": "platform",
+            "status": "active",
+            "created_at": "2026-07-01T08:11:23.970000",
+            "updated_at": "2026-07-01T08:11:23.970000",
+            "id": "6a44cbabf5b43a528e6ee5a7"
+          }
+        ],
+        "policy_scope": {
+          "scope": "platform",
+          "scope_label": "platform_admin",
+          "role": "admin",
+          "user_id": null,
+          "tenant_id": null,
+          "org_id": null,
+          "workforce_category": "all"
+        }
+      }
+    },
+    {
+      "note": "re-evaluate leave_policy with compliant context (state comparison vs Phase 3 deny)",
+      "method": "POST",
+      "path": "/v1/policies/evaluate",
+      "request_correlation_id_header": null,
+      "request_body": {
+        "policy_key": "leave_policy",
+        "context": {
+          "tenure_days": 200
+        }
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "64070707-efff-41dd-ae4d-4e0385da5881",
+      "timestamp_utc": "2026-07-01T08:11:24.051510+00:00",
+      "response_body": {
+        "evaluation_id": "peval-71af6bd1579c",
+        "policy_key": "leave_policy",
+        "result": {
+          "decision": "allow",
+          "effect": "observe",
+          "rationale": "policy=leave_policy"
+        },
+        "correlation_id": "64070707-efff-41dd-ae4d-4e0385da5881"
+      }
+    },
+    {
+      "note": "re-evaluate visibility_policy with compliant context (state comparison vs Phase 3 deny)",
+      "method": "POST",
+      "path": "/v1/policies/evaluate",
+      "request_correlation_id_header": null,
+      "request_body": {
+        "policy_key": "visibility_policy",
+        "context": {
+          "scope_match": true
+        }
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "e9a9deff-4ce9-4df2-8068-d128f994bbd3",
+      "timestamp_utc": "2026-07-01T08:11:24.056072+00:00",
+      "response_body": {
+        "evaluation_id": "peval-3e5e2af0d247",
+        "policy_key": "visibility_policy",
+        "result": {
+          "decision": "allow",
+          "effect": "allow",
+          "rationale": "policy=visibility_policy"
+        },
+        "correlation_id": "e9a9deff-4ce9-4df2-8068-d128f994bbd3"
+      }
+    },
+    {
+      "note": "re-evaluate approval_policy with compliant context (state comparison vs Phase 3 deny)",
+      "method": "POST",
+      "path": "/v1/policies/evaluate",
+      "request_correlation_id_header": null,
+      "request_body": {
+        "policy_key": "approval_policy",
+        "context": {
+          "approved": true
+        }
+      },
+      "auth": "api_key:admin",
+      "http_status": 200,
+      "response_correlation_id_header": "029102a2-cab4-44aa-9e7f-11f1d3fcaabb",
+      "timestamp_utc": "2026-07-01T08:11:24.060307+00:00",
+      "response_body": {
+        "evaluation_id": "peval-1b292a0d880a",
+        "policy_key": "approval_policy",
+        "result": {
+          "decision": "observe",
+          "effect": "deny_until_approved",
+          "rationale": "policy=approval_policy"
+        },
+        "correlation_id": "029102a2-cab4-44aa-9e7f-11f1d3fcaabb"
+      }
+    }
+  ],
+  "definitions": {
+    "items": [
+      {
+        "policy_key": "approval_policy",
+        "name": "Approval Policy",
+        "description": "Approval governance scenario",
+        "version": "1.0.0",
+        "rules": {
+          "require_explicit_approval": true,
+          "effect": "deny_until_approved"
+        },
+        "scope_type": "tenant",
+        "tenant_id": "platform",
+        "status": "active",
+        "created_at": "2026-07-01T08:11:24.009000",
+        "updated_at": "2026-07-01T08:11:24.009000",
+        "id": "6a44cbacf5b43a528e6ee5b2"
+      },
+      {
+        "policy_key": "leave_policy",
+        "name": "Leave Policy",
+        "description": "Leave governance scenario",
+        "version": "1.0.0",
+        "rules": {
+          "min_tenure_days": 90,
+          "effect": "observe"
+        },
+        "scope_type": "tenant",
+        "tenant_id": "platform",
+        "status": "active",
+        "created_at": "2026-07-01T08:11:23.903000",
+        "updated_at": "2026-07-01T08:11:23.903000",
+        "id": "6a44cbabf5b43a528e6ee59a"
+      },
+      {
+        "policy_key": "visibility_policy",
+        "name": "Visibility Policy",
+        "description": "Visibility governance scenario",
+        "version": "1.0.0",
+        "rules": {
+          "require_scope_match": true,
+          "effect": "allow"
+        },
+        "scope_type": "tenant",
+        "tenant_id": "platform",
+        "status": "active",
+        "created_at": "2026-07-01T08:11:23.970000",
+        "updated_at": "2026-07-01T08:11:23.970000",
+        "id": "6a44cbabf5b43a528e6ee5a7"
+      }
+    ],
+    "policy_scope": {
+      "scope": "platform",
+      "scope_label": "platform_admin",
+      "role": "admin",
+      "user_id": null,
+      "tenant_id": null,
+      "org_id": null,
+      "workforce_category": "all"
+    }
+  },
+  "reevaluations": [
+    {
+      "policy_key": "leave_policy",
+      "result": {
+        "decision": "allow",
+        "effect": "observe",
+        "rationale": "policy=leave_policy"
+      },
+      "evaluation_id": "peval-71af6bd1579c"
+    },
+    {
+      "policy_key": "visibility_policy",
+      "result": {
+        "decision": "allow",
+        "effect": "allow",
+        "rationale": "policy=visibility_policy"
+      },
+      "evaluation_id": "peval-3e5e2af0d247"
+    },
+    {
+      "policy_key": "approval_policy",
+      "result": {
+        "decision": "observe",
+        "effect": "deny_until_approved",
+        "rationale": "policy=approval_policy"
+      },
+      "evaluation_id": "peval-1b292a0d880a"
+    }
+  ]
+}

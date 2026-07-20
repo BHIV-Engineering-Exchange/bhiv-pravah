@@ -1,0 +1,153 @@
+{
+  "domain": "healthcare",
+  "version": "1.0.0",
+  "description": "Healthcare domain plugin for patient assessment, treatment planning, medical research, and clinical reporting.",
+
+  "detection_keywords": [
+    "patient", "medical", "health", "disease", "treatment", "diagnosis",
+    "clinical", "hospital", "doctor", "medicine", "symptom", "therapy",
+    "pharmaceutical", "drug", "dosage", "surgery", "condition", "care",
+    "nurse", "physician", "specialist", "prescription", "chronic"
+  ],
+
+  "detection_patterns": [
+    "patient\\s+(?:assessment|record|history|report|care)",
+    "medical\\s+(?:report|analysis|research|diagnosis|record)",
+    "clinical\\s+(?:trial|study|assessment|report)",
+    "(?:treatment|therapy)\\s+(?:plan|planning|recommendation|protocol)"
+  ],
+
+  "intents": {
+    "patient_assessment": {
+      "patterns": [
+        "(?:assess|evaluate|review)\\s+(?:the\\s+)?patient",
+        "patient\\s+(?:assessment|evaluation|review)",
+        "(?:clinical|medical)\\s+(?:assessment|evaluation)",
+        "(?:diagnose|diagnosis\\s+for)\\s+(?:a\\s+)?patient"
+      ],
+      "module": "patient_assessor",
+      "task": "perform_patient_assessment",
+      "required_entities": [],
+      "optional_entities": ["condition", "specialty", "patient_type", "urgency"],
+      "tasks": ["history review", "symptom analysis", "diagnostic evaluation", "treatment recommendation"],
+      "output_format": "assessment_report"
+    },
+
+    "treatment_planning": {
+      "patterns": [
+        "(?:create|develop|plan)\\s+(?:a\\s+)?treatment\\s+plan",
+        "treatment\\s+(?:planning|recommendation|protocol|strategy)",
+        "(?:prescribe|recommend)\\s+(?:treatment|therapy|medication)",
+        "therapy\\s+(?:plan|recommendation)"
+      ],
+      "module": "treatment_planner",
+      "task": "create_treatment_plan",
+      "required_entities": [],
+      "optional_entities": ["condition", "specialty", "patient_type", "medications"],
+      "tasks": ["condition analysis", "treatment options review", "protocol selection", "care plan creation"],
+      "output_format": "treatment_plan"
+    },
+
+    "medical_research": {
+      "patterns": [
+        "(?:research|find|look\\s+up)\\s+(?:the\\s+)?(?:medical|clinical|drug|treatment)",
+        "medical\\s+research",
+        "(?:clinical|drug)\\s+(?:trial|study|evidence|data)",
+        "evidence-based\\s+(?:medicine|treatment|approach)"
+      ],
+      "module": "medical_researcher",
+      "task": "perform_medical_research",
+      "required_entities": [],
+      "optional_entities": ["condition", "drug_name", "specialty", "study_type"],
+      "tasks": ["literature review", "clinical data analysis", "evidence synthesis", "research summary"],
+      "output_format": "research_summary"
+    },
+
+    "generate_report": {
+      "patterns": [
+        "generate\\s+(?:a\\s+)?(?:medical|clinical|patient|health)?\\s*report",
+        "create\\s+(?:a\\s+)?(?:medical|clinical|patient)?\\s*report",
+        "(?:medical|clinical|health)\\s+(?:report|summary|record)",
+        "patient\\s+(?:report|summary|documentation)"
+      ],
+      "module": "medical_reporter",
+      "task": "generate_medical_report",
+      "required_entities": [],
+      "optional_entities": ["report_type", "condition", "specialty"],
+      "tasks": ["data collection", "clinical analysis", "report drafting", "medical review"],
+      "output_format": "medical_report"
+    },
+
+    "review_compliance": {
+      "patterns": [
+        "(?:review|check)\\s+(?:healthcare\\s+|medical\\s+|clinical\\s+)?compliance",
+        "(?:healthcare|medical|clinical)\\s+(?:compliance|regulation|standard)",
+        "(?:hipaa|gdpr|phi|pii)\\s+(?:compliance|review|audit)",
+        "regulatory\\s+compliance\\s+(?:in\\s+healthcare|for\\s+(?:medical|clinical))"
+      ],
+      "module": "healthcare_compliance_checker",
+      "task": "check_healthcare_compliance",
+      "required_entities": [],
+      "optional_entities": ["regulation_type", "specialty", "jurisdiction"],
+      "tasks": ["regulatory standards review", "compliance assessment", "gap analysis", "recommendations"],
+      "output_format": "compliance_report"
+    }
+  },
+
+  "extractors": {
+    "condition": {
+      "type": "keyword",
+      "keywords": [
+        "diabetes", "hypertension", "cancer", "asthma", "heart disease",
+        "depression", "anxiety", "arthritis", "obesity", "stroke",
+        "tuberculosis", "pneumonia", "kidney disease", "liver disease", "anemia"
+      ]
+    },
+    "specialty": {
+      "type": "keyword",
+      "keywords": [
+        "cardiology", "neurology", "oncology", "orthopedics", "pediatrics",
+        "psychiatry", "dermatology", "radiology", "surgery", "internal medicine",
+        "endocrinology", "gastroenterology", "nephrology", "pulmonology"
+      ]
+    },
+    "patient_type": {
+      "type": "keyword",
+      "keywords": ["adult", "pediatric", "geriatric", "infant", "elderly", "adolescent", "neonatal", "pregnant"]
+    },
+    "urgency": {
+      "type": "keyword",
+      "keywords": ["emergency", "urgent", "critical", "routine", "elective", "stat", "immediate", "non-urgent"]
+    },
+    "medications": {
+      "type": "regex",
+      "pattern": "(?:medication|drug|medicine|prescription)\\s+(?:is\\s+|:)?([A-Za-z]+(?:\\s+[A-Za-z]+)?)",
+      "group": 1,
+      "case_insensitive": true
+    }
+  },
+
+  "constraint_rules": {
+    "regulatory": {
+      "type": "keyword",
+      "keywords": ["HIPAA", "GDPR", "FDA", "PHI", "EHR", "EMR", "clinical guidelines", "protocol"]
+    },
+    "setting": {
+      "type": "keyword",
+      "keywords": ["inpatient", "outpatient", "ICU", "ward", "clinic", "emergency room", "telemedicine", "home care"]
+    },
+    "timeline": {
+      "type": "regex",
+      "pattern": "(?:within|in|after)\\s+(\\d+\\s*(?:days?|weeks?|months?))",
+      "group": 1,
+      "case_insensitive": true
+    }
+  },
+
+  "clarification_questions": {
+    "condition": "What is the medical condition or diagnosis?",
+    "specialty": "What medical specialty does this relate to (e.g., cardiology, oncology)?",
+    "patient_type": "What type of patient is this (adult, pediatric, geriatric)?",
+    "urgency": "What is the urgency level (emergency, urgent, routine)?"
+  }
+}

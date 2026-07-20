@@ -1,0 +1,22 @@
+
+{
+  "sessionId": "user:1767934013283",
+  "userId": "user",
+  "role": "user",
+  "startTime": 1767934013283,
+  "endTime": 1767934020977,
+  "durationSec": 7,
+  "actions": {
+    "total": 9,
+    "breakdown": {
+      "click": 7,
+      "call_npc": 1,
+      "speak": 1
+    }
+  },
+  "anomalies": [],
+  "integrity": {
+    "nonceReplayDetected": false,
+    "invalidSignatureCount": 0
+  }
+}

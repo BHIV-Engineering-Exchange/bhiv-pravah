@@ -1,0 +1,6 @@
+id,candidate_id,job_id,feedback_score,comment,actual_outcome,created_date,hr_name
+1,1,1,4,"Good technical skills, needs improvement in communication",accept,2024-01-20,HR Manager
+2,2,2,5,"Excellent frontend skills and great team player",accept,2024-01-21,HR Manager
+3,3,3,3,"Average performance, consider for junior role",reconsider,2024-01-22,HR Manager
+4,4,4,5,"Outstanding candidate with strong full-stack experience",accept,2024-01-23,HR Manager
+5,5,5,2,"Skills don't match requirements",reject,2024-01-24,HR Manager

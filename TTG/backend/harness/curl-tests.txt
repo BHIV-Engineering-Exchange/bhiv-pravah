@@ -1,0 +1,29 @@
+# =========================
+# Real-Time Micro-Bridge
+# Day-2 Test Harness (curl)
+# =========================
+
+# 1. Health check (PASS)
+curl http://localhost:3000/health
+
+# Expected: status 200, service alive
+
+
+# 2. Security status (PASS)
+curl http://localhost:3000/security/status
+
+# Expected: jwt, hmac, nonceProtection, heartbeat enabled
+
+
+# 3. Auth token generation (PASS)
+curl -X POST http://localhost:3000/auth/token \
+  -H "Content-Type: application/json" \
+  -d '{"userId":"testuser123"}'
+
+# Expected: JWT token returned
+
+
+# NOTE:
+# Socket.IO security tests (signature, nonce, heartbeat)
+# are demonstrated via browser-based test harness
+# and backend logs (see screenshots).

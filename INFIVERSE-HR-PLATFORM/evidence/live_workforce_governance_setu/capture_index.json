@@ -1,0 +1,175 @@
+{
+  "task": "Live WO/GE/SETU Sprint",
+  "environment": "local in-process FastAPI runtime over in-memory async Mongo (mongomock_motor)",
+  "deployed": false,
+  "gateway_base_url": "in-process://gateway (real workforce_governance_routes router)",
+  "auth_admin": "api_key (platform/admin scope)",
+  "auth_client": "HS256 JWT (client/tenant scope = TENANT-CLIENT-01)",
+  "captured_at": "2026-07-01T08:11:23.798812+00:00",
+  "ids": {
+    "lifecycle_correlation_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+    "org_id": "6a44cbabf5b43a528e6ee582",
+    "division_id": "6a44cbabf5b43a528e6ee584",
+    "unit_id": "6a44cbabf5b43a528e6ee586",
+    "department_a_id": "6a44cbabf5b43a528e6ee588",
+    "department_b_id": "6a44cbabf5b43a528e6ee58a",
+    "department_c_id": "6a44cbabf5b43a528e6ee58c",
+    "employee_id": "6a44cbabf5b43a528e6ee58e",
+    "workforce_ref_id": "wf-704dedc80d02",
+    "employee2_id": "6a44cbabf5b43a528e6ee596",
+    "employee2_inherited_roles": [
+      "org_member",
+      "analyst"
+    ],
+    "employee3_id": "6a44cbabf5b43a528e6ee598"
+  },
+  "phases": {
+    "phase1": {
+      "replay_event_count": 13,
+      "replay_actions": [
+        "organization_create",
+        "division_create",
+        "unit_create",
+        "department_create",
+        "department_create",
+        "department_create",
+        "employee_create",
+        "employee_onboard",
+        "employee_onboard_complete",
+        "employee_department_transfer",
+        "employee_promotion",
+        "employee_department_transfer",
+        "employee_offboard_prepare"
+      ]
+    },
+    "phase2": {
+      "admin_visible_employees": 3,
+      "client_visible_employees": 0,
+      "admin_scope": "platform",
+      "client_scope": "client",
+      "foreign_org_status": 404
+    },
+    "phase3": [
+      {
+        "domain": "Leave",
+        "correlation_id": "44ce7789-cd5e-4fb1-bf12-b0ace199e93c",
+        "policy_id": "6a44cbabf5b43a528e6ee59a",
+        "evaluation_id": "peval-2f18f04aae1c",
+        "challenge_id": "chl-69a0fb4eb9e6",
+        "review_id": "rev-86949c3e8382",
+        "override_id": "wovr-330551d24267",
+        "decision_id": "dec-865d0fb11014",
+        "superseding_decision_id": "dec-d3484e954a24",
+        "replay_chain_len": 2
+      },
+      {
+        "domain": "Visibility",
+        "correlation_id": "d89f8086-7560-4b77-a934-d4d7b62e1cf5",
+        "policy_id": "6a44cbabf5b43a528e6ee5a7",
+        "evaluation_id": "peval-fd13389d6278",
+        "challenge_id": "chl-d7be45556404",
+        "review_id": "rev-5071f2e15d72",
+        "override_id": "wovr-ed42abb0693e",
+        "decision_id": "dec-595d5dd2e58a",
+        "superseding_decision_id": null,
+        "replay_chain_len": 1
+      },
+      {
+        "domain": "Approval",
+        "correlation_id": "4d08bd17-b100-4bf9-a99f-abdcb3eb9029",
+        "policy_id": "6a44cbacf5b43a528e6ee5b2",
+        "evaluation_id": "peval-98b647f20f36",
+        "challenge_id": "chl-5e3c63b0c676",
+        "review_id": "rev-5b221d53f847",
+        "override_id": "wovr-9203038691f0",
+        "decision_id": "dec-6e31988ba178",
+        "superseding_decision_id": null,
+        "replay_chain_len": 1
+      }
+    ],
+    "phase4": {
+      "definition_count": 3,
+      "reevaluations": [
+        {
+          "policy_key": "leave_policy",
+          "result": {
+            "decision": "allow",
+            "effect": "observe",
+            "rationale": "policy=leave_policy"
+          },
+          "evaluation_id": "peval-71af6bd1579c"
+        },
+        {
+          "policy_key": "visibility_policy",
+          "result": {
+            "decision": "allow",
+            "effect": "allow",
+            "rationale": "policy=visibility_policy"
+          },
+          "evaluation_id": "peval-3e5e2af0d247"
+        },
+        {
+          "policy_key": "approval_policy",
+          "result": {
+            "decision": "observe",
+            "effect": "deny_until_approved",
+            "rationale": "policy=approval_policy"
+          },
+          "evaluation_id": "peval-1b292a0d880a"
+        }
+      ]
+    },
+    "phase5": [
+      {
+        "signal_type": "niyantran_telemetry",
+        "signal_id": "sig-9746f00e65f0",
+        "trace_id": "0749c563-471a-49a2-8a74-74023b4526c5",
+        "owning_system": "niyantran",
+        "trace_signal_count": 1,
+        "trace_audit_count": 14
+      },
+      {
+        "signal_type": "artha_payroll_visibility",
+        "signal_id": "sig-680230213813",
+        "trace_id": "45e5789f-9b3b-4c1e-83df-78c85cf554d6",
+        "owning_system": "artha",
+        "trace_signal_count": 1,
+        "trace_audit_count": 1
+      },
+      {
+        "signal_type": "crm_participation",
+        "signal_id": "sig-35aff75373cf",
+        "trace_id": "2ee7500e-f60c-45a6-8940-6c60cd075fc2",
+        "owning_system": "crm",
+        "trace_signal_count": 1,
+        "trace_audit_count": 1
+      },
+      {
+        "signal_type": "setu_aggregation",
+        "signal_id": "sig-b6506b9eab8c",
+        "trace_id": "d9acb10a-41bc-4bb6-8765-c5152cb7b802",
+        "owning_system": "setu",
+        "trace_signal_count": 1,
+        "trace_audit_count": 1
+      }
+    ],
+    "phase6": {
+      "cross_system_trace_signal_count": 1,
+      "cross_system_trace_audit_count": 14,
+      "required_fields_present": [
+        "correlation_id",
+        "origin_system",
+        "owning_system",
+        "schema_version",
+        "trace_id",
+        "trust_classification",
+        "visibility_scope"
+      ]
+    },
+    "phase7": {
+      "audit_events_total": 38,
+      "audit_events_for_lifecycle_cid": 14,
+      "replay_event_count": 14
+    }
+  }
+}

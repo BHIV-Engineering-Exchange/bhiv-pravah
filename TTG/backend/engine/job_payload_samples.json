@@ -1,0 +1,66 @@
+[
+    {
+      "jobType": "BUILD_SCENE",
+      "payload": {
+        "sceneId": "forest_scene",
+        "ambientLight": [0.4, 0.6, 0.4],
+        "skybox": "forest_sky"
+      }
+    },
+    {
+      "jobType": "LOAD_ASSETS",
+      "payload": {
+        "assets": [
+          "player",
+          "player_armor",
+          "wolf",
+          "wolf_fur"
+        ]
+      }
+    },
+    {
+      "jobType": "SPAWN_ENTITIES",
+      "payload": {
+        "id": "player_1",
+        "type": "player",
+        "transform": {
+          "position": [0, 0, 0],
+          "rotation": [0, 0, 0],
+          "scale": [1, 1, 1]
+        },
+        "material": {
+          "shader": "standard",
+          "texture": "player_armor",
+          "color": [1, 1, 1]
+        },
+        "components": {
+          "mesh": "player",
+          "collider": "box",
+          "script": "player_controller"
+        }
+      }
+    },
+    {
+      "jobType": "SPAWN_ENTITIES",
+      "payload": {
+        "id": "wolf_1",
+        "type": "npc",
+        "transform": {
+          "position": [5, 0, -3],
+          "rotation": [0, 0, 0],
+          "scale": [1, 1, 1]
+        },
+        "material": {
+          "shader": "standard",
+          "texture": "wolf_fur",
+          "color": [1, 1, 1]
+        },
+        "components": {
+          "mesh": "wolf",
+          "collider": "box",
+          "script": "hostile_ai"
+        }
+      }
+    }
+  ]
+  

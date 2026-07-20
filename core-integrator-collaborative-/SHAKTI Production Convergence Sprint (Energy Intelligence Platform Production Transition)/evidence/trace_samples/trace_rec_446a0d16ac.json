@@ -1,0 +1,168 @@
+{
+  "status_code": 200,
+  "body": {
+    "trace_id": "rec_446a0d16ac",
+    "artifacts": [
+      {
+        "artifact_id": "instruction_aaec0fb0",
+        "artifact_type": "instruction",
+        "trace_id": "rec_446a0d16ac",
+        "timestamp": "2026-07-08T09:56:50.307897+00:00",
+        "data": {
+          "prompt": "Plan a lesson on algebra fundamentals for grade 8 students",
+          "module": "education",
+          "intent": "generate",
+          "topic": "general",
+          "tasks": [
+            "create_plan",
+            "create_lesson_plan"
+          ],
+          "output_format": "json",
+          "product_context": "gurukul",
+          "trace_id": "rec_446a0d16ac",
+          "workflow_id": "wf_950108e7",
+          "instruction_id": "rec_446a0d16ac"
+        },
+        "metadata": {
+          "size_bytes": 336,
+          "schema_version": "1.0.0"
+        }
+      },
+      {
+        "artifact_id": "blueprint_d1d11add",
+        "artifact_type": "blueprint",
+        "trace_id": "rec_446a0d16ac",
+        "timestamp": "2026-07-08T09:56:50.335031+00:00",
+        "data": {
+          "blueprint": {
+            "instruction_id": "4481cb3c-d308-4e02-b45f-f398cdbaa9dd",
+            "origin": "creator_core",
+            "intent_type": "generate",
+            "target_product": "education",
+            "payload": {
+              "blueprint_type": "content_blueprint",
+              "product_target": "education",
+              "content_type": "json",
+              "title": "General",
+              "outline": [
+                "create_plan",
+                "create_lesson_plan"
+              ]
+            },
+            "schema_version": "1.0",
+            "timestamp": "2026-07-08T09:56:50.320410+00:00"
+          },
+          "trace_id": "rec_446a0d16ac",
+          "workflow_id": "wf_950108e7"
+        },
+        "metadata": {
+          "size_bytes": 468,
+          "schema_version": "1.0.0"
+        }
+      },
+      {
+        "artifact_id": "contract_eca00cf9",
+        "artifact_type": "contract",
+        "trace_id": "rec_446a0d16ac",
+        "timestamp": "2026-07-08T09:56:50.371111+00:00",
+        "data": {
+          "contract_id": "contract_7b11cdcabfb3",
+          "instruction_id": "rec_446a0d16ac",
+          "trace_id": "rec_446a0d16ac",
+          "execution_plan": {
+            "target_module": "education",
+            "execution_intent": "generate",
+            "execution_data": {
+              "blueprint_type": "content_blueprint",
+              "product_target": "education",
+              "content_type": "json",
+              "title": "General",
+              "outline": [
+                "create_plan",
+                "create_lesson_plan"
+              ]
+            }
+          },
+          "constraints": {
+            "schema_version": "1.0.0",
+            "origin": "creator_core",
+            "intent_type": null,
+            "deterministic": true,
+            "replay_safe": true
+          },
+          "contract_hash": "8c7567ed83810de72356da59498b6837f5e93cd178827e7abdd303c66686290a",
+          "timestamp": "2026-07-08T09:56:50.359182+00:00",
+          "schema_version": "1.0.0",
+          "workflow_id": "wf_950108e7"
+        },
+        "metadata": {
+          "size_bytes": 698,
+          "schema_version": "1.0.0"
+        }
+      },
+      {
+        "artifact_id": "authority_1ad76a08",
+        "artifact_type": "authority",
+        "trace_id": "rec_446a0d16ac",
+        "timestamp": "2026-07-08T09:56:50.398589+00:00",
+        "data": {
+          "allowed": true,
+          "reason": "valid_contract",
+          "contract_id": "contract_7b11cdcabfb3",
+          "trace_id": "rec_446a0d16ac",
+          "decision_id": "decision_contract_7b11cdcabfb3",
+          "timestamp": "2026-07-08T09:56:50.390783+00:00",
+          "validation_checks": {
+            "has_contract_id": "contract_7b11cdcabfb3",
+            "has_trace_id": "rec_446a0d16ac",
+            "has_execution_plan": true,
+            "has_valid_module": "education",
+            "has_constraints": true,
+            "has_contract_hash": "8c7567ed83810de72356da59498b6837f5e93cd178827e7abdd303c66686290a"
+          },
+          "workflow_id": "wf_950108e7"
+        },
+        "metadata": {
+          "size_bytes": 519,
+          "schema_version": "1.0.0"
+        }
+      },
+      {
+        "artifact_id": "gate_0179ad7e",
+        "artifact_type": "gate",
+        "trace_id": "rec_446a0d16ac",
+        "timestamp": "2026-07-08T09:56:50.426723+00:00",
+        "data": {
+          "status": "allowed",
+          "message": "Execution approved by gate",
+          "result": {},
+          "contract_id": "contract_7b11cdcabfb3",
+          "trace_id": "rec_446a0d16ac",
+          "gate_status": "ALLOWED",
+          "authority_decision": {
+            "allowed": true,
+            "reason": "valid_contract",
+            "contract_id": "contract_7b11cdcabfb3",
+            "trace_id": "rec_446a0d16ac",
+            "decision_id": "decision_contract_7b11cdcabfb3",
+            "timestamp": "2026-07-08T09:56:50.390783+00:00",
+            "validation_checks": {
+              "has_contract_id": "contract_7b11cdcabfb3",
+              "has_trace_id": "rec_446a0d16ac",
+              "has_execution_plan": true,
+              "has_valid_module": "education",
+              "has_constraints": true,
+              "has_contract_hash": "8c7567ed83810de72356da59498b6837f5e93cd178827e7abdd303c66686290a"
+            }
+          },
+          "timestamp": "2026-07-08T09:56:50.418102+00:00",
+          "workflow_id": "wf_950108e7"
+        },
+        "metadata": {
+          "size_bytes": 764,
+          "schema_version": "1.0.0"
+        }
+      }
+    ]
+  }
+}

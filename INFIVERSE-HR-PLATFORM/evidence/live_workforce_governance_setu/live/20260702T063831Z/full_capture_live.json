@@ -1,0 +1,2640 @@
+{
+  "captures": [
+    {
+      "note": "health_or_reachability /health",
+      "method": "GET",
+      "path": "/health",
+      "timestamp_utc": "2026-07-02T06:38:31.367831+00:00",
+      "request_correlation_id_header": null,
+      "http_status": 200,
+      "response_correlation_id_header": "3628fcab-fce1-49e4-b779-8a78f71e0e63",
+      "request_body": null,
+      "response_body": {
+        "status": "healthy",
+        "service": "BHIV HR Gateway",
+        "version": "4.2.0",
+        "timestamp": "2026-07-02T06:38:45.790543+00:00"
+      }
+    },
+    {
+      "note": "health_or_reachability /metrics/dashboard",
+      "method": "GET",
+      "path": "/metrics/dashboard",
+      "timestamp_utc": "2026-07-02T06:38:31.522498+00:00",
+      "request_correlation_id_header": null,
+      "http_status": 200,
+      "response_correlation_id_header": "8c9a0206-d419-4892-94da-f83ace8b9b24",
+      "request_body": null,
+      "response_body": {
+        "performance_summary": {
+          "time_period": "Last 24 hours",
+          "total_requests": 0,
+          "avg_response_time": 0,
+          "error_count": 0,
+          "resumes_processed": 0,
+          "matches_generated": 0,
+          "uptime_hours": 0.02171953861111111
+        },
+        "business_metrics": {
+          "total_job_postings": 0.0,
+          "total_matches_generated": 0.0,
+          "total_resumes_processed": 0,
+          "current_active_users": 0.0,
+          "platform_uptime_hours": 0.02171955
+        },
+        "system_metrics": {
+          "cpu_percent": 100.0,
+          "memory_percent": 64.6,
+          "memory_available": 11654737920,
+          "disk_percent": 89.5,
+          "database_connections": 5,
+          "active_users": 0
+        },
+        "policy_scope": {
+          "scope": "platform",
+          "scope_label": "platform_admin",
+          "role": "admin",
+          "user_id": null,
+          "tenant_id": null,
+          "org_id": null,
+          "workforce_category": "all"
+        }
+      }
+    },
+    {
+      "note": "health_or_reachability /v1/workforce/organizations?limit=1",
+      "method": "GET",
+      "path": "/v1/workforce/organizations?limit=1",
+      "timestamp_utc": "2026-07-02T06:38:31.607090+00:00",
+      "request_correlation_id_header": null,
+      "http_status": 200,
+      "response_correlation_id_header": "301dfb20-0c0e-4c93-b757-049dc78fb93c",
+      "request_body": null,
+      "response_body": {
+        "items": [
+          {
+            "name": "Smoke Test Org",
+            "code": "SMOKE-065437",
+            "parent_organization_id": null,
+            "default_roles": [],
+            "status": "active",
+            "tenant_id": "platform",
+            "created_at": "2026-06-08T06:54:44.033000",
+            "updated_at": "2026-06-08T06:54:44.033000",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "534809f2-0b95-4c53-b96f-63140aa625a5",
+              "correlation_id": "534809f2-0b95-4c53-b96f-63140aa625a5",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "id": "6a26673488b72534dc0c06b8"
+          }
+        ],
+        "policy_scope": {
+          "scope": "platform",
+          "scope_label": "platform_admin",
+          "role": "admin",
+          "user_id": null,
+          "tenant_id": null,
+          "org_id": null,
+          "workforce_category": "all"
+        }
+      }
+    },
+    {
+      "note": "phase1 create organization",
+      "method": "POST",
+      "path": "/v1/workforce/organizations",
+      "timestamp_utc": "2026-07-02T06:38:33.074010+00:00",
+      "request_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "http_status": 200,
+      "response_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "request_body": {
+        "name": "Live Capture Org 20260702T063831Z",
+        "code": "LIVE-63831Z",
+        "default_roles": [
+          "org_member"
+        ],
+        "status": "active"
+      },
+      "response_body": {
+        "name": "Live Capture Org 20260702T063831Z",
+        "code": "LIVE-63831Z",
+        "parent_organization_id": null,
+        "default_roles": [
+          "org_member"
+        ],
+        "status": "active",
+        "tenant_id": "platform",
+        "created_at": "2026-07-02T06:38:47.432080+00:00",
+        "updated_at": "2026-07-02T06:38:47.432080+00:00",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a460777a102674ea6e616f4"
+      }
+    },
+    {
+      "note": "phase1 create division",
+      "method": "POST",
+      "path": "/v1/workforce/divisions",
+      "timestamp_utc": "2026-07-02T06:38:33.330880+00:00",
+      "request_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "http_status": 200,
+      "response_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "request_body": {
+        "organization_id": "6a460777a102674ea6e616f4",
+        "name": "Live Division",
+        "code": "LD-63831Z",
+        "status": "active"
+      },
+      "response_body": {
+        "organization_id": "6a460777a102674ea6e616f4",
+        "name": "Live Division",
+        "code": "LD-63831Z",
+        "status": "active",
+        "tenant_id": "platform",
+        "created_at": "2026-07-02T06:38:47.898115+00:00",
+        "updated_at": "2026-07-02T06:38:47.898115+00:00",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a460777a102674ea6e616f6"
+      }
+    },
+    {
+      "note": "phase1 create unit",
+      "method": "POST",
+      "path": "/v1/workforce/units",
+      "timestamp_utc": "2026-07-02T06:38:33.794181+00:00",
+      "request_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "http_status": 200,
+      "response_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "request_body": {
+        "division_id": "6a460777a102674ea6e616f6",
+        "name": "Live Unit",
+        "code": "LU-63831Z",
+        "status": "active"
+      },
+      "response_body": {
+        "division_id": "6a460777a102674ea6e616f6",
+        "name": "Live Unit",
+        "code": "LU-63831Z",
+        "status": "active",
+        "tenant_id": "platform",
+        "created_at": "2026-07-02T06:38:48.218946+00:00",
+        "updated_at": "2026-07-02T06:38:48.218946+00:00",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a460778a102674ea6e616f8"
+      }
+    },
+    {
+      "note": "phase1 create department A",
+      "method": "POST",
+      "path": "/v1/workforce/departments",
+      "timestamp_utc": "2026-07-02T06:38:34.105368+00:00",
+      "request_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "http_status": 200,
+      "response_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "request_body": {
+        "organization_id": "6a460777a102674ea6e616f4",
+        "unit_id": "6a460778a102674ea6e616f8",
+        "name": "Live Onboarding",
+        "code": "LDA-63831Z",
+        "default_roles": [
+          "analyst"
+        ],
+        "status": "active"
+      },
+      "response_body": {
+        "organization_id": "6a460777a102674ea6e616f4",
+        "unit_id": "6a460778a102674ea6e616f8",
+        "name": "Live Onboarding",
+        "code": "LDA-63831Z",
+        "teams": [],
+        "default_roles": [
+          "analyst"
+        ],
+        "status": "active",
+        "tenant_id": "platform",
+        "created_at": "2026-07-02T06:38:48.592310+00:00",
+        "updated_at": "2026-07-02T06:38:48.592310+00:00",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a460778a102674ea6e616fa"
+      }
+    },
+    {
+      "note": "phase1 create department B",
+      "method": "POST",
+      "path": "/v1/workforce/departments",
+      "timestamp_utc": "2026-07-02T06:38:34.478726+00:00",
+      "request_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "http_status": 200,
+      "response_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "request_body": {
+        "organization_id": "6a460777a102674ea6e616f4",
+        "unit_id": "6a460778a102674ea6e616f8",
+        "name": "Live Ops",
+        "code": "LDB-63831Z",
+        "default_roles": [
+          "operations_specialist"
+        ],
+        "status": "active"
+      },
+      "response_body": {
+        "organization_id": "6a460777a102674ea6e616f4",
+        "unit_id": "6a460778a102674ea6e616f8",
+        "name": "Live Ops",
+        "code": "LDB-63831Z",
+        "teams": [],
+        "default_roles": [
+          "operations_specialist"
+        ],
+        "status": "active",
+        "tenant_id": "platform",
+        "created_at": "2026-07-02T06:38:48.973148+00:00",
+        "updated_at": "2026-07-02T06:38:48.973148+00:00",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a460778a102674ea6e616fc"
+      }
+    },
+    {
+      "note": "phase1 create department C",
+      "method": "POST",
+      "path": "/v1/workforce/departments",
+      "timestamp_utc": "2026-07-02T06:38:34.841413+00:00",
+      "request_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "http_status": 200,
+      "response_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "request_body": {
+        "organization_id": "6a460777a102674ea6e616f4",
+        "unit_id": "6a460778a102674ea6e616f8",
+        "name": "Live Programs",
+        "code": "LDC-63831Z",
+        "default_roles": [
+          "operations_specialist"
+        ],
+        "status": "active"
+      },
+      "response_body": {
+        "organization_id": "6a460777a102674ea6e616f4",
+        "unit_id": "6a460778a102674ea6e616f8",
+        "name": "Live Programs",
+        "code": "LDC-63831Z",
+        "teams": [],
+        "default_roles": [
+          "operations_specialist"
+        ],
+        "status": "active",
+        "tenant_id": "platform",
+        "created_at": "2026-07-02T06:38:49.322683+00:00",
+        "updated_at": "2026-07-02T06:38:49.322683+00:00",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a460779a102674ea6e616fe"
+      }
+    },
+    {
+      "note": "phase1 create employee",
+      "method": "POST",
+      "path": "/v1/workforce/employees",
+      "timestamp_utc": "2026-07-02T06:38:35.193065+00:00",
+      "request_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "http_status": 200,
+      "response_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "request_body": {
+        "organization_id": "6a460777a102674ea6e616f4",
+        "department_id": "6a460778a102674ea6e616fa",
+        "workforce_type": "employee",
+        "role": "analyst",
+        "display_name": "Live Capture User 831Z",
+        "email": "live.capture.63831Z@tenant-client-01.local",
+        "lifecycle_state": "draft",
+        "source_system": "sampada"
+      },
+      "response_body": {
+        "workforce_ref_id": "wf-fd372f903780",
+        "organization_id": "6a460777a102674ea6e616f4",
+        "department_id": "6a460778a102674ea6e616fa",
+        "unit_id": null,
+        "workforce_type": "employee",
+        "role": "analyst",
+        "inherited_roles": [
+          "org_member",
+          "analyst"
+        ],
+        "display_name": "Live Capture User 831Z",
+        "email": "live.capture.63831Z@tenant-client-01.local",
+        "lifecycle_state": "draft",
+        "local_system_id": null,
+        "source_system": "sampada",
+        "tenant_id": "platform",
+        "created_at": "2026-07-02T06:38:49.674195+00:00",
+        "updated_at": "2026-07-02T06:38:49.674195+00:00",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a460779a102674ea6e61700"
+      }
+    },
+    {
+      "note": "phase1 onboard",
+      "method": "POST",
+      "path": "/v1/workforce/employees/6a460779a102674ea6e61700/lifecycle/onboard",
+      "timestamp_utc": "2026-07-02T06:38:35.562651+00:00",
+      "request_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "http_status": 200,
+      "response_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "request_body": {
+        "reason": "Live onboarding start"
+      },
+      "response_body": {
+        "workforce_ref_id": "wf-fd372f903780",
+        "organization_id": "6a460777a102674ea6e616f4",
+        "department_id": "6a460778a102674ea6e616fa",
+        "unit_id": null,
+        "workforce_type": "employee",
+        "role": "analyst",
+        "inherited_roles": [
+          "org_member",
+          "analyst"
+        ],
+        "display_name": "Live Capture User 831Z",
+        "email": "live.capture.63831Z@tenant-client-01.local",
+        "lifecycle_state": "onboarding",
+        "local_system_id": null,
+        "source_system": "sampada",
+        "tenant_id": "platform",
+        "created_at": "2026-07-02T06:38:49.674000",
+        "updated_at": "2026-07-02T06:38:50.048000",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a460779a102674ea6e61700"
+      }
+    },
+    {
+      "note": "phase1 onboard complete",
+      "method": "POST",
+      "path": "/v1/workforce/employees/6a460779a102674ea6e61700/lifecycle/onboard-complete",
+      "timestamp_utc": "2026-07-02T06:38:35.981303+00:00",
+      "request_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "http_status": 200,
+      "response_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "request_body": {
+        "reason": "Live onboarding complete"
+      },
+      "response_body": {
+        "workforce_ref_id": "wf-fd372f903780",
+        "organization_id": "6a460777a102674ea6e616f4",
+        "department_id": "6a460778a102674ea6e616fa",
+        "unit_id": null,
+        "workforce_type": "employee",
+        "role": "analyst",
+        "inherited_roles": [
+          "org_member",
+          "analyst"
+        ],
+        "display_name": "Live Capture User 831Z",
+        "email": "live.capture.63831Z@tenant-client-01.local",
+        "lifecycle_state": "active",
+        "local_system_id": null,
+        "source_system": "sampada",
+        "tenant_id": "platform",
+        "created_at": "2026-07-02T06:38:49.674000",
+        "updated_at": "2026-07-02T06:38:50.401000",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a460779a102674ea6e61700"
+      }
+    },
+    {
+      "note": "phase1 transfer",
+      "method": "POST",
+      "path": "/v1/workforce/employees/6a460779a102674ea6e61700/lifecycle/department-transfer",
+      "timestamp_utc": "2026-07-02T06:38:36.336275+00:00",
+      "request_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "http_status": 200,
+      "response_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "request_body": {
+        "new_department_id": "6a460778a102674ea6e616fc",
+        "reason": "Live transfer"
+      },
+      "response_body": {
+        "workforce_ref_id": "wf-fd372f903780",
+        "organization_id": "6a460777a102674ea6e616f4",
+        "department_id": "6a460778a102674ea6e616fc",
+        "unit_id": null,
+        "workforce_type": "employee",
+        "role": "analyst",
+        "inherited_roles": [
+          "org_member",
+          "analyst"
+        ],
+        "display_name": "Live Capture User 831Z",
+        "email": "live.capture.63831Z@tenant-client-01.local",
+        "lifecycle_state": "active",
+        "local_system_id": null,
+        "source_system": "sampada",
+        "tenant_id": "platform",
+        "created_at": "2026-07-02T06:38:49.674000",
+        "updated_at": "2026-07-02T06:38:50.814000",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "id": "6a460779a102674ea6e61700"
+      }
+    },
+    {
+      "note": "phase1 promotion",
+      "method": "POST",
+      "path": "/v1/workforce/employees/6a460779a102674ea6e61700/lifecycle/role-move",
+      "timestamp_utc": "2026-07-02T06:38:36.748222+00:00",
+      "request_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "http_status": 200,
+      "response_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "request_body": {
+        "new_role": "operations_manager",
+        "transition_type": "promotion",
+        "reason": "Live promotion"
+      },
+      "response_body": {
+        "workforce_ref_id": "wf-fd372f903780",
+        "organization_id": "6a460777a102674ea6e616f4",
+        "department_id": "6a460778a102674ea6e616fc",
+        "unit_id": null,
+        "workforce_type": "employee",
+        "role": "operations_manager",
+        "inherited_roles": [
+          "operations_manager"
+        ],
+        "display_name": "Live Capture User 831Z",
+        "email": "live.capture.63831Z@tenant-client-01.local",
+        "lifecycle_state": "active",
+        "local_system_id": null,
+        "source_system": "sampada",
+        "tenant_id": "platform",
+        "created_at": "2026-07-02T06:38:49.674000",
+        "updated_at": "2026-07-02T06:38:51.164000",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "transition_type": "promotion",
+        "id": "6a460779a102674ea6e61700"
+      }
+    },
+    {
+      "note": "phase1 move",
+      "method": "POST",
+      "path": "/v1/workforce/employees/6a460779a102674ea6e61700/lifecycle/department-transfer",
+      "timestamp_utc": "2026-07-02T06:38:37.097310+00:00",
+      "request_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "http_status": 200,
+      "response_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "request_body": {
+        "new_department_id": "6a460779a102674ea6e616fe",
+        "reason": "Live move"
+      },
+      "response_body": {
+        "workforce_ref_id": "wf-fd372f903780",
+        "organization_id": "6a460777a102674ea6e616f4",
+        "department_id": "6a460779a102674ea6e616fe",
+        "unit_id": null,
+        "workforce_type": "employee",
+        "role": "operations_manager",
+        "inherited_roles": [
+          "operations_manager"
+        ],
+        "display_name": "Live Capture User 831Z",
+        "email": "live.capture.63831Z@tenant-client-01.local",
+        "lifecycle_state": "active",
+        "local_system_id": null,
+        "source_system": "sampada",
+        "tenant_id": "platform",
+        "created_at": "2026-07-02T06:38:49.674000",
+        "updated_at": "2026-07-02T06:38:51.578000",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "transition_type": "promotion",
+        "id": "6a460779a102674ea6e61700"
+      }
+    },
+    {
+      "note": "phase1 offboard prepare",
+      "method": "POST",
+      "path": "/v1/workforce/employees/6a460779a102674ea6e61700/lifecycle/offboard-prepare",
+      "timestamp_utc": "2026-07-02T06:38:37.517167+00:00",
+      "request_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "http_status": 200,
+      "response_correlation_id_header": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "request_body": {
+        "reason": "Live offboard prep"
+      },
+      "response_body": {
+        "workforce_ref_id": "wf-fd372f903780",
+        "organization_id": "6a460777a102674ea6e616f4",
+        "department_id": "6a460779a102674ea6e616fe",
+        "unit_id": null,
+        "workforce_type": "employee",
+        "role": "operations_manager",
+        "inherited_roles": [
+          "operations_manager"
+        ],
+        "display_name": "Live Capture User 831Z",
+        "email": "live.capture.63831Z@tenant-client-01.local",
+        "lifecycle_state": "offboarding_prep",
+        "local_system_id": null,
+        "source_system": "sampada",
+        "tenant_id": "platform",
+        "created_at": "2026-07-02T06:38:49.674000",
+        "updated_at": "2026-07-02T06:38:51.928000",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "transition_type": "promotion",
+        "id": "6a460779a102674ea6e61700"
+      }
+    },
+    {
+      "note": "phase1 replay",
+      "method": "GET",
+      "path": "/v1/workforce/trace-replay?correlation_id=3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "timestamp_utc": "2026-07-02T06:38:37.854874+00:00",
+      "request_correlation_id_header": null,
+      "http_status": 200,
+      "response_correlation_id_header": "8d312324-c316-4fde-bb06-424fe642aa19",
+      "request_body": null,
+      "response_body": {
+        "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+        "event_count": 13,
+        "events": [
+          {
+            "action": "organization_create",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "created_at": "2026-07-02 06:38:47.515000"
+          },
+          {
+            "action": "division_create",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "created_at": "2026-07-02 06:38:47.988000"
+          },
+          {
+            "action": "unit_create",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "created_at": "2026-07-02 06:38:48.311000"
+          },
+          {
+            "action": "department_create",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "created_at": "2026-07-02 06:38:48.677000"
+          },
+          {
+            "action": "department_create",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "created_at": "2026-07-02 06:38:49.038000"
+          },
+          {
+            "action": "department_create",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "created_at": "2026-07-02 06:38:49.390000"
+          },
+          {
+            "action": "employee_create",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "created_at": "2026-07-02 06:38:49.760000"
+          },
+          {
+            "action": "employee_onboard",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "created_at": "2026-07-02 06:38:50.177000"
+          },
+          {
+            "action": "employee_onboard_complete",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "created_at": "2026-07-02 06:38:50.533000"
+          },
+          {
+            "action": "employee_department_transfer",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "created_at": "2026-07-02 06:38:50.944000"
+          },
+          {
+            "action": "employee_promotion",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "created_at": "2026-07-02 06:38:51.293000"
+          },
+          {
+            "action": "employee_department_transfer",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "created_at": "2026-07-02 06:38:51.707000"
+          },
+          {
+            "action": "employee_offboard_prepare",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "created_at": "2026-07-02 06:38:52.058000"
+          }
+        ],
+        "policy_scope": {
+          "scope": "platform",
+          "scope_label": "platform_admin",
+          "role": "admin",
+          "user_id": null,
+          "tenant_id": null,
+          "org_id": null,
+          "workforce_category": "all"
+        }
+      }
+    },
+    {
+      "note": "phase3 create policy",
+      "method": "POST",
+      "path": "/v1/policies/definitions",
+      "timestamp_utc": "2026-07-02T06:38:38.006674+00:00",
+      "request_correlation_id_header": null,
+      "http_status": 200,
+      "response_correlation_id_header": "e19514fb-8034-47c8-9cbf-e54f1fa456c6",
+      "request_body": {
+        "policy_key": "leave_policy_live_63831Z",
+        "name": "Leave Policy Live",
+        "description": "Live capture policy",
+        "version": "1.0.0",
+        "rules": {
+          "min_tenure_days": 90,
+          "effect": "observe"
+        },
+        "scope_type": "tenant"
+      },
+      "response_body": {
+        "policy_key": "leave_policy_live_63831Z",
+        "name": "Leave Policy Live",
+        "description": "Live capture policy",
+        "version": "1.0.0",
+        "rules": {
+          "min_tenure_days": 90,
+          "effect": "observe"
+        },
+        "scope_type": "tenant",
+        "tenant_id": "platform",
+        "status": "active",
+        "created_at": "2026-07-02T06:38:52.361205+00:00",
+        "updated_at": "2026-07-02T06:38:52.361205+00:00",
+        "id": "6a46077ca102674ea6e61708"
+      }
+    },
+    {
+      "note": "phase3 evaluate policy",
+      "method": "POST",
+      "path": "/v1/policies/evaluate",
+      "timestamp_utc": "2026-07-02T06:38:38.183077+00:00",
+      "request_correlation_id_header": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+      "http_status": 200,
+      "response_correlation_id_header": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+      "request_body": {
+        "policy_key": "leave_policy_live_63831Z",
+        "context": {
+          "tenure_days": 10
+        }
+      },
+      "response_body": {
+        "evaluation_id": "peval-f7069313df2a",
+        "policy_key": "leave_policy_live_63831Z",
+        "result": {
+          "decision": "allow",
+          "effect": "observe",
+          "rationale": "policy=leave_policy_live_63831Z"
+        },
+        "correlation_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e"
+      }
+    },
+    {
+      "note": "phase3 create challenge",
+      "method": "POST",
+      "path": "/v1/governance/challenges",
+      "timestamp_utc": "2026-07-02T06:38:38.522986+00:00",
+      "request_correlation_id_header": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+      "http_status": 200,
+      "response_correlation_id_header": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+      "request_body": {
+        "policy_key": "leave_policy_live_63831Z",
+        "evaluation_id": "peval-f7069313df2a",
+        "subject_type": "policy_evaluation",
+        "subject_id": "peval-f7069313df2a",
+        "reason": "Live governance challenge"
+      },
+      "response_body": {
+        "challenge_id": "chl-dba8f6da305f",
+        "policy_key": "leave_policy_live_63831Z",
+        "evaluation_id": "peval-f7069313df2a",
+        "subject_type": "policy_evaluation",
+        "subject_id": "peval-f7069313df2a",
+        "reason": "Live governance challenge",
+        "status": "open",
+        "tenant_id": "platform",
+        "correlation_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+          "correlation_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-02T06:38:52.877579+00:00",
+        "updated_at": "2026-07-02T06:38:52.877579+00:00",
+        "id": "6a46077ca102674ea6e6170b"
+      }
+    },
+    {
+      "note": "phase3 create review",
+      "method": "POST",
+      "path": "/v1/governance/reviews",
+      "timestamp_utc": "2026-07-02T06:38:38.756624+00:00",
+      "request_correlation_id_header": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+      "http_status": 200,
+      "response_correlation_id_header": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+      "request_body": {
+        "challenge_id": "chl-dba8f6da305f",
+        "reviewer_role": "admin",
+        "notes": "Live review"
+      },
+      "response_body": {
+        "review_id": "rev-c34bcaabcd6d",
+        "challenge_id": "chl-dba8f6da305f",
+        "reviewer_role": "admin",
+        "notes": "Live review",
+        "status": "assigned",
+        "tenant_id": "platform",
+        "correlation_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+          "correlation_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-02T06:38:53.165883+00:00",
+        "updated_at": "2026-07-02T06:38:53.165883+00:00",
+        "id": "6a46077da102674ea6e6170d"
+      }
+    },
+    {
+      "note": "phase3 complete review",
+      "method": "POST",
+      "path": "/v1/governance/reviews/rev-c34bcaabcd6d/complete",
+      "timestamp_utc": "2026-07-02T06:38:39.119024+00:00",
+      "request_correlation_id_header": null,
+      "http_status": 200,
+      "response_correlation_id_header": "0af0fdd3-8376-4025-8a48-e75717b26aea",
+      "request_body": {
+        "outcome": "upheld",
+        "notes": "Live review complete"
+      },
+      "response_body": {
+        "review_id": "rev-c34bcaabcd6d",
+        "challenge_id": "chl-dba8f6da305f",
+        "reviewer_role": "admin",
+        "notes": "Live review complete",
+        "status": "completed",
+        "tenant_id": "platform",
+        "correlation_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+          "correlation_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-02T06:38:53.165000",
+        "updated_at": "2026-07-02T06:38:53.537000",
+        "outcome": "upheld",
+        "id": "6a46077da102674ea6e6170d"
+      }
+    },
+    {
+      "note": "phase3 create override",
+      "method": "POST",
+      "path": "/v1/governance/overrides",
+      "timestamp_utc": "2026-07-02T06:38:39.466803+00:00",
+      "request_correlation_id_header": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+      "http_status": 200,
+      "response_correlation_id_header": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+      "request_body": {
+        "challenge_id": "chl-dba8f6da305f",
+        "policy_key": "leave_policy_live_63831Z",
+        "reason": "Live override",
+        "override_effect": "allow"
+      },
+      "response_body": {
+        "override_id": "wovr-84f5ee1c8627",
+        "challenge_id": "chl-dba8f6da305f",
+        "policy_key": "leave_policy_live_63831Z",
+        "reason": "Live override",
+        "override_effect": "allow",
+        "status": "proposed",
+        "tenant_id": "platform",
+        "correlation_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+          "correlation_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-02T06:38:53.886681+00:00",
+        "updated_at": "2026-07-02T06:38:53.886681+00:00",
+        "id": "6a46077da102674ea6e6170f"
+      }
+    },
+    {
+      "note": "phase3 apply override",
+      "method": "POST",
+      "path": "/v1/governance/overrides/wovr-84f5ee1c8627/apply",
+      "timestamp_utc": "2026-07-02T06:38:39.793422+00:00",
+      "request_correlation_id_header": null,
+      "http_status": 200,
+      "response_correlation_id_header": "831a7e26-f6a7-4a5a-98c7-44c51ff4bd1e",
+      "request_body": null,
+      "response_body": {
+        "override_id": "wovr-84f5ee1c8627",
+        "challenge_id": "chl-dba8f6da305f",
+        "policy_key": "leave_policy_live_63831Z",
+        "reason": "Live override",
+        "override_effect": "allow",
+        "status": "applied",
+        "tenant_id": "platform",
+        "correlation_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+          "correlation_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-02T06:38:53.886000",
+        "updated_at": "2026-07-02T06:38:54.210000",
+        "id": "6a46077da102674ea6e6170f"
+      }
+    },
+    {
+      "note": "phase3 create decision",
+      "method": "POST",
+      "path": "/v1/decisions",
+      "timestamp_utc": "2026-07-02T06:38:40.075376+00:00",
+      "request_correlation_id_header": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+      "http_status": 200,
+      "response_correlation_id_header": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+      "request_body": {
+        "owner": "Rishabh Yadav",
+        "scope": "tenant",
+        "rationale": "Live capture decision",
+        "inputs": {
+          "evaluation_id": "peval-f7069313df2a",
+          "override_id": "wovr-84f5ee1c8627"
+        },
+        "challenge_id": "chl-dba8f6da305f",
+        "review_id": "rev-c34bcaabcd6d",
+        "trace_references": [
+          "f09e42a6-6830-4cc9-b757-50d7ef27040e"
+        ]
+      },
+      "response_body": {
+        "decision_id": "dec-7a2fbd790e70",
+        "owner": "Rishabh Yadav",
+        "scope": "tenant",
+        "rationale": "Live capture decision",
+        "inputs": {
+          "evaluation_id": "peval-f7069313df2a",
+          "override_id": "wovr-84f5ee1c8627"
+        },
+        "timestamp": "2026-07-02T06:38:54.437233+00:00",
+        "dependencies": [],
+        "status": "active",
+        "supersedes": null,
+        "trace_references": [
+          "f09e42a6-6830-4cc9-b757-50d7ef27040e"
+        ],
+        "challenge_id": "chl-dba8f6da305f",
+        "review_id": "rev-c34bcaabcd6d",
+        "tenant_id": "platform",
+        "correlation_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+        "trace_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+        "lineage": {
+          "origin_system": "gateway",
+          "owning_system": "sampada",
+          "schema_version": "1.0.0",
+          "trace_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+          "correlation_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+          "trust_classification": "canonical",
+          "visibility_scope": "tenant"
+        },
+        "created_at": "2026-07-02T06:38:54.437233+00:00",
+        "updated_at": "2026-07-02T06:38:54.437233+00:00",
+        "id": "6a46077ea102674ea6e61711"
+      }
+    },
+    {
+      "note": "phase3 replay decision",
+      "method": "GET",
+      "path": "/v1/decisions/replay?decision_id=dec-7a2fbd790e70",
+      "timestamp_utc": "2026-07-02T06:38:40.322157+00:00",
+      "request_correlation_id_header": null,
+      "http_status": 200,
+      "response_correlation_id_header": "ee37078d-671b-4cc5-85df-b9fd2831e845",
+      "request_body": null,
+      "response_body": {
+        "replay_type": "supersedes_chain",
+        "root_decision_id": "dec-7a2fbd790e70",
+        "chain": [
+          {
+            "decision_id": "dec-7a2fbd790e70",
+            "owner": "Rishabh Yadav",
+            "scope": "tenant",
+            "rationale": "Live capture decision",
+            "inputs": {
+              "evaluation_id": "peval-f7069313df2a",
+              "override_id": "wovr-84f5ee1c8627"
+            },
+            "timestamp": "2026-07-02T06:38:54.437000",
+            "dependencies": [],
+            "status": "active",
+            "supersedes": null,
+            "trace_references": [
+              "f09e42a6-6830-4cc9-b757-50d7ef27040e"
+            ],
+            "challenge_id": "chl-dba8f6da305f",
+            "review_id": "rev-c34bcaabcd6d",
+            "tenant_id": "platform",
+            "correlation_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+            "trace_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+            "lineage": {
+              "origin_system": "gateway",
+              "owning_system": "sampada",
+              "schema_version": "1.0.0",
+              "trace_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+              "correlation_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+              "trust_classification": "canonical",
+              "visibility_scope": "tenant"
+            },
+            "created_at": "2026-07-02T06:38:54.437000",
+            "updated_at": "2026-07-02T06:38:54.437000",
+            "id": "6a46077ea102674ea6e61711"
+          }
+        ]
+      }
+    },
+    {
+      "note": "phase5 ingest niyantran_telemetry",
+      "method": "POST",
+      "path": "/v1/setu/signals/niyantran_telemetry",
+      "timestamp_utc": "2026-07-02T06:38:40.481590+00:00",
+      "request_correlation_id_header": null,
+      "http_status": 200,
+      "response_correlation_id_header": "4636366c-3ef0-45ee-bb2c-eadd0de985f9",
+      "request_body": {
+        "payload": {
+          "event": "task_completed",
+          "task_id": "live-831Z",
+          "workforce_ref": "wf-fd372f903780"
+        },
+        "workforce_ref_id": "wf-fd372f903780",
+        "source_declaration": "niyantran_telemetry participation",
+        "trust_classification": "observed",
+        "visibility_scope": "tenant",
+        "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+        "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049"
+      },
+      "response_body": {
+        "signal_id": "sig-a810511a2509",
+        "signal_type": "niyantran_telemetry",
+        "payload": {
+          "event": "task_completed",
+          "task_id": "live-831Z",
+          "workforce_ref": "wf-fd372f903780"
+        },
+        "workforce_ref_id": "wf-fd372f903780",
+        "source_declaration": "niyantran_telemetry participation",
+        "tenant_id": "platform",
+        "created_at": "2026-07-02T06:38:54.843814+00:00",
+        "lineage": {
+          "origin_system": "niyantran",
+          "owning_system": "niyantran",
+          "schema_version": "1.0.0",
+          "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+          "trust_classification": "observed",
+          "visibility_scope": "tenant"
+        },
+        "updated_at": "2026-07-02T06:38:54.843832+00:00",
+        "id": "6a46077ea102674ea6e61713"
+      }
+    },
+    {
+      "note": "phase5 list niyantran_telemetry",
+      "method": "GET",
+      "path": "/v1/setu/signals?signal_type=niyantran_telemetry&correlation_id=3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "timestamp_utc": "2026-07-02T06:38:40.731883+00:00",
+      "request_correlation_id_header": null,
+      "http_status": 200,
+      "response_correlation_id_header": "6d7639e4-9c9f-4b90-aa26-31d80a10bd92",
+      "request_body": null,
+      "response_body": {
+        "items": [
+          {
+            "signal_id": "sig-a810511a2509",
+            "signal_type": "niyantran_telemetry",
+            "payload": {
+              "event": "task_completed",
+              "task_id": "live-831Z",
+              "workforce_ref": "wf-fd372f903780"
+            },
+            "workforce_ref_id": "wf-fd372f903780",
+            "source_declaration": "niyantran_telemetry participation",
+            "tenant_id": "platform",
+            "created_at": "2026-07-02T06:38:54.843000",
+            "lineage": {
+              "origin_system": "niyantran",
+              "owning_system": "niyantran",
+              "schema_version": "1.0.0",
+              "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+              "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+              "trust_classification": "observed",
+              "visibility_scope": "tenant"
+            },
+            "updated_at": "2026-07-02T06:38:54.843000",
+            "id": "6a46077ea102674ea6e61713"
+          }
+        ]
+      }
+    },
+    {
+      "note": "phase5 trace niyantran_telemetry",
+      "method": "GET",
+      "path": "/v1/setu/trace/3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "timestamp_utc": "2026-07-02T06:38:40.889455+00:00",
+      "request_correlation_id_header": null,
+      "http_status": 200,
+      "response_correlation_id_header": "d00c3df2-9f5f-4a6c-ac61-467e9c583cb5",
+      "request_body": null,
+      "response_body": {
+        "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+        "signal_count": 1,
+        "audit_count": 14,
+        "signals": [
+          {
+            "signal_id": "sig-a810511a2509",
+            "signal_type": "niyantran_telemetry",
+            "payload": {
+              "event": "task_completed",
+              "task_id": "live-831Z",
+              "workforce_ref": "wf-fd372f903780"
+            },
+            "workforce_ref_id": "wf-fd372f903780",
+            "source_declaration": "niyantran_telemetry participation",
+            "tenant_id": "platform",
+            "created_at": "2026-07-02T06:38:54.843000",
+            "lineage": {
+              "origin_system": "niyantran",
+              "owning_system": "niyantran",
+              "schema_version": "1.0.0",
+              "trace_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+              "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+              "trust_classification": "observed",
+              "visibility_scope": "tenant"
+            },
+            "updated_at": "2026-07-02T06:38:54.843000",
+            "id": "6a46077ea102674ea6e61713"
+          }
+        ],
+        "audit_events": [
+          {
+            "action": "organization_create",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049"
+          },
+          {
+            "action": "division_create",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049"
+          },
+          {
+            "action": "unit_create",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049"
+          },
+          {
+            "action": "department_create",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049"
+          },
+          {
+            "action": "department_create",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049"
+          },
+          {
+            "action": "department_create",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049"
+          },
+          {
+            "action": "employee_create",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049"
+          },
+          {
+            "action": "employee_onboard",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049"
+          },
+          {
+            "action": "employee_onboard_complete",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049"
+          },
+          {
+            "action": "employee_department_transfer",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049"
+          },
+          {
+            "action": "employee_promotion",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049"
+          },
+          {
+            "action": "employee_department_transfer",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049"
+          },
+          {
+            "action": "employee_offboard_prepare",
+            "outcome": "success",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049"
+          },
+          {
+            "action": "setu_signal_niyantran_telemetry",
+            "outcome": "ingested",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049"
+          }
+        ]
+      }
+    },
+    {
+      "note": "phase5 ingest artha_payroll_visibility",
+      "method": "POST",
+      "path": "/v1/setu/signals/artha_payroll_visibility",
+      "timestamp_utc": "2026-07-02T06:38:41.098370+00:00",
+      "request_correlation_id_header": null,
+      "http_status": 200,
+      "response_correlation_id_header": "ff679115-eb6b-46b0-9a62-49246ada9439",
+      "request_body": {
+        "payload": {
+          "period": "2026-07",
+          "visibility": "summary_only",
+          "workforce_ref": "wf-fd372f903780"
+        },
+        "workforce_ref_id": "wf-fd372f903780",
+        "source_declaration": "artha_payroll_visibility participation",
+        "trust_classification": "observed",
+        "visibility_scope": "tenant"
+      },
+      "response_body": {
+        "signal_id": "sig-ea9866e71888",
+        "signal_type": "artha_payroll_visibility",
+        "payload": {
+          "period": "2026-07",
+          "visibility": "summary_only",
+          "workforce_ref": "wf-fd372f903780"
+        },
+        "workforce_ref_id": "wf-fd372f903780",
+        "source_declaration": "artha_payroll_visibility participation",
+        "tenant_id": "platform",
+        "created_at": "2026-07-02T06:38:55.455559+00:00",
+        "lineage": {
+          "origin_system": "artha",
+          "owning_system": "artha",
+          "schema_version": "1.0.0",
+          "trace_id": "51e66413-eea1-4e5d-b723-3be8e41be195",
+          "correlation_id": "51e66413-eea1-4e5d-b723-3be8e41be195",
+          "trust_classification": "observed",
+          "visibility_scope": "tenant"
+        },
+        "updated_at": "2026-07-02T06:38:55.455584+00:00",
+        "id": "6a46077fa102674ea6e61715"
+      }
+    },
+    {
+      "note": "phase5 list artha_payroll_visibility",
+      "method": "GET",
+      "path": "/v1/setu/signals?signal_type=artha_payroll_visibility&correlation_id=51e66413-eea1-4e5d-b723-3be8e41be195",
+      "timestamp_utc": "2026-07-02T06:38:41.323923+00:00",
+      "request_correlation_id_header": null,
+      "http_status": 200,
+      "response_correlation_id_header": "28ba1545-4510-4a27-b66b-f50d25cb7a28",
+      "request_body": null,
+      "response_body": {
+        "items": [
+          {
+            "signal_id": "sig-ea9866e71888",
+            "signal_type": "artha_payroll_visibility",
+            "payload": {
+              "period": "2026-07",
+              "visibility": "summary_only",
+              "workforce_ref": "wf-fd372f903780"
+            },
+            "workforce_ref_id": "wf-fd372f903780",
+            "source_declaration": "artha_payroll_visibility participation",
+            "tenant_id": "platform",
+            "created_at": "2026-07-02T06:38:55.455000",
+            "lineage": {
+              "origin_system": "artha",
+              "owning_system": "artha",
+              "schema_version": "1.0.0",
+              "trace_id": "51e66413-eea1-4e5d-b723-3be8e41be195",
+              "correlation_id": "51e66413-eea1-4e5d-b723-3be8e41be195",
+              "trust_classification": "observed",
+              "visibility_scope": "tenant"
+            },
+            "updated_at": "2026-07-02T06:38:55.455000",
+            "id": "6a46077fa102674ea6e61715"
+          }
+        ]
+      }
+    },
+    {
+      "note": "phase5 trace artha_payroll_visibility",
+      "method": "GET",
+      "path": "/v1/setu/trace/51e66413-eea1-4e5d-b723-3be8e41be195",
+      "timestamp_utc": "2026-07-02T06:38:41.473759+00:00",
+      "request_correlation_id_header": null,
+      "http_status": 200,
+      "response_correlation_id_header": "22788563-5c42-4481-bf9e-1e49b606d027",
+      "request_body": null,
+      "response_body": {
+        "trace_id": "51e66413-eea1-4e5d-b723-3be8e41be195",
+        "signal_count": 1,
+        "audit_count": 1,
+        "signals": [
+          {
+            "signal_id": "sig-ea9866e71888",
+            "signal_type": "artha_payroll_visibility",
+            "payload": {
+              "period": "2026-07",
+              "visibility": "summary_only",
+              "workforce_ref": "wf-fd372f903780"
+            },
+            "workforce_ref_id": "wf-fd372f903780",
+            "source_declaration": "artha_payroll_visibility participation",
+            "tenant_id": "platform",
+            "created_at": "2026-07-02T06:38:55.455000",
+            "lineage": {
+              "origin_system": "artha",
+              "owning_system": "artha",
+              "schema_version": "1.0.0",
+              "trace_id": "51e66413-eea1-4e5d-b723-3be8e41be195",
+              "correlation_id": "51e66413-eea1-4e5d-b723-3be8e41be195",
+              "trust_classification": "observed",
+              "visibility_scope": "tenant"
+            },
+            "updated_at": "2026-07-02T06:38:55.455000",
+            "id": "6a46077fa102674ea6e61715"
+          }
+        ],
+        "audit_events": [
+          {
+            "action": "setu_signal_artha_payroll_visibility",
+            "outcome": "ingested",
+            "correlation_id": "51e66413-eea1-4e5d-b723-3be8e41be195"
+          }
+        ]
+      }
+    },
+    {
+      "note": "phase5 ingest crm_participation",
+      "method": "POST",
+      "path": "/v1/setu/signals/crm_participation",
+      "timestamp_utc": "2026-07-02T06:38:41.696718+00:00",
+      "request_correlation_id_header": null,
+      "http_status": 200,
+      "response_correlation_id_header": "ccde8e73-1337-43e6-8660-d9854206235f",
+      "request_body": {
+        "payload": {
+          "interaction": "live_touchpoint",
+          "account": "TENANT-CLIENT-01"
+        },
+        "workforce_ref_id": "wf-fd372f903780",
+        "source_declaration": "crm_participation participation",
+        "trust_classification": "observed",
+        "visibility_scope": "tenant"
+      },
+      "response_body": {
+        "signal_id": "sig-e138e93526f1",
+        "signal_type": "crm_participation",
+        "payload": {
+          "interaction": "live_touchpoint",
+          "account": "TENANT-CLIENT-01"
+        },
+        "workforce_ref_id": "wf-fd372f903780",
+        "source_declaration": "crm_participation participation",
+        "tenant_id": "platform",
+        "created_at": "2026-07-02T06:38:56.053672+00:00",
+        "lineage": {
+          "origin_system": "crm",
+          "owning_system": "crm",
+          "schema_version": "1.0.0",
+          "trace_id": "d275f459-7a70-471b-a84a-396f09ce6555",
+          "correlation_id": "d275f459-7a70-471b-a84a-396f09ce6555",
+          "trust_classification": "observed",
+          "visibility_scope": "tenant"
+        },
+        "updated_at": "2026-07-02T06:38:56.053696+00:00",
+        "id": "6a460780a102674ea6e61717"
+      }
+    },
+    {
+      "note": "phase5 list crm_participation",
+      "method": "GET",
+      "path": "/v1/setu/signals?signal_type=crm_participation&correlation_id=d275f459-7a70-471b-a84a-396f09ce6555",
+      "timestamp_utc": "2026-07-02T06:38:41.922819+00:00",
+      "request_correlation_id_header": null,
+      "http_status": 200,
+      "response_correlation_id_header": "eb41d185-fa05-4793-804b-9a02f6d13527",
+      "request_body": null,
+      "response_body": {
+        "items": [
+          {
+            "signal_id": "sig-e138e93526f1",
+            "signal_type": "crm_participation",
+            "payload": {
+              "interaction": "live_touchpoint",
+              "account": "TENANT-CLIENT-01"
+            },
+            "workforce_ref_id": "wf-fd372f903780",
+            "source_declaration": "crm_participation participation",
+            "tenant_id": "platform",
+            "created_at": "2026-07-02T06:38:56.053000",
+            "lineage": {
+              "origin_system": "crm",
+              "owning_system": "crm",
+              "schema_version": "1.0.0",
+              "trace_id": "d275f459-7a70-471b-a84a-396f09ce6555",
+              "correlation_id": "d275f459-7a70-471b-a84a-396f09ce6555",
+              "trust_classification": "observed",
+              "visibility_scope": "tenant"
+            },
+            "updated_at": "2026-07-02T06:38:56.053000",
+            "id": "6a460780a102674ea6e61717"
+          }
+        ]
+      }
+    },
+    {
+      "note": "phase5 trace crm_participation",
+      "method": "GET",
+      "path": "/v1/setu/trace/d275f459-7a70-471b-a84a-396f09ce6555",
+      "timestamp_utc": "2026-07-02T06:38:42.078908+00:00",
+      "request_correlation_id_header": null,
+      "http_status": 200,
+      "response_correlation_id_header": "18a25825-2dcc-4dc7-a441-2cbf0da806f1",
+      "request_body": null,
+      "response_body": {
+        "trace_id": "d275f459-7a70-471b-a84a-396f09ce6555",
+        "signal_count": 1,
+        "audit_count": 1,
+        "signals": [
+          {
+            "signal_id": "sig-e138e93526f1",
+            "signal_type": "crm_participation",
+            "payload": {
+              "interaction": "live_touchpoint",
+              "account": "TENANT-CLIENT-01"
+            },
+            "workforce_ref_id": "wf-fd372f903780",
+            "source_declaration": "crm_participation participation",
+            "tenant_id": "platform",
+            "created_at": "2026-07-02T06:38:56.053000",
+            "lineage": {
+              "origin_system": "crm",
+              "owning_system": "crm",
+              "schema_version": "1.0.0",
+              "trace_id": "d275f459-7a70-471b-a84a-396f09ce6555",
+              "correlation_id": "d275f459-7a70-471b-a84a-396f09ce6555",
+              "trust_classification": "observed",
+              "visibility_scope": "tenant"
+            },
+            "updated_at": "2026-07-02T06:38:56.053000",
+            "id": "6a460780a102674ea6e61717"
+          }
+        ],
+        "audit_events": [
+          {
+            "action": "setu_signal_crm_participation",
+            "outcome": "ingested",
+            "correlation_id": "d275f459-7a70-471b-a84a-396f09ce6555"
+          }
+        ]
+      }
+    },
+    {
+      "note": "phase5 ingest setu_aggregation",
+      "method": "POST",
+      "path": "/v1/setu/signals/setu_aggregation",
+      "timestamp_utc": "2026-07-02T06:38:42.296138+00:00",
+      "request_correlation_id_header": null,
+      "http_status": 200,
+      "response_correlation_id_header": "6b44bc67-abe5-4422-a38e-dbef1fda2711",
+      "request_body": {
+        "payload": {
+          "aggregate": "cross_system_rollup",
+          "sources": [
+            "niyantran",
+            "artha",
+            "crm"
+          ]
+        },
+        "workforce_ref_id": "wf-fd372f903780",
+        "source_declaration": "setu_aggregation participation",
+        "trust_classification": "derived",
+        "visibility_scope": "tenant"
+      },
+      "response_body": {
+        "signal_id": "sig-78548e3c1c17",
+        "signal_type": "setu_aggregation",
+        "payload": {
+          "aggregate": "cross_system_rollup",
+          "sources": [
+            "niyantran",
+            "artha",
+            "crm"
+          ]
+        },
+        "workforce_ref_id": "wf-fd372f903780",
+        "source_declaration": "setu_aggregation participation",
+        "tenant_id": "platform",
+        "created_at": "2026-07-02T06:38:56.651724+00:00",
+        "lineage": {
+          "origin_system": "setu",
+          "owning_system": "setu",
+          "schema_version": "1.0.0",
+          "trace_id": "f8563cdf-1074-43f4-92c7-ee9c0de76ee5",
+          "correlation_id": "f8563cdf-1074-43f4-92c7-ee9c0de76ee5",
+          "trust_classification": "derived",
+          "visibility_scope": "tenant"
+        },
+        "updated_at": "2026-07-02T06:38:56.651750+00:00",
+        "id": "6a460780a102674ea6e61719"
+      }
+    },
+    {
+      "note": "phase5 list setu_aggregation",
+      "method": "GET",
+      "path": "/v1/setu/signals?signal_type=setu_aggregation&correlation_id=f8563cdf-1074-43f4-92c7-ee9c0de76ee5",
+      "timestamp_utc": "2026-07-02T06:38:42.525611+00:00",
+      "request_correlation_id_header": null,
+      "http_status": 200,
+      "response_correlation_id_header": "b29b525e-13f9-4c2c-8764-2b00ff26bd54",
+      "request_body": null,
+      "response_body": {
+        "items": [
+          {
+            "signal_id": "sig-78548e3c1c17",
+            "signal_type": "setu_aggregation",
+            "payload": {
+              "aggregate": "cross_system_rollup",
+              "sources": [
+                "niyantran",
+                "artha",
+                "crm"
+              ]
+            },
+            "workforce_ref_id": "wf-fd372f903780",
+            "source_declaration": "setu_aggregation participation",
+            "tenant_id": "platform",
+            "created_at": "2026-07-02T06:38:56.651000",
+            "lineage": {
+              "origin_system": "setu",
+              "owning_system": "setu",
+              "schema_version": "1.0.0",
+              "trace_id": "f8563cdf-1074-43f4-92c7-ee9c0de76ee5",
+              "correlation_id": "f8563cdf-1074-43f4-92c7-ee9c0de76ee5",
+              "trust_classification": "derived",
+              "visibility_scope": "tenant"
+            },
+            "updated_at": "2026-07-02T06:38:56.651000",
+            "id": "6a460780a102674ea6e61719"
+          }
+        ]
+      }
+    },
+    {
+      "note": "phase5 trace setu_aggregation",
+      "method": "GET",
+      "path": "/v1/setu/trace/f8563cdf-1074-43f4-92c7-ee9c0de76ee5",
+      "timestamp_utc": "2026-07-02T06:38:42.684322+00:00",
+      "request_correlation_id_header": null,
+      "http_status": 200,
+      "response_correlation_id_header": "a0fa1269-9e70-40cd-bcf6-9a06d3b78075",
+      "request_body": null,
+      "response_body": {
+        "trace_id": "f8563cdf-1074-43f4-92c7-ee9c0de76ee5",
+        "signal_count": 1,
+        "audit_count": 1,
+        "signals": [
+          {
+            "signal_id": "sig-78548e3c1c17",
+            "signal_type": "setu_aggregation",
+            "payload": {
+              "aggregate": "cross_system_rollup",
+              "sources": [
+                "niyantran",
+                "artha",
+                "crm"
+              ]
+            },
+            "workforce_ref_id": "wf-fd372f903780",
+            "source_declaration": "setu_aggregation participation",
+            "tenant_id": "platform",
+            "created_at": "2026-07-02T06:38:56.651000",
+            "lineage": {
+              "origin_system": "setu",
+              "owning_system": "setu",
+              "schema_version": "1.0.0",
+              "trace_id": "f8563cdf-1074-43f4-92c7-ee9c0de76ee5",
+              "correlation_id": "f8563cdf-1074-43f4-92c7-ee9c0de76ee5",
+              "trust_classification": "derived",
+              "visibility_scope": "tenant"
+            },
+            "updated_at": "2026-07-02T06:38:56.651000",
+            "id": "6a460780a102674ea6e61719"
+          }
+        ],
+        "audit_events": [
+          {
+            "action": "setu_signal_setu_aggregation",
+            "outcome": "ingested",
+            "correlation_id": "f8563cdf-1074-43f4-92c7-ee9c0de76ee5"
+          }
+        ]
+      }
+    },
+    {
+      "note": "phase7 audit-events all",
+      "method": "GET",
+      "path": "/v1/control-center/audit-events?limit=50",
+      "timestamp_utc": "2026-07-02T06:38:42.905425+00:00",
+      "request_correlation_id_header": null,
+      "http_status": 200,
+      "response_correlation_id_header": "b64e4a42-33ef-455b-aa1d-e544e882e0d2",
+      "request_body": null,
+      "response_body": {
+        "events": [
+          {
+            "ts": "2026-07-02T06:38:56.717000",
+            "service": "Gateway",
+            "op": "setu_signal_setu_aggregation",
+            "correlation_id": "f8563cdf-1074-43f4-92c7-ee9c0de76ee5",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:56.119000",
+            "service": "Gateway",
+            "op": "setu_signal_crm_participation",
+            "correlation_id": "d275f459-7a70-471b-a84a-396f09ce6555",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:55.520000",
+            "service": "Gateway",
+            "op": "setu_signal_artha_payroll_visibility",
+            "correlation_id": "51e66413-eea1-4e5d-b723-3be8e41be195",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:54.928000",
+            "service": "Gateway",
+            "op": "setu_signal_niyantran_telemetry",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:54.526000",
+            "service": "Gateway",
+            "op": "decision_record",
+            "correlation_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:53.979000",
+            "service": "Gateway",
+            "op": "workflow_override_record",
+            "correlation_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:53.325000",
+            "service": "Gateway",
+            "op": "review_assign",
+            "correlation_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:52.962000",
+            "service": "Gateway",
+            "op": "challenge_create",
+            "correlation_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:52.720000",
+            "service": "Gateway",
+            "op": "policy_evaluate",
+            "correlation_id": "f09e42a6-6830-4cc9-b757-50d7ef27040e",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:52.058000",
+            "service": "Gateway",
+            "op": "employee_offboard_prepare",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:51.707000",
+            "service": "Gateway",
+            "op": "employee_department_transfer",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:51.293000",
+            "service": "Gateway",
+            "op": "employee_promotion",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:50.944000",
+            "service": "Gateway",
+            "op": "employee_department_transfer",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:50.533000",
+            "service": "Gateway",
+            "op": "employee_onboard_complete",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:50.177000",
+            "service": "Gateway",
+            "op": "employee_onboard",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:49.760000",
+            "service": "Gateway",
+            "op": "employee_create",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:49.390000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:49.038000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:48.677000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:48.311000",
+            "service": "Gateway",
+            "op": "unit_create",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:47.988000",
+            "service": "Gateway",
+            "op": "division_create",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:47.515000",
+            "service": "Gateway",
+            "op": "organization_create",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-06-08T10:35:40.784000",
+            "service": "gateway",
+            "op": "control_center_refresh",
+            "correlation_id": "8f45e081-b4fd-467e-a1fc-ebefbf6d41e4",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "recruiter"
+          },
+          {
+            "ts": "2026-06-08T10:35:39.780000",
+            "service": "gateway",
+            "op": "control_center_view",
+            "correlation_id": "8f45e081-b4fd-467e-a1fc-ebefbf6d41e4",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "recruiter"
+          },
+          {
+            "ts": "2026-06-08T10:35:39.775000",
+            "service": "gateway",
+            "op": "control_center_view",
+            "correlation_id": "bb6ae3f3-6a44-42b6-b2f3-725caac6ccdc",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "recruiter"
+          },
+          {
+            "ts": "2026-06-08T07:07:04.886000",
+            "service": "gateway",
+            "op": "control_center_refresh",
+            "correlation_id": "ae71291f-13c5-4342-b5b3-648c23ef6b9a",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "recruiter"
+          },
+          {
+            "ts": "2026-06-08T07:07:04.271000",
+            "service": "gateway",
+            "op": "control_center_view",
+            "correlation_id": "ae71291f-13c5-4342-b5b3-648c23ef6b9a",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "recruiter"
+          },
+          {
+            "ts": "2026-06-08T07:07:01.822000",
+            "service": "gateway",
+            "op": "control_center_refresh",
+            "correlation_id": "7afc9b7c-07c5-43ad-bcac-f75443b86e1b",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "recruiter"
+          },
+          {
+            "ts": "2026-06-08T07:07:01.361000",
+            "service": "gateway",
+            "op": "control_center_view",
+            "correlation_id": "7afc9b7c-07c5-43ad-bcac-f75443b86e1b",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "recruiter"
+          },
+          {
+            "ts": "2026-06-08T06:54:46.604000",
+            "service": "Gateway",
+            "op": "challenge_create",
+            "correlation_id": "1bb2b34a-abba-436e-bb83-aee53fa2a7a1",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-06-08T06:54:46.367000",
+            "service": "Gateway",
+            "op": "decision_record",
+            "correlation_id": "b5f62e59-8ca2-44bf-a071-98bbeb7b6c15",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-06-08T06:54:45.816000",
+            "service": "Gateway",
+            "op": "setu_signal_niyantran_telemetry",
+            "correlation_id": "f7fd3cfb-69ef-480a-8c3e-7c15ca99c03f",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-06-08T06:54:45.609000",
+            "service": "Gateway",
+            "op": "policy_evaluate",
+            "correlation_id": "4a9b1f8e-19a5-4093-8004-8aff3252e9e4",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-06-08T06:54:44.370000",
+            "service": "Gateway",
+            "op": "employee_create",
+            "correlation_id": "1aa64aed-a8c3-40d9-bcd0-f02a25a3954c",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-06-08T06:54:44.098000",
+            "service": "Gateway",
+            "op": "organization_create",
+            "correlation_id": "534809f2-0b95-4c53-b96f-63140aa625a5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-06-08T06:54:41.787000",
+            "service": "gateway",
+            "op": "production_smoke_test",
+            "correlation_id": "3492098c-a5e7-4de3-a2e2-eef20bcd98d5",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-06-08T06:50:54.617000",
+            "service": "Gateway",
+            "op": "setu_signal_artha_payroll_visibility",
+            "correlation_id": "95348dd7-3d50-41ef-90c7-0a17652055a3",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-06-08T06:50:54.408000",
+            "service": "Gateway",
+            "op": "setu_signal_niyantran_telemetry",
+            "correlation_id": "f6f72b52-57ed-4ddf-a5c1-43379364c180",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-06-08T06:50:53.738000",
+            "service": "Gateway",
+            "op": "employee_create",
+            "correlation_id": "61f715cf-b7ea-4a31-9720-9b7b25277cd0",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-06-08T06:50:53.239000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "ce095e13-614f-4044-b286-0c4763592379",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-06-08T06:50:52.924000",
+            "service": "Gateway",
+            "op": "division_create",
+            "correlation_id": "86dcaa86-9d23-4a26-af2f-6b0ead038545",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-06-08T06:50:52.606000",
+            "service": "Gateway",
+            "op": "organization_create",
+            "correlation_id": "9a83b441-e387-4e26-aeb2-2616e86d2762",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-06-06T09:42:53.671000",
+            "service": "gateway",
+            "op": "control_center_evaluation_test",
+            "correlation_id": "00f1ff22-1cf6-4810-b75e-b70c91f2d97b",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-06-06T09:32:01.800000",
+            "service": "gateway",
+            "op": "control_center_refresh",
+            "correlation_id": "29441308-675f-49e6-8254-cdee3219fc28",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "client"
+          },
+          {
+            "ts": "2026-06-06T09:32:01.304000",
+            "service": "gateway",
+            "op": "control_center_view",
+            "correlation_id": "29441308-675f-49e6-8254-cdee3219fc28",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "client"
+          },
+          {
+            "ts": "2026-06-06T09:31:58.329000",
+            "service": "gateway",
+            "op": "control_center_refresh",
+            "correlation_id": "184cf167-9bdb-4079-8c3e-89a4c25d17dc",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "recruiter"
+          },
+          {
+            "ts": "2026-06-06T09:31:57.768000",
+            "service": "gateway",
+            "op": "control_center_view",
+            "correlation_id": "184cf167-9bdb-4079-8c3e-89a4c25d17dc",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "recruiter"
+          },
+          {
+            "ts": "2026-06-06T09:25:39.842000",
+            "service": "gateway",
+            "op": "control_center_refresh",
+            "correlation_id": "6437f426-0644-4059-99c6-916324933806",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "recruiter"
+          },
+          {
+            "ts": "2026-06-06T09:25:39.347000",
+            "service": "gateway",
+            "op": "control_center_view",
+            "correlation_id": "6437f426-0644-4059-99c6-916324933806",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "recruiter"
+          },
+          {
+            "ts": "2026-06-06T09:24:25.248000",
+            "service": "gateway",
+            "op": "control_center_refresh",
+            "correlation_id": "598f4b9f-8c2a-4fd6-93cf-5955ca1818f7",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "client"
+          }
+        ],
+        "count": 50,
+        "source": "audit_logs",
+        "policy_scope": {
+          "scope": "platform",
+          "scope_label": "platform_admin",
+          "role": "admin",
+          "user_id": null,
+          "tenant_id": null,
+          "org_id": null,
+          "workforce_category": "all"
+        }
+      }
+    },
+    {
+      "note": "phase7 audit-events by lifecycle cid",
+      "method": "GET",
+      "path": "/v1/control-center/audit-events?correlation_id=3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "timestamp_utc": "2026-07-02T06:38:43.125952+00:00",
+      "request_correlation_id_header": null,
+      "http_status": 200,
+      "response_correlation_id_header": "bd2cbbfe-0140-4393-a016-459483a86945",
+      "request_body": null,
+      "response_body": {
+        "events": [
+          {
+            "ts": "2026-07-02T06:38:54.928000",
+            "service": "Gateway",
+            "op": "setu_signal_niyantran_telemetry",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:52.058000",
+            "service": "Gateway",
+            "op": "employee_offboard_prepare",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:51.707000",
+            "service": "Gateway",
+            "op": "employee_department_transfer",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:51.293000",
+            "service": "Gateway",
+            "op": "employee_promotion",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:50.944000",
+            "service": "Gateway",
+            "op": "employee_department_transfer",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:50.533000",
+            "service": "Gateway",
+            "op": "employee_onboard_complete",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:50.177000",
+            "service": "Gateway",
+            "op": "employee_onboard",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:49.760000",
+            "service": "Gateway",
+            "op": "employee_create",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:49.390000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:49.038000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:48.677000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:48.311000",
+            "service": "Gateway",
+            "op": "unit_create",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:47.988000",
+            "service": "Gateway",
+            "op": "division_create",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:47.515000",
+            "service": "Gateway",
+            "op": "organization_create",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          }
+        ],
+        "count": 14,
+        "source": "audit_logs",
+        "policy_scope": {
+          "scope": "platform",
+          "scope_label": "platform_admin",
+          "role": "admin",
+          "user_id": null,
+          "tenant_id": null,
+          "org_id": null,
+          "workforce_category": "all"
+        }
+      }
+    },
+    {
+      "note": "phase7 audit-replay",
+      "method": "GET",
+      "path": "/v1/control-center/audit-replay?correlation_id=3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+      "timestamp_utc": "2026-07-02T06:38:43.285113+00:00",
+      "request_correlation_id_header": null,
+      "http_status": 200,
+      "response_correlation_id_header": "a09aa7f2-d11b-4e28-a5fd-6660afe2e86c",
+      "request_body": null,
+      "response_body": {
+        "events": [
+          {
+            "ts": "2026-07-02T06:38:54.928000",
+            "service": "Gateway",
+            "op": "setu_signal_niyantran_telemetry",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "in_progress",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:52.058000",
+            "service": "Gateway",
+            "op": "employee_offboard_prepare",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:51.707000",
+            "service": "Gateway",
+            "op": "employee_department_transfer",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:51.293000",
+            "service": "Gateway",
+            "op": "employee_promotion",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:50.944000",
+            "service": "Gateway",
+            "op": "employee_department_transfer",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:50.533000",
+            "service": "Gateway",
+            "op": "employee_onboard_complete",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:50.177000",
+            "service": "Gateway",
+            "op": "employee_onboard",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:49.760000",
+            "service": "Gateway",
+            "op": "employee_create",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:49.390000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:49.038000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:48.677000",
+            "service": "Gateway",
+            "op": "department_create",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:48.311000",
+            "service": "Gateway",
+            "op": "unit_create",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:47.988000",
+            "service": "Gateway",
+            "op": "division_create",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          },
+          {
+            "ts": "2026-07-02T06:38:47.515000",
+            "service": "Gateway",
+            "op": "organization_create",
+            "correlation_id": "3d0a7d1a-1be8-4267-af5b-8d239ea25049",
+            "status": "success",
+            "source_system": "gateway",
+            "derived_flag": false,
+            "policy_result": null,
+            "actor_role": "admin"
+          }
+        ],
+        "count": 14,
+        "source": "audit_logs",
+        "policy_scope": {
+          "scope": "platform",
+          "scope_label": "platform_admin",
+          "role": "admin",
+          "user_id": null,
+          "tenant_id": null,
+          "org_id": null,
+          "workforce_category": "all"
+        },
+        "replay_mode": "single_correlation"
+      }
+    }
+  ]
+}

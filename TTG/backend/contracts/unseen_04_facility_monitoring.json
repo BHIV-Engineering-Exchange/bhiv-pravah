@@ -1,0 +1,112 @@
+{
+  "trace_id":     "trace_unseen_04_facility_monitoring",
+  "execution_id": "exec_unseen_04_facility_monitoring",
+  "domain":       "security",
+  "scenario":     "facility_perimeter_monitoring",
+  "ticks":        20,
+
+  "entities": [
+    {
+      "id": "sensor_north", "type": "sensor",
+      "position": [0, 0, 50], "state": "monitoring",
+      "behaviors": ["hold_sensor"],
+      "meta": { "coverage": "north_perimeter" }
+    },
+    {
+      "id": "sensor_south", "type": "sensor",
+      "position": [0, 0, -50], "state": "monitoring",
+      "behaviors": ["hold_sensor"],
+      "meta": { "coverage": "south_perimeter" }
+    },
+    {
+      "id": "sensor_east", "type": "sensor",
+      "position": [50, 0, 0], "state": "monitoring",
+      "behaviors": ["hold_sensor"],
+      "meta": { "coverage": "east_perimeter" }
+    },
+    {
+      "id": "sensor_west", "type": "sensor",
+      "position": [-50, 0, 0], "state": "monitoring",
+      "behaviors": ["hold_sensor"],
+      "meta": { "coverage": "west_perimeter" }
+    },
+    {
+      "id": "guard_01", "type": "guard",
+      "position": [30, 0, 0], "state": "patrolling",
+      "behaviors": ["perimeter_patrol"],
+      "meta": { "shift": "day" }
+    },
+    {
+      "id": "guard_02", "type": "guard",
+      "position": [-30, 0, 0], "state": "patrolling",
+      "behaviors": ["perimeter_patrol"],
+      "meta": { "shift": "day" }
+    },
+    {
+      "id": "intruder_01", "type": "intruder",
+      "position": [60, 0, 60], "state": "infiltrating",
+      "behaviors": ["approach_facility"],
+      "meta": { "threat_level": "high" }
+    },
+    {
+      "id": "facility_core", "type": "zone",
+      "position": [0, 0, 0], "state": "active",
+      "behaviors": [],
+      "meta": { "radius": 25.0, "label": "Facility Core — Restricted" }
+    },
+    {
+      "id": "outer_perimeter", "type": "zone",
+      "position": [0, 0, 0], "state": "active",
+      "behaviors": [],
+      "meta": { "radius": 45.0, "label": "Outer Perimeter" }
+    }
+  ],
+
+  "behaviors": [
+    {
+      "id": "hold_sensor", "script": "anchor", "params": {}
+    },
+    {
+      "id": "perimeter_patrol", "script": "patrol",
+      "params": {
+        "waypoints": [[30,0,0],[0,0,30],[-30,0,0],[0,0,-30],[30,0,0]],
+        "speed": 2.0, "threshold": 1.0
+      }
+    },
+    {
+      "id": "approach_facility", "script": "move_to",
+      "params": { "target": [0, 0, 0], "speed": 2.5, "threshold": 1.0 }
+    }
+  ],
+
+  "rules": [
+    {
+      "id": "flag_perimeter_breach",
+      "trigger": "on_zone_enter",
+      "condition": { "field": "state", "op": "eq", "value": "infiltrating" },
+      "action": { "type": "flag_entity", "params": { "reason": "perimeter_breach_detected" } },
+      "enabled": true
+    },
+    {
+      "id": "block_core_intruder",
+      "trigger": "on_zone_enter",
+      "condition": { "field": "state", "op": "eq", "value": "infiltrating", "target": "intruder_01" },
+      "action": { "type": "block_entity", "params": { "reason": "facility_core_breach_prevented" } },
+      "enabled": true
+    },
+    {
+      "id": "alert_on_guard_contact",
+      "trigger": "on_collision",
+      "condition": { "field": "state", "op": "eq", "value": "infiltrating" },
+      "action": { "type": "set_state", "params": { "state": "apprehended" } },
+      "enabled": true
+    },
+    {
+      "id": "sensor_heartbeat",
+      "trigger": "on_tick",
+      "condition": { "field": "tick", "op": "eq", "value": 10 },
+      "action": { "type": "emit_event", "params": { "event_type": "sensor_heartbeat", "data": {} } },
+      "enabled": true
+    }
+  ]
+}

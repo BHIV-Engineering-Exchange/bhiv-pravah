@@ -1,0 +1,13 @@
+{
+  "artifact_id": "truth_001",
+  "source_module_id": "transaction_processor_v1",
+  "schema_version": "1.0.0",
+  "artifact_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "timestamp_utc": "2025-01-19T10:00:00Z",
+  "artifact_type": "truth_event",
+  "payload": {
+    "transaction_id": "tx_001",
+    "amount": 1000,
+    "status": "completed"
+  }
+}

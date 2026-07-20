@@ -1,0 +1,10 @@
+timestamp,candidate_id,score,comment,outcome,event
+<<<<<<< HEAD
+2024-01-25T10:00:00,1,4,"Initial feedback logged",accept,feedback_processed2025-11-28T11:14:59.561567,1,4,"Strong technical skills, good communication",accept,feedback_processed
+2025-11-28T11:15:01.627745,2,5,"Excellent frontend skills, team player",accept,feedback_processed
+2025-11-28T11:15:03.677035,3,3,"Good technical knowledge, needs improvement in soft skills",reconsider,feedback_processed
+2025-11-28T11:15:05.737388,4,5,Outstanding data science expertise,accept,feedback_processed
+2025-11-28T11:15:07.796317,5,2,"Limited experience, not suitable for senior role",reject,feedback_processed
+=======
+2024-01-25T10:00:00,1,4,"Initial feedback logged",accept,feedback_processed
+>>>>>>> ca18f614930b664ce9fedba6e82a380867881fe6

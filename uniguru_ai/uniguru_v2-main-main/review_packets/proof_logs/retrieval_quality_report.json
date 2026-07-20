@@ -1,0 +1,53 @@
+{
+  "schema": "UNIGURU_RETRIEVAL_QUALITY_REPORT_V1",
+  "generated_at": "2026-06-09T12:38:45.027464Z",
+  "query_count": 5,
+  "average_confidence": 1.0,
+  "rows": [
+    {
+      "query": "Grade 2 Marathi Medium: how do numbers help us count objects?",
+      "grade": 2,
+      "medium": "Marathi Medium",
+      "subject": "Mathematics",
+      "confidence": 1.0,
+      "matched_record_id": "balbharti_mr_g2_mathematics_numbers_1_01",
+      "matched_concept": "Numbers concept 1"
+    },
+    {
+      "query": "Grade 5 History: what can we learn from early people?",
+      "grade": 5,
+      "medium": "English Medium",
+      "subject": "History",
+      "confidence": 1.0,
+      "matched_record_id": "balbharti_en_g5_history_early_people_1_01",
+      "matched_concept": "Early People concept 1"
+    },
+    {
+      "query": "Grade 7 Geography: how do maps help us understand places?",
+      "grade": 7,
+      "medium": "English Medium",
+      "subject": "Geography",
+      "confidence": 1.0,
+      "matched_record_id": "balbharti_en_g7_geography_maps_1_01",
+      "matched_concept": "Maps concept 1"
+    },
+    {
+      "query": "Grade 10 Science: explain force and motion with an example.",
+      "grade": 10,
+      "medium": "English Medium",
+      "subject": "Science",
+      "confidence": 1.0,
+      "matched_record_id": "balbharti_en_g10_science_force_and_motion_6_01",
+      "matched_concept": "Force and Motion concept 1"
+    },
+    {
+      "query": "Grade 8 English: how should I identify the main idea in a story?",
+      "grade": 8,
+      "medium": "English Medium",
+      "subject": "English",
+      "confidence": 1.0,
+      "matched_record_id": "balbharti_en_g8_english_stories_3_01",
+      "matched_concept": "Stories concept 1"
+    }
+  ]
+}

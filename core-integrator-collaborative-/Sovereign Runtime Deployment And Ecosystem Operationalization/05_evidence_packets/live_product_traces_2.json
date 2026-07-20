@@ -1,0 +1,567 @@
+[
+  {
+    "product": "ttv",
+    "status_code": 200,
+    "body": {
+      "status": "success",
+      "trace_id": "41ea7d8193c14d308b45e2fe90a5acc0",
+      "workflow_id": "wf_999bc3ecf8d0",
+      "artifact_chain": {
+        "trace_id": "41ea7d8193c14d308b45e2fe90a5acc0",
+        "workflow_id": "wf_999bc3ecf8d0",
+        "A1_instruction": "instruction_4bf24b19",
+        "A2_blueprint": "blueprint_6164df19",
+        "A2b_contract": "contract_e9df6232",
+        "A2c_authority": "authority_95c563b1",
+        "A2d_gate": "gate_a5337845",
+        "A3_execution": "execution_9dcafb86",
+        "A4_result": "result_2e7fa3c8"
+      },
+      "pipeline_result": {
+        "original_prompt": "Create a video lesson on linear algebra",
+        "generated_instruction": {
+          "prompt": "Create a video lesson on linear algebra",
+          "module": "video",
+          "intent": "generate",
+          "topic": "general",
+          "tasks": [
+            "generate_video_script",
+            "create_lesson_plan"
+          ],
+          "output_format": "json",
+          "product_context": "ttv",
+          "trace_id": "41ea7d8193c14d308b45e2fe90a5acc0",
+          "workflow_id": "wf_999bc3ecf8d0",
+          "instruction_id": "41ea7d8193c14d308b45e2fe90a5acc0"
+        },
+        "blueprint_envelope": {
+          "blueprint": {
+            "instruction_id": "f4d0eba6-03f6-4d1f-abd9-87a5fb38bfa8",
+            "origin": "creator_core",
+            "intent_type": "generate",
+            "target_product": "creator",
+            "payload": {
+              "blueprint_type": "content_blueprint",
+              "product_target": "creator",
+              "content_type": "json",
+              "title": "General",
+              "outline": [
+                "generate_video_script",
+                "create_lesson_plan"
+              ]
+            },
+            "schema_version": "1.0",
+            "timestamp": "2026-07-07T09:48:50.857842+00:00"
+          },
+          "trace_id": "41ea7d8193c14d308b45e2fe90a5acc0",
+          "workflow_id": "wf_999bc3ecf8d0"
+        },
+        "contract": {
+          "contract_id": "contract_ddfe65f24871",
+          "instruction_id": "41ea7d8193c14d308b45e2fe90a5acc0",
+          "trace_id": "41ea7d8193c14d308b45e2fe90a5acc0",
+          "execution_plan": {
+            "target_module": "creator",
+            "execution_intent": "generate",
+            "execution_data": {
+              "blueprint_type": "content_blueprint",
+              "product_target": "creator",
+              "content_type": "json",
+              "title": "General",
+              "outline": [
+                "generate_video_script",
+                "create_lesson_plan"
+              ]
+            }
+          },
+          "constraints": {
+            "schema_version": "1.0.0",
+            "origin": "creator_core",
+            "intent_type": null,
+            "deterministic": true,
+            "replay_safe": true
+          },
+          "contract_hash": "70f55c84c9fde693a3c3d90e87967487d717a4b6bb7406c6e3b87afef61ec629",
+          "timestamp": "2026-07-07T09:48:50.908961+00:00",
+          "schema_version": "1.0.0"
+        },
+        "authority_decision": {
+          "allowed": true,
+          "reason": "valid_contract",
+          "contract_id": "contract_ddfe65f24871",
+          "trace_id": "41ea7d8193c14d308b45e2fe90a5acc0",
+          "decision_id": "decision_contract_ddfe65f24871",
+          "timestamp": "2026-07-07T09:48:50.951902+00:00",
+          "validation_checks": {
+            "has_contract_id": "contract_ddfe65f24871",
+            "has_trace_id": "41ea7d8193c14d308b45e2fe90a5acc0",
+            "has_execution_plan": true,
+            "has_valid_module": "creator",
+            "has_constraints": true,
+            "has_contract_hash": "70f55c84c9fde693a3c3d90e87967487d717a4b6bb7406c6e3b87afef61ec629"
+          }
+        },
+        "gate_decision": {
+          "status": "allowed",
+          "message": "Execution approved by gate",
+          "result": {},
+          "contract_id": "contract_ddfe65f24871",
+          "trace_id": "41ea7d8193c14d308b45e2fe90a5acc0",
+          "gate_status": "ALLOWED",
+          "authority_decision": {
+            "allowed": true,
+            "reason": "valid_contract",
+            "contract_id": "contract_ddfe65f24871",
+            "trace_id": "41ea7d8193c14d308b45e2fe90a5acc0",
+            "decision_id": "decision_contract_ddfe65f24871",
+            "timestamp": "2026-07-07T09:48:50.951902+00:00",
+            "validation_checks": {
+              "has_contract_id": "contract_ddfe65f24871",
+              "has_trace_id": "41ea7d8193c14d308b45e2fe90a5acc0",
+              "has_execution_plan": true,
+              "has_valid_module": "creator",
+              "has_constraints": true,
+              "has_contract_hash": "70f55c84c9fde693a3c3d90e87967487d717a4b6bb7406c6e3b87afef61ec629"
+            }
+          },
+          "timestamp": "2026-07-07T09:48:50.976270+00:00"
+        },
+        "execution_result": {
+          "status": "success",
+          "message": "Creative content generated with context",
+          "result": {
+            "content": "Generated content for: unknown topic",
+            "related_context": [],
+            "enhanced_data": {
+              "blueprint": {
+                "blueprint_type": "content_blueprint",
+                "product_target": "creator",
+                "content_type": "json",
+                "title": "General",
+                "outline": [
+                  "generate_video_script",
+                  "create_lesson_plan"
+                ]
+              },
+              "target_product": "creator",
+              "trace_id": "41ea7d8193c14d308b45e2fe90a5acc0",
+              "workflow_id": "wf_999bc3ecf8d0"
+            }
+          },
+          "trace_id": "41ea7d8193c14d308b45e2fe90a5acc0",
+          "workflow_id": "wf_999bc3ecf8d0"
+        },
+        "pipeline_status": "completed",
+        "deterministic_hash": "d46c4d2ea2bf8c2a",
+        "product_output": {
+          "video_script": {
+            "title": "Untitled Video",
+            "narration": "",
+            "scenes": [],
+            "dialogue": [],
+            "captions": []
+          },
+          "audio_requirements": {
+            "voice_type": "neutral",
+            "background_music": "none",
+            "sound_effects": [],
+            "audio_style": "standard"
+          },
+          "visual_elements": {
+            "style": "standard",
+            "animations": [],
+            "transitions": [],
+            "graphics": [],
+            "text_overlays": []
+          },
+          "timeline": [
+            {
+              "timestamp": "0:00",
+              "event": "intro"
+            },
+            {
+              "timestamp": "0:05",
+              "event": "main_content"
+            },
+            {
+              "timestamp": "0:55",
+              "event": "outro"
+            }
+          ],
+          "metadata": {
+            "execution_id": null,
+            "trace_id": null,
+            "timestamp": null,
+            "status": "success"
+          }
+        },
+        "trace_id": "41ea7d8193c14d308b45e2fe90a5acc0",
+        "workflow_id": "wf_999bc3ecf8d0"
+      },
+      "timestamp": "2026-07-07T09:48:51.084691+00:00"
+    }
+  },
+  {
+    "product": "gurukul",
+    "status_code": 200,
+    "body": {
+      "status": "success",
+      "trace_id": "b42bc62531bb405b808be4e1fd5f505e",
+      "workflow_id": "wf_96783537e1ba",
+      "artifact_chain": {
+        "trace_id": "b42bc62531bb405b808be4e1fd5f505e",
+        "workflow_id": "wf_96783537e1ba",
+        "A1_instruction": "instruction_e2bb38ae",
+        "A2_blueprint": "blueprint_cdc25b8a",
+        "A2b_contract": "contract_c63f0d2d",
+        "A2c_authority": "authority_d2ab0b27",
+        "A2d_gate": "gate_fd60fbcd",
+        "A3_execution": "execution_22aa0db0",
+        "A4_result": "result_478d159b"
+      },
+      "pipeline_result": {
+        "original_prompt": "Create a lesson plan for fractions",
+        "generated_instruction": {
+          "prompt": "Create a lesson plan for fractions",
+          "module": "education",
+          "intent": "generate",
+          "topic": "general",
+          "tasks": [
+            "create_plan",
+            "create_lesson_plan"
+          ],
+          "output_format": "json",
+          "product_context": "gurukul",
+          "trace_id": "b42bc62531bb405b808be4e1fd5f505e",
+          "workflow_id": "wf_96783537e1ba",
+          "instruction_id": "b42bc62531bb405b808be4e1fd5f505e"
+        },
+        "blueprint_envelope": {
+          "blueprint": {
+            "instruction_id": "ea06d39c-714c-461c-b566-8453ef67f68b",
+            "origin": "creator_core",
+            "intent_type": "generate",
+            "target_product": "education",
+            "payload": {
+              "blueprint_type": "content_blueprint",
+              "product_target": "education",
+              "content_type": "json",
+              "title": "General",
+              "outline": [
+                "create_plan",
+                "create_lesson_plan"
+              ]
+            },
+            "schema_version": "1.0",
+            "timestamp": "2026-07-07T09:48:52.116561+00:00"
+          },
+          "trace_id": "b42bc62531bb405b808be4e1fd5f505e",
+          "workflow_id": "wf_96783537e1ba"
+        },
+        "contract": {
+          "contract_id": "contract_6b600643c650",
+          "instruction_id": "b42bc62531bb405b808be4e1fd5f505e",
+          "trace_id": "b42bc62531bb405b808be4e1fd5f505e",
+          "execution_plan": {
+            "target_module": "education",
+            "execution_intent": "generate",
+            "execution_data": {
+              "blueprint_type": "content_blueprint",
+              "product_target": "education",
+              "content_type": "json",
+              "title": "General",
+              "outline": [
+                "create_plan",
+                "create_lesson_plan"
+              ]
+            }
+          },
+          "constraints": {
+            "schema_version": "1.0.0",
+            "origin": "creator_core",
+            "intent_type": null,
+            "deterministic": true,
+            "replay_safe": true
+          },
+          "contract_hash": "6749ac3b477723e1afd10c2f5c8aeb76dbca171332a3ab02adbdcac93e52222a",
+          "timestamp": "2026-07-07T09:48:52.151882+00:00",
+          "schema_version": "1.0.0"
+        },
+        "authority_decision": {
+          "allowed": true,
+          "reason": "valid_contract",
+          "contract_id": "contract_6b600643c650",
+          "trace_id": "b42bc62531bb405b808be4e1fd5f505e",
+          "decision_id": "decision_contract_6b600643c650",
+          "timestamp": "2026-07-07T09:48:52.167475+00:00",
+          "validation_checks": {
+            "has_contract_id": "contract_6b600643c650",
+            "has_trace_id": "b42bc62531bb405b808be4e1fd5f505e",
+            "has_execution_plan": true,
+            "has_valid_module": "education",
+            "has_constraints": true,
+            "has_contract_hash": "6749ac3b477723e1afd10c2f5c8aeb76dbca171332a3ab02adbdcac93e52222a"
+          }
+        },
+        "gate_decision": {
+          "status": "allowed",
+          "message": "Execution approved by gate",
+          "result": {},
+          "contract_id": "contract_6b600643c650",
+          "trace_id": "b42bc62531bb405b808be4e1fd5f505e",
+          "gate_status": "ALLOWED",
+          "authority_decision": {
+            "allowed": true,
+            "reason": "valid_contract",
+            "contract_id": "contract_6b600643c650",
+            "trace_id": "b42bc62531bb405b808be4e1fd5f505e",
+            "decision_id": "decision_contract_6b600643c650",
+            "timestamp": "2026-07-07T09:48:52.167475+00:00",
+            "validation_checks": {
+              "has_contract_id": "contract_6b600643c650",
+              "has_trace_id": "b42bc62531bb405b808be4e1fd5f505e",
+              "has_execution_plan": true,
+              "has_valid_module": "education",
+              "has_constraints": true,
+              "has_contract_hash": "6749ac3b477723e1afd10c2f5c8aeb76dbca171332a3ab02adbdcac93e52222a"
+            }
+          },
+          "timestamp": "2026-07-07T09:48:52.181576+00:00"
+        },
+        "execution_result": {
+          "status": "success",
+          "message": "Creative content generated with context",
+          "result": {
+            "content": "Generated content for: unknown topic",
+            "related_context": [],
+            "enhanced_data": {
+              "blueprint": {
+                "blueprint_type": "content_blueprint",
+                "product_target": "education",
+                "content_type": "json",
+                "title": "General",
+                "outline": [
+                  "create_plan",
+                  "create_lesson_plan"
+                ]
+              },
+              "target_product": "education",
+              "trace_id": "b42bc62531bb405b808be4e1fd5f505e",
+              "workflow_id": "wf_96783537e1ba"
+            }
+          },
+          "trace_id": "b42bc62531bb405b808be4e1fd5f505e",
+          "workflow_id": "wf_96783537e1ba"
+        },
+        "pipeline_status": "completed",
+        "deterministic_hash": "ad0bfda2157e16fb",
+        "product_output": {
+          "lesson_plan": {
+            "content": "Generated content for: unknown topic",
+            "related_context": [],
+            "enhanced_data": {
+              "blueprint": {
+                "blueprint_type": "content_blueprint",
+                "product_target": "education",
+                "content_type": "json",
+                "title": "General",
+                "outline": [
+                  "create_plan",
+                  "create_lesson_plan"
+                ]
+              },
+              "target_product": "education",
+              "trace_id": "b42bc62531bb405b808be4e1fd5f505e",
+              "workflow_id": "wf_96783537e1ba"
+            }
+          },
+          "assessment": {},
+          "metadata": {
+            "status": "success"
+          }
+        },
+        "trace_id": "b42bc62531bb405b808be4e1fd5f505e",
+        "workflow_id": "wf_96783537e1ba"
+      },
+      "timestamp": "2026-07-07T09:48:52.267057+00:00"
+    }
+  },
+  {
+    "product": "simulation_runtime",
+    "status_code": 200,
+    "body": {
+      "status": "success",
+      "trace_id": "e8312062eef44470a7f764937887ef47",
+      "workflow_id": "wf_69409519bd37",
+      "artifact_chain": {
+        "trace_id": "e8312062eef44470a7f764937887ef47",
+        "workflow_id": "wf_69409519bd37",
+        "A1_instruction": "instruction_4d668319",
+        "A2_blueprint": "blueprint_e168da0a",
+        "A2b_contract": "contract_68262d53",
+        "A2c_authority": "authority_32b99d58",
+        "A2d_gate": "gate_c60f516d",
+        "A3_execution": "execution_88517e56",
+        "A4_result": "result_600e3dbf"
+      },
+      "pipeline_result": {
+        "original_prompt": "Simulate supply chain disruption recovery",
+        "generated_instruction": {
+          "prompt": "Simulate supply chain disruption recovery",
+          "module": "creator",
+          "intent": "generate",
+          "topic": "general",
+          "tasks": [
+            "run_simulation"
+          ],
+          "output_format": "json",
+          "product_context": "simulation_runtime",
+          "trace_id": "e8312062eef44470a7f764937887ef47",
+          "workflow_id": "wf_69409519bd37",
+          "instruction_id": "e8312062eef44470a7f764937887ef47"
+        },
+        "blueprint_envelope": {
+          "blueprint": {
+            "instruction_id": "03e96f8b-f425-4e9e-a98c-8b91af15ebb4",
+            "origin": "creator_core",
+            "intent_type": "generate",
+            "target_product": "creator",
+            "payload": {
+              "blueprint_type": "content_blueprint",
+              "product_target": "creator",
+              "content_type": "json",
+              "title": "General",
+              "outline": [
+                "run_simulation"
+              ]
+            },
+            "schema_version": "1.0",
+            "timestamp": "2026-07-07T09:48:53.293005+00:00"
+          },
+          "trace_id": "e8312062eef44470a7f764937887ef47",
+          "workflow_id": "wf_69409519bd37"
+        },
+        "contract": {
+          "contract_id": "contract_abbd7e247350",
+          "instruction_id": "e8312062eef44470a7f764937887ef47",
+          "trace_id": "e8312062eef44470a7f764937887ef47",
+          "execution_plan": {
+            "target_module": "creator",
+            "execution_intent": "generate",
+            "execution_data": {
+              "blueprint_type": "content_blueprint",
+              "product_target": "creator",
+              "content_type": "json",
+              "title": "General",
+              "outline": [
+                "run_simulation"
+              ]
+            }
+          },
+          "constraints": {
+            "schema_version": "1.0.0",
+            "origin": "creator_core",
+            "intent_type": null,
+            "deterministic": true,
+            "replay_safe": true
+          },
+          "contract_hash": "bbbc3fa86a809cdba3d15ca00c301389306390bfa4e29843ce81050d9af40993",
+          "timestamp": "2026-07-07T09:48:53.323366+00:00",
+          "schema_version": "1.0.0"
+        },
+        "authority_decision": {
+          "allowed": true,
+          "reason": "valid_contract",
+          "contract_id": "contract_abbd7e247350",
+          "trace_id": "e8312062eef44470a7f764937887ef47",
+          "decision_id": "decision_contract_abbd7e247350",
+          "timestamp": "2026-07-07T09:48:53.338602+00:00",
+          "validation_checks": {
+            "has_contract_id": "contract_abbd7e247350",
+            "has_trace_id": "e8312062eef44470a7f764937887ef47",
+            "has_execution_plan": true,
+            "has_valid_module": "creator",
+            "has_constraints": true,
+            "has_contract_hash": "bbbc3fa86a809cdba3d15ca00c301389306390bfa4e29843ce81050d9af40993"
+          }
+        },
+        "gate_decision": {
+          "status": "allowed",
+          "message": "Execution approved by gate",
+          "result": {},
+          "contract_id": "contract_abbd7e247350",
+          "trace_id": "e8312062eef44470a7f764937887ef47",
+          "gate_status": "ALLOWED",
+          "authority_decision": {
+            "allowed": true,
+            "reason": "valid_contract",
+            "contract_id": "contract_abbd7e247350",
+            "trace_id": "e8312062eef44470a7f764937887ef47",
+            "decision_id": "decision_contract_abbd7e247350",
+            "timestamp": "2026-07-07T09:48:53.338602+00:00",
+            "validation_checks": {
+              "has_contract_id": "contract_abbd7e247350",
+              "has_trace_id": "e8312062eef44470a7f764937887ef47",
+              "has_execution_plan": true,
+              "has_valid_module": "creator",
+              "has_constraints": true,
+              "has_contract_hash": "bbbc3fa86a809cdba3d15ca00c301389306390bfa4e29843ce81050d9af40993"
+            }
+          },
+          "timestamp": "2026-07-07T09:48:53.352469+00:00"
+        },
+        "execution_result": {
+          "status": "success",
+          "message": "Creative content generated with context",
+          "result": {
+            "content": "Generated content for: unknown topic",
+            "related_context": [],
+            "enhanced_data": {
+              "blueprint": {
+                "blueprint_type": "content_blueprint",
+                "product_target": "creator",
+                "content_type": "json",
+                "title": "General",
+                "outline": [
+                  "run_simulation"
+                ]
+              },
+              "target_product": "creator",
+              "trace_id": "e8312062eef44470a7f764937887ef47",
+              "workflow_id": "wf_69409519bd37"
+            }
+          },
+          "trace_id": "e8312062eef44470a7f764937887ef47",
+          "workflow_id": "wf_69409519bd37"
+        },
+        "pipeline_status": "completed",
+        "deterministic_hash": "25c766e43cbc70c2",
+        "product_output": {
+          "simulation_result": {
+            "content": "Generated content for: unknown topic",
+            "related_context": [],
+            "enhanced_data": {
+              "blueprint": {
+                "blueprint_type": "content_blueprint",
+                "product_target": "creator",
+                "content_type": "json",
+                "title": "General",
+                "outline": [
+                  "run_simulation"
+                ]
+              },
+              "target_product": "creator",
+              "trace_id": "e8312062eef44470a7f764937887ef47",
+              "workflow_id": "wf_69409519bd37"
+            }
+          },
+          "status": "success",
+          "message": "Creative content generated with context"
+        },
+        "trace_id": "e8312062eef44470a7f764937887ef47",
+        "workflow_id": "wf_69409519bd37"
+      },
+      "timestamp": "2026-07-07T09:48:53.441293+00:00"
+    }
+  }
+]

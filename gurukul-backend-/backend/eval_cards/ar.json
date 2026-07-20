@@ -1,0 +1,102 @@
+{
+  "language": "ar",
+  "language_name": "Arabic",
+  "language_name_native": "العربية",
+  "version": "1.0.0",
+  "last_updated": "2025-01-20",
+  "description": "Arabic language evaluation test cases for Sovereign Fusion Layer",
+  "test_cases": [
+    {
+      "id": "ar_001",
+      "source": "What is mathematics?",
+      "source_lang": "en",
+      "reference": "ما هي الرياضيات؟",
+      "reference_lang": "ar",
+      "category": "educational",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "ar_002",
+      "source": "How do you solve this equation?",
+      "source_lang": "en",
+      "reference": "كيف تحل هذه المعادلة؟",
+      "reference_lang": "ar",
+      "category": "educational",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "ar_003",
+      "source": "The student is learning about science.",
+      "source_lang": "en",
+      "reference": "الطالب يتعلم عن العلوم.",
+      "reference_lang": "ar",
+      "category": "educational",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "ar_004",
+      "source": "Can you explain this concept in detail?",
+      "source_lang": "en",
+      "reference": "هل يمكنك شرح هذا المفهوم بالتفصيل؟",
+      "reference_lang": "ar",
+      "category": "educational",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "ar_005",
+      "source": "Mathematics is the study of numbers, quantities, and shapes.",
+      "source_lang": "en",
+      "reference": "الرياضيات هي دراسة الأرقام والكميات والأشكال.",
+      "reference_lang": "ar",
+      "category": "definition",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "ar_006",
+      "source": "Hello, how are you today?",
+      "source_lang": "en",
+      "reference": "مرحبا، كيف حالك اليوم؟",
+      "reference_lang": "ar",
+      "category": "conversational",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "ar_007",
+      "source": "The teacher explained the lesson clearly.",
+      "source_lang": "en",
+      "reference": "شرح المعلم الدرس بوضوح.",
+      "reference_lang": "ar",
+      "category": "educational",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "ar_008",
+      "source": "I need help with my homework.",
+      "source_lang": "en",
+      "reference": "أحتاج مساعدة في واجبي المنزلي.",
+      "reference_lang": "ar",
+      "category": "conversational",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "ar_009",
+      "source": "The experiment was successful.",
+      "source_lang": "en",
+      "reference": "كانت التجربة ناجحة.",
+      "reference_lang": "ar",
+      "category": "educational",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "ar_010",
+      "source": "Please read chapter five for tomorrow's class.",
+      "source_lang": "en",
+      "reference": "يرجى قراءة الفصل الخامس لدرس الغد.",
+      "reference_lang": "ar",
+      "category": "instructional",
+      "difficulty": "intermediate"
+    }
+  ],
+  "notes": "Test cases focus on educational content relevant to Gurukul platform"
+}
+

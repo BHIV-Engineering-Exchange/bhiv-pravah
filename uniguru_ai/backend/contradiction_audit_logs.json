@@ -1,0 +1,15 @@
+{
+  "trace_4e4d6a6a1c8f1e9f8b4d1c9e8a9d1b0f": {
+    "trace_id": "trace_4e4d6a6a1c8f1e9f8b4d1c9e8a9d1b0f",
+    "semantic_entity": "Light",
+    "conflicting_states": [
+      "hash_wave_1a2b3c",
+      "hash_particle_4d5e6f"
+    ],
+    "resolution_state_hash": "hash_duality_7g8h9i",
+    "escalation_pathway": "HUMAN_REVIEW",
+    "tamper_seal": "seal_final_11223344556677889900",
+    "timestamp": 1715663745.555,
+    "parent_trace_id": null
+  }
+}

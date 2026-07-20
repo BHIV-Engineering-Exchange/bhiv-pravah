@@ -1,0 +1,74 @@
+# BHIV HR Platform - Backend Dependencies
+# ========================================
+# Install: pip install -r requirements.txt
+# Updated: January 14, 2026
+#
+# This requirements file is used by:
+#   - run_services.py (venv local development)
+#   - Docker uses services/*/requirements.txt for each service
+
+# Core Web Framework
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+starlette>=0.27.0
+
+# MongoDB
+motor>=3.3.0
+pymongo>=4.6.0
+dnspython>=2.4.0
+
+# Environment & Config
+python-dotenv>=1.0.0
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+
+# HTTP Client
+httpx>=0.25.0
+aiohttp>=3.9.0
+requests>=2.31.0
+
+# Authentication
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+bcrypt>=4.1.0
+PyJWT>=2.8.0
+
+# Data Processing & ML
+numpy>=1.26.0
+pandas>=2.1.0
+scikit-learn>=1.3.0
+
+# Semantic Engine (Phase 3) - Used by Agent service
+sentence-transformers>=2.2.2
+torch>=2.1.0
+transformers>=4.35.0
+
+# LangGraph & AI (Gemini)
+langgraph>=0.2.0
+langchain>=0.2.0
+langchain-core>=0.2.0
+langchain-google-genai>=1.0.0
+google-generativeai>=0.3.0
+
+# Communication Services
+twilio>=8.0.0
+python-telegram-bot>=20.0
+
+# Utilities
+python-multipart>=0.0.6
+email-validator>=2.1.0
+tenacity>=8.2.0
+typing-extensions>=4.8.0
+
+# Logging & Monitoring
+structlog>=23.2.0
+prometheus-client>=0.19.0
+psutil>=5.9.0
+
+# TOTP for 2FA
+pyotp>=2.9.0
+qrcode>=7.4.0
+pillow>=10.0.0
+
+# JSON Schema validation for docs/tests
+jsonschema>=4.19.0
