@@ -1,0 +1,39 @@
+
+{
+  "scenario_id": "SCENARIO_SENSOR_DECEPTION_001",
+  "scenario_name": "sensor_deception_event",
+  "region": "Indian Ocean Maritime Corridor",
+  "timestamp": "2026-05-21T18:20:00Z",
+  "geo_layer": {
+    "latitude": 14.5995,
+    "longitude": 74.1240,
+    "spatial_uncertainty": "HIGH",
+    "coordinate_confidence": "MEDIUM"
+  },
+  "signals": [
+    {
+      "signal_type": "AIS",
+      "value": "Conflicting vessel identity signatures detected"
+    },
+    {
+      "signal_type": "RADAR",
+      "value": "Ghost vessel reflection anomaly observed"
+    },
+    {
+      "signal_type": "SATELLITE",
+      "value": "Position mismatch between visual and telemetry sources"
+    }
+  ],
+  "noise": {
+    "electronic_interference": "HIGH",
+    "signal_fragmentation": "HIGH"
+  },
+  "operational_ambiguity": "Possible spoofing attempt or coordinated sensor deception activity",
+  "expected_intelligence_outcome": "Flag anomaly for multi-source validation and replay inspection",
+  "replay_reconstruction_proof": {
+    "deterministic_replay": true,
+    "trace_continuity": true,
+    "lineage_preserved": true
+  }
+}
+

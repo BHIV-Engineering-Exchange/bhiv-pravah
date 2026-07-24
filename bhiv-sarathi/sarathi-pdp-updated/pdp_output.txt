@@ -1,0 +1,66 @@
+﻿+-------------------------------------------------------+
+|  SARATHI PDP CORE ENGINE v1.0.0 (Go)                  |
+|  Constitutional Policy Decision Point                  |
+|  Host: Blackhole Infiverse (BHIV)                      |
++-------------------------------------------------------+
+
+Policy Version:  1.0.0
+Policy Hash:     cb6dac30c16456a2898bbcf30533b11170f2f6902449ce7daa9708b4b195ceb1
+Rules Loaded:    51
+
+=========================================================================================================
+#   Verdict  Reason                                 Rules                  Description
+=========================================================================================================
+1   ALLOW    EXPLICIT_ALLOW                         AUTH-001               Governance reads policy registry (L4)
+2   ALLOW    EXPLICIT_ALLOW                         AUTH-002               Governance writes policy registry (L4)
+3   ALLOW    EXPLICIT_ALLOW                         AUTH-011               Governance reads agent registry (L3)
+4   ALLOW    EXPLICIT_ALLOW                         AUTH-028               Governance writes model registry (L3)
+5   ALLOW    EXPLICIT_ALLOW                         AUTH-022               Governance writes configuration (L2)
+6   ALLOW    EXPLICIT_ALLOW                         AUTH-026               Governance reads decision trace (L3)
+7   ALLOW    EXPLICIT_ALLOW                         AUTH-029               Governance reads audit log (L3)
+8   ALLOW    EXPLICIT_ALLOW                         AUTH-007               Standard reads operational data (L1)
+9   ALLOW    EXPLICIT_ALLOW                         AUTH-008               Standard writes operational data (L1)
+10  ALLOW    EXPLICIT_ALLOW                         AUTH-019               Standard reads public API (L0)
+11  ALLOW    EXPLICIT_ALLOW                         AUTH-020               Standard writes public API (L0)
+12  ALLOW    EXPLICIT_ALLOW                         AUTH-023               Standard reads configuration (L2)
+13  ALLOW    EXPLICIT_ALLOW                         AUTH-009               Standard reads analytics (L1)
+14  ALLOW    EXPLICIT_ALLOW                         AUTH-005               Audit reads decision trace (L3)
+15  ALLOW    EXPLICIT_ALLOW                         AUTH-015               Audit reads audit log (L3)
+16  ALLOW    EXPLICIT_ALLOW                         AUTH-035               Audit reads policy registry (L4)
+17  ALLOW    EXPLICIT_ALLOW                         AUTH-037               Audit reads model registry (L3)
+18  ALLOW    EXPLICIT_ALLOW                         AUTH-017               Safety monitor reads model registry (L3)
+19  ALLOW    EXPLICIT_ALLOW                         AUTH-031               Safety monitor reads decision trace (L3)
+20  ALLOW    EXPLICIT_ALLOW                         AUTH-034               Safety monitor reads operational data (L1)
+21  ALLOW    EXPLICIT_ALLOW                         AUTH-041               Data processor reads operational data (L1)
+22  ALLOW    EXPLICIT_ALLOW                         AUTH-044               Data processor writes analytics (L1)
+23  ALLOW    EXPLICIT_ALLOW                         AUTH-045               Data processor reads public API (L0)
+24  ALLOW    EXPLICIT_ALLOW                         AUTH-048               Orchestrator reads operational data (L1)
+25  DENY     EXPLICIT_DENY                          AUTH-003               Standard DENIED policy registry (L4>L2)
+26  DENY     EXPLICIT_DENY                          AUTH-004               Standard DENIED policy write
+27  DENY     EXPLICIT_DENY                          AUTH-013               Standard DENIED agent registry (L3>L2)
+28  DENY     EXPLICIT_DENY                          AUTH-024               Standard DENIED config write
+29  DENY     EXPLICIT_DENY                          AUTH-010               Standard DENIED analytics write
+30  DENY     EXPLICIT_DENY                          AUTH-038               Standard DENIED model registry (L3>L2)
+31  DENY     EXPLICIT_DENY                          AUTH-040               Standard DENIED audit log (L3>L2)
+32  DENY     EXPLICIT_DENY                          AUTH-006               Audit DENIED trace write (immutability)
+33  DENY     EXPLICIT_DENY                          AUTH-016               Audit DENIED audit log write
+34  DENY     EXPLICIT_DENY                          AUTH-018               Safety DENIED model write (SoD)
+35  DENY     EXPLICIT_DENY                          AUTH-030               Governance DENIED audit log write
+36  DENY     EXPLICIT_DENY                          AUTH-046               Data processor DENIED config (L2>L1)
+37  DENY     EXPLICIT_DENY                          AUTH-047               Data processor DENIED agent reg (L3>L1)
+38  DENY     EXPLICIT_DENY                          AUTH-049               Orchestrator DENIED agent registry (L3>L2)
+39  DENY     EXPLICIT_DENY                          AUTH-050               Orchestrator DENIED policy registry (L4>L2)
+40  DENY     AGENT_NOT_FOUND                        -                      Agent not found -> DENY
+41  DENY     AGENT_SUSPENDED                        -                      Suspended agent -> DENY
+42  DENY     AGENT_REVOKED                          -                      Revoked agent -> DENY
+43  DENY     AGENT_TERMINATED                       -                      Terminated agent -> DENY
+44  DENY     EXPLICIT_DENY                          AUTH-DENY-ALL          Invalid action -> DENY
+45  DENY     INVALID_AGENT_ID                       -                      Empty agent ID -> DENY
+46  DENY     INVALID_RESOURCE_ID                    -                      Empty resource ID -> DENY
+47  DENY     RESOURCE_NOT_FOUND                     -                      Resource not found -> DENY
+=========================================================================================================
+ALLOW: 24  |  DENY: 23  |  Total: 47
+
+Decision trace written: 47 total entries
+Decision trace chain integrity verified.
+Sample decision output written to sample_decision_output.json

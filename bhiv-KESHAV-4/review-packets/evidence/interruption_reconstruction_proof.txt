@@ -1,0 +1,24 @@
+Reconstruction After Interruption Proof
+==================================================
+Original hash:       e5655da819caab98ba5a228b021ece779a7cb9affd3b6d16c48519c07b8256da
+Reconstructed hash:  e5655da819caab98ba5a228b021ece779a7cb9affd3b6d16c48519c07b8256da
+Fresh replay hash:   e5655da819caab98ba5a228b021ece779a7cb9affd3b6d16c48519c07b8256da
+All identical: True
+
+Checkpoint file: C:\rajaryan\KESHAV-4\review-packets\evidence\replay_checkpoint.json
+Reconstructed output:
+{
+  "blocked_task_id": "T1",
+  "impact_score": 4,
+  "impacted_tasks": [
+    "T4",
+    "T5",
+    "T8",
+    "T10"
+  ],
+  "resolution_signal": "UNBLOCK_DEPENDENCY:RC",
+  "root_cause": "RC",
+  "severity": "MEDIUM",
+  "timestamp": "2026-05-22T12:00:00Z",
+  "trace_id": "trace-replay-hardening-001"
+}

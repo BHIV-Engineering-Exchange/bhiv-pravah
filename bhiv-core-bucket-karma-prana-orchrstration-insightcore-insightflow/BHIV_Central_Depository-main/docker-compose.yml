@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  redis:
+    image: redis:7.0-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - ai_integration_network
+
+volumes:
+  redis_data:
+
+networks:
+  ai_integration_network:
+    driver: bridge

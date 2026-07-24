@@ -1,0 +1,17 @@
+{
+  "schema_version": "sarathi.results/v1.0",
+  "generated_at": "2026-07-24T08:24:53.591446Z",
+  "system_version": "v14.4",
+  "test_category": "concurrency_stress",
+  "total_tests": 8,
+  "passed": 8,
+  "failed": 0,
+  "results": {
+    "total_tests": 8,
+    "passed": 8,
+    "failed": 0,
+    "total_requests": 2720,
+    "peak_rps": 8899.283251726905,
+    "total_duration": 314985500
+  }
+}

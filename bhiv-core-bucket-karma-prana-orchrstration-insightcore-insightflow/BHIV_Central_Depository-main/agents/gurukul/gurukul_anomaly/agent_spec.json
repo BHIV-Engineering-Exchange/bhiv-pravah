@@ -1,0 +1,32 @@
+{
+    "name": "gurukul_anomaly",
+    "domains": ["education", "anomaly"],
+    "module_path": "agents.gurukul.gurukul_anomaly.gurukul_anomaly",
+    "capabilities": {"chainable": true, "memory_access": true},
+    "input_schema": {
+        "required": ["collections"],
+        "properties": {
+            "collections": {
+                "type": "object",
+                "properties": {
+                    "text": {"type": "string"},
+                    "audio": {"type": "string"},
+                    "video": {"type": "string"},
+                    "image": {"type": "string"}
+                }
+            }
+        }
+    },
+    "output_schema": {
+        "properties": {"anomaly_report": {"type": "string"}}
+    },
+    "sample_input": {
+        "collections": {
+            "text": "processed_text",
+            "audio": "processed_audio",
+            "video": "processed_video",
+            "image": "images"
+        }
+    },
+    "sample_output": {"anomaly_report": "✅ No anomalies detected"}
+}

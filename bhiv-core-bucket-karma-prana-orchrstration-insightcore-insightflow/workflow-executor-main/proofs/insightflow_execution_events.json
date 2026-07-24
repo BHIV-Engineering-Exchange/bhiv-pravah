@@ -1,0 +1,20 @@
+{
+  "proof_name": "InsightFlow Telemetry Proof",
+  "date": "2026-01-22",
+  "events": [
+    {
+      "trace_id": "demo-ai-001",
+      "product": "ai_being",
+      "action_type": "ai",
+      "adapter": "ai_adapter",
+      "status": "success"
+    },
+    {
+      "trace_id": "gurukul-announcement-001",
+      "product": "gurukul",
+      "action_type": "whatsapp",
+      "adapter": "whatsapp_adapter",
+      "status": "success"
+    }
+  ]
+}

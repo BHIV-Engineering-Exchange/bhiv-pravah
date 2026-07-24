@@ -1,0 +1,48 @@
+{
+    "timestamp": "2026-07-24T08:24:53.6959614Z",
+    "bridge_metrics": {
+      "total_caller_auth_fail": 92,
+      "total_rate_limited": 44,
+      "total_rejected": 141,
+      "total_routed": 2392
+    },
+    "enforcement_metrics": {
+      "in_memory_chain_length": 2487,
+      "rotated_entry_count": 0,
+      "total_enforcements": 2487
+    },
+    "execution_metrics": {
+      "total_executions": 2383
+    },
+    "ksml_metrics": {
+      "allowed": 0,
+      "delegations": 0,
+      "denied": 1,
+      "escalated": 0,
+      "expired": 0,
+      "revocations": 0,
+      "total_requests": 1,
+      "validation_failures": 1
+    },
+    "replay_metrics": {
+      "accepted": 1,
+      "rejected": 1,
+      "tracked_intents": 1
+    },
+    "fail_closed_metrics": {
+      "block_count": 0,
+      "failure_count": 0,
+      "healthy": true,
+      "total_operations": 0
+    },
+    "core_gate_metrics": {
+      "blocked_direct": 0,
+      "direct_attempts": 0,
+      "routed_requests": 0
+    },
+    "chain_integrity": true,
+    "chain_message": "",
+    "exec_chain_integrity": true,
+    "exec_chain_message": "",
+    "consistent": true
+  }

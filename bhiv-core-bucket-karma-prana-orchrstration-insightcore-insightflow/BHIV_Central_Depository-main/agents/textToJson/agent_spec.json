@@ -1,0 +1,71 @@
+{
+    "name": "textToJson",
+    "domains": ["ai", "generation", "evaluation", "reinforcement_learning"],
+    "module_path": "agents.textToJson.text_to_json",
+    "capabilities": {
+        "chainable": true,
+        "memory_access": false
+    },
+    "input_schema": {
+        "required": ["action"],
+        "properties": {
+            "action": {
+                "type": "string",
+                "description": "The action to perform: 'generate', 'evaluate', 'iterate', 'health', 'metrics', 'all'",
+                "enum": ["generate", "evaluate", "iterate", "health", "metrics", "all"]
+            },
+            "prompt": {
+                "type": "string",
+                "description": "Prompt for generation or evaluation (required for generate, evaluate, iterate)"
+            },
+            "spec": {
+                "type": "object",
+                "description": "Specification object for evaluation (required for evaluate)"
+            },
+            "n_iter": {
+                "type": "integer",
+                "description": "Number of iterations for RL training (default: 3)",
+                "default": 3
+            },
+            "jwt_token": {
+                "type": "string",
+                "description": "JWT token for authentication (optional, if not provided, agent will authenticate automatically)"
+            }
+        }
+    },
+    "output_schema": {
+        "properties": {
+            "result": {
+                "type": "object",
+                "description": "Results from the API calls"
+            },
+            "success": {
+                "type": "boolean",
+                "description": "Whether all operations succeeded"
+            },
+            "errors": {
+                "type": "array",
+                "description": "Any errors encountered"
+            }
+        }
+    },
+    "sample_input": {
+        "action": "generate",
+        "prompt": "Create a specification for a modern web application"
+    },
+    "sample_output": {
+        "result": {
+            "generate": {
+                "spec": {
+                    "design_type": "web_app",
+                    "components": ["frontend", "backend", "database"],
+                    "technologies": ["React", "FastAPI", "PostgreSQL"]
+                },
+                "success": true,
+                "message": "Specification generated successfully"
+            }
+        },
+        "success": true,
+        "errors": []
+    }
+}

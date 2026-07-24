@@ -1,0 +1,22 @@
+[
+  {
+    "vessel_id": "VSL_001",
+    "vessel_name": "MV Horizon",
+    "vessel_class": "Cargo",
+    "signature_profile": "Commercial Cargo Vessel",
+    "propulsion_metadata": {
+      "engine_type": "Diesel"
+    },
+    "size_metadata": {
+      "length_m": 210,
+      "width_m": 32
+    },
+    "operational_role": "Cargo Transport",
+    "source_metadata": {
+      "dataset_origin": "NOAA_AIS"
+    },
+    "version_metadata": {
+      "schema_version": "1.0"
+    }
+  }
+]

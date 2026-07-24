@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mitra-config
+  namespace: mitra
+data:
+  ENV: "production"
+  DATABASE_NAME: "mitra_production"
+  LOG_LEVEL: "INFO"
+  REMINDER_SCHEDULER_ENABLED: "1"
+  REMINDER_SCHEDULER_POLL_SECONDS: "1.0"
+  OTEL_SERVICE_NAME: "mitra-core"

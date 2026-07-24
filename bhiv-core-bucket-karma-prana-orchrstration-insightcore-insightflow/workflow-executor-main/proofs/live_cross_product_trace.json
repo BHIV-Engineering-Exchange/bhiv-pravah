@@ -1,0 +1,10 @@
+{
+  "trace_id": "live-proof-001",
+  "source_product": "AI Assistant",
+  "executor_url": "https://workflow-executor-mp4x.onrender.com",
+  "endpoint": "/api/workflow/execute",
+  "action_type": "ai",
+  "adapter": "AIAdapter",
+  "status": "success",
+  "timestamp": "2026-01-22T00:00:00Z"
+}

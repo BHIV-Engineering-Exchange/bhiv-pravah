@@ -1,0 +1,608 @@
+{
+    "total_events": 100,
+    "deterministic": true,
+    "trace_continuity": true,
+    "replay_safe": true,
+    "results": [
+        {
+            "execution_id": "exec_28f5c440",
+            "trace_id": "trace_42819b6f",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072141"
+        },
+        {
+            "execution_id": "exec_7189b144",
+            "trace_id": "trace_2df11bb3",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072181"
+        },
+        {
+            "execution_id": "exec_4e3b6b49",
+            "trace_id": "trace_da29aa02",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072188"
+        },
+        {
+            "execution_id": "exec_733cf830",
+            "trace_id": "trace_7b073257",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072193"
+        },
+        {
+            "execution_id": "exec_be4b5260",
+            "trace_id": "trace_8cdfe696",
+            "status": "TOKEN_DENIED",
+            "timestamp": "2026-05-14 08:10:24.072198"
+        },
+        {
+            "execution_id": "exec_42b9ab20",
+            "trace_id": "trace_70b7c255",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072204"
+        },
+        {
+            "execution_id": "exec_0b94c1b3",
+            "trace_id": "trace_358ea900",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072209"
+        },
+        {
+            "execution_id": "exec_f35b2844",
+            "trace_id": "trace_401f2109",
+            "status": "TOKEN_DENIED",
+            "timestamp": "2026-05-14 08:10:24.072213"
+        },
+        {
+            "execution_id": "exec_e7bbd2f5",
+            "trace_id": "trace_483ec839",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072217"
+        },
+        {
+            "execution_id": "exec_085368ce",
+            "trace_id": "trace_c2c8a521",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072221"
+        },
+        {
+            "execution_id": "exec_b9d82537",
+            "trace_id": "trace_05fab3f9",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072225"
+        },
+        {
+            "execution_id": "exec_b069afc6",
+            "trace_id": "trace_67d03817",
+            "status": "TOKEN_DENIED",
+            "timestamp": "2026-05-14 08:10:24.072229"
+        },
+        {
+            "execution_id": "exec_1b0ad213",
+            "trace_id": "trace_499726b8",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072234"
+        },
+        {
+            "execution_id": "exec_81d82c09",
+            "trace_id": "trace_e81e4183",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072238"
+        },
+        {
+            "execution_id": "exec_9990ef54",
+            "trace_id": "trace_f0d9c136",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072242"
+        },
+        {
+            "execution_id": "exec_e7bd0351",
+            "trace_id": "trace_67a0103e",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072245"
+        },
+        {
+            "execution_id": "exec_f2ab7e49",
+            "trace_id": "trace_b036a255",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072249"
+        },
+        {
+            "execution_id": "exec_c6803962",
+            "trace_id": "trace_80f7a67e",
+            "status": "TOKEN_DENIED",
+            "timestamp": "2026-05-14 08:10:24.072253"
+        },
+        {
+            "execution_id": "exec_95e42258",
+            "trace_id": "trace_07366c8d",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072257"
+        },
+        {
+            "execution_id": "exec_87718b09",
+            "trace_id": "trace_7139fa1e",
+            "status": "TOKEN_DENIED",
+            "timestamp": "2026-05-14 08:10:24.072261"
+        },
+        {
+            "execution_id": "exec_d0098aff",
+            "trace_id": "trace_5b4c469c",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072265"
+        },
+        {
+            "execution_id": "exec_732ec2ad",
+            "trace_id": "trace_4b7da0a8",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072269"
+        },
+        {
+            "execution_id": "exec_c53f94b8",
+            "trace_id": "trace_dc72fe10",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072273"
+        },
+        {
+            "execution_id": "exec_f4eaac27",
+            "trace_id": "trace_aaea6a11",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072277"
+        },
+        {
+            "execution_id": "exec_2642448a",
+            "trace_id": "trace_84e93dde",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072280"
+        },
+        {
+            "execution_id": "exec_ba900cb8",
+            "trace_id": "trace_2f03c716",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072285"
+        },
+        {
+            "execution_id": "exec_6e5d4c06",
+            "trace_id": "trace_255be72a",
+            "status": "TOKEN_DENIED",
+            "timestamp": "2026-05-14 08:10:24.072289"
+        },
+        {
+            "execution_id": "exec_566f5ec3",
+            "trace_id": "trace_6a3ec4e3",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072293"
+        },
+        {
+            "execution_id": "exec_6453ec6b",
+            "trace_id": "trace_6bc6c0ae",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072297"
+        },
+        {
+            "execution_id": "exec_05d024a1",
+            "trace_id": "trace_df524702",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072301"
+        },
+        {
+            "execution_id": "exec_98e85466",
+            "trace_id": "trace_1c9fab45",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072305"
+        },
+        {
+            "execution_id": "exec_cf8f6dcc",
+            "trace_id": "trace_0efa3cdd",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072309"
+        },
+        {
+            "execution_id": "exec_1a42fec0",
+            "trace_id": "trace_a75939f4",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072314"
+        },
+        {
+            "execution_id": "exec_a5b04c05",
+            "trace_id": "trace_5f238767",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072317"
+        },
+        {
+            "execution_id": "exec_a8918fb5",
+            "trace_id": "trace_de235864",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072322"
+        },
+        {
+            "execution_id": "exec_53a4aba0",
+            "trace_id": "trace_ba4b1ffe",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072326"
+        },
+        {
+            "execution_id": "exec_97f5491b",
+            "trace_id": "trace_4be53377",
+            "status": "TOKEN_DENIED",
+            "timestamp": "2026-05-14 08:10:24.072330"
+        },
+        {
+            "execution_id": "exec_7d68ae72",
+            "trace_id": "trace_cd97faf8",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072335"
+        },
+        {
+            "execution_id": "exec_21fc4694",
+            "trace_id": "trace_0dc15f4f",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072339"
+        },
+        {
+            "execution_id": "exec_dbf0fa5f",
+            "trace_id": "trace_04172801",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072343"
+        },
+        {
+            "execution_id": "exec_c1a2ac54",
+            "trace_id": "trace_a5ae5cff",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072347"
+        },
+        {
+            "execution_id": "exec_b59e1069",
+            "trace_id": "trace_3bb704c1",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072351"
+        },
+        {
+            "execution_id": "exec_14fcef8a",
+            "trace_id": "trace_2c1ad61d",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072355"
+        },
+        {
+            "execution_id": "exec_8170b375",
+            "trace_id": "trace_418f9afe",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072359"
+        },
+        {
+            "execution_id": "exec_7fa79a9a",
+            "trace_id": "trace_7673c262",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072362"
+        },
+        {
+            "execution_id": "exec_73b8b5a5",
+            "trace_id": "trace_a1e2055d",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072366"
+        },
+        {
+            "execution_id": "exec_de7c93eb",
+            "trace_id": "trace_5fc2aaff",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072370"
+        },
+        {
+            "execution_id": "exec_c010e5f8",
+            "trace_id": "trace_c6f8fb99",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072374"
+        },
+        {
+            "execution_id": "exec_862979aa",
+            "trace_id": "trace_3506ae24",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072378"
+        },
+        {
+            "execution_id": "exec_ab0cd537",
+            "trace_id": "trace_8b962541",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072382"
+        },
+        {
+            "execution_id": "exec_854f73b1",
+            "trace_id": "trace_3cf56442",
+            "status": "TOKEN_DENIED",
+            "timestamp": "2026-05-14 08:10:24.072385"
+        },
+        {
+            "execution_id": "exec_4dcaf724",
+            "trace_id": "trace_7bc0f092",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072389"
+        },
+        {
+            "execution_id": "exec_830b40cf",
+            "trace_id": "trace_9e466095",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072393"
+        },
+        {
+            "execution_id": "exec_b2d95071",
+            "trace_id": "trace_8433109a",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072397"
+        },
+        {
+            "execution_id": "exec_ecff6639",
+            "trace_id": "trace_90f6d2ba",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072401"
+        },
+        {
+            "execution_id": "exec_78d9f7ad",
+            "trace_id": "trace_353bb38d",
+            "status": "TOKEN_DENIED",
+            "timestamp": "2026-05-14 08:10:24.072406"
+        },
+        {
+            "execution_id": "exec_1cda3c4d",
+            "trace_id": "trace_5318b661",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072410"
+        },
+        {
+            "execution_id": "exec_388207e1",
+            "trace_id": "trace_6f067aae",
+            "status": "TOKEN_DENIED",
+            "timestamp": "2026-05-14 08:10:24.072414"
+        },
+        {
+            "execution_id": "exec_4350717b",
+            "trace_id": "trace_bec7994b",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072418"
+        },
+        {
+            "execution_id": "exec_47872836",
+            "trace_id": "trace_ca6b5f29",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072421"
+        },
+        {
+            "execution_id": "exec_4f46f658",
+            "trace_id": "trace_3e6b0fb8",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072425"
+        },
+        {
+            "execution_id": "exec_647722ed",
+            "trace_id": "trace_71ce3b69",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072429"
+        },
+        {
+            "execution_id": "exec_0d4bca66",
+            "trace_id": "trace_c329f58a",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072433"
+        },
+        {
+            "execution_id": "exec_e0e6facf",
+            "trace_id": "trace_1053aefc",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072437"
+        },
+        {
+            "execution_id": "exec_10775273",
+            "trace_id": "trace_bc65debb",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072441"
+        },
+        {
+            "execution_id": "exec_ce949f38",
+            "trace_id": "trace_04e12a93",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072445"
+        },
+        {
+            "execution_id": "exec_2efb43ad",
+            "trace_id": "trace_c3fe327a",
+            "status": "TOKEN_DENIED",
+            "timestamp": "2026-05-14 08:10:24.072449"
+        },
+        {
+            "execution_id": "exec_3cfcc5b6",
+            "trace_id": "trace_f2c3369f",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072452"
+        },
+        {
+            "execution_id": "exec_0dae5318",
+            "trace_id": "trace_0d578c9b",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072457"
+        },
+        {
+            "execution_id": "exec_5b7d86a3",
+            "trace_id": "trace_f3b6b434",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072461"
+        },
+        {
+            "execution_id": "exec_34241fbe",
+            "trace_id": "trace_e034e8ad",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072465"
+        },
+        {
+            "execution_id": "exec_1f3ffc16",
+            "trace_id": "trace_117e916b",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072469"
+        },
+        {
+            "execution_id": "exec_d889415c",
+            "trace_id": "trace_ff914393",
+            "status": "TOKEN_DENIED",
+            "timestamp": "2026-05-14 08:10:24.072473"
+        },
+        {
+            "execution_id": "exec_ec9276f6",
+            "trace_id": "trace_e329c216",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072477"
+        },
+        {
+            "execution_id": "exec_022594ab",
+            "trace_id": "trace_7d79e14f",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072480"
+        },
+        {
+            "execution_id": "exec_c26ccace",
+            "trace_id": "trace_b5c32640",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072484"
+        },
+        {
+            "execution_id": "exec_a438f1b5",
+            "trace_id": "trace_5b8401ce",
+            "status": "TOKEN_DENIED",
+            "timestamp": "2026-05-14 08:10:24.072489"
+        },
+        {
+            "execution_id": "exec_69deeac4",
+            "trace_id": "trace_14bae11c",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072494"
+        },
+        {
+            "execution_id": "exec_6440ebb9",
+            "trace_id": "trace_57c423c3",
+            "status": "TOKEN_DENIED",
+            "timestamp": "2026-05-14 08:10:24.072498"
+        },
+        {
+            "execution_id": "exec_17e3cb08",
+            "trace_id": "trace_fd45666b",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072502"
+        },
+        {
+            "execution_id": "exec_e2756be9",
+            "trace_id": "trace_918be9e9",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072506"
+        },
+        {
+            "execution_id": "exec_e9644b65",
+            "trace_id": "trace_a22d3867",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072510"
+        },
+        {
+            "execution_id": "exec_c44b7131",
+            "trace_id": "trace_5f6730ab",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072514"
+        },
+        {
+            "execution_id": "exec_e8188ba7",
+            "trace_id": "trace_ac84f305",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072518"
+        },
+        {
+            "execution_id": "exec_a7058c7e",
+            "trace_id": "trace_25b05d12",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072522"
+        },
+        {
+            "execution_id": "exec_f928cb6c",
+            "trace_id": "trace_ce29b112",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072525"
+        },
+        {
+            "execution_id": "exec_7d654ad9",
+            "trace_id": "trace_a3773b4f",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072529"
+        },
+        {
+            "execution_id": "exec_36f88c7d",
+            "trace_id": "trace_191ea98e",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072533"
+        },
+        {
+            "execution_id": "exec_ad7b0dc9",
+            "trace_id": "trace_0f02ba0a",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072537"
+        },
+        {
+            "execution_id": "exec_3c17beb1",
+            "trace_id": "trace_881f0e4f",
+            "status": "MUTATION_REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072541"
+        },
+        {
+            "execution_id": "exec_8838f3e5",
+            "trace_id": "trace_85ffcea4",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072544"
+        },
+        {
+            "execution_id": "exec_6a569d85",
+            "trace_id": "trace_15a9987e",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072548"
+        },
+        {
+            "execution_id": "exec_1c90c5bc",
+            "trace_id": "trace_34a6775a",
+            "status": "TOKEN_DENIED",
+            "timestamp": "2026-05-14 08:10:24.072552"
+        },
+        {
+            "execution_id": "exec_ac0e54a5",
+            "trace_id": "trace_3902c2a2",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072556"
+        },
+        {
+            "execution_id": "exec_7893b94e",
+            "trace_id": "trace_4446afed",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072560"
+        },
+        {
+            "execution_id": "exec_0fb287da",
+            "trace_id": "trace_b85d6642",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072563"
+        },
+        {
+            "execution_id": "exec_39e9c287",
+            "trace_id": "trace_1d48591d",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072567"
+        },
+        {
+            "execution_id": "exec_cbf62531",
+            "trace_id": "trace_8481ad58",
+            "status": "REJECTED",
+            "timestamp": "2026-05-14 08:10:24.072572"
+        },
+        {
+            "execution_id": "exec_c06b7d49",
+            "trace_id": "trace_367a987f",
+            "status": "EXECUTED",
+            "timestamp": "2026-05-14 08:10:24.072576"
+        },
+        {
+            "execution_id": "exec_24675fb1",
+            "trace_id": "trace_2698e545",
+            "status": "TOKEN_DENIED",
+            "timestamp": "2026-05-14 08:10:24.072580"
+        }
+    ]
+}

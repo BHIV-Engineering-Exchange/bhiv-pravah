@@ -1,0 +1,127 @@
+{
+  "schema_version": "sarathi.results/v1.0",
+  "generated_at": "2026-04-17T12:17:17.149988Z",
+  "system_version": "v14.4",
+  "test_category": "propagation_byte_equality",
+  "total_tests": 2,
+  "passed": 2,
+  "failed": 0,
+  "results": {
+    "schema_version": "sarathi.propagation.replay/v1.0",
+    "generated_at": "2026-04-17T12:17:17.146712Z",
+    "iterations": 2,
+    "determinism_violations": 0,
+    "chain_halts": 0,
+    "all_byte_identical": true,
+    "unique_response_hashes": [
+      "7ec571b9920f8ba22c971f925a569daf64fa2a9e44b108ad32d4f20d73a754d0"
+    ],
+    "unique_chain_bindings": [
+      "46cf7848a9cd201c1c944cc5cca4d4d9d1b95573fdec78214a36f1211554d804"
+    ],
+    "runs": [
+      {
+        "iteration": 1,
+        "input_hash": "5fa1745cef6d1ca23aae8bb2e37b864401b4a5a546e81cb9d24e5e6f8a950e74",
+        "ingest_hash": "5fa1745cef6d1ca23aae8bb2e37b864401b4a5a546e81cb9d24e5e6f8a950e74",
+        "decision_hash": "217af05cf8d182e325dbc50109b04acd1c2038a5b1b4513ce09b612a9f052f79",
+        "decision_core_hash": "02dc0b98b08903f6ebaee6d783716436e92c6e4c242317027d7c1ec873ec8432",
+        "enforcement_hash": "5afef482c366689bb9cc639eda3321e04b8e2345dc00341318aa54689d40a442",
+        "response_hash": "9428735510f1cd3ce7ef1fb7d98d520ad26d86b6fb2675097983db06e8997988",
+        "chain_binding_hash": "b0cff489f9dd6ee5935e18caeb11b1047f04bfffa56680aabd387fe165a78e72",
+        "response_hash_stable": "7ec571b9920f8ba22c971f925a569daf64fa2a9e44b108ad32d4f20d73a754d0",
+        "chain_binding_hash_stable": "46cf7848a9cd201c1c944cc5cca4d4d9d1b95573fdec78214a36f1211554d804",
+        "hop_results": [
+          {
+            "target": "core_workflow",
+            "in_chain": true,
+            "delivered": true,
+            "latency_ns": 0,
+            "event_id": "f1e6d5fa-ff4c-485d-a953-7b822bed1bb3",
+            "attempted_at": "2026-04-17T12:17:17.147798Z"
+          },
+          {
+            "target": "insightflow",
+            "in_chain": true,
+            "delivered": true,
+            "latency_ns": 0,
+            "event_id": "6673ff2b-5673-4c18-8cc6-84cffecd8fc0",
+            "attempted_at": "2026-04-17T12:17:17.147798Z"
+          },
+          {
+            "target": "bucket",
+            "in_chain": true,
+            "delivered": true,
+            "latency_ns": 0,
+            "event_id": "7920d2a7-9ec2-4290-b982-462bf93ea4ab",
+            "attempted_at": "2026-04-17T12:17:17.147798Z"
+          },
+          {
+            "target": "intent_layer",
+            "in_chain": false,
+            "digest_only": true,
+            "delivered": true,
+            "latency_ns": 0,
+            "event_id": "09a7415e-c204-4907-8ae2-0f09bd13c705",
+            "attempted_at": "2026-04-17T12:17:17.147798Z"
+          }
+        ],
+        "all_bytes_match": true,
+        "chain_halted": false,
+        "duration_ns": 1086100,
+        "started_at": "2026-04-17T12:17:17.146712Z"
+      },
+      {
+        "iteration": 2,
+        "input_hash": "5fa1745cef6d1ca23aae8bb2e37b864401b4a5a546e81cb9d24e5e6f8a950e74",
+        "ingest_hash": "5fa1745cef6d1ca23aae8bb2e37b864401b4a5a546e81cb9d24e5e6f8a950e74",
+        "decision_hash": "217af05cf8d182e325dbc50109b04acd1c2038a5b1b4513ce09b612a9f052f79",
+        "decision_core_hash": "02dc0b98b08903f6ebaee6d783716436e92c6e4c242317027d7c1ec873ec8432",
+        "enforcement_hash": "2660e79bf03bec0035920352422282bae34091b1e428f60b2ea7c08267035233",
+        "response_hash": "deacefc49fdeacec7227633bd81512a59553e6db0be33b12fdeb7ef5f6e5b716",
+        "chain_binding_hash": "b4fb0b742cb2ad26764ac3c36815283a9ee843fcbe777bb865a7c8efdd3e50ac",
+        "response_hash_stable": "7ec571b9920f8ba22c971f925a569daf64fa2a9e44b108ad32d4f20d73a754d0",
+        "chain_binding_hash_stable": "46cf7848a9cd201c1c944cc5cca4d4d9d1b95573fdec78214a36f1211554d804",
+        "hop_results": [
+          {
+            "target": "core_workflow",
+            "in_chain": true,
+            "delivered": true,
+            "latency_ns": 0,
+            "event_id": "bed7ea16-c2f8-4f8f-b41c-40fa77dedb3b",
+            "attempted_at": "2026-04-17T12:17:17.148909Z"
+          },
+          {
+            "target": "insightflow",
+            "in_chain": true,
+            "delivered": true,
+            "latency_ns": 0,
+            "event_id": "11ffa8c5-01ff-441d-af6f-a2c52be378d9",
+            "attempted_at": "2026-04-17T12:17:17.148909Z"
+          },
+          {
+            "target": "bucket",
+            "in_chain": true,
+            "delivered": true,
+            "latency_ns": 0,
+            "event_id": "951f2178-7ff3-46e5-a572-c65a5e655be2",
+            "attempted_at": "2026-04-17T12:17:17.148909Z"
+          },
+          {
+            "target": "intent_layer",
+            "in_chain": false,
+            "digest_only": true,
+            "delivered": true,
+            "latency_ns": 0,
+            "event_id": "30d219c6-11c7-4b9e-b632-0500af5575ac",
+            "attempted_at": "2026-04-17T12:17:17.148909Z"
+          }
+        ],
+        "all_bytes_match": true,
+        "chain_halted": false,
+        "duration_ns": 1111100,
+        "started_at": "2026-04-17T12:17:17.147798Z"
+      }
+    ]
+  }
+}

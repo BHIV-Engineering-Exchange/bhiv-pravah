@@ -1,0 +1,82 @@
+[
+  {
+    "observation": {"length": 250, "beam": 40, "displacement": 60000},
+    "candidate": "Cargo Vessel",
+    "confidence": 0.95,
+    "uncertainty": 0.05,
+    "evidence": ["Large displacement", "Commercial dimensions"],
+    "lineage_source": "Jane's Registry"
+  },
+  {
+    "observation": {"length": 154, "beam": 21, "displacement": 7200},
+    "candidate": "Destroyer",
+    "confidence": 0.88,
+    "uncertainty": 0.12,
+    "evidence": ["Military dimensions", "Radar profile"],
+    "lineage_source": "Jane's Registry"
+  },
+  {
+    "observation": {"length": 130, "beam": 16, "displacement": 4500},
+    "candidate": "Frigate",
+    "confidence": 0.85,
+    "uncertainty": 0.15,
+    "evidence": ["Hull dimensions", "Naval profile"],
+    "lineage_source": "Jane's Registry"
+  },
+  {
+    "observation": {"length": 80, "beam": 12, "displacement": 1500},
+    "candidate": "Patrol Vessel",
+    "confidence": 0.89,
+    "uncertainty": 0.11,
+    "evidence": ["Coastal patrol dimensions"],
+    "lineage_source": "Jane's Registry"
+  },
+  {
+    "observation": {"length": 90, "beam": 10, "displacement": 3000},
+    "candidate": "Submarine",
+    "confidence": 0.91,
+    "uncertainty": 0.09,
+    "evidence": ["Acoustic signature", "Submerged profile"],
+    "lineage_source": "Jane's Registry"
+  },
+  {
+    "observation": {"length": 120, "beam": 18, "displacement": 5000},
+    "candidate": "Support Vessel",
+    "confidence": 0.82,
+    "uncertainty": 0.18,
+    "evidence": ["Logistics profile"],
+    "lineage_source": "Jane's Registry"
+  },
+  {
+    "observation": {"length": 60, "beam": 9, "displacement": 800},
+    "candidate": "Fishing Vessel",
+    "confidence": 0.87,
+    "uncertainty": 0.13,
+    "evidence": ["Fishing equipment signature"],
+    "lineage_source": "Jane's Registry"
+  },
+  {
+    "observation": {"length": 25, "beam": 5, "displacement": 120},
+    "candidate": "Speedboat",
+    "confidence": 0.93,
+    "uncertainty": 0.07,
+    "evidence": ["High-speed profile"],
+    "lineage_source": "Jane's Registry"
+  },
+  {
+    "observation": {"length": 110, "beam": 17, "displacement": 3500},
+    "candidate": "Research Vessel",
+    "confidence": 0.80,
+    "uncertainty": 0.20,
+    "evidence": ["Scientific mission profile"],
+    "lineage_source": "Jane's Registry"
+  },
+  {
+    "observation": {"length": 95, "beam": 14, "displacement": 2200},
+    "candidate": "Unknown Vessel",
+    "confidence": 0.55,
+    "uncertainty": 0.45,
+    "evidence": ["Insufficient metadata"],
+    "lineage_source": "Jane's Registry"
+  }
+]

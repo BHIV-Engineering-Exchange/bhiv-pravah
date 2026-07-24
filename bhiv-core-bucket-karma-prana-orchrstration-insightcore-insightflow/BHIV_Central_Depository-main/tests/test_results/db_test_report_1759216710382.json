@@ -1,0 +1,209 @@
+{
+  "summary": {
+    "total": 15,
+    "passed": 15,
+    "failed": 0,
+    "skipped": 0,
+    "details": [
+      {
+        "test": "INSERT: Create new spec",
+        "status": "passed",
+        "timestamp": "2025-09-30T07:18:23.253Z",
+        "specId": "e8cdab8f-bea9-4dae-a961-e8f261fc7e0d"
+      },
+      {
+        "test": "SELECT: Retrieve spec with joins",
+        "status": "passed",
+        "timestamp": "2025-09-30T07:18:23.312Z",
+        "specId": "e8cdab8f-bea9-4dae-a961-e8f261fc7e0d"
+      },
+      {
+        "test": "INSERT: Create evaluation",
+        "status": "passed",
+        "timestamp": "2025-09-30T07:18:23.385Z",
+        "evaluationId": "7c55a99f-e9a4-4dfb-a70e-a2c748442816"
+      },
+      {
+        "test": "INSERT: Create iteration",
+        "status": "passed",
+        "timestamp": "2025-09-30T07:18:23.421Z",
+        "iterationId": "2852056c-d054-43ad-8ce9-3655570afaf0"
+      },
+      {
+        "test": "UPDATE: Modify evaluation rating",
+        "status": "passed",
+        "timestamp": "2025-09-30T07:18:23.454Z",
+        "evaluationId": "7c55a99f-e9a4-4dfb-a70e-a2c748442816",
+        "newRating": 8
+      },
+      {
+        "test": "DELETE: Remove evaluation",
+        "status": "passed",
+        "timestamp": "2025-09-30T07:18:23.725Z",
+        "evaluationId": "7c55a99f-e9a4-4dfb-a70e-a2c748442816"
+      },
+      {
+        "test": "Anmol API: Create spec via endpoint",
+        "status": "passed",
+        "timestamp": "2025-09-30T07:18:23.762Z",
+        "specId": "f0588381-c6f7-4206-a94f-70d46b1c012d",
+        "endpoint": "POST /api/specs"
+      },
+      {
+        "test": "Anmol API: Update evaluation via endpoint",
+        "status": "passed",
+        "timestamp": "2025-09-30T07:18:26.940Z",
+        "specId": "f0588381-c6f7-4206-a94f-70d46b1c012d",
+        "endpoint": "PUT /api/evaluations"
+      },
+      {
+        "test": "Anmol API: Create iteration via endpoint",
+        "status": "passed",
+        "timestamp": "2025-09-30T07:18:26.970Z",
+        "specId": "f0588381-c6f7-4206-a94f-70d46b1c012d",
+        "endpoint": "POST /api/iterations"
+      },
+      {
+        "test": "Invalid JSON spec constraint",
+        "status": "passed",
+        "timestamp": "2025-09-30T07:18:27.020Z",
+        "error": "new row for relation \"specs\" violates check constraint \"json_spec_structure_check\""
+      },
+      {
+        "test": "Rating constraint violation",
+        "status": "passed",
+        "timestamp": "2025-09-30T07:18:27.052Z",
+        "error": "new row for relation \"evaluations\" violates check constraint \"evaluations_rating_check\""
+      },
+      {
+        "test": "Foreign key constraint violation",
+        "status": "passed",
+        "timestamp": "2025-09-30T07:18:27.082Z",
+        "error": "insert or update on table \"evaluations\" violates foreign key constraint \"evaluations_spec_id_fkey\""
+      },
+      {
+        "test": "Empty results handling",
+        "status": "passed",
+        "timestamp": "2025-09-30T07:18:27.111Z",
+        "resultCount": 0
+      },
+      {
+        "test": "Batch insert performance",
+        "status": "passed",
+        "timestamp": "2025-09-30T07:18:27.179Z",
+        "batchSize": 5,
+        "duration": 34,
+        "specsCreated": 5
+      },
+      {
+        "test": "Timeout simulation",
+        "status": "passed",
+        "timestamp": "2025-09-30T07:18:27.232Z",
+        "duration": 52,
+        "resultCount": 0
+      }
+    ],
+    "duration": 7686,
+    "success_rate": "100.00"
+  },
+  "tests": [
+    {
+      "test": "INSERT: Create new spec",
+      "status": "passed",
+      "timestamp": "2025-09-30T07:18:23.253Z",
+      "specId": "e8cdab8f-bea9-4dae-a961-e8f261fc7e0d"
+    },
+    {
+      "test": "SELECT: Retrieve spec with joins",
+      "status": "passed",
+      "timestamp": "2025-09-30T07:18:23.312Z",
+      "specId": "e8cdab8f-bea9-4dae-a961-e8f261fc7e0d"
+    },
+    {
+      "test": "INSERT: Create evaluation",
+      "status": "passed",
+      "timestamp": "2025-09-30T07:18:23.385Z",
+      "evaluationId": "7c55a99f-e9a4-4dfb-a70e-a2c748442816"
+    },
+    {
+      "test": "INSERT: Create iteration",
+      "status": "passed",
+      "timestamp": "2025-09-30T07:18:23.421Z",
+      "iterationId": "2852056c-d054-43ad-8ce9-3655570afaf0"
+    },
+    {
+      "test": "UPDATE: Modify evaluation rating",
+      "status": "passed",
+      "timestamp": "2025-09-30T07:18:23.454Z",
+      "evaluationId": "7c55a99f-e9a4-4dfb-a70e-a2c748442816",
+      "newRating": 8
+    },
+    {
+      "test": "DELETE: Remove evaluation",
+      "status": "passed",
+      "timestamp": "2025-09-30T07:18:23.725Z",
+      "evaluationId": "7c55a99f-e9a4-4dfb-a70e-a2c748442816"
+    },
+    {
+      "test": "Anmol API: Create spec via endpoint",
+      "status": "passed",
+      "timestamp": "2025-09-30T07:18:23.762Z",
+      "specId": "f0588381-c6f7-4206-a94f-70d46b1c012d",
+      "endpoint": "POST /api/specs"
+    },
+    {
+      "test": "Anmol API: Update evaluation via endpoint",
+      "status": "passed",
+      "timestamp": "2025-09-30T07:18:26.940Z",
+      "specId": "f0588381-c6f7-4206-a94f-70d46b1c012d",
+      "endpoint": "PUT /api/evaluations"
+    },
+    {
+      "test": "Anmol API: Create iteration via endpoint",
+      "status": "passed",
+      "timestamp": "2025-09-30T07:18:26.970Z",
+      "specId": "f0588381-c6f7-4206-a94f-70d46b1c012d",
+      "endpoint": "POST /api/iterations"
+    },
+    {
+      "test": "Invalid JSON spec constraint",
+      "status": "passed",
+      "timestamp": "2025-09-30T07:18:27.020Z",
+      "error": "new row for relation \"specs\" violates check constraint \"json_spec_structure_check\""
+    },
+    {
+      "test": "Rating constraint violation",
+      "status": "passed",
+      "timestamp": "2025-09-30T07:18:27.052Z",
+      "error": "new row for relation \"evaluations\" violates check constraint \"evaluations_rating_check\""
+    },
+    {
+      "test": "Foreign key constraint violation",
+      "status": "passed",
+      "timestamp": "2025-09-30T07:18:27.082Z",
+      "error": "insert or update on table \"evaluations\" violates foreign key constraint \"evaluations_spec_id_fkey\""
+    },
+    {
+      "test": "Empty results handling",
+      "status": "passed",
+      "timestamp": "2025-09-30T07:18:27.111Z",
+      "resultCount": 0
+    },
+    {
+      "test": "Batch insert performance",
+      "status": "passed",
+      "timestamp": "2025-09-30T07:18:27.179Z",
+      "batchSize": 5,
+      "duration": 34,
+      "specsCreated": 5
+    },
+    {
+      "test": "Timeout simulation",
+      "status": "passed",
+      "timestamp": "2025-09-30T07:18:27.232Z",
+      "duration": 52,
+      "resultCount": 0
+    }
+  ],
+  "generated_at": "2025-09-30T07:18:30.382Z"
+}

@@ -1,0 +1,183 @@
+{
+  "schema_version": "sarathi.results/v1.0",
+  "generated_at": "2026-04-16T17:15:07.345753Z",
+  "system_version": "v14.4",
+  "test_category": "propagation_fault_injection",
+  "total_tests": 15,
+  "passed": 15,
+  "failed": 0,
+  "results": {
+    "schema_version": "sarathi.fault_injection/v1.0",
+    "generated_at": "2026-04-16T17:15:07.338183Z",
+    "iterations": 15,
+    "passed": 15,
+    "failed": 0,
+    "runs": [
+      {
+        "iteration": 1,
+        "mutated_target": "core_workflow",
+        "mutate_byte": 0,
+        "chain_halted": true,
+        "halt_hop": "core_workflow",
+        "halt_code": "ERR_RESPONSE_HASH_MISMATCH",
+        "all_in_chain_skipped": true,
+        "digest_delivered": true,
+        "passed": true
+      },
+      {
+        "iteration": 2,
+        "mutated_target": "core_workflow",
+        "mutate_byte": 50,
+        "chain_halted": true,
+        "halt_hop": "core_workflow",
+        "halt_code": "ERR_RESPONSE_HASH_MISMATCH",
+        "all_in_chain_skipped": true,
+        "digest_delivered": true,
+        "passed": true
+      },
+      {
+        "iteration": 3,
+        "mutated_target": "core_workflow",
+        "mutate_byte": -1,
+        "chain_halted": true,
+        "halt_hop": "core_workflow",
+        "halt_code": "ERR_RESPONSE_HASH_MISMATCH",
+        "all_in_chain_skipped": true,
+        "digest_delivered": true,
+        "passed": true
+      },
+      {
+        "iteration": 4,
+        "mutated_target": "core_workflow",
+        "mutate_byte": 1,
+        "chain_halted": true,
+        "halt_hop": "core_workflow",
+        "halt_code": "ERR_RESPONSE_HASH_MISMATCH",
+        "all_in_chain_skipped": true,
+        "digest_delivered": true,
+        "passed": true
+      },
+      {
+        "iteration": 5,
+        "mutated_target": "core_workflow",
+        "mutate_byte": 10,
+        "chain_halted": true,
+        "halt_hop": "core_workflow",
+        "halt_code": "ERR_RESPONSE_HASH_MISMATCH",
+        "all_in_chain_skipped": true,
+        "digest_delivered": true,
+        "passed": true
+      },
+      {
+        "iteration": 6,
+        "mutated_target": "insightflow",
+        "mutate_byte": 0,
+        "chain_halted": true,
+        "halt_hop": "insightflow",
+        "halt_code": "ERR_RESPONSE_HASH_MISMATCH",
+        "all_in_chain_skipped": true,
+        "digest_delivered": true,
+        "passed": true
+      },
+      {
+        "iteration": 7,
+        "mutated_target": "insightflow",
+        "mutate_byte": 100,
+        "chain_halted": true,
+        "halt_hop": "insightflow",
+        "halt_code": "ERR_RESPONSE_HASH_MISMATCH",
+        "all_in_chain_skipped": true,
+        "digest_delivered": true,
+        "passed": true
+      },
+      {
+        "iteration": 8,
+        "mutated_target": "insightflow",
+        "mutate_byte": -1,
+        "chain_halted": true,
+        "halt_hop": "insightflow",
+        "halt_code": "ERR_RESPONSE_HASH_MISMATCH",
+        "all_in_chain_skipped": true,
+        "digest_delivered": true,
+        "passed": true
+      },
+      {
+        "iteration": 9,
+        "mutated_target": "insightflow",
+        "mutate_byte": 5,
+        "chain_halted": true,
+        "halt_hop": "insightflow",
+        "halt_code": "ERR_RESPONSE_HASH_MISMATCH",
+        "all_in_chain_skipped": true,
+        "digest_delivered": true,
+        "passed": true
+      },
+      {
+        "iteration": 10,
+        "mutated_target": "insightflow",
+        "mutate_byte": 20,
+        "chain_halted": true,
+        "halt_hop": "insightflow",
+        "halt_code": "ERR_RESPONSE_HASH_MISMATCH",
+        "all_in_chain_skipped": true,
+        "digest_delivered": true,
+        "passed": true
+      },
+      {
+        "iteration": 11,
+        "mutated_target": "bucket",
+        "mutate_byte": 0,
+        "chain_halted": true,
+        "halt_hop": "bucket",
+        "halt_code": "ERR_RESPONSE_HASH_MISMATCH",
+        "all_in_chain_skipped": true,
+        "digest_delivered": true,
+        "passed": true
+      },
+      {
+        "iteration": 12,
+        "mutated_target": "bucket",
+        "mutate_byte": 75,
+        "chain_halted": true,
+        "halt_hop": "bucket",
+        "halt_code": "ERR_RESPONSE_HASH_MISMATCH",
+        "all_in_chain_skipped": true,
+        "digest_delivered": true,
+        "passed": true
+      },
+      {
+        "iteration": 13,
+        "mutated_target": "bucket",
+        "mutate_byte": -1,
+        "chain_halted": true,
+        "halt_hop": "bucket",
+        "halt_code": "ERR_RESPONSE_HASH_MISMATCH",
+        "all_in_chain_skipped": true,
+        "digest_delivered": true,
+        "passed": true
+      },
+      {
+        "iteration": 14,
+        "mutated_target": "bucket",
+        "mutate_byte": 3,
+        "chain_halted": true,
+        "halt_hop": "bucket",
+        "halt_code": "ERR_RESPONSE_HASH_MISMATCH",
+        "all_in_chain_skipped": true,
+        "digest_delivered": true,
+        "passed": true
+      },
+      {
+        "iteration": 15,
+        "mutated_target": "bucket",
+        "mutate_byte": 30,
+        "chain_halted": true,
+        "halt_hop": "bucket",
+        "halt_code": "ERR_RESPONSE_HASH_MISMATCH",
+        "all_in_chain_skipped": true,
+        "digest_delivered": true,
+        "passed": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,449 @@
+{
+  "policy_version": "1.0.0",
+  "policy_hash": "",
+  "frozen_at": "2026-03-09T00:00:00Z",
+  "schema_version": "authority_matrix_v1",
+  "truth_classification_levels": {
+    "L0": {
+      "rank": 0,
+      "label": "Public information"
+    },
+    "L1": {
+      "rank": 1,
+      "label": "Internal operational data"
+    },
+    "L2": {
+      "rank": 2,
+      "label": "Sensitive internal data"
+    },
+    "L3": {
+      "rank": 3,
+      "label": "Governance-critical data"
+    },
+    "L4": {
+      "rank": 4,
+      "label": "Constitutional truth layer"
+    }
+  },
+  "resource_classifications": {
+    "policy_registry": "L4",
+    "agent_registry": "L3",
+    "decision_trace": "L3",
+    "model_registry": "L3",
+    "audit_log": "L3",
+    "configuration": "L2",
+    "operational_data": "L1",
+    "analytics": "L1",
+    "public_api": "L0"
+  },
+  "rules": [
+    {
+      "rule_id": "AUTH-001",
+      "agent_role": "governance_agent",
+      "resource_type": "policy_registry",
+      "action": "read",
+      "classification_max": "L4",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-002",
+      "agent_role": "governance_agent",
+      "resource_type": "policy_registry",
+      "action": "write",
+      "classification_max": "L4",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-003",
+      "agent_role": "standard_agent",
+      "resource_type": "policy_registry",
+      "action": "read",
+      "classification_max": "L2",
+      "verdict": "DENY"
+    },
+    {
+      "rule_id": "AUTH-004",
+      "agent_role": "standard_agent",
+      "resource_type": "policy_registry",
+      "action": "write",
+      "classification_max": "L2",
+      "verdict": "DENY"
+    },
+    {
+      "rule_id": "AUTH-005",
+      "agent_role": "audit_agent",
+      "resource_type": "decision_trace",
+      "action": "read",
+      "classification_max": "L4",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-006",
+      "agent_role": "audit_agent",
+      "resource_type": "decision_trace",
+      "action": "write",
+      "classification_max": "L4",
+      "verdict": "DENY"
+    },
+    {
+      "rule_id": "AUTH-007",
+      "agent_role": "standard_agent",
+      "resource_type": "operational_data",
+      "action": "read",
+      "classification_max": "L2",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-008",
+      "agent_role": "standard_agent",
+      "resource_type": "operational_data",
+      "action": "write",
+      "classification_max": "L2",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-009",
+      "agent_role": "standard_agent",
+      "resource_type": "analytics",
+      "action": "read",
+      "classification_max": "L2",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-010",
+      "agent_role": "standard_agent",
+      "resource_type": "analytics",
+      "action": "write",
+      "classification_max": "L2",
+      "verdict": "DENY"
+    },
+    {
+      "rule_id": "AUTH-011",
+      "agent_role": "governance_agent",
+      "resource_type": "agent_registry",
+      "action": "read",
+      "classification_max": "L4",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-012",
+      "agent_role": "governance_agent",
+      "resource_type": "agent_registry",
+      "action": "write",
+      "classification_max": "L4",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-013",
+      "agent_role": "standard_agent",
+      "resource_type": "agent_registry",
+      "action": "read",
+      "classification_max": "L2",
+      "verdict": "DENY"
+    },
+    {
+      "rule_id": "AUTH-014",
+      "agent_role": "standard_agent",
+      "resource_type": "agent_registry",
+      "action": "write",
+      "classification_max": "L2",
+      "verdict": "DENY"
+    },
+    {
+      "rule_id": "AUTH-015",
+      "agent_role": "audit_agent",
+      "resource_type": "audit_log",
+      "action": "read",
+      "classification_max": "L4",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-016",
+      "agent_role": "audit_agent",
+      "resource_type": "audit_log",
+      "action": "write",
+      "classification_max": "L4",
+      "verdict": "DENY"
+    },
+    {
+      "rule_id": "AUTH-017",
+      "agent_role": "safety_monitor",
+      "resource_type": "model_registry",
+      "action": "read",
+      "classification_max": "L3",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-018",
+      "agent_role": "safety_monitor",
+      "resource_type": "model_registry",
+      "action": "write",
+      "classification_max": "L3",
+      "verdict": "DENY"
+    },
+    {
+      "rule_id": "AUTH-019",
+      "agent_role": "standard_agent",
+      "resource_type": "public_api",
+      "action": "read",
+      "classification_max": "L2",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-020",
+      "agent_role": "standard_agent",
+      "resource_type": "public_api",
+      "action": "write",
+      "classification_max": "L2",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-021",
+      "agent_role": "governance_agent",
+      "resource_type": "configuration",
+      "action": "read",
+      "classification_max": "L4",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-022",
+      "agent_role": "governance_agent",
+      "resource_type": "configuration",
+      "action": "write",
+      "classification_max": "L4",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-023",
+      "agent_role": "standard_agent",
+      "resource_type": "configuration",
+      "action": "read",
+      "classification_max": "L2",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-024",
+      "agent_role": "standard_agent",
+      "resource_type": "configuration",
+      "action": "write",
+      "classification_max": "L2",
+      "verdict": "DENY"
+    },
+    {
+      "rule_id": "AUTH-025",
+      "agent_role": "audit_agent",
+      "resource_type": "agent_registry",
+      "action": "read",
+      "classification_max": "L4",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-026",
+      "agent_role": "governance_agent",
+      "resource_type": "decision_trace",
+      "action": "read",
+      "classification_max": "L4",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-027",
+      "agent_role": "governance_agent",
+      "resource_type": "model_registry",
+      "action": "read",
+      "classification_max": "L4",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-028",
+      "agent_role": "governance_agent",
+      "resource_type": "model_registry",
+      "action": "write",
+      "classification_max": "L4",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-029",
+      "agent_role": "governance_agent",
+      "resource_type": "audit_log",
+      "action": "read",
+      "classification_max": "L4",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-030",
+      "agent_role": "governance_agent",
+      "resource_type": "audit_log",
+      "action": "write",
+      "classification_max": "L4",
+      "verdict": "DENY"
+    },
+    {
+      "rule_id": "AUTH-031",
+      "agent_role": "safety_monitor",
+      "resource_type": "decision_trace",
+      "action": "read",
+      "classification_max": "L3",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-032",
+      "agent_role": "safety_monitor",
+      "resource_type": "agent_registry",
+      "action": "read",
+      "classification_max": "L3",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-033",
+      "agent_role": "safety_monitor",
+      "resource_type": "configuration",
+      "action": "read",
+      "classification_max": "L3",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-034",
+      "agent_role": "safety_monitor",
+      "resource_type": "operational_data",
+      "action": "read",
+      "classification_max": "L3",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-035",
+      "agent_role": "audit_agent",
+      "resource_type": "policy_registry",
+      "action": "read",
+      "classification_max": "L4",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-036",
+      "agent_role": "audit_agent",
+      "resource_type": "configuration",
+      "action": "read",
+      "classification_max": "L4",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-037",
+      "agent_role": "audit_agent",
+      "resource_type": "model_registry",
+      "action": "read",
+      "classification_max": "L4",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-038",
+      "agent_role": "standard_agent",
+      "resource_type": "model_registry",
+      "action": "read",
+      "classification_max": "L2",
+      "verdict": "DENY"
+    },
+    {
+      "rule_id": "AUTH-039",
+      "agent_role": "standard_agent",
+      "resource_type": "decision_trace",
+      "action": "read",
+      "classification_max": "L2",
+      "verdict": "DENY"
+    },
+    {
+      "rule_id": "AUTH-040",
+      "agent_role": "standard_agent",
+      "resource_type": "audit_log",
+      "action": "read",
+      "classification_max": "L2",
+      "verdict": "DENY"
+    },
+    {
+      "rule_id": "AUTH-041",
+      "agent_role": "data_processor",
+      "resource_type": "operational_data",
+      "action": "read",
+      "classification_max": "L1",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-042",
+      "agent_role": "data_processor",
+      "resource_type": "operational_data",
+      "action": "write",
+      "classification_max": "L1",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-043",
+      "agent_role": "data_processor",
+      "resource_type": "analytics",
+      "action": "read",
+      "classification_max": "L1",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-044",
+      "agent_role": "data_processor",
+      "resource_type": "analytics",
+      "action": "write",
+      "classification_max": "L1",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-045",
+      "agent_role": "data_processor",
+      "resource_type": "public_api",
+      "action": "read",
+      "classification_max": "L1",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-046",
+      "agent_role": "data_processor",
+      "resource_type": "configuration",
+      "action": "read",
+      "classification_max": "L1",
+      "verdict": "DENY"
+    },
+    {
+      "rule_id": "AUTH-047",
+      "agent_role": "data_processor",
+      "resource_type": "agent_registry",
+      "action": "read",
+      "classification_max": "L1",
+      "verdict": "DENY"
+    },
+    {
+      "rule_id": "AUTH-048",
+      "agent_role": "orchestrator",
+      "resource_type": "operational_data",
+      "action": "read",
+      "classification_max": "L2",
+      "verdict": "ALLOW"
+    },
+    {
+      "rule_id": "AUTH-049",
+      "agent_role": "orchestrator",
+      "resource_type": "agent_registry",
+      "action": "read",
+      "classification_max": "L2",
+      "verdict": "DENY"
+    },
+    {
+      "rule_id": "AUTH-050",
+      "agent_role": "orchestrator",
+      "resource_type": "policy_registry",
+      "action": "read",
+      "classification_max": "L2",
+      "verdict": "DENY"
+    },
+    {
+      "rule_id": "AUTH-DENY-ALL",
+      "agent_role": "*",
+      "resource_type": "*",
+      "action": "*",
+      "classification_max": "L0",
+      "verdict": "DENY"
+    }
+  ]
+}

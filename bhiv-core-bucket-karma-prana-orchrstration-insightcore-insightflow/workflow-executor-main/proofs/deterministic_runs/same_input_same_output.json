@@ -1,0 +1,17 @@
+{
+  "description": "Identical input produces identical output",
+  "input": {
+    "trace_id": "determinism-test-1",
+    "action_type": "task",
+    "title": "Prepare demo checklist"
+  },
+  "run_1_output": {
+    "success": true,
+    "task_status": "CREATED"
+  },
+  "run_2_output": {
+    "success": true,
+    "task_status": "CREATED"
+  },
+  "assertion": "Outputs are identical for identical inputs"
+}

@@ -1,0 +1,41 @@
+{
+  "artifact_id": "d4484649-1ad9-5256-98d3-8b0551cf4f4e",
+  "decision_id": "dec-bucket-test-001",
+  "trace_id": "trace-bucket-test-001",
+  "parent_hash_used": "68900d8435278e493130d06cf91f8e9818d9e0c7b5d14236d9a36f92ffdef619",
+  "minted_body_hash": "874ebfe2fbc979a1a6e49dfbc4bcbef0012f69f6247fff1f07c4f4ca84e1ff50",
+  "minted_response_hash": "f0a8bd0110d4853db25692e53e883239954e6b7aac90923454596121f51f2f22",
+  "http_status": 400,
+  "bucket_hash_matches_minted_body": false,
+  "chain_verified": false,
+  "envelope": {
+    "artifact_id": "d4484649-1ad9-5256-98d3-8b0551cf4f4e",
+    "timestamp_utc": "2026-06-24T15:37:14.6625975Z",
+    "schema_version": "1.0.0",
+    "source_module_id": "sarathi.enforcement_adapter",
+    "artifact_type": "enforcement_decision",
+    "parent_hash": "68900d8435278e493130d06cf91f8e9818d9e0c7b5d14236d9a36f92ffdef619",
+    "payload": {
+      "decision_id": "dec-bucket-test-001",
+      "trace_id": "trace-bucket-test-001",
+      "verdict": "ALLOW",
+      "evaluator_id": "bhiv.sovereign.decision.prod.v1",
+      "decision_hash": "a1cffec26f0602fa91d1f88c831dbbde1439bf704f3e81807a916a48b6d72c69",
+      "decision_core_hash": "8ab9ffdac049bb50ac4d1a4fa488b342cf5a854273e719da5c99364301222454",
+      "enforcement_hash": "efc72c7d881aecee0f97cab9719bc263665fe9f5d28876a5b6712492bd1ea858",
+      "response_hash": "f0a8bd0110d4853db25692e53e883239954e6b7aac90923454596121f51f2f22",
+      "chain_binding_hash": "d15a40271ff873b4ddc6902547e2dd3c83adb93dd4955192b369b7d9894ef95b",
+      "policy_reference": "bhiv.core.default_allow_policy@v1.0",
+      "input_hash": "f21dd5d880ffbc4e52de13f37040328c06b2fd2ae70aa47ae61442ee267c798c",
+      "agent_id": "gov-agent-001",
+      "resource_id": "policy-reg-001",
+      "action": "execute",
+      "obligations": [],
+      "enforced_at": "2026-06-24T15:37:14.6625975Z",
+      "sealed_at": "2026-06-24T15:37:14.6625975Z",
+      "canonical_response_b64": "eyJhY3Rpb24iOiJleGVjdXRlIiwiYWdlbnRfaWQiOiJnb3YtYWdlbnQtMDAxIiwiY2hhaW5fYmluZGluZ19oYXNoIjoiZDE1YTQwMjcxZmY4NzNiNGRkYzY5MDI1NDdlMmRkM2M4M2FkYjkzZGQ0OTU1MTkyYjM2OWI3ZDk4OTRlZjk1YiIsImRlY2lzaW9uX2NvcmVfaGFzaCI6IjhhYjlmZmRhYzA0OWJiNTBhYzRkMWE0ZmE0ODhiMzQyY2Y1YTg1NDI3M2U3MTlkYTVjOTkzNjQzMDEyMjI0NTQiLCJkZWNpc2lvbl9oYXNoIjoiYTFjZmZlYzI2ZjA2MDJmYTkxZDFmODhjODMxZGJiZGUxNDM5YmY3MDRmM2U4MTgwN2E5MTZhNDhiNmQ3MmM2OSIsImRlY2lzaW9uX2lkIjoiZGVjLWJ1Y2tldC10ZXN0LTAwMSIsImVuZm9yY2VkX2F0IjoiMjAyNi0wNi0yNFQxNTozNzoxNC42NjI1OTc1WiIsImVuZm9yY2VtZW50X2hhc2giOiJlZmM3MmM3ZDg4MWFlY2VlMGY5N2NhYjk3MTliYzI2MzY2NWZlOWY1ZDI4ODc2YTViNjcxMjQ5MmJkMWVhODU4IiwiZXZhbHVhdG9yX2lkIjoiYmhpdi5zb3ZlcmVpZ24uZGVjaXNpb24ucHJvZC52MSIsImV4ZWN1dGlvbl9pZCI6ImV4ZWMtYnVja2V0LXRlc3QtMDAxIiwiZXhlY3V0aW9uX3N0YXRlIjoiRVhFQ1VUSU9OX1BFUk1JVFRFRCIsImlucHV0X2hhc2giOiJmMjFkZDVkODgwZmZiYzRlNTJkZTEzZjM3MDQwMzI4YzA2YjJmZDJhZTcwYWE0N2FlNjE0NDJlZTI2N2M3OThjIiwib2JsaWdhdGlvbnMiOltdLCJwb2xpY3lfcmVmZXJlbmNlIjoiYmhpdi5jb3JlLmRlZmF1bHRfYWxsb3dfcG9saWN5QHYxLjAiLCJyZXNvdXJjZV9pZCI6InBvbGljeS1yZWctMDAxIiwic2NoZW1hX3ZlcnNpb24iOiJzYXJhdGhpLmVuZm9yY2VtZW50LnJlc3BvbnNlL3YxLjAiLCJzZWFsZWRfYXQiOiIyMDI2LTA2LTI0VDE1OjM3OjE0LjY2MjU5NzVaIiwidHJhY2VfaWQiOiJ0cmFjZS1idWNrZXQtdGVzdC0wMDEiLCJ2ZXJkaWN0IjoiQUxMT1cifQ=="
+    }
+  },
+  "note": "Bucket returned HTTP 400 (not 2xx): {\"detail\":{\"error\":\"ValidationError\",\"message\":\"Duplicate artifact_id: d4484649-1ad9-5256-98d3-8b0551cf4f4e\",\"artifact_id\":\"d4484649-1ad9-5256-98d3-8b0551cf4f4e\"}}",
+  "transmitted_at": "2026-06-24T15:37:14.6625975Z"
+}

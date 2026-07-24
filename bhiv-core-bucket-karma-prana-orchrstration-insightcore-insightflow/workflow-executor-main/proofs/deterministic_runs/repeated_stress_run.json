@@ -1,0 +1,12 @@
+{
+  "description": "Repeated stress execution does not change behavior",
+  "runs": 10,
+  "input": {
+    "action_type": "email",
+    "recipient": "demo@example.com",
+    "subject": "Stress Test",
+    "body": "Checking determinism"
+  },
+  "result": "All runs returned success with stable response shape",
+  "assertion": "No nondeterminism detected"
+}

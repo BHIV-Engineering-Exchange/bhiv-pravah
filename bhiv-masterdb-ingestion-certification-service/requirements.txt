@@ -1,0 +1,10 @@
+pandas
+numpy
+openpyxl
+fastapi==0.115.12
+starlette==0.46.2
+uvicorn==0.34.2
+pydantic
+pytest
+httpx
+python-dotenv

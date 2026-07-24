@@ -1,0 +1,8 @@
+{
+  "basket_name": "error_logging_test",
+  "agents": [
+    "cashflow_analyzer"
+  ],
+  "execution_strategy": "sequential",
+  "description": "Test error logging during execution"
+}

@@ -1,0 +1,45 @@
+# app/config/scoring_config.yaml
+# Scoring Configuration for Weighted Scoring Engine
+
+# Score source weights (must sum to 1.0)
+scoring_weights:
+  rule_based: 0.4        # Traditional routing rules
+  feedback_based: 0.4    # Core feedback service scores
+  availability: 0.2      # Agent health/uptime
+
+# Karma weighting (applied as adjustment to final score)
+karma_weight: 0.15       # 15% influence from behavioral scoring
+
+# Score source configurations
+score_sources:
+  rule_based:
+    enabled: true
+    fallback_weight: 0.5
+  
+  feedback_based:
+    enabled: true
+    cache_ttl: 30
+    fallback_weight: 0.5
+    
+  availability:
+    enabled: true
+    timeout_threshold: 5.0  # seconds
+
+# Normalization settings
+normalization:
+  strategy: "min_max"
+  min_confidence: 0.1     # Floor for poor matches
+  max_confidence: 1.0     # Ceiling
+
+# Logging
+logging:
+  level: "DEBUG"
+  score_breakdown: true   # Log detailed breakdown
+
+# Karma weighting configuration
+karma_weighting:
+  enabled: true
+  weight: 0.15        # 15% influence on final score
+  cache_ttl: 60       # Cache for 60 seconds
+  timeout: 5          # Request timeout in seconds
+  max_retries: 3      # Maximum retry attempts

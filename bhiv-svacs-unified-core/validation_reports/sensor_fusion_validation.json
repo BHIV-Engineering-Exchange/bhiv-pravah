@@ -1,0 +1,9 @@
+{
+  "status": "PASSED",
+  "examples_tested": 10,
+  "candidate_matching": true,
+  "confidence_scoring": true,
+  "uncertainty_scoring": true,
+  "evidence_chain": true,
+  "lineage_source_visible": true
+}

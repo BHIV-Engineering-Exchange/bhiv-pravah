@@ -1,0 +1,6 @@
+{
+    "old_schema_supported": true,
+    "new_schema_supported": true,
+    "mixed_schema_replay_safe": true
+}
+ 

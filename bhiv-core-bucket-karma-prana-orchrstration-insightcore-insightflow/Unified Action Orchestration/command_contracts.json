@@ -1,0 +1,26 @@
+{
+  "SEND_MESSAGE": {
+    "command": "SEND_MESSAGE",
+    "action_id": "string",
+    "payload": {
+      "to": "string",
+      "text": "string"
+    }
+  },
+  "FETCH_MESSAGES": {
+    "command": "FETCH_MESSAGES",
+    "action_id": "string",
+    "payload": {
+      "since": "timestamp"
+    }
+  },
+  "SCHEDULE_MESSAGE": {
+    "command": "SCHEDULE_MESSAGE",
+    "action_id": "string",
+    "payload": {
+      "to": "string",
+      "text": "string",
+      "schedule_at": "timestamp"
+    }
+  }
+}

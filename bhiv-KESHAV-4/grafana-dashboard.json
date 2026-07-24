@@ -1,0 +1,93 @@
+{
+  "dashboard": {
+    "title": "KESHAV Dependency Intelligence",
+    "tags": ["keshav", "tantra", "production"],
+    "timezone": "browser",
+    "panels": [
+      {
+        "id": 1,
+        "title": "Request Rate",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(keshav_requests_total[5m])",
+            "legendFormat": "Requests/sec"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0}
+      },
+      {
+        "id": 2,
+        "title": "Error Rate",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(keshav_request_errors_total[5m]) / rate(keshav_requests_total[5m])",
+            "legendFormat": "Error Rate"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0}
+      },
+      {
+        "id": 3,
+        "title": "Request Latency",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "keshav_request_latency_seconds{quantile=\"0.5\"}",
+            "legendFormat": "P50"
+          },
+          {
+            "expr": "keshav_request_latency_seconds{quantile=\"0.95\"}",
+            "legendFormat": "P95"
+          },
+          {
+            "expr": "keshav_request_latency_seconds{quantile=\"0.99\"}",
+            "legendFormat": "P99"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8}
+      },
+      {
+        "id": 4,
+        "title": "Success Rate",
+        "type": "singlestat",
+        "targets": [
+          {
+            "expr": "keshav_request_success_rate"
+          }
+        ],
+        "format": "percentunit",
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 8}
+      },
+      {
+        "id": 5,
+        "title": "Severity Distribution",
+        "type": "piechart",
+        "targets": [
+          {
+            "expr": "keshav_severity_total",
+            "legendFormat": "{{severity}}"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 16}
+      },
+      {
+        "id": 6,
+        "title": "Unique Traces Processed",
+        "type": "singlestat",
+        "targets": [
+          {
+            "expr": "keshav_unique_traces_total"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 16}
+      }
+    ],
+    "refresh": "10s",
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    }
+  }
+}

@@ -1,0 +1,5 @@
+Replay Reconstruction Proof:
+Serialized: {"blocked_task_id": "T1", "impact_score": 1, "impacted_tasks": ["T3"], "resolution_signal": "UNBLOCK_DEPENDENCY:RC", "root_cause": "RC", "severity": "LOW", "timestamp": "2026-05-22T12:00:00Z", "trace_id": "trace-failure-test-001"}
+Reconstructed: {"blocked_task_id": "T1", "impact_score": 1, "impacted_tasks": ["T3"], "resolution_signal": "UNBLOCK_DEPENDENCY:RC", "root_cause": "RC", "severity": "LOW", "timestamp": "2026-05-22T12:00:00Z", "trace_id": "trace-failure-test-001"}
+Fresh Replay: {"blocked_task_id": "T1", "impact_score": 1, "impacted_tasks": ["T3"], "resolution_signal": "UNBLOCK_DEPENDENCY:RC", "root_cause": "RC", "severity": "LOW", "timestamp": "2026-05-22T12:00:00Z", "trace_id": "trace-failure-test-001"}
+Match: True

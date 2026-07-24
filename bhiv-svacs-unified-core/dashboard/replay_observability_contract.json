@@ -1,0 +1,10 @@
+{
+    "dashboard_role": "OBSERVABILITY_ONLY",
+    "execution_authority": false,
+    "replay_authority": false,
+    "mutation_permission": false,
+    "governance_permission": false,
+    "telemetry_visibility": true,
+    "lineage_visibility": true,
+    "replay_visibility": true
+}

@@ -1,0 +1,962 @@
+[
+    {
+        "execution_id": "effced15-1d3b-4420-bf7a-105f34ca3541",
+        "trace_id": "e50e6043-ae00-4611-ba54-45b8bd0be78c",
+        "runtime_timestamp": "2026-05-29T04:09:26.856632+00:00",
+        "mmsi": "UNKNOWN",
+        "vessel_name": "UNKNOWN",
+        "vessel_class": "UNKNOWN",
+        "geo": {
+            "latitude": 0.0,
+            "longitude": 0.0
+        },
+        "navigation": {
+            "speed_knots": 0.0,
+            "heading": 0.0
+        },
+        "signal": {
+            "signal_strength": 0.95,
+            "signal_source": "AIS_RUNTIME"
+        },
+        "governance": {
+            "dataset_owner": "SVACS",
+            "dataset_trust_score": 0.97,
+            "dataset_origin": "AIS_DATASET",
+            "approval_state": "APPROVED",
+            "validation_status": true,
+            "dataset_expiry_policy": "ACTIVE",
+            "federated_registry_reference": "FED_REG_001",
+            "dataset_change_log": "INITIAL_RUNTIME_LOAD",
+            "source_confidence": 0.96,
+            "schema_authority_reference": "SVACS_GOV_V1"
+        },
+        "geo_provenance": {
+            "geo_source_lineage": "AIS_FEED",
+            "coordinate_origin": "AIS_SENSOR",
+            "sensor_origin": "VESSEL_TRANSPONDER",
+            "spatial_uncertainty": 0.2,
+            "timestamp_uncertainty": 0.1,
+            "coordinate_confidence": 0.96,
+            "geo_transformation_history": [
+                "RAW_AIS",
+                "NORMALIZED",
+                "VALIDATED"
+            ],
+            "location_reference_version": "GEO_V1",
+            "geo_validation_status": "VALIDATED"
+        },
+        "runtime_status": "INGESTED"
+    },
+    {
+        "execution_id": "6aba2e89-4d6c-4d7d-8b66-3adae65735b0",
+        "trace_id": "b407fda9-a585-4792-847f-6ae951c148d5",
+        "runtime_timestamp": "2026-05-29T04:09:26.856845+00:00",
+        "mmsi": "UNKNOWN",
+        "vessel_name": "UNKNOWN",
+        "vessel_class": "UNKNOWN",
+        "geo": {
+            "latitude": 0.0,
+            "longitude": 0.0
+        },
+        "navigation": {
+            "speed_knots": 0.0,
+            "heading": 0.0
+        },
+        "signal": {
+            "signal_strength": 0.95,
+            "signal_source": "AIS_RUNTIME"
+        },
+        "governance": {
+            "dataset_owner": "SVACS",
+            "dataset_trust_score": 0.97,
+            "dataset_origin": "AIS_DATASET",
+            "approval_state": "APPROVED",
+            "validation_status": true,
+            "dataset_expiry_policy": "ACTIVE",
+            "federated_registry_reference": "FED_REG_001",
+            "dataset_change_log": "INITIAL_RUNTIME_LOAD",
+            "source_confidence": 0.96,
+            "schema_authority_reference": "SVACS_GOV_V1"
+        },
+        "geo_provenance": {
+            "geo_source_lineage": "AIS_FEED",
+            "coordinate_origin": "AIS_SENSOR",
+            "sensor_origin": "VESSEL_TRANSPONDER",
+            "spatial_uncertainty": 0.2,
+            "timestamp_uncertainty": 0.1,
+            "coordinate_confidence": 0.96,
+            "geo_transformation_history": [
+                "RAW_AIS",
+                "NORMALIZED",
+                "VALIDATED"
+            ],
+            "location_reference_version": "GEO_V1",
+            "geo_validation_status": "VALIDATED"
+        },
+        "runtime_status": "INGESTED"
+    },
+    {
+        "execution_id": "b12578d9-4b9f-4ef9-8ece-f712cd225dcb",
+        "trace_id": "a85a3b2f-ee88-40df-8c60-1675ad864452",
+        "runtime_timestamp": "2026-05-29T04:09:26.856905+00:00",
+        "mmsi": "UNKNOWN",
+        "vessel_name": "UNKNOWN",
+        "vessel_class": "UNKNOWN",
+        "geo": {
+            "latitude": 0.0,
+            "longitude": 0.0
+        },
+        "navigation": {
+            "speed_knots": 0.0,
+            "heading": 0.0
+        },
+        "signal": {
+            "signal_strength": 0.95,
+            "signal_source": "AIS_RUNTIME"
+        },
+        "governance": {
+            "dataset_owner": "SVACS",
+            "dataset_trust_score": 0.97,
+            "dataset_origin": "AIS_DATASET",
+            "approval_state": "APPROVED",
+            "validation_status": true,
+            "dataset_expiry_policy": "ACTIVE",
+            "federated_registry_reference": "FED_REG_001",
+            "dataset_change_log": "INITIAL_RUNTIME_LOAD",
+            "source_confidence": 0.96,
+            "schema_authority_reference": "SVACS_GOV_V1"
+        },
+        "geo_provenance": {
+            "geo_source_lineage": "AIS_FEED",
+            "coordinate_origin": "AIS_SENSOR",
+            "sensor_origin": "VESSEL_TRANSPONDER",
+            "spatial_uncertainty": 0.2,
+            "timestamp_uncertainty": 0.1,
+            "coordinate_confidence": 0.96,
+            "geo_transformation_history": [
+                "RAW_AIS",
+                "NORMALIZED",
+                "VALIDATED"
+            ],
+            "location_reference_version": "GEO_V1",
+            "geo_validation_status": "VALIDATED"
+        },
+        "runtime_status": "INGESTED"
+    },
+    {
+        "execution_id": "c612dd6a-964e-45d9-9659-10d55b99e557",
+        "trace_id": "eb6c7496-aced-4484-9d7d-9dc87b38bc75",
+        "runtime_timestamp": "2026-05-29T04:09:26.856953+00:00",
+        "mmsi": "UNKNOWN",
+        "vessel_name": "UNKNOWN",
+        "vessel_class": "UNKNOWN",
+        "geo": {
+            "latitude": 0.0,
+            "longitude": 0.0
+        },
+        "navigation": {
+            "speed_knots": 0.0,
+            "heading": 0.0
+        },
+        "signal": {
+            "signal_strength": 0.95,
+            "signal_source": "AIS_RUNTIME"
+        },
+        "governance": {
+            "dataset_owner": "SVACS",
+            "dataset_trust_score": 0.97,
+            "dataset_origin": "AIS_DATASET",
+            "approval_state": "APPROVED",
+            "validation_status": true,
+            "dataset_expiry_policy": "ACTIVE",
+            "federated_registry_reference": "FED_REG_001",
+            "dataset_change_log": "INITIAL_RUNTIME_LOAD",
+            "source_confidence": 0.96,
+            "schema_authority_reference": "SVACS_GOV_V1"
+        },
+        "geo_provenance": {
+            "geo_source_lineage": "AIS_FEED",
+            "coordinate_origin": "AIS_SENSOR",
+            "sensor_origin": "VESSEL_TRANSPONDER",
+            "spatial_uncertainty": 0.2,
+            "timestamp_uncertainty": 0.1,
+            "coordinate_confidence": 0.96,
+            "geo_transformation_history": [
+                "RAW_AIS",
+                "NORMALIZED",
+                "VALIDATED"
+            ],
+            "location_reference_version": "GEO_V1",
+            "geo_validation_status": "VALIDATED"
+        },
+        "runtime_status": "INGESTED"
+    },
+    {
+        "execution_id": "79259692-9a67-455e-b262-8a7e84c61764",
+        "trace_id": "7995a762-e597-4d81-b827-85b9774d2479",
+        "runtime_timestamp": "2026-05-29T04:09:26.857003+00:00",
+        "mmsi": "UNKNOWN",
+        "vessel_name": "UNKNOWN",
+        "vessel_class": "UNKNOWN",
+        "geo": {
+            "latitude": 0.0,
+            "longitude": 0.0
+        },
+        "navigation": {
+            "speed_knots": 0.0,
+            "heading": 0.0
+        },
+        "signal": {
+            "signal_strength": 0.95,
+            "signal_source": "AIS_RUNTIME"
+        },
+        "governance": {
+            "dataset_owner": "SVACS",
+            "dataset_trust_score": 0.97,
+            "dataset_origin": "AIS_DATASET",
+            "approval_state": "APPROVED",
+            "validation_status": true,
+            "dataset_expiry_policy": "ACTIVE",
+            "federated_registry_reference": "FED_REG_001",
+            "dataset_change_log": "INITIAL_RUNTIME_LOAD",
+            "source_confidence": 0.96,
+            "schema_authority_reference": "SVACS_GOV_V1"
+        },
+        "geo_provenance": {
+            "geo_source_lineage": "AIS_FEED",
+            "coordinate_origin": "AIS_SENSOR",
+            "sensor_origin": "VESSEL_TRANSPONDER",
+            "spatial_uncertainty": 0.2,
+            "timestamp_uncertainty": 0.1,
+            "coordinate_confidence": 0.96,
+            "geo_transformation_history": [
+                "RAW_AIS",
+                "NORMALIZED",
+                "VALIDATED"
+            ],
+            "location_reference_version": "GEO_V1",
+            "geo_validation_status": "VALIDATED"
+        },
+        "runtime_status": "INGESTED"
+    },
+    {
+        "execution_id": "5b502af6-3b30-4571-8891-443a6e6baa79",
+        "trace_id": "1ad62894-0ad8-4307-a0a4-bac36fe73a34",
+        "runtime_timestamp": "2026-05-29T04:09:26.857047+00:00",
+        "mmsi": "UNKNOWN",
+        "vessel_name": "UNKNOWN",
+        "vessel_class": "UNKNOWN",
+        "geo": {
+            "latitude": 0.0,
+            "longitude": 0.0
+        },
+        "navigation": {
+            "speed_knots": 0.0,
+            "heading": 0.0
+        },
+        "signal": {
+            "signal_strength": 0.95,
+            "signal_source": "AIS_RUNTIME"
+        },
+        "governance": {
+            "dataset_owner": "SVACS",
+            "dataset_trust_score": 0.97,
+            "dataset_origin": "AIS_DATASET",
+            "approval_state": "APPROVED",
+            "validation_status": true,
+            "dataset_expiry_policy": "ACTIVE",
+            "federated_registry_reference": "FED_REG_001",
+            "dataset_change_log": "INITIAL_RUNTIME_LOAD",
+            "source_confidence": 0.96,
+            "schema_authority_reference": "SVACS_GOV_V1"
+        },
+        "geo_provenance": {
+            "geo_source_lineage": "AIS_FEED",
+            "coordinate_origin": "AIS_SENSOR",
+            "sensor_origin": "VESSEL_TRANSPONDER",
+            "spatial_uncertainty": 0.2,
+            "timestamp_uncertainty": 0.1,
+            "coordinate_confidence": 0.96,
+            "geo_transformation_history": [
+                "RAW_AIS",
+                "NORMALIZED",
+                "VALIDATED"
+            ],
+            "location_reference_version": "GEO_V1",
+            "geo_validation_status": "VALIDATED"
+        },
+        "runtime_status": "INGESTED"
+    },
+    {
+        "execution_id": "b3234a34-16e5-434d-9efe-7bd01d5e0648",
+        "trace_id": "38cc2800-9613-48c5-b4c4-8187962d0f43",
+        "runtime_timestamp": "2026-05-29T04:09:26.857090+00:00",
+        "mmsi": "UNKNOWN",
+        "vessel_name": "UNKNOWN",
+        "vessel_class": "UNKNOWN",
+        "geo": {
+            "latitude": 0.0,
+            "longitude": 0.0
+        },
+        "navigation": {
+            "speed_knots": 0.0,
+            "heading": 0.0
+        },
+        "signal": {
+            "signal_strength": 0.95,
+            "signal_source": "AIS_RUNTIME"
+        },
+        "governance": {
+            "dataset_owner": "SVACS",
+            "dataset_trust_score": 0.97,
+            "dataset_origin": "AIS_DATASET",
+            "approval_state": "APPROVED",
+            "validation_status": true,
+            "dataset_expiry_policy": "ACTIVE",
+            "federated_registry_reference": "FED_REG_001",
+            "dataset_change_log": "INITIAL_RUNTIME_LOAD",
+            "source_confidence": 0.96,
+            "schema_authority_reference": "SVACS_GOV_V1"
+        },
+        "geo_provenance": {
+            "geo_source_lineage": "AIS_FEED",
+            "coordinate_origin": "AIS_SENSOR",
+            "sensor_origin": "VESSEL_TRANSPONDER",
+            "spatial_uncertainty": 0.2,
+            "timestamp_uncertainty": 0.1,
+            "coordinate_confidence": 0.96,
+            "geo_transformation_history": [
+                "RAW_AIS",
+                "NORMALIZED",
+                "VALIDATED"
+            ],
+            "location_reference_version": "GEO_V1",
+            "geo_validation_status": "VALIDATED"
+        },
+        "runtime_status": "INGESTED"
+    },
+    {
+        "execution_id": "7f4c7123-6a21-4381-9009-a35159143f96",
+        "trace_id": "5776848f-acf5-4b08-b9c8-7520d1fdcc59",
+        "runtime_timestamp": "2026-05-29T04:09:26.857133+00:00",
+        "mmsi": "UNKNOWN",
+        "vessel_name": "UNKNOWN",
+        "vessel_class": "UNKNOWN",
+        "geo": {
+            "latitude": 0.0,
+            "longitude": 0.0
+        },
+        "navigation": {
+            "speed_knots": 0.0,
+            "heading": 0.0
+        },
+        "signal": {
+            "signal_strength": 0.95,
+            "signal_source": "AIS_RUNTIME"
+        },
+        "governance": {
+            "dataset_owner": "SVACS",
+            "dataset_trust_score": 0.97,
+            "dataset_origin": "AIS_DATASET",
+            "approval_state": "APPROVED",
+            "validation_status": true,
+            "dataset_expiry_policy": "ACTIVE",
+            "federated_registry_reference": "FED_REG_001",
+            "dataset_change_log": "INITIAL_RUNTIME_LOAD",
+            "source_confidence": 0.96,
+            "schema_authority_reference": "SVACS_GOV_V1"
+        },
+        "geo_provenance": {
+            "geo_source_lineage": "AIS_FEED",
+            "coordinate_origin": "AIS_SENSOR",
+            "sensor_origin": "VESSEL_TRANSPONDER",
+            "spatial_uncertainty": 0.2,
+            "timestamp_uncertainty": 0.1,
+            "coordinate_confidence": 0.96,
+            "geo_transformation_history": [
+                "RAW_AIS",
+                "NORMALIZED",
+                "VALIDATED"
+            ],
+            "location_reference_version": "GEO_V1",
+            "geo_validation_status": "VALIDATED"
+        },
+        "runtime_status": "INGESTED"
+    },
+    {
+        "execution_id": "e1c72d31-e283-4de0-88ca-8c2b0720e6e6",
+        "trace_id": "7682ba0d-5cd7-4063-8bc7-bdf13b8081c9",
+        "runtime_timestamp": "2026-05-29T04:09:26.857176+00:00",
+        "mmsi": "UNKNOWN",
+        "vessel_name": "UNKNOWN",
+        "vessel_class": "UNKNOWN",
+        "geo": {
+            "latitude": 0.0,
+            "longitude": 0.0
+        },
+        "navigation": {
+            "speed_knots": 0.0,
+            "heading": 0.0
+        },
+        "signal": {
+            "signal_strength": 0.95,
+            "signal_source": "AIS_RUNTIME"
+        },
+        "governance": {
+            "dataset_owner": "SVACS",
+            "dataset_trust_score": 0.97,
+            "dataset_origin": "AIS_DATASET",
+            "approval_state": "APPROVED",
+            "validation_status": true,
+            "dataset_expiry_policy": "ACTIVE",
+            "federated_registry_reference": "FED_REG_001",
+            "dataset_change_log": "INITIAL_RUNTIME_LOAD",
+            "source_confidence": 0.96,
+            "schema_authority_reference": "SVACS_GOV_V1"
+        },
+        "geo_provenance": {
+            "geo_source_lineage": "AIS_FEED",
+            "coordinate_origin": "AIS_SENSOR",
+            "sensor_origin": "VESSEL_TRANSPONDER",
+            "spatial_uncertainty": 0.2,
+            "timestamp_uncertainty": 0.1,
+            "coordinate_confidence": 0.96,
+            "geo_transformation_history": [
+                "RAW_AIS",
+                "NORMALIZED",
+                "VALIDATED"
+            ],
+            "location_reference_version": "GEO_V1",
+            "geo_validation_status": "VALIDATED"
+        },
+        "runtime_status": "INGESTED"
+    },
+    {
+        "execution_id": "e95ca5d2-3753-4745-8046-a554f1991a73",
+        "trace_id": "93aac228-7837-475c-bc26-9447ad943540",
+        "runtime_timestamp": "2026-05-29T04:09:26.857219+00:00",
+        "mmsi": "UNKNOWN",
+        "vessel_name": "UNKNOWN",
+        "vessel_class": "UNKNOWN",
+        "geo": {
+            "latitude": 0.0,
+            "longitude": 0.0
+        },
+        "navigation": {
+            "speed_knots": 0.0,
+            "heading": 0.0
+        },
+        "signal": {
+            "signal_strength": 0.95,
+            "signal_source": "AIS_RUNTIME"
+        },
+        "governance": {
+            "dataset_owner": "SVACS",
+            "dataset_trust_score": 0.97,
+            "dataset_origin": "AIS_DATASET",
+            "approval_state": "APPROVED",
+            "validation_status": true,
+            "dataset_expiry_policy": "ACTIVE",
+            "federated_registry_reference": "FED_REG_001",
+            "dataset_change_log": "INITIAL_RUNTIME_LOAD",
+            "source_confidence": 0.96,
+            "schema_authority_reference": "SVACS_GOV_V1"
+        },
+        "geo_provenance": {
+            "geo_source_lineage": "AIS_FEED",
+            "coordinate_origin": "AIS_SENSOR",
+            "sensor_origin": "VESSEL_TRANSPONDER",
+            "spatial_uncertainty": 0.2,
+            "timestamp_uncertainty": 0.1,
+            "coordinate_confidence": 0.96,
+            "geo_transformation_history": [
+                "RAW_AIS",
+                "NORMALIZED",
+                "VALIDATED"
+            ],
+            "location_reference_version": "GEO_V1",
+            "geo_validation_status": "VALIDATED"
+        },
+        "runtime_status": "INGESTED"
+    },
+    {
+        "execution_id": "ac3f5f97-a65a-43b4-bbc6-f20fc3c2baa1",
+        "trace_id": "ed249c11-4dc1-4e35-8a67-58100a73e438",
+        "runtime_timestamp": "2026-05-29T04:09:26.857260+00:00",
+        "mmsi": "UNKNOWN",
+        "vessel_name": "UNKNOWN",
+        "vessel_class": "UNKNOWN",
+        "geo": {
+            "latitude": 0.0,
+            "longitude": 0.0
+        },
+        "navigation": {
+            "speed_knots": 0.0,
+            "heading": 0.0
+        },
+        "signal": {
+            "signal_strength": 0.95,
+            "signal_source": "AIS_RUNTIME"
+        },
+        "governance": {
+            "dataset_owner": "SVACS",
+            "dataset_trust_score": 0.97,
+            "dataset_origin": "AIS_DATASET",
+            "approval_state": "APPROVED",
+            "validation_status": true,
+            "dataset_expiry_policy": "ACTIVE",
+            "federated_registry_reference": "FED_REG_001",
+            "dataset_change_log": "INITIAL_RUNTIME_LOAD",
+            "source_confidence": 0.96,
+            "schema_authority_reference": "SVACS_GOV_V1"
+        },
+        "geo_provenance": {
+            "geo_source_lineage": "AIS_FEED",
+            "coordinate_origin": "AIS_SENSOR",
+            "sensor_origin": "VESSEL_TRANSPONDER",
+            "spatial_uncertainty": 0.2,
+            "timestamp_uncertainty": 0.1,
+            "coordinate_confidence": 0.96,
+            "geo_transformation_history": [
+                "RAW_AIS",
+                "NORMALIZED",
+                "VALIDATED"
+            ],
+            "location_reference_version": "GEO_V1",
+            "geo_validation_status": "VALIDATED"
+        },
+        "runtime_status": "INGESTED"
+    },
+    {
+        "execution_id": "c6c1cd82-7535-4950-8846-7dc90aa86885",
+        "trace_id": "c76359c4-991c-45fc-b541-ffe68de34872",
+        "runtime_timestamp": "2026-05-29T04:09:26.857303+00:00",
+        "mmsi": "UNKNOWN",
+        "vessel_name": "UNKNOWN",
+        "vessel_class": "UNKNOWN",
+        "geo": {
+            "latitude": 0.0,
+            "longitude": 0.0
+        },
+        "navigation": {
+            "speed_knots": 0.0,
+            "heading": 0.0
+        },
+        "signal": {
+            "signal_strength": 0.95,
+            "signal_source": "AIS_RUNTIME"
+        },
+        "governance": {
+            "dataset_owner": "SVACS",
+            "dataset_trust_score": 0.97,
+            "dataset_origin": "AIS_DATASET",
+            "approval_state": "APPROVED",
+            "validation_status": true,
+            "dataset_expiry_policy": "ACTIVE",
+            "federated_registry_reference": "FED_REG_001",
+            "dataset_change_log": "INITIAL_RUNTIME_LOAD",
+            "source_confidence": 0.96,
+            "schema_authority_reference": "SVACS_GOV_V1"
+        },
+        "geo_provenance": {
+            "geo_source_lineage": "AIS_FEED",
+            "coordinate_origin": "AIS_SENSOR",
+            "sensor_origin": "VESSEL_TRANSPONDER",
+            "spatial_uncertainty": 0.2,
+            "timestamp_uncertainty": 0.1,
+            "coordinate_confidence": 0.96,
+            "geo_transformation_history": [
+                "RAW_AIS",
+                "NORMALIZED",
+                "VALIDATED"
+            ],
+            "location_reference_version": "GEO_V1",
+            "geo_validation_status": "VALIDATED"
+        },
+        "runtime_status": "INGESTED"
+    },
+    {
+        "execution_id": "aac521ee-f124-4e77-9391-6fc253308dd3",
+        "trace_id": "1df419f5-6daa-471f-a4b6-209cfc5117b0",
+        "runtime_timestamp": "2026-05-29T04:09:26.857344+00:00",
+        "mmsi": "UNKNOWN",
+        "vessel_name": "UNKNOWN",
+        "vessel_class": "UNKNOWN",
+        "geo": {
+            "latitude": 0.0,
+            "longitude": 0.0
+        },
+        "navigation": {
+            "speed_knots": 0.0,
+            "heading": 0.0
+        },
+        "signal": {
+            "signal_strength": 0.95,
+            "signal_source": "AIS_RUNTIME"
+        },
+        "governance": {
+            "dataset_owner": "SVACS",
+            "dataset_trust_score": 0.97,
+            "dataset_origin": "AIS_DATASET",
+            "approval_state": "APPROVED",
+            "validation_status": true,
+            "dataset_expiry_policy": "ACTIVE",
+            "federated_registry_reference": "FED_REG_001",
+            "dataset_change_log": "INITIAL_RUNTIME_LOAD",
+            "source_confidence": 0.96,
+            "schema_authority_reference": "SVACS_GOV_V1"
+        },
+        "geo_provenance": {
+            "geo_source_lineage": "AIS_FEED",
+            "coordinate_origin": "AIS_SENSOR",
+            "sensor_origin": "VESSEL_TRANSPONDER",
+            "spatial_uncertainty": 0.2,
+            "timestamp_uncertainty": 0.1,
+            "coordinate_confidence": 0.96,
+            "geo_transformation_history": [
+                "RAW_AIS",
+                "NORMALIZED",
+                "VALIDATED"
+            ],
+            "location_reference_version": "GEO_V1",
+            "geo_validation_status": "VALIDATED"
+        },
+        "runtime_status": "INGESTED"
+    },
+    {
+        "execution_id": "efe40c00-7faa-4888-863e-13f02db87e3f",
+        "trace_id": "89136d51-ab92-43dd-bb57-4a545b41b95e",
+        "runtime_timestamp": "2026-05-29T04:09:26.857383+00:00",
+        "mmsi": "UNKNOWN",
+        "vessel_name": "UNKNOWN",
+        "vessel_class": "UNKNOWN",
+        "geo": {
+            "latitude": 0.0,
+            "longitude": 0.0
+        },
+        "navigation": {
+            "speed_knots": 0.0,
+            "heading": 0.0
+        },
+        "signal": {
+            "signal_strength": 0.95,
+            "signal_source": "AIS_RUNTIME"
+        },
+        "governance": {
+            "dataset_owner": "SVACS",
+            "dataset_trust_score": 0.97,
+            "dataset_origin": "AIS_DATASET",
+            "approval_state": "APPROVED",
+            "validation_status": true,
+            "dataset_expiry_policy": "ACTIVE",
+            "federated_registry_reference": "FED_REG_001",
+            "dataset_change_log": "INITIAL_RUNTIME_LOAD",
+            "source_confidence": 0.96,
+            "schema_authority_reference": "SVACS_GOV_V1"
+        },
+        "geo_provenance": {
+            "geo_source_lineage": "AIS_FEED",
+            "coordinate_origin": "AIS_SENSOR",
+            "sensor_origin": "VESSEL_TRANSPONDER",
+            "spatial_uncertainty": 0.2,
+            "timestamp_uncertainty": 0.1,
+            "coordinate_confidence": 0.96,
+            "geo_transformation_history": [
+                "RAW_AIS",
+                "NORMALIZED",
+                "VALIDATED"
+            ],
+            "location_reference_version": "GEO_V1",
+            "geo_validation_status": "VALIDATED"
+        },
+        "runtime_status": "INGESTED"
+    },
+    {
+        "execution_id": "8f67897c-b2d3-4636-98de-d2b89b2630dc",
+        "trace_id": "3bced4b1-8d75-4f20-88fb-781e199adc4a",
+        "runtime_timestamp": "2026-05-29T04:09:26.857424+00:00",
+        "mmsi": "UNKNOWN",
+        "vessel_name": "UNKNOWN",
+        "vessel_class": "UNKNOWN",
+        "geo": {
+            "latitude": 0.0,
+            "longitude": 0.0
+        },
+        "navigation": {
+            "speed_knots": 0.0,
+            "heading": 0.0
+        },
+        "signal": {
+            "signal_strength": 0.95,
+            "signal_source": "AIS_RUNTIME"
+        },
+        "governance": {
+            "dataset_owner": "SVACS",
+            "dataset_trust_score": 0.97,
+            "dataset_origin": "AIS_DATASET",
+            "approval_state": "APPROVED",
+            "validation_status": true,
+            "dataset_expiry_policy": "ACTIVE",
+            "federated_registry_reference": "FED_REG_001",
+            "dataset_change_log": "INITIAL_RUNTIME_LOAD",
+            "source_confidence": 0.96,
+            "schema_authority_reference": "SVACS_GOV_V1"
+        },
+        "geo_provenance": {
+            "geo_source_lineage": "AIS_FEED",
+            "coordinate_origin": "AIS_SENSOR",
+            "sensor_origin": "VESSEL_TRANSPONDER",
+            "spatial_uncertainty": 0.2,
+            "timestamp_uncertainty": 0.1,
+            "coordinate_confidence": 0.96,
+            "geo_transformation_history": [
+                "RAW_AIS",
+                "NORMALIZED",
+                "VALIDATED"
+            ],
+            "location_reference_version": "GEO_V1",
+            "geo_validation_status": "VALIDATED"
+        },
+        "runtime_status": "INGESTED"
+    },
+    {
+        "execution_id": "8401be20-ad7e-45a6-a23c-4a24d06a87e8",
+        "trace_id": "5f10f700-ff44-437f-b8e5-1f0bf7876ddd",
+        "runtime_timestamp": "2026-05-29T04:09:26.857464+00:00",
+        "mmsi": "UNKNOWN",
+        "vessel_name": "UNKNOWN",
+        "vessel_class": "UNKNOWN",
+        "geo": {
+            "latitude": 0.0,
+            "longitude": 0.0
+        },
+        "navigation": {
+            "speed_knots": 0.0,
+            "heading": 0.0
+        },
+        "signal": {
+            "signal_strength": 0.95,
+            "signal_source": "AIS_RUNTIME"
+        },
+        "governance": {
+            "dataset_owner": "SVACS",
+            "dataset_trust_score": 0.97,
+            "dataset_origin": "AIS_DATASET",
+            "approval_state": "APPROVED",
+            "validation_status": true,
+            "dataset_expiry_policy": "ACTIVE",
+            "federated_registry_reference": "FED_REG_001",
+            "dataset_change_log": "INITIAL_RUNTIME_LOAD",
+            "source_confidence": 0.96,
+            "schema_authority_reference": "SVACS_GOV_V1"
+        },
+        "geo_provenance": {
+            "geo_source_lineage": "AIS_FEED",
+            "coordinate_origin": "AIS_SENSOR",
+            "sensor_origin": "VESSEL_TRANSPONDER",
+            "spatial_uncertainty": 0.2,
+            "timestamp_uncertainty": 0.1,
+            "coordinate_confidence": 0.96,
+            "geo_transformation_history": [
+                "RAW_AIS",
+                "NORMALIZED",
+                "VALIDATED"
+            ],
+            "location_reference_version": "GEO_V1",
+            "geo_validation_status": "VALIDATED"
+        },
+        "runtime_status": "INGESTED"
+    },
+    {
+        "execution_id": "bf6ec265-e608-4082-89be-38588e91500c",
+        "trace_id": "2685836d-82a9-4fe8-b774-050cab097a7c",
+        "runtime_timestamp": "2026-05-29T04:09:26.857505+00:00",
+        "mmsi": "UNKNOWN",
+        "vessel_name": "UNKNOWN",
+        "vessel_class": "UNKNOWN",
+        "geo": {
+            "latitude": 0.0,
+            "longitude": 0.0
+        },
+        "navigation": {
+            "speed_knots": 0.0,
+            "heading": 0.0
+        },
+        "signal": {
+            "signal_strength": 0.95,
+            "signal_source": "AIS_RUNTIME"
+        },
+        "governance": {
+            "dataset_owner": "SVACS",
+            "dataset_trust_score": 0.97,
+            "dataset_origin": "AIS_DATASET",
+            "approval_state": "APPROVED",
+            "validation_status": true,
+            "dataset_expiry_policy": "ACTIVE",
+            "federated_registry_reference": "FED_REG_001",
+            "dataset_change_log": "INITIAL_RUNTIME_LOAD",
+            "source_confidence": 0.96,
+            "schema_authority_reference": "SVACS_GOV_V1"
+        },
+        "geo_provenance": {
+            "geo_source_lineage": "AIS_FEED",
+            "coordinate_origin": "AIS_SENSOR",
+            "sensor_origin": "VESSEL_TRANSPONDER",
+            "spatial_uncertainty": 0.2,
+            "timestamp_uncertainty": 0.1,
+            "coordinate_confidence": 0.96,
+            "geo_transformation_history": [
+                "RAW_AIS",
+                "NORMALIZED",
+                "VALIDATED"
+            ],
+            "location_reference_version": "GEO_V1",
+            "geo_validation_status": "VALIDATED"
+        },
+        "runtime_status": "INGESTED"
+    },
+    {
+        "execution_id": "79d416e8-8994-44d9-8b7c-b60d3ef2e14e",
+        "trace_id": "7c737aa7-a6a0-4a0f-8ce5-585b1c0f788e",
+        "runtime_timestamp": "2026-05-29T04:09:26.857548+00:00",
+        "mmsi": "UNKNOWN",
+        "vessel_name": "UNKNOWN",
+        "vessel_class": "UNKNOWN",
+        "geo": {
+            "latitude": 0.0,
+            "longitude": 0.0
+        },
+        "navigation": {
+            "speed_knots": 0.0,
+            "heading": 0.0
+        },
+        "signal": {
+            "signal_strength": 0.95,
+            "signal_source": "AIS_RUNTIME"
+        },
+        "governance": {
+            "dataset_owner": "SVACS",
+            "dataset_trust_score": 0.97,
+            "dataset_origin": "AIS_DATASET",
+            "approval_state": "APPROVED",
+            "validation_status": true,
+            "dataset_expiry_policy": "ACTIVE",
+            "federated_registry_reference": "FED_REG_001",
+            "dataset_change_log": "INITIAL_RUNTIME_LOAD",
+            "source_confidence": 0.96,
+            "schema_authority_reference": "SVACS_GOV_V1"
+        },
+        "geo_provenance": {
+            "geo_source_lineage": "AIS_FEED",
+            "coordinate_origin": "AIS_SENSOR",
+            "sensor_origin": "VESSEL_TRANSPONDER",
+            "spatial_uncertainty": 0.2,
+            "timestamp_uncertainty": 0.1,
+            "coordinate_confidence": 0.96,
+            "geo_transformation_history": [
+                "RAW_AIS",
+                "NORMALIZED",
+                "VALIDATED"
+            ],
+            "location_reference_version": "GEO_V1",
+            "geo_validation_status": "VALIDATED"
+        },
+        "runtime_status": "INGESTED"
+    },
+    {
+        "execution_id": "fded0ac8-4bf9-4bd8-870f-9df106ee2dc7",
+        "trace_id": "61133f15-603d-4f9b-bf2b-1f654a5685e6",
+        "runtime_timestamp": "2026-05-29T04:09:26.857589+00:00",
+        "mmsi": "UNKNOWN",
+        "vessel_name": "UNKNOWN",
+        "vessel_class": "UNKNOWN",
+        "geo": {
+            "latitude": 0.0,
+            "longitude": 0.0
+        },
+        "navigation": {
+            "speed_knots": 0.0,
+            "heading": 0.0
+        },
+        "signal": {
+            "signal_strength": 0.95,
+            "signal_source": "AIS_RUNTIME"
+        },
+        "governance": {
+            "dataset_owner": "SVACS",
+            "dataset_trust_score": 0.97,
+            "dataset_origin": "AIS_DATASET",
+            "approval_state": "APPROVED",
+            "validation_status": true,
+            "dataset_expiry_policy": "ACTIVE",
+            "federated_registry_reference": "FED_REG_001",
+            "dataset_change_log": "INITIAL_RUNTIME_LOAD",
+            "source_confidence": 0.96,
+            "schema_authority_reference": "SVACS_GOV_V1"
+        },
+        "geo_provenance": {
+            "geo_source_lineage": "AIS_FEED",
+            "coordinate_origin": "AIS_SENSOR",
+            "sensor_origin": "VESSEL_TRANSPONDER",
+            "spatial_uncertainty": 0.2,
+            "timestamp_uncertainty": 0.1,
+            "coordinate_confidence": 0.96,
+            "geo_transformation_history": [
+                "RAW_AIS",
+                "NORMALIZED",
+                "VALIDATED"
+            ],
+            "location_reference_version": "GEO_V1",
+            "geo_validation_status": "VALIDATED"
+        },
+        "runtime_status": "INGESTED"
+    },
+    {
+        "execution_id": "8fe3ae2d-34bb-43c0-a9f3-c9e11b5e6642",
+        "trace_id": "434bb715-8271-45cc-8735-6d3ae377b232",
+        "runtime_timestamp": "2026-05-29T04:09:26.857629+00:00",
+        "mmsi": "UNKNOWN",
+        "vessel_name": "UNKNOWN",
+        "vessel_class": "UNKNOWN",
+        "geo": {
+            "latitude": 0.0,
+            "longitude": 0.0
+        },
+        "navigation": {
+            "speed_knots": 0.0,
+            "heading": 0.0
+        },
+        "signal": {
+            "signal_strength": 0.95,
+            "signal_source": "AIS_RUNTIME"
+        },
+        "governance": {
+            "dataset_owner": "SVACS",
+            "dataset_trust_score": 0.97,
+            "dataset_origin": "AIS_DATASET",
+            "approval_state": "APPROVED",
+            "validation_status": true,
+            "dataset_expiry_policy": "ACTIVE",
+            "federated_registry_reference": "FED_REG_001",
+            "dataset_change_log": "INITIAL_RUNTIME_LOAD",
+            "source_confidence": 0.96,
+            "schema_authority_reference": "SVACS_GOV_V1"
+        },
+        "geo_provenance": {
+            "geo_source_lineage": "AIS_FEED",
+            "coordinate_origin": "AIS_SENSOR",
+            "sensor_origin": "VESSEL_TRANSPONDER",
+            "spatial_uncertainty": 0.2,
+            "timestamp_uncertainty": 0.1,
+            "coordinate_confidence": 0.96,
+            "geo_transformation_history": [
+                "RAW_AIS",
+                "NORMALIZED",
+                "VALIDATED"
+            ],
+            "location_reference_version": "GEO_V1",
+            "geo_validation_status": "VALIDATED"
+        },
+        "runtime_status": "INGESTED"
+    }
+]

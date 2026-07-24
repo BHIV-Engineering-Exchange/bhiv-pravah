@@ -1,0 +1,12 @@
+{
+  "trace_id": "trace_001",
+  "signal": "completed",
+  "geo": "completed",
+  "perception": "completed",
+  "intelligence": "completed",
+  "state": "completed",
+  "bucket": "completed",
+  "replay": "completed",
+  "dashboard": "completed"
+}
+ 

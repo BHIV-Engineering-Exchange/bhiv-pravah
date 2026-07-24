@@ -1,0 +1,30 @@
+{
+  "proof_name": "Gurukul → Workflow Executor Execution Trace",
+  "date": "2026-01-10",
+  "proofs": [
+    {
+      "type": "success",
+      "description": "Gurukul creates student task via executor",
+      "request": {
+        "trace_id": "gurukul-task-001",
+        "decision": "workflow",
+        "data": {
+          "workflow_type": "workflow",
+          "payload": {
+            "action_type": "task",
+            "title": "Complete Chapter 5 Homework",
+            "assigned_by": "teacher_123"
+          }
+        }
+      },
+      "response": {
+        "trace_id": "gurukul-task-001",
+        "status": "success",
+        "execution_result": {
+          "success": true,
+          "task_id": "task_gurukul_001"
+        }
+      }
+    }
+  ]
+}

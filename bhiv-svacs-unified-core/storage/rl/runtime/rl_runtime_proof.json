@@ -1,0 +1,17 @@
+{
+  "rl_runtime_status": "ACTIVE",
+  "deterministic_training": true,
+  "replay_safe_learning": true,
+  "bounded_learning": true,
+  "allowed_operations": [
+    "ranking",
+    "weighting",
+    "prioritization",
+    "filtering"
+  ],
+  "blocked_operations": [
+    "governance_modification",
+    "authority_override",
+    "lineage_mutation"
+  ]
+}

@@ -1,0 +1,292 @@
+[
+  {
+    "decision": {
+      "decision_id": "3b3b0828-8044-5eb1-9791-4d04f478e72b",
+      "determining_rules": [
+        "AUTH-001"
+      ],
+      "enforcement_stage": "PDP_EVALUATED",
+      "reason": "EXPLICIT_ALLOW",
+      "verdict": "ALLOW"
+    },
+    "enforcement_hash": "7c4ae5d83fcb26ed55887803d2a5a26e539cc411858a661b1b756e07ded38159",
+    "execution_hash": "30f7e25366b25051e709fe99ddc72eed776510bf7b4578e13915d8337b6ed94d",
+    "execution_outcome": "EXECUTION_PERMITTED",
+    "policy_hash": "cb6dac30c16456a2898bbcf30533b11170f2f6902449ce7daa9708b4b195ceb1",
+    "policy_version": "1.0.0",
+    "request": {
+      "action": "read",
+      "agent_id": "gov-agent-001",
+      "correlation_id": "28aaa50e-ecd5-52e6-bed0-7e47c267e49a",
+      "request_hash": "3c767d863d32e9721b51ff33cd102783861e5222e421ef808826272802a9d431",
+      "resource_id": "policy-reg-001"
+    },
+    "sample_id": 1,
+    "scenario": "S01: Governance reads policy registry"
+  },
+  {
+    "decision": {
+      "decision_id": "ced19aad-7d49-55ce-9874-277bb3ae8297",
+      "determining_rules": [
+        "AUTH-002"
+      ],
+      "enforcement_stage": "PDP_EVALUATED",
+      "reason": "EXPLICIT_ALLOW",
+      "verdict": "ALLOW"
+    },
+    "enforcement_hash": "96f7175733a9baaed2d57c8411caebeee9b9a4d3da4630245cec4ec2cf0dfd18",
+    "execution_hash": "0d8d6bfa770e223755c30195fd42a85b6700397eaa9ae3592ab95bd447555d76",
+    "execution_outcome": "EXECUTION_PERMITTED",
+    "policy_hash": "cb6dac30c16456a2898bbcf30533b11170f2f6902449ce7daa9708b4b195ceb1",
+    "policy_version": "1.0.0",
+    "request": {
+      "action": "write",
+      "agent_id": "gov-agent-001",
+      "correlation_id": "c2f0c225-fe82-5ee4-9cb6-13abe5614c93",
+      "request_hash": "57d9eb632cab779f1528772033058fc3b1357a19a131b89a430a78280f0b333b",
+      "resource_id": "policy-reg-001"
+    },
+    "sample_id": 2,
+    "scenario": "S02: Governance writes policy registry"
+  },
+  {
+    "decision": {
+      "decision_id": "9717d712-f11b-5393-a71f-a94f277d3611",
+      "determining_rules": [
+        "AUTH-003"
+      ],
+      "enforcement_stage": "PDP_EVALUATED",
+      "reason": "EXPLICIT_DENY",
+      "verdict": "DENY"
+    },
+    "enforcement_hash": "65a6c8b20fe9ee130b2758d7bed2b59c2c5056a9dab42136b895b6ccdfb83bf8",
+    "execution_hash": "7aea38f2c17d1a63677f5b9fa2a8c213ef8953851d5e0f6f853d1735812612bb",
+    "execution_outcome": "EXECUTION_BLOCKED",
+    "policy_hash": "cb6dac30c16456a2898bbcf30533b11170f2f6902449ce7daa9708b4b195ceb1",
+    "policy_version": "1.0.0",
+    "request": {
+      "action": "read",
+      "agent_id": "std-agent-001",
+      "correlation_id": "7a86bced-455f-5fe9-9177-99806040f51a",
+      "request_hash": "c8be683b60a24c900d3190d9829bffb1965063f1ea04b4d1e90b51b84c08f59e",
+      "resource_id": "policy-reg-001"
+    },
+    "sample_id": 3,
+    "scenario": "S06: Standard denied policy registry read"
+  },
+  {
+    "decision": {
+      "decision_id": "",
+      "determining_rules": [],
+      "enforcement_stage": "PRE_PDP_VALIDATION",
+      "reason": "VALIDATION_FAILED: [MISSING_AGENT_ID]",
+      "verdict": "DENY"
+    },
+    "enforcement_hash": "b6dcbe5325d468790340a8b356cfa1441e8da347733b4b3b02f26511b7e7b19d",
+    "execution_hash": "71c57aeae698941a50390c829a60a2e5fc2473196b4f1274b3bb12ae3581f275",
+    "execution_outcome": "EXECUTION_BLOCKED",
+    "policy_hash": "",
+    "policy_version": "",
+    "request": {
+      "action": "read",
+      "agent_id": "",
+      "correlation_id": "f3a59bc1-7b6a-5305-b551-147e6734af8c",
+      "request_hash": "493f58663c20be9c514a01b3e258b889c24e0f12d3e54230d5e68c05bfa5e263",
+      "resource_id": "ops-data-001"
+    },
+    "sample_id": 4,
+    "scenario": "S11: Missing agent_id"
+  },
+  {
+    "decision": {
+      "decision_id": "",
+      "determining_rules": [],
+      "enforcement_stage": "PRE_PDP_VALIDATION",
+      "reason": "VALIDATION_FAILED: [INVALID_ACTION_destroy]",
+      "verdict": "DENY"
+    },
+    "enforcement_hash": "e4fb9e81171bea26cae1324f3428731e6492e79ddfd055c09a59912925c091b1",
+    "execution_hash": "a6f4c866d919e79474a3039b13374262cda4894c2fede545c65da289748d997c",
+    "execution_outcome": "EXECUTION_BLOCKED",
+    "policy_hash": "",
+    "policy_version": "",
+    "request": {
+      "action": "destroy",
+      "agent_id": "std-agent-001",
+      "correlation_id": "9fa8eaf5-3ccc-5f65-b73c-1cbdce2f4e47",
+      "request_hash": "58b10bdd63fb42926a72d9c27e73afae8c53ccc4d54d0fc1d61f03f1f2f7ee08",
+      "resource_id": "ops-data-001"
+    },
+    "sample_id": 5,
+    "scenario": "S14: Invalid action (destroy)"
+  },
+  {
+    "decision": {
+      "decision_id": "81aae899-6657-5f93-a596-e8f824629dfc",
+      "determining_rules": [],
+      "enforcement_stage": "PDP_EVALUATED",
+      "reason": "AGENT_SUSPENDED",
+      "verdict": "DENY"
+    },
+    "enforcement_hash": "7f93fc340bebcfa22e78f55d8aca4f74da74b4c5fd8fe08baaf139ceccb06161",
+    "execution_hash": "6055b01d94f259ddc25c644d39938081e28cb61d190033b3b35249ddba2c8788",
+    "execution_outcome": "EXECUTION_BLOCKED",
+    "policy_hash": "cb6dac30c16456a2898bbcf30533b11170f2f6902449ce7daa9708b4b195ceb1",
+    "policy_version": "1.0.0",
+    "request": {
+      "action": "read",
+      "agent_id": "suspended-agent",
+      "correlation_id": "f8b496c0-7d4c-58b8-bb6e-cb2093ff7115",
+      "request_hash": "291f791042cdec902a1f318d0797853b1386f9f2e2d8aa99987c257184d0d589",
+      "resource_id": "ops-data-001"
+    },
+    "sample_id": 6,
+    "scenario": "S16: Suspended agent"
+  },
+  {
+    "decision": {
+      "decision_id": "25074cb6-46ed-50e2-b6e6-9acef29a3421",
+      "determining_rules": [],
+      "enforcement_stage": "PDP_EVALUATED",
+      "reason": "AGENT_NOT_FOUND",
+      "verdict": "DENY"
+    },
+    "enforcement_hash": "874ae7b44f4a9543305aeb4c98dbd790de28766056a63dca910c5489c119b445",
+    "execution_hash": "77afc9c1745599c588302f62548ea3f3c9befcdcb8189099361faa33cfddee32",
+    "execution_outcome": "EXECUTION_BLOCKED",
+    "policy_hash": "cb6dac30c16456a2898bbcf30533b11170f2f6902449ce7daa9708b4b195ceb1",
+    "policy_version": "1.0.0",
+    "request": {
+      "action": "read",
+      "agent_id": "ghost-agent-999",
+      "correlation_id": "9be71d94-430e-5676-9a91-c5bb06c07027",
+      "request_hash": "6efd59c8927e9554f4c3c76556011af3ddd70314f94e38c8fbf1947078b41008",
+      "resource_id": "ops-data-001"
+    },
+    "sample_id": 7,
+    "scenario": "S19: Unknown agent"
+  },
+  {
+    "decision": {
+      "decision_id": "",
+      "determining_rules": [],
+      "enforcement_stage": "POLICY_VERSION_CHECK",
+      "reason": "POLICY_VERSION_MISMATCH: requested=99.0.0 active=1.0.0",
+      "verdict": "DENY"
+    },
+    "enforcement_hash": "5384a75a5f49559569a45732866a2c106e534819e63a2a9ad7612cfaec367e2c",
+    "execution_hash": "123e3d5c892957752917f35a29261d9b081874540870fad00df301a6cef3ed88",
+    "execution_outcome": "EXECUTION_BLOCKED",
+    "policy_hash": "",
+    "policy_version": "",
+    "request": {
+      "action": "read",
+      "agent_id": "gov-agent-001",
+      "correlation_id": "b226f273-bd82-528f-9876-fb9827f9d0c7",
+      "request_hash": "3c767d863d32e9721b51ff33cd102783861e5222e421ef808826272802a9d431",
+      "resource_id": "policy-reg-001"
+    },
+    "sample_id": 8,
+    "scenario": "S23: Policy version mismatch"
+  },
+  {
+    "decision": {
+      "decision_id": "7245f664-bd9f-5666-be7f-4af67e6887e4",
+      "determining_rules": [
+        "AUTH-048"
+      ],
+      "enforcement_stage": "PDP_EVALUATED",
+      "reason": "EXPLICIT_ALLOW",
+      "verdict": "ALLOW"
+    },
+    "enforcement_hash": "29f11a311d23e0c9ef042dd27608c02ba5bde05bcbbdd242e35b82dbb71cbb59",
+    "execution_hash": "8b3ac9116f201c79b0875610f2e6dabe2048314e0959118b0b14b174facc0410",
+    "execution_outcome": "EXECUTION_PERMITTED",
+    "policy_hash": "cb6dac30c16456a2898bbcf30533b11170f2f6902449ce7daa9708b4b195ceb1",
+    "policy_version": "1.0.0",
+    "request": {
+      "action": "read",
+      "agent_id": "orch-001",
+      "correlation_id": "bb91633a-a06a-581b-a4eb-0829824ec5ed",
+      "request_hash": "cab9e26e0c5afc390ca7d94aa2669265fe1b0c3bcb68fca9d939fc7a28619f6f",
+      "resource_id": "ops-data-001"
+    },
+    "sample_id": 9,
+    "scenario": "S26: Orchestrator reads operational data"
+  },
+  {
+    "decision": {
+      "decision_id": "af075591-5af0-5828-a81b-b23f7d7da075",
+      "determining_rules": [
+        "AUTH-045"
+      ],
+      "enforcement_stage": "PDP_EVALUATED",
+      "reason": "EXPLICIT_ALLOW",
+      "verdict": "ALLOW"
+    },
+    "enforcement_hash": "4af227c4d52a9712302d6a1ce7d22f9c125485d53915b224c766e15ef9a3d989",
+    "execution_hash": "0bc1c5f80be981f3083db5d1caa400d1e75e675dba5c0af1d408e7f4a3365d33",
+    "execution_outcome": "EXECUTION_PERMITTED",
+    "policy_hash": "cb6dac30c16456a2898bbcf30533b11170f2f6902449ce7daa9708b4b195ceb1",
+    "policy_version": "1.0.0",
+    "request": {
+      "action": "read",
+      "agent_id": "data-proc-002",
+      "correlation_id": "51c7e6e2-122e-5330-9b23-a38b3e82d0da",
+      "request_hash": "da8b84687160dfa5caf654d596863e81f5b28ef0ede604944ae2662b18876592",
+      "resource_id": "public-api-001"
+    },
+    "sample_id": 10,
+    "scenario": "S31: Lowest-priv agent reads public resource (L0→L0)"
+  },
+  {
+    "decision": {
+      "decision_id": "e9e8cdf5-9d81-53ab-a477-a42839e5d7a0",
+      "determining_rules": [
+        "AUTH-024"
+      ],
+      "enforcement_stage": "PDP_EVALUATED",
+      "reason": "EXPLICIT_DENY",
+      "verdict": "DENY"
+    },
+    "enforcement_hash": "1d22b75088a76e9b10f12ce9b8f952aaf026f15bbd054294f232f62896dc148f",
+    "execution_hash": "79d87015f9ffb6810a81687faa528a49f7414d42c5ffffc8cb04757daa8ce9d9",
+    "execution_outcome": "EXECUTION_BLOCKED",
+    "policy_hash": "cb6dac30c16456a2898bbcf30533b11170f2f6902449ce7daa9708b4b195ceb1",
+    "policy_version": "1.0.0",
+    "request": {
+      "action": "write",
+      "agent_id": "std-agent-001",
+      "correlation_id": "4bbee8e5-755c-5127-9977-5b6691b564c5",
+      "request_hash": "2e12c7d732f237f0c43e66b43bc1b48f04b6ed2146b4531e80026024dad07cd2",
+      "resource_id": "config-001"
+    },
+    "sample_id": 11,
+    "scenario": "S34: Deny-overrides combining (DENY rule wins over ALLOW)"
+  },
+  {
+    "decision": {
+      "decision_id": "57ceb14f-79f8-5d4d-a008-89fb4498d8bf",
+      "determining_rules": [
+        "AUTH-DENY-ALL"
+      ],
+      "enforcement_stage": "PDP_EVALUATED",
+      "reason": "EXPLICIT_DENY",
+      "verdict": "DENY"
+    },
+    "enforcement_hash": "3b7c61aaf25c171282eef43a3c037d1f54908622cc7c69346890d7909ee54eb5",
+    "execution_hash": "8370f24a6611e52aec063666c3d29463ff8faad332bc93bed26b08041aba368b",
+    "execution_outcome": "EXECUTION_BLOCKED",
+    "policy_hash": "cb6dac30c16456a2898bbcf30533b11170f2f6902449ce7daa9708b4b195ceb1",
+    "policy_version": "1.0.0",
+    "request": {
+      "action": "delete",
+      "agent_id": "gov-agent-001",
+      "correlation_id": "0039ca72-d325-5988-876e-2386ce70bd03",
+      "request_hash": "cc4e83a19202966eb469006dba95018cdd06f310261c997094c08c1492da801e",
+      "resource_id": "policy-reg-001"
+    },
+    "sample_id": 12,
+    "scenario": "S35: Delete action on protected resource"
+  }
+]

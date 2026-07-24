@@ -1,0 +1,8 @@
+{
+  "basket_name": "coordinator_test",
+  "agents": [
+    "financial_coordinator"
+  ],
+  "execution_strategy": "sequential",
+  "description": "Test financial coordinator"
+}

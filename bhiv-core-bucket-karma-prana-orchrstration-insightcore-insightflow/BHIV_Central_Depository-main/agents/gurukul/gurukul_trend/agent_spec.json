@@ -1,0 +1,15 @@
+{
+    "name": "gurukul_trend",
+    "domains": ["education", "trend"],
+    "module_path": "agents.gurukul.gurukul_trend.gurukul_trend",
+    "capabilities": {"chainable": true, "memory_access": true},
+    "input_schema": {
+        "required": ["collection_name"],
+        "properties": {"collection_name": {"type": "string"}}
+    },
+    "output_schema": {
+        "properties": {"trends": {"type": "array", "items": {"type": "object"}}}
+    },
+    "sample_input": {"collection_name": "performance_data"},
+    "sample_output": {"trends": [{"student_id": "student123", "subject": "math", "predicted_trend": "improve"}]}
+}

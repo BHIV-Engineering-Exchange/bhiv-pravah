@@ -1,0 +1,72 @@
+# AI Integration Platform Configuration
+# This file defines agents and baskets for the AI Integration Platform
+# Note: Agents are primarily loaded from individual agent_spec.json files
+# This file serves as a central configuration for baskets and any additional agent overrides
+
+# Baskets Configuration
+baskets:
+  - name: "finance_daily_check"
+    basket_name: "finance_daily_check"
+    agents: ["cashflow_analyzer", "goal_recommender"]
+    execution_strategy: "sequential"
+    description: "Daily financial analysis workflow - analyzes transactions and provides goal recommendations"
+    
+  - name: "working_test"
+    basket_name: "working_test"
+    agents: ["cashflow_analyzer"]
+    execution_strategy: "sequential"
+    description: "Test basket with correct input format for cashflow analyzer"
+    
+  - name: "chained_test"
+    basket_name: "chained_test"
+    agents: ["cashflow_analyzer", "goal_recommender"]
+    execution_strategy: "sequential"
+    description: "Test chained execution of financial agents"
+    
+  - name: "coordinator_test"
+    basket_name: "coordinator_test"
+    agents: ["financial_coordinator"]
+    execution_strategy: "sequential"
+    description: "Test financial coordinator agent"
+    
+  - name: "goal_test"
+    basket_name: "goal_test"
+    agents: ["goal_recommender"]
+    execution_strategy: "sequential"
+    description: "Test goal recommender agent"
+    
+  - name: "multi_agent_test"
+    basket_name: "multi_agent_test"
+    agents: ["cashflow_analyzer", "goal_recommender"]
+    execution_strategy: "sequential"
+    description: "Multi-agent test basket"
+    
+  - name: "financial_operations"
+    basket_name: "financial_operations"
+    agents: ["financial_coordinator", "cashflow_analyzer"]
+    execution_strategy: "sequential"
+    description: "Complete financial operations workflow"
+    
+  - name: "gurukul_practice"
+    basket_name: "gurukul_practice"
+    agents: ["vedic_quiz_agent", "sanskrit_parser"]
+    execution_strategy: "sequential"
+    description: "Educational practice session with Vedic knowledge"
+    
+  - name: "workflow_optimizer"
+    basket_name: "workflow_optimizer"
+    agents: ["schedule_agent", "workflow_agent"]
+    execution_strategy: "sequential"
+    description: "Business workflow optimization"
+
+# Agent Overrides (optional)
+# Agents are primarily loaded from individual agent_spec.json files
+# This section can be used to override or add additional agent configurations
+agents: []
+
+# Configuration metadata
+metadata:
+  version: "1.0.0"
+  created: "2025-07-05"
+  description: "Central configuration file for AI Integration Platform"
+  note: "Agents are loaded from individual agent_spec.json files in the agents/ directory"

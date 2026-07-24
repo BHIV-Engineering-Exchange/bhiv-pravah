@@ -1,0 +1,8 @@
+{
+  "basket_name": "working_test",
+  "agents": [
+    "cashflow_analyzer"
+  ],
+  "execution_strategy": "sequential",
+  "description": "Test with correct input format"
+}

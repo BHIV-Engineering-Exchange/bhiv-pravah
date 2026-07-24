@@ -1,0 +1,131 @@
+{
+  "contract_name": "Karma Integration Contract",
+  "version": "2.0.0",
+  "description": "Defines the interface for integrating karma signals into other systems with Core authorization",
+  "signals": {
+    "karma_level": {
+      "type": "string",
+      "description": "Summary band of the user's karma (low, neutral, positive)",
+      "values": ["low", "neutral", "positive"],
+      "required": true
+    },
+    "trust_tone_factor": {
+      "type": "number",
+      "description": "How warm and trusting the response tone should be (0.0 to 1.0)",
+      "min": 0.0,
+      "max": 1.0,
+      "required": true
+    },
+    "caution_factor": {
+      "type": "number",
+      "description": "How careful or cautious the response tone should be (0.0 to 1.0)",
+      "min": 0.0,
+      "max": 1.0,
+      "required": true
+    },
+    "engagement_factor": {
+      "type": "number",
+      "description": "How detailed and engaged the response should be (0.0 to 1.0)",
+      "min": 0.0,
+      "max": 1.0,
+      "required": true
+    }
+  },
+  "canonical_signal_contract": {
+    "subject_id": {
+      "type": "string",
+      "description": "UUID of the subject"
+    },
+    "context": {
+      "type": "string",
+      "description": "Platform context (assistant | game | finance | gurukul | infra)"
+    },
+    "signal": {
+      "type": "string",
+      "description": "Type of signal (allow | nudge | restrict | escalate)"
+    },
+    "severity": {
+      "type": "number",
+      "description": "Severity level (0.0 to 1.0)"
+    },
+    "reason_code": {
+      "type": "string",
+      "description": "Opaque reason code for the signal"
+    },
+    "ttl": {
+      "type": "number",
+      "description": "Time to live in seconds"
+    },
+    "requires_core_ack": {
+      "type": "boolean",
+      "description": "Whether Core ACK is required before applying consequences"
+    }
+  },
+  "mapping_logic": {
+    "positive_karma": {
+      "karma_level": "positive",
+      "trust_tone_factor": 0.8,
+      "caution_factor": 0.2,
+      "engagement_factor": 0.9
+    },
+    "neutral_karma": {
+      "karma_level": "neutral", 
+      "trust_tone_factor": 0.5,
+      "caution_factor": 0.5,
+      "engagement_factor": 0.6
+    },
+    "low_karma": {
+      "karma_level": "low",
+      "trust_tone_factor": 0.2,
+      "caution_factor": 0.8,
+      "engagement_factor": 0.4
+    }
+  },
+  "integration_hooks": {
+    "input_format": {
+      "description": "Input format expected by the karma engine",
+      "example": [
+        {
+          "role": "user",
+          "message": "Hello, could you please help me with this question?"
+        }
+      ]
+    },
+    "output_format": {
+      "description": "Output format returned by the karma engine",
+      "example": {
+        "karma_level": "positive",
+        "trust_tone_factor": 0.8,
+        "caution_factor": 0.2,
+        "engagement_factor": 0.9
+      }
+    }
+  },
+  "api_endpoint": {
+    "method": "POST",
+    "path": "/api/karma/evaluate",
+    "request_body": {
+      "interaction_log": [
+        {
+          "role": "string",
+          "message": "string"
+        }
+      ]
+    },
+    "response": {
+      "200": {
+        "description": "Karma evaluation successful",
+        "schema": {
+          "$ref": "#/signals"
+        }
+      }
+    }
+  },
+  "safety_constraints": [
+    "Maintain neutrality across all interactions",
+    "Never shame or bias based on user characteristics",
+    "Always provide explainable responses",
+    "Respect sovereign boundary - karma provides signals only, execution remains with Core",
+    "Constraint-only mode: operate as silent governor instead of active decision engine"
+  ]
+}

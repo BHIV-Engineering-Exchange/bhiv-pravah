@@ -1,0 +1,65 @@
+{
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "details": [
+      {
+        "test": "Invalid JSON spec constraint",
+        "status": "passed",
+        "timestamp": "2025-09-30T03:43:04.111Z",
+        "error": "new row for relation \"specs\" violates check constraint \"json_spec_structure_check\""
+      },
+      {
+        "test": "Rating constraint violation",
+        "status": "passed",
+        "timestamp": "2025-09-30T03:43:04.170Z",
+        "error": "new row for relation \"evaluations\" violates check constraint \"evaluations_rating_check\""
+      },
+      {
+        "test": "Foreign key constraint violation",
+        "status": "passed",
+        "timestamp": "2025-09-30T03:43:04.212Z",
+        "error": "insert or update on table \"evaluations\" violates foreign key constraint \"evaluations_spec_id_fkey\""
+      },
+      {
+        "test": "Timeout simulation",
+        "status": "passed",
+        "timestamp": "2025-09-30T03:43:10.441Z",
+        "duration": 26,
+        "resultCount": 0
+      }
+    ],
+    "duration": 41366,
+    "success_rate": "100.00"
+  },
+  "tests": [
+    {
+      "test": "Invalid JSON spec constraint",
+      "status": "passed",
+      "timestamp": "2025-09-30T03:43:04.111Z",
+      "error": "new row for relation \"specs\" violates check constraint \"json_spec_structure_check\""
+    },
+    {
+      "test": "Rating constraint violation",
+      "status": "passed",
+      "timestamp": "2025-09-30T03:43:04.170Z",
+      "error": "new row for relation \"evaluations\" violates check constraint \"evaluations_rating_check\""
+    },
+    {
+      "test": "Foreign key constraint violation",
+      "status": "passed",
+      "timestamp": "2025-09-30T03:43:04.212Z",
+      "error": "insert or update on table \"evaluations\" violates foreign key constraint \"evaluations_spec_id_fkey\""
+    },
+    {
+      "test": "Timeout simulation",
+      "status": "passed",
+      "timestamp": "2025-09-30T03:43:10.441Z",
+      "duration": 26,
+      "resultCount": 0
+    }
+  ],
+  "generated_at": "2025-09-30T03:43:13.561Z"
+}

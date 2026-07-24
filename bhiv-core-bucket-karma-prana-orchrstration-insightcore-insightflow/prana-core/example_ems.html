@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRANA Integration Example - EMS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; }
+        .status {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+        }
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .metric {
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        .metric-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+        }
+        .metric-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 5px;
+        }
+        .task-panel {
+            margin: 30px 0;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 4px;
+        }
+        .task {
+            padding: 15px;
+            margin: 10px 0;
+            background: white;
+            border-left: 4px solid #2196f3;
+            border-radius: 4px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        .info {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💼 PRANA Integration Example - EMS</h1>
+        
+        <div class="status" id="status">
+            ✅ PRANA is initializing...
+        </div>
+
+        <div class="info">
+            <strong>💼 Instructions:</strong>
+            <ol>
+                <li>This page demonstrates PRANA integration for EMS (Employee Management System)</li>
+                <li>PRANA tracks work authenticity and engagement</li>
+                <li>Every 5 seconds, it sends a telemetry packet to Bucket</li>
+                <li>Check the console (F12) to see PRANA logs</li>
+                <li>Interact with tasks to see different work states</li>
+            </ol>
+        </div>
+
+        <h2>📊 Work Metrics</h2>
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-label">Work State</div>
+                <div class="metric-value" id="state">INITIALIZING</div>
+            </div>
+            <div class="metric">
+                <div class="metric-label">Productivity Score</div>
+                <div class="metric-value" id="focus">0</div>
+            </div>
+            <div class="metric">
+                <div class="metric-label">Active Time</div>
+                <div class="metric-value" id="active">0s</div>
+            </div>
+            <div class="metric">
+                <div class="metric-label">Telemetry Packets</div>
+                <div class="metric-value" id="packets">0</div>
+            </div>
+        </div>
+
+        <h2>📋 Task Panel</h2>
+        <div class="task-panel">
+            <div class="task">
+                <h3>Task #1: Review Code Changes</h3>
+                <p>Review the pull request for the authentication module.</p>
+                <p><strong>Status:</strong> In Progress</p>
+            </div>
+            <div class="task">
+                <h3>Task #2: Update Documentation</h3>
+                <p>Update API documentation for the new endpoints.</p>
+                <p><strong>Status:</strong> Pending</p>
+            </div>
+            <div class="task">
+                <h3>Task #3: Fix Bug #4521</h3>
+                <p>Investigate and fix the login timeout issue.</p>
+                <p><strong>Status:</strong> Assigned</p>
+            </div>
+        </div>
+
+        <div class="info">
+            <strong>🔍 What PRANA Detects:</strong>
+            <ul>
+                <li><strong>DEEP_FOCUS:</strong> Sustained work with minimal distractions</li>
+                <li><strong>ON_TASK:</strong> Active engagement with tasks</li>
+                <li><strong>THINKING:</strong> Contemplative work (planning, problem-solving)</li>
+                <li><strong>IDLE:</strong> Extended inactivity (>10 minutes)</li>
+                <li><strong>DISTRACTED:</strong> Window lost focus but tab visible</li>
+                <li><strong>AWAY:</strong> Tab hidden or window unfocused</li>
+                <li><strong>OFF_TASK:</strong> Rapid clicking or high mouse velocity (frustration)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- PRANA Integration -->
+    <script type="module">
+        // Import PRANA Core
+        import { initPranaCore } from './prana-core/prana_packet_builder.js';
+        import { getStateEngine } from './prana-core/prana_state_engine.js';
+        import { getPacketBuilder } from './prana-core/prana_packet_builder.js';
+
+        // Configuration - Replace with actual values from your backend
+        const config = {
+            system_type: 'ems',
+            role: 'employee',
+            user_id: 'demo_employee_' + Date.now(),
+            session_id: 'demo_session_' + Date.now(),
+            task_id: 'task_review_code_changes',
+            bucket_endpoint: 'http://localhost:8001/bucket/prana/ingest'
+        };
+
+        // Initialize PRANA
+        console.log('💼 Initializing PRANA for EMS with config:', config);
+        const prana = initPranaCore(config);
+
+        // Update status
+        document.getElementById('status').innerHTML = 
+            '✅ PRANA is active and monitoring work authenticity';
+
+        // Update UI with live metrics
+        let packetCount = 0;
+        setInterval(() => {
+            const stateEngine = getStateEngine();
+            const packetBuilder = getPacketBuilder();
+
+            if (stateEngine && packetBuilder) {
+                const state = stateEngine.getCurrentState();
+                const summary = stateEngine.getStateSummary();
+
+                // Update UI
+                document.getElementById('state').textContent = state;
+                
+                // Estimate productivity score based on state
+                const productivityScores = {
+                    'DEEP_FOCUS': 95,
+                    'ON_TASK': 75,
+                    'THINKING': 65,
+                    'DISTRACTED': 30,
+                    'IDLE': 10,
+                    'OFF_TASK': 5,
+                    'AWAY': 0
+                };
+                document.getElementById('focus').textContent = productivityScores[state] || 50;
+                document.getElementById('active').textContent = 
+                    Math.floor(summary.duration_ms / 1000) + 's';
+            }
+        }, 1000);
+
+        // Count packets sent
+        const originalFetch = window.fetch;
+        window.fetch = function(...args) {
+            if (args[0] && args[0].includes('/bucket/prana/ingest')) {
+                packetCount++;
+                document.getElementById('packets').textContent = packetCount;
+            }
+            return originalFetch.apply(this, args);
+        };
+
+        console.log('✅ PRANA initialized successfully for EMS');
+        console.log('📊 Check console for PRANA signals every 5 seconds');
+        console.log('💼 Work authenticity tracking is active');
+    </script>
+</body>
+</html>

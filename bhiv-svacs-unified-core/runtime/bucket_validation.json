@@ -1,0 +1,7 @@
+{
+  "bucket_status": "ACTIVE",
+  "lineage_continuity": true,
+  "replay_storage": true,
+  "append_only_validation": true,
+  "bucket_latency": "NORMAL"
+}

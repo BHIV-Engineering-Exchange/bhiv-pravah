@@ -1,0 +1,18 @@
+{
+  "schema_version": "sarathi.multi_node.child_manifest/v1.0",
+  "node_id": "node-2",
+  "clock_skew_seconds": 5,
+  "generated_at": "2026-05-12T16:15:34.140029Z",
+  "input_hash": "5fa1745cef6d1ca23aae8bb2e37b864401b4a5a546e81cb9d24e5e6f8a950e74",
+  "decision_hash": "217af05cf8d182e325dbc50109b04acd1c2038a5b1b4513ce09b612a9f052f79",
+  "decision_core_hash": "02dc0b98b08903f6ebaee6d783716436e92c6e4c242317027d7c1ec873ec8432",
+  "enforcement_hash": "36b78d3b238c8cac47c2fae49ced2636d0e95c0a4e980459b6243d354d9cf9d1",
+  "response_hash": "834a201b271b12d796d581ab56a29fbf3ca7853069ec2bfadf8a7a98ce94d320",
+  "chain_binding_hash": "d31919fd255bc207e6193a65841cc30256d628eb248fb1b0774004782c4f1887",
+  "response_hash_stable": "7ec571b9920f8ba22c971f925a569daf64fa2a9e44b108ad32d4f20d73a754d0",
+  "chain_binding_hash_stable": "46cf7848a9cd201c1c944cc5cca4d4d9d1b95573fdec78214a36f1211554d804",
+  "canonical_response_length": 2059,
+  "canonical_response_sha256": "834a201b271b12d796d581ab56a29fbf3ca7853069ec2bfadf8a7a98ce94d320",
+  "stable_canonical_length": 1434,
+  "stable_canonical_sha256": "7ec571b9920f8ba22c971f925a569daf64fa2a9e44b108ad32d4f20d73a754d0"
+}

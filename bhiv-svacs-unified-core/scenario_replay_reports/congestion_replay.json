@@ -1,0 +1,8 @@
+{
+    "trace_reconstructed": true,
+    "lineage_continuity": true,
+    "deterministic_replay": true,
+    "bucket_recovery": true,
+    "replay_status": "VERIFIED",
+    "scenario": "port_congestion_overload"
+}

@@ -1,0 +1,45 @@
+Trace Corruption Attempt Proof
+==================================================
+Attack: normal
+  Input:     'trace-normal-001'
+  Output:    'trace-normal-001'
+  Match:     True
+  Corrupted: False
+
+Attack: empty_attempt
+  Input:     'trace-empty-attempt'
+  Output:    'trace-empty-attempt'
+  Match:     True
+  Corrupted: False
+
+Attack: sql_injection
+  Input:     "trace'; DROP TABLE traces;--"
+  Output:    "trace'; DROP TABLE traces;--"
+  Match:     True
+  Corrupted: False
+
+Attack: path_traversal
+  Input:     'trace/../../../etc/passwd'
+  Output:    'trace/../../../etc/passwd'
+  Match:     True
+  Corrupted: False
+
+Attack: null_byte
+  Input:     'trace-null\x00-injection'
+  Output:    'trace-null\x00-injection'
+  Match:     True
+  Corrupted: False
+
+Attack: very_long
+  Input:     'TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+  Output:    'TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+  Match:     True
+  Corrupted: False
+
+Attack: json_injection
+  Input:     '{"malicious": true}'
+  Output:    '{"malicious": true}'
+  Match:     True
+  Corrupted: False
+
+All attacks survived: True

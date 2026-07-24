@@ -1,0 +1,18 @@
+[
+  {
+    "vessel_id": "VSL_001",
+    "vessel_class": "Cargo",
+    "signature_profile": "Heavy Cargo",
+    "propulsion_metadata": "Diesel",
+    "size_metadata": {
+      "length_m": 220
+    },
+    "operational_role": "Commercial",
+    "source_metadata": {
+      "source": "AIS"
+    },
+    "version_metadata": {
+      "schema_version": "1.0"
+    }
+  }
+]

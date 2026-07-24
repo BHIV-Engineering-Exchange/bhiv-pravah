@@ -1,0 +1,21 @@
+[
+  {
+    "registry_id": "JANE_001",
+    "vessel_class": "Cargo",
+    "signature_profile": "Large Commercial Vessel",
+    "propulsion_metadata": {
+      "engine": "Diesel"
+    },
+    "size_metadata": {
+      "length": 210,
+      "beam": 32
+    },
+    "operational_role": "Commercial Shipping",
+    "source_metadata": {
+      "source": "NOAA_AIS"
+    },
+    "version_metadata": {
+      "version": "1.0"
+    }
+  }
+]

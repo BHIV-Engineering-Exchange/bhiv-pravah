@@ -1,0 +1,9 @@
+{
+  "basket_name": "Cashflow + Law agnet",
+  "agents": [
+    "law_agent",
+    "cashflow_analyzer"
+  ],
+  "execution_strategy": "sequential",
+  "description": ""
+}

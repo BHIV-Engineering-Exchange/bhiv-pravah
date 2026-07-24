@@ -1,0 +1,17 @@
+{
+  "observation": {
+    "length": 154,
+    "beam": 21,
+    "displacement": 7200
+  },
+  "candidate_matches": [
+    {
+      "candidate": "Destroyer",
+      "confidence": 0.88
+    },
+    {
+      "candidate": "Frigate",
+      "confidence": 0.72
+    }
+  ]
+}

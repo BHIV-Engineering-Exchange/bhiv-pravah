@@ -1,0 +1,34 @@
+{
+  "system_name": "Sarathi",
+  "artifact_type": "bridge_handoff",
+  "boundary": "Sarathi->Bridge",
+  "schema_version": "1.0",
+  "contract_version": "TANTRA-CONVERGENCE-v1",
+  "execution_id": "exec-tantra-001",
+  "trace_id": "trace-tantra-001",
+  "cet_hash": "89d18ea108d45ece5b98e07e6f54b54b54c8b115e0610e58952328530e8e6801",
+  "bucket_key": "b64147889ed9eff3f303afe8457f5e318e9f77ba24ac2b2a35b7e2ac572d4f80",
+  "decision": "allow",
+  "enforcement_token_reference": "sarathi-enforcement-seal:1c32516015c242ec139b60737719312284d849450236a0b867406c616aa58f0b",
+  "hash_continuity": {
+    "cet_hash_preserved": true,
+    "trace_id_preserved": true,
+    "execution_id_preserved": true,
+    "sarathi_seal_hash": "1c32516015c242ec139b60737719312284d849450236a0b867406c616aa58f0b"
+  },
+  "headers": {
+    "X-Sarathi-Trace-ID": "trace-tantra-001",
+    "X-Sarathi-Execution-ID": "exec-tantra-001",
+    "X-Sarathi-Decision-ID": "9093633e-71d8-4b96-4b1f-5a4560fdbd8a",
+    "X-Sarathi-CET-Hash": "89d18ea108d45ece5b98e07e6f54b54b54c8b115e0610e58952328530e8e6801",
+    "X-Sarathi-Bucket-Key": "b64147889ed9eff3f303afe8457f5e318e9f77ba24ac2b2a35b7e2ac572d4f80",
+    "X-Sarathi-SumScript-Seal": "1c32516015c242ec139b60737719312284d849450236a0b867406c616aa58f0b",
+    "X-Sarathi-Schema-Version": "1.0",
+    "X-Sarathi-Contract-Version": "TANTRA-CONVERGENCE-v1"
+  },
+  "transmission_status": "PREPARED_NOT_TRANSMITTED",
+  "bridge_ingress_url": "",
+  "transmission_note": "Handoff artifact built and ready. Not transmitted: no acknowledged POST to a registered Bridge ingress has occurred. Provide the Bridge ingress URL + Ed25519/JWKS key registration out-of-band to enable live transmission.",
+  "provenance": "sarathi.enforcement_adapter@CET->Sarathi",
+  "timestamp_utc": "2026-06-18T13:52:43.1412315Z"
+}

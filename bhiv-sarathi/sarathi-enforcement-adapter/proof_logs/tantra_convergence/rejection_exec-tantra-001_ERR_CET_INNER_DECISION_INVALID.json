@@ -1,0 +1,15 @@
+{
+  "system_name": "Sarathi",
+  "artifact_type": "enforcement_rejection",
+  "execution_id": "exec-tantra-001",
+  "trace_id": "trace-tantra-001",
+  "cet_hash": "89d18ea108d45ece5b98e07e6f54b54b54c8b115e0610e58952328530e8e6801",
+  "boundary": "CET->Sarathi",
+  "validation_status": "rejected",
+  "decision": "reject",
+  "error_code": "ERR_CET_INNER_DECISION_INVALID",
+  "rejection_reason": "[ERR_TANTRA_SIGNATURE_INVALID] inner tantra.decision.v1 verification failed: ERR_TANTRA_SIGNATURE_INVALID: ed25519_provider: signature did not verify",
+  "fail_closed": true,
+  "provenance": "sarathi.enforcement_adapter@CET->Sarathi",
+  "timestamp_utc": "2026-06-18T13:52:43.147258Z"
+}

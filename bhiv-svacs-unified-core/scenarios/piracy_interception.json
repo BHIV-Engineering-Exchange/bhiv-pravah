@@ -1,0 +1,8 @@
+{
+  "scenario": "piracy_interception",
+  "noise": true,
+  "geo_layer": true,
+  "ambiguity": true,
+  "expected_outcome": "THREAT_IDENTIFIED",
+  "replay_proof": true
+}

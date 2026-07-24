@@ -1,0 +1,32 @@
+{
+  "text": "नमस्ते भारत। आज एक सुंदर दिन है।",
+  "analysis_type": "comprehensive",
+  "options": {
+    "include_transliteration": true,
+    "include_translation": true,
+    "include_grammar_analysis": true,
+    "include_word_breakdown": true,
+    "include_etymology": false,
+    "output_format": "detailed"
+  },
+  "context": {
+    "domain": "general",
+    "period": "modern",
+    "dialect": "standard"
+  },
+  "additional_texts": [
+    {
+      "text": "धर्मो रक्षति रक्षितः",
+      "context": "philosophical"
+    },
+    {
+      "text": "सत्यमेव जयते",
+      "context": "motto"
+    }
+  ],
+  "user_preferences": {
+    "transliteration_scheme": "IAST",
+    "translation_language": "english",
+    "detail_level": "intermediate"
+  }
+}

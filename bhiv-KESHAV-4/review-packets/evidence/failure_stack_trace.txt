@@ -1,0 +1,27 @@
+Traceback (most recent call last):
+  File "C:\rajaryan\KESHAV-4\app\engine.py", line 46, in compute_dependency_output
+    valid_input = PropagationInput.model_validate(input_data)
+  File "C:\Users\pc\AppData\Roaming\Python\Python313\site-packages\pydantic\main.py", line 705, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        obj, strict=strict, from_attributes=from_attributes, context=context, by_alias=by_alias, by_name=by_name
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for PropagationInput
+timestamp
+  Field required [type=missing, input_value={'blocked_task_id': 'T1',..._graph': {'RC': ['T1']}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\rajaryan\KESHAV-4\shared_tests\test_failure_visibility.py", line 16, in test_schema_mismatch
+    PropagationEngine.compute_dependency_output(invalid_input)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\rajaryan\KESHAV-4\app\engine.py", line 48, in compute_dependency_output
+    raise PropagationContractViolation("SCHEMA_MISMATCH", f"Input validation failed: {str(e)}")
+shared_schemas.schemas.PropagationContractViolation: SCHEMA_MISMATCH: Input validation failed: 1 validation error for PropagationInput
+timestamp
+  Field required [type=missing, input_value={'blocked_task_id': 'T1',..._graph': {'RC': ['T1']}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing

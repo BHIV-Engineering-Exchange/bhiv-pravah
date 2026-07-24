@@ -1,0 +1,41 @@
+{
+    "execution_id": "exec_0c2c50f9",
+    "trace_id": "trace_9877056b",
+    "contract_version": "v1.0",
+    "timestamp": "2026-05-11 04:10:00.128779",
+    "previous_hash": "d33db0146bfa145aac8e3ec0105ed5f1434c4a2701640c9bc34bf657405a05d6",
+    "current_hash": "dcfed3c9427bb3ebe63ccc34c3619768a91fba79f11aeb2f61fae0b92aae016d",
+    "signal_chunk": {
+        "signal_type": "VESSEL_ALERT",
+        "signal_strength": "HIGH"
+    },
+    "perception_event": {
+        "detected": true,
+        "source_signal": {
+            "signal_type": "VESSEL_ALERT",
+            "signal_strength": "HIGH"
+        }
+    },
+    "intelligence_event": {
+        "risk_level": "LOW",
+        "analysis": "Potential anomaly detected",
+        "source_perception": {
+            "detected": true,
+            "source_signal": {
+                "signal_type": "VESSEL_ALERT",
+                "signal_strength": "HIGH"
+            }
+        }
+    },
+    "state_event": {
+        "state": "ALERT",
+        "risk_level": "LOW"
+    },
+    "rajya_verdict": {
+        "status": "APPROVED",
+        "reason": "Validation successful"
+    },
+    "sarathi_token": {
+        "token": "fake_token"
+    }
+}

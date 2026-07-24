@@ -1,0 +1,68 @@
+/* App-specific styles */
+.app {
+  min-height: 100vh;
+}
+
+/* Default theme initialization */
+:root {
+  --bg-primary: #f0f4ff;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f8faff;
+  --bg-card: #ffffff;
+  --text-primary: #2d3748;
+  --text-secondary: #4a5568;
+  --text-muted: #718096;
+  --border-color: #e2e8f0;
+  --border-light: #edf2f7;
+  --shadow: rgba(99, 102, 241, 0.08);
+  --shadow-lg: rgba(99, 102, 241, 0.15);
+  --hover-bg: rgba(99, 102, 241, 0.08);
+  --nav-hover: rgba(99, 102, 241, 0.1);
+  --nav-active-bg: rgba(99, 102, 241, 0.15);
+  --toggle-bg: #e9ecef;
+  --toggle-border: #dee2e6;
+  --toggle-slider-bg: #ffffff;
+
+  /* Vibrant color palette */
+  --primary-color: #6366f1;
+  --primary-hover: #5b21b6;
+  --success-color: #10b981;
+  --success-hover: #059669;
+  --warning-color: #f59e0b;
+  --warning-hover: #d97706;
+  --danger-color: #ef4444;
+  --danger-hover: #dc2626;
+  --info-color: #3b82f6;
+  --info-hover: #2563eb;
+
+  /* Border radius for smooth rounded corners */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+}
+
+/* Smooth transitions and enhanced styling */
+* {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-hover);
+}

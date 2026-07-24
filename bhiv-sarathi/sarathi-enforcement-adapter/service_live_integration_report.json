@@ -1,0 +1,99 @@
+{
+  "schema_version": "sarathi.service-live/v14.9",
+  "generated_at": "2026-05-01T08:01:34.8879793Z",
+  "listen_addr": "127.0.0.1:62174",
+  "tls_enabled": false,
+  "scenarios": [
+    {
+      "name": "health_ok",
+      "method": "GET",
+      "path": "/health",
+      "expected_status": 200,
+      "observed_status": 200,
+      "expect_hint": "bridge_active=true, status=healthy",
+      "detail": "bridge_active=true",
+      "passed": true,
+      "latency_ms": 1
+    },
+    {
+      "name": "missing_api_key",
+      "method": "POST",
+      "path": "/v1/enforce",
+      "expected_status": 401,
+      "observed_status": 401,
+      "expect_hint": "MISSING_API_KEY",
+      "detail": "rejected as expected",
+      "passed": true,
+      "latency_ms": 1
+    },
+    {
+      "name": "wrong_api_key",
+      "method": "POST",
+      "path": "/v1/enforce",
+      "expected_status": 403,
+      "observed_status": 403,
+      "expect_hint": "INVALID_API_KEY → DENY",
+      "detail": "rejected with 403",
+      "passed": true,
+      "latency_ms": 1
+    },
+    {
+      "name": "valid_enforce",
+      "method": "POST",
+      "path": "/v1/enforce",
+      "expected_status": 200,
+      "observed_status": 403,
+      "expect_hint": "200 ALLOW or 403 DENY with full canonical contract",
+      "detail": "verdict=DENY schema=sarathi.response/v13.0",
+      "passed": true,
+      "latency_ms": 1
+    },
+    {
+      "name": "malformed_body",
+      "method": "POST",
+      "path": "/v1/enforce",
+      "expected_status": 400,
+      "observed_status": 400,
+      "expect_hint": "INVALID_REQUEST_BODY",
+      "detail": "rejected with 400",
+      "passed": true,
+      "latency_ms": 1
+    },
+    {
+      "name": "oversized_body",
+      "method": "POST",
+      "path": "/v1/enforce",
+      "expected_status": 400,
+      "observed_status": 400,
+      "expect_hint": "MaxBytesReader trips INVALID_REQUEST_BODY",
+      "detail": "rejected with 400",
+      "passed": true,
+      "latency_ms": 5
+    },
+    {
+      "name": "rate_limit_burst",
+      "method": "POST",
+      "path": "/v1/enforce",
+      "expected_status": 429,
+      "observed_status": 429,
+      "expect_hint": "burst of 30 under RPS=5/burst=5 =\u003e at least one 429",
+      "detail": "rate limiter fired at least once",
+      "passed": true,
+      "latency_ms": 2
+    },
+    {
+      "name": "metrics_ok",
+      "method": "GET",
+      "path": "/metrics",
+      "expected_status": 200,
+      "observed_status": 200,
+      "expect_hint": "http.total_requests \u003e 0",
+      "detail": "http.total_requests=10",
+      "passed": true,
+      "latency_ms": 0
+    }
+  ],
+  "scenarios_total": 8,
+  "scenarios_passed": 8,
+  "gate_satisfied": true
+}

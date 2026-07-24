@@ -1,0 +1,7 @@
+{
+  "status": "PASSED",
+  "executive_zone": true,
+  "sensor_fusion_zone": true,
+  "lineage_zone": true,
+  "intelligence_zone": true
+}

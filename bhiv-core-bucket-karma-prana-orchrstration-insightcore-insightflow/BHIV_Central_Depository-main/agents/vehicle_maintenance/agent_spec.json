@@ -1,0 +1,103 @@
+{
+    "name": "vehicle_maintenance",
+    "domains": ["automotive", "maintenance"],
+    "module_path": "agents.vehicle_maintenance.vehicle_maintenance",
+    "capabilities": {
+        "chainable": true,
+        "memory_access": true
+    },
+    "input_schema": {
+        "required": ["vehicle_info"],
+        "properties": {
+            "vehicle_info": {
+                "type": "object",
+                "properties": {
+                    "make": {"type": "string"},
+                    "model": {"type": "string"},
+                    "year": {"type": "integer"},
+                    "mileage": {"type": "integer"},
+                    "last_service_date": {"type": "string", "format": "date"},
+                    "service_history": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "date": {"type": "string", "format": "date"},
+                                "service_type": {"type": "string"},
+                                "mileage": {"type": "integer"}
+                            }
+                        }
+                    }
+                },
+                "required": ["make", "model", "year", "mileage"]
+            }
+        }
+    },
+    "output_schema": {
+        "properties": {
+            "maintenance_schedule": {
+                "type": "object",
+                "properties": {
+                    "upcoming_services": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "service_type": {"type": "string"},
+                                "due_mileage": {"type": "integer"},
+                                "due_date": {"type": "string", "format": "date"},
+                                "priority": {"type": "string", "enum": ["low", "medium", "high", "urgent"]},
+                                "estimated_cost": {"type": "number"}
+                            }
+                        }
+                    },
+                    "overdue_services": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "service_type": {"type": "string"},
+                                "overdue_by_miles": {"type": "integer"},
+                                "overdue_by_days": {"type": "integer"},
+                                "priority": {"type": "string"},
+                                "estimated_cost": {"type": "number"}
+                            }
+                        }
+                    },
+                    "total_estimated_cost": {"type": "number"}
+                }
+            }
+        }
+    },
+    "sample_input": {
+        "vehicle_info": {
+            "make": "Toyota",
+            "model": "Camry",
+            "year": 2020,
+            "mileage": 45000,
+            "last_service_date": "2024-01-15",
+            "service_history": [
+                {
+                    "date": "2024-01-15",
+                    "service_type": "oil_change",
+                    "mileage": 42000
+                }
+            ]
+        }
+    },
+    "sample_output": {
+        "maintenance_schedule": {
+            "upcoming_services": [
+                {
+                    "service_type": "oil_change",
+                    "due_mileage": 48000,
+                    "due_date": "2024-07-15",
+                    "priority": "medium",
+                    "estimated_cost": 75.0
+                }
+            ],
+            "overdue_services": [],
+            "total_estimated_cost": 75.0
+        }
+    }
+}

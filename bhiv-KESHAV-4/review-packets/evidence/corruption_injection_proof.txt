@@ -1,0 +1,42 @@
+Corruption-Injection Replay Proof
+==================================================
+Baseline hash: e5655da819caab98ba5a228b021ece779a7cb9affd3b6d16c48519c07b8256da
+Post-corruption hash: e5655da819caab98ba5a228b021ece779a7cb9affd3b6d16c48519c07b8256da
+State polluted: False
+
+Corruption attempts:
+  [null_graph] Rejected: True | PropagationContractViolation: SCHEMA_MISMATCH: Input validation failed: 1 validation error for PropagationInput
+dependency_graph
+ 
+  [string_graph] Rejected: True | PropagationContractViolation: SCHEMA_MISMATCH: Input validation failed: 1 validation error for PropagationInput
+dependency_graph
+ 
+  [missing_trace_id] Rejected: True | PropagationContractViolation: SCHEMA_MISMATCH: Input validation failed: 1 validation error for PropagationInput
+trace_id
+  Field r
+  [empty_blocked_task] Rejected: True | PropagationContractViolation: SCHEMA_MISMATCH: Input validation failed: 1 validation error for PropagationInput
+blocked_task_id
+  
+  [extra_field] Rejected: True | PropagationContractViolation: SCHEMA_MISMATCH: Input validation failed: 1 validation error for PropagationInput
+injected_malware
+ 
+  [wrong_type_trace] Rejected: True | PropagationContractViolation: SCHEMA_MISMATCH: Input validation failed: 1 validation error for PropagationInput
+trace_id
+  Input s
+
+Post-corruption output:
+{
+  "blocked_task_id": "T1",
+  "root_cause": "RC",
+  "impacted_tasks": [
+    "T4",
+    "T5",
+    "T8",
+    "T10"
+  ],
+  "impact_score": 4,
+  "severity": "MEDIUM",
+  "resolution_signal": "UNBLOCK_DEPENDENCY:RC",
+  "trace_id": "trace-replay-hardening-001",
+  "timestamp": "2026-05-22T12:00:00Z"
+}

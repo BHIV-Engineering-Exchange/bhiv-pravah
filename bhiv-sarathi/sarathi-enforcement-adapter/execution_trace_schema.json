@@ -1,0 +1,231 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bhiv.sarathi/execution-trace/v2.2",
+  "title": "Sarathi Execution Trace Schema",
+  "description": "Standardized schema for execution trace records produced by the Sarathi Governance Kernel. This schema defines the integration contract for external systems (InsightFlow, Audit, Compliance) consuming enforcement and execution data.",
+  "version": "2.2",
+  "type": "object",
+  "required": ["request", "enforcement", "execution"],
+  "properties": {
+    "request": {
+      "type": "object",
+      "description": "The original execution request — immutable after creation",
+      "required": ["agent_id", "resource_id", "action", "correlation_id", "request_hash"],
+      "properties": {
+        "agent_id": {
+          "type": "string",
+          "description": "Unique identifier of the requesting AI agent",
+          "pattern": "^[a-zA-Z0-9._-]+$",
+          "maxLength": 256
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Unique identifier of the target resource",
+          "pattern": "^[a-zA-Z0-9._-]+$",
+          "maxLength": 256
+        },
+        "action": {
+          "type": "string",
+          "description": "The requested action",
+          "enum": ["read", "write", "execute", "delete"]
+        },
+        "correlation_id": {
+          "type": "string",
+          "description": "Unique correlation identifier for end-to-end tracing"
+        },
+        "policy_version": {
+          "type": "string",
+          "description": "Requested policy version (optional — empty means use active)"
+        },
+        "request_hash": {
+          "type": "string",
+          "description": "SHA-256 hash of canonical request fields — immutable binding",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "is_valid": {
+          "type": "boolean",
+          "description": "Whether the request passed pre-PDP input validation"
+        }
+      }
+    },
+    "enforcement": {
+      "type": "object",
+      "description": "The enforcement adapter's decision record — hash-chained and immutable",
+      "required": ["verdict", "enforcement_hash", "enforcement_nonce", "enforcement_stage"],
+      "properties": {
+        "verdict": {
+          "type": "string",
+          "description": "The PDP verdict",
+          "enum": ["ALLOW", "DENY", "ESCALATE"]
+        },
+        "decision_id": {
+          "type": "string",
+          "description": "Unique PDP decision identifier (empty for pre-PDP rejections)"
+        },
+        "enforcement_hash": {
+          "type": "string",
+          "description": "SHA-256 enforcement chain hash — unique per evaluation due to UUID4 nonce",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "enforcement_nonce": {
+          "type": "string",
+          "description": "UUID4 nonce ensuring hash uniqueness across identical requests"
+        },
+        "enforcement_stage": {
+          "type": "string",
+          "description": "Which enforcement stage produced this decision",
+          "enum": ["PRE_PDP_VALIDATION", "POLICY_VERSION_CHECK", "PDP_EVALUATED", "PDP_HASH_MISMATCH", "RATE_LIMITED"]
+        },
+        "enforcement_reason": {
+          "type": "string",
+          "description": "Human-readable reason for the enforcement decision"
+        },
+        "policy_version": {
+          "type": "string",
+          "description": "Policy version used for this decision"
+        },
+        "policy_hash": {
+          "type": "string",
+          "description": "SHA-256 hash of the policy used — binds decision to exact policy content",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "pdp_decision_hash": {
+          "type": "string",
+          "description": "SHA-256 hash of the PDP response for integrity verification"
+        },
+        "request_hash": {
+          "type": "string",
+          "description": "Echo of request_hash for cross-reference"
+        },
+        "determining_rules": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Rule IDs that determined this verdict"
+        },
+        "truth_classification": {
+          "type": "string",
+          "description": "Bell-LaPadula classification level of the matching truth"
+        },
+        "enforced_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp of enforcement"
+        },
+        "valid_until": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 TTL expiry timestamp (30s from enforced_at per NIST 800-207)"
+        },
+        "obligations": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Mandatory side-effects that must be discharged before execution"
+        },
+        "has_capability_token": {
+          "type": "boolean",
+          "description": "Whether a CapabilityToken was issued (true only for ALLOW)"
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "description": "The execution engine's result — standardized, deterministic output",
+      "required": ["executed", "execution_state"],
+      "properties": {
+        "executed": {
+          "type": "boolean",
+          "description": "Whether execution was permitted (true only for valid ALLOW + token)"
+        },
+        "execution_state": {
+          "type": "string",
+          "description": "Standardized execution outcome",
+          "enum": ["EXECUTION_PERMITTED", "EXECUTION_BLOCKED"]
+        },
+        "execution_sequence": {
+          "type": "integer",
+          "description": "Monotonic sequence number in execution chain"
+        },
+        "execution_hash": {
+          "type": "string",
+          "description": "SHA-256 hash of this execution record — links to execution chain",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "prev_execution_hash": {
+          "type": "string",
+          "description": "Hash of previous execution record — append-only chain linkage"
+        },
+        "enforcement_hash": {
+          "type": "string",
+          "description": "Enforcement hash that authorized this execution (from CapabilityToken)"
+        },
+        "token_id": {
+          "type": "string",
+          "description": "CapabilityToken ID used for this execution (present for ALLOW)"
+        },
+        "decision_id": {
+          "type": "string",
+          "description": "PDP decision ID (from token binding)"
+        },
+        "correlation_id": {
+          "type": "string",
+          "description": "Correlation ID for end-to-end tracing"
+        },
+        "block_reason": {
+          "type": "string",
+          "description": "Standardized block reason code (present only for EXECUTION_BLOCKED)",
+          "enum": [
+            "NO_TOKEN",
+            "INVALID_SIGNATURE",
+            "HASH_MISMATCH",
+            "TOKEN_EXPIRED",
+            "TOKEN_ALREADY_USED",
+            "REQUEST_HASH_MISMATCH",
+            "POLICY_MISMATCH",
+            "ENFORCEMENT_HASH_NOT_IN_CHAIN",
+            "EMPTY_ENFORCEMENT_HASH",
+            "ALLOW_WITHOUT_DECISION_ID",
+            "VERDICT_NOT_ALLOW",
+            "DECISION_EXPIRED",
+            "RATE_LIMIT_EXCEEDED",
+            "VALIDATION_FAILED",
+            "POLICY_VERSION_MISMATCH",
+            "ESCALATE_PENDING_REVIEW",
+            "TOKEN_INTEGRITY_FAILED",
+            "OBLIGATION_DISCHARGE_FAILED"
+          ]
+        },
+        "obligations_discharged": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Obligations discharged before execution was permitted"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp of execution attempt"
+        }
+      }
+    },
+    "capability_token": {
+      "type": "object",
+      "description": "The CapabilityToken that authorized execution (present for ALLOW only)",
+      "properties": {
+        "token_id": { "type": "string" },
+        "decision_id": { "type": "string" },
+        "request_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "policy_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "enforcement_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "correlation_id": { "type": "string" },
+        "verdict": { "type": "string", "enum": ["ALLOW"] },
+        "token_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "signer_key_id": { "type": "string" },
+        "signature_hex": { "type": "string", "pattern": "^[a-f0-9]{128}$" },
+        "is_signed": { "type": "boolean" },
+        "issued_at": { "type": "string", "format": "date-time" },
+        "expires_at": { "type": "string", "format": "date-time" },
+        "consumed": { "type": "boolean" }
+      }
+    }
+  },
+  "additionalProperties": false
+}

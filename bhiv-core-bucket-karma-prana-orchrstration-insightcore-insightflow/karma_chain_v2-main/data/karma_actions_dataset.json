@@ -1,0 +1,117 @@
+{
+  "karma_actions": [
+    {
+      "action": "helped_an_elderly_person_cross_the_street",
+      "karma_types": {
+        "DharmaPoints": 10,
+        "SevaPoints": 15
+      },
+      "description": "Helped an elderly person cross the street safely"
+    },
+    {
+      "action": "donated_to_charity",
+      "karma_types": {
+        "PunyaTokens": 50,
+        "Daan": {
+          "units": 1,
+          "severity": "minor"
+        }
+      },
+      "description": "Donated money to a recognized charity"
+    },
+    {
+      "action": "told_a_harmful_lie",
+      "karma_types": {
+        "PaapTokens": {
+          "severity": "minor",
+          "value": 5
+        }
+      },
+      "description": "Told a lie that caused minor harm"
+    },
+    {
+      "action": "practiced_meditation_daily_for_a_month",
+      "karma_types": {
+        "DridhaKarma": 20,
+        "Bhakti": {
+          "units": 1,
+          "severity": "minor"
+        }
+      },
+      "description": "Maintained a daily meditation practice for 30 days"
+    },
+    {
+      "action": "ignored_someone_in_need",
+      "karma_types": {
+        "AdridhaKarma": -10,
+        "PaapTokens": {
+          "severity": "minor",
+          "value": 3
+        }
+      },
+      "description": "Ignored someone who needed help"
+    },
+    {
+      "action": "completed_a_major_spiritual_retreat",
+      "karma_types": {
+        "SanchitaKarma": 100,
+        "Tap": {
+          "units": 1,
+          "severity": "medium"
+        },
+        "PunyaTokens": 75
+      },
+      "description": "Completed a 10-day spiritual retreat"
+    },
+    {
+      "action": "broke_a_significant_promise",
+      "karma_types": {
+        "PrarabdhaKarma": -50,
+        "PaapTokens": {
+          "severity": "medium",
+          "value": 25
+        },
+        "Rnanubandhan": {
+          "severity": "medium",
+          "value": 30
+        }
+      },
+      "description": "Broke a significant promise to a family member"
+    },
+    {
+      "action": "mentored_a_young_person",
+      "karma_types": {
+        "SevaPoints": 30,
+        "DridhaKarma": 15,
+        "Bhakti": {
+          "units": 1,
+          "severity": "medium"
+        }
+      },
+      "description": "Provided ongoing mentorship to a young person"
+    },
+    {
+      "action": "cheated_on_an_exam",
+      "karma_types": {
+        "PaapTokens": {
+          "severity": "medium",
+          "value": 40
+        },
+        "AdridhaKarma": -25
+      },
+      "description": "Cheated on an important examination"
+    },
+    {
+      "action": "resolved_a_long_standing_family_conflict",
+      "karma_types": {
+        "PunyaTokens": 100,
+        "Rnanubandhan": {
+          "severity": "major",
+          "value": -50
+        },
+        "DridhaKarma": 40
+      },
+      "description": "Successfully resolved a family conflict that had lasted years"
+    }
+  ]
+}

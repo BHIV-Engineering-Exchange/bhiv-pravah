@@ -1,0 +1,159 @@
+﻿+-------------------------------------------------------+
+|  SARATHI PDP -- DETERMINISTIC REPLAY CHECK             |
+|  Full Response Hash Verification (100 Test Cases)      |
++-------------------------------------------------------+
+
+PDP Instance 1: policy_hash=cb6dac30c16456a2...
+PDP Instance 2: policy_hash=cb6dac30c16456a2...
+Hash Match:     true
+Replay Mode:    ENABLED (no persistent trace mutation)
+Registry Match: true (agents: true, resources: true)
+
+================================================================
+FULL RESPONSE HASH PROOF (Test Case 1)
+This demonstrates that all 12 fields (including timestamp,
+decision_id, request_hash) are serialized and hashed together:
+================================================================
+{
+  "decision_id": "3b3b0828-8044-5eb1-9791-4d04f478e72b",
+  "verdict": "ALLOW",
+  "policy_version": "1.0.0",
+  "policy_hash": "cb6dac30c16456a2898bbcf30533b11170f2f6902449ce7daa9708b4b195ceb1",
+  "determining_rules": [
+    "AUTH-001"
+  ],
+  "truth_classification": "L4",
+  "request_hash": "3c767d863d32e9721b51ff33cd102783861e5222e421ef808826272802a9d431",
+  "timestamp": "2026-03-01T00:00:00.000000Z",
+  "reason": "EXPLICIT_ALLOW",
+  "agent_role": "governance_agent",
+  "resource_type": "policy_registry",
+  "stage_reached": 5
+}
+
+SHA256 Hash -> b1da48aad1bfe847e799a58170faf6d69da2ca6a29b55852bbc4d99d27026256
+================================================================
+
+Running 100 test cases through both PDP instances...
+
+#   Verdict1  Verdict2  VerdictOK    RulesOK      RespHashOK   StageOK    Status
+------------------------------------------------------------------------------------------
+1   ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+2   ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+3   ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+4   ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+5   ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+6   ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+7   ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+8   ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+9   ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+10  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+11  DENY      DENY      YES          YES          YES          YES        [PASS]
+12  DENY      DENY      YES          YES          YES          YES        [PASS]
+13  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+14  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+15  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+16  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+17  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+18  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+19  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+20  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+21  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+22  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+23  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+24  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+25  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+26  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+27  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+28  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+29  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+30  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+31  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+32  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+33  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+34  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+35  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+36  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+37  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+38  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+39  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+40  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+41  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+42  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+43  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+44  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+45  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+46  DENY      DENY      YES          YES          YES          YES        [PASS]
+47  DENY      DENY      YES          YES          YES          YES        [PASS]
+48  DENY      DENY      YES          YES          YES          YES        [PASS]
+49  DENY      DENY      YES          YES          YES          YES        [PASS]
+50  DENY      DENY      YES          YES          YES          YES        [PASS]
+51  DENY      DENY      YES          YES          YES          YES        [PASS]
+52  DENY      DENY      YES          YES          YES          YES        [PASS]
+53  DENY      DENY      YES          YES          YES          YES        [PASS]
+54  DENY      DENY      YES          YES          YES          YES        [PASS]
+55  DENY      DENY      YES          YES          YES          YES        [PASS]
+56  DENY      DENY      YES          YES          YES          YES        [PASS]
+57  DENY      DENY      YES          YES          YES          YES        [PASS]
+58  DENY      DENY      YES          YES          YES          YES        [PASS]
+59  DENY      DENY      YES          YES          YES          YES        [PASS]
+60  DENY      DENY      YES          YES          YES          YES        [PASS]
+61  DENY      DENY      YES          YES          YES          YES        [PASS]
+62  DENY      DENY      YES          YES          YES          YES        [PASS]
+63  DENY      DENY      YES          YES          YES          YES        [PASS]
+64  DENY      DENY      YES          YES          YES          YES        [PASS]
+65  DENY      DENY      YES          YES          YES          YES        [PASS]
+66  DENY      DENY      YES          YES          YES          YES        [PASS]
+67  DENY      DENY      YES          YES          YES          YES        [PASS]
+68  DENY      DENY      YES          YES          YES          YES        [PASS]
+69  DENY      DENY      YES          YES          YES          YES        [PASS]
+70  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+71  DENY      DENY      YES          YES          YES          YES        [PASS]
+72  DENY      DENY      YES          YES          YES          YES        [PASS]
+73  DENY      DENY      YES          YES          YES          YES        [PASS]
+74  DENY      DENY      YES          YES          YES          YES        [PASS]
+75  DENY      DENY      YES          YES          YES          YES        [PASS]
+76  DENY      DENY      YES          YES          YES          YES        [PASS]
+77  DENY      DENY      YES          YES          YES          YES        [PASS]
+78  DENY      DENY      YES          YES          YES          YES        [PASS]
+79  DENY      DENY      YES          YES          YES          YES        [PASS]
+80  DENY      DENY      YES          YES          YES          YES        [PASS]
+81  DENY      DENY      YES          YES          YES          YES        [PASS]
+82  DENY      DENY      YES          YES          YES          YES        [PASS]
+83  DENY      DENY      YES          YES          YES          YES        [PASS]
+84  DENY      DENY      YES          YES          YES          YES        [PASS]
+85  DENY      DENY      YES          YES          YES          YES        [PASS]
+86  DENY      DENY      YES          YES          YES          YES        [PASS]
+87  DENY      DENY      YES          YES          YES          YES        [PASS]
+88  DENY      DENY      YES          YES          YES          YES        [PASS]
+89  DENY      DENY      YES          YES          YES          YES        [PASS]
+90  DENY      DENY      YES          YES          YES          YES        [PASS]
+91  DENY      DENY      YES          YES          YES          YES        [PASS]
+92  DENY      DENY      YES          YES          YES          YES        [PASS]
+93  DENY      DENY      YES          YES          YES          YES        [PASS]
+94  DENY      DENY      YES          YES          YES          YES        [PASS]
+95  DENY      DENY      YES          YES          YES          YES        [PASS]
+96  DENY      DENY      YES          YES          YES          YES        [PASS]
+97  DENY      DENY      YES          YES          YES          YES        [PASS]
+98  DENY      DENY      YES          YES          YES          YES        [PASS]
+99  ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+100 ALLOW     ALLOW     YES          YES          YES          YES        [PASS]
+------------------------------------------------------------------------------------------
+
+============================================================
+  REPLAY TEST RESULTS
+============================================================
+  Total Requests:    100
+  Passed:            100
+  Failed:            0
+  Mismatch Rate:     0.00%
+  Policy Version:    1.0.0
+  Policy Hash:       cb6dac30c16456a2898bbcf30533b11170f2f6902449ce7daa9708b4b195ceb1
+  Replay Mode:       ENABLED
+
+  +=========================================+
+  |  REPLAY TEST: PASSED                    |
+  |  DETERMINISM: PROVEN                    |
+  |  Sarathi PDP produces identical results |
+  |  across independent instances.          |
+  +=========================================+

@@ -1,0 +1,100 @@
+{
+    "execution_id": "24dfeda1-a0a8-47fa-9281-ecc9f21490a8",
+    "trace_id": "e0753814-9ab3-494e-8541-7f6bc43a4827",
+    "timestamp": "2026-05-30T05:14:00.095788+00:00",
+    "pipeline": [
+        {
+            "stage": "SIGNAL",
+            "status": "COMPLETED",
+            "details": {
+                "signal_strength": 0.95,
+                "signal_source": "AIS_RUNTIME",
+                "signal_status": "VALID"
+            },
+            "timestamp": "2026-05-30T05:14:00.096679+00:00"
+        },
+        {
+            "stage": "GEO",
+            "status": "COMPLETED",
+            "details": {
+                "latitude": 19.076,
+                "longitude": 72.8777,
+                "geo_validation": true
+            },
+            "timestamp": "2026-05-30T05:14:00.098964+00:00"
+        },
+        {
+            "stage": "PERCEPTION",
+            "status": "COMPLETED",
+            "details": {
+                "vessel_detected": true,
+                "vessel_class": "Cargo",
+                "threat_detected": false
+            },
+            "timestamp": "2026-05-30T05:14:00.101004+00:00"
+        },
+        {
+            "stage": "INTELLIGENCE",
+            "status": "COMPLETED",
+            "details": {
+                "risk_score": 0.14,
+                "anomaly_detected": false,
+                "recommendation": "MONITOR"
+            },
+            "timestamp": "2026-05-30T05:14:00.102976+00:00"
+        },
+        {
+            "stage": "STATE",
+            "status": "COMPLETED",
+            "details": {
+                "state_status": "ACTIVE",
+                "deterministic_state": true
+            },
+            "timestamp": "2026-05-30T05:14:00.105526+00:00"
+        },
+        {
+            "stage": "BUCKET",
+            "status": "COMPLETED",
+            "details": {
+                "bucket_upload": true,
+                "bucket_response": {
+                    "success": true,
+                    "artifact_id": "4c4185c1-b709-4724-86a3-2382d341d10b",
+                    "hash": "8cb7c5f76fb33d24ef58f926e8e1623fd3af09d17e2d2e9a1be30dc13adfa5ba",
+                    "parent_hash": "a55ec0806ebdb8872f8207a990a9eefa6d3dbc6821fcf8d8600fc46568f57a9c",
+                    "timestamp": "2026-05-30T05:14:01.470255+00:00",
+                    "storage_type": "append_only",
+                    "message": "Artifact stored successfully in append-only log"
+                }
+            },
+            "timestamp": "2026-05-30T05:14:16.304381+00:00"
+        },
+        {
+            "stage": "REPLAY",
+            "status": "COMPLETED",
+            "details": {
+                "replay_status": "VERIFIED",
+                "deterministic_replay": true
+            },
+            "timestamp": "2026-05-30T05:14:16.314774+00:00"
+        },
+        {
+            "stage": "OBSERVABILITY",
+            "status": "COMPLETED",
+            "details": {
+                "telemetry_visible": true,
+                "trace_visible": true
+            },
+            "timestamp": "2026-05-30T05:14:16.320284+00:00"
+        },
+        {
+            "stage": "DASHBOARD",
+            "status": "COMPLETED",
+            "details": {
+                "dashboard_visibility": true,
+                "observability_safe": true
+            },
+            "timestamp": "2026-05-30T05:14:16.328927+00:00"
+        }
+    ]
+}

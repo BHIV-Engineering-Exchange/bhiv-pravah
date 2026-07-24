@@ -1,0 +1,29 @@
+{
+  "trace_id": "TRACE_001",
+  "observation": {
+    "source": "AIS",
+    "mmsi": "419123456",
+    "vessel_name": "MV DEMO VESSEL"
+  },
+  "flow": [
+    "Guptchar",
+    "Maritime Knowledge",
+    "Sensor Fusion",
+    "Vessel Intelligence",
+    "SVACS Runtime",
+    "NICAI Runtime",
+    "Dashboard"
+  ],
+  "classification": {
+    "candidate": "Destroyer",
+    "confidence": 0.88
+  },
+  "evidence_chain": [
+    "AIS Metadata Match",
+    "Jane Registry Match",
+    "Sensor Fusion Validation",
+    "Vessel Intelligence Classification"
+  ],
+  "lineage_source": "Jane Registry",
+  "status": "VERIFIED"
+}

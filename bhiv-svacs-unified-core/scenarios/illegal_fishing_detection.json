@@ -1,0 +1,29 @@
+{
+  "scenario_id": "SCENARIO_ILLEGAL_FISHING_001",
+  "scenario_name": "illegal_fishing_detection",
+  "region": "Arabian Sea",
+  "timestamp": "2026-05-21T09:00:00Z",
+  "geo_layer": {
+    "latitude": 19.0760,
+    "longitude": 72.8777,
+    "spatial_uncertainty": "LOW",
+    "coordinate_confidence": "HIGH"
+  },
+  "signals": [
+    {
+      "signal_type": "AIS",
+      "value": "Fishing vessel detected in restricted maritime zone"
+    },
+    {
+      "signal_type": "RADAR",
+      "value": "Low-speed vessel movement pattern"
+    }
+  ],
+  "noise": {
+    "weather_interference": "LOW",
+    "sensor_noise": "MEDIUM"
+  },
+  "operational_ambiguity": "Possible illegal fishing or navigation drift",
+  "expected_intelligence_outcome": "Flag vessel for maritime authority review",
+  "replay_reconstruction_proof": true
+}

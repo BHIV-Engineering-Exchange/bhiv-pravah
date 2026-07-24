@@ -1,0 +1,39 @@
+```json id="rnsl6x"
+{
+  "scenario_id": "SCENARIO_SMUGGLING_ROUTE_001",
+  "scenario_name": "smuggling_route_anomaly",
+  "region": "Arabian Sea Trade Corridor",
+  "timestamp": "2026-05-21T14:15:00Z",
+  "geo_layer": {
+    "latitude": 18.5204,
+    "longitude": 72.8567,
+    "spatial_uncertainty": "MEDIUM",
+    "coordinate_confidence": "HIGH"
+  },
+  "signals": [
+    {
+      "signal_type": "AIS",
+      "value": "Cargo vessel deviated from approved shipping corridor"
+    },
+    {
+      "signal_type": "SATELLITE",
+      "value": "Unscheduled nighttime stop detected"
+    },
+    {
+      "signal_type": "PORT_REGISTRY",
+      "value": "Manifest inconsistency detected"
+    }
+  ],
+  "noise": {
+    "weather_interference": "LOW",
+    "signal_delay": "MEDIUM"
+  },
+  "operational_ambiguity": "Possible smuggling activity or unauthorized route deviation",
+  "expected_intelligence_outcome": "Trigger anomaly investigation and maritime inspection review",
+  "replay_reconstruction_proof": {
+    "deterministic_replay": true,
+    "trace_continuity": true,
+    "lineage_preserved": true
+  }
+}
+```

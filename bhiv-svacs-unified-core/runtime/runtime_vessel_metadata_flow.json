@@ -1,0 +1,74 @@
+[
+  {
+    "trace_id": "16a1d8f0-e1d8-4898-b6dd-7fbbd1ff6d8a",
+    "mmsi": "368140160",
+    "vessel_name": "Vessel_060",
+    "vessel_class": "Corvette",
+    "nation": "USA",
+    "propulsion": "Diesel Electric",
+    "speed": 0.0
+  },
+  {
+    "trace_id": "79bbf5fe-b66a-485c-8d47-3aa7a6b3c492",
+    "mmsi": "366941830",
+    "vessel_name": "Vessel_030",
+    "vessel_class": "Aircraft Carrier",
+    "nation": "USA",
+    "propulsion": "Nuclear",
+    "speed": 0.0
+  },
+  {
+    "trace_id": "7acc174b-891f-47a0-9ee8-3e90778675f5",
+    "mmsi": "316005971",
+    "vessel_name": "Vessel_071",
+    "vessel_class": "Patrol Vessel",
+    "nation": "Germany",
+    "propulsion": "Gas Turbine",
+    "speed": 2.4
+  },
+  {
+    "trace_id": "8d514410-1d0a-46be-8ddd-0459bff1cc78",
+    "mmsi": "316004054",
+    "vessel_name": "Vessel_054",
+    "vessel_class": "Corvette",
+    "nation": "USA",
+    "propulsion": "Nuclear",
+    "speed": 0.3
+  },
+  {
+    "trace_id": "50f77d7f-48d1-44f4-982d-aa4cd1600c07",
+    "mmsi": "366863870",
+    "vessel_name": "Vessel_070",
+    "vessel_class": "Frigate",
+    "nation": "France",
+    "propulsion": "Nuclear",
+    "speed": 0.0
+  },
+  {
+    "trace_id": "15133f1e-12cc-4695-a68b-5946b7a8568f",
+    "mmsi": "368118150",
+    "vessel_name": "Vessel_050",
+    "vessel_class": "Patrol Vessel",
+    "nation": "Japan",
+    "propulsion": "Gas Turbine",
+    "speed": 0.0
+  },
+  {
+    "trace_id": "0ed593ae-711f-4b24-9bde-b047a000e977",
+    "mmsi": "338379253",
+    "vessel_name": "Vessel_053",
+    "vessel_class": "Submarine",
+    "nation": "France",
+    "propulsion": "Nuclear",
+    "speed": 0.0
+  },
+  {
+    "trace_id": "2d10bde5-172a-4ea1-882f-229f5268bd59",
+    "mmsi": "368195460",
+    "vessel_name": "Vessel_060",
+    "vessel_class": "Corvette",
+    "nation": "USA",
+    "propulsion": "Diesel Electric",
+    "speed": 4.7
+  }
+]

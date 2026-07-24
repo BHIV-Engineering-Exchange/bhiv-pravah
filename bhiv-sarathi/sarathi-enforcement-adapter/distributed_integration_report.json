@@ -1,0 +1,644 @@
+{
+  "schema_version": "sarathi.distributed/v14.8",
+  "generated_at": "2026-05-01T08:01:34.2574164Z",
+  "target_executions": 10,
+  "topology": {
+    "mode": "loopback",
+    "sarathi_advertise_host": "127.0.0.1",
+    "sarathi_ack_addr": "127.0.0.1:62089",
+    "peers": {
+      "bucket": {
+        "peer_kind": "bucket",
+        "url": "http://127.0.0.1:62092",
+        "samples": 5,
+        "rtt_p50_ms": 1,
+        "rtt_p99_ms": 2,
+        "rtt_max_ms": 2,
+        "clock_skew_ms": -149,
+        "clock_skew_mean_ms": 0,
+        "reachable": true
+      },
+      "core": {
+        "peer_kind": "core",
+        "url": "http://127.0.0.1:62090",
+        "samples": 5,
+        "rtt_p50_ms": 1,
+        "rtt_p99_ms": 2,
+        "rtt_max_ms": 2,
+        "clock_skew_ms": -163,
+        "clock_skew_mean_ms": 0,
+        "reachable": true
+      },
+      "insightflow": {
+        "peer_kind": "insightflow",
+        "url": "http://127.0.0.1:62091",
+        "samples": 5,
+        "rtt_p50_ms": 1,
+        "rtt_p99_ms": 2,
+        "rtt_max_ms": 2,
+        "clock_skew_ms": -155,
+        "clock_skew_mean_ms": 0,
+        "reachable": true
+      }
+    }
+  },
+  "verified_gate_count": 10,
+  "bucket_readback_matches": 10,
+  "failures": 0,
+  "gate_satisfied": true,
+  "byte_identity_proof": {
+    "response_hash_set": [
+      "3b0aa4a76e664e4725670fe3458f0b060af1c86b3850a7c1e362fc07559a1b38",
+      "fd44180da2e8c20dcd12adb70bc11d8ce2303e7dfec49b27f383ff814640d068",
+      "8b1426a98cfe2dae2d2688a9dbbc1f83973a0b16be4c260bd1bdfd9a18d399d7",
+      "4587b5ce072c162cd3b33bcafd39c13d55446e6ebae48290f0db410c69356744",
+      "9633e76a770d94fe8c3758e8fb36402657c708a25bcb59b119b5d65176384203",
+      "47bec385cf4b4967f345ae6adeaa3e10fc9509284ec85451f7b6df6b7b94af58",
+      "036c0bd3b6dc99ad2148b0803a6855d96a135938e84d08aab57ee31f46237feb",
+      "bc987905cb3aaf2c4a511fb5093b2b5863e4775377c588ecb3cb70c2696cc8fa",
+      "20903d9eee3545c0b53bd3b5b21e7fca30e6820cd54eace48e7a003ad89515bb",
+      "9299cb83d9b656e82333bfe571641de0c8839634d0304273204ff8263ba2b261"
+    ],
+    "response_hash_set_size": 10,
+    "chain_binding_set": [
+      "stable"
+    ],
+    "chain_binding_set_size": 1,
+    "unique_decision_ids": 10
+  },
+  "records": [
+    {
+      "execution_id": "EXEC-DIST-0001",
+      "decision_id": "DEC-DIST-0001",
+      "response_hash": "8b1426a98cfe2dae2d2688a9dbbc1f83973a0b16be4c260bd1bdfd9a18d399d7",
+      "bucket_hash": "8b1426a98cfe2dae2d2688a9dbbc1f83973a0b16be4c260bd1bdfd9a18d399d7",
+      "match": true,
+      "gate_summary": {
+        "execution_id": "EXEC-DIST-0001",
+        "decision_id": "DEC-DIST-0001",
+        "response_hash": "8b1426a98cfe2dae2d2688a9dbbc1f83973a0b16be4c260bd1bdfd9a18d399d7",
+        "satisfied": true,
+        "created_at": "2026-05-01T08:01:34.4482235Z",
+        "resolved_at": "2026-05-01T08:01:34.4568146Z",
+        "elapsed_ms": 8,
+        "receipts": {
+          "bucket": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "bucket",
+            "execution_id": "EXEC-DIST-0001",
+            "decision_id": "DEC-DIST-0001",
+            "response_hash": "8b1426a98cfe2dae2d2688a9dbbc1f83973a0b16be4c260bd1bdfd9a18d399d7",
+            "received_body_hash": "8b1426a98cfe2dae2d2688a9dbbc1f83973a0b16be4c260bd1bdfd9a18d399d7",
+            "chain_binding_hash": "bcfdb89174dc90a2794539d2ca030d77c3455bcae97c0f06bb1f23a02fa7fbe1",
+            "persisted_at": "2026-05-01T08:01:34.4557671Z",
+            "storage_path": "live\\bucket\\DEC-DIST-0001.json",
+            "peer_public_key_hex": "06dcde58d2bfaadad88e429778e82a5826992cc62c3dc8d602a8f5686aae5117",
+            "receipt_signature": "9e47f743b5d37beff2c2e757d8387617772ff07e68142b9c2f9285edadc97ed2786df77362bf5ec310cac1b3929359edad3d1f119aeeb002356942867e29d707"
+          },
+          "core": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "core",
+            "execution_id": "EXEC-DIST-0001",
+            "decision_id": "DEC-DIST-0001",
+            "response_hash": "8b1426a98cfe2dae2d2688a9dbbc1f83973a0b16be4c260bd1bdfd9a18d399d7",
+            "received_body_hash": "8b1426a98cfe2dae2d2688a9dbbc1f83973a0b16be4c260bd1bdfd9a18d399d7",
+            "chain_binding_hash": "bcfdb89174dc90a2794539d2ca030d77c3455bcae97c0f06bb1f23a02fa7fbe1",
+            "persisted_at": "2026-05-01T08:01:34.4511413Z",
+            "storage_path": "live\\core\\core.jsonl#offset=0",
+            "peer_public_key_hex": "36c3be87e73a9c7883c6d85b6450f293cb44f98d0a2adf09b36d2d6daef4fdc1",
+            "receipt_signature": "2dbb55323f602f076563f99c050538ec90a3ea825408baa67f79b3ef95722ec00eb7dbc123b2252b3a60724b94c6a5531b75b8442a1c2fa9f6d1e75c5d1fc705"
+          },
+          "insightflow": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "insightflow",
+            "execution_id": "EXEC-DIST-0001",
+            "decision_id": "DEC-DIST-0001",
+            "response_hash": "8b1426a98cfe2dae2d2688a9dbbc1f83973a0b16be4c260bd1bdfd9a18d399d7",
+            "received_body_hash": "8b1426a98cfe2dae2d2688a9dbbc1f83973a0b16be4c260bd1bdfd9a18d399d7",
+            "chain_binding_hash": "bcfdb89174dc90a2794539d2ca030d77c3455bcae97c0f06bb1f23a02fa7fbe1",
+            "persisted_at": "2026-05-01T08:01:34.4532112Z",
+            "storage_path": "live\\insightflow\\insightflow.jsonl#offset=0",
+            "peer_public_key_hex": "4862df7b5797cb30ff25f411849aa79eae313a7bd1b2cac45e7467019a8e0dcb",
+            "receipt_signature": "437ba630835aff6075ef74f695221c6f745693f4e0b7bb800a4eb4f9206105a6de218d76acaf227efc5b7c598170438fc4c44a02aa0daf01a6c6d29fc0af750d"
+          }
+        }
+      }
+    },
+    {
+      "execution_id": "EXEC-DIST-0002",
+      "decision_id": "DEC-DIST-0002",
+      "response_hash": "bc987905cb3aaf2c4a511fb5093b2b5863e4775377c588ecb3cb70c2696cc8fa",
+      "bucket_hash": "bc987905cb3aaf2c4a511fb5093b2b5863e4775377c588ecb3cb70c2696cc8fa",
+      "match": true,
+      "gate_summary": {
+        "execution_id": "EXEC-DIST-0002",
+        "decision_id": "DEC-DIST-0002",
+        "response_hash": "bc987905cb3aaf2c4a511fb5093b2b5863e4775377c588ecb3cb70c2696cc8fa",
+        "satisfied": true,
+        "created_at": "2026-05-01T08:01:34.4811881Z",
+        "resolved_at": "2026-05-01T08:01:34.4969385Z",
+        "elapsed_ms": 15,
+        "receipts": {
+          "bucket": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "bucket",
+            "execution_id": "EXEC-DIST-0002",
+            "decision_id": "DEC-DIST-0002",
+            "response_hash": "bc987905cb3aaf2c4a511fb5093b2b5863e4775377c588ecb3cb70c2696cc8fa",
+            "received_body_hash": "bc987905cb3aaf2c4a511fb5093b2b5863e4775377c588ecb3cb70c2696cc8fa",
+            "chain_binding_hash": "63c32f8c39dfea309104a3db49acd4c1d1311b413c062873db2d7ad92029985b",
+            "persisted_at": "2026-05-01T08:01:34.4929351Z",
+            "storage_path": "live\\bucket\\DEC-DIST-0002.json",
+            "peer_public_key_hex": "06dcde58d2bfaadad88e429778e82a5826992cc62c3dc8d602a8f5686aae5117",
+            "receipt_signature": "db255d0750f6e6a0d34fe60d2492cbeaa9d94288f1e1419a0fe685385643b2f808d7702e41693e91ae9acaee24fb3d512e701ac5a464e270c17d4b563a42100f"
+          },
+          "core": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "core",
+            "execution_id": "EXEC-DIST-0002",
+            "decision_id": "DEC-DIST-0002",
+            "response_hash": "bc987905cb3aaf2c4a511fb5093b2b5863e4775377c588ecb3cb70c2696cc8fa",
+            "received_body_hash": "bc987905cb3aaf2c4a511fb5093b2b5863e4775377c588ecb3cb70c2696cc8fa",
+            "chain_binding_hash": "63c32f8c39dfea309104a3db49acd4c1d1311b413c062873db2d7ad92029985b",
+            "persisted_at": "2026-05-01T08:01:34.4850072Z",
+            "storage_path": "live\\core\\core.jsonl#offset=4220",
+            "peer_public_key_hex": "36c3be87e73a9c7883c6d85b6450f293cb44f98d0a2adf09b36d2d6daef4fdc1",
+            "receipt_signature": "2a06eb88c8916ef8e320d73c6b9c82d44d367d6fc2bd5b0c846ec93b37aa136120128544b044601b4c5142624920e7da926b2e7852cdc3099647ec6589aff30f"
+          },
+          "insightflow": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "insightflow",
+            "execution_id": "EXEC-DIST-0002",
+            "decision_id": "DEC-DIST-0002",
+            "response_hash": "bc987905cb3aaf2c4a511fb5093b2b5863e4775377c588ecb3cb70c2696cc8fa",
+            "received_body_hash": "bc987905cb3aaf2c4a511fb5093b2b5863e4775377c588ecb3cb70c2696cc8fa",
+            "chain_binding_hash": "63c32f8c39dfea309104a3db49acd4c1d1311b413c062873db2d7ad92029985b",
+            "persisted_at": "2026-05-01T08:01:34.4889566Z",
+            "storage_path": "live\\insightflow\\insightflow.jsonl#offset=4227",
+            "peer_public_key_hex": "4862df7b5797cb30ff25f411849aa79eae313a7bd1b2cac45e7467019a8e0dcb",
+            "receipt_signature": "3bbc3a7e7f07eecfa9013d4c993ac7756b56eb4bb8ba9a2f8fe3cf6b272f08e95b809d133c77ae4548ac7e692c6f84c57f91cfdc18f20882ef80fc6d1928110a"
+          }
+        }
+      }
+    },
+    {
+      "execution_id": "EXEC-DIST-0003",
+      "decision_id": "DEC-DIST-0003",
+      "response_hash": "20903d9eee3545c0b53bd3b5b21e7fca30e6820cd54eace48e7a003ad89515bb",
+      "bucket_hash": "20903d9eee3545c0b53bd3b5b21e7fca30e6820cd54eace48e7a003ad89515bb",
+      "match": true,
+      "gate_summary": {
+        "execution_id": "EXEC-DIST-0003",
+        "decision_id": "DEC-DIST-0003",
+        "response_hash": "20903d9eee3545c0b53bd3b5b21e7fca30e6820cd54eace48e7a003ad89515bb",
+        "satisfied": true,
+        "created_at": "2026-05-01T08:01:34.5152268Z",
+        "resolved_at": "2026-05-01T08:01:34.5293021Z",
+        "elapsed_ms": 14,
+        "receipts": {
+          "bucket": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "bucket",
+            "execution_id": "EXEC-DIST-0003",
+            "decision_id": "DEC-DIST-0003",
+            "response_hash": "20903d9eee3545c0b53bd3b5b21e7fca30e6820cd54eace48e7a003ad89515bb",
+            "received_body_hash": "20903d9eee3545c0b53bd3b5b21e7fca30e6820cd54eace48e7a003ad89515bb",
+            "chain_binding_hash": "ba2f1447a83797f751f35dc5b6baed91914125a5cac19f9f6381832b229815de",
+            "persisted_at": "2026-05-01T08:01:34.5250359Z",
+            "storage_path": "live\\bucket\\DEC-DIST-0003.json",
+            "peer_public_key_hex": "06dcde58d2bfaadad88e429778e82a5826992cc62c3dc8d602a8f5686aae5117",
+            "receipt_signature": "5ab4b39ad2f1e503136bea001f03ed9cddd2d3e2b2c12c94ed2ab4888d9b7d96873a9d6d1170d6b010a68a78cf577a0807853434fb722a638376ef6ffe6c6f0d"
+          },
+          "core": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "core",
+            "execution_id": "EXEC-DIST-0003",
+            "decision_id": "DEC-DIST-0003",
+            "response_hash": "20903d9eee3545c0b53bd3b5b21e7fca30e6820cd54eace48e7a003ad89515bb",
+            "received_body_hash": "20903d9eee3545c0b53bd3b5b21e7fca30e6820cd54eace48e7a003ad89515bb",
+            "chain_binding_hash": "ba2f1447a83797f751f35dc5b6baed91914125a5cac19f9f6381832b229815de",
+            "persisted_at": "2026-05-01T08:01:34.5184447Z",
+            "storage_path": "live\\core\\core.jsonl#offset=8440",
+            "peer_public_key_hex": "36c3be87e73a9c7883c6d85b6450f293cb44f98d0a2adf09b36d2d6daef4fdc1",
+            "receipt_signature": "5f2156f60629b170ba15111fddfe96b966809adad608c73fed7583e7c185c041554ea21c9be48524e0b1dcaff15920baba709ee12ce88e9258d449930a071e0b"
+          },
+          "insightflow": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "insightflow",
+            "execution_id": "EXEC-DIST-0003",
+            "decision_id": "DEC-DIST-0003",
+            "response_hash": "20903d9eee3545c0b53bd3b5b21e7fca30e6820cd54eace48e7a003ad89515bb",
+            "received_body_hash": "20903d9eee3545c0b53bd3b5b21e7fca30e6820cd54eace48e7a003ad89515bb",
+            "chain_binding_hash": "ba2f1447a83797f751f35dc5b6baed91914125a5cac19f9f6381832b229815de",
+            "persisted_at": "2026-05-01T08:01:34.520904Z",
+            "storage_path": "live\\insightflow\\insightflow.jsonl#offset=8453",
+            "peer_public_key_hex": "4862df7b5797cb30ff25f411849aa79eae313a7bd1b2cac45e7467019a8e0dcb",
+            "receipt_signature": "23bd7260025108cb361b0e87f3e53ac9ef2800886a940a88d872edf2f0c87062bcab64fc8ea72b5d93dcc961ec14aef4b668d8fd00970b1a605f514c79631a09"
+          }
+        }
+      }
+    },
+    {
+      "execution_id": "EXEC-DIST-0004",
+      "decision_id": "DEC-DIST-0004",
+      "response_hash": "9299cb83d9b656e82333bfe571641de0c8839634d0304273204ff8263ba2b261",
+      "bucket_hash": "9299cb83d9b656e82333bfe571641de0c8839634d0304273204ff8263ba2b261",
+      "match": true,
+      "gate_summary": {
+        "execution_id": "EXEC-DIST-0004",
+        "decision_id": "DEC-DIST-0004",
+        "response_hash": "9299cb83d9b656e82333bfe571641de0c8839634d0304273204ff8263ba2b261",
+        "satisfied": true,
+        "created_at": "2026-05-01T08:01:34.5473701Z",
+        "resolved_at": "2026-05-01T08:01:34.5585452Z",
+        "elapsed_ms": 11,
+        "receipts": {
+          "bucket": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "bucket",
+            "execution_id": "EXEC-DIST-0004",
+            "decision_id": "DEC-DIST-0004",
+            "response_hash": "9299cb83d9b656e82333bfe571641de0c8839634d0304273204ff8263ba2b261",
+            "received_body_hash": "9299cb83d9b656e82333bfe571641de0c8839634d0304273204ff8263ba2b261",
+            "chain_binding_hash": "7ceff30a68c9f2c01bbcf6b88d049b693ff47601676d28782e7c4c93345170d1",
+            "persisted_at": "2026-05-01T08:01:34.5567385Z",
+            "storage_path": "live\\bucket\\DEC-DIST-0004.json",
+            "peer_public_key_hex": "06dcde58d2bfaadad88e429778e82a5826992cc62c3dc8d602a8f5686aae5117",
+            "receipt_signature": "0dec4ee54f5d777ad99152edd83fa42e46696581192f72f3be4f85f84e19b7a6c72c9c1a130e6b61951ab971ea5cc3009fa5b664973763d29f7195dfb97faa0a"
+          },
+          "core": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "core",
+            "execution_id": "EXEC-DIST-0004",
+            "decision_id": "DEC-DIST-0004",
+            "response_hash": "9299cb83d9b656e82333bfe571641de0c8839634d0304273204ff8263ba2b261",
+            "received_body_hash": "9299cb83d9b656e82333bfe571641de0c8839634d0304273204ff8263ba2b261",
+            "chain_binding_hash": "7ceff30a68c9f2c01bbcf6b88d049b693ff47601676d28782e7c4c93345170d1",
+            "persisted_at": "2026-05-01T08:01:34.5504191Z",
+            "storage_path": "live\\core\\core.jsonl#offset=12660",
+            "peer_public_key_hex": "36c3be87e73a9c7883c6d85b6450f293cb44f98d0a2adf09b36d2d6daef4fdc1",
+            "receipt_signature": "69cc03f5e7ab900a7698e9f3c014d07335a7c5cba66d3bf4fd3c464eb940f3cfc774cfd8509982309e63652ce8f009af9e7be295d1a077eeb58023b99b780c0a"
+          },
+          "insightflow": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "insightflow",
+            "execution_id": "EXEC-DIST-0004",
+            "decision_id": "DEC-DIST-0004",
+            "response_hash": "9299cb83d9b656e82333bfe571641de0c8839634d0304273204ff8263ba2b261",
+            "received_body_hash": "9299cb83d9b656e82333bfe571641de0c8839634d0304273204ff8263ba2b261",
+            "chain_binding_hash": "7ceff30a68c9f2c01bbcf6b88d049b693ff47601676d28782e7c4c93345170d1",
+            "persisted_at": "2026-05-01T08:01:34.5515673Z",
+            "storage_path": "live\\insightflow\\insightflow.jsonl#offset=12680",
+            "peer_public_key_hex": "4862df7b5797cb30ff25f411849aa79eae313a7bd1b2cac45e7467019a8e0dcb",
+            "receipt_signature": "49e87c29d3270167544789e8dbd101531290bd03ba03942222a33cf2335e6b0c4dc30b94b44c10112f6cb9bb8409ea67e4dd6bb0436df0d6c2992fc4d5dbdf0d"
+          }
+        }
+      }
+    },
+    {
+      "execution_id": "EXEC-DIST-0005",
+      "decision_id": "DEC-DIST-0005",
+      "response_hash": "3b0aa4a76e664e4725670fe3458f0b060af1c86b3850a7c1e362fc07559a1b38",
+      "bucket_hash": "3b0aa4a76e664e4725670fe3458f0b060af1c86b3850a7c1e362fc07559a1b38",
+      "match": true,
+      "gate_summary": {
+        "execution_id": "EXEC-DIST-0005",
+        "decision_id": "DEC-DIST-0005",
+        "response_hash": "3b0aa4a76e664e4725670fe3458f0b060af1c86b3850a7c1e362fc07559a1b38",
+        "satisfied": true,
+        "created_at": "2026-05-01T08:01:34.5770993Z",
+        "resolved_at": "2026-05-01T08:01:34.5877627Z",
+        "elapsed_ms": 10,
+        "receipts": {
+          "bucket": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "bucket",
+            "execution_id": "EXEC-DIST-0005",
+            "decision_id": "DEC-DIST-0005",
+            "response_hash": "3b0aa4a76e664e4725670fe3458f0b060af1c86b3850a7c1e362fc07559a1b38",
+            "received_body_hash": "3b0aa4a76e664e4725670fe3458f0b060af1c86b3850a7c1e362fc07559a1b38",
+            "chain_binding_hash": "c7d22905738660238801b95113e379852a0f94083df0058a1785c4d32e8ff185",
+            "persisted_at": "2026-05-01T08:01:34.5865242Z",
+            "storage_path": "live\\bucket\\DEC-DIST-0005.json",
+            "peer_public_key_hex": "06dcde58d2bfaadad88e429778e82a5826992cc62c3dc8d602a8f5686aae5117",
+            "receipt_signature": "b415055c6c3d6ab56af993f03002726767661a695527f24deace159559777d58653be8cd903e34d8086c6ab15d4ae79be697765456a6110ba5e3c0fc0e72d102"
+          },
+          "core": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "core",
+            "execution_id": "EXEC-DIST-0005",
+            "decision_id": "DEC-DIST-0005",
+            "response_hash": "3b0aa4a76e664e4725670fe3458f0b060af1c86b3850a7c1e362fc07559a1b38",
+            "received_body_hash": "3b0aa4a76e664e4725670fe3458f0b060af1c86b3850a7c1e362fc07559a1b38",
+            "chain_binding_hash": "c7d22905738660238801b95113e379852a0f94083df0058a1785c4d32e8ff185",
+            "persisted_at": "2026-05-01T08:01:34.579966Z",
+            "storage_path": "live\\core\\core.jsonl#offset=16880",
+            "peer_public_key_hex": "36c3be87e73a9c7883c6d85b6450f293cb44f98d0a2adf09b36d2d6daef4fdc1",
+            "receipt_signature": "b4dfe3e058deda891b39a0589e22b9d50087dcbfad7a90f66b897c575b8ae7fffb090fdd36a7c2aadf35c250e95dfb7b3d2402f93dcda734b8e94383c88c4809"
+          },
+          "insightflow": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "insightflow",
+            "execution_id": "EXEC-DIST-0005",
+            "decision_id": "DEC-DIST-0005",
+            "response_hash": "3b0aa4a76e664e4725670fe3458f0b060af1c86b3850a7c1e362fc07559a1b38",
+            "received_body_hash": "3b0aa4a76e664e4725670fe3458f0b060af1c86b3850a7c1e362fc07559a1b38",
+            "chain_binding_hash": "c7d22905738660238801b95113e379852a0f94083df0058a1785c4d32e8ff185",
+            "persisted_at": "2026-05-01T08:01:34.5833813Z",
+            "storage_path": "live\\insightflow\\insightflow.jsonl#offset=16907",
+            "peer_public_key_hex": "4862df7b5797cb30ff25f411849aa79eae313a7bd1b2cac45e7467019a8e0dcb",
+            "receipt_signature": "ac7711c76cbdf8fb0c38e2f25b1db36bb713ca6cd6eb41898de4a87875c83df1ae615c9709c4deb14a6568dacc9fba40b9ef807c581c6a2b7ad54b094b572006"
+          }
+        }
+      }
+    },
+    {
+      "execution_id": "EXEC-DIST-0006",
+      "decision_id": "DEC-DIST-0006",
+      "response_hash": "4587b5ce072c162cd3b33bcafd39c13d55446e6ebae48290f0db410c69356744",
+      "bucket_hash": "4587b5ce072c162cd3b33bcafd39c13d55446e6ebae48290f0db410c69356744",
+      "match": true,
+      "gate_summary": {
+        "execution_id": "EXEC-DIST-0006",
+        "decision_id": "DEC-DIST-0006",
+        "response_hash": "4587b5ce072c162cd3b33bcafd39c13d55446e6ebae48290f0db410c69356744",
+        "satisfied": true,
+        "created_at": "2026-05-01T08:01:34.6092206Z",
+        "resolved_at": "2026-05-01T08:01:34.6228103Z",
+        "elapsed_ms": 13,
+        "receipts": {
+          "bucket": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "bucket",
+            "execution_id": "EXEC-DIST-0006",
+            "decision_id": "DEC-DIST-0006",
+            "response_hash": "4587b5ce072c162cd3b33bcafd39c13d55446e6ebae48290f0db410c69356744",
+            "received_body_hash": "4587b5ce072c162cd3b33bcafd39c13d55446e6ebae48290f0db410c69356744",
+            "chain_binding_hash": "c28763f0149c8721c92507c69b04e9f81b5757ce635ff0cfb1370ff8a96d5ae8",
+            "persisted_at": "2026-05-01T08:01:34.6208152Z",
+            "storage_path": "live\\bucket\\DEC-DIST-0006.json",
+            "peer_public_key_hex": "06dcde58d2bfaadad88e429778e82a5826992cc62c3dc8d602a8f5686aae5117",
+            "receipt_signature": "b162a6802cacd9f26741c0ed803661a88771ba12c16766915d2e536abdba61d777f9137127dfb58e32cf3635bc920457e73fc8c81f01ce90afc5f21313098a0f"
+          },
+          "core": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "core",
+            "execution_id": "EXEC-DIST-0006",
+            "decision_id": "DEC-DIST-0006",
+            "response_hash": "4587b5ce072c162cd3b33bcafd39c13d55446e6ebae48290f0db410c69356744",
+            "received_body_hash": "4587b5ce072c162cd3b33bcafd39c13d55446e6ebae48290f0db410c69356744",
+            "chain_binding_hash": "c28763f0149c8721c92507c69b04e9f81b5757ce635ff0cfb1370ff8a96d5ae8",
+            "persisted_at": "2026-05-01T08:01:34.6128468Z",
+            "storage_path": "live\\core\\core.jsonl#offset=21100",
+            "peer_public_key_hex": "36c3be87e73a9c7883c6d85b6450f293cb44f98d0a2adf09b36d2d6daef4fdc1",
+            "receipt_signature": "5616a742feb4a11a5aafd383d6a36be12e327207a6fd8e3425085aa87d41690789a5de27cc8987bd60effcef44f289120c4e73c414297e70cfbc821916f5420f"
+          },
+          "insightflow": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "insightflow",
+            "execution_id": "EXEC-DIST-0006",
+            "decision_id": "DEC-DIST-0006",
+            "response_hash": "4587b5ce072c162cd3b33bcafd39c13d55446e6ebae48290f0db410c69356744",
+            "received_body_hash": "4587b5ce072c162cd3b33bcafd39c13d55446e6ebae48290f0db410c69356744",
+            "chain_binding_hash": "c28763f0149c8721c92507c69b04e9f81b5757ce635ff0cfb1370ff8a96d5ae8",
+            "persisted_at": "2026-05-01T08:01:34.6167948Z",
+            "storage_path": "live\\insightflow\\insightflow.jsonl#offset=21134",
+            "peer_public_key_hex": "4862df7b5797cb30ff25f411849aa79eae313a7bd1b2cac45e7467019a8e0dcb",
+            "receipt_signature": "6b13f2423cac7f49e7e934ac423384bd762ac1036a878f05fcaa368a1b1a058a503051479aa1728c0eae97588d0db283c23cbc828f2788a79f87c5c474377f0c"
+          }
+        }
+      }
+    },
+    {
+      "execution_id": "EXEC-DIST-0007",
+      "decision_id": "DEC-DIST-0007",
+      "response_hash": "fd44180da2e8c20dcd12adb70bc11d8ce2303e7dfec49b27f383ff814640d068",
+      "bucket_hash": "fd44180da2e8c20dcd12adb70bc11d8ce2303e7dfec49b27f383ff814640d068",
+      "match": true,
+      "gate_summary": {
+        "execution_id": "EXEC-DIST-0007",
+        "decision_id": "DEC-DIST-0007",
+        "response_hash": "fd44180da2e8c20dcd12adb70bc11d8ce2303e7dfec49b27f383ff814640d068",
+        "satisfied": true,
+        "created_at": "2026-05-01T08:01:34.6400545Z",
+        "resolved_at": "2026-05-01T08:01:34.6516935Z",
+        "elapsed_ms": 11,
+        "receipts": {
+          "bucket": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "bucket",
+            "execution_id": "EXEC-DIST-0007",
+            "decision_id": "DEC-DIST-0007",
+            "response_hash": "fd44180da2e8c20dcd12adb70bc11d8ce2303e7dfec49b27f383ff814640d068",
+            "received_body_hash": "fd44180da2e8c20dcd12adb70bc11d8ce2303e7dfec49b27f383ff814640d068",
+            "chain_binding_hash": "516940f0633fbb1949533448b25d0fb7088c5de8b546d95056ba64880e70b88b",
+            "persisted_at": "2026-05-01T08:01:34.6499632Z",
+            "storage_path": "live\\bucket\\DEC-DIST-0007.json",
+            "peer_public_key_hex": "06dcde58d2bfaadad88e429778e82a5826992cc62c3dc8d602a8f5686aae5117",
+            "receipt_signature": "c693a8ddf0123ba63e4547cf1e5363c883966609710796b14893e57b641f4b634b5d010146a768973cdf7c4a8dc199bb6907e1d2711f1b575045dcebe063e70d"
+          },
+          "core": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "core",
+            "execution_id": "EXEC-DIST-0007",
+            "decision_id": "DEC-DIST-0007",
+            "response_hash": "fd44180da2e8c20dcd12adb70bc11d8ce2303e7dfec49b27f383ff814640d068",
+            "received_body_hash": "fd44180da2e8c20dcd12adb70bc11d8ce2303e7dfec49b27f383ff814640d068",
+            "chain_binding_hash": "516940f0633fbb1949533448b25d0fb7088c5de8b546d95056ba64880e70b88b",
+            "persisted_at": "2026-05-01T08:01:34.6434439Z",
+            "storage_path": "live\\core\\core.jsonl#offset=25320",
+            "peer_public_key_hex": "36c3be87e73a9c7883c6d85b6450f293cb44f98d0a2adf09b36d2d6daef4fdc1",
+            "receipt_signature": "d6866d64b118b02f647a1c6f83e0751f3524b161e0afb17f03e7f7bfd2c31dd8c74aa4781f289f2ac0ff774dab629eb3b544bfe8b869c07e589cdd84df8bcb01"
+          },
+          "insightflow": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "insightflow",
+            "execution_id": "EXEC-DIST-0007",
+            "decision_id": "DEC-DIST-0007",
+            "response_hash": "fd44180da2e8c20dcd12adb70bc11d8ce2303e7dfec49b27f383ff814640d068",
+            "received_body_hash": "fd44180da2e8c20dcd12adb70bc11d8ce2303e7dfec49b27f383ff814640d068",
+            "chain_binding_hash": "516940f0633fbb1949533448b25d0fb7088c5de8b546d95056ba64880e70b88b",
+            "persisted_at": "2026-05-01T08:01:34.6470836Z",
+            "storage_path": "live\\insightflow\\insightflow.jsonl#offset=25361",
+            "peer_public_key_hex": "4862df7b5797cb30ff25f411849aa79eae313a7bd1b2cac45e7467019a8e0dcb",
+            "receipt_signature": "3d7217f191f0d090fb1cfc150bd1c686ce60753e3c4971846860a8191f388db7606e7f5ad98224410b07d290c6fb4343c1bc1f8ae233a43509a3db8bc0665b0b"
+          }
+        }
+      }
+    },
+    {
+      "execution_id": "EXEC-DIST-0008",
+      "decision_id": "DEC-DIST-0008",
+      "response_hash": "9633e76a770d94fe8c3758e8fb36402657c708a25bcb59b119b5d65176384203",
+      "bucket_hash": "9633e76a770d94fe8c3758e8fb36402657c708a25bcb59b119b5d65176384203",
+      "match": true,
+      "gate_summary": {
+        "execution_id": "EXEC-DIST-0008",
+        "decision_id": "DEC-DIST-0008",
+        "response_hash": "9633e76a770d94fe8c3758e8fb36402657c708a25bcb59b119b5d65176384203",
+        "satisfied": true,
+        "created_at": "2026-05-01T08:01:34.669308Z",
+        "resolved_at": "2026-05-01T08:01:34.6807066Z",
+        "elapsed_ms": 11,
+        "receipts": {
+          "bucket": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "bucket",
+            "execution_id": "EXEC-DIST-0008",
+            "decision_id": "DEC-DIST-0008",
+            "response_hash": "9633e76a770d94fe8c3758e8fb36402657c708a25bcb59b119b5d65176384203",
+            "received_body_hash": "9633e76a770d94fe8c3758e8fb36402657c708a25bcb59b119b5d65176384203",
+            "chain_binding_hash": "4f6db81ce4279fffc7bb5738e25cf5dfe96f613332e947d4c59cf0c208c1cce7",
+            "persisted_at": "2026-05-01T08:01:34.6789137Z",
+            "storage_path": "live\\bucket\\DEC-DIST-0008.json",
+            "peer_public_key_hex": "06dcde58d2bfaadad88e429778e82a5826992cc62c3dc8d602a8f5686aae5117",
+            "receipt_signature": "8eb3d197ee39b209038ea7262abe69387d89f79094092985ecae15f64ae03b4de72fd40adea386a12bcbe4f6945a05e5e9c04c78377d8ca681287c428975d003"
+          },
+          "core": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "core",
+            "execution_id": "EXEC-DIST-0008",
+            "decision_id": "DEC-DIST-0008",
+            "response_hash": "9633e76a770d94fe8c3758e8fb36402657c708a25bcb59b119b5d65176384203",
+            "received_body_hash": "9633e76a770d94fe8c3758e8fb36402657c708a25bcb59b119b5d65176384203",
+            "chain_binding_hash": "4f6db81ce4279fffc7bb5738e25cf5dfe96f613332e947d4c59cf0c208c1cce7",
+            "persisted_at": "2026-05-01T08:01:34.672044Z",
+            "storage_path": "live\\core\\core.jsonl#offset=29540",
+            "peer_public_key_hex": "36c3be87e73a9c7883c6d85b6450f293cb44f98d0a2adf09b36d2d6daef4fdc1",
+            "receipt_signature": "4506fd8c137fb5205ed50d191e3cf5b7c4ca53f7417f92fdc92ccfe119c39b0ab66ef2fcf0dd2e698fc08e0b797c6a1b99eb10aecfcfb102b0a1562069c8040c"
+          },
+          "insightflow": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "insightflow",
+            "execution_id": "EXEC-DIST-0008",
+            "decision_id": "DEC-DIST-0008",
+            "response_hash": "9633e76a770d94fe8c3758e8fb36402657c708a25bcb59b119b5d65176384203",
+            "received_body_hash": "9633e76a770d94fe8c3758e8fb36402657c708a25bcb59b119b5d65176384203",
+            "chain_binding_hash": "4f6db81ce4279fffc7bb5738e25cf5dfe96f613332e947d4c59cf0c208c1cce7",
+            "persisted_at": "2026-05-01T08:01:34.675703Z",
+            "storage_path": "live\\insightflow\\insightflow.jsonl#offset=29588",
+            "peer_public_key_hex": "4862df7b5797cb30ff25f411849aa79eae313a7bd1b2cac45e7467019a8e0dcb",
+            "receipt_signature": "2f488e15f33243bbeb2d32b999a11348ac895bce41b013f81d853f85c05d927596378d42d7ac40c938574817e0c9db77b63a34ea037a81486abee99624f04600"
+          }
+        }
+      }
+    },
+    {
+      "execution_id": "EXEC-DIST-0009",
+      "decision_id": "DEC-DIST-0009",
+      "response_hash": "47bec385cf4b4967f345ae6adeaa3e10fc9509284ec85451f7b6df6b7b94af58",
+      "bucket_hash": "47bec385cf4b4967f345ae6adeaa3e10fc9509284ec85451f7b6df6b7b94af58",
+      "match": true,
+      "gate_summary": {
+        "execution_id": "EXEC-DIST-0009",
+        "decision_id": "DEC-DIST-0009",
+        "response_hash": "47bec385cf4b4967f345ae6adeaa3e10fc9509284ec85451f7b6df6b7b94af58",
+        "satisfied": true,
+        "created_at": "2026-05-01T08:01:34.7011818Z",
+        "resolved_at": "2026-05-01T08:01:34.7147723Z",
+        "elapsed_ms": 13,
+        "receipts": {
+          "bucket": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "bucket",
+            "execution_id": "EXEC-DIST-0009",
+            "decision_id": "DEC-DIST-0009",
+            "response_hash": "47bec385cf4b4967f345ae6adeaa3e10fc9509284ec85451f7b6df6b7b94af58",
+            "received_body_hash": "47bec385cf4b4967f345ae6adeaa3e10fc9509284ec85451f7b6df6b7b94af58",
+            "chain_binding_hash": "13d4c2af29c62829d2a99a8914efc98c3156b802ed58eb33658561ecb7279401",
+            "persisted_at": "2026-05-01T08:01:34.7115508Z",
+            "storage_path": "live\\bucket\\DEC-DIST-0009.json",
+            "peer_public_key_hex": "06dcde58d2bfaadad88e429778e82a5826992cc62c3dc8d602a8f5686aae5117",
+            "receipt_signature": "6eda00474d2d082ebb5a5279643466e935d93080357f6b7ceb4dac112fd12581e87a1b91d1ee2ae425d97f0f6cb383cd7af63db3233c4579bf375acf3edaed05"
+          },
+          "core": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "core",
+            "execution_id": "EXEC-DIST-0009",
+            "decision_id": "DEC-DIST-0009",
+            "response_hash": "47bec385cf4b4967f345ae6adeaa3e10fc9509284ec85451f7b6df6b7b94af58",
+            "received_body_hash": "47bec385cf4b4967f345ae6adeaa3e10fc9509284ec85451f7b6df6b7b94af58",
+            "chain_binding_hash": "13d4c2af29c62829d2a99a8914efc98c3156b802ed58eb33658561ecb7279401",
+            "persisted_at": "2026-05-01T08:01:34.7048195Z",
+            "storage_path": "live\\core\\core.jsonl#offset=33760",
+            "peer_public_key_hex": "36c3be87e73a9c7883c6d85b6450f293cb44f98d0a2adf09b36d2d6daef4fdc1",
+            "receipt_signature": "808085dfc34a7362ed12650e8bc10b57eda03ccd55416fb46c316878ae4d4eca639133e0f2f8285b4b476d5454a6ff85d326a0bc2ed049c53f3813eafaded402"
+          },
+          "insightflow": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "insightflow",
+            "execution_id": "EXEC-DIST-0009",
+            "decision_id": "DEC-DIST-0009",
+            "response_hash": "47bec385cf4b4967f345ae6adeaa3e10fc9509284ec85451f7b6df6b7b94af58",
+            "received_body_hash": "47bec385cf4b4967f345ae6adeaa3e10fc9509284ec85451f7b6df6b7b94af58",
+            "chain_binding_hash": "13d4c2af29c62829d2a99a8914efc98c3156b802ed58eb33658561ecb7279401",
+            "persisted_at": "2026-05-01T08:01:34.7083882Z",
+            "storage_path": "live\\insightflow\\insightflow.jsonl#offset=33815",
+            "peer_public_key_hex": "4862df7b5797cb30ff25f411849aa79eae313a7bd1b2cac45e7467019a8e0dcb",
+            "receipt_signature": "d801db78fbec595338a5389a8882b0a2af49037f463c5a7d9794011f45edda05bffdd849b0d14f0c09054333d563f4afdced1fc6b74e5772b53197c66b19bd01"
+          }
+        }
+      }
+    },
+    {
+      "execution_id": "EXEC-DIST-0010",
+      "decision_id": "DEC-DIST-0010",
+      "response_hash": "036c0bd3b6dc99ad2148b0803a6855d96a135938e84d08aab57ee31f46237feb",
+      "bucket_hash": "036c0bd3b6dc99ad2148b0803a6855d96a135938e84d08aab57ee31f46237feb",
+      "match": true,
+      "gate_summary": {
+        "execution_id": "EXEC-DIST-0010",
+        "decision_id": "DEC-DIST-0010",
+        "response_hash": "036c0bd3b6dc99ad2148b0803a6855d96a135938e84d08aab57ee31f46237feb",
+        "satisfied": true,
+        "created_at": "2026-05-01T08:01:34.7348196Z",
+        "resolved_at": "2026-05-01T08:01:34.7475352Z",
+        "elapsed_ms": 12,
+        "receipts": {
+          "bucket": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "bucket",
+            "execution_id": "EXEC-DIST-0010",
+            "decision_id": "DEC-DIST-0010",
+            "response_hash": "036c0bd3b6dc99ad2148b0803a6855d96a135938e84d08aab57ee31f46237feb",
+            "received_body_hash": "036c0bd3b6dc99ad2148b0803a6855d96a135938e84d08aab57ee31f46237feb",
+            "chain_binding_hash": "7cfca00c669f727c5fdc35fb55ec3665e1e0d124c43f924ed9fd0ced55f3fb05",
+            "persisted_at": "2026-05-01T08:01:34.745727Z",
+            "storage_path": "live\\bucket\\DEC-DIST-0010.json",
+            "peer_public_key_hex": "06dcde58d2bfaadad88e429778e82a5826992cc62c3dc8d602a8f5686aae5117",
+            "receipt_signature": "fa3a9c6de42ac4d747eb8dc88269fa280f214db649d49d7e38040479fdb92621b00fab68dd72204095e66c2943ecdd2288cf8f4b2366831e62615ffd42687e08"
+          },
+          "core": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "core",
+            "execution_id": "EXEC-DIST-0010",
+            "decision_id": "DEC-DIST-0010",
+            "response_hash": "036c0bd3b6dc99ad2148b0803a6855d96a135938e84d08aab57ee31f46237feb",
+            "received_body_hash": "036c0bd3b6dc99ad2148b0803a6855d96a135938e84d08aab57ee31f46237feb",
+            "chain_binding_hash": "7cfca00c669f727c5fdc35fb55ec3665e1e0d124c43f924ed9fd0ced55f3fb05",
+            "persisted_at": "2026-05-01T08:01:34.7381189Z",
+            "storage_path": "live\\core\\core.jsonl#offset=37980",
+            "peer_public_key_hex": "36c3be87e73a9c7883c6d85b6450f293cb44f98d0a2adf09b36d2d6daef4fdc1",
+            "receipt_signature": "4ec0b2fb15243427cd711ba84368408618501387e938985466639ddc830fd43a720f8bbbe9364d1308acead094fd86c5531e1906b12e748932f59c356d3c3f03"
+          },
+          "insightflow": {
+            "schema_version": "sarathi.live.receipt/v1.0",
+            "peer": "insightflow",
+            "execution_id": "EXEC-DIST-0010",
+            "decision_id": "DEC-DIST-0010",
+            "response_hash": "036c0bd3b6dc99ad2148b0803a6855d96a135938e84d08aab57ee31f46237feb",
+            "received_body_hash": "036c0bd3b6dc99ad2148b0803a6855d96a135938e84d08aab57ee31f46237feb",
+            "chain_binding_hash": "7cfca00c669f727c5fdc35fb55ec3665e1e0d124c43f924ed9fd0ced55f3fb05",
+            "persisted_at": "2026-05-01T08:01:34.7415336Z",
+            "storage_path": "live\\insightflow\\insightflow.jsonl#offset=38042",
+            "peer_public_key_hex": "4862df7b5797cb30ff25f411849aa79eae313a7bd1b2cac45e7467019a8e0dcb",
+            "receipt_signature": "13eb28d0f86cade264bd8afa3c5017d30e9395a8e8c1e44e2b55bca2ff367f479eb04d3dd39c034ccf95732b98906a5d48049c0ee82de221b1567fb37daedd0a"
+          }
+        }
+      }
+    }
+  ],
+  "notes": [
+    "peers MUST point SARATHI_PEER_ACK_URL at: http://127.0.0.1:62089/v1/downstream-ack"
+  ]
+}

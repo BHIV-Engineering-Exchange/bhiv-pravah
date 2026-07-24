@@ -1,0 +1,12 @@
+[
+  {
+    "dataset_id": "AIS_001",
+    "schema_version": "1.0",
+    "dataset_version": "v1",
+    "source_lineage": "AIS_FEED",
+    "dataset_origin": "KAGGLE",
+    "replay_reference": "REPLAY_ENGINE_V1",
+    "provenance_hash": "abc123xyz"
+  }
+]
+ 

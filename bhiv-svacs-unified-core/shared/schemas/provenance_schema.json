@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "dataset_version": "v1",
+  "source_lineage": "AIS",
+  "ais_lineage": "GLOBAL_AIS_FEED",
+  "replay_reference": "REPLAY_ENGINE_V1",
+  "provenance_hash": "sha256_hash",
+  "dataset_origin": "KAGGLE_AIS_DATASET",
+  "simulation_origin": false,
+  "version_compatibility": {
+    "min_supported": "1.0",
+    "max_supported": "2.0"
+  }
+}

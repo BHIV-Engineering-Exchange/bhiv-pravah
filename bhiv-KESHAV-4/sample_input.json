@@ -1,0 +1,18 @@
+{
+  "trace_id": "rajya-trace-001",
+  "execution_id": "exec-demo",
+  "tasks": [
+    { "task_id": "T1", "depends_on": [] },
+    { "task_id": "T2", "depends_on": ["T1"] },
+    { "task_id": "T3", "depends_on": ["T2"] }
+  ],
+  "constraint_results": [
+    { "task_id": "T1", "is_valid": false, "unsatisfied_dependencies": [] },
+    { "task_id": "T2", "is_valid": false, "unsatisfied_dependencies": ["T1"] },
+    { "task_id": "T3", "is_valid": true,  "unsatisfied_dependencies": [] }
+  ],
+  "propagation_results": [
+    { "task_id": "T1", "affected_tasks": ["T2", "T3"], "impact_score": 10 },
+    { "task_id": "T2", "affected_tasks": ["T3"],       "impact_score": 4  }
+  ]
+}

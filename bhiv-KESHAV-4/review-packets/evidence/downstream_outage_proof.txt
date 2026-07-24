@@ -1,0 +1,22 @@
+Downstream 503 Outage Test:
+Response Status: 503
+Response Body: {"error": "Service Unavailable"}
+Request Log: [
+  {
+    "path": "/bucket/artifact",
+    "body": "{\"test\": \"outage_proof\"}",
+    "timestamp": 1780916090.339415
+  }
+]
+Engine Output (unaffected): {
+  "blocked_task_id": "T1",
+  "root_cause": "RC",
+  "impacted_tasks": [
+    "T3"
+  ],
+  "impact_score": 1,
+  "severity": "LOW",
+  "resolution_signal": "UNBLOCK_DEPENDENCY:RC",
+  "trace_id": "trace-failure-test-001",
+  "timestamp": "2026-05-22T12:00:00Z"
+}

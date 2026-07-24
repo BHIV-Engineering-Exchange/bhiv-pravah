@@ -1,0 +1,8 @@
+{
+  "basket_name": "Law agent",
+  "agents": [
+    "law_agent"
+  ],
+  "execution_strategy": "sequential",
+  "description": "this is basket for testing law agent"
+}

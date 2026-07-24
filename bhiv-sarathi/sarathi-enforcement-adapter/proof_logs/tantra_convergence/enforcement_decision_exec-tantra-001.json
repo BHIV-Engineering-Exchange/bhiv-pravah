@@ -1,0 +1,24 @@
+{
+  "system_name": "Sarathi",
+  "artifact_type": "enforcement_decision",
+  "schema_version": "1.0",
+  "contract_version": "TANTRA-CONVERGENCE-v1",
+  "execution_id": "exec-tantra-001",
+  "trace_id": "trace-tantra-001",
+  "cet_hash": "89d18ea108d45ece5b98e07e6f54b54b54c8b115e0610e58952328530e8e6801",
+  "bucket_key": "b64147889ed9eff3f303afe8457f5e318e9f77ba24ac2b2a35b7e2ac572d4f80",
+  "boundary": "CET->Sarathi",
+  "decision": "allow",
+  "enforcement_status": "authorized",
+  "enforcement_token_reference": "sarathi-enforcement-seal:1c32516015c242ec139b60737719312284d849450236a0b867406c616aa58f0b",
+  "contract_continuity": {
+    "sum_script_received": true,
+    "cet_hash_verified": true,
+    "trace_id_preserved": true,
+    "mutation_detected": false
+  },
+  "sarathi_seal_hash": "1c32516015c242ec139b60737719312284d849450236a0b867406c616aa58f0b",
+  "cet_hash_verification_mode": "continuity",
+  "provenance": "sarathi.enforcement_adapter@CET->Sarathi",
+  "timestamp_utc": "2026-06-18T13:52:43.1412315Z"
+}

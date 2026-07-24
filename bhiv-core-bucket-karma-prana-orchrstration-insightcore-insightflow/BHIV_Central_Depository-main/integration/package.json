@@ -1,0 +1,13 @@
+{
+    "name": "ai-integration-server",
+    "version": "1.0.0",
+    "dependencies": {
+        "dotenv": "^16.5.0",
+        "express": "5.1.0",
+        "mongodb": "^6.3.0",
+        "socket.io": "^4.7.2"
+    },
+    "scripts": {
+        "start": "node server.js"
+    }
+}

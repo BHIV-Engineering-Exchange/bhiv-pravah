@@ -1,0 +1,38 @@
+
+{
+  "scenario_id": "SCENARIO_PORT_CONGESTION_001",
+  "scenario_name": "port_congestion_overload",
+  "region": "Mumbai Port Zone",
+  "timestamp": "2026-05-21T16:40:00Z",
+  "geo_layer": {
+    "latitude": 18.9388,
+    "longitude": 72.8354,
+    "spatial_uncertainty": "LOW",
+    "coordinate_confidence": "HIGH"
+  },
+  "signals": [
+    {
+      "signal_type": "PORT_SENSOR",
+      "value": "Berth occupancy exceeded safe operational threshold"
+    },
+    {
+      "signal_type": "AIS",
+      "value": "High vessel queue density detected"
+    },
+    {
+      "signal_type": "TRAFFIC_MONITOR",
+      "value": "Cargo unloading delays increasing"
+    }
+  ],
+  "noise": {
+    "signal_overlap": "MEDIUM",
+    "weather_interference": "LOW"
+  },
+  "operational_ambiguity": "Possible operational overload or temporary maritime traffic surge",
+  "expected_intelligence_outcome": "Trigger congestion mitigation review and traffic redistribution planning",
+  "replay_reconstruction_proof": {
+    "deterministic_replay": true,
+    "trace_continuity": true,
+    "lineage_preserved": true
+  }
+}

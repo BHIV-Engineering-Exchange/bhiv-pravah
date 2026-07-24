@@ -1,0 +1,69 @@
+{
+  "user_id": "user_123",
+  "time_period": "monthly",
+  "transactions": [
+    {
+      "date": "2024-01-01",
+      "amount": 5000,
+      "category": "salary",
+      "type": "income",
+      "description": "Monthly salary"
+    },
+    {
+      "date": "2024-01-02",
+      "amount": -1500,
+      "category": "housing",
+      "type": "expense",
+      "description": "Rent payment"
+    },
+    {
+      "date": "2024-01-03",
+      "amount": -300,
+      "category": "food",
+      "type": "expense",
+      "description": "Groceries"
+    },
+    {
+      "date": "2024-01-05",
+      "amount": -100,
+      "category": "transportation",
+      "type": "expense",
+      "description": "Gas"
+    },
+    {
+      "date": "2024-01-10",
+      "amount": -200,
+      "category": "entertainment",
+      "type": "expense",
+      "description": "Dining out"
+    },
+    {
+      "date": "2024-01-15",
+      "amount": 1000,
+      "category": "investment",
+      "type": "income",
+      "description": "Dividend payment"
+    },
+    {
+      "date": "2024-01-20",
+      "amount": -500,
+      "category": "savings",
+      "type": "transfer",
+      "description": "Transfer to savings"
+    }
+  ],
+  "analysis_type": "detailed",
+  "include_trends": true,
+  "compare_to_budget": true,
+  "budget": {
+    "income": 6000,
+    "expenses": {
+      "housing": 1500,
+      "food": 400,
+      "transportation": 300,
+      "entertainment": 300,
+      "utilities": 200,
+      "other": 300
+    }
+  }
+}

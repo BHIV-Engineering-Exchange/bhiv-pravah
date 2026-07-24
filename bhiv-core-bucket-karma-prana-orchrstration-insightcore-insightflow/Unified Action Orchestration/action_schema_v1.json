@@ -1,0 +1,9 @@
+{
+  "action_id": "string",
+  "action_type": "SEND_MESSAGE | FETCH_MESSAGES | SCHEDULE_MESSAGE",
+  "state": "requested | executing | completed | failed",
+  "payload": {},
+  "created_at": "timestamp",
+  "updated_at": "timestamp",
+  "error": "string | null"
+}

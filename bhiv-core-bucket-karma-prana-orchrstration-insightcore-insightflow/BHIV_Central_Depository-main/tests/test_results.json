@@ -1,0 +1,57 @@
+{
+  "start_time": "2025-07-01T12:02:49.819698",
+  "tests": {
+    "test_redis_service.py": {
+      "duration": 1.2912940979003906,
+      "return_code": 4,
+      "stdout": "",
+      "stderr": "ERROR: usage: __main__.py [options] [file_or_dir] [file_or_dir] [...]\n__main__.py: error: unrecognized arguments: --json-report --json-report-file=C:\\Users\\user11\\Desktop\\newclone\\AI_integration\\tests/results_test_redis_service.json\n  inifile: None\n  rootdir: C:\\Users\\user11\\Desktop\\newclone\\AI_integration\n\n",
+      "status": "failed"
+    },
+    "test_basket_manager.py": {
+      "duration": 0.4654195308685303,
+      "return_code": 4,
+      "stdout": "",
+      "stderr": "ERROR: usage: __main__.py [options] [file_or_dir] [file_or_dir] [...]\n__main__.py: error: unrecognized arguments: --json-report --json-report-file=C:\\Users\\user11\\Desktop\\newclone\\AI_integration\\tests/results_test_basket_manager.json\n  inifile: None\n  rootdir: C:\\Users\\user11\\Desktop\\newclone\\AI_integration\n\n",
+      "status": "failed"
+    },
+    "test_integration.py": {
+      "duration": 0.3954756259918213,
+      "return_code": 4,
+      "stdout": "",
+      "stderr": "ERROR: usage: __main__.py [options] [file_or_dir] [file_or_dir] [...]\n__main__.py: error: unrecognized arguments: --json-report --json-report-file=C:\\Users\\user11\\Desktop\\newclone\\AI_integration\\tests/results_test_integration.json\n  inifile: None\n  rootdir: C:\\Users\\user11\\Desktop\\newclone\\AI_integration\n\n",
+      "status": "failed"
+    }
+  },
+  "summary": {
+    "total_tests": 6,
+    "passed_tests": 2,
+    "failed_tests": 4,
+    "success_rate": 33.33333333333333,
+    "total_errors": 6
+  },
+  "errors": [
+    "Error reading sanskrit_parser_input.json: 'charmap' codec can't decode byte 0x8d in position 24: character maps to <undefined>",
+    "cashflow_analyzer: Missing fields: ['domain']",
+    "financial_coordinator: Missing fields: ['domain']",
+    "goal_recommender: Missing fields: ['domain']",
+    "sanskrit_parser: Missing fields: ['domain']",
+    "vedic_quiz_agent: Missing fields: ['domain']"
+  ],
+  "sample_inputs": {
+    "total_files": 5,
+    "valid_files": 4,
+    "status": "failed"
+  },
+  "basket_configs": {
+    "total_files": 5,
+    "valid_files": 5,
+    "status": "passed"
+  },
+  "agent_specs": {
+    "total_agents": 7,
+    "valid_specs": 1,
+    "status": "passed"
+  },
+  "end_time": "2025-07-01T12:02:52.098364"
+}

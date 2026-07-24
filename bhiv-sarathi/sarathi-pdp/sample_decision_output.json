@@ -1,0 +1,16 @@
+{
+  "decision_id": "3b3b0828-8044-5eb1-9791-4d04f478e72b",
+  "verdict": "ALLOW",
+  "policy_version": "1.0.0",
+  "policy_hash": "cb6dac30c16456a2898bbcf30533b11170f2f6902449ce7daa9708b4b195ceb1",
+  "determining_rules": [
+    "AUTH-001"
+  ],
+  "truth_classification": "L4",
+  "request_hash": "3c767d863d32e9721b51ff33cd102783861e5222e421ef808826272802a9d431",
+  "timestamp": "2026-03-09T16:09:37.975455Z",
+  "reason": "EXPLICIT_ALLOW",
+  "agent_role": "governance_agent",
+  "resource_type": "policy_registry",
+  "stage_reached": 5
+}

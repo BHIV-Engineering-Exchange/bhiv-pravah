@@ -1,0 +1,9 @@
+{
+  "basket_name": "multi_agent_test",
+  "agents": [
+    "cashflow_analyzer",
+    "goal_recommender"
+  ],
+  "execution_strategy": "sequential",
+  "description": "Test basket with multiple agents"
+}

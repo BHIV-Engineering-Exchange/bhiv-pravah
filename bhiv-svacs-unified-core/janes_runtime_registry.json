@@ -1,0 +1,28 @@
+[
+  {
+    "mmsi": "368084090",
+    "vessel_class": "Cargo",
+    "signature_profile": "LOW_RADAR",
+    "propulsion_metadata": "Diesel",
+    "operational_role": "Transport",
+    "size_metadata": {
+      "length": 220,
+      "beam": 32
+    },
+    "source_metadata": "Jane's Mock Registry",
+    "version_metadata": "v1"
+  },
+  {
+    "mmsi": "367712660",
+    "vessel_class": "Tanker",
+    "signature_profile": "MEDIUM_RADAR",
+    "propulsion_metadata": "Diesel Electric",
+    "operational_role": "Fuel Transport",
+    "size_metadata": {
+      "length": 180,
+      "beam": 28
+    },
+    "source_metadata": "Jane's Mock Registry",
+    "version_metadata": "v1"
+  }
+]

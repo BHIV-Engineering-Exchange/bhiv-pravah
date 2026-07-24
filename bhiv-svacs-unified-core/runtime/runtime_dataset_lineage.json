@@ -1,0 +1,11 @@
+{
+  "dataset_lineage": {
+    "source": "Jane's Fighting Ships",
+    "ais_dataset": "AIS Runtime Dataset",
+    "knowledge_registry": "maritime_knowledge_registry.json",
+    "runtime_chain": "full_runtime_chain.py",
+    "replay_status": "VERIFIED",
+    "lineage_continuity": "ACTIVE",
+    "append_only": true
+  }
+}

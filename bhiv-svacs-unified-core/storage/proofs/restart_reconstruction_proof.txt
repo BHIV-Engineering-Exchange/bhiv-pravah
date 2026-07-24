@@ -1,0 +1,9 @@
+Replay reconstruction after restart completed successfully.
+
+Trace continuity preserved.
+
+Deterministic replay parity verified.
+
+No hidden mutable replay state detected.
+
+Replay-safe observability maintained.

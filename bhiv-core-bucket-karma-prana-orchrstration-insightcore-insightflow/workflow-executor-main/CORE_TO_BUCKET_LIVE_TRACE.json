@@ -1,0 +1,48 @@
+{
+  "trace_id": "core-live-trace-001",
+  "origin": "BHIV_CORE",
+  "product": "AI Assistant",
+  "timestamp_start": "2026-01-23T09:17:03.995Z",
+
+  "core_request": {
+    "decision": "workflow",
+    "workflow_type": "workflow",
+    "payload": {
+      "action_type": "ai",
+      "prompt": "State system execution discipline in one sentence"
+    }
+  },
+
+  "enforcement": {
+    "enforcement_decision_id": "enf-core-live-trace-001",
+    "decision": "ALLOW",
+    "reason": "decision_equals_workflow",
+    "evaluators": [
+      { "name": "decision_guard", "result": "ALLOW" },
+      { "name": "schema_validation", "result": "ALLOW" },
+      { "name": "adapter_support", "result": "ALLOW" }
+    ],
+    "timestamp": "2026-01-23T09:17:03.996Z"
+  },
+
+  "execution": {
+    "executor": "Workflow Executor",
+    "adapter": "ai",
+    "execution_result": {
+      "success": true,
+      "request_id": "ai_5335c5c0",
+      "response": "State system execution discipline in one sentence"
+    },
+    "timestamp": "2026-01-23T09:17:03.996639Z"
+  },
+
+  "bucket_write": {
+    "bucket": "BHIV_BUCKET",
+    "write_type": "APPEND_ONLY",
+    "record_type": "EXECUTION_EVENT",
+    "immutable": true,
+    "timestamp": "2026-01-23T09:17:03.996639Z"
+  },
+
+  "timestamp_end": "2026-01-23T09:17:03.997Z"
+}

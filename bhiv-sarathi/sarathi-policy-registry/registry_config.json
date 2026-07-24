@@ -1,0 +1,5 @@
+{
+  "active_version": "v1",
+  "policies_dir": "./policies",
+  "description": "Sarathi Policy Registry configuration — deterministic active policy selection. Change active_version to upgrade the live policy. This file is the single source of truth for which policy version the PDP uses in production."
+}

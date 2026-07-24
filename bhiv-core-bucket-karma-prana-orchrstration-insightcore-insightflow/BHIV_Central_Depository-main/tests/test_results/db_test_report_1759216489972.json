@@ -1,0 +1,121 @@
+{
+  "summary": {
+    "total": 8,
+    "passed": 8,
+    "failed": 0,
+    "skipped": 0,
+    "details": [
+      {
+        "test": "Anmol API: Create spec via endpoint",
+        "status": "passed",
+        "timestamp": "2025-09-30T07:14:39.804Z",
+        "specId": "62cf5120-a810-43eb-acf0-cf3dc18569de",
+        "endpoint": "POST /api/specs"
+      },
+      {
+        "test": "Anmol API: Create iteration via endpoint",
+        "status": "passed",
+        "timestamp": "2025-09-30T07:14:46.452Z",
+        "specId": "62cf5120-a810-43eb-acf0-cf3dc18569de",
+        "endpoint": "POST /api/iterations"
+      },
+      {
+        "test": "Invalid JSON spec constraint",
+        "status": "passed",
+        "timestamp": "2025-09-30T07:14:46.484Z",
+        "error": "new row for relation \"specs\" violates check constraint \"json_spec_structure_check\""
+      },
+      {
+        "test": "Rating constraint violation",
+        "status": "passed",
+        "timestamp": "2025-09-30T07:14:46.530Z",
+        "error": "new row for relation \"evaluations\" violates check constraint \"evaluations_rating_check\""
+      },
+      {
+        "test": "Foreign key constraint violation",
+        "status": "passed",
+        "timestamp": "2025-09-30T07:14:46.565Z",
+        "error": "insert or update on table \"evaluations\" violates foreign key constraint \"evaluations_spec_id_fkey\""
+      },
+      {
+        "test": "Empty results handling",
+        "status": "passed",
+        "timestamp": "2025-09-30T07:14:46.601Z",
+        "resultCount": 0
+      },
+      {
+        "test": "Batch insert performance",
+        "status": "passed",
+        "timestamp": "2025-09-30T07:14:46.726Z",
+        "batchSize": 5,
+        "duration": 57,
+        "specsCreated": 5
+      },
+      {
+        "test": "Timeout simulation",
+        "status": "passed",
+        "timestamp": "2025-09-30T07:14:46.815Z",
+        "duration": 89,
+        "resultCount": 0
+      }
+    ],
+    "duration": 30367,
+    "success_rate": "100.00"
+  },
+  "tests": [
+    {
+      "test": "Anmol API: Create spec via endpoint",
+      "status": "passed",
+      "timestamp": "2025-09-30T07:14:39.804Z",
+      "specId": "62cf5120-a810-43eb-acf0-cf3dc18569de",
+      "endpoint": "POST /api/specs"
+    },
+    {
+      "test": "Anmol API: Create iteration via endpoint",
+      "status": "passed",
+      "timestamp": "2025-09-30T07:14:46.452Z",
+      "specId": "62cf5120-a810-43eb-acf0-cf3dc18569de",
+      "endpoint": "POST /api/iterations"
+    },
+    {
+      "test": "Invalid JSON spec constraint",
+      "status": "passed",
+      "timestamp": "2025-09-30T07:14:46.484Z",
+      "error": "new row for relation \"specs\" violates check constraint \"json_spec_structure_check\""
+    },
+    {
+      "test": "Rating constraint violation",
+      "status": "passed",
+      "timestamp": "2025-09-30T07:14:46.530Z",
+      "error": "new row for relation \"evaluations\" violates check constraint \"evaluations_rating_check\""
+    },
+    {
+      "test": "Foreign key constraint violation",
+      "status": "passed",
+      "timestamp": "2025-09-30T07:14:46.565Z",
+      "error": "insert or update on table \"evaluations\" violates foreign key constraint \"evaluations_spec_id_fkey\""
+    },
+    {
+      "test": "Empty results handling",
+      "status": "passed",
+      "timestamp": "2025-09-30T07:14:46.601Z",
+      "resultCount": 0
+    },
+    {
+      "test": "Batch insert performance",
+      "status": "passed",
+      "timestamp": "2025-09-30T07:14:46.726Z",
+      "batchSize": 5,
+      "duration": 57,
+      "specsCreated": 5
+    },
+    {
+      "test": "Timeout simulation",
+      "status": "passed",
+      "timestamp": "2025-09-30T07:14:46.815Z",
+      "duration": 89,
+      "resultCount": 0
+    }
+  ],
+  "generated_at": "2025-09-30T07:14:49.972Z"
+}

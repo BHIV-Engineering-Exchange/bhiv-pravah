@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRANA Integration Example - Gurukul</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; }
+        .status {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+        }
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .metric {
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        .metric-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+        }
+        .metric-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 5px;
+        }
+        .lesson-content {
+            margin: 30px 0;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 4px;
+            min-height: 300px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        .info {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 PRANA Integration Example - Gurukul</h1>
+        
+        <div class="status" id="status">
+            ✅ PRANA is initializing...
+        </div>
+
+        <div class="info">
+            <strong>📚 Instructions:</strong>
+            <ol>
+                <li>This page demonstrates PRANA integration for Gurukul</li>
+                <li>PRANA captures your behavior (mouse, keyboard, focus)</li>
+                <li>Every 5 seconds, it sends a telemetry packet to Bucket</li>
+                <li>Check the console (F12) to see PRANA logs</li>
+                <li>Interact with the page to see different cognitive states</li>
+            </ol>
+        </div>
+
+        <h2>📊 Live Metrics</h2>
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-label">Cognitive State</div>
+                <div class="metric-value" id="state">INITIALIZING</div>
+            </div>
+            <div class="metric">
+                <div class="metric-label">Focus Score</div>
+                <div class="metric-value" id="focus">0</div>
+            </div>
+            <div class="metric">
+                <div class="metric-label">Active Time</div>
+                <div class="metric-value" id="active">0s</div>
+            </div>
+            <div class="metric">
+                <div class="metric-label">Packets Sent</div>
+                <div class="metric-value" id="packets">0</div>
+            </div>
+        </div>
+
+        <h2>📖 Lesson Content</h2>
+        <div class="lesson-content">
+            <h3>Introduction to Artificial Intelligence</h3>
+            <p>
+                Artificial Intelligence (AI) is the simulation of human intelligence processes by machines,
+                especially computer systems. These processes include learning, reasoning, and self-correction.
+            </p>
+            <p>
+                <strong>Key Concepts:</strong>
+            </p>
+            <ul>
+                <li>Machine Learning - Systems that learn from data</li>
+                <li>Neural Networks - Computing systems inspired by biological neural networks</li>
+                <li>Deep Learning - Subset of ML using multi-layered neural networks</li>
+                <li>Natural Language Processing - Understanding and generating human language</li>
+            </ul>
+            <p>
+                Try interacting with this page - scroll, move your mouse, click around. 
+                PRANA will detect your engagement level and cognitive state.
+            </p>
+        </div>
+    </div>
+
+    <!-- PRANA Integration -->
+    <script type="module">
+        // Import PRANA Core
+        import { initPranaCore } from './prana-core/prana_packet_builder.js';
+        import { getStateEngine } from './prana-core/prana_state_engine.js';
+        import { getPacketBuilder } from './prana-core/prana_packet_builder.js';
+
+        // Configuration - Replace with actual values from your backend
+        const config = {
+            system_type: 'gurukul',
+            role: 'student',
+            user_id: 'demo_user_' + Date.now(),
+            session_id: 'demo_session_' + Date.now(),
+            lesson_id: 'ai_introduction_lesson',
+            bucket_endpoint: 'http://localhost:8001/bucket/prana/ingest'
+        };
+
+        // Initialize PRANA
+        console.log('🎯 Initializing PRANA with config:', config);
+        const prana = initPranaCore(config);
+
+        // Update status
+        document.getElementById('status').innerHTML = 
+            '✅ PRANA is active and monitoring your behavior';
+
+        // Update UI with live metrics
+        let packetCount = 0;
+        setInterval(() => {
+            const stateEngine = getStateEngine();
+            const packetBuilder = getPacketBuilder();
+
+            if (stateEngine && packetBuilder) {
+                const state = stateEngine.getCurrentState();
+                const summary = stateEngine.getStateSummary();
+
+                // Update UI
+                document.getElementById('state').textContent = state;
+                
+                // Estimate focus score based on state
+                const focusScores = {
+                    'DEEP_FOCUS': 95,
+                    'ON_TASK': 75,
+                    'THINKING': 65,
+                    'DISTRACTED': 30,
+                    'IDLE': 10,
+                    'OFF_TASK': 5,
+                    'AWAY': 0
+                };
+                document.getElementById('focus').textContent = focusScores[state] || 50;
+                document.getElementById('active').textContent = 
+                    Math.floor(summary.duration_ms / 1000) + 's';
+            }
+        }, 1000);
+
+        // Count packets sent
+        const originalFetch = window.fetch;
+        window.fetch = function(...args) {
+            if (args[0] && args[0].includes('/bucket/prana/ingest')) {
+                packetCount++;
+                document.getElementById('packets').textContent = packetCount;
+            }
+            return originalFetch.apply(this, args);
+        };
+
+        console.log('✅ PRANA initialized successfully');
+        console.log('📊 Check console for PRANA signals every 5 seconds');
+    </script>
+</body>
+</html>

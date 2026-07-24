@@ -1,0 +1,26 @@
+{
+    "execution_id": "exec_c5a61f26",
+    "trace_id": "trace_c2280533",
+    "pipeline": [
+        {
+            "stage": "SIGNAL",
+            "status": "COMPLETED"
+        },
+        {
+            "stage": "PERCEPTION",
+            "status": "COMPLETED"
+        },
+        {
+            "stage": "INTELLIGENCE",
+            "status": "COMPLETED"
+        },
+        {
+            "stage": "STATE",
+            "status": "COMPLETED"
+        },
+        {
+            "stage": "CONTRACT",
+            "status": "MUTATION_REJECTED"
+        }
+    ]
+}

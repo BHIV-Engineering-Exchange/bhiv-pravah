@@ -1,0 +1,76 @@
+﻿vessel_id,vessel_name,vessel_class,nation,length_m,beam_m,displacement_tons,propulsion,operational_role,radar_signature,source_reference,source_version
+V001,Vessel_001,Frigate,UK,313,28,37996,Nuclear,Surveillance,Low,Jane's Fighting Ships,v1
+V002,Vessel_002,Frigate,India,240,11,87498,Nuclear,Multi Role,Medium,Jane's Fighting Ships,v1
+V003,Vessel_003,Corvette,USA,144,23,76681,CODOG,Carrier Operations,Low,Jane's Fighting Ships,v1
+V004,Vessel_004,Destroyer,Germany,101,39,63761,Diesel Electric,Carrier Operations,High,Jane's Fighting Ships,v1
+V005,Vessel_005,Aircraft Carrier,France,295,26,86372,CODOG,Air Defense,High,Jane's Fighting Ships,v1
+V006,Vessel_006,Corvette,Germany,124,11,4010,Steam Turbine,Air Defense,Medium,Jane's Fighting Ships,v1
+V007,Vessel_007,Frigate,Japan,291,38,94228,Steam Turbine,Multi Role,High,Jane's Fighting Ships,v1
+V008,Vessel_008,Frigate,Japan,285,34,85097,Steam Turbine,Multi Role,Medium,Jane's Fighting Ships,v1
+V009,Vessel_009,Frigate,France,213,22,37246,Steam Turbine,Carrier Operations,Low,Jane's Fighting Ships,v1
+V010,Vessel_010,Destroyer,UK,80,10,72412,Diesel Electric,Multi Role,Low,Jane's Fighting Ships,v1
+V011,Vessel_011,Destroyer,India,104,8,22625,CODOG,Surveillance,Low,Jane's Fighting Ships,v1
+V012,Vessel_012,Destroyer,UK,228,7,27413,CODOG,Multi Role,Low,Jane's Fighting Ships,v1
+V013,Vessel_013,Destroyer,Germany,61,17,92462,Gas Turbine,Attack,Medium,Jane's Fighting Ships,v1
+V014,Vessel_014,Aircraft Carrier,Japan,322,36,70901,CODOG,Multi Role,Medium,Jane's Fighting Ships,v1
+V015,Vessel_015,Destroyer,Germany,301,35,96641,Gas Turbine,Attack,High,Jane's Fighting Ships,v1
+V016,Vessel_016,Frigate,India,172,19,99255,Nuclear,Multi Role,High,Jane's Fighting Ships,v1
+V017,Vessel_017,Submarine,Russia,248,37,14320,Diesel Electric,Surveillance,High,Jane's Fighting Ships,v1
+V018,Vessel_018,Patrol Vessel,France,228,23,56104,Gas Turbine,Carrier Operations,Medium,Jane's Fighting Ships,v1
+V019,Vessel_019,Aircraft Carrier,India,307,16,16259,Gas Turbine,Surveillance,High,Jane's Fighting Ships,v1
+V020,Vessel_020,Aircraft Carrier,India,122,24,92930,CODOG,Carrier Operations,High,Jane's Fighting Ships,v1
+V021,Vessel_021,Corvette,USA,97,25,50807,Nuclear,Attack,Medium,Jane's Fighting Ships,v1
+V022,Vessel_022,Destroyer,China,225,21,22028,CODOG,Multi Role,High,Jane's Fighting Ships,v1
+V023,Vessel_023,Frigate,USA,239,34,66474,CODOG,Multi Role,Low,Jane's Fighting Ships,v1
+V024,Vessel_024,Destroyer,UK,171,35,91479,CODOG,Surveillance,Medium,Jane's Fighting Ships,v1
+V025,Vessel_025,Aircraft Carrier,France,217,26,72173,Nuclear,Surveillance,Medium,Jane's Fighting Ships,v1
+V026,Vessel_026,Aircraft Carrier,Japan,253,9,80044,CODOG,Surveillance,Medium,Jane's Fighting Ships,v1
+V027,Vessel_027,Frigate,India,272,20,13569,Steam Turbine,Surveillance,Low,Jane's Fighting Ships,v1
+V028,Vessel_028,Aircraft Carrier,USA,230,34,63810,Steam Turbine,Escort,Low,Jane's Fighting Ships,v1
+V029,Vessel_029,Patrol Vessel,Russia,177,34,20698,Steam Turbine,Multi Role,High,Jane's Fighting Ships,v1
+V030,Vessel_030,Aircraft Carrier,USA,314,8,40408,Nuclear,Attack,High,Jane's Fighting Ships,v1
+V031,Vessel_031,Patrol Vessel,Germany,200,28,29850,Nuclear,Attack,High,Jane's Fighting Ships,v1
+V032,Vessel_032,Corvette,Germany,187,25,89485,Gas Turbine,Multi Role,Medium,Jane's Fighting Ships,v1
+V033,Vessel_033,Patrol Vessel,Russia,111,38,63162,Steam Turbine,Surveillance,High,Jane's Fighting Ships,v1
+V034,Vessel_034,Submarine,France,132,17,13076,Gas Turbine,Multi Role,Low,Jane's Fighting Ships,v1
+V035,Vessel_035,Corvette,Germany,103,8,91783,Nuclear,Surveillance,Low,Jane's Fighting Ships,v1
+V036,Vessel_036,Patrol Vessel,Russia,241,29,39333,Steam Turbine,Escort,High,Jane's Fighting Ships,v1
+V037,Vessel_037,Aircraft Carrier,USA,153,12,9496,Steam Turbine,Air Defense,High,Jane's Fighting Ships,v1
+V038,Vessel_038,Frigate,Germany,85,28,10829,Steam Turbine,Air Defense,Low,Jane's Fighting Ships,v1
+V039,Vessel_039,Frigate,France,257,15,12357,Nuclear,Attack,Medium,Jane's Fighting Ships,v1
+V040,Vessel_040,Submarine,UK,152,8,16605,Gas Turbine,Escort,High,Jane's Fighting Ships,v1
+V041,Vessel_041,Destroyer,Germany,177,24,38306,Diesel Electric,Attack,Medium,Jane's Fighting Ships,v1
+V042,Vessel_042,Patrol Vessel,India,320,21,23263,Gas Turbine,Escort,High,Jane's Fighting Ships,v1
+V043,Vessel_043,Corvette,USA,107,37,29244,Gas Turbine,Air Defense,Low,Jane's Fighting Ships,v1
+V044,Vessel_044,Corvette,USA,186,37,87057,Steam Turbine,Air Defense,Medium,Jane's Fighting Ships,v1
+V045,Vessel_045,Submarine,Japan,127,13,62782,Diesel Electric,Attack,High,Jane's Fighting Ships,v1
+V046,Vessel_046,Corvette,Japan,266,19,56450,Steam Turbine,Surveillance,Low,Jane's Fighting Ships,v1
+V047,Vessel_047,Aircraft Carrier,Russia,285,16,35943,Gas Turbine,Air Defense,Medium,Jane's Fighting Ships,v1
+V048,Vessel_048,Destroyer,Germany,166,13,50464,Steam Turbine,Attack,Low,Jane's Fighting Ships,v1
+V049,Vessel_049,Destroyer,India,82,22,91686,CODOG,Attack,Low,Jane's Fighting Ships,v1
+V050,Vessel_050,Patrol Vessel,Japan,184,32,12532,Gas Turbine,Air Defense,Low,Jane's Fighting Ships,v1
+V051,Vessel_051,Aircraft Carrier,USA,290,17,58162,CODOG,Escort,Medium,Jane's Fighting Ships,v1
+V052,Vessel_052,Corvette,India,98,15,60853,Diesel Electric,Surveillance,High,Jane's Fighting Ships,v1
+V053,Vessel_053,Submarine,France,303,10,13405,Nuclear,Multi Role,Medium,Jane's Fighting Ships,v1
+V054,Vessel_054,Corvette,USA,74,18,31907,Nuclear,Multi Role,Medium,Jane's Fighting Ships,v1
+V055,Vessel_055,Aircraft Carrier,China,191,36,55032,Gas Turbine,Attack,High,Jane's Fighting Ships,v1
+V056,Vessel_056,Submarine,Japan,128,23,38651,Gas Turbine,Attack,High,Jane's Fighting Ships,v1
+V057,Vessel_057,Patrol Vessel,UK,102,11,77246,Steam Turbine,Multi Role,Medium,Jane's Fighting Ships,v1
+V058,Vessel_058,Corvette,Russia,316,22,39556,CODOG,Attack,Low,Jane's Fighting Ships,v1
+V059,Vessel_059,Patrol Vessel,Germany,290,14,45866,Nuclear,Multi Role,Low,Jane's Fighting Ships,v1
+V060,Vessel_060,Corvette,USA,69,34,46750,Diesel Electric,Carrier Operations,High,Jane's Fighting Ships,v1
+V061,Vessel_061,Corvette,USA,152,23,95373,Gas Turbine,Surveillance,Medium,Jane's Fighting Ships,v1
+V062,Vessel_062,Corvette,India,258,30,99086,Nuclear,Carrier Operations,Medium,Jane's Fighting Ships,v1
+V063,Vessel_063,Destroyer,Germany,61,21,43884,Nuclear,Attack,High,Jane's Fighting Ships,v1
+V064,Vessel_064,Submarine,Japan,81,35,98440,Diesel Electric,Surveillance,High,Jane's Fighting Ships,v1
+V065,Vessel_065,Aircraft Carrier,Japan,255,31,78238,CODOG,Surveillance,Medium,Jane's Fighting Ships,v1
+V066,Vessel_066,Corvette,Russia,274,15,54099,Nuclear,Air Defense,Low,Jane's Fighting Ships,v1
+V067,Vessel_067,Corvette,Japan,118,7,7554,CODOG,Escort,Medium,Jane's Fighting Ships,v1
+V068,Vessel_068,Patrol Vessel,Russia,173,32,99497,Diesel Electric,Escort,Low,Jane's Fighting Ships,v1
+V069,Vessel_069,Submarine,Russia,152,18,95858,Nuclear,Carrier Operations,High,Jane's Fighting Ships,v1
+V070,Vessel_070,Frigate,France,237,14,41196,Nuclear,Attack,Medium,Jane's Fighting Ships,v1
+V071,Vessel_071,Patrol Vessel,Germany,249,12,74961,Gas Turbine,Multi Role,Low,Jane's Fighting Ships,v1
+V072,Vessel_072,Patrol Vessel,France,232,16,73173,Nuclear,Escort,Low,Jane's Fighting Ships,v1
+V073,Vessel_073,Destroyer,Germany,105,32,25255,Nuclear,Multi Role,High,Jane's Fighting Ships,v1
+V074,Vessel_074,Aircraft Carrier,Japan,321,29,6193,Steam Turbine,Carrier Operations,Low,Jane's Fighting Ships,v1
+V075,Vessel_075,Destroyer,China,313,30,76340,CODOG,Multi Role,High,Jane's Fighting Ships,v1

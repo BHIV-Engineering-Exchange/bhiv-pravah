@@ -1,0 +1,98 @@
+{
+  "demo_run_timestamp": "2026-01-24T07:29:30Z",
+  "environment": "production",
+  "service": "workflow-executor",
+  "deployment": "render",
+  "endpoint": "https://workflow-executor-mp4x.onrender.com/api/workflow/execute",
+
+  "traces": [
+    {
+      "scenario": "successful_execution",
+      "trace_id": "demo-success-001",
+      "decision": "workflow",
+      "product": "ai_assistant",
+      "action_type": "ai",
+
+      "request_timestamp": "2026-01-24T07:27:47.547124Z",
+      "execution_result": {
+        "success": true,
+        "request_id": "ai_74c0bf7f",
+        "prompt": "Explain deterministic execution in one sentence"
+      },
+
+      "enforcement_behavior": {
+        "authorized": true,
+        "failure": false
+      }
+    },
+
+    {
+      "scenario": "blocked_execution",
+      "trace_id": "demo-block-001",
+      "decision": "workflow",
+      "product": "ai_assistant",
+      "action_type": "ai",
+
+      "execution_result": {
+        "success": false,
+        "error_code": "missing_trace_id",
+        "message": "trace_id is required for execution"
+      },
+
+      "enforcement_behavior": {
+        "authorized": false,
+        "failure": "input_validation"
+      }
+    },
+
+    {
+      "scenario": "adapter_failure",
+      "trace_id": "demo-fail-001",
+      "decision": "workflow",
+      "product": "ai_assistant",
+      "action_type": "task",
+
+      "request_timestamp": "2026-01-24T07:29:10.253198Z",
+      "execution_result": {
+        "success": false,
+        "error_code": "missing_task_title",
+        "message": "title is required to create a task"
+      },
+
+      "enforcement_behavior": {
+        "authorized": true,
+        "failure": "adapter_validation"
+      }
+    },
+
+    {
+      "scenario": "replay_execution",
+      "trace_id": "demo-success-001",
+      "decision": "workflow",
+      "product": "ai_assistant",
+      "action_type": "ai",
+
+      "request_timestamp": "2026-01-24T07:29:24.647942Z",
+      "execution_result": {
+        "success": true,
+        "request_id": "ai_b0dab507",
+        "prompt": "Explain deterministic execution in one sentence"
+      },
+
+      "determinism_proof": {
+        "same_trace_id": true,
+        "same_input": true,
+        "same_outcome_class": true,
+        "no_state_mutation": true
+      }
+    }
+  ],
+
+  "assertions": {
+    "no_silent_failures": true,
+    "no_retries_with_side_effects": true,
+    "append_only_truth": true,
+    "trace_id_preserved": true,
+    "executor_fail_closed": true
+  }
+}

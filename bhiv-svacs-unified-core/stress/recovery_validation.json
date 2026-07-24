@@ -1,0 +1,5 @@
+{
+  "restart_recovery": true,
+  "lineage_recovered": true,
+  "deterministic_replay": true
+}

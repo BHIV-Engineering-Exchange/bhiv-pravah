@@ -1,0 +1,13 @@
+{
+    "scenario": "illegal_fishing_detection",
+    "runtime_status": "EXECUTED",
+    "deterministic_execution": true,
+    "replay_safe": true,
+    "bucket_persisted": true,
+    "dashboard_visible": true,
+    "geo_provenance_valid": true,
+    "noise_handling": true,
+    "operational_ambiguity": true,
+    "expected_intelligence_outcome": "ILLEGAL_ACTIVITY_FLAGGED",
+    "replay_reconstruction_verified": true
+}

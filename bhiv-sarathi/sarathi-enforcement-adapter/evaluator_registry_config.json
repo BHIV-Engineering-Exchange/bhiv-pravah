@@ -1,0 +1,11 @@
+{
+  "store_type": "postgres",
+  "store_path": "./evaluators.json",
+  "require_durable_store": true,
+  "default_key_ttl_days": 365,
+  "grace_period_hours": 24,
+  "admin_keys_env_prefix": "SARATHI_EVAL_ADMIN_KEY_",
+  "metadata_allow_list": ["org", "version", "env", "owner", "tier"],
+  "bootstrap_evaluators": [],
+  "description": "Sarathi Phase 12 — Evaluator Trust Registry bootstrap configuration. Add bootstrap_evaluators with evaluator_id, name, public_key_hex (Ed25519, hex-encoded, 64 chars), optional metadata, optional expires_at (RFC 3339)."
+}

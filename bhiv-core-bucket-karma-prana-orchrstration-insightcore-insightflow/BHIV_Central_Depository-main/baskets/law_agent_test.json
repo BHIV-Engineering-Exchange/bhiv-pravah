@@ -1,0 +1,11 @@
+{
+    "basket_name": "law_agent_test",
+    "description": "Test basket for the new Law Agent",
+    "agents": ["law_agent"],
+    "execution_strategy": "sequential",
+    "input_schema": {
+        "query": "I was wrongfully terminated from my job. What are my rights?",
+        "agent_type": "enhanced",
+        "location": "California, USA"
+    }
+}

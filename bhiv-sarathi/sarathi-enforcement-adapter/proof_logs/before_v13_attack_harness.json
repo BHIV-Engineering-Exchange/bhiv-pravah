@@ -1,0 +1,730 @@
+{
+  "total": 39,
+  "passed": 37,
+  "failed": 2,
+  "weaknesses": [
+    "WEAKNESS: RPSA-01 (Path Traversal Bypass — agent attempts to access core-engine via path traversal) — expected=DENY actual=\u003cnil\u003e error=DENY",
+    "WEAKNESS: RPSA-02 (Case Sensitivity Escalation — agent_id with uppercase letters) — expected=DENY actual=\u003cnil\u003e error=DENY"
+  ],
+  "failure_mapping": {
+    "AGENT_POSTURE_DENIED: agent=gov-agent-001 issuer=test-posture-issuer (posture signal valid but posture=false)": 1,
+    "DENY": 2,
+    "EXTERNAL_PIPELINE_HASH_VERIFIED": 1,
+    "IDEMPOTENT_PERMIT_20": 1,
+    "INCOMPLETE: expected 9 stages, recorded 10 stages": 1,
+    "INCOMPLETE: expected 9 stages, recorded 2 stages": 1,
+    "INVALID_SIGNATURE": 13,
+    "MISMATCH: stage[0] expected=\"PRE_GATE_RATE_LIMIT\" actual=\"PDP_EVALUATION\"": 1,
+    "NO_PANIC": 1,
+    "NO_TOKEN": 1,
+    "NO_TOKEN: execution requires a valid capability token": 4,
+    "ORDER_INDEPENDENT": 1,
+    "PERMIT=20 BLOCK=0": 1,
+    "PIPELINE_HASH_VERIFIED": 1,
+    "POSTURE_ISSUER_UNKNOWN: issuer not in authorized issuer key set": 1,
+    "POSTURE_SIGNAL_EXPIRED: signal ExpiresAt is in the past": 1,
+    "POSTURE_SIGNAL_INVALID: Ed25519 signature verification failed": 1,
+    "POSTURE_SIGNAL_REPLAYED: nonce has been seen before": 1,
+    "REVOCATION_SCOPED_CORRECTLY": 1,
+    "TOKEN_UNIQUENESS_ENFORCED": 1,
+    "TTL_WINDOW_VALID": 1,
+    "UNIQUENESS_true": 1,
+    "e1=INVALID_SIGNATURE e2=INVALID_SIGNATURE": 1
+  },
+  "results": [
+    {
+      "attack_id": "XSYS-01",
+      "attack_type": "CROSS_SYSTEM_INVOCATION",
+      "phase": 2,
+      "description": "Execute with nil token — direct engine call bypassing pipeline",
+      "input_payload": {
+        "method": "ExecuteWithToken(nil)",
+        "token": null
+      },
+      "expected_result": "BLOCKED",
+      "actual_result": "EXECUTION_BLOCKED",
+      "deterministic_error_code": "NO_TOKEN",
+      "trace_id": "atk-xsys01-c79a9179",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    },
+    {
+      "attack_id": "XSYS-02",
+      "attack_type": "CROSS_SYSTEM_INVOCATION",
+      "phase": 2,
+      "description": "Execute with empty token — zero-value fields, no signature",
+      "input_payload": {
+        "signature": "none",
+        "token_id": "",
+        "verdict": ""
+      },
+      "expected_result": "BLOCKED",
+      "actual_result": "EXECUTION_BLOCKED",
+      "deterministic_error_code": "INVALID_SIGNATURE",
+      "trace_id": "atk-xsys02-e383993e",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    },
+    {
+      "attack_id": "XSYS-03",
+      "attack_type": "CROSS_SYSTEM_INVOCATION",
+      "phase": 2,
+      "description": "Forge token with mismatched decision_id — unsigned, wrong chain hash",
+      "input_payload": {
+        "forged_decision_id": "FORGED-DECISION-31cf869d-6ba3-4a59-b973-02f3275cc311",
+        "legitimate_passed": "EXECUTION_PERMITTED"
+      },
+      "expected_result": "BLOCKED",
+      "actual_result": "EXECUTION_BLOCKED",
+      "deterministic_error_code": "INVALID_SIGNATURE",
+      "trace_id": "atk-xsys03-2abe6391",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    },
+    {
+      "attack_id": "XSYS-04",
+      "attack_type": "CROSS_SYSTEM_INVOCATION",
+      "phase": 2,
+      "description": "Direct engine call without Enforce() — no enforcement chain entry exists",
+      "input_payload": {
+        "enforcement_hash": "e42cb356fbfaf1d80851c3adb91f4dcbed0ffa497bbf335df00599f771cc112b",
+        "method": "ExecuteWithToken(crafted)"
+      },
+      "expected_result": "BLOCKED",
+      "actual_result": "EXECUTION_BLOCKED",
+      "deterministic_error_code": "INVALID_SIGNATURE",
+      "trace_id": "atk-xsys04-f5e359c2",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    },
+    {
+      "attack_id": "XSYS-05",
+      "attack_type": "CROSS_SYSTEM_INVOCATION",
+      "phase": 2,
+      "description": "BOLA: Ghost agent attempts to read authorized resource — agent not in registry",
+      "input_payload": {
+        "action": "read",
+        "agent_id": "ghost-agent-bola",
+        "resource": "policy-reg-001"
+      },
+      "expected_result": "BLOCKED",
+      "actual_result": "EXECUTION_BLOCKED",
+      "deterministic_error_code": "NO_TOKEN: execution requires a valid capability token",
+      "trace_id": "atk-xsys05-1e3409b0",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    },
+    {
+      "attack_id": "XSYS-06",
+      "attack_type": "CROSS_SYSTEM_INVOCATION",
+      "phase": 2,
+      "description": "BFLA: Standard agent attempts delete on protected governance resource",
+      "input_payload": {
+        "action": "delete",
+        "agent_id": "std-agent-001",
+        "resource": "policy-reg-001"
+      },
+      "expected_result": "BLOCKED",
+      "actual_result": "EXECUTION_BLOCKED",
+      "deterministic_error_code": "NO_TOKEN: execution requires a valid capability token",
+      "trace_id": "atk-xsys06-ae1f8c27",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    },
+    {
+      "attack_id": "TKLC-01",
+      "attack_type": "TOKEN_LIFECYCLE",
+      "phase": 3,
+      "description": "Execute twice — verify each execution gets a unique token (no token reuse)",
+      "input_payload": {
+        "agent_id": "gov-agent-001",
+        "first_token": "89ba6f49-9214-436a-8596-89e63dc7312a",
+        "second_token": "7b46321e-5e63-4a71-a6af-ce811d912bd9"
+      },
+      "expected_result": "DIFFERENT_TOKENS",
+      "actual_result": "first=EXECUTION_PERMITTED second=EXECUTION_PERMITTED unique=true",
+      "deterministic_error_code": "TOKEN_UNIQUENESS_ENFORCED",
+      "trace_id": "atk-tklc01-f8856ab4",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 1506900
+    },
+    {
+      "attack_id": "TKLC-02",
+      "attack_type": "TOKEN_LIFECYCLE",
+      "phase": 3,
+      "description": "Cross-context reuse — pipeline A's enforcement_hash used on pipeline B's engine",
+      "input_payload": {
+        "attack": "cross-pipeline token",
+        "target": "pipeline2.Engine.ExecuteWithToken"
+      },
+      "expected_result": "BLOCKED",
+      "actual_result": "EXECUTION_BLOCKED",
+      "deterministic_error_code": "INVALID_SIGNATURE",
+      "trace_id": "atk-tklc02-0819fe51",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 1009100
+    },
+    {
+      "attack_id": "TKLC-03",
+      "attack_type": "TOKEN_LIFECYCLE",
+      "phase": 3,
+      "description": "20 concurrent executions — stress test token uniqueness under goroutine pressure",
+      "input_payload": {
+        "action": "read",
+        "agent": "gov-agent-001",
+        "goroutines": 20
+      },
+      "expected_result": "ALL_UNIQUE_TOKENS",
+      "actual_result": "permitted=20 blocked=0",
+      "deterministic_error_code": "PERMIT=20 BLOCK=0",
+      "trace_id": "atk-tklc03-39e1d3e2",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 3847900
+    },
+    {
+      "attack_id": "TKLC-04",
+      "attack_type": "TOKEN_LIFECYCLE",
+      "phase": 3,
+      "description": "Suspended agent attempts execution — should be denied by PDP",
+      "input_payload": {
+        "agent_id": "suspended-agent-001",
+        "resource": "policy-reg-001"
+      },
+      "expected_result": "BLOCKED",
+      "actual_result": "EXECUTION_BLOCKED",
+      "deterministic_error_code": "NO_TOKEN: execution requires a valid capability token",
+      "trace_id": "atk-tklc04-758d6242",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 520700
+    },
+    {
+      "attack_id": "TKLC-05",
+      "attack_type": "TOKEN_LIFECYCLE",
+      "phase": 3,
+      "description": "Revoke token enforcement_hash and verify subsequent execution gets new independent token",
+      "input_payload": {
+        "revoked_hash": "76406f4d36f2837087f907476f0bb88f78b12b31c117ba2721dc9071f183437f",
+        "token_id": "12c0f13b-5c51-4439-aae5-157569428895"
+      },
+      "expected_result": "NEW_TOKEN_INDEPENDENT",
+      "actual_result": "first_token=12c0f13b-5c51-4439-aae5-157569428895 second_state=EXECUTION_PERMITTED",
+      "deterministic_error_code": "REVOCATION_SCOPED_CORRECTLY",
+      "trace_id": "atk-tklc05-3f4cd554",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    },
+    {
+      "attack_id": "TKLC-06",
+      "attack_type": "TOKEN_LIFECYCLE",
+      "phase": 3,
+      "description": "Unicode/null-byte injection in agent_id — zero-width space + null byte",
+      "input_payload": {
+        "agent_id": "agent\\u200B\\x00admin",
+        "technique": "unicode_injection"
+      },
+      "expected_result": "BLOCKED",
+      "actual_result": "EXECUTION_BLOCKED",
+      "deterministic_error_code": "NO_TOKEN: execution requires a valid capability token",
+      "trace_id": "atk-tklc06-070112eb",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    },
+    {
+      "attack_id": "DRPL-01",
+      "attack_type": "DISTRIBUTED_REPLAY",
+      "phase": 4,
+      "description": "20-goroutine race — verify no double-execution and all tokens unique",
+      "input_payload": {
+        "goroutines": 20,
+        "target": "same agent+resource"
+      },
+      "expected_result": "ALL_UNIQUE",
+      "actual_result": "permitted=20 unique_tokens=20 all_unique=true",
+      "deterministic_error_code": "UNIQUENESS_true",
+      "trace_id": "atk-drpl01-b6ecd354",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 3510700
+    },
+    {
+      "attack_id": "DRPL-02",
+      "attack_type": "DISTRIBUTED_REPLAY",
+      "phase": 4,
+      "description": "Split-brain: forged token tested on TWO independent engines — both must reject",
+      "input_payload": {
+        "attack": "split-brain",
+        "engines": 2
+      },
+      "expected_result": "BOTH_BLOCKED",
+      "actual_result": "engine1=EXECUTION_BLOCKED engine2=EXECUTION_BLOCKED",
+      "deterministic_error_code": "e1=INVALID_SIGNATURE e2=INVALID_SIGNATURE",
+      "trace_id": "atk-drpl02-908c4310",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 1999700
+    },
+    {
+      "attack_id": "DRPL-03",
+      "attack_type": "DISTRIBUTED_REPLAY",
+      "phase": 4,
+      "description": "Out-of-order request arrival — 10 requests in reverse order, all must succeed independently",
+      "input_payload": {
+        "order": "reverse",
+        "requests": 10
+      },
+      "expected_result": "ALL_PERMITTED",
+      "actual_result": "all_permitted=true",
+      "deterministic_error_code": "ORDER_INDEPENDENT",
+      "trace_id": "atk-drpl03-83cdbe68",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 2007100
+    },
+    {
+      "attack_id": "DRPL-04",
+      "attack_type": "DISTRIBUTED_REPLAY",
+      "phase": 4,
+      "description": "GC-pause simulation — 200ms delay, verify token still valid within TTL window",
+      "input_payload": {
+        "delay_ms": 200,
+        "technique": "gc_pause_simulation"
+      },
+      "expected_result": "BOTH_PERMITTED",
+      "actual_result": "pre_gc=EXECUTION_PERMITTED post_gc=EXECUTION_PERMITTED",
+      "deterministic_error_code": "TTL_WINDOW_VALID",
+      "trace_id": "atk-drpl04-19f39a55",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 200723500
+    },
+    {
+      "attack_id": "DRPL-05",
+      "attack_type": "DISTRIBUTED_REPLAY",
+      "phase": 4,
+      "description": "20 rapid-fire requests with same correlation_id — verify each gets unique token",
+      "input_payload": {
+        "goroutines": 20,
+        "same_correlation_id": true
+      },
+      "expected_result": "ALL_PERMITTED_UNIQUE",
+      "actual_result": "permitted=20/20",
+      "deterministic_error_code": "IDEMPOTENT_PERMIT_20",
+      "trace_id": "atk-drpl05-f2793185",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 4608400
+    },
+    {
+      "attack_id": "POST-01",
+      "attack_type": "POSTURE_BYPASS",
+      "phase": 5,
+      "description": "Expired posture signal — valid signature but timestamp 1 hour in the past",
+      "input_payload": {
+        "expires_at": "1 hour ago",
+        "signature": "valid"
+      },
+      "expected_result": "REJECTED",
+      "actual_result": "error=POSTURE_SIGNAL_EXPIRED: signal ExpiresAt is in the past",
+      "deterministic_error_code": "POSTURE_SIGNAL_EXPIRED: signal ExpiresAt is in the past",
+      "trace_id": "atk-post01-c415ee7c",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    },
+    {
+      "attack_id": "POST-02",
+      "attack_type": "POSTURE_BYPASS",
+      "phase": 5,
+      "description": "Replayed posture nonce — same nonce used twice, second must be rejected",
+      "input_payload": {
+        "nonce": "cb8a8cbf-7da7-433a-b7e0-86f188665f68",
+        "submissions": 2
+      },
+      "expected_result": "SECOND_REJECTED",
+      "actual_result": "first=\u003cnil\u003e second=POSTURE_SIGNAL_REPLAYED: nonce has been seen before",
+      "deterministic_error_code": "POSTURE_SIGNAL_REPLAYED: nonce has been seen before",
+      "trace_id": "atk-post02-a2cfe5ce",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 542000
+    },
+    {
+      "attack_id": "POST-03",
+      "attack_type": "POSTURE_BYPASS",
+      "phase": 5,
+      "description": "Unknown issuer — rogue posture service signs with unregistered key",
+      "input_payload": {
+        "issuer": "UNKNOWN-ROGUE-ISSUER",
+        "signature": "valid_but_untrusted"
+      },
+      "expected_result": "REJECTED",
+      "actual_result": "error=POSTURE_ISSUER_UNKNOWN: issuer not in authorized issuer key set",
+      "deterministic_error_code": "POSTURE_ISSUER_UNKNOWN: issuer not in authorized issuer key set",
+      "trace_id": "atk-post03-2f3503a5",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    },
+    {
+      "attack_id": "POST-04",
+      "attack_type": "POSTURE_BYPASS",
+      "phase": 5,
+      "description": "Posture=false — valid signature but issuer declares agent posture as denied",
+      "input_payload": {
+        "issuer": "test-posture-issuer",
+        "posture": false,
+        "signature": "valid"
+      },
+      "expected_result": "REJECTED",
+      "actual_result": "admitted=false reason=AGENT_POSTURE_DENIED: agent=gov-agent-001 issuer=test-posture-issuer (posture signal valid but posture=false)",
+      "deterministic_error_code": "AGENT_POSTURE_DENIED: agent=gov-agent-001 issuer=test-posture-issuer (posture signal valid but posture=false)",
+      "trace_id": "atk-post04-8f481ee3",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    },
+    {
+      "attack_id": "POST-05",
+      "attack_type": "POSTURE_BYPASS",
+      "phase": 5,
+      "description": "Tampered payload — modify agent_id after signing, original signature now invalid",
+      "input_payload": {
+        "original": "gov-agent-001",
+        "tampered": "TAMPERED-AGENT",
+        "tampered_field": "agent_id"
+      },
+      "expected_result": "REJECTED",
+      "actual_result": "error=POSTURE_SIGNAL_INVALID: Ed25519 signature verification failed",
+      "deterministic_error_code": "POSTURE_SIGNAL_INVALID: Ed25519 signature verification failed",
+      "trace_id": "atk-post05-f706ef46",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    },
+    {
+      "attack_id": "PIPE-01",
+      "attack_type": "PIPELINE_INTEGRITY",
+      "phase": 6,
+      "description": "Verify pipeline hash is frozen — recompute and compare to expected",
+      "input_payload": {
+        "expected_hash": "7bfb3580a453d0c94c0f01ec83029ebd5e0bab346c130b45b89f9c9f238453b1",
+        "stages": [
+          "PRE_GATE_RATE_LIMIT",
+          "PRE_GATE_POSTURE_VERIFY",
+          "PRE_PDP_VALIDATION",
+          "POLICY_VERSION_CHECK",
+          "PDP_EVALUATION",
+          "PDP_HASH_INTEGRITY",
+          "ENFORCEMENT_RESPONSE_BUILD",
+          "TOKEN_SIGN",
+          "CHAIN_APPEND"
+        ]
+      },
+      "expected_result": "MATCH",
+      "actual_result": "computed=7bfb3580a453d0c94c0f01ec83029ebd5e0bab346c130b45b89f9c9f238453b1 expected=7bfb3580a453d0c94c0f01ec83029ebd5e0bab346c130b45b89f9c9f238453b1 match=true",
+      "deterministic_error_code": "PIPELINE_HASH_VERIFIED",
+      "trace_id": "atk-pipe01-e1d1d4b2",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    },
+    {
+      "attack_id": "PIPE-02",
+      "attack_type": "PIPELINE_INTEGRITY",
+      "phase": 6,
+      "description": "Verify EXTERNAL pipeline hash is frozen — recompute and compare",
+      "input_payload": {
+        "expected_hash": "5643c0ca0947a9e941d53a483fc0b62fab36b4e98aa08600c2bb4ea8a4ad15f8",
+        "stages": [
+          "MODE_CHECK",
+          "STRUCTURE_CHECK",
+          "EVALUATOR_TRUST_CHECK",
+          "SIGNATURE_VERIFICATION",
+          "INTEGRITY_CHECK",
+          "EXPIRY_CHECK",
+          "REPLAY_CHECK",
+          "RATE_LIMIT_CHECK",
+          "POSTURE_CHECK",
+          "BINDING_CHECK"
+        ]
+      },
+      "expected_result": "MATCH",
+      "actual_result": "match=true",
+      "deterministic_error_code": "EXTERNAL_PIPELINE_HASH_VERIFIED",
+      "trace_id": "atk-pipe02-835a27da",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    },
+    {
+      "attack_id": "PIPE-03",
+      "attack_type": "PIPELINE_INTEGRITY",
+      "phase": 6,
+      "description": "Incomplete RPA path — only 2 of 9 stages present, VerifyComplete must reject",
+      "input_payload": {
+        "stages_present": 2,
+        "stages_required": 9
+      },
+      "expected_result": "REJECTED",
+      "actual_result": "verified=false detail=INCOMPLETE: expected 9 stages, recorded 2 stages",
+      "deterministic_error_code": "INCOMPLETE: expected 9 stages, recorded 2 stages",
+      "trace_id": "atk-pipe03-3cd7ebdc",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    },
+    {
+      "attack_id": "PIPE-04",
+      "attack_type": "PIPELINE_INTEGRITY",
+      "phase": 6,
+      "description": "Reordered RPA path — all 9 stages present but in wrong order, must reject",
+      "input_payload": {
+        "expected_first": "PRE_GATE_RATE_LIMIT",
+        "first_stage": "PDP_EVALUATION",
+        "stages": 9
+      },
+      "expected_result": "REJECTED",
+      "actual_result": "verified=false detail=MISMATCH: stage[0] expected=\"PRE_GATE_RATE_LIMIT\" actual=\"PDP_EVALUATION\"",
+      "deterministic_error_code": "MISMATCH: stage[0] expected=\"PRE_GATE_RATE_LIMIT\" actual=\"PDP_EVALUATION\"",
+      "trace_id": "atk-pipe04-60df3f72",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    },
+    {
+      "attack_id": "PIPE-05",
+      "attack_type": "PIPELINE_INTEGRITY",
+      "phase": 6,
+      "description": "Stage injection — malicious stage inserted between posture and validation",
+      "input_payload": {
+        "injected_stage": "INJECTED_MALICIOUS_STAGE",
+        "position": 3
+      },
+      "expected_result": "REJECTED",
+      "actual_result": "verified=false detail=INCOMPLETE: expected 9 stages, recorded 10 stages",
+      "deterministic_error_code": "INCOMPLETE: expected 9 stages, recorded 10 stages",
+      "trace_id": "atk-pipe05-a2dd9359",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    },
+    {
+      "attack_id": "FORG-01",
+      "attack_type": "FORGED_TOKEN",
+      "phase": 7,
+      "description": "Token signed with rogue Ed25519 key — valid format but wrong signer",
+      "input_payload": {
+        "key_id_spoofed": true,
+        "technique": "wrong_private_key"
+      },
+      "expected_result": "BLOCKED",
+      "actual_result": "EXECUTION_BLOCKED",
+      "deterministic_error_code": "INVALID_SIGNATURE",
+      "trace_id": "atk-forg01-7d857406",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    },
+    {
+      "attack_id": "FORG-02",
+      "attack_type": "FORGED_TOKEN",
+      "phase": 7,
+      "description": "Tampered enforcement_hash — prefixed with 'TAMPERED-', unsigned token",
+      "input_payload": {
+        "tampered_hash": "TAMPERED-2ff7cc455b623b5f..."
+      },
+      "expected_result": "BLOCKED",
+      "actual_result": "EXECUTION_BLOCKED",
+      "deterministic_error_code": "INVALID_SIGNATURE",
+      "trace_id": "atk-forg02-2f30dd2a",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    },
+    {
+      "attack_id": "FORG-03",
+      "attack_type": "FORGED_TOKEN",
+      "phase": 7,
+      "description": "Wrong signer key ID — key_id mismatch between token and engine",
+      "input_payload": {
+        "expected_key_id": "TA-dd6a1fa3",
+        "token_key_id": "WRONG-KEY-ID-e659e645"
+      },
+      "expected_result": "BLOCKED",
+      "actual_result": "EXECUTION_BLOCKED",
+      "deterministic_error_code": "INVALID_SIGNATURE",
+      "trace_id": "atk-forg03-886193a7",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    },
+    {
+      "attack_id": "FORG-04",
+      "attack_type": "FORGED_TOKEN",
+      "phase": 7,
+      "description": "Token with DENY verdict — crafted token that says DENY, engine must reject",
+      "input_payload": {
+        "verdict": "DENY"
+      },
+      "expected_result": "BLOCKED",
+      "actual_result": "EXECUTION_BLOCKED",
+      "deterministic_error_code": "INVALID_SIGNATURE",
+      "trace_id": "atk-forg04-431e46ad",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 617700
+    },
+    {
+      "attack_id": "FORG-05",
+      "attack_type": "FORGED_TOKEN",
+      "phase": 7,
+      "description": "Zero-length signature — token with empty signature bytes",
+      "input_payload": {
+        "key_id": "TA-dd6a1fa3",
+        "signature_len": 0
+      },
+      "expected_result": "BLOCKED",
+      "actual_result": "EXECUTION_BLOCKED",
+      "deterministic_error_code": "INVALID_SIGNATURE",
+      "trace_id": "atk-forg05-2c6e2a29",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    },
+    {
+      "attack_id": "FORG-06",
+      "attack_type": "FORGED_TOKEN",
+      "phase": 7,
+      "description": "All empty fields — token with every field empty, no signature",
+      "input_payload": {
+        "all_fields": "empty"
+      },
+      "expected_result": "BLOCKED",
+      "actual_result": "EXECUTION_BLOCKED",
+      "deterministic_error_code": "INVALID_SIGNATURE",
+      "trace_id": "atk-forg06-f7ca5275",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    },
+    {
+      "attack_id": "FORG-07",
+      "attack_type": "FORGED_TOKEN",
+      "phase": 7,
+      "description": "ESCALATE verdict token — crafted token with ESCALATE, engine must reject (only ALLOW passes)",
+      "input_payload": {
+        "verdict": "ESCALATE"
+      },
+      "expected_result": "BLOCKED",
+      "actual_result": "EXECUTION_BLOCKED",
+      "deterministic_error_code": "INVALID_SIGNATURE",
+      "trace_id": "atk-forg07-6b7743cf",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    },
+    {
+      "attack_id": "RPSA-01",
+      "attack_type": "RESOURCE_PARSING_SYSTEM_ATTACK",
+      "phase": 8,
+      "description": "Path Traversal Bypass — agent attempts to access core-engine via path traversal",
+      "input_payload": {
+        "resource": "policy-reg-001/../core-engine"
+      },
+      "expected_result": "DENY",
+      "actual_result": "\u003cnil\u003e",
+      "deterministic_error_code": "DENY",
+      "trace_id": "atk-rpsa01-91ee2f6d",
+      "passed": false,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0,
+      "system_fields": {
+        "enforcement_hash": null
+      }
+    },
+    {
+      "attack_id": "RPSA-02",
+      "attack_type": "RESOURCE_PARSING_SYSTEM_ATTACK",
+      "phase": 8,
+      "description": "Case Sensitivity Escalation — agent_id with uppercase letters",
+      "input_payload": {
+        "agent_id": "Gov-Agent-001"
+      },
+      "expected_result": "DENY",
+      "actual_result": "\u003cnil\u003e",
+      "deterministic_error_code": "DENY",
+      "trace_id": "atk-rpsa02-2801f0e5",
+      "passed": false,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0,
+      "system_fields": {
+        "enforcement_hash": null
+      }
+    },
+    {
+      "attack_id": "RPSA-03",
+      "attack_type": "RESOURCE_PARSING_SYSTEM_ATTACK",
+      "phase": 8,
+      "description": "Payload Size Exhaustion — 10KB string for correlationID to check for panics or memory limits",
+      "input_payload": {
+        "correlation_id_length": 10000
+      },
+      "expected_result": "ALLOW_OR_DENY",
+      "actual_result": "NO_PANIC_SUCCESS",
+      "deterministic_error_code": "NO_PANIC",
+      "trace_id": "atk-rpsa03-9c51bee6",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0,
+      "system_fields": {
+        "enforcement_hash": null
+      }
+    },
+    {
+      "attack_id": "RPSA-04",
+      "attack_type": "RESOURCE_PARSING_SYSTEM_ATTACK",
+      "phase": 8,
+      "description": "Signature Length Extension / Padding — 5000 byte signature",
+      "input_payload": {
+        "sig_len": 5000
+      },
+      "expected_result": "BLOCKED",
+      "actual_result": "EXECUTION_BLOCKED",
+      "deterministic_error_code": "INVALID_SIGNATURE",
+      "trace_id": "atk-rpsa04-b4b58bb2",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    },
+    {
+      "attack_id": "RPSA-05",
+      "attack_type": "RESOURCE_PARSING_SYSTEM_ATTACK",
+      "phase": 8,
+      "description": "Time Overflow — token expiry set to year 9999",
+      "input_payload": {
+        "year": 9999
+      },
+      "expected_result": "BLOCKED",
+      "actual_result": "EXECUTION_BLOCKED",
+      "deterministic_error_code": "INVALID_SIGNATURE",
+      "trace_id": "atk-rpsa05-9a2d2f61",
+      "passed": true,
+      "timestamp": "2026-04-14T08:57:38Z",
+      "duration_ns": 0
+    }
+  ],
+  "generated_at": "2026-04-14T08:57:38Z",
+  "system_version": "v14.2"
+}

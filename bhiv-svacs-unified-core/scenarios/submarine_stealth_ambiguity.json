@@ -1,0 +1,39 @@
+```json id="wz97r2"
+{
+  "scenario_id": "SCENARIO_SUBMARINE_STEALTH_001",
+  "scenario_name": "submarine_stealth_ambiguity",
+  "region": "Indian Ocean",
+  "timestamp": "2026-05-21T11:30:00Z",
+  "geo_layer": {
+    "latitude": 12.9716,
+    "longitude": 74.8560,
+    "spatial_uncertainty": "HIGH",
+    "coordinate_confidence": "MEDIUM"
+  },
+  "signals": [
+    {
+      "signal_type": "SONAR",
+      "value": "Intermittent underwater acoustic signature detected"
+    },
+    {
+      "signal_type": "SATELLITE",
+      "value": "Temporary thermal anomaly near maritime corridor"
+    },
+    {
+      "signal_type": "RADAR",
+      "value": "No confirmed surface vessel visibility"
+    }
+  ],
+  "noise": {
+    "ocean_current_interference": "HIGH",
+    "signal_fragmentation": "MEDIUM"
+  },
+  "operational_ambiguity": "Possible stealth submarine movement or environmental acoustic distortion",
+  "expected_intelligence_outcome": "Flag sector for continued underwater surveillance",
+  "replay_reconstruction_proof": {
+    "deterministic_replay": true,
+    "trace_continuity": true,
+    "lineage_preserved": true
+  }
+}
+```

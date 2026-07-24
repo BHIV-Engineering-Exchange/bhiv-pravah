@@ -1,0 +1,59 @@
+{
+  "proof_name": "AI Being → Workflow Executor Execution Trace",
+  "date": "2026-01-10",
+  "proofs": [
+    {
+      "type": "success",
+      "description": "AI Being triggers AI workflow successfully",
+      "request": {
+        "trace_id": "proof-ai-being-success-001",
+        "decision": "workflow",
+        "data": {
+          "workflow_type": "workflow",
+          "payload": {
+            "trace_id": "proof-ai-being-success-001",
+            "action_type": "ai",
+            "intent": "summarize",
+            "prompt": "Summarize the contract in simple words",
+            "context": {
+              "jurisdiction": "IN",
+              "tone": "formal"
+            }
+          }
+        }
+      },
+      "response": {
+        "trace_id": "proof-ai-being-success-001",
+        "status": "success",
+        "execution_result": {
+          "success": true,
+          "health": "ok"
+        }
+      }
+    },
+    {
+      "type": "failure",
+      "description": "AI Being handles missing prompt safely",
+      "request": {
+        "trace_id": "proof-ai-being-failure-001",
+        "decision": "workflow",
+        "data": {
+          "workflow_type": "workflow",
+          "payload": {
+            "trace_id": "proof-ai-being-failure-001",
+            "action_type": "ai",
+            "intent": "summarize"
+          }
+        }
+      },
+      "response": {
+        "trace_id": "proof-ai-being-failure-001",
+        "status": "failed",
+        "execution_result": {
+          "success": false,
+          "error_code": "missing_prompt"
+        }
+      }
+    }
+  ]
+}

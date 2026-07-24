@@ -1,0 +1,1 @@
+# Integration module for Core-Bucket communication

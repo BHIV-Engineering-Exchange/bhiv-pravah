@@ -1,0 +1,113 @@
+{
+  "schema_version": "sarathi.results/v1.0",
+  "generated_at": "2026-05-12T16:15:37.863972Z",
+  "system_version": "v14.4",
+  "test_category": "transport_integrity",
+  "total_tests": 8,
+  "passed": 8,
+  "failed": 0,
+  "results": {
+    "schema_version": "sarathi.transport_integrity/v1.0",
+    "generated_at": "2026-05-12T16:15:37.850416Z",
+    "scenario_count": 8,
+    "matched_expected": 8,
+    "mismatched_expected": 0,
+    "scenarios_passed": [
+      "chunked_encoding",
+      "duplicate_retry",
+      "pass_through"
+    ],
+    "scenarios_halted_as_expected": [
+      "body_byte_flip",
+      "header_mutation",
+      "header_strip",
+      "proxy_reserialize",
+      "server_5xx"
+    ],
+    "transport_integrity_verified": true,
+    "scenarios": [
+      {
+        "name": "pass_through",
+        "expected": "PASS",
+        "actual": "PASS",
+        "transport_integrity_verified": true,
+        "duration_ms": 1,
+        "server_hits": 1,
+        "matched": true
+      },
+      {
+        "name": "chunked_encoding",
+        "expected": "PASS",
+        "actual": "PASS",
+        "transport_integrity_verified": true,
+        "duration_ms": 0,
+        "server_hits": 1,
+        "matched": true
+      },
+      {
+        "name": "header_strip",
+        "expected": "HALT",
+        "actual": "HALT",
+        "transport_integrity_verified": false,
+        "halt_code": "ERR_RESPONSE_HASH_MISMATCH",
+        "error_detail": "propagation_stop hop=transport_header_strip code=ERR_RESPONSE_HASH_MISMATCH trace_id=a04cfecc5d99132c99abedb3a307b247 detail=ack_hash header missing",
+        "duration_ms": 1,
+        "server_hits": 1,
+        "matched": true
+      },
+      {
+        "name": "header_mutation",
+        "expected": "HALT",
+        "actual": "HALT",
+        "transport_integrity_verified": false,
+        "halt_code": "ERR_RESPONSE_HASH_MISMATCH",
+        "error_detail": "propagation_stop hop=transport_header_mutation code=ERR_RESPONSE_HASH_MISMATCH trace_id=a04cfecc5d99132c99abedb3a307b247 detail=ack_hash=deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef does not match sent_hash=09109708e210336473df6d7e5f0320accae85739a29a29bf6f152f0ea405cd3d",
+        "duration_ms": 2,
+        "server_hits": 1,
+        "matched": true
+      },
+      {
+        "name": "proxy_reserialize",
+        "expected": "HALT",
+        "actual": "HALT",
+        "transport_integrity_verified": false,
+        "halt_code": "ERR_RESPONSE_HASH_MISMATCH",
+        "error_detail": "propagation_stop hop=transport_proxy_reserialize code=ERR_RESPONSE_HASH_MISMATCH trace_id=a04cfecc5d99132c99abedb3a307b247 detail=ack_hash=87b440e84399269aa94d7415bf76fdc30c85691da4491726956aa474c7723e30 does not match sent_hash=09109708e210336473df6d7e5f0320accae85739a29a29bf6f152f0ea405cd3d",
+        "duration_ms": 2,
+        "server_hits": 1,
+        "matched": true
+      },
+      {
+        "name": "body_byte_flip",
+        "expected": "HALT",
+        "actual": "HALT",
+        "transport_integrity_verified": false,
+        "halt_code": "ERR_RESPONSE_HASH_MISMATCH",
+        "error_detail": "propagation_stop hop=transport_body_byte_flip code=ERR_RESPONSE_HASH_MISMATCH trace_id=a04cfecc5d99132c99abedb3a307b247 detail=ack_hash=7bf1c9e3c79e79c66e16853d00565f44c8e489114cb4fc0ba57c023cc91f9bca does not match sent_hash=09109708e210336473df6d7e5f0320accae85739a29a29bf6f152f0ea405cd3d",
+        "duration_ms": 2,
+        "server_hits": 1,
+        "matched": true
+      },
+      {
+        "name": "duplicate_retry",
+        "expected": "PASS",
+        "actual": "PASS",
+        "transport_integrity_verified": true,
+        "duration_ms": 1,
+        "server_hits": 2,
+        "matched": true
+      },
+      {
+        "name": "server_5xx",
+        "expected": "HALT",
+        "actual": "HALT",
+        "transport_integrity_verified": false,
+        "halt_code": "SERVER_ERROR",
+        "error_detail": "SERVER_ERROR: target 'transport_server_5xx' HTTP 500",
+        "duration_ms": 1,
+        "server_hits": 1,
+        "matched": true
+      }
+    ]
+  }
+}

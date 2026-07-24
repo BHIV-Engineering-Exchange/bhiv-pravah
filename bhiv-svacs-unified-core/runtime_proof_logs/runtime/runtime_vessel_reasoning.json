@@ -1,0 +1,57 @@
+[
+  {
+    "trace_id": "TRACE_001",
+    "classification": "Destroyer",
+    "confidence": 0.88,
+    "reasoning": [
+      "Length matched destroyer profile",
+      "Displacement matched destroyer range",
+      "Jane registry evidence found"
+    ],
+    "source_lineage": "Jane Registry"
+  },
+  {
+    "trace_id": "TRACE_002",
+    "classification": "Frigate",
+    "confidence": 0.84,
+    "reasoning": [
+      "Frigate dimensions matched",
+      "Radar profile aligned",
+      "Historical fleet lineage matched"
+    ],
+    "source_lineage": "Fleet History Registry"
+  },
+  {
+    "trace_id": "TRACE_003",
+    "classification": "Cargo Vessel",
+    "confidence": 0.93,
+    "reasoning": [
+      "AIS commercial identifier found",
+      "Cargo displacement range matched",
+      "Registry metadata verified"
+    ],
+    "source_lineage": "AIS + Jane Registry"
+  },
+  {
+    "trace_id": "TRACE_004",
+    "classification": "Patrol Vessel",
+    "confidence": 0.81,
+    "reasoning": [
+      "Small vessel dimensions",
+      "Patrol operational role detected",
+      "Metadata continuity verified"
+    ],
+    "source_lineage": "Jane Registry"
+  },
+  {
+    "trace_id": "TRACE_005",
+    "classification": "Submarine",
+    "confidence": 0.90,
+    "reasoning": [
+      "Acoustic signature matched",
+      "Submerged movement profile detected",
+      "Lineage evidence available"
+    ],
+    "source_lineage": "Sensor Fusion"
+  }
+]

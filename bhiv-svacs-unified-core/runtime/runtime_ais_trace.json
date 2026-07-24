@@ -1,0 +1,82 @@
+[
+  {
+    "trace_id": "3eb21574-6c33-43f0-b139-b98bbe3529ab",
+    "mmsi": "368084090",
+    "lat": 29.93174,
+    "lon": -89.99243,
+    "speed": 6.0,
+    "vessel_type": 57.0
+  },
+  {
+    "trace_id": "16a1d8f0-e1d8-4898-b6dd-7fbbd1ff6d8a",
+    "mmsi": "368140160",
+    "lat": 30.33475,
+    "lon": -87.14429,
+    "speed": 0.0,
+    "vessel_type": 36.0
+  },
+  {
+    "trace_id": "79bbf5fe-b66a-485c-8d47-3aa7a6b3c492",
+    "mmsi": "366941830",
+    "lat": 29.30919,
+    "lon": -94.79702,
+    "speed": 0.0,
+    "vessel_type": 31.0
+  },
+  {
+    "trace_id": "7acc174b-891f-47a0-9ee8-3e90778675f5",
+    "mmsi": "316005971",
+    "lat": 46.50268,
+    "lon": -84.35674,
+    "speed": 2.4,
+    "vessel_type": 31.0
+  },
+  {
+    "trace_id": "8d514410-1d0a-46be-8ddd-0459bff1cc78",
+    "mmsi": "316004054",
+    "lat": 46.50326,
+    "lon": -84.37506,
+    "speed": 0.3,
+    "vessel_type": 31.0
+  },
+  {
+    "trace_id": "50f77d7f-48d1-44f4-982d-aa4cd1600c07",
+    "mmsi": "366863870",
+    "lat": 41.08748,
+    "lon": -72.35814,
+    "speed": 0.0,
+    "vessel_type": 60.0
+  },
+  {
+    "trace_id": "15133f1e-12cc-4695-a68b-5946b7a8568f",
+    "mmsi": "368118150",
+    "lat": 47.39789,
+    "lon": -122.32991,
+    "speed": 0.0,
+    "vessel_type": 36.0
+  },
+  {
+    "trace_id": "0ed593ae-711f-4b24-9bde-b047a000e977",
+    "mmsi": "338379253",
+    "lat": 33.61997,
+    "lon": -117.89591,
+    "speed": 0.0,
+    "vessel_type": 37.0
+  },
+  {
+    "trace_id": "2d10bde5-172a-4ea1-882f-229f5268bd59",
+    "mmsi": "368195460",
+    "lat": 37.6433,
+    "lon": -122.32987,
+    "speed": 4.7,
+    "vessel_type": 36.0
+  },
+  {
+    "trace_id": "6069a2ea-43cd-480c-9af6-2e9f07244d30",
+    "mmsi": "367614790",
+    "lat": 21.31673,
+    "lon": -157.8782,
+    "speed": 0.0,
+    "vessel_type": 30.0
+  }
+]

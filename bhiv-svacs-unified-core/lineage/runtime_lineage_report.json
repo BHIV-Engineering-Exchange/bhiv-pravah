@@ -1,0 +1,6 @@
+{
+  "lineage_status": "ACTIVE",
+  "runtime_tracking": true,
+  "replay_tracking": true,
+  "bucket_tracking": true
+}

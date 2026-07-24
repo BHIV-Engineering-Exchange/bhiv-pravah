@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: insightflow-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - SUPABASE_URL=https://roranqhhhnrdidjdrzvk.supabase.co
+      - SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJvcmFucWhoaG5yZGlkamRyenZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjExMjg0MTgsImV4cCI6MjA3NjcwNDQxOH0.5Z06_SBuEEFe8wcAOVmSP_sRDM_aTV25vtzJAt_mOYc
+      - SUPABASE_SERVICE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJvcmFucWhoaG5yZGlkamRyenZrIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MTEyODQxOCwiZXhwIjoyMDc2NzA0NDE4fQ._WmsYDEFCBAH4l2mO0egKIVZBGB8Yl8Wic41ta89QWI
+      - JWT_SECRET_KEY=yZMTW/O3PMCCR3EM9terMOa6a0hjpMrk4AmDgyco0K/Rr8QO0xpyEFN8rbRzuS4BVMv/4/uZ3X+YV0/0rAYxyQ==
+      - JWT_ALGORITHM=HS256
+      - ENVIRONMENT=production
+      - DEBUG=False
+      - CORS_ORIGINS=["http://localhost:3000","http://frontend:80"]
+      - CORE_FEEDBACK_SERVICE_URL=http://core-feedback:8000/api/scores
+      - CORE_FEEDBACK_CACHE_TTL=30
+      - CORE_FEEDBACK_TIMEOUT=5
+      - CORE_FEEDBACK_MAX_RETRIES=3
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - redis
+    networks:
+      - insightflow-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: insightflow-frontend
+    ports:
+      - "3000:80"
+    environment:
+      - VITE_API_URL=http://localhost:8000
+      - VITE_WS_URL=ws://localhost:8000
+    depends_on:
+      - backend
+    networks:
+      - insightflow-network
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: insightflow-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - insightflow-network
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+
+networks:
+  insightflow-network:
+    driver: bridge
+
+volumes:
+  redis-data:

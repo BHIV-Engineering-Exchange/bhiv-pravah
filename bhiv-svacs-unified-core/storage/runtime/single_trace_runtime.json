@@ -1,0 +1,18 @@
+{
+    "trace_id": "trace_9aad0b57",
+    "execution_id": "exec_e60ca07e",
+    "deterministic": true,
+    "replay_safe": true,
+    "lineage_verified": true,
+    "stages_completed": [
+        "SIGNAL",
+        "GEO",
+        "PERCEPTION",
+        "INTELLIGENCE",
+        "STATE",
+        "BUCKET",
+        "REPLAY",
+        "OBSERVABILITY",
+        "DASHBOARD"
+    ]
+}

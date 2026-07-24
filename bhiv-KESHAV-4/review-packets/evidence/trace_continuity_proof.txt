@@ -1,0 +1,27 @@
+Trace Continuity After Restart Proof
+==================================================
+Input:         trace-continuity-001
+Output:        trace-continuity-001
+Reconstructed: trace-continuity-001
+Match: True
+
+Input:         trace-continuity-002
+Output:        trace-continuity-002
+Reconstructed: trace-continuity-002
+Match: True
+
+Input:         trace-continuity-7360
+Output:        trace-continuity-7360
+Reconstructed: trace-continuity-7360
+Match: True
+
+Input:         trace-with-special-chars-!@#$%
+Output:        trace-with-special-chars-!@#$%
+Reconstructed: trace-with-special-chars-!@#$%
+Match: True
+
+Input:         trace-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Output:        trace-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Reconstructed: trace-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Match: True
+

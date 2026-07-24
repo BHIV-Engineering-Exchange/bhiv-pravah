@@ -1,0 +1,44 @@
+Parallel Failure Pressure Proof
+==================================================
+Total concurrent requests: 25 (15 valid + 10 invalid)
+Valid succeeded: 15/15
+Invalid rejected: 10/10
+
+Valid results:
+  Thread  0: impacted=['T3']
+  Thread  1: impacted=['T3']
+  Thread  2: impacted=['T3']
+  Thread  3: impacted=['T3']
+  Thread  4: impacted=['T3']
+  Thread  5: impacted=['T3']
+  Thread  6: impacted=['T3']
+  Thread  7: impacted=['T3']
+  Thread  8: impacted=['T3']
+  Thread  9: impacted=['T3']
+  Thread 10: impacted=['T3']
+  Thread 11: impacted=['T3']
+  Thread 12: impacted=['T3']
+  Thread 13: impacted=['T3']
+  Thread 14: impacted=['T3']
+
+Invalid results:
+  Thread  0: SCHEMA_MISMATCH: Input validation failed: 1 validation error for PropagationInput
+blocked_task_id
+  Thread  1: BROKEN_ROOT_CAUSE: Root cause MISSING not found in dependency graph
+  Thread  2: SCHEMA_MISMATCH: Input validation failed: 1 validation error for PropagationInput
+extra
+  Extra i
+  Thread  3: SCHEMA_MISMATCH: Input validation failed: 5 validation errors for PropagationInput
+blocked_task_i
+  Thread  4: SCHEMA_MISMATCH: Input validation failed: 5 validation errors for PropagationInput
+blocked_task_i
+  Thread  5: SCHEMA_MISMATCH: Input validation failed: 1 validation error for PropagationInput
+blocked_task_id
+  Thread  6: BROKEN_ROOT_CAUSE: Root cause MISSING not found in dependency graph
+  Thread  7: SCHEMA_MISMATCH: Input validation failed: 1 validation error for PropagationInput
+extra
+  Extra i
+  Thread  8: SCHEMA_MISMATCH: Input validation failed: 5 validation errors for PropagationInput
+blocked_task_i
+  Thread  9: SCHEMA_MISMATCH: Input validation failed: 5 validation errors for PropagationInput
+blocked_task_i

@@ -1,0 +1,3 @@
+BRIDGE_VERSION = "4.2.0"
+SERVICE_NAME = "InsightBridge"
+FAIL_CLOSED = True

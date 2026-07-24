@@ -1,0 +1,26 @@
+{
+    "trace_id": "trace_distributed_001",
+    "nodes": [
+        {
+            "node": "node_1",
+            "status": "ACTIVE" 
+        },
+        {
+            "node": "node_2",
+            "status": "OFFLINE"
+        },
+        {
+            "node": "node_3",
+            "status": "ACTIVE"
+        }
+    ],
+    "pipeline": [
+        "SIGNAL",
+        "PERCEPTION",
+        "INTELLIGENCE",
+        "STATE",
+        "REPLAY"
+    ],
+    "deterministic": true,
+    "replay_parity": true
+}

@@ -1,0 +1,67 @@
+{
+  "schema_version": "sarathi.failure-demo.report/v14.8",
+  "generated_at": "2026-05-01T08:01:35.5815386Z",
+  "sarathi_ack_addr": "127.0.0.1:62186",
+  "peer_addrs": {
+    "bucket": "127.0.0.1:62189",
+    "core": "127.0.0.1:62187",
+    "insightflow": "127.0.0.1:62188"
+  },
+  "baseline_execution_id": "EXEC-FAIL-BASE",
+  "baseline_decision_id": "DEC-FAIL-BASE-20260501T080135",
+  "baseline_response_hash": "b61e3989146682f5a61dfca9add397100f8fe8370892251b778de4b3e2c0afa6",
+  "scenarios_total": 3,
+  "scenarios_passed": 3,
+  "gate_satisfied": true,
+  "reviewer_commands": [
+    "# 1. payload tamper (rewrite the stored bucket file and re-GET it)",
+    "sha256sum live/bucket/DEC-FAIL-BASE-20260501T080135.json",
+    "printf 'TAMPERED' \u003e live/bucket/DEC-FAIL-BASE-20260501T080135.json",
+    "curl -i http://127.0.0.1:62189/v1/audit/DEC-FAIL-BASE-20260501T080135",
+    "# 2. invalid signature (POST a junk ed25519 receipt to Sarathi ACK endpoint)",
+    "curl -i -X POST -H 'Content-Type: application/json' --data '{\"schema_version\":\"sarathi.live.receipt/v1.0\",\"peer\":\"core\",\"execution_id\":\"EXEC-FAIL-BASE\",\"decision_id\":\"DEC-FAIL-BASE-20260501T080135\",\"response_hash\":\"b61e3989146682f5a61dfca9add397100f8fe8370892251b778de4b3e2c0afa6\",\"received_body_hash\":\"b61e3989146682f5a61dfca9add397100f8fe8370892251b778de4b3e2c0afa6\",\"peer_public_key_hex\":\"00\",\"receipt_signature\":\"00\"}' http://127.0.0.1:62186/v1/downstream-ack",
+    "# 3. bucket mismatch (POST same decision_id with drifted bytes)",
+    "curl -i -X POST -H 'Content-Type: application/json' -H 'X-Sarathi-Decision-ID: DEC-FAIL-BASE-20260501T080135' -H 'X-Sarathi-Response-Hash: deadbeef' --data '{\"drifted\":true}' http://127.0.0.1:62189/v1/audit"
+  ],
+  "observations": [
+    {
+      "schema_version": "sarathi.failure-demo/v14.8",
+      "scenario": "payload_tamper",
+      "observed_at": "2026-05-01T08:01:35.7529705Z",
+      "decision_id": "DEC-FAIL-BASE-20260501T080135",
+      "expected_error_code": "ERR_BUCKET_READBACK_MISMATCH",
+      "observed_error_code": "ERR_BUCKET_READBACK_MISMATCH",
+      "observed_http_status": 200,
+      "pre_hash": "b61e3989146682f5a61dfca9add397100f8fe8370892251b778de4b3e2c0afa6",
+      "post_hash": "620cad6118c3f5ced66757a4b1f90ed1a77f11a8f405bbc8b4aac1f7c1c374e7",
+      "reviewer_hint": "sha256sum live\\bucket\\DEC-FAIL-BASE-20260501T080135.json  # expect: b61e3989146682f5a61dfca9add397100f8fe8370892251b778de4b3e2c0afa6 (pre-tamper)",
+      "passed": true
+    },
+    {
+      "schema_version": "sarathi.failure-demo/v14.8",
+      "scenario": "invalid_signature",
+      "observed_at": "2026-05-01T08:01:35.7729757Z",
+      "decision_id": "DEC-FAIL-BASE-20260501T080135",
+      "expected_error_code": "ERR_DOWNSTREAM_RECEIPT_INVALID",
+      "observed_error_code": "ERR_DOWNSTREAM_RECEIPT_INVALID",
+      "observed_http_status": 400,
+      "pre_hash": "b740298b1a02c4f383a7c2fc33f9bcbd3325078253caaae123706d80953ed226",
+      "post_hash": "f3f5dbe8675239373d950f3234523927d446d902b1576b181edce9d84bc8ddfb",
+      "reviewer_hint": "tail -1 proof_logs/downstream_ack_rejections.jsonl  # most recent rejection",
+      "passed": true
+    },
+    {
+      "schema_version": "sarathi.failure-demo/v14.8",
+      "scenario": "bucket_mismatch",
+      "observed_at": "2026-05-01T08:01:35.7763741Z",
+      "decision_id": "DEC-FAIL-BASE-20260501T080135",
+      "expected_error_code": "ERR_RESPONSE_HASH_MISMATCH",
+      "observed_error_code": "ERR_RESPONSE_HASH_MISMATCH",
+      "observed_http_status": 409,
+      "pre_hash": "b61e3989146682f5a61dfca9add397100f8fe8370892251b778de4b3e2c0afa6",
+      "post_hash": "7917151e59055dd01d1142110cded6f2a960fbe727ebdbf76b81f7913c9049af",
+      "reviewer_hint": "curl -i -X POST -H 'X-Sarathi-Decision-ID: DEC-FAIL-BASE-20260501T080135' -H 'X-Sarathi-Response-Hash: 7917151e59055dd01d1142110cded6f2a960fbe727ebdbf76b81f7913c9049af' --data-binary @drifted.json http://127.0.0.1:62189/v1/audit",
+      "passed": true
+    }
+  ]
+}

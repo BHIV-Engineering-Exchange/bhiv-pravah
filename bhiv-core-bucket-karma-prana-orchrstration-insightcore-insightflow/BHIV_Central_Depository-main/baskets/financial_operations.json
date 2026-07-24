@@ -1,0 +1,5 @@
+{
+    "basket_name": "financial_operations",
+    "agents": ["financial_coordinator", "cashflow_analyzer"],
+    "execution_strategy": "sequential"
+}

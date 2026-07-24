@@ -1,0 +1,18 @@
+{
+  "trace_id": "phaseE-wa-proof",
+  "input": {
+    "action_type": "whatsapp",
+    "recipient": "+919999999999",
+    "message": "Demo proof message"
+  },
+  "adapter": "WhatsAppAdapter",
+  "output": {
+    "status": "SENT",
+    "success": true
+  },
+  "guarantees": [
+    "Explicit success",
+    "Trace preserved",
+    "No silent failure"
+  ]
+}

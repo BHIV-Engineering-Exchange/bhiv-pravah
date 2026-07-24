@@ -1,0 +1,16 @@
+ numpy
+fastapi
+uvicorn
+pydantic
+pymongo
+python-dotenv
+dnspython
+python-multipart
+requests
+aiohttp
+networkx
+pytest
+pytest-cov
+matplotlib
+cryptography
+httpx
