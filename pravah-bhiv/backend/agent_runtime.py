@@ -72,7 +72,7 @@ class HTTPDecisionProvider(DecisionProvider):
     def __init__(self, endpoint_url: str = None, timeout: float = 2.0):
         if endpoint_url is None:
             brain_port = os.getenv("DECISION_BRAIN_PORT", "8000")
-            endpoint_url = f"http://localhost:{brain_port}/process-runtime"
+            endpoint_url = f"http://127.0.0.1:{brain_port}/process-runtime"
         self.endpoint_url = endpoint_url
         self.timeout = timeout
 
@@ -90,7 +90,7 @@ class HTTPDecisionProvider(DecisionProvider):
 def call_decision_engine(runtime_payload):
     brain_port = os.getenv("DECISION_BRAIN_PORT", "8000")
     response = requests.post(
-        f"http://localhost:{brain_port}/process-runtime",
+        f"http://127.0.0.1:{brain_port}/process-runtime",
         json=runtime_payload
     )
     return response.json()

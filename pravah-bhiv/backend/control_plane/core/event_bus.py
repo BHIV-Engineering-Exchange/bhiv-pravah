@@ -9,17 +9,15 @@ import os
 from datetime import datetime
 
 class EventBus:
-    def __init__(self, redis_host='localhost', redis_port=6379):
+    def __init__(self, redis_host='127.0.0.1', redis_port=6379):
         """Initialize Redis event bus"""
-        try:
-            self.redis_client = redis.Redis(host=redis_host, port=redis_port, decode_responses=True)
-            self.redis_client.ping()
-            self.use_redis = True
-        except:
-            # Fallback to in-memory for testing
-            self.use_redis = False
-            self._subscribers = {}
-            self._messages = []
+        self.redis_host = redis_host
+        self.redis_port = redis_port
+        self.redis_client = None
+        self.use_redis = False
+        self._subscribers = {}
+        self._messages = []
+        self._connected = False
         
         self.performance_log = 'logs/performance_log.csv'
         os.makedirs('logs', exist_ok=True)
@@ -31,9 +29,29 @@ class EventBus:
             with open(self.performance_log, 'w', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow(['timestamp', 'event_type', 'channel', 'latency_ms', 'message_size'])
+                
+    def _lazy_connect(self):
+        """Lazily connect to Redis to prevent import-time hangs."""
+        if self._connected:
+            return
+        self._connected = True
+        try:
+            self.redis_client = redis.Redis(
+                host=self.redis_host,
+                port=self.redis_port,
+                decode_responses=True,
+                socket_timeout=1,
+                socket_connect_timeout=1
+            )
+            self.redis_client.ping()
+            self.use_redis = True
+        except Exception:
+            self.use_redis = False
+            self.redis_client = None
     
     def publish(self, channel, message):
         """Publish message to channel"""
+        self._lazy_connect()
         start_time = time.time()
         
         if isinstance(message, dict):
@@ -53,6 +71,7 @@ class EventBus:
     
     def subscribe(self, channel, callback):
         """Subscribe to channel with callback"""
+        self._lazy_connect()
         if self.use_redis:
             def redis_listener():
                 pubsub = self.redis_client.pubsub()

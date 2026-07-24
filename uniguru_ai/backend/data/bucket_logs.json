@@ -655,5 +655,14 @@
         "confidence": 0.6858912706375122,
         "system_path": "/new_query_6phase_pipeline",
         "timestamp": "2026-04-30T11:38:37.957566+00:00"
+    },
+    {
+        "event_id": "b1e1da0a-1867-4aba-86d7-7d9ac6f49a13",
+        "query": "Tell me about Mahabharat",
+        "signals_used": 0,
+        "final_answer": "",
+        "confidence": 0.0,
+        "system_path": "/new_query_6phase_pipeline",
+        "timestamp": "2026-07-21T05:59:36.487069+00:00"
     }
 ]

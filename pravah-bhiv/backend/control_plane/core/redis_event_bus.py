@@ -20,7 +20,7 @@ class RedisEventBus:
     
     def __init__(self, env='dev'):
         self.env_config = EnvironmentConfig(env)
-        self.redis_host = self.env_config.get('redis_host', 'localhost')
+        self.redis_host = self.env_config.get('redis_host', '127.0.0.1')
         self.redis_port = self.env_config.get('redis_port', 6379)
         self.redis_db = int(self.env_config.get('redis_db', 0))
         

@@ -15,10 +15,10 @@ class MultiAppControlPlane:
 
     def __init__(self, env: str = "dev"):
         self.env = env
-        self.registry_dir = "apps/registry"
-        if not os.path.exists(self.registry_dir):
-            self.registry_dir = os.path.join("control_plane", "apps", "registry")
-        self.history_file = os.path.join("logs", "control_plane", "decision_history.jsonl")
+        # Resolve path relative to this file to prevent CWD dependency issues
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        self.registry_dir = os.path.join(base_dir, "apps", "registry")
+        self.history_file = os.path.join(os.path.dirname(base_dir), "logs", "control_plane", "decision_history.jsonl")
         os.makedirs(os.path.dirname(self.history_file), exist_ok=True)
         self.override_manager = AppOverrideManager()
 

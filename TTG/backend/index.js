@@ -31,6 +31,7 @@ const executionRetry = require("./executionRetry");
 require("dotenv").config();
 const { setupEngineSocket } = require("./engine/engine_socket");
 const jobQueue = require("./jobQueue");
+const { emitPravahSignal, startHeartbeat } = require("./observability/pravah_adapter");
 
 // Set NODE_ENV if not set
 if (!process.env.NODE_ENV) {
@@ -54,6 +55,18 @@ app.use(
   })
 );
 app.use(express.json());
+
+// Global Pravah request latency tracking middleware
+app.use((req, res, next) => {
+  const start = Date.now();
+  res.on("finish", () => {
+    const duration = Date.now() - start;
+    const state = res.statusCode >= 500 ? "error" : "running";
+    const errorsLastMin = res.statusCode >= 500 ? 1 : 0;
+    emitPravahSignal(state, duration, errorsLastMin);
+  });
+  next();
+});
 
 // API docs
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
@@ -142,4 +155,5 @@ if (!process.env.PORT) {
 // server
 server.listen(PORT, () => {
   console.log(`server running at PORT : ${PORT}`);
+  startHeartbeat(60);
 });

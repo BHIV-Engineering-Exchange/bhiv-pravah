@@ -27,6 +27,7 @@ if _env_path.exists():
     load_dotenv(_env_path)
     print(f"[OK] Loaded environment from: {_env_path}")
 
+from observability.pravah_adapter import emit_pravah_signal, start_heartbeat
 from ontology.registry import OntologyRegistry
 from router.conversation_router import ConversationRouter
 from integrations import BucketTelemetryClient, CoreReaderClient, LanguageAdapter, TelemetryEvent, OllamaClient
@@ -117,6 +118,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.on_event("startup")
+def startup_event():
+    start_heartbeat(interval_seconds=60)
 service = LiveUniGuruService()
 conversation_router = ConversationRouter(uniguru_service=service)
 ollama_client = OllamaClient()
@@ -2093,9 +2098,11 @@ def log_to_bucket(event_id, query, signals_used, final_answer, confidence, syste
     summary="Phase 6 Core Unified Signal Pipeline"
 )
 def new_query_endpoint(request: CoreRequest, token: HTTPAuthorizationCredentials = Depends(security)) -> Dict[str, Any]:
+    start_time = time.time()
     try:
         allowed_key = os.getenv("EXTERNAL_API_SECRET_KEY", "uniguru_secret_123")
         if token.credentials != allowed_key:
+            emit_pravah_signal(state="error", latency_ms=0.0, errors_last_min=1)
             raise HTTPException(status_code=401, detail="Unauthorized Access.")
 
         final_payload = _execute_kosha_pipeline(
@@ -2115,8 +2122,11 @@ def new_query_endpoint(request: CoreRequest, token: HTTPAuthorizationCredentials
             system_path="/new_query_6phase_pipeline"
         )
 
+        duration_ms = (time.time() - start_time) * 1000
+        emit_pravah_signal(state="running", latency_ms=duration_ms)
         return final_payload
     except Exception as e:
+        emit_pravah_signal(state="error", latency_ms=0.0, errors_last_min=1)
         logger.error(f"Error in Core Query pipeline: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 

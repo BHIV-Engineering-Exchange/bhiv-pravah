@@ -130,6 +130,7 @@ const socketIo = require("socket.io");
 const jwt = require("jsonwebtoken");
 const path = require("path");
 require("dotenv").config();
+const { emitPravahSignal, startHeartbeat } = require("./observability/pravah_adapter");
 const userNotificationRoutes = require('./routes/user-notifications');
 const taskRoutes = require("./routes/tasks");
 const departmentRoutes = require("./routes/departments");
@@ -279,6 +280,18 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Global Pravah request latency tracking middleware
+app.use((req, res, next) => {
+  const start = Date.now();
+  res.on("finish", () => {
+    const duration = Date.now() - start;
+    const state = res.statusCode >= 500 ? "error" : "running";
+    const errorsLastMin = res.statusCode >= 500 ? 1 : 0;
+    emitPravahSignal(state, duration, errorsLastMin);
+  });
+  next();
+});
+
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
@@ -325,6 +338,10 @@ app.use((req, res, next) => {
 
 app.get('/api/ping', (req, res) => {
   res.json({ message: 'Pong!' });
+});
+
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', uptime: process.uptime(), timestamp: Date.now() });
 });
 
 // Test Linux browser detection endpoint
@@ -787,6 +804,7 @@ async function startServer() {
     // Start HTTP server
     server.listen(PORT, async () => {
       console.log(`🚀 Server running on port ${PORT}`);
+      startHeartbeat(60);
       console.log(`🕛 Midnight Auto-End: ENABLED (unended days go to spam, validation grants exactly ${SPAM_VALIDATION_HOURS}h)`);
       console.log(`📊 Spam validation rule: EXACTLY ${SPAM_VALIDATION_HOURS} hours (not more, not less)`);
 

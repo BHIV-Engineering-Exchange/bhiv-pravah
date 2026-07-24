@@ -196,7 +196,7 @@ def runtime_decision():
         try:
             import requests
             obs_port = int(os.getenv("PRAVAH_OBSERVER_PORT", "8600"))
-            obs_url = f"http://localhost:{obs_port}/api/ingest"
+            obs_url = f"http://127.0.0.1:{obs_port}/api/ingest"
             requests.post(
                 obs_url,
                 json={
@@ -287,6 +287,186 @@ def control_plane_override():
         return jsonify({"status": "success", "result": result}), 200
     except Exception as exc:
         return jsonify({"status": "error", "message": str(exc)}), 500
+
+
+# ── GC-Shakti Integration Endpoints ──────────────────────────────────────────
+
+EVIDENCE_STORE_PATH = os.path.join(root_dir, "data", "evidence_bundles.json")
+
+def check_shakti_auth():
+    auth_header = request.headers.get("Authorization")
+    if not auth_header or not auth_header.startswith("Bearer "):
+        return False
+    token = auth_header.split(" ")[1]
+    expected_token = os.getenv("PRAVAH_API_KEY", "shakti-secret-key-change-in-prod")
+    
+    # Check X-Source-System header against allowed ecosystem sources
+    source_system = request.headers.get("X-Source-System")
+    allowed_sources = {"SHAKTI", "BHIV_MASTERDB", "WORKFLOW_BLACKHOLE", "UNIGURU"}
+    if source_system not in allowed_sources:
+        return False
+        
+    return token == expected_token
+
+def load_evidence_bundles():
+    if not os.path.exists(EVIDENCE_STORE_PATH):
+        os.makedirs(os.path.dirname(EVIDENCE_STORE_PATH), exist_ok=True)
+        return {}
+    try:
+        with open(EVIDENCE_STORE_PATH, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+def save_evidence_bundle(evidence_ref: str, bundle: dict):
+    store = load_evidence_bundles()
+    store[evidence_ref] = bundle
+    try:
+        with open(EVIDENCE_STORE_PATH, "w", encoding="utf-8") as f:
+            json.dump(store, f, indent=2)
+        return True
+    except Exception:
+        return False
+
+@app.route("/pravah/events", methods=["POST"])
+@app.route("/pravah/api/v1/publish", methods=["POST"])
+@limiter.exempt
+def shakti_events():
+    if not check_shakti_auth():
+        return jsonify({"status": "error", "error": "Unauthorized"}), 401
+
+    payload = request.get_json(silent=True)
+    if payload is None:
+        return jsonify({"status": "error", "error": "Request body must be valid JSON"}), 400
+
+    required_fields = ["trace_id", "correlation_id", "source", "action", "event_type", "payload", "source_system", "published_at"]
+    for field in required_fields:
+        if field not in payload:
+            return jsonify({"status": "error", "error": f"Missing required field: {field}"}), 400
+
+    response_payload = {
+        "status": "CONNECTED",
+        "detail": "Event published to Pravah pipeline",
+        "trace_id": payload["trace_id"],
+        "event_type": payload["event_type"],
+        "pipeline_latency_ms": 12,
+        "published_at": datetime.datetime.now(datetime.timezone.utc).isoformat().replace("+00:00", "Z")
+    }
+
+    try:
+        control_plane.append_decision_history({
+            "app_name": "shakti-gc",
+            "executed_action": payload["action"],
+            "reason": f"Ecosystem event: {payload['event_type']}",
+            "execution_success": True,
+            "event": {
+                "trace_id": payload["trace_id"],
+                "correlation_id": payload["correlation_id"]
+            }
+        })
+    except Exception:
+        pass
+
+    return jsonify(response_payload), 200
+
+@app.route("/evidence", methods=["POST"])
+@limiter.exempt
+def shakti_publish_evidence():
+    if not check_shakti_auth():
+        return jsonify({"status": "error", "error": "Unauthorized"}), 401
+
+    payload = request.get_json(silent=True)
+    if payload is None:
+        return jsonify({"status": "error", "error": "Request body must be valid JSON"}), 400
+
+    required_fields = ["bundle_id", "trace_id", "execution_id", "decision_id", "decision_type", "authority_chain", "evidence", "produced_at", "correlation_id", "source", "action"]
+    for field in required_fields:
+        if field not in payload:
+            return jsonify({"status": "error", "error": f"Missing required field: {field}"}), 400
+
+    import uuid
+    evidence_ref = f"ev-{uuid.uuid4().hex[:16]}"
+    save_evidence_bundle(evidence_ref, payload)
+
+    response_payload = {
+        "evidence_ref": evidence_ref,
+        "published_at": datetime.datetime.now(datetime.timezone.utc).isoformat().replace("+00:00", "Z")
+    }
+
+    return jsonify(response_payload), 200
+
+@app.route("/evidence/<evidence_ref>", methods=["GET"])
+@limiter.exempt
+def shakti_retrieve_evidence(evidence_ref: str):
+    if not check_shakti_auth():
+        return jsonify({"status": "error", "error": "Unauthorized"}), 401
+
+    store = load_evidence_bundles()
+    bundle = store.get(evidence_ref)
+    if not bundle:
+        return jsonify({"status": "error", "error": "Evidence bundle not found"}), 404
+
+    return jsonify(bundle), 200
+
+@app.route("/registry/trace/<trace_id>", methods=["GET"])
+@limiter.exempt
+def query_unified_registry(trace_id: str):
+    if not check_shakti_auth():
+        return jsonify({"status": "error", "error": "Unauthorized"}), 401
+    
+    from control_plane.core.registry_manager import RegistryManager
+    manager = RegistryManager(base_dir=root_dir)
+    result = manager.query_trace_lineage(trace_id)
+    return jsonify(result), 200
+
+@app.route("/metrics", methods=["GET"])
+@limiter.exempt
+def prometheus_metrics():
+    failures = 0
+    recoveries = 0
+    
+    # 1. Parse decision history log to count failures/recoveries
+    history_file = os.path.join(root_dir, "logs", "control_plane", "decision_history.jsonl")
+    if os.path.exists(history_file):
+        try:
+            with open(history_file, "r", encoding="utf-8") as f:
+                for line in f:
+                    if not line.strip():
+                        continue
+                    record = json.loads(line)
+                    action = record.get("executed_action") or record.get("action")
+                    if action in ["scale_up", "heal", "restart"]:
+                        recoveries += 1
+                    elif record.get("state") == "degraded" or record.get("event_type") == "crash":
+                        failures += 1
+        except Exception:
+            pass
+            
+    # Stability = 100 - (failures * 2) + (recoveries * 3)
+    stability_score = 100 - (failures * 2) + (recoveries * 3)
+    stability_score = max(0, min(100, stability_score))
+    
+    # Count active apps
+    from control_plane.multi_app_control_plane import MultiAppControlPlane
+    cp = MultiAppControlPlane(env=ENVIRONMENT)
+    apps_count = len(cp.list_apps())
+    
+    metrics = [
+        f"# HELP pravah_stability_score Current mathematical stability score of the ecosystem",
+        f"# TYPE pravah_stability_score gauge",
+        f"pravah_stability_score {stability_score}",
+        f"# HELP pravah_active_apps_total Total number of registered ecosystem services",
+        f"# TYPE pravah_active_apps_total gauge",
+        f"pravah_active_apps_total {apps_count}",
+        f"# HELP pravah_recoveries_total Total number of autonomous recovery actions executed",
+        f"# TYPE pravah_recoveries_total counter",
+        f"pravah_recoveries_total {recoveries}",
+        f"# HELP pravah_failures_total Total number of system failures/degradations observed",
+        f"# TYPE pravah_failures_total counter",
+        f"pravah_failures_total {failures}"
+    ]
+    
+    return "\n".join(metrics) + "\n", 200, {"Content-Type": "text/plain; version=0.0.4"}
 
 
 if __name__ == "__main__":

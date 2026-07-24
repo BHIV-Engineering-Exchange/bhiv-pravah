@@ -16,6 +16,8 @@ Endpoints:
     GET  /models     — list available Groq models
 """
 
+import os
+import time
 from typing import Any, Dict, List, Optional
 
 from fastapi import FastAPI, HTTPException
@@ -23,6 +25,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 from llm_adapter import LLMAdapter, DEFAULT_MODEL
+from observability.pravah_adapter import emit_pravah_signal, start_heartbeat
 
 # ---------------------------------------------------------------------------
 # App
@@ -40,6 +43,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.on_event("startup")
+def startup_event():
+    start_heartbeat(interval_seconds=60)
 
 # ---------------------------------------------------------------------------
 # JSON Schema (served at /schema)
@@ -134,7 +141,10 @@ def generate_instruction(request: PromptRequest):
     """
     llm = _get_llm()
 
+    start_time = time.time()
+
     if not llm.available:
+        emit_pravah_signal(state="error", latency_ms=0.0, errors_last_min=1)
         raise HTTPException(
             status_code=503,
             detail="GROQ_API_KEY is not configured. Set it as an environment variable.",
@@ -146,8 +156,11 @@ def generate_instruction(request: PromptRequest):
 
     try:
         instruction = llm.generate_instruction(request.prompt)
+        duration_ms = (time.time() - start_time) * 1000
+        emit_pravah_signal(state="running", latency_ms=duration_ms)
         return InstructionResponse(**instruction)
     except Exception as exc:
+        emit_pravah_signal(state="error", latency_ms=0.0, errors_last_min=1)
         raise HTTPException(status_code=500, detail=str(exc))
 
 

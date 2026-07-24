@@ -28,6 +28,7 @@ import requests
 
 from core.mcp_adapter import MCPAdapter
 from auth import get_current_user  # JWT authentication enabled
+from observability.pravah_adapter import emit_pravah_signal, start_heartbeat
 from rate_limiter import check_rate_limit, get_rate_limit_status
 from validators import (
     validate_symbols, validate_horizon, validate_horizons_list,
@@ -97,6 +98,10 @@ app.add_middleware(
     max_age=3600,  # Cache preflight for 1 hour
 )
 
+@app.on_event("startup")
+def startup_event():
+    start_heartbeat(interval_seconds=60)
+
 
 
 # Initialize MCP Adapter
@@ -121,13 +126,19 @@ if HFT2_BACKEND_URL:
 
     @app.get("/api/predictions")
     async def hft_predictions(request: Request, symbols: str = "RELIANCE.NS", horizon: str = "intraday"):
+        start_time = time.time()
         adapter = getattr(request.app.state, "mcp_adapter", None)
         if not adapter:
+            emit_pravah_signal(state="error", latency_ms=0.0, errors_last_min=1)
             return {"predictions": [], "message": "Vetting agent not available"}
         try:
             symbol_list = [s.strip().upper() for s in symbols.split(",") if s.strip()] or ["RELIANCE.NS"]
-            return adapter.predict(symbols=symbol_list, horizon=horizon)
+            res = adapter.predict(symbols=symbol_list, horizon=horizon)
+            duration_ms = (time.time() - start_time) * 1000
+            emit_pravah_signal(state="running", latency_ms=duration_ms)
+            return res
         except Exception as e:
+            emit_pravah_signal(state="error", latency_ms=0.0, errors_last_min=1)
             logger.exception("HFT predictions from vetting agent failed")
             raise HTTPException(status_code=500, detail=str(e))
 

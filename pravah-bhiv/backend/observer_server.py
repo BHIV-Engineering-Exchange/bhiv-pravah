@@ -35,7 +35,31 @@ GURUKUL_API_URL = os.getenv("PRAVAH_GURUKUL_API", "http://localhost:3000")
 # INFIVERSE HR Platform gateway — Pravah observes, does not own
 HR_API_URL = os.getenv("PRAVAH_HR_API", "http://localhost:8000")
 # Parikshak System API — Pravah observes, does not own
-PARIKSHAK_API_URL = os.getenv("PRAVAH_PARIKSHAK_API", "http://localhost:8000")
+PARIKSHAK_API_URL = os.getenv("PRAVAH_PARIKSHAK_API", "http://localhost:8080")
+# Prompt Runner API — Pravah observes, does not own
+PROMPT_RUNNER_API_URL = os.getenv("PRAVAH_PROMPT_RUNNER_API", "http://localhost:8001")
+# Trade Bot API — Pravah observes, does not own
+TRADE_BOT_API_URL = os.getenv("PRAVAH_TRADE_BOT_API", "http://localhost:8002")
+# TTG API — Pravah observes, does not own
+TTG_API_URL = os.getenv("PRAVAH_TTG_API", "http://localhost:3005")
+# UniGuru AI API — Pravah observes, does not own
+UNIGURU_API_URL = os.getenv("PRAVAH_UNIGURU_API", "http://localhost:8003")
+# Workflow Blackhole API — Pravah observes, does not own
+WORKFLOW_BLACKHOLE_API_URL = os.getenv("PRAVAH_WORKFLOW_BLACKHOLE_API", "http://localhost:5005")
+# Blockchain API — Pravah observes, does not own
+BLOCKCHAIN_API_URL = os.getenv("PRAVAH_BLOCKCHAIN_API", "http://localhost:8004")
+
+# BHIV Runtimes — Pravah observes, does not own
+BHIV_KARMA_URL = os.getenv("PRAVAH_BHIV_KARMA", "http://localhost:8000")
+BHIV_BUCKET_URL = os.getenv("PRAVAH_BHIV_BUCKET", "http://localhost:8001")
+BHIV_CORE_URL = os.getenv("PRAVAH_BHIV_CORE", "http://localhost:8002")
+BHIV_WORKFLOW_URL = os.getenv("PRAVAH_BHIV_WORKFLOW", "http://localhost:8003")
+BHIV_UAO_URL = os.getenv("PRAVAH_BHIV_UAO", "http://localhost:8004")
+BHIV_INSIGHT_CORE_URL = os.getenv("PRAVAH_BHIV_INSIGHT_CORE", "http://localhost:8005")
+BHIV_INSIGHT_FLOW_BRIDGE_URL = os.getenv("PRAVAH_BHIV_INSIGHT_FLOW_BRIDGE", "http://localhost:8006")
+BHIV_INSIGHT_FLOW_BACKEND_URL = os.getenv("PRAVAH_BHIV_INSIGHT_FLOW_BACKEND", "http://localhost:8007")
+BHIV_KESHAV_URL = os.getenv("PRAVAH_BHIV_KESHAV", "http://localhost:5000")
+BHIV_SARATHI_URL = os.getenv("PRAVAH_BHIV_SARATHI", "http://127.0.0.1:9002")
 
 
 
@@ -140,6 +164,82 @@ def _poll_loop(interval: float = 10.0):
                 "url": CONTROL_PLANE_URL,
                 "health_url": f"{CONTROL_PLANE_URL}/api/health"
             },
+            "prompt-runner01": {
+                "url": PROMPT_RUNNER_API_URL,
+                "health_url": f"{PROMPT_RUNNER_API_URL}/health"
+            },
+            "trade-bot": {
+                "url": TRADE_BOT_API_URL,
+                "health_url": f"{TRADE_BOT_API_URL}/api/status"
+            },
+            "ttg": {
+                "url": TTG_API_URL,
+                "health_url": f"{TTG_API_URL}/health"
+            },
+            "uniguru_ai": {
+                "url": UNIGURU_API_URL,
+                "health_url": f"{UNIGURU_API_URL}/health"
+            },
+            "workflow-blackhole": {
+                "url": WORKFLOW_BLACKHOLE_API_URL,
+                "health_url": f"{WORKFLOW_BLACKHOLE_API_URL}/health"
+            },
+            "block-chain-updated": {
+                "url": BLOCKCHAIN_API_URL,
+                "health_url": f"{BLOCKCHAIN_API_URL}/health"
+            },
+            "bhiv-masterdb-ingestion-certification-service": {
+                "url": os.getenv("PRAVAH_MASTERDB_API", "http://localhost:8000"),
+                "health_url": f"{os.getenv('PRAVAH_MASTERDB_API', 'http://localhost:8000')}/openapi.json"
+            },
+            "bhiv-Mitra": {
+                "url": os.getenv("PRAVAH_MITRA_API", "http://localhost:8000"),
+                "health_url": f"{os.getenv('PRAVAH_MITRA_API', 'http://localhost:8000')}/health"
+            },
+            "bhiv-svacs-unified-core": {
+                "url": os.getenv("PRAVAH_SVACS_API", "http://localhost:8000"),
+                "health_url": f"{os.getenv('PRAVAH_SVACS_API', 'http://localhost:8000')}/health"
+            },
+            "bhiv-karma": {
+                "url": BHIV_KARMA_URL,
+                "health_url": f"{BHIV_KARMA_URL}/health"
+            },
+            "bhiv-bucket": {
+                "url": BHIV_BUCKET_URL,
+                "health_url": f"{BHIV_BUCKET_URL}/health"
+            },
+            "bhiv-core": {
+                "url": BHIV_CORE_URL,
+                "health_url": f"{BHIV_CORE_URL}/health"
+            },
+            "bhiv-workflow": {
+                "url": BHIV_WORKFLOW_URL,
+                "health_url": f"{BHIV_WORKFLOW_URL}/healthz"
+            },
+            "bhiv-uao": {
+                "url": BHIV_UAO_URL,
+                "health_url": f"{BHIV_UAO_URL}/health"
+            },
+            "bhiv-insight-core": {
+                "url": BHIV_INSIGHT_CORE_URL,
+                "health_url": f"{BHIV_INSIGHT_CORE_URL}/health"
+            },
+            "bhiv-insight-flow-bridge": {
+                "url": BHIV_INSIGHT_FLOW_BRIDGE_URL,
+                "health_url": f"{BHIV_INSIGHT_FLOW_BRIDGE_URL}/health"
+            },
+            "bhiv-insight-flow-backend": {
+                "url": BHIV_INSIGHT_FLOW_BACKEND_URL,
+                "health_url": f"{BHIV_INSIGHT_FLOW_BACKEND_URL}/health"
+            },
+            "bhiv-keshav-4": {
+                "url": BHIV_KESHAV_URL,
+                "health_url": f"{BHIV_KESHAV_URL}/health"
+            },
+            "bhiv-sarathi": {
+                "url": BHIV_SARATHI_URL,
+                "health_url": f"{BHIV_SARATHI_URL}/health"
+            },
         }
         for svc_name, svc_cfg in services.items():
             _probe_service(svc_name, svc_cfg["health_url"], svc_cfg["url"])
@@ -190,6 +290,48 @@ def api_events(limit: int = 50):
     return JSONResponse(content={"events": events, "total": len(events)})
 
 
+@app.get("/api/lineage")
+def api_lineage():
+    evidence_path = os.path.join(os.path.dirname(__file__), "data", "evidence_bundles.json")
+    if not os.path.exists(evidence_path):
+        return JSONResponse(content={"lineages": []})
+    try:
+        with open(evidence_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            bundles = list(data.values())
+            return JSONResponse(content={"lineages": bundles})
+    except Exception as e:
+        return JSONResponse(content={"error": str(e), "lineages": []}, status_code=500)
+
+@app.get("/api/metrics")
+def api_metrics():
+    from fastapi.responses import Response
+    with store_lock:
+        poll_count = observation_store["poll_count"]
+        services = observation_store["services"]
+        services_count = len(services)
+        healthy_count = sum(1 for s in services.values() if s.get("status") == "healthy")
+        degraded_count = sum(1 for s in services.values() if s.get("status") == "degraded")
+        
+    metrics = [
+        f"# HELP observer_poll_count_total Total number of active polling loops executed",
+        f"# TYPE observer_poll_count_total counter",
+        f"observer_poll_count_total {poll_count}",
+        f"# HELP observer_monitored_services_total Total number of monitored services",
+        f"# TYPE observer_monitored_services_total gauge",
+        f"observer_monitored_services_total {services_count}",
+        f"# HELP observer_healthy_services_total Number of healthy services observed",
+        f"# TYPE observer_healthy_services_total gauge",
+        f"observer_healthy_services_total {healthy_count}",
+        f"# HELP observer_degraded_services_total Number of degraded services observed",
+        f"# TYPE observer_degraded_services_total gauge",
+        f"observer_degraded_services_total {degraded_count}"
+    ]
+    
+    content = "\n".join(metrics) + "\n"
+    return Response(content=content, media_type="text/plain; version=0.0.4")
+
+
 @app.post("/api/ingest")
 async def ingest_event(request: Request):
     """Accept external telemetry events pushed by observed services."""
@@ -215,77 +357,94 @@ def _render_dashboard_html() -> str:
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Pravah Bhiv - Observer Dashboard</title>
+<title>Pravah Bhiv - Ecosystem Observability Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#070a13;--surface:#0e1322;--card:rgba(20,27,45,0.7);--border:rgba(255,255,255,0.06);
-  --text:#f0f4fc;--muted:#8f9cb3;--accent:linear-gradient(135deg, #7c4dff 0%, #18ffff 100%);
-  --accent-color:#7c4dff;--accent2:#00e5ff;
+  --bg:#05070f;--surface:#0b0d19;--card:rgba(18,22,38,0.7);--border:rgba(255,255,255,0.06);
+  --text:#f0f4fc;--muted:#7e8b9f;--accent:linear-gradient(135deg, #6c35ff 0%, #00e5ff 100%);
+  --accent-color:#6c35ff;--accent2:#00e5ff;
   --green:#00e676;--red:#ff1744;--yellow:#ffea00;--blue:#2979ff;
   --glow-green:rgba(0,230,118,0.15);--glow-red:rgba(255,23,68,0.15);--glow-yellow:rgba(255,234,0,0.15);
 }
-body{font-family:'Inter',sans-serif;background-color:var(--bg);background-image:radial-gradient(circle at 10% 20%, rgba(124,77,255,0.05) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(24,255,255,0.05) 0%, transparent 40%);color:var(--text);min-height:100vh;overflow-x:hidden}
+body{font-family:'Inter',sans-serif;background-color:var(--bg);background-image:radial-gradient(circle at 5% 10%, rgba(108,53,255,0.06) 0%, transparent 50%), radial-gradient(circle at 95% 90%, rgba(0,229,255,0.06) 0%, transparent 50%);color:var(--text);min-height:100vh;overflow-x:hidden}
 .header{
-  background:rgba(14,19,34,0.8);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);padding:24px 40px;
+  background:rgba(11,13,25,0.85);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);padding:20px 40px;
   display:flex;align-items:center;justify-content:space-between;
   position:sticky;top:0;z-index:100;
 }
-.header h1{font-family:'Outfit',sans-serif;font-size:1.6rem;font-weight:800;letter-spacing:-.8px;background:var(--accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header h1{font-family:'Outfit',sans-serif;font-size:1.5rem;font-weight:800;letter-spacing:-.8px;background:var(--accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .header h1 span{font-weight:400;color:var(--muted);-webkit-text-fill-color:var(--muted)}
 .header .meta{font-size:.85rem;color:var(--muted);font-weight:500;display:flex;align-items:center;gap:12px}
 #clock{background:rgba(255,255,255,0.03);padding:6px 14px;border-radius:30px;border:1px solid var(--border);color:var(--text);font-family:monospace;letter-spacing:0.5px}
-.badge{display:inline-block;padding:4px 12px;border-radius:30px;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;transition:all 0.3s ease}
+.tabs{display:flex;gap:8px;margin-bottom:24px;border-bottom:1px solid var(--border);padding-bottom:12px}
+.tab-btn{background:none;border:none;color:var(--muted);font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:600;padding:8px 18px;border-radius:8px;cursor:pointer;transition:all 0.3s ease}
+.tab-btn:hover{color:var(--text);background:rgba(255,255,255,0.02)}
+.tab-btn.active{color:var(--accent2);background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.2);box-shadow:0 0 15px rgba(0,229,255,0.08)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.badge{display:inline-block;padding:4px 12px;border-radius:30px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;transition:all 0.3s ease}
 .badge.healthy{background:rgba(0,230,118,.12);color:var(--green);border:1px solid rgba(0,230,118,0.2);box-shadow:0 0 10px var(--glow-green)}
 .badge.unreachable,.badge.error{background:rgba(255,23,.12);color:var(--red);border:1px solid rgba(255,23,68,0.2);box-shadow:0 0 10px var(--glow-red)}
 .badge.degraded,.badge.timeout{background:rgba(255,234,0,.1);color:var(--yellow);border:1px solid rgba(255,234,0,0.2);box-shadow:0 0 10px var(--glow-yellow)}
 .badge.info{background:rgba(124,77,255,.12);color:var(--accent-color);border:1px solid rgba(124,77,255,0.2)}
-.container{max-width:1400px;margin:0 auto;padding:40px 24px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px;margin-bottom:40px}
-.card{background:var(--card);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:16px;padding:28px;transition:all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);box-shadow:0 8px 32px 0 rgba(0,0,0,0.2)}
-.card:hover{transform:translateY(-5px);border-color:rgba(124,77,255,0.3);box-shadow:0 12px 40px rgba(124,77,255,0.12)}
-.card h3{font-family:'Outfit',sans-serif;font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between}
-.svc-name{font-family:'Outfit',sans-serif;font-size:1.4rem;font-weight:700;margin-bottom:8px;color:#ffffff;letter-spacing:-0.3px}
-.svc-url{font-size:.75rem;color:var(--muted);word-break:break-all;font-family:monospace;background:rgba(0,0,0,0.2);padding:6px 10px;border-radius:6px;margin-bottom:16px;border:1px solid rgba(255,255,255,0.02)}
-.svc-latency{font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;color:var(--accent2);margin:16px 0 10px;display:flex;align-items:baseline;gap:4px}
-.svc-latency small{font-size:.85rem;color:var(--muted);font-weight:400;font-family:'Inter',sans-serif}
-.events-card{background:var(--card);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:16px;padding:32px;box-shadow:0 8px 32px 0 rgba(0,0,0,0.2)}
-.events-card h3{font-family:'Outfit',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:24px;color:#ffffff;letter-spacing:-0.3px;display:flex;align-items:center;justify-content:space-between}
-.events-card h3 span{font-size:0.75rem;color:var(--muted);font-weight:400;background:rgba(255,255,255,0.03);padding:4px 10px;border-radius:20px;border:1px solid var(--border)}
+.container{max-width:1440px;margin:0 auto;padding:32px 24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px;margin-bottom:32px}
+.card{background:var(--card);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:16px;padding:24px;transition:all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);box-shadow:0 8px 32px 0 rgba(0,0,0,0.2)}
+.card:hover{transform:translateY(-4px);border-color:rgba(108,53,255,0.3);box-shadow:0 12px 30px rgba(108,53,255,0.1)}
+.card h3{font-family:'Outfit',sans-serif;font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between}
+.svc-name{font-family:'Outfit',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:6px;color:#ffffff;letter-spacing:-0.3px}
+.svc-url{font-size:.72rem;color:var(--muted);word-break:break-all;font-family:monospace;background:rgba(0,0,0,0.2);padding:6px 10px;border-radius:6px;margin-bottom:16px;border:1px solid rgba(255,255,255,0.02)}
+.svc-latency{font-family:'Outfit',sans-serif;font-size:1.8rem;font-weight:800;color:var(--accent2);margin:12px 0 8px;display:flex;align-items:baseline;gap:4px}
+.svc-latency small{font-size:.8rem;color:var(--muted);font-weight:400;font-family:'Inter',sans-serif}
+.events-card{background:var(--card);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:16px;padding:28px;box-shadow:0 8px 32px 0 rgba(0,0,0,0.2)}
+.events-card h3{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;margin-bottom:20px;color:#ffffff;letter-spacing:-0.3px;display:flex;align-items:center;justify-content:space-between}
+.events-card h3 span{font-size:0.72rem;color:var(--muted);font-weight:400;background:rgba(255,255,255,0.03);padding:4px 10px;border-radius:20px;border:1px solid var(--border)}
 .events-table-wrapper{overflow-x:auto}
 .events-table{width:100%;border-collapse:collapse;text-align:left}
-.events-table th,.events-table td{padding:16px 20px;border-bottom:1px solid var(--border);font-size:.85rem}
-.events-table th{color:var(--muted);font-weight:600;text-transform:uppercase;font-size:.75rem;letter-spacing:1px;background:rgba(255,255,255,0.01)}
+.events-table th,.events-table td{padding:14px 18px;border-bottom:1px solid var(--border);font-size:.8rem}
+.events-table th{color:var(--muted);font-weight:600;text-transform:uppercase;font-size:.72rem;letter-spacing:1.2px;background:rgba(255,255,255,0.01)}
 .events-table td{color:var(--text)}
 .events-table tr{transition:background-color 0.2s ease}
-.events-table tr:hover{background:rgba(124,77,255,0.03)}
-.detail-cell{max-width:400px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted);font-family:monospace;font-size:0.8rem}
-.pulse{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:8px;position:relative;vertical-align:middle}
-.pulse.healthy{background:var(--green);box-shadow:0 0 10px var(--green)}
-.pulse.unreachable,.pulse.error{background:var(--red);box-shadow:0 0 10px var(--red)}
-.pulse.degraded,.pulse.timeout{background:var(--yellow);box-shadow:0 0 10px var(--yellow)}
-.pulse::after{content:'';width:100%;height:100%;border-radius:50%;position:absolute;top:0;left:0;animation:pulse-ring 2.5s infinite;opacity:0.4}
+.events-table tr:hover{background:rgba(108,53,255,0.02)}
+.detail-cell{max-width:350px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted);font-family:monospace;font-size:0.75rem}
+.pulse{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px;position:relative;vertical-align:middle}
+.pulse.healthy{background:var(--green);box-shadow:0 0 8px var(--green)}
+.pulse.unreachable,.pulse.error{background:var(--red);box-shadow:0 0 8px var(--red)}
+.pulse.degraded,.pulse.timeout{background:var(--yellow);box-shadow:0 0 8px var(--yellow)}
+.pulse::after{content:'';width:100%;height:100%;border-radius:50%;position:absolute;top:0;left:0;animation:pulse-ring 2.5s infinite;opacity:0.3}
 .pulse.healthy::after{border:1px solid var(--green)}
 .pulse.unreachable::after,.pulse.error::after{border:1px solid var(--red)}
 .pulse.degraded::after,.pulse.timeout::after{border:1px solid var(--yellow)}
-@keyframes pulse-ring{0%{transform:scale(1);opacity:0.4}50%{transform:scale(2.2);opacity:0}100%{transform:scale(1);opacity:0}}
-.footer{text-align:center;padding:32px;color:var(--muted);font-size:.8rem;border-top:1px solid var(--border);margin-top:60px;letter-spacing:0.5px}
-.stat-row{display:flex;gap:20px;margin-bottom:40px;flex-wrap:wrap}
-.stat-box{flex:1;min-width:200px;background:var(--card);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:16px;padding:24px;text-align:center;box-shadow:0 8px 32px 0 rgba(0,0,0,0.15);transition:transform 0.3s ease}
-.stat-box:hover{transform:translateY(-2px);border-color:rgba(24,255,255,0.2)}
-.stat-box .val{font-family:'Outfit',sans-serif;font-size:2.2rem;font-weight:800;color:var(--accent-color);background:var(--accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.stat-box .lbl{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:6px;font-weight:600}
+@keyframes pulse-ring{0%{transform:scale(1);opacity:0.3}50%{transform:scale(2.2);opacity:0}100%{transform:scale(1);opacity:0}}
+.footer{text-align:center;padding:24px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:48px;letter-spacing:0.5px}
+.stat-row{display:flex;gap:20px;margin-bottom:32px;flex-wrap:wrap}
+.stat-box{flex:1;min-width:200px;background:var(--card);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:16px;padding:20px;text-align:center;box-shadow:0 8px 32px 0 rgba(0,0,0,0.15);transition:transform 0.3s ease}
+.stat-box:hover{transform:translateY(-2px);border-color:rgba(0,229,255,0.2)}
+.stat-box .val{font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;color:var(--accent-color);background:var(--accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-box .lbl{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;margin-top:4px;font-weight:600}
+.const-card{
+  background:linear-gradient(145deg, rgba(18,22,38,0.85) 0%, rgba(10,12,24,0.85) 100%);
+  border:1px solid rgba(108,53,255,0.2);box-shadow:0 0 30px rgba(108,53,255,0.08);
+  padding:32px;border-radius:16px;margin-top:12px;
+}
+.const-title{font-family:'Outfit',sans-serif;font-size:1.5rem;font-weight:800;margin-bottom:20px;background:var(--accent);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.const-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.const-item{background:rgba(255,255,255,0.01);border:1px solid var(--border);padding:20px;border-radius:12px;text-align:left;transition:all 0.3s ease}
+.const-item:hover{transform:translateY(-2px);border-color:var(--accent2);background:rgba(255,255,255,0.02)}
+.const-item h4{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;color:var(--accent2);margin-bottom:8px}
+.const-item p{font-size:0.8rem;color:var(--muted);line-height:1.5}
 </style>
 </head>
 <body>
 <div class="header">
   <div>
-    <h1>Pravah Bhiv <span>&mdash; Observer Dashboard</span></h1>
-    <div style="font-size:.78rem;color:var(--muted);margin-top:4px;font-weight:500;letter-spacing:0.5px">Execution Visibility Layer &middot; Observe, Don't Own</div>
+    <h1>Pravah Bhiv <span>&mdash; Ecosystem Observability</span></h1>
+    <div style="font-size:.72rem;color:var(--muted);margin-top:4px;font-weight:500;letter-spacing:0.5px">Ecosystem Infrastructure Visibility &middot; Observe, Don't Own</div>
   </div>
   <div class="meta">
     <div id="clock"></div>
@@ -300,30 +459,149 @@ body{font-family:'Inter',sans-serif;background-color:var(--bg);background-image:
     <div class="stat-box"><div class="val" id="s-events">--</div><div class="lbl">Events Captured</div></div>
   </div>
 
-  <div class="grid" id="service-cards"></div>
+  <div class="tabs">
+    <button class="tab-btn active" id="tab-btn-services" onclick="switchTab('services')">Services Health</button>
+    <button class="tab-btn" id="tab-btn-graph" onclick="switchTab('graph')">Ecosystem Lineage Graph</button>
+    <button class="tab-btn" id="tab-btn-lineage" onclick="switchTab('lineage')">Evidence Registry Logs</button>
+    <button class="tab-btn" id="tab-btn-constitution" onclick="switchTab('constitution')">Constitutional Boundaries</button>
+  </div>
 
-  <div class="events-card">
-    <h3>Recent Observation Events <span id="event-count">--</span></h3>
-    <div class="events-table-wrapper">
-      <table class="events-table">
-        <thead><tr><th>Time</th><th>Service</th><th>Status</th><th>Latency</th><th>Detail</th></tr></thead>
-        <tbody id="events-body"></tbody>
-      </table>
+  <!-- Services Tab -->
+  <div id="tab-services" class="tab-content active">
+    <div class="grid" id="service-cards"></div>
+    <div class="events-card">
+      <h3>Recent Observation Events <span id="event-count">--</span></h3>
+      <div class="events-table-wrapper">
+        <table class="events-table">
+          <thead><tr><th>Time</th><th>Service</th><th>Status</th><th>Latency</th><th>Detail</th></tr></thead>
+          <tbody id="events-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Graph Tab -->
+  <div id="tab-graph" class="tab-content">
+    <div class="events-card" style="margin-bottom: 24px;">
+      <h3>Dynamic Ecosystem Dependency Visualization</h3>
+      <div style="margin: 16px 0;">
+        <svg width="100%" height="240" viewBox="0 0 1000 240" style="background:rgba(0,0,0,0.25); border-radius:12px; border:1px solid var(--border)">
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#7e8b9f" />
+            </marker>
+            <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#00e676" />
+            </marker>
+            <marker id="arrow-yellow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#ffea00" />
+            </marker>
+          </defs>
+          
+          <!-- Connections -->
+          <line x1="120" y1="120" x2="240" y2="120" stroke="#7e8b9f" stroke-width="2" marker-end="url(#arrow)" id="link-intent-runner" />
+          <line x1="380" y1="120" x2="480" y2="120" stroke="#7e8b9f" stroke-width="2" marker-end="url(#arrow)" id="link-runner-plane" />
+          <line x1="620" y1="120" x2="720" y2="120" stroke="#7e8b9f" stroke-width="2" marker-end="url(#arrow)" id="link-plane-registry" />
+          <line x1="860" y1="120" x2="930" y2="120" stroke="#00e676" stroke-width="2" marker-end="url(#arrow-green)" id="link-registry-verification" />
+          
+          <!-- Nodes -->
+          <circle cx="70" cy="120" r="35" fill="rgba(108,53,255,0.15)" stroke="#6c35ff" stroke-width="2" />
+          <text x="70" y="124" fill="#f0f4fc" font-size="11" font-weight="600" text-anchor="middle" font-family="'Outfit'">Intent</text>
+          
+          <rect x="240" y="85" width="140" height="70" rx="12" fill="rgba(18,22,38,0.85)" stroke="#7e8b9f" stroke-width="2" id="node-runner" />
+          <text x="310" y="115" fill="#f0f4fc" font-size="11" font-weight="700" text-anchor="middle" font-family="'Outfit'">Prompt Runner</text>
+          <text x="310" y="136" fill="#7e8b9f" font-size="10" text-anchor="middle" id="lbl-runner" font-family="monospace">OFFLINE</text>
+          
+          <rect x="480" y="85" width="140" height="70" rx="12" fill="rgba(18,22,38,0.85)" stroke="#7e8b9f" stroke-width="2" id="node-plane" />
+          <text x="550" y="115" fill="#f0f4fc" font-size="11" font-weight="700" text-anchor="middle" font-family="'Outfit'">Pravah Engine</text>
+          <text x="550" y="136" fill="#7e8b9f" font-size="10" text-anchor="middle" id="lbl-plane" font-family="monospace">OFFLINE</text>
+          
+          <rect x="720" y="85" width="140" height="70" rx="12" fill="rgba(18,22,38,0.85)" stroke="#7e8b9f" stroke-width="2" id="node-registry" />
+          <text x="790" y="115" fill="#f0f4fc" font-size="11" font-weight="700" text-anchor="middle" font-family="'Outfit'">Evidence Reg</text>
+          <text x="790" y="136" fill="#7e8b9f" font-size="10" text-anchor="middle" id="lbl-registry" font-family="monospace">OFFLINE</text>
+          
+          <circle cx="955" cy="120" r="25" fill="rgba(0,230,118,0.1)" stroke="#00e676" stroke-width="2" />
+          <text x="955" y="124" fill="#00e676" font-size="9" font-weight="800" text-anchor="middle" font-family="'Outfit'">VERIFIED</text>
+        </svg>
+      </div>
+      <p style="font-size:0.8rem;color:var(--muted);line-height:1.5">This diagram displays the real-time runtime communication logic. If the services are running and verified healthy, their connection lineage glows green, indicating continuous E2E trace continuity.</p>
+    </div>
+  </div>
+
+  <!-- Lineage Tab -->
+  <div id="tab-lineage" class="tab-content">
+    <div class="events-card">
+      <h3>Active Shakti Evidence Bundles</h3>
+      <div class="events-table-wrapper">
+        <table class="events-table">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Bundle ID</th>
+              <th>Trace ID</th>
+              <th>Execution ID</th>
+              <th>Type</th>
+              <th>Authority Chain</th>
+              <th>Evidence Data</th>
+            </tr>
+          </thead>
+          <tbody id="lineage-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Constitution Tab -->
+  <div id="tab-constitution" class="tab-content">
+    <div class="const-card">
+      <h3 class="const-title">Ecosystem Governance & Bounded Authority</h3>
+      <p style="font-size:0.9rem;color:var(--muted);margin-bottom:24px;line-height:1.6">Pravah functions strictly as an ecosystem visibility layer. To satisfy TANTRA constitutional safeguards, observability metrics must never assume governance authority or interfere with core service processing.</p>
+      <div class="const-grid">
+        <div class="const-item">
+          <h4>Observability &ne; Authority</h4>
+          <p>Ecosystem metrics gather trace continuity data passively. Pravah has zero execution right or veto power over product runtimes.</p>
+        </div>
+        <div class="const-item">
+          <h4>Replay &ne; Truth</h4>
+          <p>Replay simulations prove state equivalence and trace recovery correctness, but do not dictate system operational state.</p>
+        </div>
+        <div class="const-item">
+          <h4>Telemetry &ne; Governance</h4>
+          <p>Governance belongs strictly to human operators or the sovereign GC. Pravah telemetry reports metrics, it does not enforce law.</p>
+        </div>
+        <div class="const-item">
+          <h4>Visibility &ne; Execution</h4>
+          <p>Visibility grants full trace audit chains, but holds no permission to alter runtimes, configuration, or active data states.</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="footer">Pravah Bhiv Observer v1.1.0 &middot; Auto-refreshes every 5 s &middot; Secure & Independent</div>
+<div class="footer">Pravah Bhiv Observer v2.0.0 &middot; Auto-refreshes every 5 s &middot; Secure & Independent</div>
 
 <script>
 function badgeHtml(status){return `<span class="badge ${status}">${status}</span>`}
 function pulseHtml(status){return `<span class="pulse ${status}"></span>`}
 
+function switchTab(tabId){
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+  
+  document.getElementById(`tab-btn-${tabId}`).classList.add('active');
+  document.getElementById(`tab-${tabId}`).classList.add('active');
+}
+
 async function refresh(){
   try{
-    const [statusRes,eventsRes]=await Promise.all([fetch('/api/status'),fetch('/api/events?limit=30')]);
+    const [statusRes,eventsRes,lineageRes]=await Promise.all([
+      fetch('/api/status'),
+      fetch('/api/events?limit=30'),
+      fetch('/api/lineage')
+    ]);
     const status=await statusRes.json();
     const evData=await eventsRes.json();
+    const linData=await lineageRes.json();
 
     // stats
     const svcs=Object.keys(status.services);
@@ -359,6 +637,69 @@ async function refresh(){
       </tr>`;
     }
     document.getElementById('events-body').innerHTML=rows;
+
+    // dependency graph updates
+    const runner = status.services['prompt-runner01'];
+    const plane = status.services['control-plane'];
+    const sarathi = status.services['bhiv-sarathi'];
+    
+    // runner node color & text
+    if (runner) {
+      const color = runner.status === 'healthy' ? '#00e676' : (runner.status === 'degraded' ? '#ffea00' : '#ff1744');
+      const arrowColor = runner.status === 'healthy' ? 'url(#arrow-green)' : (runner.status === 'degraded' ? 'url(#arrow-yellow)' : 'url(#arrow)');
+      const linkStroke = runner.status === 'healthy' ? '#00e676' : (runner.status === 'degraded' ? '#ffea00' : '#7e8b9f');
+      document.getElementById('node-runner').setAttribute('stroke', color);
+      document.getElementById('lbl-runner').textContent = runner.status.toUpperCase();
+      document.getElementById('lbl-runner').setAttribute('fill', color);
+      document.getElementById('link-intent-runner').setAttribute('stroke', linkStroke);
+      document.getElementById('link-intent-runner').setAttribute('marker-end', arrowColor);
+    }
+    
+    // control plane node color & text
+    if (plane) {
+      const color = plane.status === 'healthy' ? '#00e676' : (plane.status === 'degraded' ? '#ffea00' : '#ff1744');
+      const arrowColor = plane.status === 'healthy' ? 'url(#arrow-green)' : (plane.status === 'degraded' ? 'url(#arrow-yellow)' : 'url(#arrow)');
+      const linkStroke = plane.status === 'healthy' ? '#00e676' : (plane.status === 'degraded' ? '#ffea00' : '#7e8b9f');
+      document.getElementById('node-plane').setAttribute('stroke', color);
+      document.getElementById('lbl-plane').textContent = plane.status.toUpperCase();
+      document.getElementById('lbl-plane').setAttribute('fill', color);
+      document.getElementById('link-runner-plane').setAttribute('stroke', linkStroke);
+      document.getElementById('link-runner-plane').setAttribute('marker-end', arrowColor);
+    }
+    
+    // evidence registry updates (if control plane is up and evidence endpoint responds)
+    if (plane && plane.status === 'healthy') {
+      document.getElementById('node-registry').setAttribute('stroke', '#00e676');
+      document.getElementById('lbl-registry').textContent = 'CONNECTED';
+      document.getElementById('lbl-registry').setAttribute('fill', '#00e676');
+      document.getElementById('link-plane-registry').setAttribute('stroke', '#00e676');
+      document.getElementById('link-plane-registry').setAttribute('marker-end', 'url(#arrow-green)');
+    } else {
+      document.getElementById('node-registry').setAttribute('stroke', '#7e8b9f');
+      document.getElementById('lbl-registry').textContent = 'OFFLINE';
+      document.getElementById('lbl-registry').setAttribute('fill', '#7e8b9f');
+      document.getElementById('link-plane-registry').setAttribute('stroke', '#7e8b9f');
+      document.getElementById('link-plane-registry').setAttribute('marker-end', 'url(#arrow)');
+    }
+
+    // lineages logs table
+    let linRows = '';
+    for(const l of linData.lineages){
+      const chainStr = (l.authority_chain || []).join(' &rarr; ');
+      const t = l.produced_at ? new Date(l.produced_at).toLocaleTimeString() : '--';
+      const rawEvidence = JSON.stringify(l.evidence || {}).replace(/"/g, '&quot;');
+      linRows += `<tr>
+        <td>${t}</td>
+        <td style="font-family:monospace;font-weight:600">${l.bundle_id || '--'}</td>
+        <td style="font-family:monospace">${l.trace_id || '--'}</td>
+        <td style="font-family:monospace;color:var(--muted)">${l.execution_id || '--'}</td>
+        <td><span class="badge info">${l.decision_type || '--'}</span></td>
+        <td style="font-size:0.75rem;font-weight:600;color:var(--accent2)">${chainStr}</td>
+        <td class="detail-cell" title="${rawEvidence}">${JSON.stringify(l.evidence || {})}</td>
+      </tr>`;
+    }
+    document.getElementById('lineage-body').innerHTML = linRows || '<tr><td colspan="7" style="text-align:center;color:var(--muted)">No evidence bundles registered yet</td></tr>';
+
   }catch(err){console.error('refresh failed',err)}
 }
 
@@ -369,6 +710,9 @@ tick();refresh();
 </script>
 </body>
 </html>"""
+
+
+
 
 
 # ---------------------------------------------------------------------------

@@ -212,6 +212,15 @@ func (s *APIServer) Start() {
 	http.HandleFunc("/api/transaction-data", s.enableCORS(s.handleTransactionData))
 
 	// Health check endpoint (using handleHealth instead of duplicate handleHealthCheck)
+	http.HandleFunc("/health", s.enableCORS(func(w http.ResponseWriter, r *http.Request) {
+		start := time.Now()
+		s.handleHealth(w, r)
+		durationMs := float64(time.Since(start).Microseconds()) / 1000.0
+		EmitPravahSignal("running", durationMs, 0)
+	}))
+
+	// Start Pravah heartbeat
+	StartHeartbeat(60)
 
 	fmt.Printf("🌐 API Server starting on port %d\n", s.port)
 	fmt.Printf("🌐 Open http://localhost:%d in your browser\n", s.port)
