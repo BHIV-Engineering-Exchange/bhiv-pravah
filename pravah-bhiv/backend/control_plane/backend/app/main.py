@@ -708,6 +708,31 @@ def _build_live_dashboard_payload() -> dict[str, Any]:
         ],
     )
 
+    # Calculate real Q-table metrics
+    q_table_size = 0
+    q_table_actions = set()
+    avg_q_value = 0.0
+    try:
+        env_lower = os.getenv("ENVIRONMENT", "dev").lower()
+        q_path = control_plane_root / "logs" / env_lower / "rl_q_table.json"
+        if q_path.exists():
+            with open(q_path, 'r') as f:
+                q_data = json.load(f)
+                q_table_size = len(q_data)
+                vals = []
+                for state, actions in q_data.items():
+                    for a, v in actions.items():
+                        q_table_actions.add(a)
+                        vals.append(v)
+                if vals:
+                    avg_q_value = sum(vals) / len(vals)
+    except Exception:
+        pass
+
+    real_error_rate = error_rate_val
+    if _INGESTED_LINKS:
+        real_error_rate = max(real_error_rate, sum(item["errors_24h"] for item in _INGESTED_LINKS))
+
     return {
         "generated_at": now_iso,
         "header": {
@@ -725,8 +750,8 @@ def _build_live_dashboard_payload() -> dict[str, Any]:
             {"label": "Learning Status", "value": "Optimizing" if agg_metrics["total_decisions"] > 0 else "Idle", "tone": "green"},
             {"label": "Code Quality Score", "value": f"{agg_metrics['avg_quality_score']}%", "tone": "blue"},
             {"label": "Policy Updates", "value": str(agg_metrics["total_policies"]), "tone": "blue"},
-            {"label": "Q-Table Size", "value": str(100 + agg_metrics["total_policies"] * 2), "tone": "blue"},
-            {"label": "Training Progress", "value": f"{min(100, 73 + agg_metrics['total_decisions'] * 5)}%", "tone": "blue" if agg_metrics["total_decisions"] > 0 else "red"},
+            {"label": "Q-Table States", "value": str(q_table_size), "tone": "blue"},
+            {"label": "Learned Actions", "value": str(len(q_table_actions)), "tone": "blue"},
         ],
         "system_health": [
             {"label": "Overall Health", "value": f"{system_health_val}%", "tone": "green" if system_health_val > 80 else ("orange" if system_health_val > 50 else "red")},
@@ -737,9 +762,9 @@ def _build_live_dashboard_payload() -> dict[str, Any]:
         ],
         "performance_metrics": [
             {"label": "Response Time (ms)", "value": str(web1_latency if web1_latency > 0 else 120)},
-            {"label": "Throughput/sec", "value": str(128 + agg_metrics["total_decisions"] * 10)},
+            {"label": "Throughput/sec", "value": str(max(1, agg_metrics["total_decisions"] // 3600)) if agg_metrics["total_decisions"] > 0 else "0"},
             {"label": "Success Rate", "value": f"{success_rate_percent}%"},
-            {"label": "Requests/min", "value": str(45 + agg_metrics["total_decisions"] * 2)},
+            {"label": "Requests/min", "value": str(max(1, requests_count))},
             {"label": "Total Files Tracked", "value": str(agg_metrics["total_files"])},
         ],
         "project_files_status": [
@@ -747,31 +772,6 @@ def _build_live_dashboard_payload() -> dict[str, Any]:
             {"title": "Data Files", "icon": "🗂️", **data_files},
             {"title": "Integration Layer", "icon": "🔌", **integration_files},
             {"title": "Production Layer", "icon": "🏭", **production_files},
-        ] + [
-            {
-                "title": f"📦 {item['name']}",
-                "icon": "📁",
-                "active": _LINK_METADATA.get(item["link"], {}).get("files", 0),
-                "total": _LINK_METADATA.get(item["link"], {}).get("files", 0),
-                "files": [
-                    {
-                        "filename": f"main.py",
-                        "status": "ACTIVE",
-                        "size": f"{100 + (_get_link_hash(item['link']) % 500)} KB",
-                    },
-                    {
-                        "filename": f"config.yaml",
-                        "status": "ACTIVE",
-                        "size": "5.2 KB",
-                    },
-                    {
-                        "filename": f"requirements.txt",
-                        "status": "ACTIVE",
-                        "size": "2.1 KB",
-                    }
-                ]
-            }
-            for item in _INGESTED_LINKS
         ],
         "enhanced_telemetry": {
             "status": "HEALTHY" if web1_status == "HEALTHY" else ("DEGRADED" if web1_status == "DEGRADED" else "CRITICAL"),
@@ -783,9 +783,9 @@ def _build_live_dashboard_payload() -> dict[str, Any]:
         "policy_evolution": {
             "title": "Q-Table Evolution",
             "metrics": [
-                {"label": "Q-Table Size", "value": str(100 + agg_metrics["total_policies"] * 2)},
-                {"label": "Learning Progress", "value": f"{min(100, 73 + agg_metrics['total_decisions'] * 5)}%"},
-                {"label": "Policy Actions", "value": f"{3 + len(_INGESTED_LINKS)} actions learned"},
+                {"label": "Q-Table States", "value": str(q_table_size)},
+                {"label": "Avg Q-Value", "value": f"{avg_q_value:.4f}"},
+                {"label": "Learned Actions", "value": f"{len(q_table_actions)}"},
                 {"label": "Code Quality Impact", "value": f"+{agg_metrics['avg_quality_score'] - 70}%" if agg_metrics['avg_quality_score'] > 70 else f"{agg_metrics['avg_quality_score'] - 70}%"},
             ],
         },
@@ -794,8 +794,8 @@ def _build_live_dashboard_payload() -> dict[str, Any]:
                 {"code": "WEB1_LATENCY_SPIKE" if web1_status == "DEGRADED" else "WEB1_SERVICE_CRASHED", "severity": "MEDIUM" if web1_status == "DEGRADED" else "CRITICAL"}
             ] if web1_status != "HEALTHY" else [{"code": "NO_ERRORS", "severity": "NONE"}],
             "statistics": {
-                "total_errors": 1 if web1_status != "HEALTHY" else 0,
-                "avg_impact_score": 5.0 if web1_status == "HEALTHY" else (7.5 if web1_status == "DEGRADED" else 9.9),
+                "total_errors": real_error_rate,
+                "avg_impact_score": 5.0 if real_error_rate == 0 else (7.5 + min(2.4, real_error_rate * 0.5)),
                 "critical_issues": 1 if web1_status == "CRITICAL" else 0,
                 "test_coverage_avg": agg_metrics["avg_test_coverage"],
             },
@@ -1438,6 +1438,53 @@ def dashboard_state():
 
 
 
+
+
+from fastapi import HTTPException
+
+class PravahEventRequest(BaseModel):
+    trace_id: str
+    event_type: str
+    payload: Dict[str, Any]
+    source_system: str
+    published_at: str
+
+class EvidenceBundleRequest(BaseModel):
+    bundle_id: str
+    trace_id: str
+    execution_id: str
+    decision_id: str
+    decision_type: str
+    authority_chain: List[str]
+    evidence: List[Dict[str, Any]]
+    replay_reference: str
+    constitutional_hash: str
+    produced_at: str
+
+_EVIDENCE_STORE: Dict[str, Any] = {}
+
+@app.post("/pravah/events")
+def create_pravah_event(request: PravahEventRequest):
+    return {
+        "status": "CONNECTED",
+        "trace_id": request.trace_id,
+        "published_at": datetime.now(timezone.utc).isoformat()
+    }
+
+@app.post("/evidence")
+def store_evidence(request: EvidenceBundleRequest):
+    evidence_ref = str(uuid.uuid4())
+    _EVIDENCE_STORE[evidence_ref] = request.dict()
+    return {
+        "evidence_ref": evidence_ref,
+        "published_at": datetime.now(timezone.utc).isoformat()
+    }
+
+@app.get("/evidence/{evidence_ref}")
+def get_evidence(evidence_ref: str):
+    if evidence_ref not in _EVIDENCE_STORE:
+        raise HTTPException(status_code=404, detail="Evidence not found")
+    return _EVIDENCE_STORE[evidence_ref]
 
 
 if __name__ == "__main__":

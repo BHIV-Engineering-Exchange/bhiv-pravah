@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "event": "prod_runtime_health_validation",
+  "environment": "dev",
+  "platform": "yotta",
+  "timestamp": "2026-07-25T05:06:42.243596+00:00",
+  "verdict": "FAIL",
+  "summary": {
+    "total_checks": 6,
+    "passed": 0,
+    "failed": 6,
+    "critical_failures": [
+      "control-plane",
+      "decision-brain",
+      "observer",
+      "observer-api-status",
+      "redis"
+    ],
+    "non_critical_failures": [
+      "observer-metrics"
+    ]
+  },
+  "checks": [
+    {
+      "name": "control-plane",
+      "url": "http://localhost:7000/api/health",
+      "status": "FAIL",
+      "http_status": null,
+      "latency_ms": 4073.3,
+      "detail": "ConnectionError: HTTPConnectionPool(host='localhost', port=7000): Max retries exceeded with url: /api/health (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=7000): Failed to establish a new connec",
+      "checked_at": "2026-07-25T05:06:21.854253+00:00",
+      "critical": true,
+      "description": "Flask/Gunicorn Agent API"
+    },
+    {
+      "name": "decision-brain",
+      "url": "http://localhost:8000/health",
+      "status": "FAIL",
+      "http_status": null,
+      "latency_ms": 4090.4,
+      "detail": "ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /health (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8000): Failed to establish a new connection",
+      "checked_at": "2026-07-25T05:06:25.944702+00:00",
+      "critical": true,
+      "description": "FastAPI Policy Engine"
+    },
+    {
+      "name": "observer",
+      "url": "http://localhost:8600/health",
+      "status": "FAIL",
+      "http_status": null,
+      "latency_ms": 4038.5,
+      "detail": "ConnectionError: HTTPConnectionPool(host='localhost', port=8600): Max retries exceeded with url: /health (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8600): Failed to establish a new connection",
+      "checked_at": "2026-07-25T05:06:29.983228+00:00",
+      "critical": true,
+      "description": "FastAPI Observer Server"
+    },
+    {
+      "name": "observer-api-status",
+      "url": "http://localhost:8600/api/status",
+      "status": "FAIL",
+      "http_status": null,
+      "latency_ms": 4093.1,
+      "detail": "ConnectionError: HTTPConnectionPool(host='localhost', port=8600): Max retries exceeded with url: /api/status (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8600): Failed to establish a new connec",
+      "checked_at": "2026-07-25T05:06:34.076395+00:00",
+      "critical": true,
+      "description": "Observer polling status"
+    },
+    {
+      "name": "observer-metrics",
+      "url": "http://localhost:8600/api/metrics",
+      "status": "FAIL",
+      "http_status": null,
+      "latency_ms": 4086.1,
+      "detail": "ConnectionError: HTTPConnectionPool(host='localhost', port=8600): Max retries exceeded with url: /api/metrics (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8600): Failed to establish a new conne",
+      "checked_at": "2026-07-25T05:06:38.162544+00:00",
+      "critical": false,
+      "description": "Prometheus metrics endpoint"
+    },
+    {
+      "name": "redis",
+      "url": "tcp://localhost:6379",
+      "status": "FAIL",
+      "http_status": null,
+      "latency_ms": 4080.9,
+      "detail": "[WinError 10061] No connection could be made because the target machine actively refused it",
+      "checked_at": "2026-07-25T05:06:42.243532+00:00",
+      "critical": true,
+      "description": "Redis Event Bus (TCP)"
+    }
+  ],
+  "base_urls": {
+    "control_plane": "http://localhost:7000",
+    "decision_brain": "http://localhost:8000",
+    "observer": "http://localhost:8600"
+  }
+}

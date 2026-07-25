@@ -6,18 +6,18 @@ type MetricCardProps = {
 };
 
 const toneClass: Record<NonNullable<MetricCardProps["tone"]>, string> = {
-  default: "text-slate-900",
-  green: "text-emerald-600",
-  orange: "text-amber-600",
-  blue: "text-blue-600",
-  red: "text-rose-600"
+  default: "text-slate-100",
+  green: "text-emerald-400 drop-shadow-[0_0_10px_rgba(52,211,153,0.3)]",
+  orange: "text-amber-400 drop-shadow-[0_0_10px_rgba(251,191,36,0.3)]",
+  blue: "text-sky-400 drop-shadow-[0_0_10px_rgba(56,189,248,0.3)]",
+  red: "text-rose-400 drop-shadow-[0_0_10px_rgba(251,113,133,0.3)]"
 };
 
 export function MetricCard({ label, value, tone = "default", className = "" }: MetricCardProps) {
   return (
-    <article className={`rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-100 ${className}`}>
-      <p className={`text-3xl font-bold ${toneClass[tone]}`}>{value}</p>
-      <p className="mt-2 text-sm font-medium text-slate-500">{label}</p>
+    <article className={`group rounded-2xl bg-white/5 backdrop-blur-md border border-white/5 p-5 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:shadow-violet-500/10 ${className}`}>
+      <p className={`text-3xl font-bold tracking-tight transition-colors ${toneClass[tone]}`}>{value}</p>
+      <p className="mt-2 text-sm font-medium text-slate-400 transition-colors group-hover:text-slate-300">{label}</p>
     </article>
   );
 }

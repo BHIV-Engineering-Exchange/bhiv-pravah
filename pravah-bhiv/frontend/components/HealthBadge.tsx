@@ -15,7 +15,7 @@ export function HealthBadge({ status }: HealthBadgeProps) {
   const normalized = status.toUpperCase();
   return (
     <span
-      className={`inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-semibold ${toneClass[normalized] ?? "bg-slate-200 text-slate-700 border-slate-300"}`}
+      className={`inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-semibold ${toneClass[normalized] ?? "bg-slate-800/50 text-slate-200 border-slate-600/50"}`}
     >
       {status}
     </span>

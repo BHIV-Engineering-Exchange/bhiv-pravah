@@ -95,4 +95,62 @@ Pravah now has complete execution visibility across **four** independent systems
 
 > **Principle preserved**: Pravah observes—not owns—the execution of `gurukul-backend`. No middleware, no route, no startup hook was added to the Gurukul codebase. The only telemetry path is the existing `PravahAdapter` fire-and-forget async POST, plus the Observer's passive health probes.
 
+---
 
+## Production Infrastructure — Yotta Deployment Readiness
+
+Pravah has been hardened for production deployment on **Yotta Bare-Metal VM** (Docker Compose + systemd). The following artifacts were created or modified to make the system production-ready.
+
+### Deployment Architecture
+
+| Service | Port | Role |
+|---|---|---|
+| Control Plane (Flask/Gunicorn) | 7000 | Agent API, decision endpoint, registry |
+| Decision Brain (FastAPI/Uvicorn) | 8000 | Policy engine, telemetry ingestion |
+| Observer (FastAPI/Uvicorn) | 8600 | Passive health probing of 20+ services |
+| Redis (self-hosted container) | 6379 | Event bus (loopback-bound) |
+| Prometheus | 9090 | Metrics scraper (loopback-bound) |
+
+### New Artifacts
+
+| File | Purpose |
+|---|---|
+| [yotta-deploy.yaml](file:///c:/Users/black/OneDrive/Desktop/Pravah/pravah-bhiv/yotta-deploy.yaml) | Yotta production Docker Compose manifest |
+| [pravah.service](file:///c:/Users/black/OneDrive/Desktop/Pravah/pravah-bhiv/pravah.service) | systemd unit for Yotta VM lifecycle management |
+| [PRODUCTION_DEPLOYMENT.md](file:///c:/Users/black/OneDrive/Desktop/Pravah/pravah-bhiv/PRODUCTION_DEPLOYMENT.md) | Complete Yotta deployment guide |
+| [scripts/start_prod_services.sh](file:///c:/Users/black/OneDrive/Desktop/Pravah/pravah-bhiv/backend/scripts/start_prod_services.sh) | Bash startup orchestrator (Linux) |
+| [scripts/start_prod_services.ps1](file:///c:/Users/black/OneDrive/Desktop/Pravah/pravah-bhiv/backend/scripts/start_prod_services.ps1) | PowerShell startup orchestrator (Windows) |
+| [scripts/validate_prod_health.py](file:///c:/Users/black/OneDrive/Desktop\Pravah\pravah-bhiv/backend/scripts/validate_prod_health.py) | Health validation script with JSON proof output |
+
+### Modified Artifacts
+
+| File | What Changed |
+|---|---|
+| [docker-compose.yml](file:///c:/Users/black/OneDrive/Desktop/Pravah/pravah-bhiv/backend/docker-compose.yml) | Added prod/staging profiles; Observer and Decision Brain as first-class services; log rotation; resource limits; Prometheus service |
+| [environments/prod.env](file:///c:/Users/black/OneDrive/Desktop/Pravah/pravah-bhiv/backend/environments/prod.env) | Hardened: DEMO_MODE=false; 23 observed service URL stubs; SSPL/JWT secret markers; all service ports |
+| [monitoring/prometheus.yml](file:///c:/Users/black/OneDrive/Desktop/Pravah/pravah-bhiv/backend/monitoring/prometheus.yml) | Fixed targets from `127.0.0.1` to Docker DNS names; added Decision Brain scrape job; alerting stub |
+
+### Deployment Evidence
+
+The primary production evidence artifact is:
+
+```
+backend/deployment_verification_packet/prod_runtime_health.json
+```
+
+This file documents infrastructure readiness at the **configuration layer** and will be updated with live endpoint PASS/FAIL verdicts after Yotta VM deployment by running:
+
+```bash
+python3 scripts/validate_prod_health.py --env prod \
+  --output deployment_verification_packet/prod_runtime_health.json
+```
+
+### Environment Split
+
+| Environment | Platform | Status |
+|---|---|---|
+| **Production** | Yotta Bare-Metal VM | Ready for deployment |
+| **Staging** | Render.com | Active (render.yaml unchanged) |
+| **Local Dev** | Docker Compose `dev` profile | Unchanged |
+
+> **Principle maintained**: Render.com staging is preserved during Yotta migration. After successful production validation on Yotta, Render can be decommissioned at the operator's discretion.

@@ -1,12 +1,490 @@
 version: '3.8'
 
+# ============================================================
+# Pravah Production Docker Compose
+# Target: Yotta Bare-Metal VM (Docker Compose + systemd)
+# Profiles:
+#   prod    — production services (Yotta)
+#   staging — staging mirror (Render parity validation)
+#   legacy  — old Streamlit dashboard services (local dev only)
+# ============================================================
+
 services:
-  # Main Dashboard
+
+  # ----------------------------------------------------------
+  # Redis Event Bus — shared by all Pravah services
+  # ----------------------------------------------------------
+  redis:
+    image: redis:7-alpine
+    container_name: pravah-redis
+    profiles: [prod, staging, dev]
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    command: >
+      redis-server
+      --appendonly yes
+      --maxmemory ${REDIS_MAX_MEMORY:-512mb}
+      --maxmemory-policy allkeys-lru
+      --save 60 1000
+      --loglevel notice
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - pravah-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "5"
+        tag: "pravah-redis"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 640M
+        reservations:
+          cpus: "0.10"
+          memory: 128M
+
+  # ----------------------------------------------------------
+  # Control Plane API — Flask/Gunicorn (port 7000)
+  # Agent runtime, decision endpoint, registry management
+  # ----------------------------------------------------------
+  control-plane:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pravah-control-plane:${IMAGE_TAG:-latest}
+    container_name: pravah-control-plane
+    profiles: [prod, staging, dev]
+    ports:
+      - "${CONTROL_PLANE_PORT:-7000}:7000"
+    environment:
+      - ENVIRONMENT=${ENVIRONMENT:-prod}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_DB=${REDIS_DB:-2}
+      - PORT=7000
+      - SSPL_SECRET_KEY=${SSPL_SECRET_KEY}
+      - AUTONOMY_DECISIONS_ENABLED=${AUTONOMY_DECISIONS_ENABLED:-true}
+      - AUTONOMY_LEARNING_ENABLED=${AUTONOMY_LEARNING_ENABLED:-false}
+      - EMERGENCY_FREEZE_ENABLED=${EMERGENCY_FREEZE_ENABLED:-false}
+      - DEMO_MODE=${DEMO_MODE:-false}
+      - DEMO_FREEZE_MODE=${DEMO_FREEZE_MODE:-false}
+      # Observed service URLs — override at Yotta deploy time
+      - PRAVAH_GURUKUL_API=${PRAVAH_GURUKUL_API:-http://gurukul-backend:3000}
+      - PRAVAH_HR_API=${PRAVAH_HR_API:-http://infiverse-hr-platform:8000}
+      - PRAVAH_PARIKSHAK_API=${PRAVAH_PARIKSHAK_API:-http://parikshak-system:8080}
+      - PRAVAH_CRM_API=${PRAVAH_CRM_API:-http://crm-api:8001}
+    volumes:
+      - ./logs:/app/logs
+      - ./data:/app/data
+    command: >
+      gunicorn wsgi:app
+      --workers ${GUNICORN_WORKERS:-4}
+      --worker-class sync
+      --bind 0.0.0.0:7000
+      --timeout 120
+      --keepalive 5
+      --access-logfile /app/logs/access.log
+      --error-logfile /app/logs/error.log
+      --log-level info
+      --preload
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - pravah-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+        tag: "pravah-control-plane"
+    deploy:
+      resources:
+        limits:
+          cpus: "2.00"
+          memory: 1G
+        reservations:
+          cpus: "0.50"
+          memory: 256M
+
+  # ----------------------------------------------------------
+  # Decision Brain — FastAPI/Uvicorn (port 8000)
+  # Policy engine, RL decision layer, telemetry ingestion
+  # ----------------------------------------------------------
+  decision-brain:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pravah-decision-brain:${IMAGE_TAG:-latest}
+    container_name: pravah-decision-brain
+    profiles: [prod, staging, dev]
+    ports:
+      - "${DECISION_BRAIN_PORT:-8000}:8000"
+    environment:
+      - ENVIRONMENT=${ENVIRONMENT:-prod}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_DB=${REDIS_DB:-2}
+      - PORT=8000
+      - SSPL_SECRET_KEY=${SSPL_SECRET_KEY}
+      - DEMO_MODE=${DEMO_MODE:-false}
+      - DEMO_FREEZE_MODE=${DEMO_FREEZE_MODE:-false}
+      - BACKEND_CORS_ORIGINS=${BACKEND_CORS_ORIGINS:-*}
+    volumes:
+      - ./logs:/app/logs
+      - ./data:/app/data
+    command: >
+      uvicorn control_plane.backend.app.main:app
+      --host 0.0.0.0
+      --port 8000
+      --workers ${UVICORN_WORKERS:-2}
+      --log-level info
+      --access-log
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - pravah-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+        tag: "pravah-decision-brain"
+    deploy:
+      resources:
+        limits:
+          cpus: "2.00"
+          memory: 1G
+        reservations:
+          cpus: "0.50"
+          memory: 256M
+
+  # ----------------------------------------------------------
+  # Observer Server — FastAPI/Uvicorn (port 8600)
+  # Passive health probing of 20+ registered services
+  # ----------------------------------------------------------
+  observer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pravah-observer:${IMAGE_TAG:-latest}
+    container_name: pravah-observer
+    profiles: [prod, staging, dev]
+    ports:
+      - "${OBSERVER_PORT:-8600}:8600"
+    environment:
+      - ENVIRONMENT=${ENVIRONMENT:-prod}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app
+      - PRAVAH_OBSERVER_PORT=8600
+      # Control-plane self-reference uses Docker service DNS
+      - PRAVAH_CONTROL_PLANE=http://control-plane:7000
+      - PRAVAH_MAIN_API=http://decision-brain:8000
+      # Observed services — set YOTTA production URLs below
+      - PRAVAH_GURUKUL_API=${PRAVAH_GURUKUL_API:-http://gurukul-backend:3000}
+      - PRAVAH_HR_API=${PRAVAH_HR_API:-http://infiverse-hr-platform:8000}
+      - PRAVAH_PARIKSHAK_API=${PRAVAH_PARIKSHAK_API:-http://parikshak-system:8080}
+      - PRAVAH_CRM_API=${PRAVAH_CRM_API:-http://crm-api:8001}
+      - PRAVAH_PROMPT_RUNNER_API=${PRAVAH_PROMPT_RUNNER_API:-http://prompt-runner01:8001}
+      - PRAVAH_TRADE_BOT_API=${PRAVAH_TRADE_BOT_API:-http://trade-bot:8002}
+      - PRAVAH_TTG_API=${PRAVAH_TTG_API:-http://ttg:3005}
+      - PRAVAH_UNIGURU_API=${PRAVAH_UNIGURU_API:-http://uniguru-ai:8003}
+      - PRAVAH_WORKFLOW_BLACKHOLE_API=${PRAVAH_WORKFLOW_BLACKHOLE_API:-http://workflow-blackhole:5005}
+      - PRAVAH_BLOCKCHAIN_API=${PRAVAH_BLOCKCHAIN_API:-http://block-chain:8004}
+      - PRAVAH_BHIV_KARMA=${PRAVAH_BHIV_KARMA:-http://bhiv-karma:8000}
+      - PRAVAH_BHIV_BUCKET=${PRAVAH_BHIV_BUCKET:-http://bhiv-bucket:8001}
+      - PRAVAH_BHIV_CORE=${PRAVAH_BHIV_CORE:-http://bhiv-core:8002}
+      - PRAVAH_BHIV_WORKFLOW=${PRAVAH_BHIV_WORKFLOW:-http://bhiv-workflow:8003}
+      - PRAVAH_BHIV_UAO=${PRAVAH_BHIV_UAO:-http://bhiv-uao:8004}
+      - PRAVAH_BHIV_INSIGHT_CORE=${PRAVAH_BHIV_INSIGHT_CORE:-http://bhiv-insight-core:8005}
+      - PRAVAH_BHIV_INSIGHT_FLOW_BRIDGE=${PRAVAH_BHIV_INSIGHT_FLOW_BRIDGE:-http://bhiv-insight-flow-bridge:8006}
+      - PRAVAH_BHIV_INSIGHT_FLOW_BACKEND=${PRAVAH_BHIV_INSIGHT_FLOW_BACKEND:-http://bhiv-insight-flow-backend:8007}
+      - PRAVAH_BHIV_KESHAV=${PRAVAH_BHIV_KESHAV:-http://bhiv-keshav-4:5000}
+      - PRAVAH_BHIV_SARATHI=${PRAVAH_BHIV_SARATHI:-http://bhiv-sarathi:9002}
+      - PRAVAH_MASTERDB_API=${PRAVAH_MASTERDB_API:-http://masterdb-service:8000}
+      - PRAVAH_MITRA_API=${PRAVAH_MITRA_API:-http://bhiv-mitra:8000}
+      - PRAVAH_SVACS_API=${PRAVAH_SVACS_API:-http://bhiv-svacs:8000}
+    volumes:
+      - ./logs:/app/logs
+      - ./data:/app/data
+    command: >
+      uvicorn observer_server:app
+      --host 0.0.0.0
+      --port 8600
+      --log-level info
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8600/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 45s
+    depends_on:
+      control-plane:
+        condition: service_healthy
+      decision-brain:
+        condition: service_healthy
+    networks:
+      - pravah-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "5"
+        tag: "pravah-observer"
+    deploy:
+      resources:
+        limits:
+          cpus: "1.00"
+          memory: 512M
+        reservations:
+          cpus: "0.25"
+          memory: 128M
+
+  # ----------------------------------------------------------
+  # Deploy Workers (prod profile — 3 workers)
+  # ----------------------------------------------------------
+  deploy-worker-1:
+    build: .
+    container_name: pravah-deploy-worker-1
+    profiles: [prod, dev]
+    environment:
+      - WORKER_ID=1
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app
+      - ENVIRONMENT=${ENVIRONMENT:-prod}
+    volumes:
+      - ./logs:/app/logs
+    command: python -m control_plane.agents.multi_deploy_agent --env ${ENVIRONMENT:-prod} --workers 1
+    restart: unless-stopped
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - pravah-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "5"
+        tag: "pravah-worker-1"
+    deploy:
+      resources:
+        limits:
+          cpus: "1.00"
+          memory: 512M
+        reservations:
+          cpus: "0.25"
+          memory: 128M
+
+  deploy-worker-2:
+    build: .
+    container_name: pravah-deploy-worker-2
+    profiles: [prod, dev]
+    environment:
+      - WORKER_ID=2
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app
+      - ENVIRONMENT=${ENVIRONMENT:-prod}
+    volumes:
+      - ./logs:/app/logs
+    command: python -m control_plane.agents.multi_deploy_agent --env ${ENVIRONMENT:-prod} --workers 1
+    restart: unless-stopped
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - pravah-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "5"
+        tag: "pravah-worker-2"
+    deploy:
+      resources:
+        limits:
+          cpus: "1.00"
+          memory: 512M
+        reservations:
+          cpus: "0.25"
+          memory: 128M
+
+  deploy-worker-3:
+    build: .
+    container_name: pravah-deploy-worker-3
+    profiles: [prod, dev]
+    environment:
+      - WORKER_ID=3
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app
+      - ENVIRONMENT=${ENVIRONMENT:-prod}
+    volumes:
+      - ./logs:/app/logs
+    command: python -m control_plane.agents.multi_deploy_agent --env ${ENVIRONMENT:-prod} --workers 1
+    restart: unless-stopped
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - pravah-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "5"
+        tag: "pravah-worker-3"
+    deploy:
+      resources:
+        limits:
+          cpus: "1.00"
+          memory: 512M
+        reservations:
+          cpus: "0.25"
+          memory: 128M
+
+  # ----------------------------------------------------------
+  # Queue Monitor
+  # ----------------------------------------------------------
+  queue-monitor:
+    build: .
+    container_name: pravah-queue-monitor
+    profiles: [prod, dev]
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - PYTHONUNBUFFERED=1
+      - ENVIRONMENT=${ENVIRONMENT:-prod}
+    volumes:
+      - ./logs:/app/logs
+    command: python -m monitoring.queue_monitor --continuous --cycles 0
+    restart: unless-stopped
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - pravah-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "3"
+        tag: "pravah-queue-monitor"
+
+  # ----------------------------------------------------------
+  # System Health Monitor
+  # ----------------------------------------------------------
+  health-monitor:
+    build: .
+    container_name: pravah-health-monitor
+    profiles: [prod, dev]
+    environment:
+      - PYTHONUNBUFFERED=1
+      - ENVIRONMENT=${ENVIRONMENT:-prod}
+      - REDIS_HOST=redis
+    volumes:
+      - ./logs:/app/logs
+    command: python -m monitoring.infra_health_monitor --env ${ENVIRONMENT:-prod} --continuous
+    restart: unless-stopped
+    depends_on:
+      control-plane:
+        condition: service_healthy
+    networks:
+      - pravah-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "3"
+        tag: "pravah-health-monitor"
+
+  # ----------------------------------------------------------
+  # Prometheus Metrics Scraper (prod only)
+  # ----------------------------------------------------------
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    container_name: pravah-prometheus
+    profiles: [prod]
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--storage.tsdb.retention.time=15d"
+      - "--web.enable-lifecycle"
+      - "--web.console.libraries=/etc/prometheus/console_libraries"
+      - "--web.console.templates=/etc/prometheus/consoles"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:9090/-/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    depends_on:
+      - control-plane
+      - observer
+    networks:
+      - pravah-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "3"
+        tag: "pravah-prometheus"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 512M
+
+  # ----------------------------------------------------------
+  # Legacy Streamlit Dashboards (local dev only)
+  # ----------------------------------------------------------
   dashboard:
     build: .
     container_name: cicd-dashboard
-    profiles:
-      - legacy
+    profiles: [legacy]
     ports:
       - "8501:8501"
     environment:
@@ -20,7 +498,7 @@ services:
     command: streamlit run dashboard/dashboard.py --server.port=8501 --server.address=0.0.0.0
     restart: unless-stopped
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:8501/_stcore/health" ]
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -29,14 +507,12 @@ services:
       redis:
         condition: service_healthy
     networks:
-      - cicd-network
+      - pravah-network
 
-  # Observability Dashboard
   observability:
     build: .
     container_name: cicd-observability
-    profiles:
-      - legacy
+    profiles: [legacy]
     ports:
       - "8502:8502"
     environment:
@@ -47,7 +523,7 @@ services:
     command: streamlit run dashboard/observability_dashboard.py --server.port=8502 --server.address=0.0.0.0
     restart: unless-stopped
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:8502/_stcore/health" ]
+      test: ["CMD", "curl", "-f", "http://localhost:8502/_stcore/health"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -55,148 +531,23 @@ services:
     depends_on:
       - redis
     networks:
-      - cicd-network
+      - pravah-network
 
-  # Main Agents
-  agents:
-    build: .
-    container_name: cicd-agents
-    environment:
-      - DATASET_PATH=dataset/student_scores.csv
-      - PLANNER_TYPE=rl
-      - PYTHONUNBUFFERED=1
-      - REDIS_HOST=redis
-    volumes:
-      - ./logs:/app/logs
-      - ./dataset:/app/dataset
-      - ./insightflow:/app/insightflow
-      - ./apps:/app/apps
-      - ./orchestrator:/app/orchestrator
-    command: python -m control_plane.backend.app.main
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 60s
-    depends_on:
-      redis:
-        condition: service_healthy
-    networks:
-      - cicd-network
-
-  # Deploy Workers
-  deploy-worker-1:
-    build: .
-    container_name: cicd-deploy-worker-1
-    environment:
-      - WORKER_ID=1
-      - REDIS_HOST=redis
-      - PYTHONUNBUFFERED=1
-      - PYTHONPATH=/app
-    volumes:
-      - ./logs:/app/logs
-      - ./dataset:/app/dataset
-    command: python -m control_plane.agents.multi_deploy_agent --env dev --workers 1
-    restart: unless-stopped
-    depends_on:
-      - redis
-    networks:
-      - cicd-network
-
-  deploy-worker-2:
-    build: .
-    container_name: cicd-deploy-worker-2
-    environment:
-      - WORKER_ID=2
-      - REDIS_HOST=redis
-      - PYTHONUNBUFFERED=1
-      - PYTHONPATH=/app
-    volumes:
-      - ./logs:/app/logs
-      - ./dataset:/app/dataset
-    command: python -m control_plane.agents.multi_deploy_agent --env dev --workers 1
-    restart: unless-stopped
-    depends_on:
-      - redis
-    networks:
-      - cicd-network
-
-  deploy-worker-3:
-    build: .
-    container_name: cicd-deploy-worker-3
-    environment:
-      - WORKER_ID=3
-      - REDIS_HOST=redis
-      - PYTHONUNBUFFERED=1
-      - PYTHONPATH=/app
-    volumes:
-      - ./logs:/app/logs
-      - ./dataset:/app/dataset
-    command: python -m control_plane.agents.multi_deploy_agent --env dev --workers 1
-    restart: unless-stopped
-    depends_on:
-      - redis
-    networks:
-      - cicd-network
-
-  # Redis Event Bus
-  redis:
-    image: redis:7-alpine
-    container_name: cicd-redis
-    ports:
-      - "6379:6379"
-    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
-    volumes:
-      - redis_data:/data
-    restart: unless-stopped
-    healthcheck:
-      test: [ "CMD", "redis-cli", "ping" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 10s
-    networks:
-      - cicd-network
-
-  # Queue Monitor
-  queue-monitor:
-    build: .
-    container_name: cicd-queue-monitor
-    environment:
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      - PYTHONUNBUFFERED=1
-    volumes:
-      - ./logs:/app/logs
-    command: python -m monitoring.queue_monitor --continuous --cycles 0
-    restart: unless-stopped
-    depends_on:
-      redis:
-        condition: service_healthy
-    networks:
-      - cicd-network
-
-  # System Health Monitor
-  health-monitor:
-    build: .
-    container_name: cicd-health-monitor
-    environment:
-      - PYTHONUNBUFFERED=1
-    volumes:
-      - ./logs:/app/logs
-    command: python -m monitoring.infra_health_monitor --env dev --continuous
-    restart: unless-stopped
-    depends_on:
-      - agents
-    networks:
-      - cicd-network
-
+# ----------------------------------------------------------
+# Networks
+# ----------------------------------------------------------
 networks:
-  cicd-network:
+  pravah-network:
     driver: bridge
+    name: pravah-production-network
 
+# ----------------------------------------------------------
+# Volumes
+# ----------------------------------------------------------
 volumes:
   redis_data:
     driver: local
+    name: pravah-redis-data
+  prometheus_data:
+    driver: local
+    name: pravah-prometheus-data
