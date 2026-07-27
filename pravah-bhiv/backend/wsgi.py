@@ -13,7 +13,7 @@ control_plane_dir = os.path.join(root_dir, 'control_plane')
 if root_dir not in sys.path:
     sys.path.insert(0, root_dir)
 if control_plane_dir not in sys.path:
-    sys.path.insert(1, control_plane_dir)
+    sys.path.append(control_plane_dir)
 
 # Import the Flask app (this will initialize the agent in background)
 from api.agent_api import app

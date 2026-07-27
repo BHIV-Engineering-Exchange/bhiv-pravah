@@ -24,7 +24,7 @@ import threading
 # agent_api.py is at control_plane/api; repo root is two levels up
 root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 if root_dir not in sys.path:
-    sys.path.insert(0, root_dir)
+    sys.path.append(root_dir)
 from core_hooks.middleware import verify_request_trace
 from jsonschema import ValidationError, validate
 from core_hooks.rules import validate_trace

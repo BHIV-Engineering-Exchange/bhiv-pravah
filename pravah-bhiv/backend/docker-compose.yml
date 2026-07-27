@@ -76,6 +76,7 @@ services:
       - REDIS_DB=${REDIS_DB:-2}
       - PORT=7000
       - SSPL_SECRET_KEY=${SSPL_SECRET_KEY}
+      - LINEAGE_SIGNING_KEY=a8c6eedee429e62ed5a4ccd67239cd4718628ff4b2b672ec7feaf1091970fa1d
       - AUTONOMY_DECISIONS_ENABLED=${AUTONOMY_DECISIONS_ENABLED:-true}
       - AUTONOMY_LEARNING_ENABLED=${AUTONOMY_LEARNING_ENABLED:-false}
       - EMERGENCY_FREEZE_ENABLED=${EMERGENCY_FREEZE_ENABLED:-false}
@@ -95,7 +96,7 @@ services:
       --worker-class sync
       --bind 0.0.0.0:7000
       --timeout 120
-      --keepalive 5
+      --keep-alive 5
       --access-logfile /app/logs/access.log
       --error-logfile /app/logs/error.log
       --log-level info
@@ -150,6 +151,7 @@ services:
       - REDIS_DB=${REDIS_DB:-2}
       - PORT=8000
       - SSPL_SECRET_KEY=${SSPL_SECRET_KEY}
+      - LINEAGE_SIGNING_KEY=${LINEAGE_SIGNING_KEY:-pravah-sovereign-lineage-key}
       - DEMO_MODE=${DEMO_MODE:-false}
       - DEMO_FREEZE_MODE=${DEMO_FREEZE_MODE:-false}
       - BACKEND_CORS_ORIGINS=${BACKEND_CORS_ORIGINS:-*}
