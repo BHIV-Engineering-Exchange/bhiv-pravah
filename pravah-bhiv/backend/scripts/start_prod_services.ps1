@@ -51,7 +51,7 @@ function Wait-Healthy {
             $health = (docker inspect --format='{{.State.Health.Status}}' "${Project}-${ContainerName}" 2>$null)
             switch ($health) {
                 "healthy"   { Log-OK "$ContainerName is healthy"; return }
-                "unhealthy" { Log-Error "$ContainerName unhealthy — check: docker logs ${Project}-${ContainerName}"; throw "unhealthy" }
+                "unhealthy" { Log-Error "$ContainerName unhealthy - check: docker logs ${Project}-${ContainerName}"; throw "unhealthy" }
                 default     { Start-Sleep 5; $elapsed += 5 }
             }
         } catch {
@@ -129,9 +129,9 @@ function Test-Health {
     $validatorPath = Join-Path $ScriptDir "validate_prod_health.py"
     $outputPath    = Join-Path $BackendDir "deployment_verification_packet\prod_runtime_health.json"
     python $validatorPath --env prod --output $outputPath
-    if ($LASTEXITCODE -eq 0)  { Log-OK "All health checks PASSED — proof: $outputPath" }
-    elseif ($LASTEXITCODE -eq 1) { Log-Error "PARTIAL failures — check: $outputPath" }
-    else                       { Log-Error "CRITICAL failures — check: $outputPath"; exit 2 }
+    if ($LASTEXITCODE -eq 0)  { Log-OK "All health checks PASSED - proof: $outputPath" }
+    elseif ($LASTEXITCODE -eq 1) { Log-Error "PARTIAL failures - check: $outputPath" }
+    else                       { Log-Error "CRITICAL failures - check: $outputPath"; exit 2 }
 }
 
 # ---- Entrypoint -------------------------------------------------------------

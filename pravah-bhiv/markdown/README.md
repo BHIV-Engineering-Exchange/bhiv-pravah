@@ -12,3 +12,6 @@ Planned coverage:
 - Deterministic recovery validation
 
 The initial files are skeletons only. Each scenario will be implemented and validated one attack at a time.
+
+## Phase 1 Learning & Documentation
+Comprehensive study materials on PRAVAH architecture, OpenTelemetry, ML fundamentals, and distributed event streaming can be found in the [phase1_learning](./phase1_learning/) directory.
