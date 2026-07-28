@@ -9,8 +9,8 @@ def _parse_bool(value, default=False):
 class EnvironmentConfig:
     """Loads environment-specific configuration."""
     
-    def __init__(self, env='dev'):
-        self.env = env
+    def __init__(self, env=None):
+        self.env = env or os.getenv('ENVIRONMENT', 'dev')
         self.config = {}
         self._load_config()
     

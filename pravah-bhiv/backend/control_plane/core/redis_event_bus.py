@@ -18,7 +18,7 @@ from security.nonce_store import check_nonce
 class RedisEventBus:
     """External event bus using Redis pub/sub."""
     
-    def __init__(self, env='dev'):
+    def __init__(self, env=None):
         self.env_config = EnvironmentConfig(env)
         self.redis_host = self.env_config.get('redis_host', '127.0.0.1')
         self.redis_port = self.env_config.get('redis_port', 6379)
@@ -206,7 +206,7 @@ class RedisEventBus:
 # Global Redis event bus instance
 redis_bus = None
 
-def get_redis_bus(env='dev') -> RedisEventBus:
+def get_redis_bus(env=None) -> RedisEventBus:
     """Get or create Redis event bus instance."""
     global redis_bus
     if redis_bus is None:
