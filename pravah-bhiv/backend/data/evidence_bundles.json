@@ -281,5 +281,34 @@
       "ingested_at": "2026-07-24T11:03:09.274393Z",
       "environment": "dev"
     }
+  },
+  "ev-92086614fe20414e": {
+    "bundle_id": "bundle-712e1f2cc6c9",
+    "trace_id": "reg-trace-01cf17f01211",
+    "execution_id": "reg-trace-01cf17f01211",
+    "decision_id": "dec-08c18c2bb313",
+    "decision_type": "compliance_attestation",
+    "authority_chain": [
+      "HUMAN_INTENT",
+      "CREATOR_CORE",
+      "PRAVAH_REGISTRIES"
+    ],
+    "evidence": {
+      "attestation": "Provenance metadata signature check passed",
+      "discipline": "PASS"
+    },
+    "produced_at": "2026-07-24T12:00:00Z",
+    "correlation_id": "reg-trace-01cf17f01211",
+    "source": "creator-core",
+    "action": "log_provenance",
+    "evidence_ref": "ev-92086614fe20414e",
+    "provenance": {
+      "authority_level": "passive_observer",
+      "governance_role": "observability_only",
+      "system_origin": "creator-core",
+      "operator_hash": "prov-e6beb9808eadae62",
+      "ingested_at": "2026-07-29T05:00:46.704148Z",
+      "environment": "dev"
+    }
   }
 }

@@ -34,7 +34,7 @@ Start-Sleep -Seconds 2
 
 # 3. Decision Brain
 Write-Host "[3/7] Launching Decision Brain (Port 8000)..." -ForegroundColor Yellow
-Start-ServiceWindow -Title "PRAVAH Decision Brain (8000)" -Command "uvicorn control_plane.backend.app.main:app --host 0.0.0.0 --port 8000 --workers 2 --log-level info"
+Start-ServiceWindow -Title "PRAVAH Decision Brain (8000)" -Command "uvicorn control_plane.backend.app.main:app --host 0.0.0.0 --port 8000 --log-level info"
 Start-Sleep -Seconds 2
 
 # 4. Observer Server

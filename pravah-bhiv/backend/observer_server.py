@@ -265,6 +265,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.on_event("startup")
+def start_background_poller():
+    poller = threading.Thread(target=_poll_loop, args=(10.0,), daemon=True)
+    poller.start()
+    print("[Pravah Observer] Background poller started on FastAPI startup (10s interval)")
+
 
 # ---- JSON API endpoints ---------------------------------------------------
 
@@ -389,8 +395,8 @@ body{font-family:'Inter',sans-serif;background-color:var(--bg);background-image:
 .tab-content.active{display:block}
 .badge{display:inline-block;padding:4px 12px;border-radius:30px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;transition:all 0.3s ease}
 .badge.healthy{background:rgba(0,230,118,.12);color:var(--green);border:1px solid rgba(0,230,118,0.2);box-shadow:0 0 10px var(--glow-green)}
-.badge.unreachable,.badge.error{background:rgba(255,23,.12);color:var(--red);border:1px solid rgba(255,23,68,0.2);box-shadow:0 0 10px var(--glow-red)}
-.badge.degraded,.badge.timeout{background:rgba(255,234,0,.1);color:var(--yellow);border:1px solid rgba(255,234,0,0.2);box-shadow:0 0 10px var(--glow-yellow)}
+.badge.unreachable,.badge.error{background:rgba(255,23,68,0.12);color:var(--red);border:1px solid rgba(255,23,68,0.2);box-shadow:0 0 10px var(--glow-red)}
+.badge.degraded,.badge.timeout{background:rgba(255,234,0,.12);color:var(--yellow);border:1px solid rgba(255,234,0,0.2);box-shadow:0 0 10px var(--glow-yellow)}
 .badge.info{background:rgba(124,77,255,.12);color:var(--accent-color);border:1px solid rgba(124,77,255,0.2)}
 .container{max-width:1440px;margin:0 auto;padding:32px 24px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px;margin-bottom:32px}
@@ -625,6 +631,7 @@ async function refresh(){
     }
     document.getElementById('service-cards').innerHTML=cards;
 
+
     // events table
     let rows='';
     for(const e of evData.events){
@@ -719,9 +726,6 @@ tick();refresh();
 # Entry point
 # ---------------------------------------------------------------------------
 def main():
-    # Start background poller thread
-    poller = threading.Thread(target=_poll_loop, args=(10.0,), daemon=True)
-    poller.start()
     print(f"[Pravah Observer] Polling services every 10s")
     print(f"[Pravah Observer] Gurukul Backend target: {GURUKUL_API_URL}")
     print(f"[Pravah Observer] INFIVERSE HR Platform target: {HR_API_URL}  <- NEW")

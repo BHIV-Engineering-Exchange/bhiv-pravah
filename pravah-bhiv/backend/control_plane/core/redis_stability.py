@@ -32,7 +32,7 @@ class RedisStabilityManager:
         """
         try:
             # Attempt real Redis connection
-            from core.redis_event_bus import get_redis_bus
+            from control_plane.core.redis_event_bus import get_redis_bus
             redis_bus = get_redis_bus(env)
             
             # Test connection with a ping
