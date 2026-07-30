@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { Sidebar } from "@/components/Sidebar";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
+const outfit = Outfit({ subsets: ["latin"], variable: '--font-outfit' });
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: '--font-mono' });
 
 export const metadata: Metadata = {
-  title: "RL Decision Brain",
-  description: "RL Decision Brain dashboard UI"
+  title: "Pravah Bhiv | Enterprise Command",
+  description: "Ecosystem Observability & Control Plane Dashboard"
 };
 
 export default function RootLayout({
@@ -16,7 +19,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.variable} ${outfit.variable} ${mono.variable} font-sans`}>
+        <Sidebar />
+        <div className="lg:pl-64 flex flex-col min-h-screen">
+          {children}
+        </div>
+      </body>
     </html>
   );
 }

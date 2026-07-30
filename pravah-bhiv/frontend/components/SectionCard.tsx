@@ -8,9 +8,12 @@ type SectionCardProps = {
 
 export function SectionCard({ title, children, className = "" }: SectionCardProps) {
   return (
-    <section className={`rounded-3xl bg-slate-900/40 backdrop-blur-xl border border-white/10 p-6 shadow-2xl md:p-8 transition-all duration-500 hover:border-white/20 ${className}`}>
-      <h2 className="text-xl font-bold text-slate-100 tracking-tight">{title}</h2>
-      <div className="mt-5">{children}</div>
+    <section className={`glass-panel p-6 md:p-8 ${className} animate-fade-in-up mb-8`}>
+      <div className="flex items-center gap-3 mb-6">
+        <div className="w-1.5 h-6 bg-sky-500 rounded-full shadow-glow-primary"></div>
+        <h2 className="text-xl font-display font-bold text-slate-100 tracking-tight">{title}</h2>
+      </div>
+      <div>{children}</div>
     </section>
   );
 }

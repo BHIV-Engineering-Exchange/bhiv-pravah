@@ -5,19 +5,36 @@ type MetricCardProps = {
   className?: string;
 };
 
-const toneClass: Record<NonNullable<MetricCardProps["tone"]>, string> = {
+const toneTextClass: Record<NonNullable<MetricCardProps["tone"]>, string> = {
   default: "text-slate-100",
-  green: "text-emerald-400 drop-shadow-[0_0_10px_rgba(52,211,153,0.3)]",
-  orange: "text-amber-400 drop-shadow-[0_0_10px_rgba(251,191,36,0.3)]",
-  blue: "text-sky-400 drop-shadow-[0_0_10px_rgba(56,189,248,0.3)]",
-  red: "text-rose-400 drop-shadow-[0_0_10px_rgba(251,113,133,0.3)]"
+  green: "text-teal-400 text-glow-sm",
+  orange: "text-amber-400 text-glow-sm",
+  blue: "text-sky-400 text-glow-sm",
+  red: "text-rose-400 text-glow-sm"
+};
+
+const toneLineBg: Record<NonNullable<MetricCardProps["tone"]>, string> = {
+  default: "bg-slate-700",
+  green: "bg-teal-500",
+  orange: "bg-amber-500",
+  blue: "bg-sky-500",
+  red: "bg-rose-500"
 };
 
 export function MetricCard({ label, value, tone = "default", className = "" }: MetricCardProps) {
   return (
-    <article className={`group rounded-2xl bg-white/5 backdrop-blur-md border border-white/5 p-5 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:shadow-violet-500/10 ${className}`}>
-      <p className={`text-3xl font-bold tracking-tight transition-colors ${toneClass[tone]}`}>{value}</p>
-      <p className="mt-2 text-sm font-medium text-slate-400 transition-colors group-hover:text-slate-300">{label}</p>
+    <article className={`glass-card p-5 group ${className} flex flex-col justify-between h-full`}>
+      <div className="flex items-center justify-between mb-3">
+        <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest transition-colors group-hover:text-slate-300">
+          {label}
+        </p>
+        <div className={`w-2 h-2 rounded-full ${toneLineBg[tone]} shadow-glow-${tone === 'green' ? 'success' : tone === 'red' ? 'danger' : 'primary'} opacity-80 group-hover:opacity-100 transition-opacity`} />
+      </div>
+      <div>
+        <p className={`text-3xl font-display font-bold tracking-tight transition-all duration-300 ${toneTextClass[tone]}`}>
+          {value}
+        </p>
+      </div>
     </article>
   );
 }

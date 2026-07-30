@@ -27,7 +27,9 @@ class EnvironmentConfig:
                 line = line.strip()
                 if line and not line.startswith('#') and '=' in line:
                     key, value = line.split('=', 1)
-                    os.environ[key.strip()] = value.strip()
+                    key = key.strip()
+                    if key not in os.environ:
+                        os.environ[key] = value.strip()
             
         # Load all environment variables
         self.config = {

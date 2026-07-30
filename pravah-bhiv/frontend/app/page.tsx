@@ -23,15 +23,6 @@ import {
   removeLink,
 } from "../services/api";
 
-
-
-
-
-
-
-
-
-
 export default function HomePage() {
   const [data, setData] = useState<LivePayload | null>(null);
   const [orchestration, setOrchestration] = useState<OrchestrationMetrics | null>(null);
@@ -108,7 +99,6 @@ export default function HomePage() {
     }
   }
 
-  // Load full dashboard model from backend.
   useEffect(() => {
     let active = true;
 
@@ -131,7 +121,6 @@ export default function HomePage() {
           setControlPlaneApps(appsPayload);
           setError(null);
           setAutonomousStatus(autonomousPayload);
-
         }
       } catch {
         if (active) {
@@ -153,223 +142,141 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main className="min-h-screen px-4 py-8 md:px-8 md:py-12">
-      <div className="mx-auto w-full max-w-7xl space-y-8 relative z-10">
-        <header className="group relative overflow-hidden rounded-[2.5rem] bg-white/5 border border-white/10 px-6 py-12 text-center shadow-2xl backdrop-blur-xl md:px-12">
-          <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 via-purple-500/5 to-indigo-500/5 opacity-0 transition-opacity duration-700 group-hover:opacity-100"></div>
-          <h1 className="relative text-3xl font-extrabold tracking-tight text-white drop-shadow-md md:text-5xl">{data?.header.title ?? "🚀 Pravah Dashboard"}</h1>
-          <p className="relative mt-4 text-base font-medium text-slate-300 md:text-lg max-w-2xl mx-auto">{data?.header.subtitle ?? "Real-time Production Monitoring"}</p>
-          <div className="relative mt-8 flex justify-center">
-            <Link
-              href="/decision-brain"
-              className="rounded-full bg-gradient-to-r from-violet-600 to-indigo-600 px-6 py-2.5 text-sm font-semibold tracking-wide text-white shadow-lg transition-all hover:scale-105 hover:shadow-violet-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
-            >
-              Open Pravah Control Plane
-            </Link>
+    <main className="flex-1 p-6 lg:p-10 relative overflow-hidden animate-fade-in-up">
+      {/* Decorative Top Blur */}
+      <div className="absolute top-[-10%] right-[-5%] w-[40%] h-[30%] rounded-full bg-sky-600/10 blur-[100px] animate-blob mix-blend-screen pointer-events-none"></div>
+
+      <div className="mx-auto w-full max-w-[1600px] relative z-10 space-y-8">
+        <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 pb-6 border-b border-slate-800/60">
+          <div>
+            <h1 className="text-3xl font-display font-extrabold text-slate-100 tracking-tight">Ecosystem Overview</h1>
+            <p className="text-slate-400 mt-2 font-medium tracking-wide">Real-time production monitoring and telemetry for all active services.</p>
           </div>
-          {error ? <p className="relative mt-4 text-sm font-semibold text-rose-400">{error}</p> : null}
-        </header>
-
-        <section className="rounded-3xl bg-white/5 border border-white/10 px-6 py-8 shadow-xl backdrop-blur-lg transition-all hover:bg-white/[0.07] md:px-8">
-          <h2 className="text-lg font-bold tracking-tight text-slate-100">📥 Add Repository/Website for Monitoring</h2>
-          <div className="mt-5 flex flex-col gap-3 md:flex-row md:gap-3">
-            <input
-              type="url"
-              value={ingestionLink}
-              onChange={(e) => setIngestionLink(e.target.value)}
-              placeholder="Paste GitHub repo URL, website URL, or API endpoint... (e.g., https://github.com/user/repo)"
-              className="flex-1 rounded-xl border border-white/10 bg-black/20 px-4 py-2.5 text-sm text-slate-200 placeholder-slate-500 shadow-inner focus:border-violet-500/50 focus:outline-none focus:ring-2 focus:ring-violet-500/30 transition-all"
-            />
-            <button
-              type="button"
-              onClick={handleAddLink}
-              disabled={isSubmittingLink}
-              suppressHydrationWarning
-              className="rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:scale-105 hover:shadow-violet-500/30 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 disabled:opacity-50 disabled:hover:scale-100"
-            >
-              {isSubmittingLink ? "Adding..." : "Add Link"}
-            </button>
-          </div>
-          {ingestionError && <p className="mt-3 text-sm font-medium text-rose-400">{ingestionError}</p>}
-          <p className="mt-3 text-xs text-slate-400">Monitoring will automatically update the Live Production Monitoring section below.</p>
-        </section>
-
-        <SectionCard title="Live Production Monitoring">
-          <div className="grid gap-4 lg:grid-cols-2">
-            {(data?.live_production_monitoring ?? []).map((item) => (
-              <div key={item.name} className="relative">
-                <StatusCard item={item} />
-                {item.domain !== "blackhole.rlreality.ai" && item.domain !== "uni-guru.rlreality.ai" && (
-                  <button
-                    onClick={() => handleRemoveLink(item.url)}
-                    className="absolute right-2 top-2 rounded-lg bg-rose-500 px-2 py-1 text-xs font-semibold text-white transition hover:bg-rose-600 active:scale-95"
-                    aria-label="Remove monitored link"
-                  >
-                    ✕ Remove
-                  </button>
-                )}
-              </div>
-            ))}
-          </div>
-        </SectionCard>
-
-        {/* Unified Control Plane Integration Section */}
-        {orchestration && (
-          <SectionCard title="🌐 Pravah Integration">
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              <MetricCard label="RL Brain Status" value={orchestration.rl_brain.status} tone="green" />
-              <MetricCard label="Control Plane" value={orchestration.control_plane.control_plane_status} tone="green" />
-              <MetricCard label="Integration" value={orchestration.unified.integration_enabled ? "Connected" : "Offline"} tone={orchestration.unified.integration_enabled ? "green" : "red"} />
-              <MetricCard label="Total Monitored" value={String(orchestration.unified.total_entities_monitored)} tone="blue" />
-              <MetricCard label="Decisions Made" value={String(orchestration.unified.total_decisions_made)} tone="blue" />
-              <MetricCard label="System Status" value={orchestration.unified.system_status} tone="green" />
-              <MetricCard label="CP Availability" value={controlPlaneStatus?.control_plane_available ? "Available" : "Unavailable"} tone={controlPlaneStatus?.control_plane_available ? "green" : "red"} />
-              <MetricCard label="Apps Registered" value={String(controlPlaneApps?.total_apps ?? orchestration.control_plane.total_apps_monitored)} tone="blue" />
-            </div>
-          </SectionCard>
-        )}
-
-        <SectionCard title="Summary Metrics">
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {(data?.summary_metrics ?? []).map((metric) => (
-              <MetricCard key={metric.label} label={metric.label} value={metric.value} tone={metric.tone} />
-            ))}
-          </div>
-        </SectionCard>
-
-        <SectionCard title="AI Learning Status">
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
-            {(data?.ai_learning_status ?? []).map((metric) => (
-              <MetricCard key={metric.label} label={metric.label} value={metric.value} tone={metric.tone} />
-            ))}
-          </div>
-        </SectionCard>
-
-        <SectionCard title="System Health">
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
-            {(data?.system_health ?? []).map((metric) => (
-              <MetricCard key={metric.label} label={metric.label} value={metric.value} tone={metric.tone} />
-            ))}
-          </div>
-        </SectionCard>
-
-        <SectionCard title="Performance Metrics">
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
-            {(data?.performance_metrics ?? []).map((metric) => (
-              <MetricCard key={metric.label} label={metric.label} value={metric.value} tone={metric.tone} />
-            ))}
-          </div>
-        </SectionCard>
-
-        <SectionCard title="Project Files Status">
-          <div className="grid gap-4 md:grid-cols-2">
-            {(data?.project_files_status ?? []).map((item) => (
-              <FileStatusCard
-                key={item.title}
-                icon={item.icon}
-                title={item.title}
-                active={item.active}
-                total={item.total}
-                files={item.files}
-              />
-            ))}
-          </div>
-        </SectionCard>
-
-        <SectionCard title="Enhanced Telemetry">
-          <div className="rounded-2xl border border-rose-500/20 bg-rose-500/5 p-8 text-center transition-all hover:bg-rose-500/10">
-            <p className="text-3xl font-extrabold tracking-widest text-rose-400 drop-shadow-[0_0_10px_rgba(251,113,133,0.3)]">{telemetry.status}</p>
-            <div className="mt-4 space-y-1.5 text-sm font-medium text-rose-300/80">
-              <p>Avg Latency: <span className="text-rose-200">{telemetry.avg_latency}</span></p>
-              <p>Cost: <span className="text-rose-200">{telemetry.cost}</span></p>
-              <p>Success: <span className="text-rose-200">{telemetry.success}</span></p>
-              <p>Requests: <span className="text-rose-200">{telemetry.requests}</span></p>
-            </div>
-          </div>
-        </SectionCard>
-
-        <SectionCard title="Policy Evolution">
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-5 transition-all hover:bg-white/10">
-            <h3 className="text-base font-semibold text-slate-100">{data?.policy_evolution.title ?? "Q-Table Evolution"}</h3>
-            <div className="mt-5 grid gap-4 md:grid-cols-3">
-              {(data?.policy_evolution.metrics ?? []).map((metric) => (
-                <MetricCard key={metric.label} label={metric.label} value={metric.value} />
-              ))}
-            </div>
-          </div>
-        </SectionCard>
-
-        <SectionCard title="Error Analytics">
-          <div className="grid gap-4 lg:grid-cols-2">
-            <article className="rounded-2xl border border-white/10 bg-white/5 p-5 transition-all hover:bg-white/10">
-              <h3 className="text-base font-semibold text-slate-100">Recent Errors</h3>
-              <ul className="mt-4 space-y-2">
-                {(data?.error_analytics.recent_errors ?? []).map((item) => (
-                  <li key={item.code} className="flex items-center justify-between rounded-xl border border-white/5 bg-black/20 px-4 py-3 transition-colors hover:bg-white/5">
-                    <p className="text-sm font-medium text-slate-200">{item.code}</p>
-                    <HealthBadge status={item.severity} />
-                  </li>
-                ))}
-              </ul>
-            </article>
-            <article className="rounded-2xl border border-white/10 bg-white/5 p-5 transition-all hover:bg-white/10">
-              <h3 className="text-base font-semibold text-slate-100">Statistics</h3>
-              <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                <MetricCard
-                  label="Total Errors"
-                  value={String(data?.error_analytics.statistics.total_errors ?? 0)}
-                  tone="red"
-                />
-                <MetricCard
-                  label="Avg Impact score"
-                  value={String(data?.error_analytics.statistics.avg_impact_score ?? 0)}
-                  tone="orange"
-                />
-              </div>
-            </article>
-          </div>
-        </SectionCard>
-
-        <SectionCard title="Auto-Failover Status">
-          <div className="space-y-4">
-            <div className="grid gap-3 md:grid-cols-2">
-              <MetricCard label="Active Domain" value={data?.auto_failover_status.active_domain ?? "BLACKHOLE"} />
-              <MetricCard label="Failure Threshold" value={String(data?.auto_failover_status.failure_threshold ?? 3)} />
-            </div>
-            <div className="space-y-2">
-              {(data?.auto_failover_status.domains ?? []).map((domain) => (
-                <DomainStatusRow key={domain.name} name={domain.name} status={domain.status} />
-              ))}
-            </div>
-          </div>
-        </SectionCard>
-
-        <SectionCard title="Live Events">
-          <EventTimeline events={data?.live_events ?? []} />
-        </SectionCard>
-
-        <SectionCard title="🧠 Autonomous Control Loop">
-          {autonomousStatus ? (
-            <div className="space-y-4">
-              <MetricCard label="Loop Running" value={autonomousStatus.loop_running ? "YES" : "NO"} tone="green" />
-              <MetricCard label="Last Action" value={autonomousStatus.last_action ?? "-"} />
-              <MetricCard label="Last State" value={autonomousStatus.last_runtime?.state ?? "-"} />
-              <MetricCard label="Latency (ms)" value={String(autonomousStatus.last_runtime?.latency_ms ?? "-")} />
+          {error ? (
+            <div className="bg-rose-500/10 border border-rose-500/20 px-4 py-2 rounded-lg">
+              <p className="text-sm font-semibold text-rose-400">{error}</p>
             </div>
           ) : (
-            <p className="text-sm text-slate-500">Loading autonomous status...</p>
+             <div className="flex items-center gap-3 px-4 py-2 rounded-lg bg-teal-500/10 border border-teal-500/20">
+               <div className="relative flex h-2.5 w-2.5">
+                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-teal-500"></span>
+               </div>
+               <span className="text-sm font-bold text-teal-400">Live Feed Active</span>
+             </div>
           )}
-        </SectionCard>
+        </header>
 
+        {/* Top Summary Row */}
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {(data?.summary_metrics ?? []).map((metric) => (
+            <MetricCard key={metric.label} label={metric.label} value={metric.value} tone={metric.tone} />
+          ))}
+        </div>
 
-        <footer className="flex justify-center pb-6">
-          <Link
-            href="/decision-brain"
-            className="rounded-full bg-gradient-to-r from-violet-600 to-indigo-600 px-8 py-3 text-sm font-bold tracking-wide text-white shadow-lg transition-all hover:scale-105 hover:shadow-violet-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
-          >
-            Open Pravah Control Plane
-          </Link>
-        </footer>
+        <div className="grid gap-8 xl:grid-cols-3">
+          {/* Main Content Area */}
+          <div className="xl:col-span-2 space-y-8">
+            <SectionCard title="Active Microservices">
+              <div className="grid gap-6 lg:grid-cols-2">
+                {(data?.live_production_monitoring ?? []).map((item) => (
+                  <div key={item.name} className="relative">
+                    <StatusCard item={item} />
+                    {item.domain !== "blackhole.rlreality.ai" && item.domain !== "uni-guru.rlreality.ai" && (
+                      <button
+                        onClick={() => handleRemoveLink(item.url)}
+                        className="absolute right-3 top-3 rounded bg-rose-500/80 px-2 py-1 text-[10px] font-bold text-white uppercase tracking-wider transition hover:bg-rose-600 active:scale-95 shadow-md z-20"
+                        aria-label="Remove monitored link"
+                      >
+                        Remove
+                      </button>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </SectionCard>
+
+            <SectionCard title="System Performance">
+              <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-4">
+                {(data?.performance_metrics ?? []).map((metric) => (
+                  <MetricCard key={metric.label} label={metric.label} value={metric.value} tone={metric.tone} />
+                ))}
+              </div>
+            </SectionCard>
+
+            <SectionCard title="Infrastructure Health">
+              <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-4">
+                {(data?.system_health ?? []).map((metric) => (
+                  <MetricCard key={metric.label} label={metric.label} value={metric.value} tone={metric.tone} />
+                ))}
+              </div>
+            </SectionCard>
+          </div>
+
+          {/* Sidebar Area */}
+          <div className="space-y-8">
+            <SectionCard title="Ingest New Service">
+              <div className="flex flex-col gap-3">
+                <input
+                  type="url"
+                  value={ingestionLink}
+                  onChange={(e) => setIngestionLink(e.target.value)}
+                  placeholder="Paste URL to monitor..."
+                  className="w-full rounded-lg bg-slate-900 border border-slate-700 px-4 py-3 text-sm text-slate-100 placeholder-slate-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 transition-all"
+                />
+                <button
+                  type="button"
+                  onClick={handleAddLink}
+                  disabled={isSubmittingLink}
+                  className="w-full rounded-lg bg-sky-500 hover:bg-sky-400 px-4 py-3 text-sm font-bold text-slate-950 transition-all disabled:opacity-50 shadow-glow-primary"
+                >
+                  {isSubmittingLink ? "Ingesting..." : "Add to Watchlist"}
+                </button>
+                {ingestionError && <p className="text-xs font-medium text-rose-400 mt-1">{ingestionError}</p>}
+              </div>
+            </SectionCard>
+
+            {orchestration && (
+              <SectionCard title="Pravah Orchestration">
+                <div className="grid gap-4 grid-cols-2">
+                  <MetricCard label="RL Brain" value={orchestration.rl_brain.status} tone="green" />
+                  <MetricCard label="Control Plane" value={orchestration.control_plane.control_plane_status} tone="green" />
+                  <MetricCard label="Decisions" value={String(orchestration.unified.total_decisions_made)} tone="blue" />
+                  <MetricCard label="Entities" value={String(orchestration.unified.total_entities_monitored)} tone="blue" />
+                </div>
+              </SectionCard>
+            )}
+
+            <SectionCard title="Autonomous Control">
+              {autonomousStatus ? (
+                <div className="space-y-4">
+                  <MetricCard label="Loop State" value={autonomousStatus.loop_running ? "ACTIVE" : "IDLE"} tone={autonomousStatus.loop_running ? "green" : "orange"} />
+                  <MetricCard label="Last Action" value={autonomousStatus.last_action ?? "-"} tone="default" />
+                  <MetricCard label="Last Latency" value={String(autonomousStatus.last_runtime?.latency_ms ?? "-") + "ms"} tone="blue" />
+                </div>
+              ) : (
+                <p className="text-sm text-slate-500">Loading autonomous status...</p>
+              )}
+            </SectionCard>
+
+            <SectionCard title="Telemetry Summary">
+              <div className="rounded-xl border border-sky-500/20 bg-sky-500/10 p-6 text-center">
+                <p className="text-2xl font-display font-extrabold text-sky-400 shadow-sm">{telemetry.status}</p>
+                <div className="mt-4 grid grid-cols-2 gap-2 text-sm font-medium text-sky-200/80">
+                  <p className="text-left">Latency:</p> <p className="text-right text-sky-300 font-bold">{telemetry.avg_latency}</p>
+                  <p className="text-left">Success:</p> <p className="text-right text-sky-300 font-bold">{telemetry.success}</p>
+                  <p className="text-left">Requests:</p> <p className="text-right text-sky-300 font-bold">{telemetry.requests}</p>
+                </div>
+              </div>
+            </SectionCard>
+            
+            <SectionCard title="Live Events">
+              <div className="max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+                <EventTimeline events={data?.live_events ?? []} />
+              </div>
+            </SectionCard>
+          </div>
+        </div>
       </div>
     </main>
   );

@@ -138,6 +138,8 @@ def _poll_loop(interval: float = 10.0):
     Pravah observes — it does not own — the execution of these systems.
     All probes are read-only GET requests to health endpoints.
     """
+    from concurrent.futures import ThreadPoolExecutor
+    
     while True:
         services = {
             "gurukul-backend": {
@@ -182,7 +184,7 @@ def _poll_loop(interval: float = 10.0):
             },
             "workflow-blackhole": {
                 "url": WORKFLOW_BLACKHOLE_API_URL,
-                "health_url": f"{WORKFLOW_BLACKHOLE_API_URL}/health"
+                "health_url": f"{WORKFLOW_BLACKHOLE_API_URL}"
             },
             "block-chain-updated": {
                 "url": BLOCKCHAIN_API_URL,
@@ -240,9 +242,23 @@ def _poll_loop(interval: float = 10.0):
                 "url": BHIV_SARATHI_URL,
                 "health_url": f"{BHIV_SARATHI_URL}/health"
             },
+            "bhiv-hr-agent": {
+                "url": os.getenv("PRAVAH_BHIV_HR_AGENT", "http://localhost:8000"),
+                "health_url": f"{os.getenv('PRAVAH_BHIV_HR_AGENT', 'http://localhost:8000')}/health"
+            },
+            "bhiv-hr-langgraph": {
+                "url": os.getenv("PRAVAH_BHIV_HR_LANGGRAPH", "http://localhost:8000"),
+                "health_url": f"{os.getenv('PRAVAH_BHIV_HR_LANGGRAPH', 'http://localhost:8000')}/health"
+            },
         }
-        for svc_name, svc_cfg in services.items():
-            _probe_service(svc_name, svc_cfg["health_url"], svc_cfg["url"])
+        
+        with ThreadPoolExecutor(max_workers=10) as executor:
+            futures = []
+            for svc_name, svc_cfg in services.items():
+                futures.append(executor.submit(_probe_service, svc_name, svc_cfg["health_url"], svc_cfg["url"]))
+            for f in futures:
+                f.result() # Wait for all to complete
+                
         with store_lock:
             observation_store["poll_count"] += 1
         time.sleep(interval)

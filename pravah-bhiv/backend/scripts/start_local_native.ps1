@@ -4,6 +4,19 @@ Write-Host "=======================================================" -Foreground
 Write-Host "    PRAVAH NATIVE STARTUP SCRIPT (WINDOWS LOCAL)       " -ForegroundColor Cyan
 Write-Host "=======================================================" -ForegroundColor Cyan
 
+# 0. Kill anything on ports 8600, 7000, 8000 to prevent conflicts
+Write-Host "`n[0/7] Clearing ports 7000, 8000, 8600 of existing processes..." -ForegroundColor Yellow
+foreach ($port in @(7000, 8000, 8600)) {
+    netstat -ano | findstr ":$port " | ForEach-Object {
+        $p = ($_ -split '\s+')[-1]
+        if ($p -match '^\d+$' -and $p -ne '0') {
+            taskkill /F /PID $p 2>&1 | Out-Null
+        }
+    }
+}
+Start-Sleep -Seconds 2
+Write-Host "Ports cleared." -ForegroundColor DarkGray
+
 # 1. Start Redis in Docker
 Write-Host "`n[1/7] Starting Redis Event Bus via Docker Compose..." -ForegroundColor Yellow
 Set-Location $BackendDir
@@ -20,7 +33,7 @@ function Start-ServiceWindow {
     )
     
     # We must escape the $ variables with a backtick (`) so they evaluate in the NEW window, not the current one.
-    $EnvSetup = "cd $BackendDir; .\venv\Scripts\activate; `$env:PYTHONPATH='$BackendDir'; `$env:ENVIRONMENT='prod'; `$env:REDIS_HOST='127.0.0.1'; `$env:LINEAGE_SIGNING_KEY='local-dummy-key'; `$env:SSPL_SECRET_KEY='local-dummy-key';"
+    $EnvSetup = "cd $BackendDir; .\\venv\\Scripts\\activate; `$env:PYTHONPATH='$BackendDir'; `$env:ENVIRONMENT='prod'; `$env:REDIS_HOST='127.0.0.1'; `$env:LINEAGE_SIGNING_KEY='local-dummy-key'; `$env:SSPL_SECRET_KEY='local-dummy-key'; `$env:PRAVAH_TTG_API='https://ttg-backend-55ce.onrender.com'; `$env:PRAVAH_BHIV_KESHAV='https://keshav-cia7.onrender.com'; `$env:PRAVAH_WORKFLOW_BLACKHOLE_API='https://blackholeworkflow.onrender.com'; `$env:PRAVAH_CRM_API='https://ai-crm-4nje.onrender.com'; `$env:PRAVAH_HR_API='https://bhiv-hr-gateway-l0xp.onrender.com'; `$env:PRAVAH_BHIV_HR_AGENT='https://bhiv-hr-agent-cato.onrender.com'; `$env:PRAVAH_BHIV_HR_LANGGRAPH='https://bhiv-hr-langgraph-luy9.onrender.com'; `$env:PRAVAH_BHIV_BUCKET='https://bhiv-bucket-i1l6.onrender.com'; `$env:PRAVAH_PROMPT_RUNNER_API='https://prompt-runner.onrender.com';"
     
     $FullCommand = "$EnvSetup `$host.UI.RawUI.WindowTitle = '$Title'; clear; Write-Host '--- $Title ---' -ForegroundColor Green; Write-Host 'Press CTRL+C to stop this service.`n' -ForegroundColor DarkGray; $Command"
     
@@ -37,14 +50,14 @@ Write-Host "[3/7] Launching Decision Brain (Port 8000)..." -ForegroundColor Yell
 Start-ServiceWindow -Title "PRAVAH Decision Brain (8000)" -Command "uvicorn control_plane.backend.app.main:app --host 0.0.0.0 --port 8000 --log-level info"
 Start-Sleep -Seconds 2
 
-# 4. Observer Server
+# 4. Observer Server — use 127.0.0.1 to avoid IPv6/Docker conflict on 0.0.0.0:8600
 Write-Host "[4/7] Launching Observer Server (Port 8600)..." -ForegroundColor Yellow
-Start-ServiceWindow -Title "PRAVAH Observer (8600)" -Command "uvicorn observer_server:app --host 0.0.0.0 --port 8600 --log-level info"
+Start-ServiceWindow -Title "PRAVAH Observer (8600)" -Command "uvicorn observer_server:app --host 127.0.0.1 --port 8600 --log-level info"
 Start-Sleep -Seconds 2
 
 # 5. Deploy Agent
 Write-Host "[5/7] Launching Multi-Deploy Agent..." -ForegroundColor Yellow
-Start-ServiceWindow -Title "PRAVAH Deploy Agent 1" -Command "`$env:WORKER_ID='1'; python -m control_plane.agents.multi_deploy_agent --env prod --workers 1"
+Start-ServiceWindow -Title "PRAVAH Deploy Agent 1" -Command "`$env:WORKER_ID='1'; python -m control_plane.agents.multi_deploy_agent --env prod --workers 3"
 
 # 6. Queue Monitor
 Write-Host "[6/7] Launching Queue Monitor..." -ForegroundColor Yellow
@@ -57,3 +70,6 @@ Start-ServiceWindow -Title "PRAVAH Health Monitor" -Command "python -m monitorin
 Write-Host "`n=======================================================" -ForegroundColor Cyan
 Write-Host "  All services launched successfully in new windows!   " -ForegroundColor Green
 Write-Host "=======================================================" -ForegroundColor Cyan
+Write-Host "`nDashboard: http://localhost:8600" -ForegroundColor Green
+Write-Host "Control Plane: http://localhost:7000" -ForegroundColor Green
+Write-Host "Decision Brain: http://localhost:8000" -ForegroundColor Green
