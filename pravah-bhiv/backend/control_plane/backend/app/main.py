@@ -272,24 +272,39 @@ def _generate_link_metadata(link: str) -> dict[str, Any]:
     is_github = "github.com" in link.lower()
     is_repo = is_github or "bitbucket" in link.lower() or "gitlab" in link.lower()
     
-    if is_repo:
-        # Repository metadata
+    base_commits = 0
+    base_branches = 0
+    base_prs = 0
+    base_stars = 0
+    base_files = 10 + (link_hash % 100)
+    test_coverage = 55 + (link_hash % 40)
+    ci_status = "passing" if link_hash % 3 != 0 else "degraded"
+    
+    if is_github:
+        try:
+            import requests
+            parts = link.split("github.com/")
+            if len(parts) > 1:
+                repo_path = parts[1].strip("/")
+                resp = requests.get(f"https://api.github.com/repos/{repo_path}", timeout=2.0)
+                if resp.status_code == 200:
+                    data = resp.json()
+                    base_stars = data.get("stargazers_count", 0)
+                    base_prs = data.get("open_issues_count", 0)
+                    base_branches = data.get("network_count", data.get("forks_count", 0))
+                    base_files = data.get("size", 100) % 1000
+                    base_commits = data.get("size", 200)
+        except Exception:
+            pass # Fallback cleanly if rate limited or network failure
+            
+    if is_repo and not is_github:
         base_commits = 150 + (link_hash % 500)
         base_branches = 3 + (link_hash % 12)
         base_prs = 5 + (link_hash % 20)
-        base_stars = 50 + (link_hash % 500) if is_github else 0
+        base_stars = 0
         base_files = 45 + (link_hash % 200)
         test_coverage = 65 + (link_hash % 30)
         ci_status = "passing" if link_hash % 4 != 0 else "failing"
-    else:
-        # Website metadata
-        base_commits = 0
-        base_branches = 0
-        base_prs = 0
-        base_stars = 0
-        base_files = 10 + (link_hash % 100)
-        test_coverage = 55 + (link_hash % 40)  # Web services often have lower test coverage
-        ci_status = "passing" if link_hash % 3 != 0 else "degraded"
     
     return {
         "type": "repository" if is_repo else "website",
@@ -305,7 +320,7 @@ def _generate_link_metadata(link: str) -> dict[str, Any]:
         "deployment_frequency": 2 + (link_hash % 8),
         "avg_response_time": 120 + (link_hash % 300),
         "error_rate": (link_hash % 5),
-        "active_issues": link_hash % 15,
+        "active_issues": base_prs if is_github else (link_hash % 15),
         "code_quality_score": 70 + (link_hash % 25),
     }
 
@@ -505,50 +520,9 @@ def _build_live_dashboard_payload() -> dict[str, Any]:
 
     control_plane_root = _resolve_control_plane_root()
 
-    # Check real-time state of target app (web1)
-    web1_status = "HEALTHY"
-    web1_latency = 120
-    try:
-        start_t = time.time()
-        resp = requests.get("http://localhost:5001/health", timeout=0.5)
-        web1_latency = int((time.time() - start_t) * 1000)
-        if resp.status_code == 200:
-            if resp.json().get("status") == "degraded":
-                web1_status = "DEGRADED"
-        else:
-            web1_status = "CRITICAL"
-    except Exception:
-        web1_status = "CRITICAL"
-        web1_latency = 0
-
-    # Populate INGESTED_RUNTIME_STATE based on web1 live health
-    if "web1" not in INGESTED_RUNTIME_STATE:
-        INGESTED_RUNTIME_STATE["web1"] = {
-            "service_id": "web1",
-            "timestamp": now_iso,
-            "status": "degraded" if web1_status == "DEGRADED" else ("crashed" if web1_status == "CRITICAL" else "running"),
-            "metrics": {
-                "cpu": 0.95 if web1_status == "DEGRADED" else (0.0 if web1_status == "CRITICAL" else 0.15),
-                "memory": 0.83 if web1_status == "DEGRADED" else (0.0 if web1_status == "CRITICAL" else 0.35),
-                "error_rate": 1.0 if web1_status == "CRITICAL" else 0.0,
-                "uptime": 12345
-            },
-            "issue_detected": web1_status != "HEALTHY",
-            "issue_type": "cpu_spike" if web1_status == "DEGRADED" else ("crash" if web1_status == "CRITICAL" else "none"),
-            "recommended_action": "scale_up" if web1_status == "DEGRADED" else ("restart" if web1_status == "CRITICAL" else "noop")
-        }
-    else:
-        INGESTED_RUNTIME_STATE["web1"]["status"] = "degraded" if web1_status == "DEGRADED" else ("crashed" if web1_status == "CRITICAL" else "running")
-        INGESTED_RUNTIME_STATE["web1"]["issue_detected"] = web1_status != "HEALTHY"
-        if web1_status == "DEGRADED":
-            INGESTED_RUNTIME_STATE["web1"]["metrics"]["cpu"] = 0.95
-            INGESTED_RUNTIME_STATE["web1"]["metrics"]["error_rate"] = 0.0
-        elif web1_status == "CRITICAL":
-            INGESTED_RUNTIME_STATE["web1"]["metrics"]["cpu"] = 0.0
-            INGESTED_RUNTIME_STATE["web1"]["metrics"]["error_rate"] = 1.0
-        else:
-            INGESTED_RUNTIME_STATE["web1"]["metrics"]["cpu"] = 0.15
-            INGESTED_RUNTIME_STATE["web1"]["metrics"]["error_rate"] = 0.0
+    web1_state = INGESTED_RUNTIME_STATE.get("web1", {})
+    web1_status = web1_state.get("status", "HEALTHY").upper()
+    web1_latency = web1_state.get("metrics", {}).get("latency", 0)
 
     # Build monitored services list (Live Production Monitoring)
     monitored_list = []
@@ -573,10 +547,10 @@ def _build_live_dashboard_payload() -> dict[str, Any]:
         monitored_list.append({
             "name": service_id.upper(),
             "domain": f"{service_id}.local",
-            "url": f"http://localhost:5001" if service_id == "web1" else f"http://localhost/{service_id}",
+            "url": f"http://localhost/{service_id}",
             "status": "DEGRADED" if status == "DEGRADED" else ("CONNECTED" if status in ["RUNNING", "OK", "HEALTHY"] else "CRITICAL"),
             "health_score": h_score,
-            "response_time_ms": web1_latency if service_id == "web1" else 300,
+            "response_time_ms": 300,
             "cpu_percent": cpu,
             "memory_percent": memory,
             "uptime_percent": 99.9 if status in ["RUNNING", "OK", "HEALTHY"] else (94.2 if status == "DEGRADED" else 0.0),

@@ -157,7 +157,7 @@ export default function Runtime() {
               {autoStatus?.recent_autonomous_decisions && autoStatus.recent_autonomous_decisions.length > 0 ? (
                 autoStatus.recent_autonomous_decisions.map((dec: any, idx: number) => (
                   <tr key={idx} className="hover:bg-secondary/20">
-                    <td className="py-2.5 text-muted-foreground">{dec.timestamp ? new Date(dec.timestamp * 1000).toLocaleTimeString() : '--'}</td>
+                    <td className="py-2.5 text-muted-foreground">{dec.timestamp ? new Date(dec.timestamp).toLocaleTimeString() : '--'}</td>
                     <td className="py-2.5 text-primary font-bold uppercase">{dec.selected_action || dec.action || 'noop'}</td>
                     <td className="py-2.5 text-foreground leading-relaxed">{dec.reason}</td>
                     <td className="py-2.5 font-bold text-foreground">{(dec.confidence * 100).toFixed(1)}%</td>

@@ -134,7 +134,7 @@ export default function Replay() {
                     <div className="flex-1 flex flex-col gap-1">
                       <div className="flex justify-between">
                         <span className="font-bold text-foreground capitalize">{ev.state || ev.event_type}</span>
-                        <span className="text-[9px] text-muted-foreground">{ev.timestamp ? new Date(ev.timestamp * 1000).toLocaleTimeString() : '--'}</span>
+                        <span className="text-[9px] text-muted-foreground">{ev.timestamp ? new Date(ev.timestamp).toLocaleTimeString() : '--'}</span>
                       </div>
                       <pre className="text-[9px] text-muted-foreground bg-black/30 border border-border/40 p-2 rounded max-h-16 overflow-y-auto">
                         {JSON.stringify(ev.details || ev.payload || {}, null, 2)}

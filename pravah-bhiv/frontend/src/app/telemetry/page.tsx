@@ -212,7 +212,7 @@ export default function Telemetry() {
               {filteredEvents.length > 0 ? (
                 filteredEvents.map((ev, idx) => (
                   <tr key={idx} className="hover:bg-secondary/20 transition-colors">
-                    <td className="py-2.5 text-muted-foreground">{new Date(ev.ts).toLocaleTimeString()}</td>
+                    <td className="py-2.5 text-muted-foreground">{new Date(ev.ts + (ev.ts.endsWith('Z') ? '' : 'Z')).toLocaleTimeString()}</td>
                     <td className="py-2.5 font-semibold text-foreground uppercase">{ev.service}</td>
                     <td className="py-2.5">
                       <span className={getStatusClass(ev.status)}>{ev.status}</span>

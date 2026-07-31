@@ -70,7 +70,7 @@ export default function Execution() {
                       <span className="font-extrabold text-[10px] text-foreground uppercase truncate max-w-[120px]">{action}</span>
                       <span className="status-pill healthy">COMPLETED</span>
                     </div>
-                    <span className="text-[9px] text-muted-foreground">{dec.timestamp ? new Date(dec.timestamp * 1000).toLocaleTimeString() : 'Recent'}</span>
+                    <span className="text-[9px] text-muted-foreground">{dec.timestamp ? new Date(dec.timestamp).toLocaleTimeString() : 'Recent'}</span>
                   </div>
                 );
               })

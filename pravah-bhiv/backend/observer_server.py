@@ -159,10 +159,7 @@ def _poll_loop(interval: float = 10.0):
                 "url": CRM_API_URL,
                 "health_url": f"{CRM_API_URL}/health"
             },
-            "main-api": {
-                "url": MAIN_API_URL,
-                "health_url": f"{MAIN_API_URL}/health"
-            },
+
             "control-plane": {
                 "url": CONTROL_PLANE_URL,
                 "health_url": f"{CONTROL_PLANE_URL}/api/health"
@@ -184,34 +181,21 @@ def _poll_loop(interval: float = 10.0):
                 "url": WORKFLOW_BLACKHOLE_API_URL,
                 "health_url": f"{WORKFLOW_BLACKHOLE_API_URL}"
             },
-            "block-chain-updated": {
-                "url": BLOCKCHAIN_API_URL,
-                "health_url": f"{BLOCKCHAIN_API_URL}/health"
-            },
+
             "bhiv-masterdb-ingestion-certification-service": {
-                "url": os.getenv("PRAVAH_MASTERDB_API", "http://localhost:8000"),
-                "health_url": f"{os.getenv('PRAVAH_MASTERDB_API', 'http://localhost:8000')}/openapi.json"
+                "url": os.getenv("PRAVAH_MASTERDB_API", "https://masterdb-ingestion-certification-service.onrender.com"),
+                "health_url": f"{os.getenv('PRAVAH_MASTERDB_API', 'https://masterdb-ingestion-certification-service.onrender.com')}/health"
             },
             "bhiv-Mitra": {
                 "url": os.getenv("PRAVAH_MITRA_API", "http://localhost:8000"),
                 "health_url": f"{os.getenv('PRAVAH_MITRA_API', 'http://localhost:8000')}/health"
             },
-            "bhiv-svacs-unified-core": {
-                "url": os.getenv("PRAVAH_SVACS_API", "http://localhost:8000"),
-                "health_url": f"{os.getenv('PRAVAH_SVACS_API', 'http://localhost:8000')}/health"
-            },
-            "bhiv-karma": {
-                "url": BHIV_KARMA_URL,
-                "health_url": f"{BHIV_KARMA_URL}/health"
-            },
+
             "bhiv-bucket": {
                 "url": BHIV_BUCKET_URL,
                 "health_url": f"{BHIV_BUCKET_URL}/health"
             },
-            "bhiv-core": {
-                "url": BHIV_CORE_URL,
-                "health_url": f"{BHIV_CORE_URL}/health"
-            },
+
 
             "bhiv-insight-core": {
                 "url": BHIV_INSIGHT_CORE_URL,
@@ -260,6 +244,10 @@ def _poll_loop(interval: float = 10.0):
             "insightbridge-phase4-demo": {
                 "url": os.getenv("PRAVAH_INSIGHTBRIDGE_DEMO_API", "http://localhost:8000"),
                 "health_url": f"{os.getenv('PRAVAH_INSIGHTBRIDGE_DEMO_API', 'http://localhost:8000')}/health"
+            },
+            "core-integrator-collaborative": {
+                "url": os.getenv("PRAVAH_CORE_INTEGRATOR_API", "https://core-integrator-collaborative.onrender.com"),
+                "health_url": f"{os.getenv('PRAVAH_CORE_INTEGRATOR_API', 'https://core-integrator-collaborative.onrender.com')}/openapi.json"
             },
         }
         
