@@ -159,7 +159,7 @@ app.add_middleware(
 @app.on_event("startup")
 async def startup_event():
     """Initialize dashboard with demo data on app startup."""
-    _initialize_demo_links()
+    # _initialize_demo_links()
 
 
 # In-memory recent activity only (reset on process restart).

@@ -31,7 +31,8 @@ CRM_DASHBOARD_URL = os.getenv("PRAVAH_CRM_DASHBOARD", "http://localhost:8501")
 MAIN_DASHBOARD_URL = os.getenv("PRAVAH_MAIN_DASHBOARD", "http://localhost:8502")
 CONTROL_PLANE_URL = os.getenv("PRAVAH_CONTROL_PLANE", "http://localhost:7000")
 # Gurukul backend — Pravah observes, does not own
-GURUKUL_API_URL = os.getenv("PRAVAH_GURUKUL_API", "http://localhost:3000")
+# Gurukul backend — Pravah observes, does not own
+GURUKUL_API_URL = os.getenv("PRAVAH_GURUKUL_API", "https://gurukul-up9j.onrender.com")
 # INFIVERSE HR Platform gateway — Pravah observes, does not own
 HR_API_URL = os.getenv("PRAVAH_HR_API", "http://localhost:8000")
 # Parikshak System API — Pravah observes, does not own
@@ -43,7 +44,7 @@ TRADE_BOT_API_URL = os.getenv("PRAVAH_TRADE_BOT_API", "http://localhost:8002")
 # TTG API — Pravah observes, does not own
 TTG_API_URL = os.getenv("PRAVAH_TTG_API", "http://localhost:3005")
 # UniGuru AI API — Pravah observes, does not own
-UNIGURU_API_URL = os.getenv("PRAVAH_UNIGURU_API", "http://localhost:8003")
+UNIGURU_API_URL = os.getenv("PRAVAH_UNIGURU_API", "https://uniguru-ai-2.onrender.com")
 # Workflow Blackhole API — Pravah observes, does not own
 WORKFLOW_BLACKHOLE_API_URL = os.getenv("PRAVAH_WORKFLOW_BLACKHOLE_API", "http://localhost:5005")
 # Blockchain API — Pravah observes, does not own
@@ -59,7 +60,7 @@ BHIV_INSIGHT_CORE_URL = os.getenv("PRAVAH_BHIV_INSIGHT_CORE", "http://localhost:
 BHIV_INSIGHT_FLOW_BRIDGE_URL = os.getenv("PRAVAH_BHIV_INSIGHT_FLOW_BRIDGE", "http://localhost:8006")
 BHIV_INSIGHT_FLOW_BACKEND_URL = os.getenv("PRAVAH_BHIV_INSIGHT_FLOW_BACKEND", "http://localhost:8007")
 BHIV_KESHAV_URL = os.getenv("PRAVAH_BHIV_KESHAV", "http://localhost:5000")
-BHIV_SARATHI_URL = os.getenv("PRAVAH_BHIV_SARATHI", "http://127.0.0.1:9002")
+BHIV_SARATHI_URL = os.getenv("PRAVAH_BHIV_SARATHI", "https://sarathi-9n5g.onrender.com")
 
 
 
@@ -170,10 +171,7 @@ def _poll_loop(interval: float = 10.0):
                 "url": PROMPT_RUNNER_API_URL,
                 "health_url": f"{PROMPT_RUNNER_API_URL}/health"
             },
-            "trade-bot": {
-                "url": TRADE_BOT_API_URL,
-                "health_url": f"{TRADE_BOT_API_URL}/api/status"
-            },
+
             "ttg": {
                 "url": TTG_API_URL,
                 "health_url": f"{TTG_API_URL}/health"
@@ -214,14 +212,7 @@ def _poll_loop(interval: float = 10.0):
                 "url": BHIV_CORE_URL,
                 "health_url": f"{BHIV_CORE_URL}/health"
             },
-            "bhiv-workflow": {
-                "url": BHIV_WORKFLOW_URL,
-                "health_url": f"{BHIV_WORKFLOW_URL}/healthz"
-            },
-            "bhiv-uao": {
-                "url": BHIV_UAO_URL,
-                "health_url": f"{BHIV_UAO_URL}/health"
-            },
+
             "bhiv-insight-core": {
                 "url": BHIV_INSIGHT_CORE_URL,
                 "health_url": f"{BHIV_INSIGHT_CORE_URL}/health"
@@ -240,7 +231,7 @@ def _poll_loop(interval: float = 10.0):
             },
             "bhiv-sarathi": {
                 "url": BHIV_SARATHI_URL,
-                "health_url": f"{BHIV_SARATHI_URL}/health"
+                "health_url": f"{BHIV_SARATHI_URL}/health/deep"
             },
             "bhiv-hr-agent": {
                 "url": os.getenv("PRAVAH_BHIV_HR_AGENT", "http://localhost:8000"),
@@ -249,6 +240,26 @@ def _poll_loop(interval: float = 10.0):
             "bhiv-hr-langgraph": {
                 "url": os.getenv("PRAVAH_BHIV_HR_LANGGRAPH", "http://localhost:8000"),
                 "health_url": f"{os.getenv('PRAVAH_BHIV_HR_LANGGRAPH', 'http://localhost:8000')}/health"
+            },
+            "shakti-gc-infra": {
+                "url": os.getenv("PRAVAH_SHAKTI_GC_INFRA", "http://localhost:8000"),
+                "health_url": f"{os.getenv('PRAVAH_SHAKTI_GC_INFRA', 'http://localhost:8000')}/governance/health"
+            },
+            "samruddhi": {
+                "url": os.getenv("PRAVAH_SAMRUDDHI_API", "http://localhost:8000"),
+                "health_url": f"{os.getenv('PRAVAH_SAMRUDDHI_API', 'http://localhost:8000')}/tools/health"
+            },
+            "samruddhi-hft": {
+                "url": os.getenv("PRAVAH_SAMRUDDHI_HFT", "http://localhost:8000"),
+                "health_url": f"{os.getenv('PRAVAH_SAMRUDDHI_HFT', 'http://localhost:8000')}/api/health"
+            },
+            "bhiv-mdu-api": {
+                "url": os.getenv("PRAVAH_MDU_API", "http://localhost:8000"),
+                "health_url": f"{os.getenv('PRAVAH_MDU_API', 'http://localhost:8000')}/health"
+            },
+            "insightbridge-phase4-demo": {
+                "url": os.getenv("PRAVAH_INSIGHTBRIDGE_DEMO_API", "http://localhost:8000"),
+                "health_url": f"{os.getenv('PRAVAH_INSIGHTBRIDGE_DEMO_API', 'http://localhost:8000')}/health"
             },
         }
         
