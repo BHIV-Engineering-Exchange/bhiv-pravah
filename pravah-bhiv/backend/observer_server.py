@@ -51,9 +51,9 @@ WORKFLOW_BLACKHOLE_API_URL = os.getenv("PRAVAH_WORKFLOW_BLACKHOLE_API", "http://
 BLOCKCHAIN_API_URL = os.getenv("PRAVAH_BLOCKCHAIN_API", "http://localhost:8004")
 
 # BHIV Runtimes — Pravah observes, does not own
-BHIV_KARMA_URL = os.getenv("PRAVAH_BHIV_KARMA", "http://localhost:8000")
+BHIV_KARMA_URL = os.getenv("PRAVAH_BHIV_KARMA", "http://163.128.209.18:8102")
 BHIV_BUCKET_URL = os.getenv("PRAVAH_BHIV_BUCKET", "http://localhost:8001")
-BHIV_CORE_URL = os.getenv("PRAVAH_BHIV_CORE", "http://localhost:8002")
+BHIV_CORE_URL = os.getenv("PRAVAH_BHIV_CORE", "http://163.128.209.18:8004")
 BHIV_WORKFLOW_URL = os.getenv("PRAVAH_BHIV_WORKFLOW", "http://localhost:8003")
 BHIV_UAO_URL = os.getenv("PRAVAH_BHIV_UAO", "http://localhost:8004")
 BHIV_INSIGHT_CORE_URL = os.getenv("PRAVAH_BHIV_INSIGHT_CORE", "http://localhost:8005")
@@ -61,6 +61,9 @@ BHIV_INSIGHT_FLOW_BRIDGE_URL = os.getenv("PRAVAH_BHIV_INSIGHT_FLOW_BRIDGE", "htt
 BHIV_INSIGHT_FLOW_BACKEND_URL = os.getenv("PRAVAH_BHIV_INSIGHT_FLOW_BACKEND", "http://localhost:8007")
 BHIV_KESHAV_URL = os.getenv("PRAVAH_BHIV_KESHAV", "http://localhost:5000")
 BHIV_SARATHI_URL = os.getenv("PRAVAH_BHIV_SARATHI", "https://sarathi-9n5g.onrender.com")
+
+CORE_EVENTS_URL = os.getenv("PRAVAH_CORE_EVENTS", "http://163.128.209.18:8005")
+CORE_WEBHOOKS_URL = os.getenv("PRAVAH_CORE_WEBHOOKS", "http://163.128.209.18:8006")
 
 
 
@@ -248,6 +251,22 @@ def _poll_loop(interval: float = 10.0):
             "core-integrator-collaborative": {
                 "url": os.getenv("PRAVAH_CORE_INTEGRATOR_API", "https://core-integrator-collaborative.onrender.com"),
                 "health_url": f"{os.getenv('PRAVAH_CORE_INTEGRATOR_API', 'https://core-integrator-collaborative.onrender.com')}/openapi.json"
+            },
+            "bhiv-karma": {
+                "url": BHIV_KARMA_URL,
+                "health_url": f"{BHIV_KARMA_URL}/health"
+            },
+            "bhiv-core": {
+                "url": BHIV_CORE_URL,
+                "health_url": f"{BHIV_CORE_URL}/health"
+            },
+            "core-events": {
+                "url": CORE_EVENTS_URL,
+                "health_url": f"{CORE_EVENTS_URL}/health"
+            },
+            "core-webhooks": {
+                "url": CORE_WEBHOOKS_URL,
+                "health_url": f"{CORE_WEBHOOKS_URL}/health"
             },
         }
         
