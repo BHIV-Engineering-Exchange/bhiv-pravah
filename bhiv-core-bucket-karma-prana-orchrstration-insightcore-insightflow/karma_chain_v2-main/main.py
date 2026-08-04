@@ -38,6 +38,44 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+import uuid
+import time
+from observability.pravah_adapter import emit_pravah_signal
+
+@app.middleware("http")
+async def tantra_trace_middleware(request: Request, call_next):
+    # Extract trace ID or generate a new one
+    trace_id = request.headers.get("X-Trace-Id") or request.headers.get("x-trace-id")
+    if not trace_id:
+        trace_id = f"tantra-{uuid.uuid4().hex[:12]}"
+        
+    start_time = time.time()
+    response = await call_next(request)
+    latency = (time.time() - start_time) * 1000
+    
+    # Emit telemetry to Pravah
+    try:
+        status = "running" if response.status_code < 400 else "degraded"
+        errors = 1 if response.status_code >= 400 else 0
+        emit_pravah_signal(
+            state=status,
+            latency_ms=latency,
+            errors_last_min=errors,
+            extra={
+                "signal_type": "execution",
+                "source": "bhiv-karma",
+                "context": {"path": request.url.path, "method": request.method}
+            },
+            trace_id=trace_id
+        )
+    except Exception as e:
+        import logging
+        logging.getLogger(__name__).warning(f"Failed to emit Pravah signal: {e}")
+        
+    # Inject trace ID into response headers
+    response.headers["X-Trace-Id"] = trace_id
+    return response
+
 try:
     from observability.pravah_adapter import start_heartbeat
     start_heartbeat(60)

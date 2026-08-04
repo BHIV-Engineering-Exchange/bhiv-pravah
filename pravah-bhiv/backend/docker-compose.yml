@@ -85,6 +85,8 @@ services:
       # Observed service URLs — override at Yotta deploy time
       - PRAVAH_GURUKUL_API=${PRAVAH_GURUKUL_API:-http://gurukul-backend:3000}
       - PRAVAH_HR_API=${PRAVAH_HR_API:-http://infiverse-hr-platform:8000}
+      - PRAVAH_BHIV_HR_AGENT=${PRAVAH_BHIV_HR_AGENT:-http://infiverse-hr-agent:8000}
+      - PRAVAH_BHIV_HR_LANGGRAPH=${PRAVAH_BHIV_HR_LANGGRAPH:-http://infiverse-hr-langgraph:8000}
       - PRAVAH_PARIKSHAK_API=${PRAVAH_PARIKSHAK_API:-http://parikshak-system:8080}
       - PRAVAH_CRM_API=${PRAVAH_CRM_API:-http://crm-api:8001}
     volumes:
@@ -217,6 +219,8 @@ services:
       # Observed services — set YOTTA production URLs below
       - PRAVAH_GURUKUL_API=${PRAVAH_GURUKUL_API:-http://gurukul-backend:3000}
       - PRAVAH_HR_API=${PRAVAH_HR_API:-http://infiverse-hr-platform:8000}
+      - PRAVAH_BHIV_HR_AGENT=${PRAVAH_BHIV_HR_AGENT:-http://infiverse-hr-agent:8000}
+      - PRAVAH_BHIV_HR_LANGGRAPH=${PRAVAH_BHIV_HR_LANGGRAPH:-http://infiverse-hr-langgraph:8000}
       - PRAVAH_PARIKSHAK_API=${PRAVAH_PARIKSHAK_API:-http://parikshak-system:8080}
       - PRAVAH_CRM_API=${PRAVAH_CRM_API:-http://crm-api:8001}
       - PRAVAH_PROMPT_RUNNER_API=${PRAVAH_PROMPT_RUNNER_API:-http://prompt-runner01:8001}
@@ -238,6 +242,10 @@ services:
       - PRAVAH_MASTERDB_API=${PRAVAH_MASTERDB_API:-http://masterdb-service:8000}
       - PRAVAH_MITRA_API=${PRAVAH_MITRA_API:-http://bhiv-mitra:8000}
       - PRAVAH_SVACS_API=${PRAVAH_SVACS_API:-http://bhiv-svacs:8000}
+      - PRAVAH_SAMRUDDHI_API=${PRAVAH_SAMRUDDHI_API:-http://samruddhi-api:8000}
+      - PRAVAH_SAMRUDDHI_HFT=${PRAVAH_SAMRUDDHI_HFT:-http://samruddhi-hft:8000}
+      - PRAVAH_BHIV_CORE_EVENTS=${PRAVAH_BHIV_CORE_EVENTS:-http://bhiv-core-events:8005}
+      - PRAVAH_BHIV_CORE_WEBHOOKS=${PRAVAH_BHIV_CORE_WEBHOOKS:-http://bhiv-core-webhooks:8006}
     volumes:
       - ./logs:/app/logs
       - ./data:/app/data

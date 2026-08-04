@@ -4,7 +4,7 @@ Setup vedas_knowledge_base collection in Qdrant
 """
 
 from qdrant_client import QdrantClient
-from qdrant_client.http.models import Distance, VectorParams
+from qdrant_client.models import Distance, VectorParams
 
 def create_vedas_collection():
     """Create the vedas_knowledge_base collection in Qdrant."""

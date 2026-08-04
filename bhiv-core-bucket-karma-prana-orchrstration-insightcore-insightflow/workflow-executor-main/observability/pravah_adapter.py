@@ -20,13 +20,14 @@ def _sign_payload(trace_id: str, canonical: str) -> tuple[str, str]:
     signature = hmac.new(SSPL_SECRET.encode(), sig_data.encode(), hashlib.sha256).hexdigest()
     return timestamp, signature
 
-def _send(payload: dict) -> None:
+def _send(payload: dict, trace_id: str = None) -> None:
     try:
         import requests as _req
     except ImportError:
         return
 
-    trace_id = f"bhiv-{uuid.uuid4().hex[:16]}"
+    if not trace_id:
+        trace_id = f"bhiv-{uuid.uuid4().hex[:16]}"
     canonical = json.dumps(payload, sort_keys=True, separators=(",", ":"))
     timestamp, signature = _sign_payload(trace_id, canonical)
 
@@ -48,6 +49,7 @@ def emit_pravah_signal(
     errors_last_min: int = 0,
     workers: int = 1,
     extra: dict | None = None,
+    trace_id: str = None,
 ) -> None:
     payload = {
         "app": APP_NAME,
@@ -60,7 +62,7 @@ def emit_pravah_signal(
     if extra:
         payload.update(extra)
 
-    threading.Thread(target=_send, args=(payload,), daemon=True).start()
+    threading.Thread(target=_send, args=(payload, trace_id), daemon=True).start()
 
 _heartbeat_running = False
 
