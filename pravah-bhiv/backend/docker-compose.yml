@@ -75,7 +75,6 @@ services:
       - EMERGENCY_FREEZE_ENABLED=${EMERGENCY_FREEZE_ENABLED:-false}
       - DEMO_MODE=${DEMO_MODE:-false}
       - DEMO_FREEZE_MODE=${DEMO_FREEZE_MODE:-false}
-<<<<<<< HEAD
       # Observed service URLs — override at Yotta deploy time
       - PRAVAH_GURUKUL_API=${PRAVAH_GURUKUL_API:-http://gurukul-backend:3000}
       - PRAVAH_HR_API=${PRAVAH_HR_API:-http://infiverse-hr-platform:8000}
@@ -83,12 +82,6 @@ services:
       - PRAVAH_BHIV_HR_LANGGRAPH=${PRAVAH_BHIV_HR_LANGGRAPH:-http://infiverse-hr-langgraph:8000}
       - PRAVAH_PARIKSHAK_API=${PRAVAH_PARIKSHAK_API:-http://parikshak-system:8080}
       - PRAVAH_CRM_API=${PRAVAH_CRM_API:-http://crm-api:8001}
-=======
-      - PRAVAH_GURUKUL_API=${PRAVAH_GURUKUL_API}
-      - PRAVAH_HR_API=${PRAVAH_HR_API}
-      - PRAVAH_PARIKSHAK_API=${PRAVAH_PARIKSHAK_API}
-      - PRAVAH_CRM_API=${PRAVAH_CRM_API}
->>>>>>> 75d64e2 (pipeline added)
     volumes:
       - ./backend/logs:/app/logs
       - ./backend/data:/app/data
@@ -204,7 +197,6 @@ services:
       - PRAVAH_OBSERVER_PORT=8600
       - PRAVAH_CONTROL_PLANE=http://control-plane:7000
       - PRAVAH_MAIN_API=http://decision-brain:8000
-<<<<<<< HEAD
       # Observed services — set YOTTA production URLs below
       - PRAVAH_GURUKUL_API=${PRAVAH_GURUKUL_API:-http://gurukul-backend:3000}
       - PRAVAH_HR_API=${PRAVAH_HR_API:-http://infiverse-hr-platform:8000}
@@ -235,12 +227,6 @@ services:
       - PRAVAH_SAMRUDDHI_HFT=${PRAVAH_SAMRUDDHI_HFT:-http://samruddhi-hft:8000}
       - PRAVAH_BHIV_CORE_EVENTS=${PRAVAH_BHIV_CORE_EVENTS:-http://bhiv-core-events:8005}
       - PRAVAH_BHIV_CORE_WEBHOOKS=${PRAVAH_BHIV_CORE_WEBHOOKS:-http://bhiv-core-webhooks:8006}
-=======
-      - PRAVAH_GURUKUL_API=${PRAVAH_GURUKUL_API}
-      - PRAVAH_HR_API=${PRAVAH_HR_API}
-      - PRAVAH_PARIKSHAK_API=${PRAVAH_PARIKSHAK_API}
-      - PRAVAH_CRM_API=${PRAVAH_CRM_API}
->>>>>>> 75d64e2 (pipeline added)
     volumes:
       - ./backend/logs:/app/logs
       - ./backend/data:/app/data

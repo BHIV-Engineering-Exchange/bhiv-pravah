@@ -8,7 +8,7 @@ jobs:
 
   # ================================================================
   # BUILD + TEST + PUSH
-  # Builds the single shared "pravah" image from ./backend/Dockerfile,
+  # Builds the single shared "pravah" image from ./pravah-bhiv/backend/Dockerfile,
   # smoke-tests it locally (redis + control-plane + decision-brain +
   # observer wired together, same as prod), then pushes to Docker Hub.
   # ================================================================
@@ -130,22 +130,22 @@ jobs:
             set -e
             DEPLOY_DIR="/opt/PRAVAH"
             sudo mkdir -p "$DEPLOY_DIR"
-            sudo mkdir -p "$DEPLOY_DIR/backend/environments"
+            sudo mkdir -p "$DEPLOY_DIR/pravah-bhiv/backend"
 
             sudo chown -R $USER:$USER "$DEPLOY_DIR"
 
             echo "Deployment directory is ready."
 
-      - name: Copy docker-compose file
+      - name: Copy docker-compose file and backend code
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.PROD_VM_HOST }}
           username: ${{ secrets.PROD_VM_USER }}
           password: ${{ secrets.PROD_VM_PASSWORD }}
           port: ${{ secrets.PROD_VM_PORT }}
-          source: "pravah-bhiv/backend/docker-compose.prod.yml,pravah-bhiv/backend/monitoring"
+          source: "docker-compose.prod.yml,monitoring,pravah-bhiv/backend"
           target: "/opt/PRAVAH/"
-          strip_components: 2
+          strip_components: 0
 
       - name: Create environment files
         uses: appleboy/ssh-action@v1.2.0
@@ -157,21 +157,21 @@ jobs:
           script: |
             set -euo pipefail
             cd /opt/PRAVAH
-            mkdir -p backend/environments
+            mkdir -p pravah-bhiv/backend/environments
 
-            cat > backend/environments/dev.env << 'ENVEOF'
+            cat > pravah-bhiv/backend/environments/dev.env << 'ENVEOF'
             ${{ secrets.DEV_ENV }}
             ENVEOF
 
-            cat > backend/environments/prod.env << 'ENVEOF'
+            cat > pravah-bhiv/backend/environments/prod.env << 'ENVEOF'
             ${{ secrets.PROD_ENV }}
             ENVEOF
 
-            cat > backend/environments/stage.env << 'ENVEOF'
+            cat > pravah-bhiv/backend/environments/stage.env << 'ENVEOF'
             ${{ secrets.STAGE_ENV }}
             ENVEOF
 
-            chmod 600 backend/environments/*.env
+            chmod 600 pravah-bhiv/backend/environments/*.env
 
       - name: Deploy to production
         uses: appleboy/ssh-action@v1.2.0
