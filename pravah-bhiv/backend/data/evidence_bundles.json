@@ -310,5 +310,26 @@
       "ingested_at": "2026-07-29T05:00:46.704148Z",
       "environment": "dev"
     }
+  },
+  "ev-17e66a707e2244fe": {
+    "bundle_id": "bundle-ee25c036473f",
+    "trace_id": "intent-trace-84a6b09f5b69",
+    "execution_id": "exec-25d56777cb1b",
+    "decision_id": "dec-eacf21912419",
+    "decision_type": "compliance_check",
+    "authority_chain": [
+      "HUMAN_INTENT",
+      "PROMPT_RUNNER",
+      "PRAVAH_OBSERVABILITY"
+    ],
+    "evidence": {
+      "attestation": "Verification bundle generated for E2E trace",
+      "compliance": "PASS",
+      "constitutional_hash": "sha256-a94fbe92e3c0d8f0"
+    },
+    "produced_at": "2026-08-04T10:55:28.691878Z",
+    "correlation_id": "intent-trace-84a6b09f5b69",
+    "source": "SHAKTI",
+    "action": "publish_evidence"
   }
 }
