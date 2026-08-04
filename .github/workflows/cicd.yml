@@ -128,10 +128,9 @@ jobs:
           port: ${{ secrets.PROD_VM_PORT }}
           script: |
             set -e
-            DEPLOY_DIR="/opt/PRAVAH"
-            sudo mkdir -p "$DEPLOY_DIR"
-            sudo mkdir -p "$DEPLOY_DIR/pravah-bhiv/backend"
+            DEPLOY_DIR="/opt/PRAVAH/pravah-bhiv/backend"
 
+            sudo mkdir -p "$DEPLOY_DIR"
             sudo chown -R $USER:$USER "$DEPLOY_DIR"
 
             echo "Deployment directory is ready."
@@ -143,9 +142,19 @@ jobs:
           username: ${{ secrets.PROD_VM_USER }}
           password: ${{ secrets.PROD_VM_PASSWORD }}
           port: ${{ secrets.PROD_VM_PORT }}
-          source: "docker-compose.prod.yml,monitoring,pravah-bhiv/backend"
+          source: "./pravah-bhiv/backend/docker-compose.prod.yml,./pravah-bhiv/backend/monitoring"
           target: "/opt/PRAVAH/"
           strip_components: 0
+
+      - name: Verify copied files
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.PROD_VM_HOST }}
+          username: ${{ secrets.PROD_VM_USER }}
+          password: ${{ secrets.PROD_VM_PASSWORD }}
+          port: ${{ secrets.PROD_VM_PORT }}
+          script: |
+            find /opt/PRAVAH -type f
 
       - name: Create environment files
         uses: appleboy/ssh-action@v1.2.0
@@ -156,22 +165,23 @@ jobs:
           port: ${{ secrets.PROD_VM_PORT }}
           script: |
             set -euo pipefail
-            cd /opt/PRAVAH
-            mkdir -p pravah-bhiv/backend/environments
+            cd /opt/PRAVAH/pravah-bhiv/backend
 
-            cat > pravah-bhiv/backend/environments/dev.env << 'ENVEOF'
+            mkdir -p environments
+
+            cat > environments/dev.env << 'ENVEOF'
             ${{ secrets.DEV_ENV }}
             ENVEOF
 
-            cat > pravah-bhiv/backend/environments/prod.env << 'ENVEOF'
+            cat > environments/prod.env << 'ENVEOF'
             ${{ secrets.PROD_ENV }}
             ENVEOF
 
-            cat > pravah-bhiv/backend/environments/stage.env << 'ENVEOF'
+            cat > environments/stage.env << 'ENVEOF'
             ${{ secrets.STAGE_ENV }}
             ENVEOF
 
-            chmod 600 pravah-bhiv/backend/environments/*.env
+            chmod 600 environments/*.env
 
       - name: Deploy to production
         uses: appleboy/ssh-action@v1.2.0
@@ -191,8 +201,16 @@ jobs:
           script: |
             set -euo pipefail
 
-            DEPLOY_DIR="/opt/PRAVAH"
+            DEPLOY_DIR="/opt/PRAVAH/pravah-bhiv/backend"
+
             cd "$DEPLOY_DIR"
+            echo "Current directory:"
+            pwd
+            echo "Files:"
+            ls -lah
+
+            echo "Compose file location:"
+            find /opt/PRAVAH -name "docker-compose.prod.yml"
 
             if [ ! -f docker-compose.prod.yml ]; then
                echo "docker-compose.prod.yml not found."
@@ -293,7 +311,7 @@ jobs:
           script: |
             set -euo pipefail
 
-            DEPLOY_DIR="/opt/PRAVAH"
+            DEPLOY_DIR="/opt/PRAVAH/pravah-bhiv/backend"
             cd "$DEPLOY_DIR"
 
             if [ ! -f previous_version ]; then
