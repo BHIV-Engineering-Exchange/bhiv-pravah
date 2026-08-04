@@ -144,7 +144,7 @@ jobs:
           password: ${{ secrets.PROD_VM_PASSWORD }}
           port: ${{ secrets.PROD_VM_PORT }}
           source: "docker-compose.prod.yml,monitoring"
-          target: "/opt/pravah-bhiv/"
+          target: "/opt/PRAVAH/"
           strip_components: 0
 
       - name: Create environment files
@@ -156,7 +156,7 @@ jobs:
           port: ${{ secrets.PROD_VM_PORT }}
           script: |
             set -euo pipefail
-            cd /opt/pravah-bhiv
+            cd /opt/PRAVAH
             mkdir -p backend/environments
 
             cat > backend/environments/dev.env << 'ENVEOF'
@@ -191,7 +191,7 @@ jobs:
           script: |
             set -euo pipefail
 
-            DEPLOY_DIR="/opt/pravah-bhiv"
+            DEPLOY_DIR="/opt/PRAVAH"
             cd "$DEPLOY_DIR"
 
             if [ ! -f docker-compose.prod.yml ]; then
@@ -262,10 +262,7 @@ jobs:
             echo "$IMAGE_TAG" > current_version
 
             docker compose -f docker-compose.prod.yml ps
-             
-            docker image prune -af || true
-            docker container prune -f || true
-            
+
             echo "Deployment completed successfully."
 
   # ================================================================
@@ -296,7 +293,7 @@ jobs:
           script: |
             set -euo pipefail
 
-            DEPLOY_DIR="/opt/pravah-bhiv"
+            DEPLOY_DIR="/opt/PRAVAH"
             cd "$DEPLOY_DIR"
 
             if [ ! -f previous_version ]; then
