@@ -3,7 +3,7 @@ version: '3.8'
 # ============================================================
 # Pravah Development Docker Compose
 # Target: Local Development & CI/CD Testing
-# Images: Built from ./backend/Dockerfile
+# Images: Built from ./Dockerfile
 # Profiles:
 #   dev    — development services (default)
 #   prod   — production services (local testing)
@@ -52,7 +52,7 @@ services:
   # ----------------------------------------------------------
   control-plane:
     build:
-      context: ./backend
+      context: .
       dockerfile: Dockerfile
     image: pravah-control-plane:latest
     container_name: pravah-control-plane
@@ -83,9 +83,9 @@ services:
       - PRAVAH_PARIKSHAK_API=${PRAVAH_PARIKSHAK_API:-http://parikshak-system:8080}
       - PRAVAH_CRM_API=${PRAVAH_CRM_API:-http://crm-api:8001}
     volumes:
-      - ./backend/logs:/app/logs
-      - ./backend/data:/app/data
-      - ./backend:/app
+      - ./logs:/app/logs
+      - ./data:/app/data
+      - .:/app
     command: >
       gunicorn wsgi:app
       --workers ${GUNICORN_WORKERS:-4}
@@ -123,7 +123,7 @@ services:
   # ----------------------------------------------------------
   decision-brain:
     build:
-      context: ./backend
+      context: .
       dockerfile: Dockerfile
     image: pravah-decision-brain:latest
     container_name: pravah-decision-brain
@@ -145,9 +145,9 @@ services:
       - DEMO_FREEZE_MODE=${DEMO_FREEZE_MODE:-false}
       - BACKEND_CORS_ORIGINS=${BACKEND_CORS_ORIGINS:-*}
     volumes:
-      - ./backend/logs:/app/logs
-      - ./backend/data:/app/data
-      - ./backend:/app
+      - ./logs:/app/logs
+      - ./data:/app/data
+      - .:/app
     command: >
       uvicorn control_plane.backend.app.main:app
       --host 0.0.0.0
@@ -182,7 +182,7 @@ services:
   # ----------------------------------------------------------
   observer:
     build:
-      context: ./backend
+      context: .
       dockerfile: Dockerfile
     image: pravah-observer:latest
     container_name: pravah-observer
@@ -228,9 +228,9 @@ services:
       - PRAVAH_BHIV_CORE_EVENTS=${PRAVAH_BHIV_CORE_EVENTS:-http://bhiv-core-events:8005}
       - PRAVAH_BHIV_CORE_WEBHOOKS=${PRAVAH_BHIV_CORE_WEBHOOKS:-http://bhiv-core-webhooks:8006}
     volumes:
-      - ./backend/logs:/app/logs
-      - ./backend/data:/app/data
-      - ./backend:/app
+      - ./logs:/app/logs
+      - ./data:/app/data
+      - .:/app
     command: >
       uvicorn observer_server:app
       --host 0.0.0.0
@@ -264,7 +264,7 @@ services:
   # ----------------------------------------------------------
   deploy-worker-1:
     build:
-      context: ./backend
+      context: .
       dockerfile: Dockerfile
     image: pravah-worker:latest
     container_name: pravah-deploy-worker-1
@@ -277,8 +277,8 @@ services:
       - PYTHONPATH=/app
       - ENVIRONMENT=${ENVIRONMENT:-dev}
     volumes:
-      - ./backend/logs:/app/logs
-      - ./backend:/app
+      - ./logs:/app/logs
+      - .:/app
     command: python -m control_plane.agents.multi_deploy_agent --env ${ENVIRONMENT:-dev} --workers 1
     restart: unless-stopped
     depends_on:
@@ -295,7 +295,7 @@ services:
 
   deploy-worker-2:
     build:
-      context: ./backend
+      context: .
       dockerfile: Dockerfile
     image: pravah-worker:latest
     container_name: pravah-deploy-worker-2
@@ -308,8 +308,8 @@ services:
       - PYTHONPATH=/app
       - ENVIRONMENT=${ENVIRONMENT:-dev}
     volumes:
-      - ./backend/logs:/app/logs
-      - ./backend:/app
+      - ./logs:/app/logs
+      - .:/app
     command: python -m control_plane.agents.multi_deploy_agent --env ${ENVIRONMENT:-dev} --workers 1
     restart: unless-stopped
     depends_on:
@@ -326,7 +326,7 @@ services:
 
   deploy-worker-3:
     build:
-      context: ./backend
+      context: .
       dockerfile: Dockerfile
     image: pravah-worker:latest
     container_name: pravah-deploy-worker-3
@@ -339,8 +339,8 @@ services:
       - PYTHONPATH=/app
       - ENVIRONMENT=${ENVIRONMENT:-dev}
     volumes:
-      - ./backend/logs:/app/logs
-      - ./backend:/app
+      - ./logs:/app/logs
+      - .:/app
     command: python -m control_plane.agents.multi_deploy_agent --env ${ENVIRONMENT:-dev} --workers 1
     restart: unless-stopped
     depends_on:
@@ -361,7 +361,7 @@ services:
   # ----------------------------------------------------------
   queue-monitor:
     build:
-      context: ./backend
+      context: .
       dockerfile: Dockerfile
     image: pravah-monitor:latest
     container_name: pravah-queue-monitor
@@ -372,8 +372,8 @@ services:
       - PYTHONUNBUFFERED=1
       - ENVIRONMENT=${ENVIRONMENT:-dev}
     volumes:
-      - ./backend/logs:/app/logs
-      - ./backend:/app
+      - ./logs:/app/logs
+      - .:/app
     command: python -m monitoring.queue_monitor --continuous --cycles 0
     restart: unless-stopped
     depends_on:
@@ -394,7 +394,7 @@ services:
   # ----------------------------------------------------------
   health-monitor:
     build:
-      context: ./backend
+      context: .
       dockerfile: Dockerfile
     image: pravah-monitor:latest
     container_name: pravah-health-monitor
@@ -404,8 +404,8 @@ services:
       - ENVIRONMENT=${ENVIRONMENT:-dev}
       - REDIS_HOST=redis
     volumes:
-      - ./backend/logs:/app/logs
-      - ./backend:/app
+      - ./logs:/app/logs
+      - .:/app
     command: python -m monitoring.infra_health_monitor --env ${ENVIRONMENT:-dev} --continuous
     restart: unless-stopped
     depends_on:
@@ -430,7 +430,7 @@ services:
     ports:
       - "${PROMETHEUS_PORT:-9093}:9090"
     volumes:
-      - ./backend/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus_data:/prometheus
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"
