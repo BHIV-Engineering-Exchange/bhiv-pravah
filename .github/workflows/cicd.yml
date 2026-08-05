@@ -133,6 +133,14 @@ jobs:
             sudo mkdir -p "$DEPLOY_DIR"
             sudo chown -R $USER:$USER "$DEPLOY_DIR"
 
+            # Pre-create bind-mount targets owned by UID 1000 (the "pravah"
+            # user the container runs as — see Dockerfile). Without this,
+            # Docker auto-creates ./logs and ./data as root on first mount,
+            # and gunicorn (running as UID 1000 inside the container) can't
+            # write to them, which fails the healthcheck immediately.
+            mkdir -p "$DEPLOY_DIR/logs" "$DEPLOY_DIR/data"
+            sudo chown -R 1000:1000 "$DEPLOY_DIR/logs" "$DEPLOY_DIR/data"
+
             echo "Deployment directory is ready."
 
       - name: Copy docker-compose file and backend code
@@ -144,7 +152,7 @@ jobs:
           port: ${{ secrets.PROD_VM_PORT }}
           source: "./pravah-bhiv/backend/docker-compose.prod.yml,./pravah-bhiv/backend/monitoring"
           target: "/PRAVAH/"
-          strip_components: 0
+          strip_components: 2
 
       - name: Verify copied files
         uses: appleboy/ssh-action@v1.2.0
@@ -154,7 +162,7 @@ jobs:
           password: ${{ secrets.PROD_VM_PASSWORD }}
           port: ${{ secrets.PROD_VM_PORT }}
           script: |
-            find /PRAVAH -type f
+            find /PRAVAH -maxdepth 2 -type f
 
       - name: Create environment files
         uses: appleboy/ssh-action@v1.2.0
@@ -212,16 +220,11 @@ jobs:
             echo "Files:"
             ls -lah
 
-            echo "Compose file location:"
-            find /PRAVAH -name "docker-compose.prod.yml"
-
             if [ ! -f docker-compose.prod.yml ]; then
                echo "docker-compose.prod.yml not found."
                exit 1
             fi
             echo "Compose file found."
-
-            ls -lah
 
             echo "Logging into Docker Hub..."
             echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login \
@@ -236,11 +239,22 @@ jobs:
             docker compose -f docker-compose.prod.yml pull
 
             echo "Starting services..."
-            docker compose \
+            if ! docker compose \
               -f docker-compose.prod.yml \
               --profile prod \
               up -d \
-              --remove-orphans
+              --remove-orphans; then
+              echo "----- docker compose up failed. Dumping container logs for diagnosis -----"
+              echo "===== control-plane logs ====="
+              docker compose -f docker-compose.prod.yml logs --tail=200 control-plane || true
+              echo "===== decision-brain logs ====="
+              docker compose -f docker-compose.prod.yml logs --tail=200 decision-brain || true
+              echo "===== observer logs ====="
+              docker compose -f docker-compose.prod.yml logs --tail=200 observer || true
+              echo "===== container status ====="
+              docker compose -f docker-compose.prod.yml ps -a || true
+              exit 1
+            fi
 
             echo "Waiting for Redis..."
             timeout 300 bash -c '
@@ -302,6 +316,7 @@ jobs:
 
         env:
           VM_IP: ${{ secrets.VM_IP }}
+          DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
 
         with:
           host: ${{ secrets.PROD_VM_HOST }}
@@ -309,7 +324,7 @@ jobs:
           password: ${{ secrets.PROD_VM_PASSWORD }}
           port: ${{ secrets.PROD_VM_PORT }}
 
-          envs: VM_IP
+          envs: VM_IP,DOCKER_HUB_USERNAME
 
           script: |
             set -euo pipefail
@@ -336,11 +351,22 @@ jobs:
             docker compose -f docker-compose.prod.yml pull
 
             echo "Starting services..."
-            docker compose \
+            if ! docker compose \
               -f docker-compose.prod.yml \
               --profile prod \
               up -d \
-              --remove-orphans
+              --remove-orphans; then
+              echo "----- docker compose up failed. Dumping container logs for diagnosis -----"
+              echo "===== control-plane logs ====="
+              docker compose -f docker-compose.prod.yml logs --tail=200 control-plane || true
+              echo "===== decision-brain logs ====="
+              docker compose -f docker-compose.prod.yml logs --tail=200 decision-brain || true
+              echo "===== observer logs ====="
+              docker compose -f docker-compose.prod.yml logs --tail=200 observer || true
+              echo "===== container status ====="
+              docker compose -f docker-compose.prod.yml ps -a || true
+              exit 1
+            fi
 
             echo "Waiting for Redis..."
             timeout 300 bash -c '
