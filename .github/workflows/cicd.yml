@@ -128,7 +128,7 @@ jobs:
           port: ${{ secrets.PROD_VM_PORT }}
           script: |
             set -e
-            DEPLOY_DIR="/opt/PRAVAH/pravah-bhiv/backend"
+            DEPLOY_DIR="/PRAVAH"
 
             sudo mkdir -p "$DEPLOY_DIR"
             sudo chown -R $USER:$USER "$DEPLOY_DIR"
@@ -143,7 +143,7 @@ jobs:
           password: ${{ secrets.PROD_VM_PASSWORD }}
           port: ${{ secrets.PROD_VM_PORT }}
           source: "./pravah-bhiv/backend/docker-compose.prod.yml,./pravah-bhiv/backend/monitoring"
-          target: "/opt/PRAVAH/"
+          target: "/PRAVAH/"
           strip_components: 0
 
       - name: Verify copied files
@@ -154,7 +154,7 @@ jobs:
           password: ${{ secrets.PROD_VM_PASSWORD }}
           port: ${{ secrets.PROD_VM_PORT }}
           script: |
-            find /opt/PRAVAH -type f
+            find /PRAVAH -type f
 
       - name: Create environment files
         uses: appleboy/ssh-action@v1.2.0
@@ -165,7 +165,7 @@ jobs:
           port: ${{ secrets.PROD_VM_PORT }}
           script: |
             set -euo pipefail
-            cd /opt/PRAVAH/pravah-bhiv/backend
+            cd /PRAVAH
 
             mkdir -p environments
 
@@ -204,7 +204,7 @@ jobs:
           script: |
             set -euo pipefail
 
-            DEPLOY_DIR="/opt/PRAVAH/pravah-bhiv/backend"
+            DEPLOY_DIR="/PRAVAH"
 
             cd "$DEPLOY_DIR"
             echo "Current directory:"
@@ -213,7 +213,7 @@ jobs:
             ls -lah
 
             echo "Compose file location:"
-            find /opt/PRAVAH -name "docker-compose.prod.yml"
+            find /PRAVAH -name "docker-compose.prod.yml"
 
             if [ ! -f docker-compose.prod.yml ]; then
                echo "docker-compose.prod.yml not found."
@@ -314,7 +314,7 @@ jobs:
           script: |
             set -euo pipefail
 
-            DEPLOY_DIR="/opt/PRAVAH/pravah-bhiv/backend"
+            DEPLOY_DIR="/PRAVAH"
             cd "$DEPLOY_DIR"
 
             if [ ! -f previous_version ]; then

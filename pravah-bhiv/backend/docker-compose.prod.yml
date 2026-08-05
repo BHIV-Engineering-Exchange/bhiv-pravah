@@ -91,10 +91,11 @@ services:
       --bind 0.0.0.0:7000
       --timeout 120
       --keep-alive 5
-      --access-logfile /app/logs/access.log
-      --error-logfile /app/logs/error.log
+      --access-logfile -
+      --error-logfile -
       --log-level info
       --preload
+      
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:7000/api/health"]
