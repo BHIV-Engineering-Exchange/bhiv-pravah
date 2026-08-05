@@ -20,6 +20,7 @@ import json
 import os
 import sys
 import threading
+import time
 # Ensure repo root is on sys.path so running this module directly works
 # agent_api.py is at control_plane/api; repo root is two levels up
 root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
@@ -58,10 +59,19 @@ control_plane = MultiAppControlPlane(env=ENVIRONMENT)
 
 def start_agent_loop() -> None:
     """Run autonomous loop in background."""
-    agent.run()
+    try:
+        print("[AGENT] Starting agent loop in background...")
+        agent.run()
+    except Exception as e:
+        print(f"[AGENT] ERROR: Agent loop crashed: {e}")
 
 
-threading.Thread(target=start_agent_loop, daemon=True).start()
+# Start agent loop in non-daemon background thread with delayed start
+# This prevents blocking Flask initialization
+agent_thread = threading.Thread(target=start_agent_loop, daemon=False, name="AgentLoopThread")
+agent_thread.start()
+print("[INFO] Agent background thread started")
+
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": [

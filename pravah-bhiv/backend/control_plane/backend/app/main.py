@@ -12,7 +12,7 @@ _REPO_ROOT = Path(__file__).resolve().parents[3]
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
 from .dashboard_api import get_dashboard_state
 # from .dashboard_api import router as dashboard_router
@@ -843,6 +843,31 @@ def orchestration_metrics() -> dict[str, Any]:
             "integration_enabled": _bridge.sync_enabled,
         },
     }
+
+
+@app.get("/metrics")
+def prometheus_metrics() -> Response:
+    """Expose a small Prometheus scrape surface for decision-brain."""
+    agg_metrics = _calculate_aggregate_metrics()
+    cp_metrics = _bridge.get_orchestration_metrics()
+    lines = [
+        "# HELP pravah_decision_brain_up Decision brain service availability.",
+        "# TYPE pravah_decision_brain_up gauge",
+        "pravah_decision_brain_up 1",
+        "# HELP pravah_decision_brain_monitored_links Number of ingested links monitored by decision brain.",
+        "# TYPE pravah_decision_brain_monitored_links gauge",
+        f"pravah_decision_brain_monitored_links {len(_INGESTED_LINKS)}",
+        "# HELP pravah_decision_brain_recent_decisions Number of recent in-memory decisions.",
+        "# TYPE pravah_decision_brain_recent_decisions gauge",
+        f"pravah_decision_brain_recent_decisions {len(_RECENT_DECISIONS)}",
+        "# HELP pravah_decision_brain_total_commits Aggregated commit count across monitored links.",
+        "# TYPE pravah_decision_brain_total_commits gauge",
+        f"pravah_decision_brain_total_commits {agg_metrics['total_commits']}",
+        "# HELP pravah_control_plane_apps_monitored Number of apps reported by the control-plane bridge.",
+        "# TYPE pravah_control_plane_apps_monitored gauge",
+        f"pravah_control_plane_apps_monitored {cp_metrics.get('total_apps_monitored', 0)}",
+    ]
+    return Response("\n".join(lines) + "\n", media_type="text/plain; version=0.0.4")
 
 
 

@@ -94,7 +94,6 @@ services:
       --access-logfile -
       --error-logfile -
       --log-level info
-      --preload
       
     restart: unless-stopped
     healthcheck:
@@ -248,6 +247,12 @@ services:
       - ./logs:/app/logs
     command: python -m control_plane.agents.multi_deploy_agent --env ${ENVIRONMENT:-prod} --workers 1
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
     depends_on:
       redis:
         condition: service_healthy
@@ -276,6 +281,12 @@ services:
       - ./logs:/app/logs
     command: python -m control_plane.agents.multi_deploy_agent --env ${ENVIRONMENT:-prod} --workers 1
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
     depends_on:
       redis:
         condition: service_healthy
@@ -304,6 +315,12 @@ services:
       - ./logs:/app/logs
     command: python -m control_plane.agents.multi_deploy_agent --env ${ENVIRONMENT:-prod} --workers 1
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
     depends_on:
       redis:
         condition: service_healthy
@@ -333,6 +350,12 @@ services:
       - ./logs:/app/logs
     command: python -m monitoring.queue_monitor --continuous --cycles 0
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
     depends_on:
       redis:
         condition: service_healthy
@@ -360,6 +383,12 @@ services:
       - ./logs:/app/logs
     command: python -m monitoring.infra_health_monitor --env ${ENVIRONMENT:-prod} --continuous
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
     depends_on:
       control-plane:
         condition: service_healthy

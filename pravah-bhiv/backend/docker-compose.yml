@@ -96,7 +96,6 @@ services:
       --access-logfile /app/logs/access.log
       --error-logfile /app/logs/error.log
       --log-level info
-      --preload
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:7000/api/health"]
@@ -155,7 +154,6 @@ services:
       --workers ${UVICORN_WORKERS:-2}
       --log-level info
       --access-log
-      --reload
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
@@ -236,7 +234,6 @@ services:
       --host 0.0.0.0
       --port 8600
       --log-level info
-      --reload
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8600/health"]
@@ -281,6 +278,12 @@ services:
       - .:/app
     command: python -m control_plane.agents.multi_deploy_agent --env ${ENVIRONMENT:-dev} --workers 1
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
     depends_on:
       redis:
         condition: service_healthy
@@ -312,6 +315,12 @@ services:
       - .:/app
     command: python -m control_plane.agents.multi_deploy_agent --env ${ENVIRONMENT:-dev} --workers 1
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
     depends_on:
       redis:
         condition: service_healthy
@@ -343,6 +352,12 @@ services:
       - .:/app
     command: python -m control_plane.agents.multi_deploy_agent --env ${ENVIRONMENT:-dev} --workers 1
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
     depends_on:
       redis:
         condition: service_healthy
@@ -376,6 +391,12 @@ services:
       - .:/app
     command: python -m monitoring.queue_monitor --continuous --cycles 0
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
     depends_on:
       redis:
         condition: service_healthy
@@ -408,6 +429,12 @@ services:
       - .:/app
     command: python -m monitoring.infra_health_monitor --env ${ENVIRONMENT:-dev} --continuous
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
     depends_on:
       control-plane:
         condition: service_healthy

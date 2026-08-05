@@ -100,49 +100,53 @@ class MultiDeployAgent:
         print("All workers stopped")
     
     def _worker_loop(self, agent, worker_id):
-        """Worker thread one-shot processor."""
-        try:
-            if not self.running:
-                return
+        """Process queued work until the agent is stopped."""
+        from control_plane.core.guaranteed_events import emit_deploy_event, emit_scale_event
 
-            work_item = self.work_queue.get(timeout=1)
-            if work_item is None:
-                return
-
-            dataset, action_type = work_item
-
-            if action_type == 'deploy':
-                from utils import trigger_dashboard_deployment
-                status, response_time = trigger_dashboard_deployment(env=self.env)
-            else:
-                if StageDeterminismLock.is_stage_env(self.env):
-                    response_time = StageDeterminismLock.get_deterministic_response_time(action_type, worker_id)
-                    time.sleep(response_time / 1000)
-                    status = 'success'
-                    log_determinism_status(self.env, f"Worker {worker_id} {action_type} timing")
-                else:
-                    time.sleep(0.5 + (worker_id * 0.1))
-                    status, response_time = 'success', 500 + (worker_id * 100)
-
-            from control_plane.core.guaranteed_events import emit_deploy_event, emit_scale_event
+        while self.running:
             try:
+                work_item = self.work_queue.get(timeout=1)
+                if work_item is None:
+                    self.work_queue.task_done()
+                    return
+
+                dataset, action_type = work_item
+
                 if action_type == 'deploy':
-                    emit_deploy_event(self.env, status, response_time, dataset)
-                elif action_type in ['scale_up', 'scale_down', 'scale']:
-                    emit_scale_event(self.env, status, response_time, dataset)
+                    from utils import trigger_dashboard_deployment
+                    status, response_time = trigger_dashboard_deployment(env=self.env)
                 else:
-                    emit_deploy_event(self.env, status, response_time, dataset)
+                    if StageDeterminismLock.is_stage_env(self.env):
+                        response_time = StageDeterminismLock.get_deterministic_response_time(action_type, worker_id)
+                        time.sleep(response_time / 1000)
+                        status = 'success'
+                        log_determinism_status(self.env, f"Worker {worker_id} {action_type} timing")
+                    else:
+                        time.sleep(0.5 + (worker_id * 0.1))
+                        status, response_time = 'success', 500 + (worker_id * 100)
+
+                try:
+                    if action_type == 'deploy':
+                        emit_deploy_event(self.env, status, response_time, dataset)
+                    elif action_type in ['scale_up', 'scale_down', 'scale']:
+                        emit_scale_event(self.env, status, response_time, dataset)
+                    else:
+                        emit_deploy_event(self.env, status, response_time, dataset)
+                except Exception as e:
+                    print(f"CRITICAL: Event emission failed for {action_type}: {e}")
+
+                agent.log_deployment(dataset, status, response_time, action_type)
+                self.work_queue.task_done()
+
+            except queue.Empty:
+                continue
             except Exception as e:
-                print(f"CRITICAL: Event emission failed for {action_type}: {e}")
+                print(f"Worker {worker_id} error: {e}")
+                try:
+                    self.work_queue.task_done()
+                except ValueError:
+                    pass
 
-            agent.log_deployment(dataset, status, response_time, action_type)
-            self.work_queue.task_done()
-
-        except queue.Empty:
-            return
-        except Exception as e:
-            print(f"Worker {worker_id} error: {e}")
-    
     def submit_deployment(self, dataset, action_type='deploy'):
         """Submit deployment work to the queue."""
         # Production safety check

@@ -81,21 +81,35 @@ jobs:
             -p 8602:8600 "$IMG" \
             uvicorn observer_server:app --host 0.0.0.0 --port 8600
 
+          echo "Starting deploy worker..."
+          docker run -d --name test-deploy-worker --network pravah-test-net \
+            -e REDIS_HOST=test-redis -e REDIS_PORT=6379 \
+            -e PYTHONUNBUFFERED=1 -e PYTHONPATH=/app -e ENVIRONMENT=dev \
+            "$IMG" \
+            python -m control_plane.agents.multi_deploy_agent --env dev --workers 1
+
           echo "Waiting on control-plane health..."
           timeout 90 bash -c 'until curl -fs http://localhost:7001/api/health; do sleep 5; done'
 
           echo "Waiting on decision-brain health..."
           timeout 90 bash -c 'until curl -fs http://localhost:8010/health; do sleep 5; done'
 
+          echo "Checking decision-brain metrics..."
+          timeout 90 bash -c 'until curl -fs http://localhost:8010/metrics | grep -q pravah_decision_brain_up; do sleep 5; done'
+
           echo "Waiting on observer health..."
           timeout 90 bash -c 'until curl -fs http://localhost:8602/health; do sleep 5; done'
+
+          echo "Checking deploy worker is still alive..."
+          sleep 12
+          docker inspect -f '{{.State.Running}}' test-deploy-worker | grep -q true
 
           echo "All smoke checks passed."
 
       - name: Tear down test containers
         if: always()
         run: |
-          docker rm -f test-control-plane test-decision-brain test-observer test-redis 2>/dev/null || true
+          docker rm -f test-control-plane test-decision-brain test-observer test-deploy-worker test-redis 2>/dev/null || true
           docker network rm pravah-test-net 2>/dev/null || true
 
       - name: Push image to Docker Hub
@@ -241,6 +255,9 @@ jobs:
             export COMPOSE_PROJECT_NAME=pravah
             echo "Deploying version: $PRAVAH_IMAGE_TAG"
 
+            echo "Validating production Compose service selection..."
+            test "$(docker compose -f docker-compose.prod.yml --profile prod config --services | wc -l)" -gt 0
+
             echo "Removing any stale containers from earlier deploy paths..."
             docker rm -f \
               pravah-redis pravah-control-plane pravah-decision-brain pravah-observer \
@@ -249,7 +266,7 @@ jobs:
               2>/dev/null || true
 
             echo "Pulling images..."
-            docker compose -f docker-compose.prod.yml pull
+            docker compose -f docker-compose.prod.yml --profile prod pull
 
             echo "Starting services..."
             if ! docker compose \
@@ -361,6 +378,9 @@ jobs:
             export VM_IP="$VM_IP"
             export COMPOSE_PROJECT_NAME=pravah
 
+            echo "Validating production Compose service selection..."
+            test "$(docker compose -f docker-compose.prod.yml --profile prod config --services | wc -l)" -gt 0
+
             echo "Removing any stale containers from earlier deploy paths..."
             docker rm -f \
               pravah-redis pravah-control-plane pravah-decision-brain pravah-observer \
@@ -369,7 +389,7 @@ jobs:
               2>/dev/null || true
 
             echo "Pulling images..."
-            docker compose -f docker-compose.prod.yml pull
+            docker compose -f docker-compose.prod.yml --profile prod pull
 
             echo "Starting services..."
             if ! docker compose \
