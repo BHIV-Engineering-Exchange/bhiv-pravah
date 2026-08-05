@@ -25,11 +25,26 @@ class EnvironmentConfig:
         with open(env_file, 'r') as f:
             for line in f:
                 line = line.strip()
-                if line and not line.startswith('#') and '=' in line:
-                    key, value = line.split('=', 1)
-                    key = key.strip()
-                    if key not in os.environ:
-                        os.environ[key] = value.strip()
+                if line.startswith('export '):
+                    line = line[7:].strip()
+                if not line or line.startswith('#') or '=' not in line:
+                    continue
+                
+                # Handle inline comments
+                if ' #' in line:
+                    line = line.split(' #', 1)[0].strip()
+                    
+                key, value = line.split('=', 1)
+                key = key.strip()
+                value = value.strip()
+                
+                # Prevent Errno 22 on invalid keys (empty, spaces, etc.)
+                import re
+                if not key or not re.match(r'^[a-zA-Z_][a-zA-Z0-9_]*$', key):
+                    continue
+
+                if key not in os.environ:
+                    os.environ[key] = value
             
         # Load all environment variables
         self.config = {

@@ -36,10 +36,26 @@ def validate_env(env_name):
     with open(env_file, 'r') as f:
         for line in f:
             line = line.strip()
-            if line and not line.startswith('#') and '=' in line:
-                key, value = line.split('=', 1)
-                env_vars[key] = value
-                os.environ[key] = value
+            if line.startswith('export '):
+                line = line[7:].strip()
+            if not line or line.startswith('#') or '=' not in line:
+                continue
+            
+            # Handle inline comments
+            if ' #' in line:
+                line = line.split(' #', 1)[0].strip()
+                
+            key, value = line.split('=', 1)
+            key = key.strip()
+            value = value.strip()
+            
+            # Prevent Errno 22 on invalid keys (empty, spaces, etc.)
+            import re
+            if not key or not re.match(r'^[a-zA-Z_][a-zA-Z0-9_]*$', key):
+                continue
+                
+            env_vars[key] = value
+            os.environ[key] = value
     
     errors = []
     

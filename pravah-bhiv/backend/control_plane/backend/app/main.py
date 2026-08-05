@@ -503,62 +503,65 @@ def _resolve_control_plane_root() -> Path:
 
 
 def _build_live_dashboard_payload() -> dict[str, Any]:
-    """Build full dashboard payload consumed by Pravah Dashboard."""
-    import time
-    import requests
+    """Build full real-time dashboard payload consumed by Pravah Dashboard."""
+    from control_plane.ml.ml_feature_extractor import MLFeatureExtractor
     import psutil
-
-    recent_count = len(_RECENT_DECISIONS)
-    success_rate_percent = int(SUCCESS_RATE * 100)
-    now_iso = datetime.now(timezone.utc).isoformat()
-    requests_count = max(recent_count, 1)
-    estimated_cost = requests_count * 0.0025
     
-    # Calculate aggregate metrics from ingested links
-    agg_metrics = _calculate_aggregate_metrics()
-    avg_latency_ms = agg_metrics["avg_response_time"]
-
-    control_plane_root = _resolve_control_plane_root()
-
-    web1_state = INGESTED_RUNTIME_STATE.get("web1", {})
-    web1_status = web1_state.get("status", "HEALTHY").upper()
-    web1_latency = web1_state.get("metrics", {}).get("latency", 0)
-
-    # Build monitored services list (Live Production Monitoring)
+    now_iso = datetime.now(timezone.utc).isoformat()
+    env = os.getenv("ENVIRONMENT", "prod").lower()
+    
+    # Extract ML Intelligence Features
+    try:
+        extractor = MLFeatureExtractor(env=env)
+        ml_intelligence = extractor.extract_features().model_dump()
+    except Exception:
+        ml_intelligence = {}
+        
+    # Get System Health
+    try:
+        system_cpu = int(psutil.cpu_percent())
+        system_memory = int(psutil.virtual_memory().percent)
+    except Exception:
+        system_cpu = 0
+        system_memory = 0
+        
+    system_health = {
+        "cpu_utilization_pct": system_cpu,
+        "memory_utilization_pct": system_memory,
+        "status": "HEALTHY" if system_cpu < 80 else "DEGRADED"
+    }
+    
+    # Build Monitored Services List
     monitored_list = []
     
-    # 1. Add ingested runtime state items (like web1)
+    # 1. Monitored Runtimes
     for service_id, state in INGESTED_RUNTIME_STATE.items():
         metrics = state.get("metrics", {})
         status = state.get("status", "UNKNOWN").upper()
         cpu = int(metrics.get("cpu", 0) * 100) if metrics.get("cpu", 0) <= 1.0 else int(metrics.get("cpu", 0))
         memory = int(metrics.get("memory", 0) * 100) if metrics.get("memory", 0) <= 1.0 else int(metrics.get("memory", 0))
-        error_rate = metrics.get("error_rate", 0.0)
         
         h_score = 100
         if status == "DEGRADED":
             h_score = 60
         elif status == "CRASHED" or status == "CRITICAL":
             h_score = 20
-        if cpu > 80:
-            h_score -= 10
-        h_score = max(30, h_score)
-
+            
         monitored_list.append({
             "name": service_id.upper(),
             "domain": f"{service_id}.local",
             "url": f"http://localhost/{service_id}",
             "status": "DEGRADED" if status == "DEGRADED" else ("CONNECTED" if status in ["RUNNING", "OK", "HEALTHY"] else "CRITICAL"),
             "health_score": h_score,
-            "response_time_ms": 300,
+            "response_time_ms": int(metrics.get("latency", 100)),
             "cpu_percent": cpu,
             "memory_percent": memory,
-            "uptime_percent": 99.9 if status in ["RUNNING", "OK", "HEALTHY"] else (94.2 if status == "DEGRADED" else 0.0),
-            "last_action": _RECENT_DECISIONS[0].selected_action if recent_count else "noop",
-            "errors_24h": int(error_rate * 24),
+            "uptime_percent": 99.9 if status in ["RUNNING", "OK", "HEALTHY"] else 0.0,
+            "last_action": _RECENT_DECISIONS[0].selected_action if len(_RECENT_DECISIONS) else "noop",
+            "errors_24h": int(metrics.get("error_rate", 0) * 24),
         })
 
-    # 2. Add user ingested links
+    # 2. Ingested Links
     for item in _INGESTED_LINKS:
         link = item["link"]
         clean_name = item["name"]
@@ -566,234 +569,27 @@ def _build_live_dashboard_payload() -> dict[str, Any]:
         if any(x["name"].lower() == clean_name.lower() for x in monitored_list):
             continue
             
-        link_status = "CONNECTED"
-        link_health = _calculate_health_score(link)
-        res_time = item["response_time_ms"]
-        
-        if link.startswith("http"):
-            try:
-                start_check = time.time()
-                resp = requests.get(link, timeout=1.0)
-                res_time = int((time.time() - start_check) * 1000)
-                if resp.status_code != 200:
-                    link_status = "DEGRADED"
-                    link_health = 60
-            except Exception:
-                link_status = "DISCONNECTED"
-                link_health = 0
-                res_time = 0
-
         monitored_list.append({
             "name": clean_name,
             "domain": link.replace("https://", "").replace("http://", "").split("/")[0],
             "url": link,
-            "status": link_status,
-            "health_score": link_health,
-            "response_time_ms": res_time,
-            "cpu_percent": 5 + (_get_link_hash(link) % 15),
-            "memory_percent": 10 + (_get_link_hash(link) % 25),
-            "uptime_percent": item["uptime_percent"] if link_status != "DISCONNECTED" else 0.0,
-            "last_action": _RECENT_DECISIONS[0].selected_action if recent_count else "noop",
-            "errors_24h": item["errors_24h"] if link_status != "DISCONNECTED" else 5,
+            "status": item.get("status", "CONNECTED"),
+            "health_score": 95,
+            "response_time_ms": item.get("response_time_ms", 150),
+            "cpu_percent": 15,
+            "memory_percent": 30,
+            "uptime_percent": item.get("uptime_percent", 99.9),
+            "last_action": _RECENT_DECISIONS[0].selected_action if len(_RECENT_DECISIONS) else "noop",
+            "errors_24h": item.get("errors_24h", 0),
         })
-
-    # 3. Default fallback if empty
-    if not monitored_list:
-        monitored_list = [
-            {
-                "name": "BlackHole Universe",
-                "domain": "blackhole.rlreality.ai",
-                "url": "https://blackhole.rlreality.ai",
-                "status": "CONNECTED",
-                "health_score": 95,
-                "response_time_ms": 320,
-                "cpu_percent": 18,
-                "memory_percent": 35,
-                "uptime_percent": 99.8,
-                "last_action": _RECENT_DECISIONS[0].selected_action if recent_count else "noop",
-                "errors_24h": 0,
-            },
-            {
-                "name": "Uni-Guru Platform",
-                "domain": "uni-guru.rlreality.ai",
-                "url": "https://uni-guru.rlreality.ai",
-                "status": "CONNECTED",
-                "health_score": 98,
-                "response_time_ms": 513,
-                "cpu_percent": 22,
-                "memory_percent": 43,
-                "uptime_percent": 99.9,
-                "last_action": _RECENT_DECISIONS[0].selected_action if recent_count else "noop",
-                "errors_24h": 1,
-            },
-        ]
-
-    system_health_val = 100
-    active_issues_val = 0
-    error_rate_val = 0
-    
-    if web1_status == "DEGRADED":
-        system_health_val = 75
-        active_issues_val = 1
-        error_rate_val = 2
-    elif web1_status == "CRITICAL":
-        system_health_val = 45
-        active_issues_val = 1
-        error_rate_val = 10
-
-    core_files = _collect_files(
-        control_plane_root,
-        [
-            "core/base_agent.py",
-            "core/decision_arbitrator.py",
-            "core/event_bus.py",
-            "core/env_validator.py",
-            "core/rl_engine.py",
-        ],
-    )
-    data_files = _collect_files(
-        control_plane_root,
-        [
-            "dataset/student_scores.csv",
-            "data/decision_history.json",
-            "data/runtime_metrics.json",
-            "feedback/production_feedback.json",
-            "logs/prod/orchestrator_decisions.jsonl",
-        ],
-    )
-    integration_files = _collect_files(
-        control_plane_root,
-        [
-            "integration/api_adapter.py",
-            "integration/unified_event_pipe.py",
-            "integration/realtime_sync.py",
-            "integration/monitoring_bridge.py",
-            "integration/event_schema.py",
-        ],
-    )
-    production_files = _collect_files(
-        control_plane_root,
-        [
-            "deploy.py",
-            "deploy_orchestrator.py",
-            "docker-compose.yml",
-            "render.yaml",
-            "scripts/production_healthcheck.py",
-        ],
-    )
-
-    # Calculate real Q-table metrics
-    q_table_size = 0
-    q_table_actions = set()
-    avg_q_value = 0.0
-    try:
-        env_lower = os.getenv("ENVIRONMENT", "dev").lower()
-        q_path = control_plane_root / "logs" / env_lower / "rl_q_table.json"
-        if q_path.exists():
-            with open(q_path, 'r') as f:
-                q_data = json.load(f)
-                q_table_size = len(q_data)
-                vals = []
-                for state, actions in q_data.items():
-                    for a, v in actions.items():
-                        q_table_actions.add(a)
-                        vals.append(v)
-                if vals:
-                    avg_q_value = sum(vals) / len(vals)
-    except Exception:
-        pass
-
-    real_error_rate = error_rate_val
-    if _INGESTED_LINKS:
-        real_error_rate = max(real_error_rate, sum(item["errors_24h"] for item in _INGESTED_LINKS))
-
+        
     return {
         "generated_at": now_iso,
-        "header": {
-            "title": "🚀 Pravah Dashboard",
-            "subtitle": "Real-time Production Monitoring",
-        },
-        "live_production_monitoring": monitored_list,
-        "summary_metrics": [
-            {"label": "Total Commits", "value": str(agg_metrics["total_commits"])},
-            {"label": "Contributors", "value": str(agg_metrics["total_contributors"])},
-            {"label": "Test Coverage", "value": f"{agg_metrics['avg_test_coverage']}%"},
-            {"label": "Monitored Links", "value": str(len(_INGESTED_LINKS))},
-        ],
-        "ai_learning_status": [
-            {"label": "Learning Status", "value": "Optimizing" if agg_metrics["total_decisions"] > 0 else "Idle", "tone": "green"},
-            {"label": "Code Quality Score", "value": f"{agg_metrics['avg_quality_score']}%", "tone": "blue"},
-            {"label": "Policy Updates", "value": str(agg_metrics["total_policies"]), "tone": "blue"},
-            {"label": "Q-Table States", "value": str(q_table_size), "tone": "blue"},
-            {"label": "Learned Actions", "value": str(len(q_table_actions)), "tone": "blue"},
-        ],
-        "system_health": [
-            {"label": "Overall Health", "value": f"{system_health_val}%", "tone": "green" if system_health_val > 80 else ("orange" if system_health_val > 50 else "red")},
-            {"label": "CPU Usage", "value": f"{agg_metrics['system_cpu']}%", "tone": "orange" if agg_metrics["system_cpu"] > 70 else "blue"},
-            {"label": "Memory Usage", "value": f"{agg_metrics['system_memory']}%", "tone": "orange" if agg_metrics["system_memory"] > 80 else "blue"},
-            {"label": "Active Issues", "value": str(active_issues_val), "tone": "red" if active_issues_val > 0 else "green"},
-            {"label": "Error Rate", "value": f"{error_rate_val}%", "tone": "red" if error_rate_val > 0 else "green"},
-        ],
-        "performance_metrics": [
-            {"label": "Response Time (ms)", "value": str(web1_latency if web1_latency > 0 else 120)},
-            {"label": "Throughput/sec", "value": str(max(1, agg_metrics["total_decisions"] // 3600)) if agg_metrics["total_decisions"] > 0 else "0"},
-            {"label": "Success Rate", "value": f"{success_rate_percent}%"},
-            {"label": "Requests/min", "value": str(max(1, requests_count))},
-            {"label": "Total Files Tracked", "value": str(agg_metrics["total_files"])},
-        ],
-        "project_files_status": [
-            {"title": "Core RL System", "icon": "🧠", **core_files},
-            {"title": "Data Files", "icon": "🗂️", **data_files},
-            {"title": "Integration Layer", "icon": "🔌", **integration_files},
-            {"title": "Production Layer", "icon": "🏭", **production_files},
-        ],
-        "enhanced_telemetry": {
-            "status": "HEALTHY" if web1_status == "HEALTHY" else ("DEGRADED" if web1_status == "DEGRADED" else "CRITICAL"),
-            "avg_latency": f"{web1_latency if web1_latency > 0 else 120}ms",
-            "cost": f"${estimated_cost:.4f}",
-            "success": f"{success_rate_percent - (error_rate_val * 5)}%",
-            "requests": str(requests_count + len(_INGESTED_LINKS)),
-        },
-        "policy_evolution": {
-            "title": "Q-Table Evolution",
-            "metrics": [
-                {"label": "Q-Table States", "value": str(q_table_size)},
-                {"label": "Avg Q-Value", "value": f"{avg_q_value:.4f}"},
-                {"label": "Learned Actions", "value": f"{len(q_table_actions)}"},
-                {"label": "Code Quality Impact", "value": f"+{agg_metrics['avg_quality_score'] - 70}%" if agg_metrics['avg_quality_score'] > 70 else f"{agg_metrics['avg_quality_score'] - 70}%"},
-            ],
-        },
-        "error_analytics": {
-            "recent_errors": [
-                {"code": "WEB1_LATENCY_SPIKE" if web1_status == "DEGRADED" else "WEB1_SERVICE_CRASHED", "severity": "MEDIUM" if web1_status == "DEGRADED" else "CRITICAL"}
-            ] if web1_status != "HEALTHY" else [{"code": "NO_ERRORS", "severity": "NONE"}],
-            "statistics": {
-                "total_errors": real_error_rate,
-                "avg_impact_score": 5.0 if real_error_rate == 0 else (7.5 + min(2.4, real_error_rate * 0.5)),
-                "critical_issues": 1 if web1_status == "CRITICAL" else 0,
-                "test_coverage_avg": agg_metrics["avg_test_coverage"],
-            },
-        },
-        "auto_failover_status": {
-            "active_domain": "UNI_GURU" if web1_status == "HEALTHY" else "BLACKHOLE",
-            "failure_threshold": 3,
-            "domains": [
-                {"name": item["name"], "status": item["status"]} 
-                for item in _INGESTED_LINKS[:5]
-            ] + [
-                {"name": "BLACKHOLE", "status": "CONNECTED" if web1_status == "HEALTHY" else "ACTIVE_FAILOVER"},
-                {"name": "UNI_GURU", "status": "HEALTHY" if web1_status == "HEALTHY" else "DEGRADED"},
-            ],
-        },
-        "live_events": [
-            {"title": f"Tracking {len(_INGESTED_LINKS)} projects", "time_ago": "now", "tone": "green"},
-            {"title": f"Code quality: {agg_metrics['avg_quality_score']}%", "time_ago": "1m ago", "tone": "blue"},
-            {"title": f"{agg_metrics['total_commits']} commits detected", "time_ago": "2m ago", "tone": "indigo"},
-            {"title": f"{agg_metrics['total_contributors']} contributors contributing", "time_ago": "3m ago", "tone": "purple"},
-            {"title": f"Test coverage: {agg_metrics['avg_test_coverage']}%", "time_ago": "5m ago", "tone": "orange"},
-            {"title": f"Active issues: {active_issues_val}", "time_ago": "8m ago", "tone": "red" if active_issues_val > 0 else "green"},
-            {"title": "RL model updated", "time_ago": "10m ago", "tone": "teal"},
-        ],
+        "environment": env,
+        "system_health": system_health,
+        "ml_intelligence": ml_intelligence,
+        "recent_decisions": list(_RECENT_DECISIONS),
+        "monitored_services": monitored_list,
     }
 
 
@@ -1459,6 +1255,14 @@ def get_evidence(evidence_ref: str):
     if evidence_ref not in _EVIDENCE_STORE:
         raise HTTPException(status_code=404, detail="Evidence not found")
     return _EVIDENCE_STORE[evidence_ref]
+
+
+@app.get("/api/ml/features/latest")
+def get_ml_features():
+    from control_plane.ml.ml_feature_extractor import MLFeatureExtractor
+    extractor = MLFeatureExtractor(env=os.getenv("ENVIRONMENT", "prod").lower())
+    features = extractor.extract_features()
+    return features.model_dump()
 
 
 if __name__ == "__main__":
