@@ -238,7 +238,15 @@ jobs:
 
             export PRAVAH_IMAGE_TAG="$IMAGE_TAG"
             export VM_IP="$VM_IP"
+            export COMPOSE_PROJECT_NAME=pravah
             echo "Deploying version: $PRAVAH_IMAGE_TAG"
+
+            echo "Removing any stale containers from earlier deploy paths..."
+            docker rm -f \
+              pravah-redis pravah-control-plane pravah-decision-brain pravah-observer \
+              pravah-deploy-worker-1 pravah-deploy-worker-2 pravah-deploy-worker-3 \
+              pravah-queue-monitor pravah-health-monitor pravah-prometheus \
+              2>/dev/null || true
 
             echo "Pulling images..."
             docker compose -f docker-compose.prod.yml pull
@@ -351,6 +359,14 @@ jobs:
 
             export PRAVAH_IMAGE_TAG="$PREVIOUS_TAG"
             export VM_IP="$VM_IP"
+            export COMPOSE_PROJECT_NAME=pravah
+
+            echo "Removing any stale containers from earlier deploy paths..."
+            docker rm -f \
+              pravah-redis pravah-control-plane pravah-decision-brain pravah-observer \
+              pravah-deploy-worker-1 pravah-deploy-worker-2 pravah-deploy-worker-3 \
+              pravah-queue-monitor pravah-health-monitor pravah-prometheus \
+              2>/dev/null || true
 
             echo "Pulling images..."
             docker compose -f docker-compose.prod.yml pull
