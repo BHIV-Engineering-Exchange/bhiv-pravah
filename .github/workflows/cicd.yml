@@ -133,6 +133,11 @@ jobs:
             sudo mkdir -p "$DEPLOY_DIR"
             sudo chown -R $USER:$USER "$DEPLOY_DIR"
 
+            # Clean up stray copies left over from earlier pipeline runs
+            # (before the SCP source/strip_components paths were fixed).
+            # Safe to remove — these are never the real deploy location.
+            rm -rf "$DEPLOY_DIR/backend" "$DEPLOY_DIR/pravah-bhiv"
+
             # Pre-create bind-mount targets owned by UID 1000 (the "pravah"
             # user the container runs as — see Dockerfile). Without this,
             # Docker auto-creates ./logs and ./data as root on first mount,
@@ -150,7 +155,7 @@ jobs:
           username: ${{ secrets.PROD_VM_USER }}
           password: ${{ secrets.PROD_VM_PASSWORD }}
           port: ${{ secrets.PROD_VM_PORT }}
-          source: "./pravah-bhiv/backend/docker-compose.prod.yml,./pravah-bhiv/backend/monitoring"
+          source: "pravah-bhiv/backend/docker-compose.prod.yml,pravah-bhiv/backend/monitoring"
           target: "/PRAVAH/"
           strip_components: 2
 
