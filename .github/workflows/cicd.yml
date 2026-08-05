@@ -189,6 +189,9 @@ jobs:
         env:
           IMAGE_TAG: ${{ needs.build.outputs.image_tag }}
           VM_IP: ${{ secrets.VM_IP }}
+          DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+          SSPL_SECRET_KEY: ${{ secrets.SSPL_SECRET_KEY }}
+          LINEAGE_SIGNING_KEY: ${{ secrets.LINEAGE_SIGNING_KEY }}
 
         with:
           host: ${{ secrets.PROD_VM_HOST }}
@@ -196,7 +199,7 @@ jobs:
           password: ${{ secrets.PROD_VM_PASSWORD }}
           port: ${{ secrets.PROD_VM_PORT }}
 
-          envs: IMAGE_TAG,VM_IP
+          envs: IMAGE_TAG,VM_IP,DOCKER_HUB_USERNAME,SSPL_SECRET_KEY,LINEAGE_SIGNING_KEY
 
           script: |
             set -euo pipefail
