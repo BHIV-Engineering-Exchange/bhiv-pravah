@@ -64,7 +64,7 @@ jobs:
           docker run -d --name test-control-plane --network pravah-test-net \
             -e REDIS_HOST=test-redis -e REDIS_PORT=6379 -e PORT=7000 \
             -e SSPL_SECRET_KEY=test -e LINEAGE_SIGNING_KEY=test \
-            -p 7001:7000 "$IMG" \
+            -p 7000:7000 "$IMG" \
             gunicorn wsgi:app --workers 1 --worker-class sync --bind 0.0.0.0:7000 --timeout 120
 
           echo "Starting decision-brain..."
@@ -78,7 +78,7 @@ jobs:
           docker run -d --name test-observer --network pravah-test-net \
             -e PRAVAH_CONTROL_PLANE=http://test-control-plane:7000 \
             -e PRAVAH_MAIN_API=http://test-decision-brain:8000 \
-            -p 8602:8600 "$IMG" \
+            -p 8600:8600 "$IMG" \
             uvicorn observer_server:app --host 0.0.0.0 --port 8600
 
           echo "Starting deploy worker..."
@@ -89,7 +89,7 @@ jobs:
             python -m control_plane.agents.multi_deploy_agent --env dev --workers 1
 
           echo "Waiting on control-plane health..."
-          timeout 90 bash -c 'until curl -fs http://localhost:7001/api/health; do sleep 5; done'
+          timeout 90 bash -c 'until curl -fs http://localhost:7000/api/health; do sleep 5; done'
 
           echo "Waiting on decision-brain health..."
           timeout 90 bash -c 'until curl -fs http://localhost:8010/health; do sleep 5; done'
@@ -98,7 +98,7 @@ jobs:
           timeout 90 bash -c 'until curl -fs http://localhost:8010/metrics | grep -q pravah_decision_brain_up; do sleep 5; done'
 
           echo "Waiting on observer health..."
-          timeout 90 bash -c 'until curl -fs http://localhost:8602/health; do sleep 5; done'
+          timeout 90 bash -c 'until curl -fs http://localhost:8600/health; do sleep 5; done'
 
           echo "Checking deploy worker is still alive..."
           sleep 12
@@ -142,7 +142,7 @@ jobs:
           port: ${{ secrets.PROD_VM_PORT }}
           script: |
             set -e
-            DEPLOY_DIR="/PRAVAH"
+            DEPLOY_DIR="/root/PRAVAH"
 
             sudo mkdir -p "$DEPLOY_DIR"
             sudo chown -R $USER:$USER "$DEPLOY_DIR"
@@ -170,7 +170,7 @@ jobs:
           password: ${{ secrets.PROD_VM_PASSWORD }}
           port: ${{ secrets.PROD_VM_PORT }}
           source: "pravah-bhiv/backend/docker-compose.prod.yml,pravah-bhiv/backend/monitoring"
-          target: "/PRAVAH/"
+          target: "/root/PRAVAH/"
           strip_components: 2
 
       - name: Verify copied files
@@ -181,7 +181,7 @@ jobs:
           password: ${{ secrets.PROD_VM_PASSWORD }}
           port: ${{ secrets.PROD_VM_PORT }}
           script: |
-            find /PRAVAH -maxdepth 2 -type f
+            find /root/PRAVAH -maxdepth 2 -type f
 
       - name: Create environment files
         uses: appleboy/ssh-action@v1.2.0
@@ -192,7 +192,7 @@ jobs:
           port: ${{ secrets.PROD_VM_PORT }}
           script: |
             set -euo pipefail
-            cd /PRAVAH
+            cd /root/PRAVAH
 
             mkdir -p environments
 
@@ -231,7 +231,7 @@ jobs:
           script: |
             set -euo pipefail
 
-            DEPLOY_DIR="/PRAVAH"
+            DEPLOY_DIR="/root/PRAVAH"
 
             cd "$DEPLOY_DIR"
             echo "Current directory:"
@@ -239,47 +239,43 @@ jobs:
             echo "Files:"
             ls -lah
 
-<<<<<<< HEAD
-            # All variable substitution for docker-compose.prod.yml comes
-            # through here. --env-file uses Compose's own lenient KEY=VALUE
-            # parser (never executes the file), so a stray space or comment
-            # style Docker accepts can't take down the whole script the way
-            # `source environments/prod.env` could.
-            COMPOSE="docker compose -f docker-compose.prod.yml --env-file environments/prod.env"
-
             # Dump container state/logs on ANY failure below (including a
             # health-check loop hitting its timeout with exit 124), not just
             # when `docker compose up` itself fails.
             dump_diagnostics() {
               echo "----- Failure detected. Dumping diagnostics -----"
               echo "===== container status ====="
-              $COMPOSE ps -a || true
+              docker compose -f docker-compose.prod.yml ps -a || true
               echo "===== control-plane logs ====="
-              $COMPOSE logs --tail=200 control-plane || true
+              docker compose -f docker-compose.prod.yml logs --tail=200 control-plane || true
               echo "===== decision-brain logs ====="
-              $COMPOSE logs --tail=200 decision-brain || true
+              docker compose -f docker-compose.prod.yml logs --tail=200 decision-brain || true
               echo "===== observer logs ====="
-              $COMPOSE logs --tail=200 observer || true
+              docker compose -f docker-compose.prod.yml logs --tail=200 observer || true
             }
             trap dump_diagnostics ERR
 
-=======
->>>>>>> parent of b56c440 (pipeline added)
             if [ ! -f docker-compose.prod.yml ]; then
                echo "docker-compose.prod.yml not found."
                exit 1
             fi
             echo "Compose file found."
 
-            if [ ! -f environments/prod.env ]; then
-              echo "environments/prod.env not found."
-              exit 1
-            fi
-
             echo "Logging into Docker Hub..."
             echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login \
               --username "${{ secrets.DOCKER_HUB_USERNAME }}" \
               --password-stdin
+
+            # Load the rest of the app's config (DB/API URLs, gunicorn worker
+            # counts, feature flags, etc.) so docker compose can actually
+            # substitute ${VAR} references in docker-compose.prod.yml.
+            # Previously this file was written to disk but never sourced, so
+            # every variable except the couple exported below silently fell
+            # back to its ${VAR:-default}, which is a common reason the app
+            # comes up misconfigured and never passes its health check.
+            set -a
+            source environments/prod.env
+            set +a
 
             export PRAVAH_IMAGE_TAG="$IMAGE_TAG"
             export VM_IP="$VM_IP"
@@ -287,7 +283,7 @@ jobs:
             echo "Deploying version: $PRAVAH_IMAGE_TAG"
 
             echo "Validating production Compose service selection..."
-            test "$($COMPOSE --profile prod config --services | wc -l)" -gt 0
+            test "$(docker compose -f docker-compose.prod.yml --profile prod config --services | wc -l)" -gt 0
 
             echo "Removing any stale containers from earlier deploy paths..."
             docker rm -f \
@@ -297,41 +293,27 @@ jobs:
               2>/dev/null || true
 
             echo "Pulling images..."
-            $COMPOSE --profile prod pull
+            docker compose -f docker-compose.prod.yml --profile prod pull
 
             echo "Starting services..."
-<<<<<<< HEAD
-            if ! $COMPOSE --profile prod up -d --remove-orphans; then
-              echo "docker compose up failed."
-              dump_diagnostics
-=======
             if ! docker compose \
               -f docker-compose.prod.yml \
               --profile prod \
               up -d \
               --remove-orphans; then
-              echo "----- docker compose up failed. Dumping container logs for diagnosis -----"
-              echo "===== control-plane logs ====="
-              docker compose -f docker-compose.prod.yml logs --tail=200 control-plane || true
-              echo "===== decision-brain logs ====="
-              docker compose -f docker-compose.prod.yml logs --tail=200 decision-brain || true
-              echo "===== observer logs ====="
-              docker compose -f docker-compose.prod.yml logs --tail=200 observer || true
-              echo "===== container status ====="
-              docker compose -f docker-compose.prod.yml ps -a || true
->>>>>>> parent of b56c440 (pipeline added)
+              echo "docker compose up failed."
+              dump_diagnostics
               exit 1
             fi
 
             echo "Waiting for Redis..."
-            timeout 300 bash -c "
-            until $COMPOSE exec -T redis redis-cli ping
+            timeout 300 bash -c '
+            until docker compose -f docker-compose.prod.yml exec -T redis redis-cli ping
             do
               sleep 5
             done
-            "
+            '
 
-<<<<<<< HEAD
             # NOTE: these run on the VM itself (we're already SSH'd in), so
             # they check localhost, not $VM_IP. Curling the box's own public
             # IP from itself relies on router/NAT "hairpin" support that most
@@ -342,11 +324,9 @@ jobs:
             # confirms it responds on localhost inside the container).
             # $VM_IP is still exported for the app's own env vars (the
             # PRAVAH_*_API URLs), just not used for these local checks.
-=======
->>>>>>> parent of b56c440 (pipeline added)
             echo "Checking control plane..."
             timeout 300 bash -c "
-            until curl -fs http://\$VM_IP:7001/api/health
+            until curl -fs http://localhost:7000/api/health
             do
               sleep 5
             done
@@ -354,7 +334,7 @@ jobs:
 
             echo "Checking decision brain..."
             timeout 300 bash -c "
-            until curl -fs http://\$VM_IP:8010/health
+            until curl -fs http://localhost:8010/health
             do
               sleep 5
             done
@@ -362,7 +342,7 @@ jobs:
 
             echo "Checking observer..."
             timeout 300 bash -c "
-            until curl -fs http://\$VM_IP:8602/health
+            until curl -fs http://localhost:8600/health
             do
               sleep 5
             done
@@ -376,7 +356,7 @@ jobs:
 
             echo "$IMAGE_TAG" > current_version
 
-            $COMPOSE ps
+            docker compose -f docker-compose.prod.yml ps
 
             echo "Deployment completed successfully."
 
@@ -409,27 +389,22 @@ jobs:
           script: |
             set -euo pipefail
 
-            DEPLOY_DIR="/PRAVAH"
+            DEPLOY_DIR="/root/PRAVAH"
             cd "$DEPLOY_DIR"
-
-<<<<<<< HEAD
-            COMPOSE="docker compose -f docker-compose.prod.yml --env-file environments/prod.env"
 
             dump_diagnostics() {
               echo "----- Failure detected. Dumping diagnostics -----"
               echo "===== container status ====="
-              $COMPOSE ps -a || true
+              docker compose -f docker-compose.prod.yml ps -a || true
               echo "===== control-plane logs ====="
-              $COMPOSE logs --tail=200 control-plane || true
+              docker compose -f docker-compose.prod.yml logs --tail=200 control-plane || true
               echo "===== decision-brain logs ====="
-              $COMPOSE logs --tail=200 decision-brain || true
+              docker compose -f docker-compose.prod.yml logs --tail=200 decision-brain || true
               echo "===== observer logs ====="
-              $COMPOSE logs --tail=200 observer || true
+              docker compose -f docker-compose.prod.yml logs --tail=200 observer || true
             }
             trap dump_diagnostics ERR
 
-=======
->>>>>>> parent of b56c440 (pipeline added)
             if [ ! -f previous_version ]; then
               echo "No previous version found."
               exit 1
@@ -442,12 +417,16 @@ jobs:
               --username "${{ secrets.DOCKER_HUB_USERNAME }}" \
               --password-stdin
 
+            set -a
+            source environments/prod.env
+            set +a
+
             export PRAVAH_IMAGE_TAG="$PREVIOUS_TAG"
             export VM_IP="$VM_IP"
             export COMPOSE_PROJECT_NAME=pravah
 
             echo "Validating production Compose service selection..."
-            test "$($COMPOSE --profile prod config --services | wc -l)" -gt 0
+            test "$(docker compose -f docker-compose.prod.yml --profile prod config --services | wc -l)" -gt 0
 
             echo "Removing any stale containers from earlier deploy paths..."
             docker rm -f \
@@ -457,43 +436,30 @@ jobs:
               2>/dev/null || true
 
             echo "Pulling images..."
-            $COMPOSE --profile prod pull
+            docker compose -f docker-compose.prod.yml --profile prod pull
 
             echo "Starting services..."
-<<<<<<< HEAD
-            if ! $COMPOSE --profile prod up -d --remove-orphans; then
-              echo "docker compose up failed."
-              dump_diagnostics
-=======
             if ! docker compose \
               -f docker-compose.prod.yml \
               --profile prod \
               up -d \
               --remove-orphans; then
-              echo "----- docker compose up failed. Dumping container logs for diagnosis -----"
-              echo "===== control-plane logs ====="
-              docker compose -f docker-compose.prod.yml logs --tail=200 control-plane || true
-              echo "===== decision-brain logs ====="
-              docker compose -f docker-compose.prod.yml logs --tail=200 decision-brain || true
-              echo "===== observer logs ====="
-              docker compose -f docker-compose.prod.yml logs --tail=200 observer || true
-              echo "===== container status ====="
-              docker compose -f docker-compose.prod.yml ps -a || true
->>>>>>> parent of b56c440 (pipeline added)
+              echo "docker compose up failed."
+              dump_diagnostics
               exit 1
             fi
 
             echo "Waiting for Redis..."
-            timeout 300 bash -c "
-            until $COMPOSE exec -T redis redis-cli ping
+            timeout 300 bash -c '
+            until docker compose -f docker-compose.prod.yml exec -T redis redis-cli ping
             do
               sleep 5
             done
-            "
+            '
 
             echo "Checking Control Plane..."
             timeout 300 bash -c "
-            until curl -fs http://\$VM_IP:7001/api/health
+            until curl -fs http://localhost:7000/api/health
             do
               sleep 5
             done
@@ -501,7 +467,7 @@ jobs:
 
             echo "Checking Decision Brain..."
             timeout 300 bash -c "
-            until curl -fs http://\$VM_IP:8010/health
+            until curl -fs http://localhost:8010/health
             do
               sleep 5
             done
@@ -509,7 +475,7 @@ jobs:
 
             echo "Checking Observer..."
             timeout 300 bash -c "
-            until curl -fs http://\$VM_IP:8602/health
+            until curl -fs http://localhost:8600/health
             do
               sleep 5
             done
@@ -517,6 +483,6 @@ jobs:
 
             echo "$PREVIOUS_TAG" > current_version
 
-            $COMPOSE ps
+            docker compose -f docker-compose.prod.yml ps
 
             echo "Rollback completed successfully."
