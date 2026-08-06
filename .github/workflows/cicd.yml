@@ -239,19 +239,26 @@ jobs:
             echo "Files:"
             ls -lah
 
+            # All variable substitution for docker-compose.prod.yml comes
+            # through here. --env-file uses Compose's own lenient KEY=VALUE
+            # parser (never executes the file), so a stray space or comment
+            # style Docker accepts can't take down the whole script the way
+            # `source environments/prod.env` could.
+            COMPOSE="docker compose -f docker-compose.prod.yml --env-file environments/prod.env"
+
             # Dump container state/logs on ANY failure below (including a
             # health-check loop hitting its timeout with exit 124), not just
             # when `docker compose up` itself fails.
             dump_diagnostics() {
               echo "----- Failure detected. Dumping diagnostics -----"
               echo "===== container status ====="
-              docker compose -f docker-compose.prod.yml ps -a || true
+              $COMPOSE ps -a || true
               echo "===== control-plane logs ====="
-              docker compose -f docker-compose.prod.yml logs --tail=200 control-plane || true
+              $COMPOSE logs --tail=200 control-plane || true
               echo "===== decision-brain logs ====="
-              docker compose -f docker-compose.prod.yml logs --tail=200 decision-brain || true
+              $COMPOSE logs --tail=200 decision-brain || true
               echo "===== observer logs ====="
-              docker compose -f docker-compose.prod.yml logs --tail=200 observer || true
+              $COMPOSE logs --tail=200 observer || true
             }
             trap dump_diagnostics ERR
 
@@ -261,21 +268,15 @@ jobs:
             fi
             echo "Compose file found."
 
+            if [ ! -f environments/prod.env ]; then
+              echo "environments/prod.env not found."
+              exit 1
+            fi
+
             echo "Logging into Docker Hub..."
             echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login \
               --username "${{ secrets.DOCKER_HUB_USERNAME }}" \
               --password-stdin
-
-            # Load the rest of the app's config (DB/API URLs, gunicorn worker
-            # counts, feature flags, etc.) so docker compose can actually
-            # substitute ${VAR} references in docker-compose.prod.yml.
-            # Previously this file was written to disk but never sourced, so
-            # every variable except the couple exported below silently fell
-            # back to its ${VAR:-default}, which is a common reason the app
-            # comes up misconfigured and never passes its health check.
-            set -a
-            source environments/prod.env
-            set +a
 
             export PRAVAH_IMAGE_TAG="$IMAGE_TAG"
             export VM_IP="$VM_IP"
@@ -283,7 +284,7 @@ jobs:
             echo "Deploying version: $PRAVAH_IMAGE_TAG"
 
             echo "Validating production Compose service selection..."
-            test "$(docker compose -f docker-compose.prod.yml --profile prod config --services | wc -l)" -gt 0
+            test "$($COMPOSE --profile prod config --services | wc -l)" -gt 0
 
             echo "Removing any stale containers from earlier deploy paths..."
             docker rm -f \
@@ -293,26 +294,22 @@ jobs:
               2>/dev/null || true
 
             echo "Pulling images..."
-            docker compose -f docker-compose.prod.yml --profile prod pull
+            $COMPOSE --profile prod pull
 
             echo "Starting services..."
-            if ! docker compose \
-              -f docker-compose.prod.yml \
-              --profile prod \
-              up -d \
-              --remove-orphans; then
+            if ! $COMPOSE --profile prod up -d --remove-orphans; then
               echo "docker compose up failed."
               dump_diagnostics
               exit 1
             fi
 
             echo "Waiting for Redis..."
-            timeout 300 bash -c '
-            until docker compose -f docker-compose.prod.yml exec -T redis redis-cli ping
+            timeout 300 bash -c "
+            until $COMPOSE exec -T redis redis-cli ping
             do
               sleep 5
             done
-            '
+            "
 
             # NOTE: these run on the VM itself (we're already SSH'd in), so
             # they check localhost, not $VM_IP. Curling the box's own public
@@ -324,7 +321,6 @@ jobs:
             # confirms it responds on localhost inside the container).
             # $VM_IP is still exported for the app's own env vars (the
             # PRAVAH_*_API URLs), just not used for these local checks.
-            
             echo "Checking control plane..."
             timeout 300 bash -c "
             until curl -fs http://localhost:7000/api/health
@@ -357,7 +353,7 @@ jobs:
 
             echo "$IMAGE_TAG" > current_version
 
-            docker compose -f docker-compose.prod.yml ps
+            $COMPOSE ps
 
             echo "Deployment completed successfully."
 
@@ -393,16 +389,18 @@ jobs:
             DEPLOY_DIR="/root/PRAVAH"
             cd "$DEPLOY_DIR"
 
+            COMPOSE="docker compose -f docker-compose.prod.yml --env-file environments/prod.env"
+
             dump_diagnostics() {
               echo "----- Failure detected. Dumping diagnostics -----"
               echo "===== container status ====="
-              docker compose -f docker-compose.prod.yml ps -a || true
+              $COMPOSE ps -a || true
               echo "===== control-plane logs ====="
-              docker compose -f docker-compose.prod.yml logs --tail=200 control-plane || true
+              $COMPOSE logs --tail=200 control-plane || true
               echo "===== decision-brain logs ====="
-              docker compose -f docker-compose.prod.yml logs --tail=200 decision-brain || true
+              $COMPOSE logs --tail=200 decision-brain || true
               echo "===== observer logs ====="
-              docker compose -f docker-compose.prod.yml logs --tail=200 observer || true
+              $COMPOSE logs --tail=200 observer || true
             }
             trap dump_diagnostics ERR
 
@@ -418,16 +416,12 @@ jobs:
               --username "${{ secrets.DOCKER_HUB_USERNAME }}" \
               --password-stdin
 
-            set -a
-            source environments/prod.env
-            set +a
-
             export PRAVAH_IMAGE_TAG="$PREVIOUS_TAG"
             export VM_IP="$VM_IP"
             export COMPOSE_PROJECT_NAME=pravah
 
             echo "Validating production Compose service selection..."
-            test "$(docker compose -f docker-compose.prod.yml --profile prod config --services | wc -l)" -gt 0
+            test "$($COMPOSE --profile prod config --services | wc -l)" -gt 0
 
             echo "Removing any stale containers from earlier deploy paths..."
             docker rm -f \
@@ -437,26 +431,22 @@ jobs:
               2>/dev/null || true
 
             echo "Pulling images..."
-            docker compose -f docker-compose.prod.yml --profile prod pull
+            $COMPOSE --profile prod pull
 
             echo "Starting services..."
-            if ! docker compose \
-              -f docker-compose.prod.yml \
-              --profile prod \
-              up -d \
-              --remove-orphans; then
+            if ! $COMPOSE --profile prod up -d --remove-orphans; then
               echo "docker compose up failed."
               dump_diagnostics
               exit 1
             fi
 
             echo "Waiting for Redis..."
-            timeout 300 bash -c '
-            until docker compose -f docker-compose.prod.yml exec -T redis redis-cli ping
+            timeout 300 bash -c "
+            until $COMPOSE exec -T redis redis-cli ping
             do
               sleep 5
             done
-            '
+            "
 
             echo "Checking Control Plane..."
             timeout 300 bash -c "
@@ -484,6 +474,6 @@ jobs:
 
             echo "$PREVIOUS_TAG" > current_version
 
-            docker compose -f docker-compose.prod.yml ps
+            $COMPOSE ps
 
             echo "Rollback completed successfully."

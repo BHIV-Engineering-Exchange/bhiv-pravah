@@ -1,5 +1,3 @@
-version: '3.8'
-
 # ============================================================
 # Pravah Development Docker Compose
 # Target: Local Development & CI/CD Testing
@@ -58,7 +56,7 @@ services:
     container_name: pravah-control-plane
     profiles: [dev, prod]
     ports:
-      - "${CONTROL_PLANE_PORT:-7001}:7000"
+      - "${CONTROL_PLANE_PORT:-7000}:7000"
     environment:
       - ENVIRONMENT=${ENVIRONMENT:-dev}
       - LOG_LEVEL=${LOG_LEVEL:-INFO}
@@ -186,7 +184,7 @@ services:
     container_name: pravah-observer
     profiles: [dev, prod]
     ports:
-      - "${OBSERVER_PORT:-8602}:8600"
+      - "${OBSERVER_PORT:-8600}:8600"
     environment:
       - ENVIRONMENT=${ENVIRONMENT:-dev}
       - LOG_LEVEL=${LOG_LEVEL:-INFO}
