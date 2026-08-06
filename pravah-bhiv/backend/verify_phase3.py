@@ -28,18 +28,18 @@ if exec_id:
     # Verify ordering
     try:
         log.verify_execution_ordering(exec_id)
-        print('   ✓ Monotonic sequence verification: PASSED')
+        print('   [PASS] Monotonic sequence verification: PASSED')
     except Exception as e:
-        print(f'   ✗ Ordering verification failed: {e}')
+        print(f'   [FAIL] Ordering verification failed: {e}')
     print()
     
     # Verify hash chain
     try:
         log.verify_hash_continuity(exec_id)
         print('3. HASH CHAIN INTEGRITY')
-        print('   ✓ Hash chain verification: PASSED')
+        print('   [PASS] Hash chain verification: PASSED')
     except Exception as e:
-        print(f'   ✗ Hash chain verification failed: {e}')
+        print(f'   [FAIL] Hash chain verification failed: {e}')
     print()
     
     # Convert to dict for lineage verifier
@@ -65,7 +65,7 @@ if exec_id:
     print(f'   Status: {result.status.value}')
     print(f'   Events verified: {result.events_verified}')
     print(f'   Is valid: {result.is_valid}')
-    print(f'   ✓ LINEAGE VERIFICATION: PASSED' if result.is_valid else f'   ✗ Error: {result.error_detail}')
+    print(f'   [PASS] LINEAGE VERIFICATION: PASSED' if result.is_valid else f'   [FAIL] Error: {result.error_detail}')
     print()
     
     # Compute deterministic state hash
@@ -73,7 +73,7 @@ if exec_id:
     print('5. DETERMINISTIC STATE HASH')
     print(f'   State hash: {state_hash[:40]}...')
     print(f'   Hash basis: {len(events)} events in sequence order')
-    print(f'   ✓ State deterministically computed from event chain')
+    print(f'   [PASS] State deterministically computed from event chain')
     print()
 
 print('=' * 80)
@@ -91,10 +91,10 @@ print()
 print('=' * 80)
 print('PHASE 3 SUMMARY')
 print('=' * 80)
-print('✓ Append-only immutable journal: ACTIVE')
-print('✓ Monotonic sequence ordering: ENFORCED')
-print('✓ Hash chain blockchain linkage: VERIFIED')
-print('✓ Deterministic replay guarantee: PROVEN')
-print('✓ Tampering detection: ENABLED')
+print('[PASS] Append-only immutable journal: ACTIVE')
+print('[PASS] Monotonic sequence ordering: ENFORCED')
+print('[PASS] Hash chain blockchain linkage: VERIFIED')
+print('[PASS] Deterministic replay guarantee: PROVEN')
+print('[PASS] Tampering detection: ENABLED')
 print()
 print('Constitutional Execution Authority: COMPLETE')

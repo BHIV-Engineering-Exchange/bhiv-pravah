@@ -575,26 +575,40 @@ class ActionGovernance:
         
         # Phase 3: Append to deterministic persistence journal
         import uuid
+        from control_plane.persistence.hash_lineage_verifier import HashLineageVerifier
+        
         execution_id = context.get('execution_id', str(uuid.uuid4()))
-        event_hash = hashlib.sha256(
-            f"{action}:{timestamp}:{str(context)}".encode()
-        ).hexdigest()
+        event_id = str(uuid.uuid4())
+        
+        details = {
+            'action': action,
+            'context_keys': list(context.keys()),
+            'app_name': context.get('app_name'),
+            'env': context.get('env')
+        }
+        
+        # Build canonical payload to compute event_hash
+        event_payload = {
+            'execution_id': execution_id,
+            'event_id': event_id,
+            'state': "ACTION_RECORDED",
+            'timestamp': int(timestamp),
+            'source': "action_governance",
+            'details': details
+        }
+        
+        event_hash = HashLineageVerifier._compute_event_hash(event_payload)
         
         try:
             self._append_only_log.append(
                 execution_id=execution_id,
-                event_id=str(uuid.uuid4()),
-                state="ACTION_RECORDED",
-                timestamp=int(timestamp),
+                event_id=event_id,
+                state=event_payload['state'],
+                timestamp=event_payload['timestamp'],
                 event_hash=event_hash,
                 previous_hash=self._append_only_log._execution_last_hashes.get(execution_id, ""),
-                source="action_governance",
-                details={
-                    'action': action,
-                    'context_keys': list(context.keys()),
-                    'app_name': context.get('app_name'),
-                    'env': context.get('env')
-                }
+                source=event_payload['source'],
+                details=details
             )
         except Exception:
             # Persistence errors should not block governance

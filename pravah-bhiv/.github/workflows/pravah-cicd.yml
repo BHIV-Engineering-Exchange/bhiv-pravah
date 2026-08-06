@@ -1,0 +1,488 @@
+name: Pravah CI/CD
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+
+  # ================================================================
+  # BUILD + TEST + PUSH
+  # Builds the single shared "pravah" image from ./pravah-bhiv/backend/Dockerfile,
+  # smoke-tests it locally (redis + control-plane + decision-brain +
+  # observer wired together, same as prod), then pushes to Docker Hub.
+  # ================================================================
+  build:
+    runs-on: ubuntu-latest
+
+    outputs:
+      image_tag: ${{ steps.vars.outputs.image_tag }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set image tag
+        id: vars
+        run: echo "image_tag=${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Build image (load locally, do not push yet)
+        uses: docker/build-push-action@v6
+        with:
+          context: ./pravah-bhiv/backend
+          file: ./pravah-bhiv/backend/Dockerfile
+          push: false
+          load: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/pravah:${{ steps.vars.outputs.image_tag }}
+            ${{ secrets.DOCKER_HUB_USERNAME }}/pravah:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Smoke test the built image
+        env:
+          IMG: ${{ secrets.DOCKER_HUB_USERNAME }}/pravah:${{ steps.vars.outputs.image_tag }}
+        run: |
+          set -euo pipefail
+
+          docker network create pravah-test-net
+
+          echo "Starting redis..."
+          docker run -d --name test-redis --network pravah-test-net redis:7-alpine
+          timeout 60 bash -c 'until docker exec test-redis redis-cli ping; do sleep 3; done'
+
+          echo "Starting control-plane..."
+          docker run -d --name test-control-plane --network pravah-test-net \
+            -e REDIS_HOST=test-redis -e REDIS_PORT=6379 -e PORT=7000 \
+            -e SSPL_SECRET_KEY=test -e LINEAGE_SIGNING_KEY=test \
+            -p 7001:7000 "$IMG" \
+            gunicorn wsgi:app --workers 1 --worker-class sync --bind 0.0.0.0:7000 --timeout 120
+
+          echo "Starting decision-brain..."
+          docker run -d --name test-decision-brain --network pravah-test-net \
+            -e REDIS_HOST=test-redis -e REDIS_PORT=6379 -e PORT=8000 \
+            -e SSPL_SECRET_KEY=test -e LINEAGE_SIGNING_KEY=test \
+            -p 8010:8000 "$IMG" \
+            uvicorn control_plane.backend.app.main:app --host 0.0.0.0 --port 8000 --workers 1
+
+          echo "Starting observer..."
+          docker run -d --name test-observer --network pravah-test-net \
+            -e PRAVAH_CONTROL_PLANE=http://test-control-plane:7000 \
+            -e PRAVAH_MAIN_API=http://test-decision-brain:8000 \
+            -p 8602:8600 "$IMG" \
+            uvicorn observer_server:app --host 0.0.0.0 --port 8600
+
+          echo "Starting deploy worker..."
+          docker run -d --name test-deploy-worker --network pravah-test-net \
+            -e REDIS_HOST=test-redis -e REDIS_PORT=6379 \
+            -e PYTHONUNBUFFERED=1 -e PYTHONPATH=/app -e ENVIRONMENT=dev \
+            "$IMG" \
+            python -m control_plane.agents.multi_deploy_agent --env dev --workers 1
+
+          echo "Waiting on control-plane health..."
+          timeout 90 bash -c 'until curl -fs http://localhost:7000/api/health; do sleep 5; done'
+
+          echo "Waiting on decision-brain health..."
+          timeout 90 bash -c 'until curl -fs http://localhost:8010/health; do sleep 5; done'
+
+          echo "Checking decision-brain metrics..."
+          timeout 90 bash -c 'until curl -fs http://localhost:8010/metrics | grep -q pravah_decision_brain_up; do sleep 5; done'
+
+          echo "Waiting on observer health..."
+          timeout 90 bash -c 'until curl -fs http://localhost:8602/health; do sleep 5; done'
+
+          echo "Checking deploy worker is still alive..."
+          sleep 12
+          docker inspect -f '{{.State.Running}}' test-deploy-worker | grep -q true
+
+          echo "All smoke checks passed."
+
+      - name: Tear down test containers
+        if: always()
+        run: |
+          docker rm -f test-control-plane test-decision-brain test-observer test-deploy-worker test-redis 2>/dev/null || true
+          docker network rm pravah-test-net 2>/dev/null || true
+
+      - name: Push image to Docker Hub
+        run: |
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/pravah:${{ steps.vars.outputs.image_tag }}
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/pravah:latest
+
+  # ================================================================
+  # DEPLOY
+  # Copies only docker-compose.prod.yml + env files to the VM,
+  # then pulls the freshly pushed tag and brings the stack up.
+  # ================================================================
+  deploy:
+    needs: build
+
+    if: github.ref == 'refs/heads/main'
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Create deployment directory
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.PROD_VM_HOST }}
+          username: ${{ secrets.PROD_VM_USER }}
+          password: ${{ secrets.PROD_VM_PASSWORD }}
+          port: ${{ secrets.PROD_VM_PORT }}
+          script: |
+            set -e
+            DEPLOY_DIR="/root/PRAVAH"
+
+            sudo mkdir -p "$DEPLOY_DIR"
+            sudo chown -R $USER:$USER "$DEPLOY_DIR"
+
+            # Clean up stray copies left over from earlier pipeline runs
+            # (before the SCP source/strip_components paths were fixed).
+            # Safe to remove — these are never the real deploy location.
+            rm -rf "$DEPLOY_DIR/backend" "$DEPLOY_DIR/pravah-bhiv"
+
+            # Pre-create bind-mount targets owned by UID 1000 (the "pravah"
+            # user the container runs as — see Dockerfile). Without this,
+            # Docker auto-creates ./logs and ./data as root on first mount,
+            # and gunicorn (running as UID 1000 inside the container) can't
+            # write to them, which fails the healthcheck immediately.
+            mkdir -p "$DEPLOY_DIR/logs" "$DEPLOY_DIR/data"
+            sudo chown -R 1000:1000 "$DEPLOY_DIR/logs" "$DEPLOY_DIR/data"
+
+            echo "Deployment directory is ready."
+
+      - name: Copy docker-compose file and backend code
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.PROD_VM_HOST }}
+          username: ${{ secrets.PROD_VM_USER }}
+          password: ${{ secrets.PROD_VM_PASSWORD }}
+          port: ${{ secrets.PROD_VM_PORT }}
+          source: "pravah-bhiv/backend/docker-compose.prod.yml,pravah-bhiv/backend/monitoring"
+          target: "/root/PRAVAH/"
+          strip_components: 2
+
+      - name: Verify copied files
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.PROD_VM_HOST }}
+          username: ${{ secrets.PROD_VM_USER }}
+          password: ${{ secrets.PROD_VM_PASSWORD }}
+          port: ${{ secrets.PROD_VM_PORT }}
+          script: |
+            find /root/PRAVAH -maxdepth 2 -type f
+
+      - name: Create environment files
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.PROD_VM_HOST }}
+          username: ${{ secrets.PROD_VM_USER }}
+          password: ${{ secrets.PROD_VM_PASSWORD }}
+          port: ${{ secrets.PROD_VM_PORT }}
+          script: |
+            set -euo pipefail
+            cd /root/PRAVAH
+
+            mkdir -p environments
+
+            cat > environments/dev.env << 'ENVEOF'
+            ${{ secrets.DEV_ENV }}
+            ENVEOF
+
+            cat > environments/prod.env << 'ENVEOF'
+            ${{ secrets.PROD_ENV }}
+            ENVEOF
+
+            cat > environments/stage.env << 'ENVEOF'
+            ${{ secrets.STAGE_ENV }}
+            ENVEOF
+
+            chmod 600 environments/*.env
+
+      - name: Deploy to production
+        uses: appleboy/ssh-action@v1.2.0
+
+        env:
+          IMAGE_TAG: ${{ needs.build.outputs.image_tag }}
+          VM_IP: ${{ secrets.VM_IP }}
+          DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+          SSPL_SECRET_KEY: ${{ secrets.SSPL_SECRET_KEY }}
+          LINEAGE_SIGNING_KEY: ${{ secrets.LINEAGE_SIGNING_KEY }}
+
+        with:
+          host: ${{ secrets.PROD_VM_HOST }}
+          username: ${{ secrets.PROD_VM_USER }}
+          password: ${{ secrets.PROD_VM_PASSWORD }}
+          port: ${{ secrets.PROD_VM_PORT }}
+
+          envs: IMAGE_TAG,VM_IP,DOCKER_HUB_USERNAME,SSPL_SECRET_KEY,LINEAGE_SIGNING_KEY
+
+          script: |
+            set -euo pipefail
+
+            DEPLOY_DIR="/root/PRAVAH"
+
+            cd "$DEPLOY_DIR"
+            echo "Current directory:"
+            pwd
+            echo "Files:"
+            ls -lah
+
+            # Dump container state/logs on ANY failure below (including a
+            # health-check loop hitting its timeout with exit 124), not just
+            # when `docker compose up` itself fails.
+            dump_diagnostics() {
+              echo "----- Failure detected. Dumping diagnostics -----"
+              echo "===== container status ====="
+              docker compose -f docker-compose.prod.yml ps -a || true
+              echo "===== control-plane logs ====="
+              docker compose -f docker-compose.prod.yml logs --tail=200 control-plane || true
+              echo "===== decision-brain logs ====="
+              docker compose -f docker-compose.prod.yml logs --tail=200 decision-brain || true
+              echo "===== observer logs ====="
+              docker compose -f docker-compose.prod.yml logs --tail=200 observer || true
+            }
+            trap dump_diagnostics ERR
+
+            if [ ! -f docker-compose.prod.yml ]; then
+               echo "docker-compose.prod.yml not found."
+               exit 1
+            fi
+            echo "Compose file found."
+
+            echo "Logging into Docker Hub..."
+            echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login \
+              --username "${{ secrets.DOCKER_HUB_USERNAME }}" \
+              --password-stdin
+
+            # Load the rest of the app's config (DB/API URLs, gunicorn worker
+            # counts, feature flags, etc.) so docker compose can actually
+            # substitute ${VAR} references in docker-compose.prod.yml.
+            # Previously this file was written to disk but never sourced, so
+            # every variable except the couple exported below silently fell
+            # back to its ${VAR:-default}, which is a common reason the app
+            # comes up misconfigured and never passes its health check.
+            set -a
+            source environments/prod.env
+            set +a
+
+            export PRAVAH_IMAGE_TAG="$IMAGE_TAG"
+            export VM_IP="$VM_IP"
+            export COMPOSE_PROJECT_NAME=pravah
+            echo "Deploying version: $PRAVAH_IMAGE_TAG"
+
+            echo "Validating production Compose service selection..."
+            test "$(docker compose -f docker-compose.prod.yml --profile prod config --services | wc -l)" -gt 0
+
+            echo "Removing any stale containers from earlier deploy paths..."
+            docker rm -f \
+              pravah-redis pravah-control-plane pravah-decision-brain pravah-observer \
+              pravah-deploy-worker-1 pravah-deploy-worker-2 pravah-deploy-worker-3 \
+              pravah-queue-monitor pravah-health-monitor pravah-prometheus \
+              2>/dev/null || true
+
+            echo "Pulling images..."
+            docker compose -f docker-compose.prod.yml --profile prod pull
+
+            echo "Starting services..."
+            if ! docker compose \
+              -f docker-compose.prod.yml \
+              --profile prod \
+              up -d \
+              --remove-orphans; then
+              echo "docker compose up failed."
+              dump_diagnostics
+              exit 1
+            fi
+
+            echo "Waiting for Redis..."
+            timeout 300 bash -c '
+            until docker compose -f docker-compose.prod.yml exec -T redis redis-cli ping
+            do
+              sleep 5
+            done
+            '
+
+            # NOTE: these run on the VM itself (we're already SSH'd in), so
+            # they check localhost, not $VM_IP. Curling the box's own public
+            # IP from itself relies on router/NAT "hairpin" support that most
+            # cloud VMs and security groups don't provide, so those requests
+            # just hang until the outer `timeout 300` kills them with exit
+            # 124 — which matches what you're seeing, even when the service
+            # is actually healthy (the compose healthcheck above already
+            # confirms it responds on localhost inside the container).
+            # $VM_IP is still exported for the app's own env vars (the
+            # PRAVAH_*_API URLs), just not used for these local checks.
+            echo "Checking control plane..."
+            timeout 300 bash -c "
+            until curl -fs http://localhost:7000/api/health
+            do
+              sleep 5
+            done
+            "
+
+            echo "Checking decision brain..."
+            timeout 300 bash -c "
+            until curl -fs http://localhost:8010/health
+            do
+              sleep 5
+            done
+            "
+
+            echo "Checking observer..."
+            timeout 300 bash -c "
+            until curl -fs http://localhost:8602/health
+            do
+              sleep 5
+            done
+            "
+
+            echo "All health checks passed."
+
+            if [ -f current_version ]; then
+              cp current_version previous_version
+            fi
+
+            echo "$IMAGE_TAG" > current_version
+
+            docker compose -f docker-compose.prod.yml ps
+
+            echo "Deployment completed successfully."
+
+  # ================================================================
+  # ROLLBACK
+  # ================================================================
+  rollback:
+    needs: deploy
+
+    if: failure()
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Rollback deployment
+        uses: appleboy/ssh-action@v1.2.0
+
+        env:
+          VM_IP: ${{ secrets.VM_IP }}
+          DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+
+        with:
+          host: ${{ secrets.PROD_VM_HOST }}
+          username: ${{ secrets.PROD_VM_USER }}
+          password: ${{ secrets.PROD_VM_PASSWORD }}
+          port: ${{ secrets.PROD_VM_PORT }}
+
+          envs: VM_IP,DOCKER_HUB_USERNAME
+
+          script: |
+            set -euo pipefail
+
+            DEPLOY_DIR="/root/PRAVAH"
+            cd "$DEPLOY_DIR"
+
+            dump_diagnostics() {
+              echo "----- Failure detected. Dumping diagnostics -----"
+              echo "===== container status ====="
+              docker compose -f docker-compose.prod.yml ps -a || true
+              echo "===== control-plane logs ====="
+              docker compose -f docker-compose.prod.yml logs --tail=200 control-plane || true
+              echo "===== decision-brain logs ====="
+              docker compose -f docker-compose.prod.yml logs --tail=200 decision-brain || true
+              echo "===== observer logs ====="
+              docker compose -f docker-compose.prod.yml logs --tail=200 observer || true
+            }
+            trap dump_diagnostics ERR
+
+            if [ ! -f previous_version ]; then
+              echo "No previous version found."
+              exit 1
+            fi
+
+            PREVIOUS_TAG=$(cat previous_version)
+            echo "Rolling back to $PREVIOUS_TAG"
+
+            echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login \
+              --username "${{ secrets.DOCKER_HUB_USERNAME }}" \
+              --password-stdin
+
+            set -a
+            source environments/prod.env
+            set +a
+
+            export PRAVAH_IMAGE_TAG="$PREVIOUS_TAG"
+            export VM_IP="$VM_IP"
+            export COMPOSE_PROJECT_NAME=pravah
+
+            echo "Validating production Compose service selection..."
+            test "$(docker compose -f docker-compose.prod.yml --profile prod config --services | wc -l)" -gt 0
+
+            echo "Removing any stale containers from earlier deploy paths..."
+            docker rm -f \
+              pravah-redis pravah-control-plane pravah-decision-brain pravah-observer \
+              pravah-deploy-worker-1 pravah-deploy-worker-2 pravah-deploy-worker-3 \
+              pravah-queue-monitor pravah-health-monitor pravah-prometheus \
+              2>/dev/null || true
+
+            echo "Pulling images..."
+            docker compose -f docker-compose.prod.yml --profile prod pull
+
+            echo "Starting services..."
+            if ! docker compose \
+              -f docker-compose.prod.yml \
+              --profile prod \
+              up -d \
+              --remove-orphans; then
+              echo "docker compose up failed."
+              dump_diagnostics
+              exit 1
+            fi
+
+            echo "Waiting for Redis..."
+            timeout 300 bash -c '
+            until docker compose -f docker-compose.prod.yml exec -T redis redis-cli ping
+            do
+              sleep 5
+            done
+            '
+
+            echo "Checking Control Plane..."
+            timeout 300 bash -c "
+            until curl -fs http://localhost:7000/api/health
+            do
+              sleep 5
+            done
+            "
+
+            echo "Checking Decision Brain..."
+            timeout 300 bash -c "
+            until curl -fs http://localhost:8010/health
+            do
+              sleep 5
+            done
+            "
+
+            echo "Checking Observer..."
+            timeout 300 bash -c "
+            until curl -fs http://localhost:8602/health
+            do
+              sleep 5
+            done
+            "
+
+            echo "$PREVIOUS_TAG" > current_version
+
+            docker compose -f docker-compose.prod.yml ps
+
+            echo "Rollback completed successfully."

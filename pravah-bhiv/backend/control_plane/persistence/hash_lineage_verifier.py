@@ -61,10 +61,10 @@ class HashLineageVerifier:
     @staticmethod
     def _compute_event_hash(event_dict: Dict[str, Any]) -> str:
         """Compute canonical event hash."""
-        # Serialize without hash fields
+        # Serialize without hash fields and chain metadata
         payload = {
             k: v for k, v in event_dict.items()
-            if k not in ['event_hash', 'sequence_hash', 'lineage_proof']
+            if k not in ['event_hash', 'sequence_hash', 'lineage_proof', 'sequence', 'previous_hash']
         }
         
         canonical = json.dumps(payload, separators=(',', ':'), sort_keys=True)
