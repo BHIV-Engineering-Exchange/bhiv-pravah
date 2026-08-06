@@ -79,6 +79,8 @@ services:
       - PRAVAH_HR_API=${PRAVAH_HR_API:-http://${VM_IP:-localhost}:8000}
       - PRAVAH_PARIKSHAK_API=${PRAVAH_PARIKSHAK_API:-http://${VM_IP:-localhost}:8080}
       - PRAVAH_CRM_API=${PRAVAH_CRM_API:-http://${VM_IP:-localhost}:8001}
+      - BACKEND_CORS_ORIGINS=${BACKEND_CORS_ORIGINS}
+      - BACKEND_CORS_ORIGIN_REGEX=${BACKEND_CORS_ORIGIN_REGEX}
     volumes:
       - ./logs:/app/logs
       - ./data:/app/data
@@ -137,6 +139,7 @@ services:
       - DEMO_MODE=${DEMO_MODE:-false}
       - DEMO_FREEZE_MODE=${DEMO_FREEZE_MODE:-false}
       - BACKEND_CORS_ORIGINS=${BACKEND_CORS_ORIGINS:-*}
+      - BACKEND_CORS_ORIGIN_REGEX=${BACKEND_CORS_ORIGIN_REGEX}
       - VM_IP=${VM_IP:-localhost}
       - PRAVAH_CONTROL_PLANE=${PRAVAH_CONTROL_PLANE:-http://${VM_IP:-localhost}:7000}
       - PRAVAH_MAIN_API=${PRAVAH_MAIN_API:-http://${VM_IP:-localhost}:8010}

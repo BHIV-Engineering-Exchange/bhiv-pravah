@@ -273,9 +273,11 @@ jobs:
             # every variable except the couple exported below silently fell
             # back to its ${VAR:-default}, which is a common reason the app
             # comes up misconfigured and never passes its health check.
+            set +e
             set -a
-            source environments/prod.env
+            source environments/prod.env 2>/dev/null || true
             set +a
+            set -e
 
             export PRAVAH_IMAGE_TAG="$IMAGE_TAG"
             export VM_IP="$VM_IP"
@@ -417,9 +419,11 @@ jobs:
               --username "${{ secrets.DOCKER_HUB_USERNAME }}" \
               --password-stdin
 
+            set +e
             set -a
-            source environments/prod.env
+            source environments/prod.env 2>/dev/null || true
             set +a
+            set -e
 
             export PRAVAH_IMAGE_TAG="$PREVIOUS_TAG"
             export VM_IP="$VM_IP"
