@@ -270,14 +270,17 @@ jobs:
             # counts, feature flags, etc.) so docker compose can actually
             # substitute ${VAR} references in docker-compose.prod.yml.
             # Previously this file was written to disk but never sourced, so
-            # every variable except the couple exported below silently fell
-            # back to its ${VAR:-default}, which is a common reason the app
-            # comes up misconfigured and never passes its health check.
-            set -a
-            source environments/prod.env
-            set +a
+            # Save the pipeline's image tag so prod.env doesn't overwrite it
+            GH_IMAGE_TAG="$IMAGE_TAG"
 
-            export PRAVAH_IMAGE_TAG="$IMAGE_TAG"
+            set +e
+            set -a
+            source environments/prod.env 2>/dev/null || true
+            set +a
+            set -e
+
+            export PRAVAH_IMAGE_TAG="$GH_IMAGE_TAG"
+            export IMAGE_TAG="$GH_IMAGE_TAG"
             export VM_IP="$VM_IP"
             export COMPOSE_PROJECT_NAME=pravah
             echo "Deploying version: $PRAVAH_IMAGE_TAG"
@@ -417,11 +420,16 @@ jobs:
               --username "${{ secrets.DOCKER_HUB_USERNAME }}" \
               --password-stdin
 
-            set -a
-            source environments/prod.env
-            set +a
+            GH_PREVIOUS_TAG="$PREVIOUS_TAG"
 
-            export PRAVAH_IMAGE_TAG="$PREVIOUS_TAG"
+            set +e
+            set -a
+            source environments/prod.env 2>/dev/null || true
+            set +a
+            set -e
+
+            export PRAVAH_IMAGE_TAG="$GH_PREVIOUS_TAG"
+            export IMAGE_TAG="$GH_PREVIOUS_TAG"
             export VM_IP="$VM_IP"
             export COMPOSE_PROJECT_NAME=pravah
 
