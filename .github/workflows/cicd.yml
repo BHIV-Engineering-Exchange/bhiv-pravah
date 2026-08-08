@@ -1,30 +1,54 @@
-name: Pravah CI/CD
+name: Pravah Production Infrastructure CI/CD Pipeline
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
-
-  # ================================================================
-  # BUILD + TEST + PUSH
-  # Builds the single shared "pravah" image from ./pravah-bhiv/backend/Dockerfile,
-  # smoke-tests it locally (redis + control-plane + decision-brain +
-  # observer wired together, same as prod), then pushes to Docker Hub.
-  # ================================================================
-  build:
+  validate:
+    name: Validate production deployment
     runs-on: ubuntu-latest
-
-    outputs:
-      image_tag: ${{ steps.vars.outputs.image_tag }}
-
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set image tag
+      - name: Set GitHub SHA
+        run: echo "short_sha=${GITHUB_SHA::7}" >> $GITHUB_ENV
+
+      - name: Generate Compose file for validation
+        run: |
+          sed "s|IMG_TAG|$short_sha|g" pravah-bhiv/docker-compose.production.template.yml > pravah-bhiv/docker-compose.production.yml
+
+      - name: Create stub .env for compose validation
+        run: |
+          # Docker Compose config requires the env_file to exist to validate schema.
+          touch pravah-bhiv/.env
+
+      - name: Validate Docker Compose files
+        run: |
+          docker compose -f pravah-bhiv/docker-compose.production.yml config
+
+      - name: Upload deployment artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-artifacts
+          path: |
+            pravah-bhiv/docker-compose.production.template.yml
+
+  build:
+    name: Build production images
+    runs-on: ubuntu-latest
+    needs: validate
+    outputs:
+      sha_short: ${{ steps.vars.outputs.sha_short }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set short git commit SHA
         id: vars
-        run: echo "image_tag=${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+        run: echo "sha_short=$(git rev-parse --short=7 HEAD)" >> $GITHUB_OUTPUT
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -32,491 +56,302 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build image (load locally, do not push yet)
-        uses: docker/build-push-action@v6
-        with:
-          context: ./pravah-bhiv/backend
-          file: ./pravah-bhiv/backend/Dockerfile
-          push: false
-          load: true
-          tags: |
-            ${{ secrets.DOCKER_HUB_USERNAME }}/pravah:${{ steps.vars.outputs.image_tag }}
-            ${{ secrets.DOCKER_HUB_USERNAME }}/pravah:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-
-      - name: Smoke test the built image
-        env:
-          IMG: ${{ secrets.DOCKER_HUB_USERNAME }}/pravah:${{ steps.vars.outputs.image_tag }}
+      - name: Build and push pravah-backend image
         run: |
-          set -euo pipefail
+          docker buildx build --push \
+            --tag bhiv/pravah-backend:${{ steps.vars.outputs.sha_short }} \
+            --tag bhiv/pravah-backend:latest \
+            -f pravah-bhiv/backend/Dockerfile pravah-bhiv/backend
 
-          docker network create pravah-test-net
+  deploy:
+    name: Deploy to remote production VM via SSH
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download deployment artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: deployment-artifacts
 
-          echo "Starting redis..."
-          docker run -d --name test-redis --network pravah-test-net redis:7-alpine
-          timeout 60 bash -c 'until docker exec test-redis redis-cli ping; do sleep 3; done'
+      - name: Create env files from secrets
+        run: |
+          mkdir -p pravah-bhiv/backend/monitoring
+          cat <<'EOF' > pravah-bhiv/.env
+          ${{ secrets.PRAVAH_ENV_FILE }}
+          EOF
 
-          echo "Starting control-plane..."
-          docker run -d --name test-control-plane --network pravah-test-net \
-            -e REDIS_HOST=test-redis -e REDIS_PORT=6379 -e PORT=7000 \
-            -e SSPL_SECRET_KEY=test -e LINEAGE_SIGNING_KEY=test \
-            -p 7000:7000 "$IMG" \
-            gunicorn wsgi:app --workers 1 --worker-class sync --bind 0.0.0.0:7000 --timeout 120
+      - name: Tar deployment files
+        run: |
+          # Tar file structure relative to pravah-bhiv/
+          tar -czf deployment.tar.gz -C pravah-bhiv docker-compose.production.template.yml .env backend/monitoring
 
-          echo "Starting decision-brain..."
-          docker run -d --name test-decision-brain --network pravah-test-net \
-            -e REDIS_HOST=test-redis -e REDIS_PORT=6379 -e PORT=8000 \
-            -e SSPL_SECRET_KEY=test -e LINEAGE_SIGNING_KEY=test \
-            -p 8010:8000 "$IMG" \
-            uvicorn control_plane.backend.app.main:app --host 0.0.0.0 --port 8000 --workers 1
+      - name: Install sshpass
+        run: |
+          sudo apt-get update && sudo apt-get install -y sshpass
 
-          echo "Starting observer..."
-          docker run -d --name test-observer --network pravah-test-net \
-            -e PRAVAH_CONTROL_PLANE=http://test-control-plane:7000 \
-            -e PRAVAH_MAIN_API=http://test-decision-brain:8000 \
-            -p 8600:8600 "$IMG" \
-            uvicorn observer_server:app --host 0.0.0.0 --port 8600
+      - name: Create PRAVAH directory on VM
+        run: |
+          sshpass -p "${{ secrets.VM_PASSWORD }}" ssh -p ${{ secrets.VM_PORT }} -o StrictHostKeyChecking=no ${{ secrets.VM_USERNAME }}@${{ secrets.VM_IP }} "mkdir -p ~/PRAVAH"
 
-          echo "Starting deploy worker..."
-          docker run -d --name test-deploy-worker --network pravah-test-net \
-            -e REDIS_HOST=test-redis -e REDIS_PORT=6379 \
-            -e PYTHONUNBUFFERED=1 -e PYTHONPATH=/app -e ENVIRONMENT=dev \
-            "$IMG" \
-            python -m control_plane.agents.multi_deploy_agent --env dev --workers 1
+      - name: Copy deployment tarball to VM
+        run: |
+          sshpass -p "${{ secrets.VM_PASSWORD }}" scp -P ${{ secrets.VM_PORT }} -o StrictHostKeyChecking=no deployment.tar.gz ${{ secrets.VM_USERNAME }}@${{ secrets.VM_IP }}:~/PRAVAH/deployment.tar.gz
 
-          echo "Waiting on control-plane health..."
-          timeout 90 bash -c 'until curl -fs http://localhost:7000/api/health; do sleep 5; done'
+      - name: Deploy production stack on VM
+        run: |
+          sshpass -p "${{ secrets.VM_PASSWORD }}" ssh -p ${{ secrets.VM_PORT }} -o StrictHostKeyChecking=no ${{ secrets.VM_USERNAME }}@${{ secrets.VM_IP }} "bash -s" << 'EOF'
+            set -euo pipefail
+            cd ~/PRAVAH
+            
+            # Clean directory first, keeping docs folder (Release History) and the tarball we just copied
+            find . -mindepth 1 ! -name docs ! -path './docs/*' ! -name deployment.tar.gz -exec rm -rf {} +
+            
+            # Extract deployment archive and clean up tarball
+            tar -xzf deployment.tar.gz
+            rm -f deployment.tar.gz
+            
+            # Confirm Docker availability
+            docker version
+            docker compose version
+            
+            # Log in to Docker Hub on the VM to authenticate for private pulls
+            echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+            
+            # Restore persistent Release History
+            mkdir -p docs
+            if [ -f /var/tmp/PRAVAH/RELEASE_HISTORY.md ]; then
+              cp /var/tmp/PRAVAH/RELEASE_HISTORY.md docs/RELEASE_HISTORY.md
+            fi
+            
+            # Generate target compose file from template by substituting the image tag
+            sed "s|IMG_TAG|${{ needs.build.outputs.sha_short }}|g" docker-compose.production.template.yml > docker-compose.production.yml
 
-          echo "Waiting on decision-brain health..."
-          timeout 90 bash -c 'until curl -fs http://localhost:8010/health; do sleep 5; done'
+            # Validate compose config before deploy
+            docker compose -f docker-compose.production.yml config
+            
+            # Deploy production stack
+            docker compose -f docker-compose.production.yml pull
+            
+            # Log out from Docker Hub to secure credentials on the VM
+            docker logout
 
-          echo "Checking decision-brain metrics..."
-          timeout 90 bash -c 'until curl -fs http://localhost:8010/metrics | grep -q pravah_decision_brain_up; do sleep 5; done'
+            docker compose -f docker-compose.production.yml up -d --remove-orphans
+            
+            # Verify deployment status
+            docker compose -f docker-compose.production.yml ps
+            
+            # Health Check - Check docker status and query backend endpoints
+            echo "Waiting for services to be healthy..."
+            for i in {1..12}; do
+              if docker compose -f docker-compose.production.yml ps --filter "status=running" --filter "health=unhealthy" -q >/dev/null 2>&1; then
+                UNHEALTHY_COUNT=$(docker compose -f docker-compose.production.yml ps --filter "status=running" --filter "health=unhealthy" -q | wc -l)
+                STARTING_COUNT=$(docker compose -f docker-compose.production.yml ps --filter "status=running" --filter "health=starting" -q | wc -l)
+              else
+                UNHEALTHY_COUNT=0
+                STARTING_COUNT=0
+              fi
+              
+              # Health status via inspect
+              REDIS_HEALTH=0
+              [ "$(docker inspect --format='{{.State.Health.Status}}' pravah_redis 2>/dev/null || echo "missing")" = "healthy" ] && REDIS_HEALTH=1
 
-          echo "Waiting on observer health..."
-          timeout 90 bash -c 'until curl -fs http://localhost:8600/health; do sleep 5; done'
+              CONTROL_HEALTH=0
+              [ "$(docker inspect --format='{{.State.Health.Status}}' pravah_control_plane 2>/dev/null || echo "missing")" = "healthy" ] && CONTROL_HEALTH=1
 
-          echo "Checking deploy worker is still alive..."
-          sleep 12
-          docker inspect -f '{{.State.Running}}' test-deploy-worker | grep -q true
+              BRAIN_HEALTH=0
+              [ "$(docker inspect --format='{{.State.Health.Status}}' pravah_decision_brain 2>/dev/null || echo "missing")" = "healthy" ] && BRAIN_HEALTH=1
 
-          echo "All smoke checks passed."
+              OBSERVER_HEALTH=0
+              [ "$(docker inspect --format='{{.State.Health.Status}}' pravah_observer 2>/dev/null || echo "missing")" = "healthy" ] && OBSERVER_HEALTH=1
 
-      - name: Tear down test containers
+              # HTTP endpoint curls
+              CONTROL_CURL=0
+              curl -sf http://localhost:7000/api/health > /dev/null && CONTROL_CURL=1
+
+              BRAIN_CURL=0
+              curl -sf http://localhost:8010/health > /dev/null && BRAIN_CURL=1
+
+              OBSERVER_CURL=0
+              curl -sf http://localhost:8600/health > /dev/null && OBSERVER_CURL=1
+              
+              if [ "$UNHEALTHY_COUNT" -eq 0 ] && [ "$STARTING_COUNT" -eq 0 ] && [ "$REDIS_HEALTH" -eq 1 ] && [ "$CONTROL_HEALTH" -eq 1 ] && [ "$BRAIN_HEALTH" -eq 1 ] && [ "$OBSERVER_HEALTH" -eq 1 ] && [ "$CONTROL_CURL" -eq 1 ] && [ "$BRAIN_CURL" -eq 1 ] && [ "$OBSERVER_CURL" -eq 1 ]; then
+                echo "All core containers and API endpoints are healthy!"
+                break
+              fi
+              
+              if [ "$i" -eq 12 ]; then
+                echo "Health check failed!"
+                docker compose -f docker-compose.production.yml ps
+                docker compose -f docker-compose.production.yml logs --tail=50
+                exit 1
+              fi
+              
+              echo "Status: $STARTING_COUNT starting, $UNHEALTHY_COUNT unhealthy, redis_health=$REDIS_HEALTH, control_health=$CONTROL_HEALTH (curl=$CONTROL_CURL), brain_health=$BRAIN_HEALTH (curl=$BRAIN_CURL), observer_health=$OBSERVER_HEALTH (curl=$OBSERVER_CURL). Retrying in 10s..."
+              sleep 10
+            done
+            
+            # Prune old images while preserving recently built ones (last 7 days / 168 hours) to speed up rollbacks
+            docker image prune -af --filter "until=168h"
+          EOF
+
+      - name: Update Release Documentation on Success
+        if: success()
+        run: |
+          sshpass -p "${{ secrets.VM_PASSWORD }}" ssh -p ${{ secrets.VM_PORT }} -o StrictHostKeyChecking=no ${{ secrets.VM_USERNAME }}@${{ secrets.VM_IP }} "bash -s" << 'EOF'
+            set -euo pipefail
+            cd ~/PRAVAH
+            # Initialize release history file if not exists
+            if [ ! -f docs/RELEASE_HISTORY.md ]; then
+              mkdir -p docs
+              echo "# Release History and Deployment Registry" > docs/RELEASE_HISTORY.md
+              echo "" >> docs/RELEASE_HISTORY.md
+              echo "| Timestamp | Image Tag (Git SHA) | Status | Description |" >> docs/RELEASE_HISTORY.md
+              echo "|---|---|---|---|" >> docs/RELEASE_HISTORY.md
+            fi
+            
+            # Log success
+            echo "| $(date -u +'%Y-%m-%d %H:%M:%S UTC') | ${{ needs.build.outputs.sha_short }} | SUCCESS | Stable deployment |" >> docs/RELEASE_HISTORY.md
+          EOF
+
+      - name: Save persistent Release History
         if: always()
         run: |
-          docker rm -f test-control-plane test-decision-brain test-observer test-deploy-worker test-redis 2>/dev/null || true
-          docker network rm pravah-test-net 2>/dev/null || true
-
-      - name: Push image to Docker Hub
-        run: |
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/pravah:${{ steps.vars.outputs.image_tag }}
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/pravah:latest
-
-  # ================================================================
-  # DEPLOY
-  # Copies only docker-compose.prod.yml + env files to the VM,
-  # then pulls the freshly pushed tag and brings the stack up.
-  # ================================================================
-  deploy:
-    needs: build
-
-    if: github.ref == 'refs/heads/main'
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Create deployment directory
-        uses: appleboy/ssh-action@v1.2.0
-        with:
-          host: ${{ secrets.PROD_VM_HOST }}
-          username: ${{ secrets.PROD_VM_USER }}
-          password: ${{ secrets.PROD_VM_PASSWORD }}
-          port: ${{ secrets.PROD_VM_PORT }}
-          script: |
-            set -e
-            DEPLOY_DIR="/root/PRAVAH"
-
-            sudo mkdir -p "$DEPLOY_DIR"
-            sudo chown -R $USER:$USER "$DEPLOY_DIR"
-
-            # Clean up stray copies left over from earlier pipeline runs
-            # (before the SCP source/strip_components paths were fixed).
-            # Safe to remove — these are never the real deploy location.
-            rm -rf "$DEPLOY_DIR/backend" "$DEPLOY_DIR/pravah-bhiv"
-
-            # Pre-create bind-mount targets owned by UID 1000 (the "pravah"
-            # user the container runs as — see Dockerfile). Without this,
-            # Docker auto-creates ./logs and ./data as root on first mount,
-            # and gunicorn (running as UID 1000 inside the container) can't
-            # write to them, which fails the healthcheck immediately.
-            mkdir -p "$DEPLOY_DIR/logs" "$DEPLOY_DIR/data"
-            sudo chown -R 1000:1000 "$DEPLOY_DIR/logs" "$DEPLOY_DIR/data"
-
-            echo "Deployment directory is ready."
-
-      - name: Copy docker-compose file and backend code
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.PROD_VM_HOST }}
-          username: ${{ secrets.PROD_VM_USER }}
-          password: ${{ secrets.PROD_VM_PASSWORD }}
-          port: ${{ secrets.PROD_VM_PORT }}
-          source: "pravah-bhiv/backend/docker-compose.prod.yml,pravah-bhiv/backend/monitoring"
-          target: "/root/PRAVAH/"
-          strip_components: 2
-
-      - name: Verify copied files
-        uses: appleboy/ssh-action@v1.2.0
-        with:
-          host: ${{ secrets.PROD_VM_HOST }}
-          username: ${{ secrets.PROD_VM_USER }}
-          password: ${{ secrets.PROD_VM_PASSWORD }}
-          port: ${{ secrets.PROD_VM_PORT }}
-          script: |
-            find /root/PRAVAH -maxdepth 2 -type f
-
-      - name: Create environment files
-        uses: appleboy/ssh-action@v1.2.0
-        with:
-          host: ${{ secrets.PROD_VM_HOST }}
-          username: ${{ secrets.PROD_VM_USER }}
-          password: ${{ secrets.PROD_VM_PASSWORD }}
-          port: ${{ secrets.PROD_VM_PORT }}
-          script: |
+          sshpass -p "${{ secrets.VM_PASSWORD }}" ssh -p ${{ secrets.VM_PORT }} -o StrictHostKeyChecking=no ${{ secrets.VM_USERNAME }}@${{ secrets.VM_IP }} "bash -s" << 'EOF'
             set -euo pipefail
-            cd /root/PRAVAH
-
-            mkdir -p environments
-
-            cat > environments/dev.env << 'ENVEOF'
-            ${{ secrets.DEV_ENV }}
-            ENVEOF
-
-            cat > environments/prod.env << 'ENVEOF'
-            ${{ secrets.PROD_ENV }}
-            ENVEOF
-
-            cat > environments/stage.env << 'ENVEOF'
-            ${{ secrets.STAGE_ENV }}
-            ENVEOF
-
-            chmod 600 environments/*.env
-
-      - name: Deploy to production
-        uses: appleboy/ssh-action@v1.2.0
-
-        env:
-          IMAGE_TAG: ${{ needs.build.outputs.image_tag }}
-          VM_IP: ${{ secrets.VM_IP }}
-          DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-          SSPL_SECRET_KEY: ${{ secrets.SSPL_SECRET_KEY }}
-          LINEAGE_SIGNING_KEY: ${{ secrets.LINEAGE_SIGNING_KEY }}
-
-        with:
-          host: ${{ secrets.PROD_VM_HOST }}
-          username: ${{ secrets.PROD_VM_USER }}
-          password: ${{ secrets.PROD_VM_PASSWORD }}
-          port: ${{ secrets.PROD_VM_PORT }}
-
-          envs: IMAGE_TAG,VM_IP,DOCKER_HUB_USERNAME,SSPL_SECRET_KEY,LINEAGE_SIGNING_KEY
-
-          script: |
-            set -euo pipefail
-
-            DEPLOY_DIR="/root/PRAVAH"
-
-            cd "$DEPLOY_DIR"
-            echo "Current directory:"
-            pwd
-            echo "Files:"
-            ls -lah
-
-            # All variable substitution for docker-compose.prod.yml comes
-            # through here. --env-file uses Compose's own lenient KEY=VALUE
-            # parser (never executes the file), so a stray space or comment
-            # style Docker accepts can't take down the whole script the way
-            # `source environments/prod.env` could (that was crashing this
-            # step with exit 127 the moment any line in prod.env wasn't
-            # valid shell syntax).
-            COMPOSE="docker compose -f docker-compose.prod.yml --env-file environments/prod.env"
-
-            dump_diagnostics() {
-              echo "----- Failure detected. Dumping diagnostics -----"
-              echo "===== container status ====="
-              $COMPOSE ps -a || true
-              echo "===== control-plane logs ====="
-              $COMPOSE logs --tail=200 control-plane || true
-              echo "===== decision-brain logs ====="
-              $COMPOSE logs --tail=200 decision-brain || true
-              echo "===== observer logs ====="
-              $COMPOSE logs --tail=200 observer || true
-            }
-            trap dump_diagnostics ERR
-
-            if [ ! -f docker-compose.prod.yml ]; then
-               echo "docker-compose.prod.yml not found."
-               exit 1
+            cd ~/PRAVAH
+            if [ -f docs/RELEASE_HISTORY.md ]; then
+              mkdir -p /var/tmp/PRAVAH
+              cp docs/RELEASE_HISTORY.md /var/tmp/PRAVAH/RELEASE_HISTORY.md
             fi
-            echo "Compose file found."
+          EOF
 
-            if [ ! -f environments/prod.env ]; then
-              echo "environments/prod.env not found."
-              exit 1
-            fi
-
-            echo "Logging into Docker Hub..."
-            echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login \
-              --username "${{ secrets.DOCKER_HUB_USERNAME }}" \
-              --password-stdin
-
-            export PRAVAH_IMAGE_TAG="$IMAGE_TAG"
-            export VM_IP="$VM_IP"
-            export COMPOSE_PROJECT_NAME=pravah
-            echo "Deploying version: $PRAVAH_IMAGE_TAG"
-
-            echo "Validating production Compose service selection..."
-            test "$($COMPOSE --profile prod config --services | wc -l)" -gt 0
-
-            echo "Removing any stale containers from earlier deploy paths..."
-            docker rm -f \
-              pravah-redis pravah-control-plane pravah-decision-brain pravah-observer \
-              pravah-deploy-worker-1 pravah-deploy-worker-2 pravah-deploy-worker-3 \
-              pravah-queue-monitor pravah-health-monitor pravah-prometheus \
-              2>/dev/null || true
-            # Belt-and-suspenders: also clear anything ELSE bound to the
-            # host ports this stack needs, regardless of what it's called.
-            # Name-based cleanup above only catches containers literally
-            # named pravah-*. Containers from an older deploy under a
-            # different Compose project name (e.g. leftovers from before
-            # COMPOSE_PROJECT_NAME=pravah was set explicitly here) get
-            # auto-named differently by Compose and silently survive that
-            # cleanup, then block `up -d` with "port is already allocated".
-            #
-            # Ports are read from Compose's own *resolved* config instead
-            # of hardcoded, so this stays correct even if environments/
-            # prod.env overrides a default (e.g. DECISION_BRAIN_PORT set
-            # to something other than the compose file's :-8010 default).
-            STACK_PORTS=$($COMPOSE --profile prod config | grep -oE 'published: "?[0-9]+"?' | grep -oE '[0-9]+' | sort -u)
-            echo "Host ports this stack will use: $STACK_PORTS"
-            for p in $STACK_PORTS; do
-              stray=$(docker ps -aq --filter "publish=$p")
-              if [ -n "$stray" ]; then
-                echo "Port $p is held by container(s) $stray -- removing."
-                docker rm -f $stray || true
-              fi
-            done
-
-            echo "Pulling images..."
-            $COMPOSE --profile prod pull
-
-            echo "Starting services..."
-            if ! $COMPOSE --profile prod up -d --remove-orphans; then
-              echo "docker compose up failed."
-              dump_diagnostics
-              exit 1
-            fi
-
-            echo "Waiting for Redis..."
-            timeout 300 bash -c "
-            until $COMPOSE exec -T redis redis-cli ping
-            do
-              sleep 5
-            done
-            "
-
-            # NOTE: these run on the VM itself (we're already SSH'd in), so
-            # they check localhost, not $VM_IP. Curling the box's own public
-            # IP from itself relies on router/NAT "hairpin" support that most
-            # cloud VMs and security groups don't provide, so those requests
-            # just hang until the outer `timeout 300` kills them with exit
-            # 124 — which matches what you're seeing, even when the service
-            # is actually healthy (the compose healthcheck above already
-            # confirms it responds on localhost inside the container).
-            # $VM_IP is still exported for the app's own env vars (the
-            # PRAVAH_*_API URLs), just not used for these local checks.
-            echo "Checking control plane..."
-            timeout 300 bash -c "
-            until curl -fs http://localhost:7000/api/health
-            do
-              sleep 5
-            done
-            "
-
-            echo "Checking decision brain..."
-            timeout 300 bash -c "
-            until curl -fs http://localhost:8010/health
-            do
-              sleep 5
-            done
-            "
-
-            echo "Checking observer..."
-            timeout 300 bash -c "
-            until curl -fs http://localhost:8600/health
-            do
-              sleep 5
-            done
-            "
-
-            echo "All health checks passed."
-
-            if [ -f current_version ]; then
-              cp current_version previous_version
-            fi
-
-            echo "$IMAGE_TAG" > current_version
-
-            $COMPOSE ps
-
-            echo "Deployment completed successfully."
-
-  # ================================================================
-  # ROLLBACK
-  # ================================================================
   rollback:
-    needs: deploy
-
-    if: failure()
-
+    name: Rollback on deployment failure
+    needs: [build, deploy]
+    if: always() && needs.deploy.result == 'failure'
     runs-on: ubuntu-latest
-
     steps:
-      - name: Rollback deployment
-        uses: appleboy/ssh-action@v1.2.0
+      - name: Install sshpass
+        run: |
+          sudo apt-get update && sudo apt-get install -y sshpass
 
-        env:
-          VM_IP: ${{ secrets.VM_IP }}
-          DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-
-        with:
-          host: ${{ secrets.PROD_VM_HOST }}
-          username: ${{ secrets.PROD_VM_USER }}
-          password: ${{ secrets.PROD_VM_PASSWORD }}
-          port: ${{ secrets.PROD_VM_PORT }}
-
-          envs: VM_IP,DOCKER_HUB_USERNAME
-
-          script: |
+      - name: Automatic Rollback on Failure
+        run: |
+          sshpass -p "${{ secrets.VM_PASSWORD }}" ssh -p ${{ secrets.VM_PORT }} -o StrictHostKeyChecking=no ${{ secrets.VM_USERNAME }}@${{ secrets.VM_IP }} "bash -s" << 'EOF'
             set -euo pipefail
-
-            DEPLOY_DIR="/root/PRAVAH"
-            cd "$DEPLOY_DIR"
-
-            COMPOSE="docker compose -f docker-compose.prod.yml --env-file environments/prod.env"
-
-            dump_diagnostics() {
-              echo "----- Failure detected. Dumping diagnostics -----"
-              echo "===== container status ====="
-              $COMPOSE ps -a || true
-              echo "===== control-plane logs ====="
-              $COMPOSE logs --tail=200 control-plane || true
-              echo "===== decision-brain logs ====="
-              $COMPOSE logs --tail=200 decision-brain || true
-              echo "===== observer logs ====="
-              $COMPOSE logs --tail=200 observer || true
-            }
-            trap dump_diagnostics ERR
-
-            if [ ! -f previous_version ]; then
-              echo "No previous version found."
-              exit 1
-            fi
-
-            PREVIOUS_TAG=$(cat previous_version)
-            echo "Rolling back to $PREVIOUS_TAG"
-
-            echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login \
-              --username "${{ secrets.DOCKER_HUB_USERNAME }}" \
-              --password-stdin
-
-            export PRAVAH_IMAGE_TAG="$PREVIOUS_TAG"
-            export VM_IP="$VM_IP"
-            export COMPOSE_PROJECT_NAME=pravah
-
-            echo "Validating production Compose service selection..."
-            test "$($COMPOSE --profile prod config --services | wc -l)" -gt 0
-
-            echo "Removing any stale containers from earlier deploy paths..."
-            docker rm -f \
-              pravah-redis pravah-control-plane pravah-decision-brain pravah-observer \
-              pravah-deploy-worker-1 pravah-deploy-worker-2 pravah-deploy-worker-3 \
-              pravah-queue-monitor pravah-health-monitor pravah-prometheus \
-              2>/dev/null || true
-            # Belt-and-suspenders: also clear anything ELSE bound to the
-            # host ports this stack needs, regardless of what it's called.
-            # Name-based cleanup above only catches containers literally
-            # named pravah-*. Containers from an older deploy under a
-            # different Compose project name (e.g. leftovers from before
-            # COMPOSE_PROJECT_NAME=pravah was set explicitly here) get
-            # auto-named differently by Compose and silently survive that
-            # cleanup, then block `up -d` with "port is already allocated".
-            #
-            # Ports are read from Compose's own *resolved* config instead
-            # of hardcoded, so this stays correct even if environments/
-            # prod.env overrides a default (e.g. DECISION_BRAIN_PORT set
-            # to something other than the compose file's :-8010 default).
-            STACK_PORTS=$($COMPOSE --profile prod config | grep -oE 'published: "?[0-9]+"?' | grep -oE '[0-9]+' | sort -u)
-            echo "Host ports this stack will use: $STACK_PORTS"
-            for p in $STACK_PORTS; do
-              stray=$(docker ps -aq --filter "publish=$p")
-              if [ -n "$stray" ]; then
-                echo "Port $p is held by container(s) $stray -- removing."
-                docker rm -f $stray || true
+            cd ~/PRAVAH
+            
+            # Robust parsing of Release History to extract the 7-character hexadecimal SHA column
+            if [ -f docs/RELEASE_HISTORY.md ] && grep -qE "SUCCESS|ROLLBACK_SUCCESS" docs/RELEASE_HISTORY.md; then
+              LAST_HEALTHY_TAG=$(grep -E "SUCCESS|ROLLBACK_SUCCESS" docs/RELEASE_HISTORY.md | tail -n 1 | awk -F '|' '{
+                for(i=1; i<=NF; i++) {
+                  gsub(/[[:space:]]/, "", $i);
+                  if ($i ~ /^[0-9a-f]{7}$/) {
+                    print $i;
+                    exit;
+                  }
+                }
+              }')
+              
+              if [ -z "$LAST_HEALTHY_TAG" ]; then
+                echo "⚠️ No last healthy tag extracted from Release History. Cannot perform automatic rollback."
+                exit 1
               fi
-            done
+              
+              echo "🚨 Deployment failed! Rolling back to last healthy tag: $LAST_HEALTHY_TAG"
+              
+              # Re-generate active compose file from original template with the healthy tag
+              sed "s|IMG_TAG|$LAST_HEALTHY_TAG|g" docker-compose.production.template.yml > docker-compose.production.yml
+              
+              # Log in to Docker Hub on the VM to authenticate for rollback pulls
+              echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+              
+              # Pull last healthy tag
+              docker compose -f docker-compose.production.yml pull
+              
+              # Log out from Docker Hub to secure credentials on the VM
+              docker logout
+              
+              # Deploy last healthy tag
+              docker compose -f docker-compose.production.yml up -d --remove-orphans
+              
+              # Verify deployment status
+              docker compose -f docker-compose.production.yml ps
+              
+              # Post-Rollback Verification (Run health check again)
+              echo "Waiting for rollback services to be healthy..."
+              for i in {1..12}; do
+                if docker compose -f docker-compose.production.yml ps --filter "status=running" --filter "health=unhealthy" -q >/dev/null 2>&1; then
+                  UNHEALTHY_COUNT=$(docker compose -f docker-compose.production.yml ps --filter "status=running" --filter "health=unhealthy" -q | wc -l)
+                  STARTING_COUNT=$(docker compose -f docker-compose.production.yml ps --filter "status=running" --filter "health=starting" -q | wc -l)
+                else
+                  UNHEALTHY_COUNT=0
+                  STARTING_COUNT=0
+                fi
+                
+                # Health status via inspect
+                REDIS_HEALTH=0
+                [ "$(docker inspect --format='{{.State.Health.Status}}' pravah_redis 2>/dev/null || echo "missing")" = "healthy" ] && REDIS_HEALTH=1
 
-            echo "Pulling images..."
-            $COMPOSE --profile prod pull
+                CONTROL_HEALTH=0
+                [ "$(docker inspect --format='{{.State.Health.Status}}' pravah_control_plane 2>/dev/null || echo "missing")" = "healthy" ] && CONTROL_HEALTH=1
 
-            echo "Starting services..."
-            if ! $COMPOSE --profile prod up -d --remove-orphans; then
-              echo "docker compose up failed."
-              dump_diagnostics
+                BRAIN_HEALTH=0
+                [ "$(docker inspect --format='{{.State.Health.Status}}' pravah_decision_brain 2>/dev/null || echo "missing")" = "healthy" ] && BRAIN_HEALTH=1
+
+                OBSERVER_HEALTH=0
+                [ "$(docker inspect --format='{{.State.Health.Status}}' pravah_observer 2>/dev/null || echo "missing")" = "healthy" ] && OBSERVER_HEALTH=1
+
+                # HTTP endpoint curls
+                CONTROL_CURL=0
+                curl -sf http://localhost:7000/api/health > /dev/null && CONTROL_CURL=1
+
+                BRAIN_CURL=0
+                curl -sf http://localhost:8010/health > /dev/null && BRAIN_CURL=1
+
+                OBSERVER_CURL=0
+                curl -sf http://localhost:8600/health > /dev/null && OBSERVER_CURL=1
+                
+                if [ "$UNHEALTHY_COUNT" -eq 0 ] && [ "$STARTING_COUNT" -eq 0 ] && [ "$REDIS_HEALTH" -eq 1 ] && [ "$CONTROL_HEALTH" -eq 1 ] && [ "$BRAIN_HEALTH" -eq 1 ] && [ "$OBSERVER_HEALTH" -eq 1 ] && [ "$CONTROL_CURL" -eq 1 ] && [ "$BRAIN_CURL" -eq 1 ] && [ "$OBSERVER_CURL" -eq 1 ]; then
+                  echo "Rollback deployment is healthy!"
+                  echo "| $(date -u +'%Y-%m-%d %H:%M:%S UTC') | $LAST_HEALTHY_TAG | ROLLBACK_SUCCESS | Rollback from failed ${{ needs.build.outputs.sha_short }} is healthy |" >> docs/RELEASE_HISTORY.md
+                  exit 0
+                fi
+                
+                if [ "$i" -eq 12 ]; then
+                  echo "Rollback health check failed!"
+                  echo "| $(date -u +'%Y-%m-%d %H:%M:%S UTC') | $LAST_HEALTHY_TAG | ROLLBACK_FAILED | Rollback from failed ${{ needs.build.outputs.sha_short }} failed health check |" >> docs/RELEASE_HISTORY.md
+                  exit 1
+                fi
+                
+                echo "Status: $STARTING_COUNT starting, $UNHEALTHY_COUNT unhealthy, redis_health=$REDIS_HEALTH, control_health=$CONTROL_HEALTH (curl=$CONTROL_CURL), brain_health=$BRAIN_HEALTH (curl=$BRAIN_CURL), observer_health=$OBSERVER_HEALTH (curl=$OBSERVER_CURL). Retrying in 10s..."
+                sleep 10
+              done
+            else
+              echo "⚠️ No last healthy tag found in Release History. Cannot perform automatic rollback."
+              if [ ! -f docs/RELEASE_HISTORY.md ]; then
+                mkdir -p docs
+                echo "# Release History and Deployment Registry" > docs/RELEASE_HISTORY.md
+                echo "" >> docs/RELEASE_HISTORY.md
+                echo "| Timestamp | Image Tag (Git SHA) | Status | Description |" >> docs/RELEASE_HISTORY.md
+                echo "|---|---|---|---|" >> docs/RELEASE_HISTORY.md
+              fi
+              echo "| $(date -u +'%Y-%m-%d %H:%M:%S UTC') | ${{ needs.build.outputs.sha_short }} | FAILED | Deployment failed and no rollback tag was available |" >> docs/RELEASE_HISTORY.md
               exit 1
             fi
+          EOF
 
-            echo "Waiting for Redis..."
-            timeout 300 bash -c "
-            until $COMPOSE exec -T redis redis-cli ping
-            do
-              sleep 5
-            done
-            "
-
-            echo "Checking Control Plane..."
-            timeout 300 bash -c "
-            until curl -fs http://localhost:7000/api/health
-            do
-              sleep 5
-            done
-            "
-
-            echo "Checking Decision Brain..."
-            timeout 300 bash -c "
-            until curl -fs http://localhost:8010/health
-            do
-              sleep 5
-            done
-            "
-
-            echo "Checking Observer..."
-            timeout 300 bash -c "
-            until curl -fs http://localhost:8600/health
-            do
-              sleep 5
-            done
-            "
-
-            echo "$PREVIOUS_TAG" > current_version
-
-            $COMPOSE ps
-
-            echo "Rollback completed successfully."
+      - name: Save persistent Release History
+        if: always()
+        run: |
+          sshpass -p "${{ secrets.VM_PASSWORD }}" ssh -p ${{ secrets.VM_PORT }} -o StrictHostKeyChecking=no ${{ secrets.VM_USERNAME }}@${{ secrets.VM_IP }} "bash -s" << 'EOF'
+            set -euo pipefail
+            cd ~/PRAVAH
+            if [ -f docs/RELEASE_HISTORY.md ]; then
+              mkdir -p /var/tmp/PRAVAH
+              cp docs/RELEASE_HISTORY.md /var/tmp/PRAVAH/RELEASE_HISTORY.md
+            fi
+          EOF

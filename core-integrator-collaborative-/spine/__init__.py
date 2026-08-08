@@ -1,1 +1,0 @@
-"""SHAKTI spine package."""

@@ -1,5 +1,0 @@
-{
-  "active_version": "v1",
-  "policies_dir": "./policies",
-  "description": "Sarathi Enforcement Adapter — Policy Registry configuration. This config is the single source of truth for which policy version the enforcement PDP uses. Change active_version to upgrade. The enforcement adapter validates this version at runtime and rejects mismatches."
-}

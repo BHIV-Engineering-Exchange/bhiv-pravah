@@ -1,1 +1,0 @@
--r app/services/mitra_tts_integration/requirements.txt

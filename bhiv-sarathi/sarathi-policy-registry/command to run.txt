@@ -1,1 +1,0 @@
-go run sarathi_policy_registry_main.go pdp_engine.go policy_store.go policy_registry.go registry_interface.go clock.go

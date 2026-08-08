@@ -1,1 +1,0 @@
-# Pravah adapter package

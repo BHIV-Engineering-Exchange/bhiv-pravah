@@ -1,9 +1,0 @@
-{
-    "trace_id": "test-trace-missing-critical",
-    "chain": [
-        "test-trace-missing-critical",
-        "trace-parent-999",
-        "trace-grandparent-888"
-    ],
-    "valid_chain": true
-}

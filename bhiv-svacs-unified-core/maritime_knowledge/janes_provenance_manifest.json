@@ -1,9 +1,0 @@
-{
-    "pipeline": [
-        "Guptchar Ingestion",
-        "Samachar Processing",
-        "Maritime Knowledge Store"
-    ],
-    "lineage_status": "ACTIVE",
-    "replay_safe": true
-}

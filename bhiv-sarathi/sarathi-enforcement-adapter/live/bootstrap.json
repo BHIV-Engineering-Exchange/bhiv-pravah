@@ -1,6 +1,0 @@
-./sarathi-enforcement-adapter.exe --bootstrap-sovereign-core \
-    --keys-out-dir=./live/keys/sovereign_bhiv_core \
-    --evaluator-id=sovereign_bhiv_core \
-    --metadata='{"name":"Sovereign BHIV Core","org":"BHIV"}' \
-    --snapshot=./live/trust_snapshot.json \
-    --print-private-key 2>&1 | tee bootstrap_output.txt

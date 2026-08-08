@@ -1,9 +1,0 @@
-{
-    "runtime_status": "ACTIVE",
-    "deterministic_chain": true,
-    "bucket_connected": true,
-    "replay_safe": true,
-    "dashboard_visible": true,
-    "lineage_continuity": true
-}
- 

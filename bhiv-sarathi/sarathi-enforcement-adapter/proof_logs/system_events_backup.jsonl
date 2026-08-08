@@ -1,5 +1,0 @@
-{"detail":"ts=2026-05-04T10:09:11.1089319Z pid=process","event_type":"harness_audit_sink_wired","timestamp":"2026-05-04T10:09:11.108931Z"}
-{"detail":"PostgreSQL unavailable — JSONL file-based audit active in proof_logs/","event_type":"FALLBACK_AUDIT_ACTIVATED","timestamp":"2026-05-12T11:23:34.821295Z"}
-{"detail":"PostgreSQL unavailable — JSONL file-based audit active in proof_logs/","event_type":"FALLBACK_AUDIT_ACTIVATED","timestamp":"2026-07-24T07:04:23.493938Z"}
-{"detail":"PostgreSQL unavailable — JSONL file-based audit active in proof_logs/","event_type":"FALLBACK_AUDIT_ACTIVATED","timestamp":"2026-07-24T08:08:39.467569Z"}
-{"detail":"PostgreSQL unavailable — JSONL file-based audit active in proof_logs/","event_type":"FALLBACK_AUDIT_ACTIVATED","timestamp":"2026-07-24T08:24:53.269128Z"}

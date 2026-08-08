@@ -1,6 +1,0 @@
-{
-  "status": "FLAG",
-  "risk_level": "MEDIUM",
-  "reason": "Detected 2 emotional dependency bait pattern(s)",
-  "confidence": 0.805
-}

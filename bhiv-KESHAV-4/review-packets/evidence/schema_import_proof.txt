@@ -1,3 +1,0 @@
-import proof:
-from app.sutradhara_control_plane import invoke_agent
-from app.enforcement_schemas import KSMLInput, ContextSignal, SourceSystem

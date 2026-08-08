@@ -1,6 +1,0 @@
-Graph Poisoning Proof
-==================================================
-self-reference: {"graph": "self-reference", "impacted": ["T1"], "score": 1}
-fan-out-200: {"graph": "fan-out-200", "impacted_count": 200, "elapsed_ms": "0.1"}
-diamond: {"graph": "diamond", "impacted": ["A", "B", "C"], "no_duplicates": true}
-empty-adjacency: {"graph": "empty-adjacency", "impacted": [], "score": 0}

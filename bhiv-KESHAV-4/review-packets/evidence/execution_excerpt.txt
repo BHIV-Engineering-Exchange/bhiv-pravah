@@ -1,4 +1,0 @@
-E2E Trace Proven:
-Execution ID: trace-e2e-b8258133
-Trace Hash: b8b6cf32227c25660d3a8c292513202f43fd26ade6f8777fc6930e9fbfde649e
-Decision: ALLOW

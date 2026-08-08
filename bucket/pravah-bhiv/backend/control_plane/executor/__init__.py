@@ -1,1 +1,0 @@
-execution_mode = "local"  # "local" or "external"
