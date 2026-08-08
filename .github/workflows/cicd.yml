@@ -134,7 +134,9 @@ jobs:
             docker compose -f docker-compose.production.yml pull
             
             # Log out from Docker Hub to secure credentials on the VM
-            docker logout
+            # Pre-create logs and data directories with open permissions for non-root container users
+            mkdir -p logs data
+            chmod -R 777 logs data
 
             docker compose -f docker-compose.production.yml up -d --remove-orphans
             
@@ -270,9 +272,10 @@ jobs:
               # Pull last healthy tag
               docker compose -f docker-compose.production.yml pull
               
-              # Log out from Docker Hub to secure credentials on the VM
-              docker logout
-              
+              # Pre-create logs and data directories with open permissions for non-root container users
+              mkdir -p logs data
+              chmod -R 777 logs data
+
               # Deploy last healthy tag
               docker compose -f docker-compose.production.yml up -d --remove-orphans
               
