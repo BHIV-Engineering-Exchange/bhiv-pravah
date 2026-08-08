@@ -299,7 +299,14 @@ jobs:
             # COMPOSE_PROJECT_NAME=pravah was set explicitly here) get
             # auto-named differently by Compose and silently survive that
             # cleanup, then block `up -d` with "port is already allocated".
-            for p in 6380 7000 8010 8600 9093; do
+            #
+            # Ports are read from Compose's own *resolved* config instead
+            # of hardcoded, so this stays correct even if environments/
+            # prod.env overrides a default (e.g. DECISION_BRAIN_PORT set
+            # to something other than the compose file's :-8010 default).
+            STACK_PORTS=$($COMPOSE --profile prod config | grep -oE 'published: "?[0-9]+"?' | grep -oE '[0-9]+' | sort -u)
+            echo "Host ports this stack will use: $STACK_PORTS"
+            for p in $STACK_PORTS; do
               stray=$(docker ps -aq --filter "publish=$p")
               if [ -n "$stray" ]; then
                 echo "Port $p is held by container(s) $stray -- removing."
@@ -451,7 +458,14 @@ jobs:
             # COMPOSE_PROJECT_NAME=pravah was set explicitly here) get
             # auto-named differently by Compose and silently survive that
             # cleanup, then block `up -d` with "port is already allocated".
-            for p in 6380 7000 8010 8600 9093; do
+            #
+            # Ports are read from Compose's own *resolved* config instead
+            # of hardcoded, so this stays correct even if environments/
+            # prod.env overrides a default (e.g. DECISION_BRAIN_PORT set
+            # to something other than the compose file's :-8010 default).
+            STACK_PORTS=$($COMPOSE --profile prod config | grep -oE 'published: "?[0-9]+"?' | grep -oE '[0-9]+' | sort -u)
+            echo "Host ports this stack will use: $STACK_PORTS"
+            for p in $STACK_PORTS; do
               stray=$(docker ps -aq --filter "publish=$p")
               if [ -n "$stray" ]; then
                 echo "Port $p is held by container(s) $stray -- removing."
