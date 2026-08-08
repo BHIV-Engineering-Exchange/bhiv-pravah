@@ -291,6 +291,21 @@ jobs:
               pravah-deploy-worker-1 pravah-deploy-worker-2 pravah-deploy-worker-3 \
               pravah-queue-monitor pravah-health-monitor pravah-prometheus \
               2>/dev/null || true
+            # Belt-and-suspenders: also clear anything ELSE bound to the
+            # host ports this stack needs, regardless of what it's called.
+            # Name-based cleanup above only catches containers literally
+            # named pravah-*. Containers from an older deploy under a
+            # different Compose project name (e.g. leftovers from before
+            # COMPOSE_PROJECT_NAME=pravah was set explicitly here) get
+            # auto-named differently by Compose and silently survive that
+            # cleanup, then block `up -d` with "port is already allocated".
+            for p in 6380 7000 8010 8600 9093; do
+              stray=$(docker ps -aq --filter "publish=$p")
+              if [ -n "$stray" ]; then
+                echo "Port $p is held by container(s) $stray -- removing."
+                docker rm -f $stray || true
+              fi
+            done
 
             echo "Pulling images..."
             $COMPOSE --profile prod pull
@@ -428,6 +443,21 @@ jobs:
               pravah-deploy-worker-1 pravah-deploy-worker-2 pravah-deploy-worker-3 \
               pravah-queue-monitor pravah-health-monitor pravah-prometheus \
               2>/dev/null || true
+            # Belt-and-suspenders: also clear anything ELSE bound to the
+            # host ports this stack needs, regardless of what it's called.
+            # Name-based cleanup above only catches containers literally
+            # named pravah-*. Containers from an older deploy under a
+            # different Compose project name (e.g. leftovers from before
+            # COMPOSE_PROJECT_NAME=pravah was set explicitly here) get
+            # auto-named differently by Compose and silently survive that
+            # cleanup, then block `up -d` with "port is already allocated".
+            for p in 6380 7000 8010 8600 9093; do
+              stray=$(docker ps -aq --filter "publish=$p")
+              if [ -n "$stray" ]; then
+                echo "Port $p is held by container(s) $stray -- removing."
+                docker rm -f $stray || true
+              fi
+            done
 
             echo "Pulling images..."
             $COMPOSE --profile prod pull
