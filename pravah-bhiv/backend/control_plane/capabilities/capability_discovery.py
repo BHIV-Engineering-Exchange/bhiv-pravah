@@ -44,3 +44,19 @@ class CapabilityDiscovery:
         """Discover capabilities matching a specific type."""
         capabilities = self.discover_all()
         return [c for c in capabilities if c.get("capability_type") == capability_type]
+
+    def discover_by_status(self, status: str) -> list[dict]:
+        """Discover capabilities matching a specific status."""
+        capabilities = self.discover_all()
+        return [
+            c for c in capabilities
+            if c.get("status") == status
+        ]
+
+    def discover_by_group(self, group: str) -> list[dict]:
+        """Discover capabilities owned by a specific group."""
+        capabilities = self.discover_all()
+        return [
+            c for c in capabilities
+            if c.get("owner_group") == group
+        ]
