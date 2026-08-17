@@ -9,6 +9,7 @@ from core_hooks.signal_builder import build_base_signal
 import pathlib
 from executer.runner import execute
 from sarathi.router import build_sarathi_headers
+from control_plane.capabilities.capability_discovery import CapabilityDiscovery
 
 class MultiAppControlPlane:
     """Aggregates registry, health overview, and decision history across apps."""
@@ -40,6 +41,34 @@ class MultiAppControlPlane:
                 continue
         apps.sort(key=lambda x: x["app_name"])
         return apps
+
+    def list_runtime_entities(self) -> List[Dict[str, Any]]:
+        """
+        Return a unified, read-only view of registered applications
+        and non-service capabilities.
+
+        Existing application discovery remains unchanged.
+        Capabilities are discovered separately and are not treated
+        as HTTP services.
+        """
+
+        entities = []
+
+        # Existing applications
+        for app in self.list_apps():
+            entity = dict(app)
+            entity["entity_kind"] = "application"
+            entities.append(entity)
+
+        # Non-service capabilities
+        capability_discovery = CapabilityDiscovery()
+
+        for capability in capability_discovery.discover_all():
+            entity = dict(capability)
+            entity["entity_kind"] = "capability"
+            entities.append(entity)
+
+        return entities
 
     def append_decision_history(self, record: Dict[str, Any]) -> None:
         payload = {
