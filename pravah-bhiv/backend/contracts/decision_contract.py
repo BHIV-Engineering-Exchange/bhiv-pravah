@@ -18,7 +18,7 @@ ALLOWED_ACTIONS = {
 
 
 class DecisionContract(BaseModel):
-    decision_type: Literal["execution"]
+    decision_type: Literal["execution", "abstention", "action_request_eligible"]
     action: str
     parameters: Dict[str, Any]
     version: str

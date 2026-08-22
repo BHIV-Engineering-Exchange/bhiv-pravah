@@ -1,0 +1,2 @@
+EMIT: {"dataset":"uptime_monitor","env":"dev","event_type":"restart","response_time":0,"status":"success","timestamp":"2026-08-19T13:25:20.874297"}
+EMIT: {"dataset":"uptime_monitor","env":"dev","event_type":"restart","response_time":0,"status":"success","timestamp":"2026-08-19T13:29:39.620866"}
