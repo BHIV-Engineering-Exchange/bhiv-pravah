@@ -105,22 +105,24 @@ export default function Dashboard() {
   };
 
   // Prepare chart data
-  const latencyData = dashboard.live_production_monitoring.map(item => ({
+  const monitoring = Array.isArray(dashboard.live_production_monitoring) ? dashboard.live_production_monitoring : [];
+
+  const latencyData = monitoring.map(item => ({
     name: item.name,
     latency: item.response_time_ms,
     uptime: item.uptime_percent,
   }));
 
-  const resourceData = dashboard.live_production_monitoring.map(item => ({
+  const resourceData = monitoring.map(item => ({
     name: item.name,
     cpu: item.cpu_percent,
     memory: item.memory_percent,
   }));
 
   // Health distribution
-  const healthyCount = dashboard.live_production_monitoring.filter(s => s.status === 'CONNECTED').length;
-  const criticalCount = dashboard.live_production_monitoring.filter(s => s.status === 'CRITICAL' || s.status === 'DISCONNECTED').length;
-  const degradedCount = dashboard.live_production_monitoring.filter(s => s.status === 'DEGRADED').length;
+  const healthyCount = monitoring.filter(s => s.status === 'CONNECTED').length;
+  const criticalCount = monitoring.filter(s => s.status === 'CRITICAL' || s.status === 'DISCONNECTED').length;
+  const degradedCount = monitoring.filter(s => s.status === 'DEGRADED').length;
 
   const pieData = [
     { name: 'Healthy', value: healthyCount, color: '#10b981' },
@@ -135,10 +137,10 @@ export default function Dashboard() {
       <header className="flex justify-between items-end pb-4 border-b border-border/60">
         <div>
           <h2 className="text-xl font-bold font-sans tracking-tight text-foreground">
-            {dashboard.header.title}
+            {dashboard.header?.title || 'System Dashboard'}
           </h2>
           <p className="text-xs text-muted-foreground mt-0.5">
-            {dashboard.header.subtitle} &bull; Generated at {new Date(dashboard.generated_at).toLocaleTimeString()}
+            {dashboard.header?.subtitle || 'Live Telemetry'} &bull; Generated at {dashboard.generated_at ? new Date(dashboard.generated_at).toLocaleTimeString() : 'N/A'}
           </p>
         </div>
         <div className="flex items-center gap-1.5 status-pill healthy font-mono text-[10px]">
@@ -149,7 +151,7 @@ export default function Dashboard() {
 
       {/* Top 4 Stats Rows */}
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {dashboard.system_health.map((s, idx) => {
+        {(Array.isArray(dashboard.system_health) ? dashboard.system_health : []).map((s, idx) => {
           const isHealth = s.label.toLowerCase().includes('health');
           return (
             <div key={idx} className="premium-card flex flex-col gap-1 relative overflow-hidden">
@@ -215,7 +217,7 @@ export default function Dashboard() {
                 </ResponsiveContainer>
                 {/* Center metric */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                  <span className="text-xl font-bold">{dashboard.live_production_monitoring.length}</span>
+                  <span className="text-xl font-bold">{monitoring.length}</span>
                   <span className="text-[9px] text-muted-foreground font-sans">MONITORED</span>
                 </div>
               </div>
@@ -259,12 +261,12 @@ export default function Dashboard() {
               <span className="text-xs text-muted-foreground">Active Gate:</span>
               <span className="text-xs font-extrabold text-primary flex items-center gap-1">
                 <ArrowRightLeft className="w-3.5 h-3.5" />
-                {dashboard.auto_failover_status.active_domain}
+                {dashboard.auto_failover_status?.active_domain || 'N/A'}
               </span>
             </div>
             <div className="flex flex-col gap-2">
               <span className="text-[10px] text-muted-foreground uppercase">Domain Failover Queue:</span>
-              {dashboard.auto_failover_status.domains.map((dom, i) => (
+              {(Array.isArray(dashboard.auto_failover_status?.domains) ? dashboard.auto_failover_status.domains : []).map((dom, i) => (
                 <div key={i} className="flex justify-between items-center bg-secondary/30 border border-border/40 px-3 py-1.5 rounded text-[10px]">
                   <span>{dom.name}</span>
                   <span className={`font-semibold ${dom.status.includes('FAILOVER') ? 'text-primary' : 'text-emerald-500'}`}>{dom.status}</span>
@@ -315,7 +317,7 @@ export default function Dashboard() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border/40">
-                {dashboard.live_production_monitoring.map((item, idx) => (
+                {monitoring.map((item, idx) => (
                   <tr key={idx} className="group hover:bg-secondary/20">
                     <td className="py-2.5 font-semibold text-foreground flex items-center gap-1.5">
                       <span className={`w-1.5 h-1.5 rounded-full ${item.status === 'CONNECTED' ? 'bg-emerald-500' : (item.status === 'DEGRADED' ? 'bg-amber-500' : 'bg-rose-500')}`} />
@@ -348,7 +350,7 @@ export default function Dashboard() {
         <div className="premium-card flex flex-col gap-4 font-mono">
           <h4 className="font-bold text-xs uppercase tracking-wider text-muted-foreground">Ecosystem Timeline Events</h4>
           <div className="flex flex-col gap-3 py-1 overflow-y-auto max-h-[300px]">
-            {dashboard.live_events.map((ev, i) => (
+            {(Array.isArray(dashboard.live_events) ? dashboard.live_events : []).map((ev, i) => (
               <div key={i} className="flex gap-2.5 items-start text-[10px] leading-relaxed border-l-2 border-border pl-3.5 py-0.5">
                 <div className="flex-1 flex flex-col gap-0.5">
                   <span className="text-foreground font-medium">{ev.title}</span>

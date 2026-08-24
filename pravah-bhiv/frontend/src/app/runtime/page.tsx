@@ -124,7 +124,7 @@ export default function Runtime() {
 
             <div className="flex justify-between items-center text-[10px] text-muted-foreground border-b border-border/20 pb-1">
               <span>Last Execution Event:</span>
-              <span className="text-foreground font-semibold uppercase">{autoStatus?.last_action || dashboard?.live_production_monitoring[0]?.last_action || 'noop'}</span>
+              <span className="text-foreground font-semibold uppercase">{autoStatus?.last_action || dashboard?.live_production_monitoring?.[0]?.last_action || 'noop'}</span>
             </div>
 
             <div className="flex flex-col gap-1.5 mt-2">

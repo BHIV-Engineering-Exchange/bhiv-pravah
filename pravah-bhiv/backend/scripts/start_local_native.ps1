@@ -1,4 +1,4 @@
-$BackendDir = "C:\Users\black\OneDrive\Desktop\Pravah\pravah-bhiv\backend"
+$BackendDir = $PSScriptRoot + "\.."
 
 Write-Host "=======================================================" -ForegroundColor Cyan
 Write-Host "    PRAVAH NATIVE STARTUP SCRIPT (WINDOWS LOCAL)       " -ForegroundColor Cyan
@@ -22,8 +22,8 @@ Write-Host "`n[1/7] Starting Redis Event Bus via Docker Compose..." -ForegroundC
 Set-Location $BackendDir
 docker compose -f docker-compose.yml --env-file environments/prod.env --profile prod up -d redis
 
-Write-Host "Waiting 3 seconds for Redis to initialize..." -ForegroundColor DarkGray
-Start-Sleep -Seconds 3
+Write-Host "Waiting 10 seconds for Redis to initialize..." -ForegroundColor DarkGray
+Start-Sleep -Seconds 10
 
 # Helper function to open a new terminal window, set all environment variables, and run a command
 function Start-ServiceWindow {

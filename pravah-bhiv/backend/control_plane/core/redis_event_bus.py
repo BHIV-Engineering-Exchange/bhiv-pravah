@@ -35,27 +35,33 @@ class RedisEventBus:
         self._connect()
     
     def _connect(self):
-        """Connect to Redis server."""
-        try:
-            self.redis_client = redis.Redis(
-                host=self.redis_host,
-                port=self.redis_port,
-                db=self.redis_db,
-                decode_responses=True,
-                socket_timeout=5,
-                socket_connect_timeout=5,
-                retry_on_timeout=True
-            )
-            
-            # Test connection
-            self.redis_client.ping()
-            self.pubsub = self.redis_client.pubsub()
-            print(f"Connected to Redis at {self.redis_host}:{self.redis_port}")
-            
-        except redis.ConnectionError as e:
-            print(f"Failed to connect to Redis: {e}")
-            # Fallback to mock mode for testing
-            self._setup_mock_mode()
+        """Connect to Redis server with retries."""
+        max_retries = 5
+        for attempt in range(max_retries):
+            try:
+                self.redis_client = redis.Redis(
+                    host=self.redis_host,
+                    port=self.redis_port,
+                    db=self.redis_db,
+                    decode_responses=True,
+                    socket_timeout=5,
+                    socket_connect_timeout=5,
+                    retry_on_timeout=True
+                )
+                
+                # Test connection
+                self.redis_client.ping()
+                self.pubsub = self.redis_client.pubsub()
+                print(f"Connected to Redis at {self.redis_host}:{self.redis_port}")
+                return
+                
+            except redis.ConnectionError as e:
+                print(f"Failed to connect to Redis (Attempt {attempt+1}/{max_retries}): {e}")
+                if attempt < max_retries - 1:
+                    time.sleep(3)
+        
+        # Fallback to mock mode if all retries fail
+        self._setup_mock_mode()
     
     def _setup_mock_mode(self):
         """Setup mock mode when Redis is unavailable."""

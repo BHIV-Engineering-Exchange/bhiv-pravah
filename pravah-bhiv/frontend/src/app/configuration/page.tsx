@@ -94,7 +94,7 @@ export default function Configuration() {
               <div key={env} className="flex justify-between items-center bg-secondary/20 border border-border/40 px-3 py-2 rounded-lg">
                 <span className="font-bold text-foreground uppercase">{env}</span>
                 <div className="flex flex-wrap gap-1">
-                  {actions.map((act, i) => (
+                  {(Array.isArray(actions) ? actions : []).map((act, i) => (
                     <span key={i} className="bg-secondary border border-border text-muted-foreground text-[8px] px-2 py-0.5 rounded font-mono uppercase">
                       {act}
                     </span>
@@ -112,7 +112,7 @@ export default function Configuration() {
           </span>
           
           <div className="flex flex-col gap-3">
-            {dashboard?.ai_learning_status.map((item, idx) => (
+            {(Array.isArray(dashboard?.ai_learning_status) ? dashboard!.ai_learning_status : []).map((item, idx) => (
               <div key={idx} className="flex justify-between items-center text-[10px] border-b border-border/40 pb-1.5 last:border-0 last:pb-0">
                 <span className="text-muted-foreground">{item.label}:</span>
                 <span className="text-foreground font-bold">{item.value}</span>

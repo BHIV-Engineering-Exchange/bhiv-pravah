@@ -69,7 +69,7 @@ export default function Analytics() {
         <div className="premium-card flex flex-col gap-1 relative overflow-hidden">
           <span className="text-[10px] text-muted-foreground uppercase tracking-wider">Average Latency</span>
           <span className="text-xl font-bold text-foreground font-sans">
-            {dashboard?.enhanced_telemetry.avg_latency || '120ms'}
+            {dashboard?.enhanced_telemetry?.avg_latency || '120ms'}
           </span>
           <div className="absolute right-3 top-3 opacity-10">
             <Activity className="w-8 h-8 text-primary" />
@@ -79,7 +79,7 @@ export default function Analytics() {
         <div className="premium-card flex flex-col gap-1 relative overflow-hidden">
           <span className="text-[10px] text-muted-foreground uppercase tracking-wider">Accumulated Run Cost</span>
           <span className="text-xl font-bold text-foreground font-sans">
-            {dashboard?.enhanced_telemetry.cost || '$0.0025'}
+            {dashboard?.enhanced_telemetry?.cost || '$0.0025'}
           </span>
           <div className="absolute right-3 top-3 opacity-10">
             <DollarSign className="w-8 h-8 text-emerald-500" />
@@ -89,7 +89,7 @@ export default function Analytics() {
         <div className="premium-card flex flex-col gap-1 relative overflow-hidden">
           <span className="text-[10px] text-muted-foreground uppercase tracking-wider">Orchestration Success Rate</span>
           <span className="text-xl font-bold text-foreground font-sans">
-            {dashboard?.enhanced_telemetry.success || '100%'}
+            {dashboard?.enhanced_telemetry?.success || '100%'}
           </span>
           <div className="absolute right-3 top-3 opacity-10">
             <TrendingUp className="w-8 h-8 text-primary" />
@@ -99,7 +99,7 @@ export default function Analytics() {
         <div className="premium-card flex flex-col gap-1 relative overflow-hidden">
           <span className="text-[10px] text-muted-foreground uppercase tracking-wider">Enforcement Queries</span>
           <span className="text-xl font-bold text-foreground font-sans">
-            {dashboard?.enhanced_telemetry.requests || '1'}
+            {dashboard?.enhanced_telemetry?.requests || '1'}
           </span>
           <div className="absolute right-3 top-3 opacity-10">
             <Activity className="w-8 h-8 text-amber-500" />
