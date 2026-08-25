@@ -1,3 +1,4 @@
+
 # =============================================================================
 # Pravah Yotta Deployment Manifest
 # =============================================================================
@@ -86,6 +87,7 @@ services:
       - EMERGENCY_FREEZE_ENABLED=${EMERGENCY_FREEZE_ENABLED:-false}
       - DEMO_MODE=false
       - DEMO_FREEZE_MODE=false
+      - PRAVAH_MAIN_API=http://pravah-decision-brain:8000
     volumes:
       - pravah-logs:/app/logs
       - pravah-data:/app/data
@@ -95,7 +97,7 @@ services:
       --worker-class sync
       --bind 0.0.0.0:7000
       --timeout 120
-      --keepalive 5
+      --keep-alive 5
       --access-logfile /app/logs/access.log
       --error-logfile /app/logs/error.log
       --log-level info
