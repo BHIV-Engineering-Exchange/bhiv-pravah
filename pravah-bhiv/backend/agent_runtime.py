@@ -61,6 +61,10 @@ from contracts.decision_contract import validate_decision_contract
 from contracts.execution_contract import build_execution_contract
 
 
+class ConfigurationError(Exception):
+    """Raised when critical configuration is missing."""
+    pass
+
 class DecisionProvider:
     """Base interface class for Runtime Decision Providers."""
     def decide(self, payload: Dict[str, Any]) -> Dict[str, Any]:
@@ -71,8 +75,12 @@ class HTTPDecisionProvider(DecisionProvider):
     """Production decision provider calling the external HTTP engine."""
     def __init__(self, endpoint_url: str = None, timeout: float = 2.0):
         if endpoint_url is None:
-            brain_port = os.getenv("DECISION_BRAIN_PORT", "8000")
-            endpoint_url = f"http://127.0.0.1:{brain_port}/process-runtime"
+            main_api = os.getenv("PRAVAH_MAIN_API")
+            if not main_api:
+                raise ConfigurationError("PRAVAH_MAIN_API is required for production Decision Brain execution.")
+            if main_api.endswith("/"):
+                main_api = main_api[:-1]
+            endpoint_url = f"{main_api}/process-runtime"
         self.endpoint_url = endpoint_url
         self.timeout = timeout
 
@@ -88,9 +96,15 @@ class HTTPDecisionProvider(DecisionProvider):
 
 
 def call_decision_engine(runtime_payload):
-    brain_port = os.getenv("DECISION_BRAIN_PORT", "8000")
+    main_api = os.getenv("PRAVAH_MAIN_API")
+    if not main_api:
+        raise ConfigurationError("PRAVAH_MAIN_API is required for production Decision Brain execution.")
+    if main_api.endswith("/"):
+        main_api = main_api[:-1]
+    endpoint_url = f"{main_api}/process-runtime"
+    
     response = requests.post(
-        f"http://127.0.0.1:{brain_port}/process-runtime",
+        endpoint_url,
         json=runtime_payload
     )
     return response.json()
@@ -634,6 +648,7 @@ class AgentRuntime:
             "app_id": data.get("app_id", "unknown"),
             "current_replicas": data.get("workers", 1),
             "desired_replicas": data.get("workers", 1),
+            "trace_id": data.get("trace_id"),
 
             # [OK] FIX THESE
             "cpu_usage": data.get("cpu_percent", 0),
