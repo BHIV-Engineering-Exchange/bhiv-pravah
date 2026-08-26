@@ -9,12 +9,15 @@ running through governance, and appending to the Action Request repository.
 import os
 import hashlib
 import json
-from typing import Any, Dict, Optional, List
+from typing import Any, Dict, Optional, List, Union
 from datetime import datetime, timezone
 from pydantic import BaseModel, field_validator
 
 from contracts.decision_contract import DecisionContract
 from control_plane.core.action_governance import ActionGovernance, GovernanceDecision
+from control_plane.decision_translation.governed_abstention_recorder import (
+    GovernedAbstentionRecorder,
+)
 
 # ---------------------------------------------------------------------------
 # Action Request Data Models
@@ -106,9 +109,27 @@ class Group4IntakeBoundary:
     Validates lineage and constructs an Action Request from an eligible contract.
     """
     
-    def process(self, contract: DecisionContract) -> ActionRequest:
-        if contract.decision_type != "action_request_eligible":
-            raise ValueError(f"Group 4 Intake requires 'action_request_eligible' contract. Got {contract.decision_type}")
+    def process(self, contract: DecisionContract) -> Union[ActionRequest, Dict[str, Any]]:
+        if contract.decision_type not in ("action_request_eligible", "abstention"):
+            raise ValueError(f"Group 4 Intake requires 'action_request_eligible' or 'abstention' contract. Got {contract.decision_type}")
+            
+        # Governance / Enforcement
+        governance = ActionGovernance(env=os.getenv("ENVIRONMENT", "dev"))
+        gov_decision = governance.evaluate_contract(
+            decision=contract,
+            context={
+                "app_name": "group4_intake",
+                "env": os.getenv("ENVIRONMENT", "dev"),
+                "source": "action_request_pipeline"
+            }
+        )
+        
+        if contract.decision_type == "abstention":
+            recorder = GovernedAbstentionRecorder()
+            return recorder.record(
+                contract=contract,
+                governance_decision=gov_decision,
+            )
             
         params = contract.parameters
         observation_id = params.get("observation_id")
@@ -142,16 +163,7 @@ class Group4IntakeBoundary:
         ar_hash = hashlib.sha256(ar_json.encode("utf-8")).hexdigest()
         action_request_id = "ar-" + ar_hash[:24]
         
-        # 4. Governance / Enforcement
-        governance = ActionGovernance(env=os.getenv("ENVIRONMENT", "dev"))
-        gov_decision = governance.evaluate_contract(
-            decision=contract,
-            context={
-                "app_name": "group4_intake",
-                "env": os.getenv("ENVIRONMENT", "dev"),
-                "source": "action_request_pipeline"
-            }
-        )
+        # 4. Governance / Enforcement (Already evaluated above)
         
         status = "VALIDATED" if not gov_decision.should_block else "BLOCKED"
         

@@ -158,19 +158,28 @@ def test_10_duplicate_delivery_is_idempotent(allow_ruling_fixture, tmp_path):
         
         # Check that only one entry was written to the file
         lines = storage_path.read_text(encoding='utf-8').strip().split('\\n')
+        lines = storage_path.read_text(encoding='utf-8').strip().split('\n')
         assert len(lines) == 1, "Duplicate delivery must be idempotent in the recorder"
         
 
 def test_11_gap_cannot_create_action_request():
     gap_fixture = Path(__file__).resolve().parents[1] / "integration" / "group2" / "fixtures" / "temporal_ruling_gap.json"
     gap_data = json.loads(gap_fixture.read_text(encoding='utf-8'))
-    
+
     adapter = ContextualResultAdapter()
     contract = adapter.translate(gap_data)
-    
+
     intake = Group4IntakeBoundary()
-    with pytest.raises(ValueError, match="Group 4 Intake requires 'action_request_eligible' contract"):
-         intake.process(contract)
+    
+    approved_decision = GovernanceDecision(should_block=False, policy_id="p1", policy_version="v1", admission_state="ADMITTED")
+    with patch("control_plane.decision_translation.group4_intake.ActionGovernance.evaluate_contract", return_value=approved_decision), \
+         patch("control_plane.decision_translation.governed_abstention_recorder.AppendOnlyLog.append"):
+         
+         result = intake.process(contract)
+         
+         assert "abstention_record_id" in result
+         assert result["abstention_record_id"].startswith("abstention-")
+         assert "action_request_id" not in result
 
 
 def test_12_adapt_cannot_create_action_request():
@@ -188,8 +197,52 @@ def test_12_adapt_cannot_create_action_request():
     assert contract.decision_type == "abstention"
     
     intake = Group4IntakeBoundary()
-    with pytest.raises(ValueError, match="Group 4 Intake requires 'action_request_eligible' contract"):
-         intake.process(contract)
+    
+    approved_decision = GovernanceDecision(should_block=False, policy_id="p1", policy_version="v1", admission_state="ADMITTED")
+    with patch("control_plane.decision_translation.group4_intake.ActionGovernance.evaluate_contract", return_value=approved_decision), \
+         patch("control_plane.decision_translation.governed_abstention_recorder.AppendOnlyLog.append"):
+         
+         result = intake.process(contract)
+         
+         assert "abstention_record_id" in result
+         assert result["abstention_record_id"].startswith("abstention-")
+         assert "action_request_id" not in result
+
+def test_open_meteo_eod_abstention():
+    data = {
+        "observation_id": "TC-Z03-EXT-OPENMETEO-OBS001",
+        "canonical_record_id": "CR-b4615a27-7ab1-4bde-a078-a56fa0f2414c",
+        "context_id": None,
+        "ruling": "ABSTAIN",
+        "action_eligibility": False,
+        "abstention_required": True,
+        "action_request": None
+    }
+    
+    adapter = ContextualResultAdapter()
+    contract = adapter.translate(data)
+    assert contract.decision_type == "abstention"
+    
+    intake = Group4IntakeBoundary()
+    approved_decision = GovernanceDecision(should_block=False, policy_id="p1", policy_version="v1", admission_state="ADMITTED")
+    
+    with patch("control_plane.decision_translation.group4_intake.ActionGovernance.evaluate_contract", return_value=approved_decision), \
+         patch("control_plane.decision_translation.governed_abstention_recorder.AppendOnlyLog.append"):
+         
+         # Run 1
+         result1 = intake.process(contract)
+         assert "abstention_record_id" in result1
+         assert result1["context_id"] is None
+         assert "action_request_id" not in result1
+         id1 = result1["abstention_record_id"]
+         
+         # Run 2
+         result2 = intake.process(contract)
+         assert "abstention_record_id" in result2
+         assert result2["context_id"] is None
+         id2 = result2["abstention_record_id"]
+         
+         assert id1 == id2, "Abstention ID must be deterministic on replay"
         
         
 def test_13_retrieval_preserves_complete_upstream_lineage(allow_ruling_fixture, tmp_path):
