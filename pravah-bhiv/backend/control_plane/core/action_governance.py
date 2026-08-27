@@ -523,6 +523,9 @@ class ActionGovernance:
             GovernanceDecision
         """
         self._load_state()
+        if action in ["noop", "abstain"]:
+            return GovernanceDecision(should_block=False)
+            
         # Get recent actions within the repetition window
         cutoff_time = current_time - self.repetition_window
         recent_actions = [

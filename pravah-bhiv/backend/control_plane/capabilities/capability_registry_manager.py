@@ -16,6 +16,9 @@ class CapabilityRegistryManager:
         self.registry_dir = (
             Path(__file__).parent / "registry"
         )
+        self.vana_registry_dir = (
+            Path(__file__).resolve().parents[3] / "VANA"
+        )
 
         self.registry_dir.mkdir(
             parents=True,
@@ -80,12 +83,20 @@ class CapabilityRegistryManager:
             self.registry_dir /
             f"{capability_id}.json"
         )
+        vana_path = (
+            self.vana_registry_dir /
+            f"{capability_id}.json"
+        )
 
-        if not file_path.exists():
+        if file_path.exists():
+            target_path = file_path
+        elif vana_path.exists():
+            target_path = vana_path
+        else:
             return None
 
         with open(
-            file_path,
+            target_path,
             "r",
             encoding="utf-8"
         ) as handle:
@@ -97,8 +108,12 @@ class CapabilityRegistryManager:
         """
 
         capabilities = []
+        
+        all_paths = list(self.registry_dir.glob("*.json"))
+        if self.vana_registry_dir.exists():
+            all_paths.extend(self.vana_registry_dir.glob("*.json"))
 
-        for file_path in self.registry_dir.glob("*.json"):
+        for file_path in all_paths:
             if file_path.name == ".gitkeep":
                 continue
             with open(

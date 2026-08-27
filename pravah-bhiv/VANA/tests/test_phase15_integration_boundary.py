@@ -8,8 +8,13 @@ HTTP endpoint.
 """
 
 import json
+import sys
 from pathlib import Path
-from control_plane.decision_translation.vana_integration import process_vana_governed_abstention
+
+backend_dir = Path(__file__).resolve().parents[2] / "backend"
+if str(backend_dir) not in sys.path:
+    sys.path.insert(0, str(backend_dir))
+from VANA.vana_integration import process_vana_governed_abstention
 from control_plane.core.action_governance import ActionGovernance
 
 def test_vana_integration_boundary_processes_local_ruling_correctly(tmp_path):
@@ -19,7 +24,7 @@ def test_vana_integration_boundary_processes_local_ruling_correctly(tmp_path):
     """
     
     # 1. Load the real Group 2 ruling as an external system would (using GAP fixture for Phase 15 isolation)
-    ruling_path = Path(__file__).resolve().parents[1] / "integration" / "group2" / "fixtures" / "temporal_ruling_gap.json"
+    ruling_path = Path(__file__).resolve().parents[2] / "backend" / "integration" / "group2" / "fixtures" / "temporal_ruling_gap.json"
     ruling = json.loads(ruling_path.read_text(encoding="utf-8"))
     
     # 2. To avoid shared persistent governance state exhaustion in pytest,
@@ -34,7 +39,7 @@ def test_vana_integration_boundary_processes_local_ruling_correctly(tmp_path):
         admission_state="POLICY_ADMITTED",
     )
     
-    with patch("control_plane.decision_translation.vana_integration.ActionGovernance.evaluate_contract", return_value=approved_decision):
+    with patch("VANA.vana_integration.ActionGovernance.evaluate_contract", return_value=approved_decision):
         # 3. Process via the Pravah boundary, injecting runtime provenance
         evidence_1 = process_vana_governed_abstention(
             ruling=ruling,

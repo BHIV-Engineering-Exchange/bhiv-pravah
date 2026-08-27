@@ -63,7 +63,7 @@ VERIFIED_CAPABILITY_MAPPINGS = {
             "status": "VERIFIED"
         },
         "evidence": {
-            "file": "backend/control_plane/capabilities/registry/vana-environmental_observation.json",
+            "file": "VANA/vana-environmental_observation.json",
             "line": 1
         }
     }

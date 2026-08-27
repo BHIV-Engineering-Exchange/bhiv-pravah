@@ -3,7 +3,7 @@ import sys
 from pathlib import Path
 from unittest.mock import MagicMock
 
-backend_dir = Path(__file__).resolve().parent.parent
+backend_dir = Path(__file__).resolve().parents[2] / "backend"
 sys.path.insert(0, str(backend_dir))
 
 import control_plane.multi_app_control_plane
@@ -46,7 +46,7 @@ def test_capability_rights_linkage(rights_adapter):
     assert mapping["role"] == "environmental_observation"
     assert "environmental_observation" in mapping["allowed_actions"]
     assert mapping["verification"]["status"] == "VERIFIED"
-    assert "backend/control_plane/capabilities/registry/vana-environmental_observation.json" in mapping["evidence"]["file"]
+    assert "VANA/vana-environmental_observation.json" in mapping["evidence"]["file"]
 
 def test_valid_execution_permission(rights_adapter):
     # This should succeed and return the authorization object

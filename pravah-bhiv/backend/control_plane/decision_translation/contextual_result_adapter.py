@@ -130,6 +130,7 @@ class ContextualResultAdapter:
                     "observation_id": contextual_result["observation_id"],
                     "context_id": contextual_result["context_id"],
                     # Optional provenance fields — preserved if present
+                    "canonical_record_id": contextual_result.get("canonical_record_id"),
                     "trace_id": contextual_result.get("trace_id"),
                     "execution_id": contextual_result.get("execution_id"),
                     # Source authority metadata
