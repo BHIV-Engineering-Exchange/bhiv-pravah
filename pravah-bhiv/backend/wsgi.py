@@ -15,6 +15,14 @@ if root_dir not in sys.path:
 if control_plane_dir not in sys.path:
     sys.path.append(control_plane_dir)
 
+try:
+    from dotenv import load_dotenv
+    env_path = os.path.join(root_dir, 'environments', 'prod.env')
+    if os.path.exists(env_path):
+        load_dotenv(env_path)
+except ImportError:
+    pass
+
 # Import the Flask app (this will initialize the agent in background)
 from api.agent_api import app
 

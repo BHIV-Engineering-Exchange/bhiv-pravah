@@ -177,3 +177,105 @@ export const api = {
     return res.data;
   },
 };
+
+// =============================================================================
+// VANA API — Group 1 → Group 2 → Group 4 Live Pipeline
+// =============================================================================
+
+import type {
+  VanaGroup1Response,
+  VanaGroup2Ruling,
+  VanaGovernedOutcome,
+} from '../types';
+
+// Group 1 — VANA MasterDB Observation API (live, port 8013)
+const GROUP1_URL =
+  process.env.NEXT_PUBLIC_VANA_GROUP1_URL || 'http://163.128.209.18:8013';
+
+// Group 4 — deployed Decision Brain (port 8010 externally, same origin locally via /vana/execute)
+const GROUP4_VANA_URL =
+  process.env.NEXT_PUBLIC_VANA_GROUP4_URL || 'http://163.128.209.18:8010';
+
+/**
+ * Fetch a canonical observation from the Group 1 live API.
+ * Throws on network failure or non-200 response.
+ */
+export async function fetchVanaObservation(
+  observationId: string
+): Promise<VanaGroup1Response> {
+  const res = await fetch(`${GROUP1_URL}/observations/${encodeURIComponent(observationId)}`, {
+    method: 'GET',
+    headers: { Accept: 'application/json' },
+  });
+  if (!res.ok) {
+    throw new Error(`Group 1 responded ${res.status} for observation ${observationId}`);
+  }
+  const data: VanaGroup1Response = await res.json();
+  if (data.status === 'NOT_FOUND') {
+    throw new Error(`Observation ${observationId} not found in Group 1`);
+  }
+  return data;
+}
+
+// Group 2 — Proxy via Next.js to bypass CORS
+const GROUP2_URL = '/api/vana/group2';
+
+/**
+ * Fetch the Group 2 ruling by sending the canonical observation.
+ */
+export async function fetchGroup2Ruling(
+  group1Response: VanaGroup1Response
+): Promise<VanaGroup2Ruling> {
+  const res = await fetch(GROUP2_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(group1Response.observation), // Group 2 likely expects the observation object
+  });
+  
+  if (!res.ok) {
+    let errorText = '';
+    try {
+      const data = await res.json();
+      errorText = data.error || JSON.stringify(data);
+    } catch {
+      errorText = await res.text().catch(() => '');
+    }
+    throw new Error(`Group 2 responded ${res.status}: ${errorText}`);
+  }
+  
+  return res.json() as Promise<VanaGroup2Ruling>;
+}
+
+// Group 4 — Proxy via Next.js to bypass CORS
+const GROUP4_PROXY_URL = '/api/vana/group4';
+
+/**
+ * Submit the Group 2 ruling to Group 4 POST /vana/execute.
+ * Uses the proxy to bypass CORS restrictions.
+ */
+export async function submitVanaExecute(
+  ruling: VanaGroup2Ruling
+): Promise<VanaGovernedOutcome> {
+  const res = await fetch(GROUP4_PROXY_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(ruling),
+  });
+  if (!res.ok) {
+    let errorText = '';
+    try {
+      const data = await res.json();
+      errorText = data.error || JSON.stringify(data);
+    } catch {
+      errorText = await res.text().catch(() => '');
+    }
+    throw new Error(`Group 4 responded ${res.status}: ${errorText}`);
+  }
+  return res.json() as Promise<VanaGovernedOutcome>;
+}

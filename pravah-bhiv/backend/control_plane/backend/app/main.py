@@ -146,7 +146,7 @@ app = FastAPI(
 # CORS middleware for local dev + Vercel deploys (stateless API, no credentials)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=_parse_cors_origins() + ["http://localhost:8000"],
+    allow_origins=_parse_cors_origins() + ["http://localhost:8000", "http://localhost:4500"],
     allow_origin_regex=_cors_origin_regex(),
     allow_credentials=False,
     allow_methods=["*"],

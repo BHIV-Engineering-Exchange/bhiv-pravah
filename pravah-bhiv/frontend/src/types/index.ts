@@ -145,3 +145,157 @@ export interface AutonomousStatus {
 export interface ActionScope {
   [environment: string]: string[];
 }
+
+// =============================================================================
+// VANA Types — Group 1 → Group 2 → Group 4 Lineage
+// =============================================================================
+
+/** Raw artifact integrity from Group 1 */
+export interface VanaRawArtifactIntegrity {
+  checksum_sha256: string;
+  hash_algorithm: string;
+  artifact_type: string;
+}
+
+/** A single measurement from a Group 1 observation */
+export interface VanaMeasurement {
+  measurement_id: string;
+  metric_name: string;
+  data_type: string;
+  value: number | null;
+  value_text: string | null;
+  unit: string;
+  method: string;
+}
+
+/** Full canonical observation returned by Group 1 GET /observations/{id} */
+export interface VanaObservation {
+  observation_id: string;
+  canonical_record_id: string;
+  dataset_id: string;
+  geo_id: string;
+  observed_at: string;
+  observation_timestamp: string;
+  observation_type: string;
+  quality_status: string;
+  data_state: string;
+  is_synthetic: boolean;
+  capture_method: string;
+  device_id: string;
+  provenance_reference: string;
+  latitude: number;
+  longitude: number;
+  altitude_m: number | null;
+  gnss_status: string;
+  calibration_status: string;
+  measurements: VanaMeasurement[];
+  raw_artifact: string;
+  raw_artifact_integrity: VanaRawArtifactIntegrity;
+  geo_location?: {
+    place_name: string;
+    latitude: number;
+    longitude: number;
+    altitude_m: number | null;
+    crs: string;
+  };
+  field_observation_meta?: {
+    device_id: string;
+    operator: string;
+    mission_id: string;
+    processing_status: string;
+    calibration_status: string;
+    gnss_status: string;
+    notes: string | null;
+  };
+}
+
+/** Group 1 API response envelope */
+export interface VanaGroup1Response {
+  trace_id: string;
+  observation_id: string;
+  status: 'RETRIEVED' | 'NOT_FOUND' | string;
+  observation: VanaObservation;
+}
+
+/** The payload sent to Group 4 POST /vana/execute (mirrors Group 2 ruling) */
+export interface VanaGroup2Ruling {
+  observation_id: string;
+  canonical_record_id: string;
+  context_id: string | null;
+  ruling: 'ABSTAIN' | 'ALLOW' | 'DENY' | 'BLOCK';
+  action_eligibility: boolean;
+  abstention_required: boolean;
+  action_request: null | Record<string, unknown>;
+  evidence: {
+    source: string;
+    confidence?: string;
+    missing_critical_data?: string;
+    provenance_reference?: string;
+    artifact_hash?: string;
+    artifact_type?: string;
+    observation_timestamp?: string;
+    retrieval_timestamp?: string;
+    attribution?: string;
+    canonical_observation_location?: string;
+    [key: string]: unknown;
+  };
+  provenance?: {
+    group2_decision_time?: string;
+    reason?: string;
+    message?: string;
+    [key: string]: unknown;
+  };
+}
+
+/** Evidence block inside Group 4 response */
+export interface VanaGovernedEvidence {
+  event_type: string;
+  abstention_record_id: string;
+  event_id: string;
+  execution_id: string;
+  observation_id: string;
+  context_id: string | null;
+  ruling: string;
+  decision_action: string;
+  governance_allowed: boolean;
+  recorded_at: string;
+  canonical_record_id: string;
+}
+
+/** Full Group 4 response from POST /vana/execute */
+export interface VanaGovernedOutcome {
+  status: 'governed_abstention' | 'action_request_generated' | string;
+  evidence: VanaGovernedEvidence;
+}
+
+/** Execution status derived from governance outcome */
+export type VanaExecutionStatus =
+  | 'NOT_EXECUTED'
+  | 'EXECUTED'
+  | 'GOVERNED_ABSTENTION'
+  | 'ACTION_REQUEST_GENERATED';
+
+/** Single pipeline stage status */
+export type VanaStageStatus = 'idle' | 'loading' | 'success' | 'error' | 'unavailable';
+
+/** Full VANA lineage pipeline state held in component */
+export interface VanaLineagePipelineState {
+  selectedObservationId: string | null;
+  group1Status: VanaStageStatus;
+  group1Response: VanaGroup1Response | null;
+  group1Error: string | null;
+  group2Status: VanaStageStatus;
+  group2Ruling: VanaGroup2Ruling | null;
+  group2Error: string | null;
+  group4Status: VanaStageStatus;
+  group4Outcome: VanaGovernedOutcome | null;
+  group4Error: string | null;
+}
+
+/** Known region / observation IDs for the selector */
+export interface VanaRegion {
+  label: string;
+  observation_id: string;
+  description: string;
+  available: boolean;
+}

@@ -27,7 +27,8 @@ import {
   Search,
   User,
   ChevronRight,
-  Sparkles
+  Sparkles,
+  Leaf
 } from 'lucide-react';
 
 interface SidebarItem {
@@ -70,6 +71,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const navItems: SidebarItem[] = [
     { name: 'Dashboard', href: '/', icon: Compass },
     { name: 'Control Plane', href: '/control-plane', icon: Sliders },
+    { name: 'VANA Control Center', href: '/vana', icon: Leaf },
     { name: 'Runtime', href: '/runtime', icon: PlaySquare },
     { name: 'Telemetry', href: '/telemetry', icon: Terminal },
     { name: 'Observer', href: '/observer', icon: Shield },
