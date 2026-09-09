@@ -6,6 +6,28 @@ from control_plane.deployment.startup_validator import DeploymentPaths
 from control_plane.persistence.append_only_log import AppendOnlyLog
 from control_plane.persistence.hash_lineage_verifier import HashLineageVerifier
 from control_plane.persistence.replay_index import ReplayIndex, SnapshotRegistry
+from security.signed_trace import sign_trace, canonicalize
+
+def _append_signed(journal, execution_id, event_id, state, timestamp, event_hash, previous_hash, source):
+    trace_material = {
+        "trace_id": event_id,
+        "execution_id": execution_id,
+        "parent_hash": previous_hash,
+        "payload_hash": event_hash,
+        "timestamp": float(timestamp),
+        "signer": source,
+    }
+    sig = sign_trace(canonicalize(trace_material))
+    journal.append(
+        execution_id,
+        event_id,
+        state,
+        timestamp,
+        event_hash,
+        previous_hash,
+        source,
+        {"signature": sig}
+    )
 
 
 def test_recovery_has_no_drift(tmp_path, phase6_artifact_dir):
@@ -17,10 +39,10 @@ def test_recovery_has_no_drift(tmp_path, phase6_artifact_dir):
     paths.snapshot_directory.mkdir(parents=True, exist_ok=True)
 
     journal = AppendOnlyLog(log_path=str(paths.append_only_log_path))
-    journal.append("phase6-recovery", "e1", "CREATED", 1, "h1", "", "system", {})
-    journal.append("phase6-recovery", "e2", "APPROVED", 2, "h2", "h1", "system", {})
-    journal.append("phase6-recovery", "e3", "EXECUTING", 3, "h3", "h2", "system", {})
-    journal.append("phase6-recovery", "e4", "COMPLETED", 4, "h4", "h3", "system", {})
+    _append_signed(journal, "phase6-recovery", "e1", "CREATED", 1, "h1", "", "system")
+    _append_signed(journal, "phase6-recovery", "e2", "APPROVED", 2, "h2", "h1", "system")
+    _append_signed(journal, "phase6-recovery", "e3", "EXECUTING", 3, "h3", "h2", "system")
+    _append_signed(journal, "phase6-recovery", "e4", "COMPLETED", 4, "h4", "h3", "system")
 
     events = journal.get_execution_events("phase6-recovery")
     event_dicts = [

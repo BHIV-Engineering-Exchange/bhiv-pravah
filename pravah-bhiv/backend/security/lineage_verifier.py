@@ -4,7 +4,7 @@ import hashlib
 import hmac
 from dataclasses import asdict, is_dataclass
 from datetime import datetime, timezone
-from typing import Any, Dict, Iterable, List, Mapping
+from typing import Any, Dict, Iterable, List, Mapping, Optional
 
 from security.signed_trace import SECRET_KEY, canonicalize, payload_hash as compute_payload_hash, trace_hash
 MAX_CLOCK_SKEW_SECONDS = 300
@@ -36,6 +36,26 @@ class DuplicateReplayError(ReplayIntegrityError):
 
 class TimestampSanityError(ReplayIntegrityError):
     pass
+
+
+class LineagePersistenceCorruptionError(ReplayIntegrityError):
+    """Raised when persistence storage contains malformed, unparseable, or truncated records."""
+
+    def __init__(
+        self,
+        message: str,
+        line_number: Optional[int] = None,
+        line_hash: Optional[str] = None,
+        excerpt: Optional[str] = None,
+    ):
+        super().__init__(message)
+        self.line_number = line_number
+        self.line_hash = line_hash
+        if excerpt is not None:
+            clean = repr(str(excerpt)[:48])[1:-1]
+            self.excerpt = clean
+        else:
+            self.excerpt = None
 
 
 def _event_dict(event: Mapping[str, Any] | Any) -> Dict[str, Any]:

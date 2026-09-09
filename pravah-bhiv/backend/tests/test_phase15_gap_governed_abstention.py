@@ -36,9 +36,9 @@ import pytest
 BACKEND_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BACKEND_DIR))
 
-# Patch MultiAppControlPlane before any control_plane import
-import control_plane.multi_app_control_plane
-control_plane.multi_app_control_plane.MultiAppControlPlane = MagicMock()
+
+
+
 
 from contracts.decision_contract import (
     DecisionContract,
@@ -291,7 +291,7 @@ def test_governance_allows_noop_contract(adapter, authoritative_ruling):
         policy_version="v1",
         admission_state="POLICY_ADMITTED",
     )
-    with patch("backend.tests.test_phase15_gap_governed_abstention.ActionGovernance.evaluate_contract", return_value=approved_decision):
+    with patch.object(ActionGovernance, "evaluate_contract", return_value=approved_decision):
         governance = ActionGovernance(env="dev")
         governance_decision = governance.evaluate_contract(
             decision=contract,
@@ -333,7 +333,7 @@ def test_full_gap_flow_no_operational_execution(adapter, authoritative_ruling):
         policy_version="v1",
         admission_state="POLICY_ADMITTED",
     )
-    with patch("backend.tests.test_phase15_gap_governed_abstention.ActionGovernance.evaluate_contract", return_value=approved_decision):
+    with patch.object(ActionGovernance, "evaluate_contract", return_value=approved_decision):
         # Governance must pass noop through
         governance = ActionGovernance(env="dev")
         gov_decision = governance.evaluate_contract(
@@ -371,7 +371,7 @@ def test_abstention_evidence_written_to_ledger(adapter, authoritative_ruling, re
         policy_version="v1",
         admission_state="POLICY_ADMITTED",
     )
-    with patch("backend.tests.test_phase15_gap_governed_abstention.ActionGovernance.evaluate_contract", return_value=approved_decision):
+    with patch.object(ActionGovernance, "evaluate_contract", return_value=approved_decision):
         governance = ActionGovernance(env="dev")
         gov_decision = governance.evaluate_contract(
             decision=contract,

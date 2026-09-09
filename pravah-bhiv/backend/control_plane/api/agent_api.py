@@ -17,10 +17,13 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 import datetime
 import json
+import logging
 import os
 import sys
 import threading
 import time
+
+logger = logging.getLogger("control_plane.agent_api")
 # Ensure repo root is on sys.path so running this module directly works
 # agent_api.py is at control_plane/api; repo root is two levels up
 root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
@@ -66,17 +69,16 @@ def start_agent_loop() -> None:
         print(f"[AGENT] ERROR: Agent loop crashed: {e}")
 
 
-# Start agent loop in non-daemon background thread with delayed start
-# This prevents blocking Flask initialization
-agent_thread = threading.Thread(target=start_agent_loop, daemon=False, name="AgentLoopThread")
-agent_thread.start()
-print("[INFO] Agent background thread started")
+# Start agent loop in daemon background thread with delayed start
+# This prevents blocking Flask initialization and process shutdown
+if os.getenv("ENABLE_AGENT_LOOP", "true").lower() == "true" and "pytest" not in sys.modules and not os.getenv("PYTEST_CURRENT_TEST"):
+    agent_thread = threading.Thread(target=start_agent_loop, daemon=True, name="AgentLoopThread")
+    agent_thread.start()
+    print("[INFO] Agent background thread started")
 
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": [
-    "https://multi-agent-control-plane-frontend.vercel.app",
-    "https://multi-agent-control-plane-frontend-dev.vercel.app",
     "http://localhost:4500",
     "http://localhost:3200",
     "http://localhost:3000"
@@ -221,8 +223,9 @@ def runtime_decision():
                 },
                 timeout=1.0
             )
-        except Exception:
-            pass # Observer down should not affect the control plane
+        except Exception as exc:
+            logger.warning("Observer event forward failed (obs_port=%s): %s", obs_port, exc)
+            # Observer down should not affect the control plane execution authority
 
         return jsonify({
             "status": "success",
@@ -324,18 +327,30 @@ def load_evidence_bundles():
         return {}
     try:
         with open(EVIDENCE_STORE_PATH, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
-        return {}
+            data = json.load(f)
+            if not isinstance(data, dict):
+                raise ValueError("Evidence store root must be a JSON object")
+            return data
+    except Exception as exc:
+        logger.error("Failed to load evidence bundles from '%s': %s", EVIDENCE_STORE_PATH, exc)
+        raise RuntimeError(f"Evidence store corrupted or unreadable: {exc}") from exc
 
-def save_evidence_bundle(evidence_ref: str, bundle: dict):
-    store = load_evidence_bundles()
-    store[evidence_ref] = bundle
+def save_evidence_bundle(evidence_ref: str, bundle: dict) -> bool:
     try:
-        with open(EVIDENCE_STORE_PATH, "w", encoding="utf-8") as f:
+        store = load_evidence_bundles()
+        store[evidence_ref] = bundle
+        store_dir = os.path.dirname(EVIDENCE_STORE_PATH)
+        if store_dir:
+            os.makedirs(store_dir, exist_ok=True)
+        temp_file = f"{EVIDENCE_STORE_PATH}.tmp"
+        with open(temp_file, "w", encoding="utf-8") as f:
             json.dump(store, f, indent=2)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(temp_file, EVIDENCE_STORE_PATH)
         return True
-    except Exception:
+    except Exception as exc:
+        logger.error("Failed to save evidence bundle '%s' to '%s': %s", evidence_ref, EVIDENCE_STORE_PATH, exc)
         return False
 
 @app.route("/pravah/events", methods=["POST"])
@@ -374,8 +389,13 @@ def shakti_events():
                 "correlation_id": payload["correlation_id"]
             }
         })
-    except Exception:
-        pass
+    except Exception as exc:
+        logger.error("Failed to append decision history for Shakti event (trace_id=%s): %s", payload.get("trace_id"), exc)
+        return jsonify({
+            "status": "error",
+            "error": "Audit persistence failed",
+            "details": str(exc),
+        }), 500
 
     return jsonify(response_payload), 200
 
@@ -396,7 +416,9 @@ def shakti_publish_evidence():
 
     import uuid
     evidence_ref = f"ev-{uuid.uuid4().hex[:16]}"
-    save_evidence_bundle(evidence_ref, payload)
+    saved = save_evidence_bundle(evidence_ref, payload)
+    if not saved:
+        return jsonify({"status": "error", "error": "Evidence persistence failed"}), 500
 
     response_payload = {
         "evidence_ref": evidence_ref,
@@ -411,7 +433,11 @@ def shakti_retrieve_evidence(evidence_ref: str):
     if not check_shakti_auth():
         return jsonify({"status": "error", "error": "Unauthorized"}), 401
 
-    store = load_evidence_bundles()
+    try:
+        store = load_evidence_bundles()
+    except Exception as exc:
+        return jsonify({"status": "error", "error": f"Evidence store unavailable: {exc}"}), 500
+
     bundle = store.get(evidence_ref)
     if not bundle:
         return jsonify({"status": "error", "error": "Evidence bundle not found"}), 404
@@ -434,6 +460,8 @@ def query_unified_registry(trace_id: str):
 def prometheus_metrics():
     failures = 0
     recoveries = 0
+    stability_score = None
+    history_parse_error = False
     
     # 1. Parse decision history log to count failures/recoveries
     history_file = os.path.join(root_dir, "logs", "control_plane", "decision_history.jsonl")
@@ -449,32 +477,61 @@ def prometheus_metrics():
                         recoveries += 1
                     elif record.get("state") == "degraded" or record.get("event_type") == "crash":
                         failures += 1
-        except Exception:
-            pass
+            # Compute stability score only after successful read and parse
+            raw_score = 100 - (failures * 2) + (recoveries * 3)
+            stability_score = max(0, min(100, raw_score))
+        except Exception as exc:
+            logger.warning("Failed to parse decision history for metrics: %s", exc)
+            history_parse_error = True
+            stability_score = None
+    else:
+        # Default baseline when no history file has been created yet
+        stability_score = 100
             
-    # Stability = 100 - (failures * 2) + (recoveries * 3)
-    stability_score = 100 - (failures * 2) + (recoveries * 3)
-    stability_score = max(0, min(100, stability_score))
-    
     # Count active apps
     from control_plane.multi_app_control_plane import MultiAppControlPlane
     cp = MultiAppControlPlane(env=ENVIRONMENT)
-    apps_count = len(cp.list_apps())
+    try:
+        apps_count = len(cp.list_apps())
+    except Exception as exc:
+        logger.warning("Failed to count active apps for metrics: %s", exc)
+        apps_count = 0
     
-    metrics = [
-        f"# HELP pravah_stability_score Current mathematical stability score of the ecosystem",
-        f"# TYPE pravah_stability_score gauge",
-        f"pravah_stability_score {stability_score}",
+    metrics = []
+    if stability_score is not None:
+        metrics.extend([
+            f"# HELP pravah_stability_score Current mathematical stability score of the ecosystem",
+            f"# TYPE pravah_stability_score gauge",
+            f"pravah_stability_score {stability_score}",
+        ])
+    else:
+        metrics.extend([
+            f"# HELP pravah_stability_score_status Ecosystem stability score status (0=unavailable)",
+            f"# TYPE pravah_stability_score_status gauge",
+            f"pravah_stability_score_status{{status=\"unavailable\"}} 1",
+        ])
+
+    metrics.extend([
         f"# HELP pravah_active_apps_total Total number of registered ecosystem services",
         f"# TYPE pravah_active_apps_total gauge",
         f"pravah_active_apps_total {apps_count}",
-        f"# HELP pravah_recoveries_total Total number of autonomous recovery actions executed",
-        f"# TYPE pravah_recoveries_total counter",
-        f"pravah_recoveries_total {recoveries}",
-        f"# HELP pravah_failures_total Total number of system failures/degradations observed",
-        f"# TYPE pravah_failures_total counter",
-        f"pravah_failures_total {failures}"
-    ]
+    ])
+
+    if not history_parse_error:
+        metrics.extend([
+            f"# HELP pravah_recoveries_total Total number of autonomous recovery actions executed",
+            f"# TYPE pravah_recoveries_total counter",
+            f"pravah_recoveries_total {recoveries}",
+            f"# HELP pravah_failures_total Total number of system failures/degradations observed",
+            f"# TYPE pravah_failures_total counter",
+            f"pravah_failures_total {failures}",
+        ])
+    else:
+        metrics.extend([
+            f"# HELP pravah_decision_history_parse_errors_total Total number of parse failures encountered reading decision history",
+            f"# TYPE pravah_decision_history_parse_errors_total counter",
+            f"pravah_decision_history_parse_errors_total 1",
+        ])
     
     return "\n".join(metrics) + "\n", 200, {"Content-Type": "text/plain; version=0.0.4"}
 

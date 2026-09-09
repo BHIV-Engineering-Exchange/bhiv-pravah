@@ -74,8 +74,8 @@ export interface LiveProductionMonitoredService {
   status: 'CONNECTED' | 'DEGRADED' | 'DISCONNECTED' | 'CRITICAL';
   health_score: number;
   response_time_ms: number;
-  cpu_percent: number;
-  memory_percent: number;
+  cpu_percent: number | null;
+  memory_percent: number | null;
   uptime_percent: number;
   last_action: string;
   errors_24h: number;

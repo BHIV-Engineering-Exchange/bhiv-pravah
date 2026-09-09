@@ -94,6 +94,32 @@ class ExecutionContract(BaseModel):
             raise ValueError("Execution contract field cannot be empty")
         return value
 
+    @field_validator("policy_snapshot", mode="before")
+    @classmethod
+    def validate_policy_snapshot(cls, value: Any) -> PolicySnapshot | None:
+        if value is None:
+            return None
+        if isinstance(value, PolicySnapshot):
+            if not (
+                isinstance(value.get("policy_id"), str) and value.get("policy_id")
+                and isinstance(value.get("policy_version"), str) and value.get("policy_version")
+                and isinstance(value.get("policy_hash"), str) and value.get("policy_hash")
+            ):
+                raise ValueError("Malformed policy_snapshot: missing or invalid required string fields ('policy_id', 'policy_version', 'policy_hash')")
+            return value
+        if isinstance(value, dict):
+            p_id = value.get("policy_id")
+            p_ver = value.get("policy_version")
+            p_hash = value.get("policy_hash")
+            if not (
+                isinstance(p_id, str) and p_id
+                and isinstance(p_ver, str) and p_ver
+                and isinstance(p_hash, str) and p_hash
+            ):
+                raise ValueError("Malformed policy_snapshot: missing or invalid required string fields ('policy_id', 'policy_version', 'policy_hash')")
+            return PolicySnapshot(p_id, p_ver, p_hash)
+        raise ValueError(f"Malformed policy_snapshot: expected dict or PolicySnapshot, got {type(value).__name__}")
+
 
 def compute_execution_hash(
     decision_contract: DecisionContract,
@@ -141,16 +167,28 @@ def build_execution_contract(
     if execution_state_history[-1] != execution_state:
         raise ValueError("Execution state must match the last entry in execution_state_history")
 
-    # Coerce policy_snapshot dicts into PolicySnapshot instances for model validation
-    if policy_snapshot is not None and not isinstance(policy_snapshot, PolicySnapshot):
-        try:
-            policy_snapshot = PolicySnapshot(
-                policy_snapshot.get("policy_id"),
-                policy_snapshot.get("policy_version"),
-                policy_snapshot.get("policy_hash"),
-            )
-        except Exception:
-            policy_snapshot = None
+    # Validate and coerce policy_snapshot dicts into PolicySnapshot instances for model validation
+    if policy_snapshot is not None:
+        if isinstance(policy_snapshot, PolicySnapshot):
+            if not (
+                isinstance(policy_snapshot.get("policy_id"), str) and policy_snapshot.get("policy_id")
+                and isinstance(policy_snapshot.get("policy_version"), str) and policy_snapshot.get("policy_version")
+                and isinstance(policy_snapshot.get("policy_hash"), str) and policy_snapshot.get("policy_hash")
+            ):
+                raise ValueError("Malformed policy_snapshot: missing or invalid required string fields ('policy_id', 'policy_version', 'policy_hash')")
+        elif isinstance(policy_snapshot, dict):
+            p_id = policy_snapshot.get("policy_id")
+            p_ver = policy_snapshot.get("policy_version")
+            p_hash = policy_snapshot.get("policy_hash")
+            if not (
+                isinstance(p_id, str) and p_id
+                and isinstance(p_ver, str) and p_ver
+                and isinstance(p_hash, str) and p_hash
+            ):
+                raise ValueError("Malformed policy_snapshot: missing or invalid required string fields ('policy_id', 'policy_version', 'policy_hash')")
+            policy_snapshot = PolicySnapshot(p_id, p_ver, p_hash)
+        else:
+            raise ValueError(f"Malformed policy_snapshot: expected dict or PolicySnapshot, got {type(policy_snapshot).__name__}")
     execution_hash = compute_execution_hash(
         decision_contract=decision_contract,
         execution_payload=normalized_payload,
@@ -261,21 +299,22 @@ def advance_execution_state(
         from control_plane.security.semantic_guard_engine import (
             validate_state_transition as validate_semantic_transition,
         )
-    except Exception:
-        validate_semantic_transition = None
+    except Exception as exc:
+        raise RuntimeError(
+            f"[{contract.execution_id}] CRITICAL: Semantic guard engine unavailable: {exc}"
+        ) from exc
 
-    if validate_semantic_transition is not None:
-        try:
-            validate_semantic_transition(
-                execution_id=contract.execution_id,
-                current_state=contract.execution_state,
-                next_state=new_state,
-                history=contract.execution_state_history,
-                governance_state=governance_state,
-            )
-        except ValueError as e:
-            # Re-raise with execution context
-            raise ValueError(f"[{contract.execution_id}] Semantic guard violation: {str(e)}") from e
+    try:
+        validate_semantic_transition(
+            execution_id=contract.execution_id,
+            current_state=contract.execution_state,
+            next_state=new_state,
+            history=contract.execution_state_history,
+            governance_state=governance_state,
+        )
+    except ValueError as e:
+        # Re-raise with execution context
+        raise ValueError(f"[{contract.execution_id}] Semantic guard violation: {str(e)}") from e
 
     history = tuple(contract.execution_state_history)
     history = history + (new_state,)
@@ -296,3 +335,7 @@ def advance_execution_state(
     )
 
     return updated_contract
+
+
+# Canonical alias matching forensic contract terminology
+transition_contract_state = advance_execution_state

@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+from enum import Enum
 import hashlib
 import json
+import logging
 import os
 import threading
 import uuid
@@ -9,13 +11,23 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from security.lineage_verifier import LineageVerifier
+from security.lineage_verifier import LineageVerifier, LineagePersistenceCorruptionError
 from security.signed_trace import build_signed_trace, trace_hash
+
+logger = logging.getLogger(__name__)
+
+
+class LineageJournalState(str, Enum):
+    UNINITIALIZED = "UNINITIALIZED"
+    HEALTHY = "HEALTHY"
+    CORRUPTION_DETECTED = "CORRUPTION_DETECTED"
+    WRITE_BLOCKED = "WRITE_BLOCKED"
 
 
 _LINEAGE_LOCK = threading.Lock()
 _LINEAGE_INDEX: Dict[str, str] = {}
 _LINEAGE_INDEX_LOADED = False
+_LINEAGE_STATE: LineageJournalState = LineageJournalState.UNINITIALIZED
 
 
 def get_lineage_log_path() -> Path:
@@ -34,21 +46,47 @@ def _ensure_parent_dir() -> None:
     get_lineage_log_path().parent.mkdir(parents=True, exist_ok=True)
 
 
+def reset_lineage_journal_state() -> None:
+    """Reset in-memory journal state caches. Used for testing and post-repair validation."""
+    global _LINEAGE_INDEX_LOADED, _LINEAGE_INDEX, _LINEAGE_STATE
+    with _LINEAGE_LOCK:
+        _LINEAGE_INDEX = {}
+        _LINEAGE_INDEX_LOADED = False
+        _LINEAGE_STATE = LineageJournalState.UNINITIALIZED
+
+
 def _read_events() -> List[Dict[str, Any]]:
+    global _LINEAGE_STATE
     path = get_lineage_log_path()
     if not path.exists():
+        _LINEAGE_STATE = LineageJournalState.HEALTHY
         return []
 
     rows: List[Dict[str, Any]] = []
     with path.open("r", encoding="utf-8") as handle:
-        for line in handle:
-            line = line.strip()
+        for line_no, raw_line in enumerate(handle, start=1):
+            line = raw_line.strip()
             if not line:
                 continue
             try:
                 rows.append(json.loads(line))
-            except json.JSONDecodeError:
-                continue
+            except json.JSONDecodeError as exc:
+                _LINEAGE_STATE = LineageJournalState.WRITE_BLOCKED
+                line_digest = hashlib.sha256(raw_line.encode("utf-8", errors="replace")).hexdigest()
+                sanitized_excerpt = repr(raw_line[:48])[1:-1]
+                logger.error(
+                    "CRITICAL: Lineage journal persistence corruption at line %d (hash=%s)",
+                    line_no,
+                    line_digest,
+                )
+                raise LineagePersistenceCorruptionError(
+                    f"Corrupted record in {path} at line {line_no}: {exc.msg}",
+                    line_number=line_no,
+                    line_hash=line_digest,
+                    excerpt=sanitized_excerpt,
+                ) from exc
+
+    _LINEAGE_STATE = LineageJournalState.HEALTHY
     return rows
 
 
@@ -63,11 +101,23 @@ def _rebuild_index() -> Dict[str, str]:
 
 
 def _ensure_index_loaded() -> None:
-    global _LINEAGE_INDEX_LOADED, _LINEAGE_INDEX
-    if _LINEAGE_INDEX_LOADED:
+    global _LINEAGE_INDEX_LOADED, _LINEAGE_INDEX, _LINEAGE_STATE
+    if _LINEAGE_STATE == LineageJournalState.WRITE_BLOCKED:
+        raise LineagePersistenceCorruptionError(
+            "Lineage index unavailable: journal is in WRITE_BLOCKED state due to corruption"
+        )
+    if _LINEAGE_INDEX_LOADED and _LINEAGE_STATE == LineageJournalState.HEALTHY:
         return
-    _LINEAGE_INDEX = _rebuild_index()
-    _LINEAGE_INDEX_LOADED = True
+
+    try:
+        _LINEAGE_INDEX = _rebuild_index()
+        _LINEAGE_INDEX_LOADED = True
+        _LINEAGE_STATE = LineageJournalState.HEALTHY
+    except LineagePersistenceCorruptionError:
+        _LINEAGE_INDEX = {}
+        _LINEAGE_INDEX_LOADED = False
+        _LINEAGE_STATE = LineageJournalState.WRITE_BLOCKED
+        raise
 
 
 def _event_payload(
@@ -101,6 +151,10 @@ def append_lineage_event(
 
     _ensure_index_loaded()
     with _LINEAGE_LOCK:
+        if _LINEAGE_STATE != LineageJournalState.HEALTHY:
+            raise LineagePersistenceCorruptionError(
+                f"Cannot append event for execution '{execution_id}': journal state is {_LINEAGE_STATE.value}"
+            )
         prev_hash = previous_hash if previous_hash is not None else _LINEAGE_INDEX.get(execution_id, "")
         timestamp = datetime.now(timezone.utc).timestamp()
         event_id = str(uuid.uuid4())
@@ -166,7 +220,8 @@ def replay_execution_lineage(execution_id: str) -> Dict[str, Any]:
             "execution_state_history": [],
             "final_state": None,
             "execution_hash": None,
-            "valid": True,
+            "valid": False,
+            "error": "EXECUTION_NOT_FOUND",
         }
 
     payloads = [

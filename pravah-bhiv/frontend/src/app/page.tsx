@@ -113,11 +113,13 @@ export default function Dashboard() {
     uptime: item.uptime_percent,
   }));
 
-  const resourceData = monitoring.map(item => ({
-    name: item.name,
-    cpu: item.cpu_percent,
-    memory: item.memory_percent,
-  }));
+  const resourceData = monitoring
+    .filter(item => item.cpu_percent !== null || item.memory_percent !== null)
+    .map(item => ({
+      name: item.name,
+      cpu: item.cpu_percent,
+      memory: item.memory_percent,
+    }));
 
   // Health distribution
   const healthyCount = monitoring.filter(s => s.status === 'CONNECTED').length;
@@ -240,16 +242,25 @@ export default function Dashboard() {
         <div className="lg:col-span-2 premium-card flex flex-col gap-4">
           <h4 className="font-bold text-xs uppercase tracking-wider text-muted-foreground font-mono">Resource Utilization</h4>
           <div className="h-56 w-full text-[10px] font-mono">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={resourceData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border)" />
-                <XAxis dataKey="name" stroke="var(--muted-foreground)" />
-                <YAxis stroke="var(--muted-foreground)" />
-                <Tooltip contentStyle={{ backgroundColor: 'var(--card)', borderColor: 'var(--border)' }} />
-                <Bar dataKey="cpu" name="CPU %" fill="var(--primary)" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="memory" name="Memory %" fill="var(--secondary-foreground)" opacity={0.3} radius={[4, 4, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
+            {resourceData.length > 0 ? (
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={resourceData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border)" />
+                  <XAxis dataKey="name" stroke="var(--muted-foreground)" />
+                  <YAxis stroke="var(--muted-foreground)" />
+                  <Tooltip 
+                    contentStyle={{ backgroundColor: 'var(--card)', borderColor: 'var(--border)' }}
+                    formatter={(value: any, name: any) => [value !== null && value !== undefined ? `${value}%` : 'N/A', name]}
+                  />
+                  <Bar dataKey="cpu" name="CPU %" fill="var(--primary)" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="memory" name="Memory %" fill="var(--secondary-foreground)" opacity={0.3} radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            ) : (
+              <div className="h-full flex items-center justify-center text-muted-foreground italic">
+                No active compute node telemetry available (External links: N/A)
+              </div>
+            )}
           </div>
         </div>
 

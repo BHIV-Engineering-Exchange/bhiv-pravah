@@ -139,7 +139,14 @@ def test_executer_app_endpoints(tmp_path):
             response = client.post(
                 "/execute-action",
                 headers={"X-CALLER": "sarathi"},
-                json={"trace_id": "t1", "service_id": "web1-blue", "action": "restart"}
+                json={
+                    "trace_id": "t1",
+                    "service_id": "web1-blue",
+                    "action": "restart",
+                    "execution_id": "exec-t1",
+                    "execution_hash": "hash-t1",
+                    "capability_id": "governed-execution",
+                }
             )
             assert response.status_code == 200
             assert mock_trace_registry.is_consumed("t1")
@@ -150,13 +157,27 @@ def test_executer_app_endpoints(tmp_path):
             response = client.post(
                 "/execute-action",
                 headers={"X-CALLER": "sarathi"},
-                json={"trace_id": "t2", "service_id": "web1-blue", "action": "restart"}
+                json={
+                    "trace_id": "t2",
+                    "service_id": "web1-blue",
+                    "action": "restart",
+                    "execution_id": "exec-t2",
+                    "execution_hash": "hash-t2",
+                    "capability_id": "governed-execution",
+                }
             )
             assert response.status_code == 401
             assert any(msg in response.data for msg in [b"Missing service id", b"missing signature headers"])
             
             # Request with valid signature headers should succeed
-            payload = {"trace_id": "t2", "service_id": "web1-blue", "action": "restart"}
+            payload = {
+                "trace_id": "t2",
+                "service_id": "web1-blue",
+                "action": "restart",
+                "execution_id": "exec-t2",
+                "execution_hash": "hash-t2",
+                "capability_id": "governed-execution",
+            }
             headers = build_signed_headers("sarathi", payload)
             
             response = client.post(
@@ -168,7 +189,14 @@ def test_executer_app_endpoints(tmp_path):
             assert mock_trace_registry.is_consumed("t2")
             
             # 3. Duplicate trace ID rejection
-            payload_dup = {"trace_id": "t2", "service_id": "web1-blue", "action": "restart"}
+            payload_dup = {
+                "trace_id": "t2",
+                "service_id": "web1-blue",
+                "action": "restart",
+                "execution_id": "exec-t2",
+                "execution_hash": "hash-t2",
+                "capability_id": "governed-execution",
+            }
             headers_dup = build_signed_headers("sarathi", payload_dup)
             
             response = client.post(
@@ -180,7 +208,14 @@ def test_executer_app_endpoints(tmp_path):
             assert b"already consumed" in response.data
             
             # 4. Duplicate nonce rejection
-            payload_nonce = {"trace_id": "t3", "service_id": "web1-blue", "action": "restart"}
+            payload_nonce = {
+                "trace_id": "t3",
+                "service_id": "web1-blue",
+                "action": "restart",
+                "execution_id": "exec-t3",
+                "execution_hash": "hash-t3",
+                "capability_id": "governed-execution",
+            }
             headers_nonce = build_signed_headers("sarathi", payload_nonce)
             
             # First request with this nonce should succeed
@@ -192,7 +227,14 @@ def test_executer_app_endpoints(tmp_path):
             assert response.status_code == 200
             
             # Second request with the same nonce but different trace should fail due to duplicate nonce
-            payload_nonce_2 = {"trace_id": "t4", "service_id": "web1-blue", "action": "restart"}
+            payload_nonce_2 = {
+                "trace_id": "t4",
+                "service_id": "web1-blue",
+                "action": "restart",
+                "execution_id": "exec-t4",
+                "execution_hash": "hash-t4",
+                "capability_id": "governed-execution",
+            }
             ts = headers_nonce['X-Service-Timestamp']
             nonce = headers_nonce['X-Service-Nonce']
             sig = sign_service_request("sarathi", ts, nonce, payload_nonce_2)

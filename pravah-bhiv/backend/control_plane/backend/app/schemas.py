@@ -3,10 +3,11 @@
 
 from datetime import datetime
 from enum import Enum
-from typing import Literal
+from typing import Any, Dict, Literal, Optional
+import urllib.parse
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 class Environment(str, Enum):
@@ -95,8 +96,8 @@ class LiveDomainStatus(BaseModel):
     status: str
     health_score: float
     response_time_ms: int
-    cpu_percent: float
-    memory_percent: float
+    cpu_percent: Optional[float] = None
+    memory_percent: Optional[float] = None
     uptime_percent: float
     last_action: str
     errors_24h: int
@@ -121,3 +122,142 @@ class DecisionDashboardSummary(BaseModel):
     success_rate: float
     demo_frozen: bool
     stateless: bool
+
+
+class LinkIngestRequest(BaseModel):
+    """Payload for ingesting a repository or website link for monitoring."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    link: str = Field(
+        ...,
+        min_length=8,
+        max_length=2048,
+        description="Fully qualified HTTP or HTTPS URL to repository or website",
+    )
+
+    @field_validator("link")
+    @classmethod
+    def validate_url(cls, v: str) -> str:
+        clean = v.strip()
+        if not clean:
+            raise ValueError("URL cannot be empty")
+        if any(c.isspace() or ord(c) < 32 for c in clean):
+            raise ValueError("URL contains illegal whitespace or control characters")
+        parsed = urllib.parse.urlsplit(clean)
+        if parsed.scheme.lower() not in ("http", "https"):
+            raise ValueError("URL scheme must be http or https")
+        if not parsed.netloc:
+            raise ValueError("URL must include a valid network location (hostname)")
+        try:
+            port = parsed.port
+            if port is not None and not (1 <= port <= 65535):
+                raise ValueError("Port out of range (1-65535)")
+        except ValueError as e:
+            raise ValueError(f"URL contains invalid port: {e}")
+        host = parsed.netloc.split(":")[0]
+        if not host or ("." not in host and host != "localhost"):
+            raise ValueError("URL must have a valid host (e.g., domain or localhost)")
+        return clean
+
+
+class LinkRemoveRequest(BaseModel):
+    """Payload for removing a monitored link."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    link: str = Field(
+        ...,
+        min_length=8,
+        max_length=2048,
+        description="Fully qualified HTTP or HTTPS URL to remove",
+    )
+
+    @field_validator("link")
+    @classmethod
+    def validate_url(cls, v: str) -> str:
+        clean = v.strip()
+        if not clean:
+            raise ValueError("URL cannot be empty")
+        if any(c.isspace() or ord(c) < 32 for c in clean):
+            raise ValueError("URL contains illegal whitespace or control characters")
+        parsed = urllib.parse.urlsplit(clean)
+        if parsed.scheme.lower() not in ("http", "https"):
+            raise ValueError("URL scheme must be http or https")
+        if not parsed.netloc:
+            raise ValueError("URL must include a valid network location (hostname)")
+        try:
+            port = parsed.port
+            if port is not None and not (1 <= port <= 65535):
+                raise ValueError("Port out of range (1-65535)")
+        except ValueError as e:
+            raise ValueError(f"URL contains invalid port: {e}")
+        host = parsed.netloc.split(":")[0]
+        if not host or ("." not in host and host != "localhost"):
+            raise ValueError("URL must have a valid host (e.g., domain or localhost)")
+        return clean
+
+
+class LinkMetadataResponse(BaseModel):
+    """Enrichment metadata for an ingested link."""
+
+    model_config = ConfigDict(extra="ignore")
+
+    type: str
+    commits: int
+    branches: int
+    pull_requests: int
+    stars: int
+    files: int
+    contributors: int
+    last_commit: str
+    test_coverage: float
+    ci_status: str
+    deployment_frequency: Optional[int] = None
+    avg_response_time: int
+    error_rate: float
+    active_issues: Optional[int] = None
+    code_quality_score: Optional[int] = None
+    enrichment_status: Literal["enriched", "fallback_heuristic", "offline"]
+    enrichment_error: Optional[str] = None
+
+
+class MonitoredLinkItem(BaseModel):
+    """Active monitored link item stored in control plane state."""
+
+    link: str
+    name: str
+    added_at: str
+    status: str
+    response_time_ms: int
+    uptime_percent: float
+    errors_24h: int
+
+
+class LinkIngestResponse(BaseModel):
+    """Formal response returned upon link ingestion."""
+
+    success: bool
+    message: str
+    ingested_link: Optional[MonitoredLinkItem] = None
+    metadata: Optional[LinkMetadataResponse] = None
+    enrichment_status: Optional[str] = None
+    error: Optional[str] = None
+
+
+class LinkRemoveResponse(BaseModel):
+    """Formal response returned upon link removal."""
+
+    success: bool
+    message: Optional[str] = None
+    error: Optional[str] = None
+
+
+class IngestionErrorResponse(BaseModel):
+    """Standard structured error response model."""
+
+    success: Literal[False] = False
+    error: str
+    code: Optional[str] = None
+    details: Optional[Dict[str, Any]] = None
+

@@ -25,6 +25,13 @@ from .hash_lineage_verifier import (
     VerificationResult
 )
 
+from .monitored_links_journal import (
+    get_monitored_links_log_path,
+    append_link_ingested,
+    append_link_removed,
+    replay_monitored_links,
+)
+
 __all__ = [
     # Append-only log
     "AppendOnlyLog",
@@ -42,5 +49,11 @@ __all__ = [
     # Hash lineage verifier
     "HashLineageVerifier",
     "VerificationStatus",
-    "VerificationResult"
+    "VerificationResult",
+
+    # Monitored links journal
+    "get_monitored_links_log_path",
+    "append_link_ingested",
+    "append_link_removed",
+    "replay_monitored_links",
 ]

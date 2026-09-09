@@ -1,1 +1,10 @@
-{"traces": ["intent-trace-84a6b09f5b69", "demo-trace-001"], "timestamps": {"intent-trace-84a6b09f5b69": 1785840925.6466184, "demo-trace-001": 1785913894.3874977}}
+{
+  "traces": [
+    "trace-099a6e80-857d-408c-80ac-1ef34407bcf1",
+    "trace-4a014163-0161-44ac-9c5b-442d0b41126a"
+  ],
+  "timestamps": {
+    "trace-4a014163-0161-44ac-9c5b-442d0b41126a": 1788778094.351277,
+    "trace-099a6e80-857d-408c-80ac-1ef34407bcf1": 1788778182.149239
+  }
+}

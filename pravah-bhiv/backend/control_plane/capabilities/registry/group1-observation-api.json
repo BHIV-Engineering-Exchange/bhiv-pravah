@@ -12,7 +12,7 @@
     "status": "DOCUMENTED",
     "runtime": {
         "service_hosted": true,
-        "endpoint": null
+        "endpoint": "http://163.128.209.18:8013"
     },
     "produces": [
         "canonical_observation_record"
@@ -20,9 +20,9 @@
     "metadata": {
         "service_name": "VANA MasterDB Observation API",
         "version": "1.0.0",
-        "deployment_status": "PENDING",
-        "runtime_status": "LOCAL_VERIFIED",
-        "live_endpoint_available": false,
+        "deployment_status": "DEPLOYED",
+        "runtime_status": "LIVE",
+        "live_endpoint_available": true,
         "endpoints": [
             {
                 "method": "POST",

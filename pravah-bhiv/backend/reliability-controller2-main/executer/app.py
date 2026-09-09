@@ -153,70 +153,143 @@ def execute_action():
                 "verified": False
             }), 403
 
-    trace_id = data.get("trace_id")
-    if trace_id:
-        if is_trace_consumed(trace_id):
-            return jsonify({
-                "status": "failed",
-                "reason": f"trace_id {trace_id} already consumed",
-                "verified": False
-            }), 400
-        consume_trace(trace_id)
-
-    service_id = data.get("service_id")
-    action = data.get("action")
-
-    execution_id = str(uuid.uuid4())
-
-    log_event("ACTION_RECEIVED", service_id, action, "incoming")
-
-    # VALIDATION
-    if action not in VALID_ACTIONS:
-        log_event("ACTION_REJECTED", service_id, action, "invalid")
-
+    # REQUIRED IDENTITY VALIDATION (Fail-Closed)
+    req_execution_id = data.get("execution_id") if isinstance(data, dict) else None
+    if not req_execution_id:
         return jsonify({
-            "execution_id": execution_id,
             "status": "failed",
-            "action": action,
-            "reason": "invalid action",
-            "verified": False
+            "reason": "missing execution_id",
+            "verified": False,
         }), 400
 
-    # COOLDOWN
-    now = datetime.utcnow()
-    if service_id in cooldowns and now < cooldowns[service_id]:
-        log_event("ACTION_BLOCKED", service_id, action, "cooldown")
-
+    req_execution_hash = data.get("execution_hash")
+    if not req_execution_hash:
         return jsonify({
-            "execution_id": execution_id,
+            "execution_id": req_execution_id,
+            "status": "failed",
+            "reason": "missing execution_hash",
+            "verified": False,
+        }), 400
+
+    req_capability_id = data.get("capability_id")
+    if not req_capability_id:
+        return jsonify({
+            "execution_id": req_execution_id,
+            "execution_hash": req_execution_hash,
+            "status": "failed",
+            "reason": "missing capability_id",
+            "verified": False,
+        }), 403
+
+    # CAPABILITY VALIDATION
+    if req_capability_id != "governed-execution":
+        log_event("ACTION_REJECTED", data.get("service_id"), data.get("action"), f"unauthorized capability: {req_capability_id}")
+        return jsonify({
+            "execution_id": req_execution_id,
+            "execution_hash": req_execution_hash,
+            "capability_id": req_capability_id,
+            "status": "failed",
+            "action": data.get("action"),
+            "service_id": data.get("service_id"),
+            "trace_id": data.get("trace_id"),
+            "reason": f"unauthorized capability: {req_capability_id}",
+            "verified": False,
+        }), 403
+
+    req_trace_id = data.get("trace_id")
+    if not req_trace_id:
+        return jsonify({
+            "execution_id": req_execution_id,
+            "execution_hash": req_execution_hash,
+            "capability_id": req_capability_id,
+            "status": "failed",
+            "reason": "missing trace_id",
+            "verified": False,
+        }), 400
+
+    target_service_id = data.get("service_id")
+    if not target_service_id:
+        return jsonify({
+            "execution_id": req_execution_id,
+            "execution_hash": req_execution_hash,
+            "capability_id": req_capability_id,
+            "trace_id": req_trace_id,
+            "status": "failed",
+            "reason": "missing service_id",
+            "verified": False,
+        }), 400
+
+    action = data.get("action")
+    log_event("ACTION_RECEIVED", target_service_id, action, "incoming")
+
+    # ACTION VALIDATION
+    if not action or action not in VALID_ACTIONS:
+        log_event("ACTION_REJECTED", target_service_id, action, "invalid")
+        return jsonify({
+            "execution_id": req_execution_id,
+            "execution_hash": req_execution_hash,
+            "capability_id": req_capability_id,
+            "status": "failed",
+            "action": action,
+            "service_id": target_service_id,
+            "trace_id": req_trace_id,
+            "reason": "invalid action",
+            "verified": False,
+        }), 400
+
+    # COOLDOWN CHECK (Trace is NOT consumed on cooldown block)
+    now = datetime.utcnow()
+    if target_service_id in cooldowns and now < cooldowns[target_service_id]:
+        log_event("ACTION_BLOCKED", target_service_id, action, "cooldown")
+        return jsonify({
+            "execution_id": req_execution_id,
+            "execution_hash": req_execution_hash,
+            "capability_id": req_capability_id,
             "status": "blocked",
             "action": action,
+            "service_id": target_service_id,
+            "trace_id": req_trace_id,
             "reason": "cooldown active",
-            "verified": False
+            "verified": False,
         }), 429
 
-    cooldowns[service_id] = now + timedelta(seconds=COOLDOWN_TIME)
+    # SINGLE-USE TRACE CONSUMPTION (Only reached after all admission checks pass)
+    if is_trace_consumed(req_trace_id):
+        return jsonify({
+            "execution_id": req_execution_id,
+            "execution_hash": req_execution_hash,
+            "capability_id": req_capability_id,
+            "status": "failed",
+            "action": action,
+            "service_id": target_service_id,
+            "trace_id": req_trace_id,
+            "reason": f"trace_id {req_trace_id} already consumed",
+            "verified": False,
+        }), 400
 
-    log_event("ACTION_ACCEPTED", service_id, action, "valid")
+    consume_trace(req_trace_id)
+    cooldowns[target_service_id] = now + timedelta(seconds=COOLDOWN_TIME)
+    log_event("ACTION_ACCEPTED", target_service_id, action, "valid")
 
     # EXECUTION
-    result = execute_real_action(service_id, action)
-
+    result = execute_real_action(target_service_id, action)
     status = "executed" if "ERROR" not in result and "EXCEPTION" not in result else "failed"
-
-    log_event("ACTION_EXECUTED", service_id, action, result)
+    log_event("ACTION_EXECUTED", target_service_id, action, result)
 
     # VERIFICATION
-    verified = verify_deployment(service_id)
-
-    log_event("VERIFICATION", service_id, action, "success" if verified else "failed")
+    verified = verify_deployment(target_service_id)
+    log_event("VERIFICATION", target_service_id, action, "success" if verified else "failed")
 
     return jsonify({
-        "execution_id": execution_id,
+        "execution_id": req_execution_id,
         "status": status,
         "action": action,
+        "service_id": target_service_id,
+        "trace_id": req_trace_id,
+        "execution_hash": req_execution_hash,
+        "capability_id": req_capability_id,
         "reason": result,
-        "verified": verified
+        "verified": verified,
     })
 
 

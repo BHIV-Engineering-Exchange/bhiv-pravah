@@ -80,14 +80,24 @@ export default function Runtime() {
                         {item.name}
                       </td>
                       <td className="py-3">
-                        <div className="flex items-center gap-2">
-                          <div className="w-20 bg-secondary h-1.5 rounded-full overflow-hidden border border-border/40">
-                            <div className="bg-primary h-full rounded-full" style={{ width: `${item.cpu_percent}%` }} />
+                        {item.cpu_percent !== null && item.cpu_percent !== undefined ? (
+                          <div className="flex items-center gap-2">
+                            <div className="w-20 bg-secondary h-1.5 rounded-full overflow-hidden border border-border/40">
+                              <div className="bg-primary h-full rounded-full" style={{ width: `${item.cpu_percent}%` }} />
+                            </div>
+                            <span>{item.cpu_percent}%</span>
                           </div>
-                          <span>{item.cpu_percent}%</span>
-                        </div>
+                        ) : (
+                          <span className="text-muted-foreground font-mono">N/A</span>
+                        )}
                       </td>
-                      <td className="py-3">{item.memory_percent}%</td>
+                      <td className="py-3">
+                        {item.memory_percent !== null && item.memory_percent !== undefined ? (
+                          `${item.memory_percent}%`
+                        ) : (
+                          <span className="text-muted-foreground font-mono">N/A</span>
+                        )}
+                      </td>
                       <td className="py-3">{item.response_time_ms} ms</td>
                       <td className="py-3 uppercase text-primary font-bold">{item.last_action || 'noop'}</td>
                     </tr>

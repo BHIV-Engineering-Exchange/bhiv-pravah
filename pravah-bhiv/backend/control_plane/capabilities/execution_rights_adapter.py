@@ -49,7 +49,7 @@ VERIFIED_CAPABILITY_MAPPINGS = {
             "status": "VERIFIED"
         },
         "evidence": {
-            "file": "contracts/execution_contract.py",
+            "file": "backend/contracts/execution_contract.py",
             "line": 194
         }
     },

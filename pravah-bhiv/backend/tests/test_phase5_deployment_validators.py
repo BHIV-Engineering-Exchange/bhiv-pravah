@@ -11,6 +11,7 @@ from control_plane.deployment.startup_validator import DeploymentPaths, StartupV
 from control_plane.persistence.append_only_log import AppendOnlyLog
 from control_plane.persistence.hash_lineage_verifier import HashLineageVerifier
 from control_plane.persistence.replay_index import ReplayIndex, SnapshotRegistry
+from security.signed_trace import sign_trace, canonicalize
 
 
 def _fake_ready_startup(monkeypatch, validator: StartupValidator) -> None:
@@ -36,6 +37,28 @@ def _journal_event_dicts(events):
         }
         for event in events
     ]
+
+
+def _append_signed(journal, execution_id, event_id, state, timestamp, event_hash, previous_hash, source):
+    trace_material = {
+        "trace_id": event_id,
+        "execution_id": execution_id,
+        "parent_hash": previous_hash,
+        "payload_hash": event_hash,
+        "timestamp": float(timestamp),
+        "signer": source,
+    }
+    sig = sign_trace(canonicalize(trace_material))
+    journal.append(
+        execution_id,
+        event_id,
+        state,
+        timestamp,
+        event_hash,
+        previous_hash,
+        source,
+        {"signature": sig}
+    )
 
 
 def test_startup_validator_reports_ready_when_artifacts_exist(tmp_path, monkeypatch):
@@ -119,10 +142,10 @@ def test_recovery_validator_validates_restart_determinism(tmp_path):
     packet = DeploymentProofPacket(packet_dir=tmp_path / "packet")
 
     journal = AppendOnlyLog(log_path=str(paths.append_only_log_path))
-    journal.append("exec123", "e1", "CREATED", 1, "h1", "", "system", {})
-    journal.append("exec123", "e2", "APPROVED", 2, "h2", "h1", "system", {})
-    journal.append("exec123", "e3", "EXECUTING", 3, "h3", "h2", "system", {})
-    journal.append("exec123", "e4", "COMPLETED", 4, "h4", "h3", "system", {})
+    _append_signed(journal, "exec123", "e1", "CREATED", 1, "h1", "", "system")
+    _append_signed(journal, "exec123", "e2", "APPROVED", 2, "h2", "h1", "system")
+    _append_signed(journal, "exec123", "e3", "EXECUTING", 3, "h3", "h2", "system")
+    _append_signed(journal, "exec123", "e4", "COMPLETED", 4, "h4", "h3", "system")
 
     events = journal.get_execution_events("exec123")
     event_dicts = [
@@ -184,9 +207,9 @@ def test_healthcheck_replay_wraps_recovery_result(tmp_path):
     packet = DeploymentProofPacket(packet_dir=tmp_path / "packet")
 
     journal = AppendOnlyLog(log_path=str(paths.append_only_log_path))
-    journal.append("exec123", "e1", "CREATED", 1, "h1", "", "system", {})
-    journal.append("exec123", "e2", "APPROVED", 2, "h2", "h1", "system", {})
-    journal.append("exec123", "e3", "EXECUTING", 3, "h3", "h2", "system", {})
+    _append_signed(journal, "exec123", "e1", "CREATED", 1, "h1", "", "system")
+    _append_signed(journal, "exec123", "e2", "APPROVED", 2, "h2", "h1", "system")
+    _append_signed(journal, "exec123", "e3", "EXECUTING", 3, "h3", "h2", "system")
 
     events = journal.get_execution_events("exec123")
     event_dicts = [{"sequence": e.sequence, "execution_id": e.execution_id, "event_id": e.event_id, "state": e.state, "timestamp": e.timestamp, "event_hash": e.event_hash, "previous_hash": e.previous_hash, "source": e.source, "details": e.details, "sequence_hash": e.sequence_hash, "lineage_proof": e.lineage_proof} for e in events]
@@ -228,10 +251,10 @@ def test_restart_rebuild_preserves_state(tmp_path):
     packet = DeploymentProofPacket(packet_dir=tmp_path / "packet")
 
     journal = AppendOnlyLog(log_path=str(paths.append_only_log_path))
-    journal.append("exec-restart", "e1", "CREATED", 1, "h1", "", "system", {})
-    journal.append("exec-restart", "e2", "APPROVED", 2, "h2", "h1", "system", {})
-    journal.append("exec-restart", "e3", "EXECUTING", 3, "h3", "h2", "system", {})
-    journal.append("exec-restart", "e4", "COMPLETED", 4, "h4", "h3", "system", {})
+    _append_signed(journal, "exec-restart", "e1", "CREATED", 1, "h1", "", "system")
+    _append_signed(journal, "exec-restart", "e2", "APPROVED", 2, "h2", "h1", "system")
+    _append_signed(journal, "exec-restart", "e3", "EXECUTING", 3, "h3", "h2", "system")
+    _append_signed(journal, "exec-restart", "e4", "COMPLETED", 4, "h4", "h3", "system")
 
     events = journal.get_execution_events("exec-restart")
     event_dicts = _journal_event_dicts(events)
@@ -277,9 +300,9 @@ def test_recovery_fails_on_corrupted_journal(tmp_path):
     packet = DeploymentProofPacket(packet_dir=tmp_path / "packet")
 
     journal = AppendOnlyLog(log_path=str(paths.append_only_log_path))
-    journal.append("exec-corrupt", "e1", "CREATED", 1, "h1", "", "system", {})
-    journal.append("exec-corrupt", "e2", "APPROVED", 2, "h2", "h1", "system", {})
-    journal.append("exec-corrupt", "e3", "EXECUTING", 3, "h3", "h2", "system", {})
+    _append_signed(journal, "exec-corrupt", "e1", "CREATED", 1, "h1", "", "system")
+    _append_signed(journal, "exec-corrupt", "e2", "APPROVED", 2, "h2", "h1", "system")
+    _append_signed(journal, "exec-corrupt", "e3", "EXECUTING", 3, "h3", "h2", "system")
 
     events = journal.get_execution_events("exec-corrupt")
     expected_state_hash = HashLineageVerifier().compute_execution_state_hash(_journal_event_dicts(events))
@@ -306,6 +329,17 @@ def test_recovery_fails_on_corrupted_journal(tmp_path):
     journal_path = Path(paths.append_only_log_path)
     records = [json.loads(line) for line in journal_path.read_text(encoding="utf-8").splitlines() if line.strip()]
     records[-1]["event"]["event_hash"] = "corrupted-hash"
+    
+    trace_material = {
+        "trace_id": records[-1]["event"]["event_id"],
+        "execution_id": records[-1]["event"]["execution_id"],
+        "parent_hash": records[-1]["event"]["previous_hash"],
+        "payload_hash": "corrupted-hash",
+        "timestamp": float(records[-1]["event"]["timestamp"]),
+        "signer": records[-1]["event"]["source"],
+    }
+    records[-1]["event"]["details"]["signature"] = sign_trace(canonicalize(trace_material))
+    
     journal_path.write_text("\n".join(json.dumps(record, separators=(",", ":")) for record in records) + "\n", encoding="utf-8")
 
     result = RecoveryValidator(paths=paths, proof_packet=packet).validate("exec-corrupt", expected_state_hash=expected_state_hash)
