@@ -3410,3 +3410,7 @@
 2026-09-12 17:34:48,981 - agent.agent-651371b6.runtime - INFO - Autonomous operation: agent_initialization
 2026-09-12 17:34:48,982 - agent.agent-651371b6.runtime - ERROR - External decision failed: Connection refused | Context: {"timestamp": "2026-09-12T12:04:48.982326", "agent_id": "agent-651371b6"}
 2026-09-12 17:34:48,982 - agent.agent-651371b6.runtime - WARNING - Force resetting state to IDLE | Context: {"timestamp": "2026-09-12T12:04:48.982545", "agent_id": "agent-651371b6"}
+2026-09-12 17:36:19,791 - agent.agent-8dc76405.runtime - INFO - Agent initialized: id=agent-8dc76405, env=prod, version=1.0.0 | Context: {"timestamp": "2026-09-12T12:06:19.791820", "agent_id": "agent-8dc76405", "agent_state": "idle"}
+2026-09-12 17:36:19,792 - agent.agent-8dc76405.runtime - INFO - Autonomous operation: agent_initialization
+2026-09-12 17:36:19,792 - agent.agent-8dc76405.runtime - INFO - State transition: deciding -> enforcing (governance_enforcement)
+2026-09-12 17:36:19,793 - agent.agent-8dc76405.runtime - INFO - Autonomous operation: governance_block
