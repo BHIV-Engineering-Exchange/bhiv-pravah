@@ -31,8 +31,14 @@ services:
     env_file:
       - .env
     environment:
+      - ENVIRONMENT=prod
       - REDIS_HOST=redis
       - REDIS_PORT=6380
+      - PRAVAH_MAIN_API=http://decision-brain:8000
+      - DECISION_BRAIN_PORT=8000
+      - PRAVAH_OBSERVER_HOST=observer
+      - PRAVAH_OBSERVER_PORT=8600
+      - PRAVAH_OBSERVER_URL=http://observer:8600/api/ingest
       - SSPL_SECRET_KEY=${SSPL_SECRET_KEY}
       - LINEAGE_SIGNING_KEY=${LINEAGE_SIGNING_KEY}
       - JWT_SECRET_KEY=${JWT_SECRET_KEY}
@@ -66,8 +72,11 @@ services:
     env_file:
       - .env
     environment:
+      - ENVIRONMENT=prod
       - REDIS_HOST=redis
       - REDIS_PORT=6380
+      - PRAVAH_MAIN_API=http://decision-brain:8000
+      - DECISION_BRAIN_PORT=8000
       - SSPL_SECRET_KEY=${SSPL_SECRET_KEY}
       - LINEAGE_SIGNING_KEY=${LINEAGE_SIGNING_KEY}
     volumes:

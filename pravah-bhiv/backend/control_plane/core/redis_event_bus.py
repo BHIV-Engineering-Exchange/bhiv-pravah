@@ -4,6 +4,7 @@ Redis-based External Event Bus
 Replaces internal bus with Redis pub/sub for multi-agent communication
 """
 
+import os
 import json
 import time
 import threading
@@ -20,9 +21,10 @@ class RedisEventBus:
     
     def __init__(self, env=None):
         self.env_config = EnvironmentConfig(env)
-        self.redis_host = self.env_config.get('redis_host', '127.0.0.1')
-        self.redis_port = self.env_config.get('redis_port', 6379)
-        self.redis_db = int(self.env_config.get('redis_db', 0))
+        self.redis_host = os.getenv('REDIS_HOST') or self.env_config.get('redis_host', 'redis')
+        raw_port = os.getenv('REDIS_PORT') or self.env_config.get('redis_port', 6380 if self.env_config.env == 'prod' else 6379)
+        self.redis_port = int(raw_port)
+        self.redis_db = int(os.getenv('REDIS_DB') or self.env_config.get('redis_db', 2 if self.env_config.env == 'prod' else 0))
         
         # Initialize Redis connection
         self.redis_client = None

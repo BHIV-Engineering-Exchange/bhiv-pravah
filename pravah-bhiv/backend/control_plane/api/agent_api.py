@@ -206,9 +206,9 @@ def runtime_decision():
 
         # Forward telemetry to observer dashboard out-of-band
         try:
-            import requests
             obs_port = int(os.getenv("PRAVAH_OBSERVER_PORT", "8600"))
-            obs_url = f"http://127.0.0.1:{obs_port}/api/ingest"
+            obs_host = os.getenv("PRAVAH_OBSERVER_HOST", "observer" if ENVIRONMENT == "prod" else "127.0.0.1")
+            obs_url = os.getenv("PRAVAH_OBSERVER_URL", f"http://{obs_host}:{obs_port}/api/ingest")
             requests.post(
                 obs_url,
                 json={

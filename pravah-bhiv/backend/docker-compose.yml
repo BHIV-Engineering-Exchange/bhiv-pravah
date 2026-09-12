@@ -80,6 +80,8 @@ services:
       - PRAVAH_BHIV_HR_LANGGRAPH=${PRAVAH_BHIV_HR_LANGGRAPH:-http://infiverse-hr-langgraph:8000}
       - PRAVAH_PARIKSHAK_API=${PRAVAH_PARIKSHAK_API:-http://parikshak-system:8080}
       - PRAVAH_CRM_API=${PRAVAH_CRM_API:-http://crm-api:8001}
+      - PRAVAH_MAIN_API=${PRAVAH_MAIN_API:-http://decision-brain:8000}
+      - DECISION_BRAIN_PORT=${DECISION_BRAIN_PORT:-8000}
     volumes:
       - ./logs:/app/logs
       - ./data:/app/data
@@ -140,6 +142,8 @@ services:
       - LINEAGE_SIGNING_KEY=${LINEAGE_SIGNING_KEY:-dev-key}
       - DEMO_MODE=${DEMO_MODE:-false}
       - DEMO_FREEZE_MODE=${DEMO_FREEZE_MODE:-false}
+      - PRAVAH_MAIN_API=${PRAVAH_MAIN_API:-http://decision-brain:8000}
+      - DECISION_BRAIN_PORT=8000
       - BACKEND_CORS_ORIGINS=${BACKEND_CORS_ORIGINS:-http://localhost:4500,http://localhost:3000,http://localhost:8000}
     volumes:
       - ./logs:/app/logs

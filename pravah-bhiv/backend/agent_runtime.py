@@ -16,8 +16,9 @@ backend_dir = Path(__file__).resolve().parent
 control_plane_dir = backend_dir / "control_plane"
 if str(control_plane_dir) not in sys.path:
     sys.path.append(str(control_plane_dir))
+import logging
+logger = logging.getLogger("control_plane.decision_provider")
 import time
-from unittest import result
 from unittest import result
 import uuid
 import threading
@@ -85,6 +86,7 @@ class HTTPDecisionProvider(DecisionProvider):
         self.timeout = timeout
 
     def decide(self, payload: Dict[str, Any]) -> Dict[str, Any]:
+        logger.info("HTTPDecisionProvider invoking Decision Brain at: %s", self.endpoint_url)
         response = requests.post(
             self.endpoint_url,
             json=payload,
@@ -102,7 +104,7 @@ def call_decision_engine(runtime_payload):
     if main_api.endswith("/"):
         main_api = main_api[:-1]
     endpoint_url = f"{main_api}/process-runtime"
-    
+    logger.info("call_decision_engine invoking Decision Brain at: %s", endpoint_url)
     response = requests.post(
         endpoint_url,
         json=runtime_payload
@@ -125,8 +127,12 @@ class AgentRuntime:
         """
         self.execution_mode = "external"   # [RUNTIME] CHANGE THIS
         # Normalize environment aliases for internal consistency
-        if env == 'staging':
+        if env in ('staging', 'stage'):
             env = 'stage'
+        elif env in ('production', 'prod'):
+            env = 'prod'
+        elif env in ('development', 'dev'):
+            env = 'dev'
 
         # Initialize production logging first
         if env == 'prod':

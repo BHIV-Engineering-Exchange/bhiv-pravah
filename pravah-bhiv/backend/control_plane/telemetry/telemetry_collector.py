@@ -1,3 +1,4 @@
+import os
 import psutil
 import json
 import time
@@ -8,8 +9,8 @@ from pravah_stream.stream import emit
 
 TELEMETRY_FILE = "telemetry.json"
 
-# HEALTH_URL = "http://localhost:8000/health"
-HEALTH_URL = "http://127.0.0.1:8000/health"
+_main_api = os.getenv("PRAVAH_MAIN_API", "http://decision-brain:8000" if os.getenv("ENVIRONMENT") == "prod" else "http://127.0.0.1:8000").rstrip("/")
+HEALTH_URL = os.getenv("PRAVAH_DECISION_BRAIN_HEALTH_URL", f"{_main_api}/health")
 
 def get_cpu():
     return psutil.cpu_percent(interval=1)

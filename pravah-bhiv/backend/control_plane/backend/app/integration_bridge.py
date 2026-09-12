@@ -57,8 +57,11 @@ class IntegrationBridge:
         
         if self.sync_enabled:
             try:
-                self.agent_runtime = AgentRuntime(env="production")
-                self.control_plane = MultiAppControlPlane(env="production")
+                env = os.getenv("ENVIRONMENT", "prod").strip().lower()
+                if env in ("production", "prod"):
+                    env = "prod"
+                self.agent_runtime = AgentRuntime(env=env)
+                self.control_plane = MultiAppControlPlane(env=env)
                 self._sync_once()
             except Exception as e:
                 print(f"Warning: Control Plane integration failed: {e}")
