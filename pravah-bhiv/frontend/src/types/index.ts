@@ -71,7 +71,7 @@ export interface LiveProductionMonitoredService {
   name: string;
   domain: string;
   url: string;
-  status: 'CONNECTED' | 'DEGRADED' | 'DISCONNECTED' | 'CRITICAL';
+  status: 'CONNECTED' | 'DEGRADED' | 'DISCONNECTED' | 'CRITICAL' | 'HEALTHY' | string;
   health_score: number;
   response_time_ms: number;
   cpu_percent: number | null;
@@ -95,30 +95,41 @@ export interface ProjectFileSection {
   files: FileStatusRow[];
 }
 
+export interface SystemHealthObject {
+  cpu_utilization_pct: number | null;
+  memory_utilization_pct: number | null;
+  status: string;
+  collection_status: string;
+}
+
 export interface LiveDashboardResponse {
   generated_at: string;
-  header: {
+  environment?: string;
+  monitored_services?: LiveProductionMonitoredService[];
+  system_health?: SystemHealthObject | { label: string; value: string; tone?: string }[];
+  ml_intelligence?: Record<string, any>;
+  recent_decisions?: Decision[];
+  header?: {
     title: string;
     subtitle: string;
   };
-  live_production_monitoring: LiveProductionMonitoredService[];
-  summary_metrics: { label: string; value: string }[];
-  ai_learning_status: { label: string; value: string; tone: string }[];
-  system_health: { label: string; value: string; tone: string }[];
-  performance_metrics: { label: string; value: string }[];
-  project_files_status: ProjectFileSection[];
-  enhanced_telemetry: {
+  live_production_monitoring?: LiveProductionMonitoredService[];
+  summary_metrics?: { label: string; value: string }[];
+  ai_learning_status?: { label: string; value: string; tone: string }[];
+  performance_metrics?: { label: string; value: string }[];
+  project_files_status?: ProjectFileSection[];
+  enhanced_telemetry?: {
     status: string;
     avg_latency: string;
     cost: string;
     success: string;
     requests: string;
   };
-  policy_evolution: {
+  policy_evolution?: {
     title: string;
     metrics: { label: string; value: string }[];
   };
-  error_analytics: {
+  error_analytics?: {
     recent_errors: { code: string; severity: string }[];
     statistics: {
       total_errors: number;
@@ -127,12 +138,12 @@ export interface LiveDashboardResponse {
       test_coverage_avg: number;
     };
   };
-  auto_failover_status: {
+  auto_failover_status?: {
     active_domain: string;
     failure_threshold: number;
     domains: { name: string; status: string }[];
   };
-  live_events: { title: string; time_ago: string; tone: string }[];
+  live_events?: { title: string; time_ago: string; tone: string }[];
 }
 
 export interface AutonomousStatus {

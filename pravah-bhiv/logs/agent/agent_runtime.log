@@ -3334,3 +3334,47 @@
 2026-09-07 15:39:00,394 - agent.agent-74608240.runtime - INFO - Autonomous operation: agent_initialization
 2026-09-07 15:39:00,394 - agent.agent-74608240.runtime - INFO - State transition: deciding -> enforcing (governance_enforcement)
 2026-09-07 15:39:00,394 - agent.agent-74608240.runtime - INFO - Autonomous operation: governance_block
+2026-09-09 16:22:32,608 - agent.agent-60eb5563.runtime - INFO - Initializing system components | Context: {"timestamp": "2026-09-09T10:52:32.608687", "agent_id": "agent-60eb5563", "agent_state": "idle"}
+2026-09-09 16:22:32,613 - agent.agent-60eb5563.runtime - INFO - Redis event bus initialized | Context: {"timestamp": "2026-09-09T10:52:32.613404", "agent_id": "agent-60eb5563", "agent_state": "idle"}
+2026-09-09 16:22:32,614 - agent.agent-60eb5563.runtime - INFO - Perception adapters initialized: 4 adapters | Context: {"timestamp": "2026-09-09T10:52:32.614688", "agent_id": "agent-60eb5563", "agent_state": "idle"}
+2026-09-09 16:22:32,615 - agent.agent-60eb5563.runtime - INFO - All components initialized | Context: {"timestamp": "2026-09-09T10:52:32.615010", "agent_id": "agent-60eb5563", "agent_state": "idle"}
+2026-09-09 16:22:32,618 - agent.agent-60eb5563.runtime - INFO - Agent initialized: id=agent-60eb5563, env=dev, version=1.0.0 | Context: {"timestamp": "2026-09-09T10:52:32.618526", "agent_id": "agent-60eb5563", "agent_state": "idle"}
+2026-09-09 16:22:32,619 - agent.agent-60eb5563.runtime - INFO - Autonomous operation: agent_initialization
+2026-09-09 16:22:42,372 - agent.agent-426c43c8.runtime - INFO - Initializing system components | Context: {"timestamp": "2026-09-09T10:52:42.372748", "agent_id": "agent-426c43c8", "agent_state": "idle"}
+2026-09-09 16:22:42,374 - agent.agent-426c43c8.runtime - INFO - Redis event bus initialized | Context: {"timestamp": "2026-09-09T10:52:42.373987", "agent_id": "agent-426c43c8", "agent_state": "idle"}
+2026-09-09 16:22:42,374 - agent.agent-426c43c8.runtime - INFO - Perception adapters initialized: 4 adapters | Context: {"timestamp": "2026-09-09T10:52:42.374819", "agent_id": "agent-426c43c8", "agent_state": "idle"}
+2026-09-09 16:22:42,374 - agent.agent-426c43c8.runtime - INFO - All components initialized | Context: {"timestamp": "2026-09-09T10:52:42.374977", "agent_id": "agent-426c43c8", "agent_state": "idle"}
+2026-09-09 16:22:42,375 - agent.agent-426c43c8.runtime - INFO - Agent initialized: id=agent-426c43c8, env=dev, version=1.0.0 | Context: {"timestamp": "2026-09-09T10:52:42.375082", "agent_id": "agent-426c43c8", "agent_state": "idle"}
+2026-09-09 16:22:42,375 - agent.agent-426c43c8.runtime - INFO - Autonomous operation: agent_initialization
+2026-09-09 16:22:42,377 - agent.agent-426c43c8.runtime - INFO - State transition: deciding -> enforcing (governance_enforcement)
+2026-09-09 16:22:42,378 - agent.agent-426c43c8.runtime - WARNING - Force resetting state to IDLE | Context: {"timestamp": "2026-09-09T10:52:42.377988", "agent_id": "agent-426c43c8"}
+2026-09-09 16:22:42,383 - agent.agent-f1f9df13.runtime - INFO - Initializing system components | Context: {"timestamp": "2026-09-09T10:52:42.383132", "agent_id": "agent-f1f9df13", "agent_state": "idle"}
+2026-09-09 16:22:42,384 - agent.agent-f1f9df13.runtime - INFO - Redis event bus initialized | Context: {"timestamp": "2026-09-09T10:52:42.384561", "agent_id": "agent-f1f9df13", "agent_state": "idle"}
+2026-09-09 16:22:42,385 - agent.agent-f1f9df13.runtime - INFO - Perception adapters initialized: 4 adapters | Context: {"timestamp": "2026-09-09T10:52:42.385766", "agent_id": "agent-f1f9df13", "agent_state": "idle"}
+2026-09-09 16:22:42,385 - agent.agent-f1f9df13.runtime - INFO - All components initialized | Context: {"timestamp": "2026-09-09T10:52:42.385952", "agent_id": "agent-f1f9df13", "agent_state": "idle"}
+2026-09-09 16:22:42,386 - agent.agent-f1f9df13.runtime - INFO - Agent initialized: id=agent-f1f9df13, env=dev, version=1.0.0 | Context: {"timestamp": "2026-09-09T10:52:42.386129", "agent_id": "agent-f1f9df13", "agent_state": "idle"}
+2026-09-09 16:22:42,386 - agent.agent-f1f9df13.runtime - INFO - Autonomous operation: agent_initialization
+2026-09-09 16:22:42,387 - agent.agent-f1f9df13.runtime - ERROR - External decision failed: Connection refused | Context: {"timestamp": "2026-09-09T10:52:42.387553", "agent_id": "agent-f1f9df13"}
+2026-09-09 16:22:42,387 - agent.agent-f1f9df13.runtime - WARNING - Force resetting state to IDLE | Context: {"timestamp": "2026-09-09T10:52:42.387851", "agent_id": "agent-f1f9df13"}
+2026-09-09 16:22:48,218 - agent.agent-60eb5563.runtime - ERROR - External decision failed: Observer offline | Context: {"timestamp": "2026-09-09T10:52:48.218083", "agent_id": "agent-60eb5563"}
+2026-09-09 16:22:48,218 - agent.agent-60eb5563.runtime - INFO - State transition: deciding -> enforcing (governance_enforcement)
+2026-09-09 16:22:48,219 - agent.agent-60eb5563.runtime - INFO - Autonomous operation: governance_block
+2026-09-09 16:22:57,213 - agent.agent-t6.runtime - INFO - Initializing system components | Context: {"timestamp": "2026-09-09T10:52:57.213783", "agent_id": "agent-t6", "agent_state": "idle"}
+2026-09-09 16:22:57,215 - agent.agent-t6.runtime - WARNING - Redis unavailable, using local event bus: no redis | Context: {"timestamp": "2026-09-09T10:52:57.215489", "agent_id": "agent-t6", "agent_state": "idle"}
+2026-09-09 16:22:57,217 - agent.agent-t6.runtime - INFO - Perception adapters initialized: 4 adapters | Context: {"timestamp": "2026-09-09T10:52:57.217026", "agent_id": "agent-t6", "agent_state": "idle"}
+2026-09-09 16:22:57,217 - agent.agent-t6.runtime - INFO - All components initialized | Context: {"timestamp": "2026-09-09T10:52:57.217236", "agent_id": "agent-t6", "agent_state": "idle"}
+2026-09-09 16:22:57,217 - agent.agent-t6.runtime - INFO - Agent initialized: id=agent-t6, env=dev, version=1.0.0 | Context: {"timestamp": "2026-09-09T10:52:57.217397", "agent_id": "agent-t6", "agent_state": "idle"}
+2026-09-09 16:22:57,218 - agent.agent-t6.runtime - INFO - Autonomous operation: agent_initialization
+2026-09-09 16:22:57,219 - agent.agent-t6.runtime - INFO - State transition: deciding -> enforcing (governance_enforcement)
+2026-09-09 16:22:57,223 - agent.agent-t6.runtime - INFO - Action: execute_safe_action - {"action": "noop", "result": {"status": "success", "execution_id": "e", "source": "sarathi", "action_executed": "noop", "message": "Action noop executed via sarathi\u2192executer\u2192pravah"}, "feedback_delivery": {"status": "skipped"}}
+2026-09-09 16:22:57,223 - agent.agent-t6.runtime - INFO - Execution mode: external | Context: {"timestamp": "2026-09-09T10:52:57.223830", "agent_id": "agent-t6", "agent_state": "acting"}
+2026-09-09 16:22:57,224 - agent.agent-t6.runtime - INFO - State transition: acting -> observing_results (observing_results)
+2026-09-09 16:22:57,225 - agent.agent-t6.runtime - INFO - State transition: observing_results -> explaining (explaining_decision)
+2026-09-09 16:22:57,226 - agent.agent-t6.runtime - INFO - Autonomous operation: loop_complete_with_explanation
+2026-09-09 16:22:57,226 - agent.agent-t6.runtime - INFO - Loop 0 complete: Successfully executed action 0, system stable | Context: {"timestamp": "2026-09-09T10:52:57.226314", "agent_id": "agent-t6", "agent_state": "explaining"}
+2026-09-09 16:22:57,483 - agent.agent-6dfd122b.runtime - INFO - Agent initialized: id=agent-6dfd122b, env=prod, version=1.0.0 | Context: {"timestamp": "2026-09-09T10:52:57.483793", "agent_id": "agent-6dfd122b", "agent_state": "idle"}
+2026-09-09 16:22:57,484 - agent.agent-6dfd122b.runtime - INFO - Autonomous operation: agent_initialization
+2026-09-09 16:22:57,484 - agent.agent-6dfd122b.runtime - INFO - State transition: deciding -> enforcing (governance_enforcement)
+2026-09-09 16:22:57,485 - agent.agent-6dfd122b.runtime - INFO - Autonomous operation: governance_block
+2026-09-12 12:13:01,070 - agent.agent-2240c159.runtime - INFO - Initializing system components | Context: {"timestamp": "2026-09-12T06:43:01.070810", "agent_id": "agent-2240c159", "agent_state": "idle"}
+2026-09-12 12:13:32,953 - agent.agent-02a75e16.runtime - INFO - Initializing system components | Context: {"timestamp": "2026-09-12T06:43:32.953341", "agent_id": "agent-02a75e16", "agent_state": "idle"}

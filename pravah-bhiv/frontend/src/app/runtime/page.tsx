@@ -30,8 +30,8 @@ export default function Runtime() {
     );
   }
 
-  // Fetch active runtimes directly from dashboard
-  const runtimes = dashboard?.live_production_monitoring || [];
+  // Fetch active runtimes directly from actual monitored_services (fallback to live_production_monitoring)
+  const runtimes = dashboard?.monitored_services || dashboard?.live_production_monitoring || [];
 
   return (
     <div className="flex-1 flex flex-col gap-6 font-mono text-xs">
@@ -134,7 +134,7 @@ export default function Runtime() {
 
             <div className="flex justify-between items-center text-[10px] text-muted-foreground border-b border-border/20 pb-1">
               <span>Last Execution Event:</span>
-              <span className="text-foreground font-semibold uppercase">{autoStatus?.last_action || dashboard?.live_production_monitoring?.[0]?.last_action || 'noop'}</span>
+              <span className="text-foreground font-semibold uppercase">{autoStatus?.last_action || runtimes[0]?.last_action || 'noop'}</span>
             </div>
 
             <div className="flex flex-col gap-1.5 mt-2">

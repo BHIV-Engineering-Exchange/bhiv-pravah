@@ -104,8 +104,12 @@ export default function Dashboard() {
     });
   };
 
-  // Prepare chart data
-  const monitoring = Array.isArray(dashboard.live_production_monitoring) ? dashboard.live_production_monitoring : [];
+  // Prepare chart data from actual backend monitored_services (fallback to legacy live_production_monitoring)
+  const monitoring = Array.isArray(dashboard.monitored_services)
+    ? dashboard.monitored_services
+    : Array.isArray(dashboard.live_production_monitoring)
+    ? dashboard.live_production_monitoring
+    : [];
 
   const latencyData = monitoring.map(item => ({
     name: item.name,
@@ -122,7 +126,7 @@ export default function Dashboard() {
     }));
 
   // Health distribution
-  const healthyCount = monitoring.filter(s => s.status === 'CONNECTED').length;
+  const healthyCount = monitoring.filter(s => s.status === 'CONNECTED' || s.status === 'HEALTHY').length;
   const criticalCount = monitoring.filter(s => s.status === 'CRITICAL' || s.status === 'DISCONNECTED').length;
   const degradedCount = monitoring.filter(s => s.status === 'DEGRADED').length;
 
@@ -132,6 +136,43 @@ export default function Dashboard() {
     { name: 'Critical', value: criticalCount, color: '#ef4444' },
   ].filter(d => d.value > 0);
 
+  // Derive system health metrics cards from actual backend system_health object
+  const healthCards = (() => {
+    if (Array.isArray(dashboard.system_health)) {
+      return dashboard.system_health.map((s: any) => ({
+        label: s.label,
+        value: s.value,
+        isHealth: String(s.label).toLowerCase().includes('health'),
+      }));
+    }
+    if (dashboard.system_health && typeof dashboard.system_health === 'object') {
+      const sh = dashboard.system_health as any;
+      return [
+        {
+          label: 'CPU Utilization',
+          value: sh.cpu_utilization_pct !== null && sh.cpu_utilization_pct !== undefined ? `${sh.cpu_utilization_pct}%` : 'N/A',
+          isHealth: false,
+        },
+        {
+          label: 'Memory Utilization',
+          value: sh.memory_utilization_pct !== null && sh.memory_utilization_pct !== undefined ? `${sh.memory_utilization_pct}%` : 'N/A',
+          isHealth: false,
+        },
+        {
+          label: 'System Status',
+          value: sh.status || 'UNKNOWN',
+          isHealth: true,
+        },
+        {
+          label: 'Telemetry Collection',
+          value: sh.collection_status ? String(sh.collection_status).toUpperCase() : 'AVAILABLE',
+          isHealth: true,
+        },
+      ];
+    }
+    return [];
+  })();
+
   return (
     <div className="flex-1 flex flex-col gap-6 font-sans">
       
@@ -139,7 +180,7 @@ export default function Dashboard() {
       <header className="flex justify-between items-end pb-4 border-b border-border/60">
         <div>
           <h2 className="text-xl font-bold font-sans tracking-tight text-foreground">
-            {dashboard.header?.title || 'System Dashboard'}
+            {dashboard.environment ? `Pravah Decision Brain (${dashboard.environment.toUpperCase()})` : (dashboard.header?.title || 'System Dashboard')}
           </h2>
           <p className="text-xs text-muted-foreground mt-0.5">
             {dashboard.header?.subtitle || 'Live Telemetry'} &bull; Generated at {dashboard.generated_at ? new Date(dashboard.generated_at).toLocaleTimeString() : 'N/A'}
@@ -153,18 +194,15 @@ export default function Dashboard() {
 
       {/* Top 4 Stats Rows */}
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {(Array.isArray(dashboard.system_health) ? dashboard.system_health : []).map((s, idx) => {
-          const isHealth = s.label.toLowerCase().includes('health');
-          return (
-            <div key={idx} className="premium-card flex flex-col gap-1 relative overflow-hidden">
-              <div className="text-[10px] text-muted-foreground font-mono uppercase tracking-wider">{s.label}</div>
-              <div className="text-xl font-bold tracking-tight text-foreground">{s.value}</div>
-              <div className="absolute right-3 top-3 opacity-15">
-                {isHealth ? <Activity className="w-8 h-8 text-emerald-500" /> : <Cpu className="w-8 h-8 text-primary" />}
-              </div>
+        {healthCards.map((s, idx) => (
+          <div key={idx} className="premium-card flex flex-col gap-1 relative overflow-hidden">
+            <div className="text-[10px] text-muted-foreground font-mono uppercase tracking-wider">{s.label}</div>
+            <div className="text-xl font-bold tracking-tight text-foreground">{s.value}</div>
+            <div className="absolute right-3 top-3 opacity-15">
+              {s.isHealth ? <Activity className="w-8 h-8 text-emerald-500" /> : <Cpu className="w-8 h-8 text-primary" />}
             </div>
-          );
-        })}
+          </div>
+        ))}
       </section>
 
       {/* Charts Grid */}
@@ -361,14 +399,35 @@ export default function Dashboard() {
         <div className="premium-card flex flex-col gap-4 font-mono">
           <h4 className="font-bold text-xs uppercase tracking-wider text-muted-foreground">Ecosystem Timeline Events</h4>
           <div className="flex flex-col gap-3 py-1 overflow-y-auto max-h-[300px]">
-            {(Array.isArray(dashboard.live_events) ? dashboard.live_events : []).map((ev, i) => (
-              <div key={i} className="flex gap-2.5 items-start text-[10px] leading-relaxed border-l-2 border-border pl-3.5 py-0.5">
-                <div className="flex-1 flex flex-col gap-0.5">
-                  <span className="text-foreground font-medium">{ev.title}</span>
-                  <span className="text-[9px] text-muted-foreground">{ev.time_ago}</span>
+            {eventsData?.events && eventsData.events.length > 0 ? (
+              eventsData.events.map((ev, i) => (
+                <div key={i} className="flex gap-2.5 items-start text-[10px] leading-relaxed border-l-2 border-border pl-3.5 py-0.5">
+                  <div className="flex-1 flex flex-col gap-0.5">
+                    <div className="flex items-center justify-between">
+                      <span className="text-foreground font-semibold uppercase">{ev.service}</span>
+                      <span className={`text-[9px] font-mono ${ev.status === 'healthy' ? 'text-emerald-500' : 'text-amber-500'}`}>
+                        {ev.status} {ev.latency_ms ? `(${Math.round(ev.latency_ms)}ms)` : ''}
+                      </span>
+                    </div>
+                    <span className="text-[9px] text-muted-foreground truncate max-w-xs">{ev.detail}</span>
+                    <span className="text-[8px] text-muted-foreground/60">{ev.ts ? new Date(ev.ts).toLocaleTimeString() : ''}</span>
+                  </div>
                 </div>
+              ))
+            ) : Array.isArray(dashboard.live_events) && dashboard.live_events.length > 0 ? (
+              dashboard.live_events.map((ev, i) => (
+                <div key={i} className="flex gap-2.5 items-start text-[10px] leading-relaxed border-l-2 border-border pl-3.5 py-0.5">
+                  <div className="flex-1 flex flex-col gap-0.5">
+                    <span className="text-foreground font-medium">{ev.title}</span>
+                    <span className="text-[9px] text-muted-foreground">{ev.time_ago}</span>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="text-xs text-muted-foreground italic py-4 text-center">
+                No observer timeline events recorded.
               </div>
-            ))}
+            )}
           </div>
         </div>
 

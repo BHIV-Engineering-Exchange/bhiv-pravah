@@ -175,7 +175,9 @@ export default function Replay() {
                     <td className="py-2.5">
                       <span className="status-pill info">{bundle.decision_type || 'Orchestrate'}</span>
                     </td>
-                    <td className="py-2.5 text-primary-foreground/75 font-semibold">{bundle.authority_chain?.join(' -> ')}</td>
+                    <td className="py-2.5 text-primary-foreground/75 font-semibold">
+                      {Array.isArray(bundle.authority_chain) ? bundle.authority_chain.join(' -> ') : String(bundle.authority_chain || '--')}
+                    </td>
                     <td className="py-2.5 text-right">
                       <button 
                         onClick={() => selectExecution(bundle.execution_id)}
