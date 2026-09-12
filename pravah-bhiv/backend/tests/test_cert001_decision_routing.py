@@ -30,10 +30,11 @@ def test_8_explicit_endpoint_url():
         provider = HTTPDecisionProvider(endpoint_url="http://custom:9000/path")
         assert provider.endpoint_url == "http://custom:9000/path"
 
+@patch('security.trace_consumption.is_trace_consumed', return_value=False)
 @patch('agent_runtime.RedisEventBus')
 @patch('agent_runtime.ActionGovernance')
 @patch('requests.post')
-def test_4_and_6_trace_id_and_governance(mock_post, mock_governance, mock_redis):
+def test_4_and_6_trace_id_and_governance(mock_post, mock_governance, mock_redis, mock_consumed):
     """TEST 4: trace_id is preserved exactly.
        TEST 6: Valid Decision Brain response reaches governance."""
     mock_response = MagicMock()
