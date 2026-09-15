@@ -104,6 +104,8 @@ DEFAULT_APPROVED_CORS_ORIGINS: list[str] = [
     "http://localhost:4500",
     "http://localhost:3000",
     "http://localhost:8000",
+    "http://163.128.209.18:4500",
+    "https://pravah.blackholeinfiverse.com",
 ]
 
 
