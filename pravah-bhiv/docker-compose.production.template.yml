@@ -216,6 +216,27 @@ services:
     networks:
       - pravah-prod-network
 
+  frontend:
+    image: bhiv/pravah-frontend:IMG_TAG
+    container_name: pravah_frontend
+    ports:
+      - "4500:4500"
+    env_file:
+      - .env.frontend
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:4500', (res) => { process.exit(res.statusCode === 200 ? 0 : 1); }).on('error', () => process.exit(1));"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 45s
+    depends_on:
+      - control-plane
+      - decision-brain
+      - observer
+    networks:
+      - pravah-prod-network
+
   prometheus:
     image: prom/prometheus:v2.54.1
     container_name: pravah_prometheus

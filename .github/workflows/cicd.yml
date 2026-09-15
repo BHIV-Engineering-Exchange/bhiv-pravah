@@ -24,6 +24,7 @@ jobs:
         run: |
           # Docker Compose config requires the env_file to exist to validate schema.
           touch pravah-bhiv/.env
+          touch pravah-bhiv/.env.frontend
 
       - name: Validate Docker Compose files
         run: |
@@ -66,6 +67,19 @@ jobs:
             --tag bhiv/pravah-backend:latest \
             -f pravah-bhiv/backend/Dockerfile pravah-bhiv/backend
 
+      - name: Create frontend env file from secrets
+        run: |
+          cat <<'EOF' > pravah-bhiv/frontend/.env.production
+          ${{ secrets.PRAVAH_FRONTEND_ENV_FILE }}
+          EOF
+
+      - name: Build and push pravah-frontend image
+        run: |
+          docker buildx build --push \
+            --tag bhiv/pravah-frontend:${{ steps.vars.outputs.sha_short }} \
+            --tag bhiv/pravah-frontend:latest \
+            -f pravah-bhiv/frontend/Dockerfile pravah-bhiv/frontend
+
   deploy:
     name: Deploy to remote production VM via SSH
     needs: build
@@ -80,11 +94,14 @@ jobs:
           cat <<'EOF' > pravah-bhiv/.env
           ${{ secrets.PRAVAH_ENV_FILE }}
           EOF
+          cat <<'EOF' > pravah-bhiv/.env.frontend
+          ${{ secrets.PRAVAH_FRONTEND_ENV_FILE }}
+          EOF
 
       - name: Tar deployment files
         run: |
           # Tar file structure relative to pravah-bhiv/
-          tar -czf deployment.tar.gz -C pravah-bhiv docker-compose.production.template.yml .env backend/monitoring
+          tar -czf deployment.tar.gz -C pravah-bhiv docker-compose.production.template.yml .env .env.frontend backend/monitoring
 
       - name: Install sshpass
         run: |
@@ -167,6 +184,9 @@ jobs:
               OBSERVER_HEALTH=0
               [ "$(docker inspect --format='{{.State.Health.Status}}' pravah_observer 2>/dev/null || echo "missing")" = "healthy" ] && OBSERVER_HEALTH=1
 
+              FRONTEND_HEALTH=0
+              [ "$(docker inspect --format='{{.State.Health.Status}}' pravah_frontend 2>/dev/null || echo "missing")" = "healthy" ] && FRONTEND_HEALTH=1
+
               # HTTP endpoint curls
               CONTROL_CURL=0
               curl -sf http://localhost:7000/api/health > /dev/null && CONTROL_CURL=1
@@ -176,9 +196,12 @@ jobs:
 
               OBSERVER_CURL=0
               curl -sf http://localhost:8600/health > /dev/null && OBSERVER_CURL=1
+
+              FRONTEND_CURL=0
+              curl -sf http://localhost:4500 > /dev/null && FRONTEND_CURL=1
               
-              if [ "$UNHEALTHY_COUNT" -eq 0 ] && [ "$STARTING_COUNT" -eq 0 ] && [ "$REDIS_HEALTH" -eq 1 ] && [ "$CONTROL_HEALTH" -eq 1 ] && [ "$BRAIN_HEALTH" -eq 1 ] && [ "$OBSERVER_HEALTH" -eq 1 ] && [ "$CONTROL_CURL" -eq 1 ] && [ "$BRAIN_CURL" -eq 1 ] && [ "$OBSERVER_CURL" -eq 1 ]; then
-                echo "All core containers and API endpoints are healthy!"
+              if [ "$UNHEALTHY_COUNT" -eq 0 ] && [ "$STARTING_COUNT" -eq 0 ] && [ "$REDIS_HEALTH" -eq 1 ] && [ "$CONTROL_HEALTH" -eq 1 ] && [ "$BRAIN_HEALTH" -eq 1 ] && [ "$OBSERVER_HEALTH" -eq 1 ] && [ "$FRONTEND_HEALTH" -eq 1 ] && [ "$CONTROL_CURL" -eq 1 ] && [ "$BRAIN_CURL" -eq 1 ] && [ "$OBSERVER_CURL" -eq 1 ] && [ "$FRONTEND_CURL" -eq 1 ]; then
+                echo "All core containers, frontend, and API endpoints are healthy!"
                 break
               fi
               
@@ -189,7 +212,7 @@ jobs:
                 exit 1
               fi
               
-              echo "Status: $STARTING_COUNT starting, $UNHEALTHY_COUNT unhealthy, redis_health=$REDIS_HEALTH, control_health=$CONTROL_HEALTH (curl=$CONTROL_CURL), brain_health=$BRAIN_HEALTH (curl=$BRAIN_CURL), observer_health=$OBSERVER_HEALTH (curl=$OBSERVER_CURL). Retrying in 10s..."
+              echo "Status: $STARTING_COUNT starting, $UNHEALTHY_COUNT unhealthy, redis_health=$REDIS_HEALTH, control_health=$CONTROL_HEALTH (curl=$CONTROL_CURL), brain_health=$BRAIN_HEALTH (curl=$BRAIN_CURL), observer_health=$OBSERVER_HEALTH (curl=$OBSERVER_CURL), frontend_health=$FRONTEND_HEALTH (curl=$FRONTEND_CURL). Retrying in 10s..."
               sleep 10
             done
             
@@ -306,6 +329,9 @@ jobs:
                 OBSERVER_HEALTH=0
                 [ "$(docker inspect --format='{{.State.Health.Status}}' pravah_observer 2>/dev/null || echo "missing")" = "healthy" ] && OBSERVER_HEALTH=1
 
+                FRONTEND_HEALTH=0
+                [ "$(docker inspect --format='{{.State.Health.Status}}' pravah_frontend 2>/dev/null || echo "missing")" = "healthy" ] && FRONTEND_HEALTH=1
+
                 # HTTP endpoint curls
                 CONTROL_CURL=0
                 curl -sf http://localhost:7000/api/health > /dev/null && CONTROL_CURL=1
@@ -315,8 +341,11 @@ jobs:
 
                 OBSERVER_CURL=0
                 curl -sf http://localhost:8600/health > /dev/null && OBSERVER_CURL=1
+
+                FRONTEND_CURL=0
+                curl -sf http://localhost:4500 > /dev/null && FRONTEND_CURL=1
                 
-                if [ "$UNHEALTHY_COUNT" -eq 0 ] && [ "$STARTING_COUNT" -eq 0 ] && [ "$REDIS_HEALTH" -eq 1 ] && [ "$CONTROL_HEALTH" -eq 1 ] && [ "$BRAIN_HEALTH" -eq 1 ] && [ "$OBSERVER_HEALTH" -eq 1 ] && [ "$CONTROL_CURL" -eq 1 ] && [ "$BRAIN_CURL" -eq 1 ] && [ "$OBSERVER_CURL" -eq 1 ]; then
+                if [ "$UNHEALTHY_COUNT" -eq 0 ] && [ "$STARTING_COUNT" -eq 0 ] && [ "$REDIS_HEALTH" -eq 1 ] && [ "$CONTROL_HEALTH" -eq 1 ] && [ "$BRAIN_HEALTH" -eq 1 ] && [ "$OBSERVER_HEALTH" -eq 1 ] && [ "$FRONTEND_HEALTH" -eq 1 ] && [ "$CONTROL_CURL" -eq 1 ] && [ "$BRAIN_CURL" -eq 1 ] && [ "$OBSERVER_CURL" -eq 1 ] && [ "$FRONTEND_CURL" -eq 1 ]; then
                   echo "Rollback deployment is healthy!"
                   echo "| $(date -u +'%Y-%m-%d %H:%M:%S UTC') | $LAST_HEALTHY_TAG | ROLLBACK_SUCCESS | Rollback from failed ${{ needs.build.outputs.sha_short }} is healthy |" >> docs/RELEASE_HISTORY.md
                   exit 0
@@ -328,7 +357,7 @@ jobs:
                   exit 1
                 fi
                 
-                echo "Status: $STARTING_COUNT starting, $UNHEALTHY_COUNT unhealthy, redis_health=$REDIS_HEALTH, control_health=$CONTROL_HEALTH (curl=$CONTROL_CURL), brain_health=$BRAIN_HEALTH (curl=$BRAIN_CURL), observer_health=$OBSERVER_HEALTH (curl=$OBSERVER_CURL). Retrying in 10s..."
+                echo "Status: $STARTING_COUNT starting, $UNHEALTHY_COUNT unhealthy, redis_health=$REDIS_HEALTH, control_health=$CONTROL_HEALTH (curl=$CONTROL_CURL), brain_health=$BRAIN_HEALTH (curl=$BRAIN_CURL), observer_health=$OBSERVER_HEALTH (curl=$OBSERVER_CURL), frontend_health=$FRONTEND_HEALTH (curl=$FRONTEND_CURL). Retrying in 10s..."
                 sleep 10
               done
             else
