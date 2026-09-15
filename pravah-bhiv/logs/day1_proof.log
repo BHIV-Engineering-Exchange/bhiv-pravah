@@ -441,3 +441,24 @@
 {"event_name": "EXECUTION_GATE_PASSED", "timestamp": "2026-09-12T17:36:19.822217", "env": "prod", "action": "restart", "source": "rl_decision_layer", "demo_mode": true, "gates_passed": ["rl_intake", "demo_safety", "env_safety", "governance"]}
 {"event_name": "ORCH_EXEC", "timestamp": "2026-09-12T17:36:19.822631", "env": "prod", "action": "restart", "status": "executed", "source": "rl_decision_layer"}
 {"event_name": "SYSTEM_STABLE", "timestamp": "2026-09-12T17:36:19.823003", "env": "prod", "recovery_action": "restart", "status": "stable"}
+{"event_name": "DEMO_MODE_BLOCK", "timestamp": "2026-09-15T12:13:29.387635", "env": "prod", "action": "restart", "source": "legacy", "reason": "Direct orchestrator call blocked - must come through RL intake gate", "demo_mode": true}
+{"event_name": "RL_INTAKE_VALIDATED", "timestamp": "2026-09-15T12:13:29.391818", "env": "prod", "action": "restart", "source": "rl_decision_layer", "status": "validated"}
+{"event_name": "EXECUTION_GATE_PASSED", "timestamp": "2026-09-15T12:13:29.392768", "env": "prod", "action": "restart", "source": "rl_decision_layer", "demo_mode": true, "gates_passed": ["rl_intake", "demo_safety", "env_safety", "governance"]}
+{"event_name": "ORCH_EXEC", "timestamp": "2026-09-15T12:13:29.393173", "env": "prod", "action": "restart", "status": "executed", "source": "rl_decision_layer"}
+{"event_name": "SYSTEM_STABLE", "timestamp": "2026-09-15T12:13:29.393520", "env": "prod", "recovery_action": "restart", "status": "stable"}
+{"event_name": "RUNTIME_EMIT", "timestamp": "2026-09-15T12:15:17.984465", "env": "dev", "event_type": "restart", "payload": {"timestamp": "2026-09-15T12:15:17.976800", "env": "dev", "event_type": "restart", "status": "success", "response_time": 0, "dataset": "uptime_monitor"}, "status": "emitted"}
+{"event_name": "DEMO_MODE_BLOCK", "timestamp": "2026-09-15T12:16:42.869229", "env": "prod", "action": "restart", "source": "legacy", "reason": "Direct orchestrator call blocked - must come through RL intake gate", "demo_mode": true}
+{"event_name": "RL_INTAKE_VALIDATED", "timestamp": "2026-09-15T12:16:42.874329", "env": "prod", "action": "restart", "source": "rl_decision_layer", "status": "validated"}
+{"event_name": "EXECUTION_GATE_PASSED", "timestamp": "2026-09-15T12:16:42.875386", "env": "prod", "action": "restart", "source": "rl_decision_layer", "demo_mode": true, "gates_passed": ["rl_intake", "demo_safety", "env_safety", "governance"]}
+{"event_name": "ORCH_EXEC", "timestamp": "2026-09-15T12:16:42.875803", "env": "prod", "action": "restart", "status": "executed", "source": "rl_decision_layer"}
+{"event_name": "SYSTEM_STABLE", "timestamp": "2026-09-15T12:16:42.876142", "env": "prod", "recovery_action": "restart", "status": "stable"}
+{"event_name": "DEMO_MODE_BLOCK", "timestamp": "2026-09-15T12:17:15.311899", "env": "prod", "action": "restart", "source": "legacy", "reason": "Direct orchestrator call blocked - must come through RL intake gate", "demo_mode": true}
+{"event_name": "RL_INTAKE_VALIDATED", "timestamp": "2026-09-15T12:17:15.315476", "env": "prod", "action": "restart", "source": "rl_decision_layer", "status": "validated"}
+{"event_name": "EXECUTION_GATE_PASSED", "timestamp": "2026-09-15T12:17:15.316474", "env": "prod", "action": "restart", "source": "rl_decision_layer", "demo_mode": true, "gates_passed": ["rl_intake", "demo_safety", "env_safety", "governance"]}
+{"event_name": "ORCH_EXEC", "timestamp": "2026-09-15T12:17:15.316864", "env": "prod", "action": "restart", "status": "executed", "source": "rl_decision_layer"}
+{"event_name": "SYSTEM_STABLE", "timestamp": "2026-09-15T12:17:15.317215", "env": "prod", "recovery_action": "restart", "status": "stable"}
+{"event_name": "DEMO_MODE_BLOCK", "timestamp": "2026-09-15T12:17:47.820413", "env": "prod", "action": "restart", "source": "legacy", "reason": "Direct orchestrator call blocked - must come through RL intake gate", "demo_mode": true}
+{"event_name": "RL_INTAKE_VALIDATED", "timestamp": "2026-09-15T12:17:47.824432", "env": "prod", "action": "restart", "source": "rl_decision_layer", "status": "validated"}
+{"event_name": "EXECUTION_GATE_PASSED", "timestamp": "2026-09-15T12:17:47.825452", "env": "prod", "action": "restart", "source": "rl_decision_layer", "demo_mode": true, "gates_passed": ["rl_intake", "demo_safety", "env_safety", "governance"]}
+{"event_name": "ORCH_EXEC", "timestamp": "2026-09-15T12:17:47.825839", "env": "prod", "action": "restart", "status": "executed", "source": "rl_decision_layer"}
+{"event_name": "SYSTEM_STABLE", "timestamp": "2026-09-15T12:17:47.826187", "env": "prod", "recovery_action": "restart", "status": "stable"}

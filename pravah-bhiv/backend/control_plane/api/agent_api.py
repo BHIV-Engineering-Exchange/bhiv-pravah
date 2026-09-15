@@ -81,7 +81,9 @@ app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": [
     "http://localhost:4500",
     "http://localhost:3200",
-    "http://localhost:3000"
+    "http://localhost:3000",
+    "http://163.128.209.18:4500",
+    "https://pravah.blackholeinfiverse.com"
 ]}})
 
 # Initialize rate limiter
