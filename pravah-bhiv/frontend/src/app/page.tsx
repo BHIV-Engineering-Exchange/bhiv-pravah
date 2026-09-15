@@ -61,7 +61,7 @@ export default function Dashboard() {
         <div>
           <h3 className="font-bold text-sm font-sans">CONTROL PLANE UNREACHABLE</h3>
           <p className="text-xs text-muted-foreground mt-1 max-w-sm">
-            Failed to connect to the Decision Brain API on port 8000. Ensure the backend stack is running locally.
+            Failed to connect to the Decision Brain API. Ensure the backend stack is running and reachable.
           </p>
         </div>
         <button 

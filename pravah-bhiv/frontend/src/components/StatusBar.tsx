@@ -33,7 +33,7 @@ export default function StatusBar() {
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-1.5">
           <Server className="w-3.5 h-3.5" />
-          <span>PORT 8000 (Brain):</span>
+          <span>Decision Brain:</span>
           <div className="flex items-center gap-1">
             <span className={`w-1.5 h-1.5 rounded-full ${dbConnected ? 'bg-emerald-500 shadow-[0_0_6px_#10b981]' : 'bg-rose-500 shadow-[0_0_6px_#ef4444]'}`} />
             <span className={dbConnected ? 'text-emerald-500 font-semibold' : 'text-rose-500'}>
@@ -44,7 +44,7 @@ export default function StatusBar() {
 
         <div className="flex items-center gap-1.5">
           <Server className="w-3.5 h-3.5" />
-          <span>PORT 7000 (Plane):</span>
+          <span>Control Plane:</span>
           <div className="flex items-center gap-1">
             <span className={`w-1.5 h-1.5 rounded-full ${cpConnected ? 'bg-emerald-500 shadow-[0_0_6px_#10b981]' : 'bg-rose-500 shadow-[0_0_6px_#ef4444]'}`} />
             <span className={cpConnected ? 'text-emerald-500 font-semibold' : 'text-rose-500'}>
@@ -55,7 +55,7 @@ export default function StatusBar() {
 
         <div className="flex items-center gap-1.5">
           <Server className="w-3.5 h-3.5" />
-          <span>PORT 8600 (Observer):</span>
+          <span>Observer:</span>
           <div className="flex items-center gap-1">
             <span className={`w-1.5 h-1.5 rounded-full ${obsConnected ? 'bg-emerald-500 shadow-[0_0_6px_#10b981]' : 'bg-rose-500 shadow-[0_0_6px_#ef4444]'}`} />
             <span className={obsConnected ? 'text-emerald-500 font-semibold' : 'text-rose-500'}>
